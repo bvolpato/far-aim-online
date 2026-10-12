@@ -27,7 +27,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          xcode_major="$(xcodebuild -version | awk '$1 == "Xcode" { split($2, version, "."); print version[1]; exit }')"
+          xcode_major="$(xcodebuild -version | awk '$1 == "Xcode" { split($2, version, "."); print version[1] }')"
           if [[ -z "$xcode_major" ]]; then
             echo 'Could not determine the selected Xcode version.' >&2
             exit 1
@@ -41,7 +41,7 @@ jobs:
             sudo xcode-select --switch "$xcode_app/Contents/Developer"
           fi
 
-          xcode_version="$(xcodebuild -version | awk '$1 == "Xcode" { print $2; exit }')"
+          xcode_version="$(xcodebuild -version | awk '$1 == "Xcode" { print $2 }')"
           sdk_version="$(xcrun --sdk iphoneos --show-sdk-version)"
           xcode_major="${xcode_version%%.*}"
           sdk_major="${sdk_version%%.*}"
