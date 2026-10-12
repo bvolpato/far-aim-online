@@ -1491,6 +1491,21 @@ struct MoreView: View {
                     }
                 }
 
+                Link(destination: URL(string: "https://github.com/bvolpato/far-aim-online")!) {
+                    Label {
+                        VStack(alignment: .leading) {
+                            Text("Open-source project")
+                                .font(.body)
+                            Text("Free to use · Pull requests welcome")
+                                .font(.caption)
+                                .foregroundColor(.secondary)
+                        }
+                    } icon: {
+                        Image(systemName: "chevron.left.forwardslash.chevron.right")
+                            .foregroundColor(AviationTheme.accent)
+                    }
+                }
+
             }
 
             Section("Preferences") {
@@ -1516,7 +1531,7 @@ struct MoreView: View {
                         }
                     }
 
-                    Text("Your comprehensive aviation study companion. Access Federal Aviation Regulations, the Aeronautical Information Manual, FAA advisory circulars, and study materials anytime, anywhere.")
+                    Text("Free, open-source aviation study reference for Federal Aviation Regulations, the Aeronautical Information Manual, FAA advisory circulars, and study tools.")
                         .font(.subheadline)
                         .foregroundColor(.secondary)
                 }
@@ -1870,11 +1885,11 @@ struct HomeView: View {
                         .font(.caption.weight(.bold))
                         .tracking(1.5)
                         .foregroundStyle(AviationTheme.sky)
-                    Text("Your pilot reference, cleared for offline use.")
+                    Text("Free pilot reference, ready offline.")
                         .font(.title3.weight(.semibold))
                         .foregroundStyle(.white)
                         .fixedSize(horizontal: false, vertical: true)
-                    Text("Current source material. Fast study tools. No signal required.")
+                    Text("FAA references and fast study tools. No signal required.")
                         .font(.caption)
                         .foregroundStyle(.white.opacity(0.72))
                         .fixedSize(horizontal: false, vertical: true)
