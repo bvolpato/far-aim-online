@@ -1,0 +1,220 @@
+{
+  "id": "aim-chapter1-navigation",
+  "title": "Air Navigation Systems",
+  "description": "Key concepts from AIM Chapter 1 covering navigation aids, GPS, WAAS, ILS, and Performance-Based Navigation",
+  "category": "AIM",
+  "chapter": 1,
+  "cardCount": 35,
+  "cards": [
+    {
+      "id": "ch1-001",
+      "front": "NDB (Nondirectional Beacon) Basics",
+      "back": "• Frequency: 190-535 kHz (low/medium frequency)\n• Provides bearing information to 'home' on station\n• Uses ADF (Automatic Direction Finder) receiver\n• No flag warning for erroneous bearings - monitor ID continuously\n• Vulnerable to lightning, precipitation static, and nighttime interference",
+      "reference": "AIM 1-1-2"
+    },
+    {
+      "id": "ch1-002",
+      "front": "VOR (VHF Omni-directional Range) Basics",
+      "back": "• Frequency: 108.0-117.95 MHz (VHF band)\n• Subject to line-of-sight restrictions\n• Range varies with altitude\n• Accuracy: ±1 degree\n• 'W' suffix (VORW) = Without voice capability\n• Identify by Morse code or 'VOR' voice announcement",
+      "reference": "AIM 1-1-3, 1-1-8"
+    },
+    {
+      "id": "ch1-003",
+      "front": "VOR Receiver Check (VOT)",
+      "back": "• VOT frequency found in Chart Supplement\n• With CDI centered: OBS should show 0° FROM or 180° TO\n• Maximum error for IFR: ±4° (VOT check)\n• RMI will show 180° on any OBS setting\n• Check required within 30 days for IFR flight\n• Other methods: airborne checkpoint, ground checkpoint, dual VOR check",
+      "reference": "AIM 1-1-4, 14 CFR 91.171"
+    },
+    {
+      "id": "ch1-004",
+      "front": "TACAN vs VOR",
+      "back": "• TACAN: Military/naval navigation system\n• Operates in UHF band (pulse system)\n• Provides both azimuth AND distance\n• VOR provides azimuth only (needs separate DME for distance)\n• TACAN developed for shipboard/unusual siting conditions\n• Requires specific TACAN airborne equipment",
+      "reference": "AIM 1-1-5"
+    },
+    {
+      "id": "ch1-005",
+      "front": "VORTAC",
+      "back": "• Combined VOR + TACAN at one site\n• Provides THREE services:\n 1. VOR azimuth (civilian)\n 2. TACAN azimuth (military)\n 3. TACAN distance/DME (both)\n• Frequencies are 'paired' for simplified operation\n• Both signals have interlocked identification",
+      "reference": "AIM 1-1-6"
+    },
+    {
+      "id": "ch1-006",
+      "front": "DME (Distance Measuring Equipment)",
+      "back": "• Frequency: 960-1215 MHz (UHF)\n• Provides SLANT RANGE distance (not horizontal)\n• Accuracy: ½ mile or 3% (whichever greater)\n• Range: up to 199 NM at line-of-sight altitude\n• Aircraft interrogates; ground transponder replies\n• Paired with VOR/VORTAC frequencies for auto-selection",
+      "reference": "AIM 1-1-7"
+    },
+    {
+      "id": "ch1-007",
+      "front": "Slant Range vs Horizontal Distance",
+      "back": "• DME shows slant range (straight-line distance to station)\n• Slant range > horizontal distance (especially close to station at altitude)\n• Example: Directly over station at 6,000 ft AGL, DME shows 1 NM\n• Error decreases with distance from station\n• Plan approaches accounting for this difference",
+      "reference": "AIM 1-1-7"
+    },
+    {
+      "id": "ch1-008",
+      "front": "ILS Components",
+      "back": "THREE functional parts:\n1. GUIDANCE: Localizer (lateral) + Glideslope (vertical)\n2. RANGE: Marker beacons + DME\n3. VISUAL: Approach lights, touchdown/centerline lights, runway lights\n\nBasic components: Localizer, Glideslope, Outer Marker (OM), Inner Marker (IM for Cat II/III)",
+      "reference": "AIM 1-1-9"
+    },
+    {
+      "id": "ch1-009",
+      "front": "ILS Localizer",
+      "back": "• Frequency: 108.10-111.95 MHz\n• Transmitter at far end of runway\n• Course width: 700 feet at threshold\n• Provides runway centerline alignment\n• Front course = approach course\n• Back course = opposite direction (reverse sensing without special equipment)",
+      "reference": "AIM 1-1-9"
+    },
+    {
+      "id": "ch1-010",
+      "front": "ILS Marker Beacons",
+      "back": "OUTER MARKER (OM):\n• Blue light, continuous dashes\n• Marks FAF/glideslope intercept\n\nMIDDLE MARKER (MM):\n• Amber light, alternating dots/dashes\n• ~3,500 ft from runway, ~200 ft above threshold\n\nINNER MARKER (IM):\n• White light, continuous dots\n• Cat II/III decision point",
+      "reference": "AIM 1-1-9"
+    },
+    {
+      "id": "ch1-011",
+      "front": "ILS Back Course Operations",
+      "back": "• Back course is opposite direction from front course\n• WITHOUT reverse sensing: Steer OPPOSITE needle deflection\n• Needle right = fly left, needle left = fly right\n• With reverse sensing equipment: Normal needle interpretation\n• Glideslope NOT valid on back course\n• Published as LOC BC approach",
+      "reference": "AIM 1-1-9"
+    },
+    {
+      "id": "ch1-012",
+      "front": "SDF (Simplified Directional Facility)",
+      "back": "• Similar to localizer but LESS precise\n• Frequency: 108.10-111.95 MHz\n• NO glideslope information\n• Course width: 6° or 12° (vs ~5° for localizer)\n• Course may NOT be aligned with runway\n• Usable off-course indications: 35° either side\n• Approach leads to SDF antenna, not runway centerline",
+      "reference": "AIM 1-1-10"
+    },
+    {
+      "id": "ch1-013",
+      "front": "NAVAID Maintenance Identification",
+      "back": "During maintenance:\n• Coded identification REMOVED (warning that facility unreliable)\n• VHF ranges may transmit T-E-S-T code (- • ••• -)\n• DO NOT fly procedure NOTAMed out of service\n• Even if signal present, facility may be unreliable\n• Always check NOTAMs before flight",
+      "reference": "AIM 1-1-11"
+    },
+    {
+      "id": "ch1-014",
+      "front": "IRU, INS, and AHRS",
+      "back": "IRU (Inertial Reference Unit):\n• Gyros + accelerometers\n• Provides attitude, position, velocity\n• Position degrades over time (drift)\n\nINS (Inertial Navigation System):\n• IRU + navigation computer\n• Can navigate via waypoints\n\nAHRS (Attitude Heading Reference System):\n• Provides attitude only, no position",
+      "reference": "AIM 1-1-15"
+    },
+    {
+      "id": "ch1-015",
+      "front": "Magnetic Flux Field Hazard",
+      "back": "• Materials under taxiways/ramps create magnetic fields\n• Can affect slaved compass flux detector\n• Causes erroneous heading alignment\n• May NOT self-correct\n• Check heading alignment before takeoff\n• Follow manufacturer procedures to correct",
+      "reference": "AIM 1-1-15"
+    },
+    {
+      "id": "ch1-016",
+      "front": "GPS Fundamentals",
+      "back": "• 24-satellite constellation\n• Minimum 4 satellites for 3D position\n• 5 satellites always visible worldwide (design goal)\n• Uses WGS-84 coordinate system\n• DoD operates satellite constellation\n• Status broadcast in data message and via NOTAMs",
+      "reference": "AIM 1-1-17"
+    },
+    {
+      "id": "ch1-017",
+      "front": "RAIM (Receiver Autonomous Integrity Monitoring)",
+      "back": "• GPS receiver self-checks integrity\n• Without RAIM: No assurance of position accuracy\n• Requires: 5 satellites OR 4 satellites + baro-aiding\n• Provides immediate pilot feedback\n• FDE (Fault Detection and Exclusion): Can exclude bad satellite\n• Critical for IFR GPS operations",
+      "reference": "AIM 1-1-17"
+    },
+    {
+      "id": "ch1-018",
+      "front": "GPS Limitations",
+      "back": "• Delays up to 2 hours before erroneous satellite detected by control segment\n• RAIM provides real-time detection\n• Must have current database\n• Check RAIM availability before IFR approach\n• Not all GPS receivers approved for all operations\n• TSO certification determines capabilities",
+      "reference": "AIM 1-1-17"
+    },
+    {
+      "id": "ch1-019",
+      "front": "WAAS (Wide Area Augmentation System)",
+      "back": "• Improves GPS accuracy, integrity, availability\n• Broadcasts on GPS L1 frequency (1575.42 MHz)\n• Uses Wide-area Reference Stations (WRS)\n• Corrections via geostationary satellites (GEO)\n• Enables LPV approaches (vertical guidance)\n• Similar systems: EGNOS (Europe), GAGAN (India)",
+      "reference": "AIM 1-1-18"
+    },
+    {
+      "id": "ch1-020",
+      "front": "WAAS Components",
+      "back": "• 38 Wide-area Reference Stations (WRS)\n• 3 Wide-area Master Stations (WMS)\n• 3 GEO satellite links\n• 6 Ground Earth Stations (GES)\n• 2 Operational Control Centers\n• GEO also provides additional ranging signal",
+      "reference": "AIM 1-1-18"
+    },
+    {
+      "id": "ch1-021",
+      "front": "GBAS/GLS",
+      "back": "GBAS (Ground Based Augmentation System):\n• Local differential GPS augmentation\n• 4+ reference stations at airport\n• VHF Data Broadcast (VDB) uplink\n\nGLS (GBAS Landing System):\n• Precision approach like ILS\n• 3D lateral and vertical guidance\n• Single ground station supports multiple runways",
+      "reference": "AIM 1-1-19"
+    },
+    {
+      "id": "ch1-022",
+      "front": "PBN Overview",
+      "back": "Performance-Based Navigation:\n• RNAV: Area navigation (general term)\n• Two NavSpec categories:\n 1. RNAV x: Specified accuracy\n 2. RNP x: RNAV + onboard monitoring/alerting\n• Number = lateral accuracy in NM (95% of time)\n• Example: RNP 1 = 1 NM accuracy, 95% of flight time",
+      "reference": "AIM 1-2-1"
+    },
+    {
+      "id": "ch1-023",
+      "front": "RNAV vs RNP",
+      "back": "RNAV:\n• Area navigation capability\n• Specified accuracy requirement\n• No onboard performance monitoring required\n\nRNP (Required Navigation Performance):\n• RNAV + OBPMA (Onboard Performance Monitoring and Alerting)\n• Aircraft verifies it meets requirements\n• Allows reduced ATC intervention\n• Enables tighter separation",
+      "reference": "AIM 1-2-1, 1-2-2"
+    },
+    {
+      "id": "ch1-024",
+      "front": "Navigation Specification Eligibility",
+      "back": "• NavSpecs are DIFFERENT, not better/worse\n• RNP 1 eligibility does NOT mean RNAV 1 eligibility\n• Each eligibility listed separately in AFM\n• Database holds only procedures aircraft is eligible for\n• If procedure not in database, aircraft may be ineligible\n• Verify procedure data after loading",
+      "reference": "AIM 1-2-2"
+    },
+    {
+      "id": "ch1-025",
+      "front": "RNAV as Substitute Navigation",
+      "back": "Suitable RNAV can substitute when:\n• NAVAID is out of service (per NOTAM)\n• Aircraft not equipped with ADF or DME\n• ADF or DME is inoperative\n\nExample: Hold over out-of-service NDB using GPS\n• Must meet AC 90-108 requirements\n• May need to advise ATC of intent",
+      "reference": "AIM 1-2-3"
+    },
+    {
+      "id": "ch1-026",
+      "front": "RNAV as Alternate Navigation",
+      "back": "Suitable RNAV can be used when:\n• NAVAID is operational\n• Aircraft has working compatible equipment\n• Flying procedure without monitoring ground navaid\n\nExample: Fly VOR procedure using GPS without monitoring VOR\n• Per AC 90-108 requirements\n• Database must be current",
+      "reference": "AIM 1-2-3"
+    },
+    {
+      "id": "ch1-027",
+      "front": "GPS Jamming Effects",
+      "back": "Impacts include:\n• Loss of GPS navigation\n• Loss of hybrid GPS/inertial navigation\n• Degraded PBN capability\n• Unreliable TAWS triggering\n• Erroneous ADS-B outputs\n• Unexpected autotuning effects\n• Erroneous FMS calculations\n• ATM infrastructure failures",
+      "reference": "AIM 1-2-4"
+    },
+    {
+      "id": "ch1-028",
+      "front": "GPS Spoofing",
+      "back": "• Intentional false GPS signals\n• Can cause unflagged position errors\n• RAIM only partially effective against spoofing\n• Pilot may NOT be aware of errors\n• ATC may be only means to detect\n• GPS re-radiators (maintenance) Can cause unintentional spoofing",
+      "reference": "AIM 1-2-4"
+    },
+    {
+      "id": "ch1-029",
+      "front": "Responding to GPS Anomalies",
+      "back": "When experiencing GPS problems:\n1. Transition to another navigation source\n2. Request amended clearances from ATC\n3. Report anomaly as soon as practical\n\nReport should include:\n• Date/time and NAVAID ID\n• Location (lat/long or bearing/distance)\n• Heading, altitude, aircraft type/callsign",
+      "reference": "AIM 1-2-4"
+    },
+    {
+      "id": "ch1-030",
+      "front": "VOR Minimum Operational Network (MON)",
+      "back": "• FAA removing selected VORs as GPS/RNAV adopted\n• MON: Subset of VORs retained as backup\n• Ensures navigation if GPS unavailable\n• GPS is primary navigation for PBN\n• MON provides contingency capability\n• Check Chart Supplement for MON status",
+      "reference": "AIM 1-1-8"
+    },
+    {
+      "id": "ch1-031",
+      "front": "Navigation Aid Frequency Summary",
+      "back": "• NDB: 190-535 kHz (LF/MF)\n• VOR: 108.0-117.95 MHz (VHF)\n• Localizer: 108.10-111.95 MHz (VHF)\n• Glideslope: 329-335 MHz (UHF)\n• DME/TACAN: 960-1215 MHz (UHF)\n• GPS L1: 1575.42 MHz",
+      "reference": "AIM Chapter 1"
+    },
+    {
+      "id": "ch1-032",
+      "front": "Compass Locator",
+      "back": "• NDB co-located with ILS marker\n• LOM: Locator Outer Marker\n• LMM: Locator Middle Marker\n• Two-letter identifier\n• Provides NDB guidance to marker location\n• Helps pilots find ILS course",
+      "reference": "AIM 1-1-2, 1-1-9"
+    },
+    {
+      "id": "ch1-033",
+      "front": "ILS Categories",
+      "back": "CAT I:\n• DH: 200 ft\n• Visibility: 1800 RVR or ½ mile\n\nCAT II:\n• DH: 100-200 ft\n• Visibility: 1200 RVR\n• Requires special equipment/training\n\nCAT III:\n• DH: <100 ft or none\n• Visibility: 700 RVR down to 0\n• Autoland capable aircraft",
+      "reference": "AIM 1-1-9"
+    },
+    {
+      "id": "ch1-034",
+      "front": "LPV Approach",
+      "back": "• Localizer Performance with Vertical guidance\n• WAAS-enabled GPS approach\n• Precision-like vertical guidance\n• Decision Altitude (DA) like ILS\n• Minimums can be as low as 200 ft\n• NOT technically a precision approach (APV)\n• Requires WAAS receiver",
+      "reference": "AIM 1-1-18"
+    },
+    {
+      "id": "ch1-035",
+      "front": "Key VOR Limitations",
+      "back": "• Line-of-sight only (terrain/altitude dependent)\n• Propeller RPM can cause ±6° CDI fluctuation\n• Mountain terrain can cause needle oscillation\n• Some receivers more susceptible to irregularities\n• No 'flag' for some types of errors\n• Annual calibration recommended",
+      "reference": "AIM 1-1-8"
+    }
+  ]
+}

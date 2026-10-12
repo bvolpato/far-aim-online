@@ -1,0 +1,190 @@
+{
+  "id": "aim-chapter6-emergency",
+  "title": "Emergency Procedures",
+  "description": "Key concepts from AIM Chapter 6 covering emergency procedures, distress communications, ELTs, and survival",
+  "category": "AIM",
+  "chapter": 6,
+  "cardCount": 30,
+  "cards": [
+    {
+      "id": "ch6-001",
+      "front": "PIC Emergency Authority",
+      "back": "14 CFR 91.3: Pilot-in-command is:\n• Directly responsible for aircraft operation\n• Final authority as to aircraft operation\n\nIn EMERGENCY:\n• May deviate from ANY rule to meet emergency\n• Must notify ATC ASAP if deviated from clearance\n• May be required to submit written report",
+      "reference": "AIM 6-1-1"
+    },
+    {
+      "id": "ch6-002",
+      "front": "Distress vs Urgency",
+      "back": "DISTRESS:\n• Immediate danger to life or property\n• Requires immediate assistance\n• Use MAYDAY\n\nURGENCY:\n• Concerns safety of aircraft\n• Does NOT require immediate assistance\n• Use PAN-PAN\n\nWhen in doubt - DECLARE!",
+      "reference": "AIM 6-1-2"
+    },
+    {
+      "id": "ch6-003",
+      "front": "Emergency Transponder Codes",
+      "back": "7700: EMERGENCY\n• '77 - going to heaven'\n\n7600: COMMUNICATION FAILURE\n• '76 - need to fix (radio)'\n\n7500: HIJACK\n• '75 - taken alive'\n\nSquawk 7700 even if no radar contact - triggers alerts!",
+      "reference": "AIM 6-2-2"
+    },
+    {
+      "id": "ch6-004",
+      "front": "MAYDAY Call Format",
+      "back": "1. MAYDAY, MAYDAY, MAYDAY\n2. (Facility name) if able\n3. Aircraft callsign\n4. Type of aircraft\n5. Nature of emergency\n6. Intentions/request\n7. Present position and altitude\n8. Fuel remaining (hours:minutes)\n9. Souls on board\n10. Any other useful information",
+      "reference": "AIM 6-3-1"
+    },
+    {
+      "id": "ch6-005",
+      "front": "Emergency Frequencies",
+      "back": "121.5 MHz: International emergency\n• VHF guard frequency\n• Most ATC and aircraft monitor\n• ELTs transmit on this\n\n243.0 MHz: Military emergency\n• UHF guard frequency\n\nUse ANY frequency you're on - ATC will coordinate!",
+      "reference": "AIM 6-3-1"
+    },
+    {
+      "id": "ch6-006",
+      "front": "ELT Types and Frequencies",
+      "back": "406 MHz ELT (preferred):\n• Satellite monitored (Cospas-Sarsat)\n• Digital encoding with owner data\n• GPS position capability\n• Must register with NOAA\n• Includes 121.5 MHz homing signal\n\n121.5/243.0 MHz (legacy):\n• NO longer satellite monitored (since 2009)\n• Relies on overflying aircraft/ATC",
+      "reference": "AIM 6-2-4"
+    },
+    {
+      "id": "ch6-007",
+      "front": "ELT Testing",
+      "back": "When: Only during first 5 minutes after each hour\n\nHow:\n• Test duration: 3 audible sweeps maximum\n• Tune to 121.5 MHz to verify\n\nFalse activations:\n• Check after hard landings\n• Notify ATC immediately if inadvertent activation",
+      "reference": "AIM 6-2-4"
+    },
+    {
+      "id": "ch6-008",
+      "front": "SAR (Search and Rescue) Initiation",
+      "back": "SAR begins when:\n• Information suggests aircraft is missing\n• 30+ min overdue AND cannot contact\n• ELT signal received\n\nWithout flight plan: SAR may not begin until reported missing by family/friends!\n\nALWAYS file and close flight plans!",
+      "reference": "AIM 6-2-7"
+    },
+    {
+      "id": "ch6-009",
+      "front": "Light Gun Signals - In Flight",
+      "back": "Steady GREEN: Cleared to land\nFlashing GREEN: Return for landing\nSteady RED: Give way, continue circling\nFlashing RED: Airport unsafe, don't land\nAlternating RED/GREEN: Extreme caution\nFlashing WHITE: Not used in flight\n\nAcknowledge: Rock wings (day), flash lights (night)",
+      "reference": "AIM 4-3-13"
+    },
+    {
+      "id": "ch6-010",
+      "front": "Light Gun Signals - On Ground",
+      "back": "Steady GREEN: Cleared for takeoff\nFlashing GREEN: Cleared to taxi\nSteady RED: STOP\nFlashing RED: Taxi clear of runway in use\nFlashing WHITE: Return to starting point\nAlternating RED/GREEN: Extreme caution\n\nAcknowledge: Move ailerons (day), flash lights (night)",
+      "reference": "AIM 4-3-13"
+    },
+    {
+      "id": "ch6-011",
+      "front": "VFR Pilot in IMC",
+      "back": "If VFR pilot inadvertently enters IMC:\n1. Maintain aircraft control\n2. Reverse course to VFR if possible\n3. If not possible - declare DISTRESS\n4. State: 'I am not instrument rated'\n5. Request radar vectors to VFR\n6. Follow ATC instructions precisely\n7. Trust instruments, not senses!",
+      "reference": "AIM 6-2-1"
+    },
+    {
+      "id": "ch6-012",
+      "front": "Radio Failure Procedures (IFR)",
+      "back": "Squawk: 7600\nRoute: A-V-E-F (Assigned, Vectored, Expected, Filed)\nAltitude: HIGHEST of assigned, expected, or MEA\n\nApproach: Begin at expected time OR if no expect time, upon arrival at fix\n\nAlways report loss of comm if able via phone after landing",
+      "reference": "AIM 5-3-3"
+    },
+    {
+      "id": "ch6-013",
+      "front": "Direction Finding (DF) Steer",
+      "back": "Service provided by some ATC facilities:\n• Determines aircraft bearing from radio transmission\n• Provides heading to airport\n\nTo use:\n• Contact ATC, state emergency\n• Request DF steer\n• Key mic as directed for signal\n• Follow heading instructions",
+      "reference": "AIM 6-2-6"
+    },
+    {
+      "id": "ch6-014",
+      "front": "Intercept and Escort",
+      "back": "SAR may provide:\n• Visual/electronic contact with distressed aircraft\n• In-flight assistance\n• Escort to safe landing\n• Immediate SAR if ditching/crash occurs\n\nPilot may refuse escort service\nEscort continues to nearest adequate airport",
+      "reference": "AIM 6-2-3"
+    },
+    {
+      "id": "ch6-015",
+      "front": "Fuel Emergency Declaration",
+      "back": "MINIMUM FUEL:\n• Advisory - cannot accept undue delay\n• NOT an emergency declaration\n• ATC informed of priority need\n\nFUEL EMERGENCY:\n• Declare when fuel CRITICAL\n• State 'DECLARING EMERGENCY'\n• Will receive priority handling\n\nDon't wait until it's too late!",
+      "reference": "AIM 5-5-15"
+    },
+    {
+      "id": "ch6-016",
+      "front": "Engine Failure After Takeoff",
+      "back": "IMMEDIATE ACTIONS:\n1. Pitch for best glide speed\n2. Pick landing spot (usually ahead)\n3. Attempt restart if time/altitude\n4. Secure engine (mixture, fuel, mags)\n5. Declare emergency if able\n6. Unlatch doors before touchdown\n7. Master OFF before touchdown\n\nAviate, Navigate, Communicate!",
+      "reference": "AIM 6-1-2"
+    },
+    {
+      "id": "ch6-017",
+      "front": "Engine Fire in Flight",
+      "back": "POH procedures typically include:\n1. Mixture - CUTOFF\n2. Fuel selector - OFF\n3. Fuel pump - OFF\n4. Master - OFF (if fire persists)\n5. Cabin heat/air - OFF\n6. Airspeed - increase to extinguish\n7. Forced landing - ASAP\n\nDECLARE EMERGENCY!",
+      "reference": "AIM 6-1-2"
+    },
+    {
+      "id": "ch6-018",
+      "front": "Electrical Fire in Flight",
+      "back": "POH procedures typically:\n1. Master - OFF\n2. Avionics - OFF\n3. Cabin heat/air - OFF\n4. Fire extinguisher - use if available\n5. Ventilate cabin\n6. If fire out, turn master ON\n7. Turn on essential equipment one at a time\n8. Land as soon as practical",
+      "reference": "AIM 6-1-2"
+    },
+    {
+      "id": "ch6-019",
+      "front": "MSAW (Minimum Safe Altitude Warning)",
+      "back": "Automated alert to controllers:\n• Warns of terrain/obstacle proximity\n• Mode C aircraft under ATC control\n\nProvided for:\n• All IFR flights\n• VFR flights - BY REQUEST\n\nPhrase: 'Request MSAW monitoring'\n\nLimitations: May not work near borders",
+      "reference": "AIM 4-1-16"
+    },
+    {
+      "id": "ch6-020",
+      "front": "AFRCC and Coast Guard",
+      "back": "Air Force Rescue Coordination Center:\n• Coordinates inland US SAR\n• Receives 406 ELT alerts\n• Phone: 1-800-851-3051\n\nUS Coast Guard:\n• Coordinates maritime SAR\n• Coastal and oceanic areas\n\nBoth work with Civil Air Patrol",
+      "reference": "AIM 6-2-7"
+    },
+    {
+      "id": "ch6-021",
+      "front": "Survival Equipment",
+      "back": "For flights over uninhabited areas:\n• Water (1 gal/person/day)\n• Food (energy bars, MREs)\n• Shelter (space blanket, tarp)\n• Signaling (mirror, flare, whistle)\n• First aid kit\n• Fire starting equipment\n• Navigation (map, compass)\n• Clothing appropriate to conditions",
+      "reference": "AIM 6-2-5"
+    },
+    {
+      "id": "ch6-022",
+      "front": "Crash Position Signaling",
+      "back": "Ground-to-air signals:\n• V = Require assistance\n• X = Require medical\n• N = No/negative\n• Y = Yes/affirmative\n• → = Proceeding this direction\n\nMake signals large (at least 8 ft)\nUse contrasting materials\nStay with aircraft unless rescue certain",
+      "reference": "AIM 6-2-5"
+    },
+    {
+      "id": "ch6-023",
+      "front": "Military Intercept Signals",
+      "back": "If intercepted:\n• Follow interceptor's visual signals\n• Squawk 7700\n• Attempt contact on 121.5 or 243.0\n• Respond to signals:\n - Rock wings = Acknowledge\n - Follow me = Comply\n - Land = Follow to airport\n\nNever make aggressive maneuvers!",
+      "reference": "AIM 5-6-2"
+    },
+    {
+      "id": "ch6-024",
+      "front": "Carbon Monoxide Poisoning",
+      "back": "Symptoms:\n• Headache, dizziness, drowsiness\n• Similar to hypoxia\n• Odorless, colorless gas\n\nSources: Exhaust through cabin heater\n\nAction:\n1. Heater - OFF\n2. Vents - OPEN\n3. Windows - OPEN if able\n4. Land as soon as practical\n5. Seek medical attention",
+      "reference": "AIM 8-1-4"
+    },
+    {
+      "id": "ch6-025",
+      "front": "Declaring Emergency - Key Points",
+      "back": "DON'THESITATE:\n• If in doubt, declare\n• Better safe than sorry\n• No penalty for good judgment\n\nBENEFITS:\n• Priority handling\n• All available resources\n• Cleared path to airport\n• Emergency equipment standing by\n\nRemember: Aviate, Navigate, Communicate",
+      "reference": "AIM 6-1-2"
+    },
+    {
+      "id": "ch6-026",
+      "front": "Ditching Procedures",
+      "back": "Before ditching:\n• Declare emergency, position\n• Consider USCG if over water\n• Deploy survival gear\n• Secure loose items\n• Land parallel to swells, into wind\n\nIn water:\n• Exit quickly\n• Inflate life vest OUTSIDE aircraft\n• Deploy raft, stay with group\n• Signal for rescue",
+      "reference": "AIM 6-3-3"
+    },
+    {
+      "id": "ch6-027",
+      "front": "Hypoxia Recognition and Treatment",
+      "back": "Symptoms (vary by person):\n• Headache, dizziness\n• Impaired judgment/euphoria\n• Tingling, visual changes\n• Blue fingernails (cyanosis)\n\nTreatment:\n1. Don oxygen mask/supplement\n2. Descend to lower altitude\n3. Land if symptoms persist\n\nOnset: Above 10,000-12,000 ft",
+      "reference": "AIM 8-1-2"
+    },
+    {
+      "id": "ch6-028",
+      "front": "Spatial Disorientation",
+      "back": "Causes:\n• Vestibular illusions\n• Lack of visual reference (IMC)\n• Trust body vs instruments\n\nPrevention:\n• Trust instruments in IMC\n• Avoid sudden head movements\n• Maintain scan pattern\n\nRecovery:\n• Level by instruments\n• Don't chase sensations\n• Get to VFR or declare emergency",
+      "reference": "AIM 8-1-5"
+    },
+    {
+      "id": "ch6-029",
+      "front": "ATC Priority Handling",
+      "back": "When emergency declared:\n• Aircraft receives priority\n• Other traffic moved/held\n• Direct routing provided\n• Runway cleared\n• Emergency equipment alerted\n• ARFF standing by\n\nNever delay declaring for fear of 'getting in trouble'",
+      "reference": "AIM 6-1-2"
+    },
+    {
+      "id": "ch6-030",
+      "front": "Post-Emergency Requirements",
+      "back": "After emergency deviation:\n• Submit written report if requested\n• 14 CFR 91.3(c)\n• Within 10 days if requested\n\nCover in report:\n• Nature of emergency\n• Actions taken\n• Rules deviated from\n• Justification\n\nHonest reporting protects you",
+      "reference": "AIM 6-1-1, 14 CFR 91.3"
+    }
+  ]
+}

@@ -1,0 +1,468 @@
+{
+  "id": "far-part61-certification",
+  "title": "Part 61: Pilot Certification",
+  "description": "Master the requirements for pilot certificates, ratings, privileges, and currency from 14 CFR Part 61",
+  "category": "FAR",
+  "part": 61,
+  "difficulty": "intermediate",
+  "targetCertificate": "Private/Commercial Pilot",
+  "questionCount": 35,
+  "passingScore": 70,
+  "questions": [
+    {
+      "id": "p61-001",
+      "question": "What is the minimum age to obtain a Private Pilot Certificate for airplanes?",
+      "options": [
+        "16 years old",
+        "17 years old",
+        "18 years old",
+        "21 years old"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Per 14 CFR 61.103, applicants for a private pilot certificate must be at least 17 years old (16 for glider or balloon).",
+      "reference": "14 CFR 61.103"
+    },
+    {
+      "id": "p61-002",
+      "question": "How long is a flight review valid?",
+      "options": [
+        "12 calendar months",
+        "24 calendar months",
+        "36 calendar months",
+        "6 calendar months"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Per 14 CFR 61.56, a flight review is valid for 24 calendar months from the month it was completed.",
+      "reference": "14 CFR 61.56"
+    },
+    {
+      "id": "p61-003",
+      "question": "To carry passengers at night, a pilot must have completed how many takeoffs and landings to a full stop within the preceding 90 days?",
+      "options": [
+        "3 takeoffs and landings (any type)",
+        "3 takeoffs and 3 full-stop landings",
+        "5 takeoffs and 5 full-stop landings",
+        "1 takeoff and 1 full-stop landing"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Per 14 CFR 61.57(b), night currency requires 3 takeoffs and 3 full-stop landings during the period from 1 hour after sunset to 1 hour before sunrise.",
+      "reference": "14 CFR 61.57(b)"
+    },
+    {
+      "id": "p61-004",
+      "question": "What defines 'night' for logging flight time under Part 61?",
+      "options": [
+        "Sunset to sunrise",
+        "End of evening civil twilight to beginning of morning civil twilight",
+        "1 hour after sunset to 1 hour before sunrise",
+        "30 minutes after sunset to 30 minutes before sunrise"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Per 14 CFR 1.1, 'night' for logging purposes is from the end of evening civil twilight to the beginning of morning civil twilight.",
+      "reference": "14 CFR 1.1"
+    },
+    {
+      "id": "p61-005",
+      "question": "What documents must a pilot have in their physical possession while acting as PIC?",
+      "options": [
+        "Pilot certificate only",
+        "Pilot certificate and photo ID",
+        "Pilot certificate, medical certificate, and photo ID",
+        "Pilot certificate and logbook"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Per 14 CFR 61.3, a pilot must have their pilot certificate, medical certificate (if required), and photo ID in their physical possession.",
+      "reference": "14 CFR 61.3"
+    },
+    {
+      "id": "p61-006",
+      "question": "After passing a practical test, how long does a temporary pilot certificate remain valid?",
+      "options": [
+        "60 days",
+        "90 days",
+        "120 days",
+        "180 days"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Per 14 CFR 61.17, a temporary pilot certificate is valid for 120 days while awaiting the permanent certificate.",
+      "reference": "14 CFR 61.17"
+    },
+    {
+      "id": "p61-007",
+      "question": "A private pilot may NOT act as PIC of an aircraft carrying passengers:",
+      "options": [
+        "More than 50 nautical miles from the departure airport",
+        "For compensation or hire",
+        "At night without an instrument rating",
+        "In Class B airspace without an endorsement"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Per 14 CFR 61.113, private pilots may not act as PIC for compensation or hire, with limited exceptions for expense sharing and charity flights.",
+      "reference": "14 CFR 61.113"
+    },
+    {
+      "id": "p61-008",
+      "question": "What is the minimum flight time required for a Private Pilot Certificate under Part 61?",
+      "options": [
+        "30 hours",
+        "35 hours",
+        "40 hours",
+        "50 hours"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Per 14 CFR 61.109, the minimum total flight time for a private pilot certificate is 40 hours (35 hours under Part 141).",
+      "reference": "14 CFR 61.109"
+    },
+    {
+      "id": "p61-009",
+      "question": "How much solo cross-country time is required for a Private Pilot Certificate?",
+      "options": [
+        "3 hours",
+        "5 hours",
+        "10 hours",
+        "15 hours"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Per 14 CFR 61.109, at least 5 hours of solo cross-country flight time is required for a private pilot certificate.",
+      "reference": "14 CFR 61.109"
+    },
+    {
+      "id": "p61-010",
+      "question": "For a solo cross-country flight as a student pilot, what is the minimum cross-country distance for one of the required flights?",
+      "options": [
+        "50 nautical miles",
+        "100 nautical miles",
+        "150 nautical miles with landings at 3 points",
+        "250 nautical miles"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Per 14 CFR 61.109, one solo cross-country must be at least 150 NM total with full-stop landings at three points, one of which is at least 50 NM from original departure.",
+      "reference": "14 CFR 61.109"
+    },
+    {
+      "id": "p61-011",
+      "question": "What is required to act as PIC under Instrument Flight Rules (IFR)?",
+      "options": [
+        "Private pilot certificate only",
+        "Instrument rating and current instrument experience",
+        "Commercial pilot certificate",
+        "ATP certificate"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Per 14 CFR 61.57(c), to act as PIC under IFR, you need an instrument rating and must be instrument current (6 approaches, holding, tracking in preceding 6 months).",
+      "reference": "14 CFR 61.57(c)"
+    },
+    {
+      "id": "p61-012",
+      "question": "What instrument experience is required to maintain IFR currency?",
+      "options": [
+        "3 approaches in 90 days",
+        "6 approaches, holding, and tracking/intercepting in 6 calendar months",
+        "6 approaches in 12 calendar months",
+        "3 approaches and holding in 6 calendar months"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Per 14 CFR 61.57(c), IFR currency requires 6 instrument approaches, holding procedures, and tracking/intercepting courses within the preceding 6 calendar months.",
+      "reference": "14 CFR 61.57(c)"
+    },
+    {
+      "id": "p61-013",
+      "question": "If a pilot's instrument currency lapses, what is required to regain currency?",
+      "options": [
+        "Complete a flight review",
+        "Complete the required experience within 6 months of lapse",
+        "Pass an instrument proficiency check (IPC)",
+        "Either complete the experience within 6 months of lapse OR pass an IPC"
+      ],
+      "correctAnswer": 3,
+      "explanation": "Per 14 CFR 61.57(d), if currency lapses, a pilot has 6 additional months to complete the required experience. After that, an Instrument Proficiency Check (IPC) is required.",
+      "reference": "14 CFR 61.57(d)"
+    },
+    {
+      "id": "p61-014",
+      "question": "What must a student pilot have to conduct solo flight?",
+      "options": [
+        "A valid student pilot certificate only",
+        "A student pilot certificate and a logbook endorsement from an instructor",
+        "A student pilot certificate, medical certificate, and solo endorsement",
+        "A valid third-class medical certificate only"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Per 14 CFR 61.87, a student pilot must have a student pilot certificate, medical certificate (or BasicMed), and specific solo endorsements from their instructor.",
+      "reference": "14 CFR 61.87"
+    },
+    {
+      "id": "p61-015",
+      "question": "How long is a student pilot's solo endorsement valid for local solo flight?",
+      "options": [
+        "60 days",
+        "90 days",
+        "120 days",
+        "180 days"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Per 14 CFR 61.87(p), a student pilot's solo endorsement expires 90 days from the date of the endorsement.",
+      "reference": "14 CFR 61.87(p)"
+    },
+    {
+      "id": "p61-016",
+      "question": "What is the maximum number of passengers a private pilot may share expenses with on a flight?",
+      "options": [
+        "No limit",
+        "2 passengers",
+        "3 passengers",
+        "4 passengers"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Per 14 CFR 61.113(c), there is no specific passenger limit for expense sharing, but the pilot must pay at least their pro rata share. Common purposes of the flight must exist.",
+      "reference": "14 CFR 61.113(c)"
+    },
+    {
+      "id": "p61-017",
+      "question": "A private pilot may share operating expenses with passengers for fuel, oil, airport expenditures, and rental fees if:",
+      "options": [
+        "The pilot provides a receipt to passengers",
+        "The flight is for a common purpose",
+        "The pilot pays at least 50% of the expenses",
+        "The flight is less than 100 nautical miles"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Per 14 CFR 61.113(c), expense sharing is only permitted when the pilot and passengers share a common purpose for the flight.",
+      "reference": "14 CFR 61.113(c)"
+    },
+    {
+      "id": "p61-018",
+      "question": "What is required for a private pilot to act as PIC in a high-performance airplane (more than 200 HP)?",
+      "options": [
+        "No additional requirements",
+        "A logbook endorsement from an authorized instructor",
+        "A type rating",
+        "A commercial pilot certificate"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Per 14 CFR 61.31(f), a pilot must receive ground and flight training and a logbook endorsement to act as PIC of a high-performance airplane.",
+      "reference": "14 CFR 61.31(f)"
+    },
+    {
+      "id": "p61-019",
+      "question": "What is required to act as PIC of a complex airplane?",
+      "options": [
+        "A commercial pilot certificate",
+        "Ground and flight training with a logbook endorsement",
+        "An additional type rating",
+        "50 hours of complex airplane time"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Per 14 CFR 61.31(e), a pilot must receive ground and flight training and a logbook endorsement in a complex airplane (retractable gear, flaps, and controllable propeller).",
+      "reference": "14 CFR 61.31(e)"
+    },
+    {
+      "id": "p61-020",
+      "question": "What defines a 'complex airplane'?",
+      "options": [
+        "An airplane with more than 200 HP",
+        "An airplane with retractable landing gear, flaps, and a controllable propeller",
+        "Any multi-engine airplane",
+        "An airplane certified for IFR flight"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Per 14 CFR 61.1, a complex airplane has retractable landing gear, flaps, and a controllable-pitch propeller (or FADEC).",
+      "reference": "14 CFR 61.1"
+    },
+    {
+      "id": "p61-021",
+      "question": "When must a pilot report a change of permanent address to the FAA?",
+      "options": [
+        "Within 30 days",
+        "Within 60 days",
+        "Within 90 days",
+        "At next certificate renewal"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Per 14 CFR 61.60, a pilot must notify the FAA of a change in permanent mailing address within 30 days.",
+      "reference": "14 CFR 61.60"
+    },
+    {
+      "id": "p61-022",
+      "question": "What happens if a pilot fails to report an address change within the required time?",
+      "options": [
+        "The certificate is suspended",
+        "A fine of up to $1,000",
+        "The pilot may not exercise certificate privileges",
+        "Nothing, it's only a recommendation"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Per 14 CFR 61.60, failure to notify the FAA of an address change within 30 days means the pilot may not exercise certificate privileges.",
+      "reference": "14 CFR 61.60"
+    },
+    {
+      "id": "p61-023",
+      "question": "Which action requires a pilot to report to the FAA within 60 days?",
+      "options": [
+        "Involvement in any aircraft accident",
+        "Motor vehicle action for alcohol or drug-related offense",
+        "Any traffic violation",
+        "Change of employment"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Per 14 CFR 61.15, a pilot must report any motor vehicle action (conviction, suspension, revocation) for alcohol or drugs within 60 days.",
+      "reference": "14 CFR 61.15"
+    },
+    {
+      "id": "p61-024",
+      "question": "What are the minimum requirements for daytime passenger-carrying currency?",
+      "options": [
+        "1 takeoff and landing in preceding 90 days",
+        "3 takeoffs and landings in preceding 90 days in same category, class, and type",
+        "3 takeoffs and full-stop landings in preceding 90 days",
+        "6 takeoffs and landings in preceding 6 months"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Per 14 CFR 61.57(a), to carry passengers, a pilot must have 3 takeoffs and landings within the preceding 90 days in the same category, class, and type (if required).",
+      "reference": "14 CFR 61.57(a)"
+    },
+    {
+      "id": "p61-025",
+      "question": "For tailwheel aircraft passenger currency, what additional requirement exists?",
+      "options": [
+        "Landings must be to a full stop",
+        "5 takeoffs and landings required",
+        "Landings must be at a towered airport",
+        "Only day currency is required"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Per 14 CFR 61.57(a)(2), for tailwheel aircraft, the takeoffs and landings must be to a full stop.",
+      "reference": "14 CFR 61.57(a)"
+    },
+    {
+      "id": "p61-026",
+      "question": "What is the minimum age to solo an airplane?",
+      "options": [
+        "14 years old",
+        "15 years old",
+        "16 years old",
+        "17 years old"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Per 14 CFR 61.87, a student pilot must be at least 16 years old to solo an airplane or rotorcraft (14 for gliders or balloons).",
+      "reference": "14 CFR 61.87"
+    },
+    {
+      "id": "p61-027",
+      "question": "Can a pilot with a revoked certificate apply for a new certificate?",
+      "options": [
+        "Never",
+        "After 1 year from revocation",
+        "Only after proving rehabilitation",
+        "Immediately, but must retake all tests"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Per 14 CFR 61.13, a person whose certificate is revoked may not apply for any certificate for 1 year after the date of revocation.",
+      "reference": "14 CFR 61.13"
+    },
+    {
+      "id": "p61-028",
+      "question": "How many hours of instrument training are required for a Private Pilot Certificate?",
+      "options": [
+        "No instrument training required",
+        "3 hours",
+        "5 hours",
+        "10 hours"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Per 14 CFR 61.109, 3 hours of flight training on control and maneuvering solely by reference to instruments is required for a private pilot certificate.",
+      "reference": "14 CFR 61.109"
+    },
+    {
+      "id": "p61-029",
+      "question": "What is required before a student pilot can make a solo cross-country flight?",
+      "options": [
+        "Passing the private pilot knowledge test",
+        "Instructor endorsement for each cross-country flight",
+        "10 hours of solo time",
+        "Instrument training"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Per 14 CFR 61.93, a student pilot must have specific endorsements from an instructor for each solo cross-country flight, after demonstrating proficiency.",
+      "reference": "14 CFR 61.93"
+    },
+    {
+      "id": "p61-030",
+      "question": "A flight review must include:",
+      "options": [
+        "At least 1 hour of flight training only",
+        "At least 1 hour of ground training and 1 hour of flight training",
+        "A review of Part 91 and flight maneuvers demonstrating safe exercise of privileges",
+        "Completion of a written test"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Per 14 CFR 61.56, a flight review must include a minimum of 1 hour ground training reviewing Part 91 and 1 hour flight training demonstrating the pilot can safely exercise certificate privileges.",
+      "reference": "14 CFR 61.56"
+    },
+    {
+      "id": "p61-031",
+      "question": "What pilot certificate requires a type rating for all aircraft in that category?",
+      "options": [
+        "Private Pilot",
+        "Commercial Pilot",
+        "Airline Transport Pilot",
+        "Flight Instructor"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Per 14 CFR 61.167, an ATP certificate requires a type rating for each type of aircraft to be flown.",
+      "reference": "14 CFR 61.167"
+    },
+    {
+      "id": "p61-032",
+      "question": "For which aircraft is a type rating always required regardless of certificate level?",
+      "options": [
+        "Any aircraft over 6,000 lbs",
+        "Large aircraft (over 12,500 lbs) or turbojet-powered aircraft",
+        "Any multi-engine aircraft",
+        "Any aircraft requiring two pilots"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Per 14 CFR 61.31(a), a type rating is required to act as PIC of large aircraft (over 12,500 lbs MTOW) or any turbojet-powered aircraft.",
+      "reference": "14 CFR 61.31(a)"
+    },
+    {
+      "id": "p61-033",
+      "question": "What is the blood alcohol concentration (BAC) limit for pilots?",
+      "options": [
+        "0.02%",
+        "0.04%",
+        "0.08%",
+        "0.10%"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Per 14 CFR 91.17, no person may act as a crewmember with a BAC of 0.04% or greater.",
+      "reference": "14 CFR 91.17"
+    },
+    {
+      "id": "p61-034",
+      "question": "How long after consuming alcohol may a pilot act as a crewmember (assuming no impairment)?",
+      "options": [
+        "4 hours",
+        "8 hours",
+        "12 hours",
+        "24 hours"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Per 14 CFR 91.17, a pilot may not act as a crewmember within 8 hours of consuming alcohol ('8 hours bottle to throttle').",
+      "reference": "14 CFR 91.17"
+    },
+    {
+      "id": "p61-035",
+      "question": "A Commercial Pilot Certificate allows a pilot to:",
+      "options": [
+        "Fly for any air carrier",
+        "Be compensated for flying as PIC",
+        "Fly in any weather conditions",
+        "Instruct other pilots"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Per 14 CFR 61.133, a commercial pilot may be compensated as PIC, subject to operating limitations. Acting as an air carrier pilot requires an ATP certificate.",
+      "reference": "14 CFR 61.133"
+    }
+  ]
+}

@@ -1,0 +1,99 @@
+name: iOS CI
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test-and-build:
+    name: iOS simulator tests and device build
+    runs-on: macos-26
+    timeout-minutes: 45
+    steps:
+      - name: Check out source
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Select and validate Xcode 26 and iOS 26 SDK
+        shell: bash
+        run: |
+          set -euo pipefail
+          xcode_major="$(xcodebuild -version | awk '$1 == "Xcode" { split($2, version, "."); print version[1]; exit }')"
+          if [[ -z "$xcode_major" ]]; then
+            echo 'Could not determine the selected Xcode version.' >&2
+            exit 1
+          fi
+          if (( xcode_major < 26 )); then
+            xcode_app="$(find /Applications -maxdepth 1 -type d -name 'Xcode_26*.app' -print | sort -V | tail -n 1)"
+            if [[ -z "$xcode_app" ]]; then
+              echo "Xcode $xcode_major is selected and no Xcode 26 installation is available." >&2
+              exit 1
+            fi
+            sudo xcode-select --switch "$xcode_app/Contents/Developer"
+          fi
+
+          xcode_version="$(xcodebuild -version | awk '$1 == "Xcode" { print $2; exit }')"
+          sdk_version="$(xcrun --sdk iphoneos --show-sdk-version)"
+          xcode_major="${xcode_version%%.*}"
+          sdk_major="${sdk_version%%.*}"
+          if (( xcode_major < 26 || sdk_major < 26 )); then
+            echo "Xcode 26+ and iOS SDK 26+ are required; found Xcode $xcode_version and iOS SDK $sdk_version." >&2
+            exit 1
+          fi
+          printf 'Using Xcode %s and iOS SDK %s.\n' "$xcode_version" "$sdk_version"
+
+      - name: Show Xcode and simulator versions
+        run: |
+          xcodebuild -version
+          xcrun simctl list devices available
+
+      - name: Sync shared data to iOS resources
+        run: ./scripts/sync-data.sh ios
+
+      - name: Select an available iPhone simulator
+        id: simulator
+        shell: bash
+        run: |
+          simulator_id="$(xcrun simctl list devices available --json | jq -r '[.devices[][] | select(.isAvailable == true and (.name | startswith("iPhone"))) | .udid] | first // empty')"
+          if [[ -z "$simulator_id" ]]; then
+            echo 'No available iPhone simulator found.' >&2
+            exit 1
+          fi
+          echo "id=$simulator_id" >> "$GITHUB_OUTPUT"
+
+      - name: Run iOS unit tests on simulator
+        working-directory: mobile/ios
+        env:
+          SIMULATOR_ID: ${{ steps.simulator.outputs.id }}
+        run: |
+          set -o pipefail
+          xcodebuild test \
+            -project FARAIMPro.xcodeproj \
+            -scheme FARAIMPro \
+            -destination "id=$SIMULATOR_ID" \
+            -configuration Debug \
+            -derivedDataPath "$RUNNER_TEMP/ios-derived-data" \
+            CODE_SIGNING_ALLOWED=NO
+
+      - name: Build unsigned iOS device app
+        working-directory: mobile/ios
+        run: |
+          set -o pipefail
+          xcodebuild clean build \
+            -project FARAIMPro.xcodeproj \
+            -scheme FARAIMPro \
+            -destination 'generic/platform=iOS' \
+            -configuration Release \
+            -derivedDataPath "$RUNNER_TEMP/ios-derived-data" \
+            CODE_SIGNING_ALLOWED=NO \
+            CODE_SIGNING_REQUIRED=NO \
+            CODE_SIGN_IDENTITY=''

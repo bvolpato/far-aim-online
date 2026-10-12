@@ -1,0 +1,22 @@
+FAR/AIM Pro is a focused aviation study reference for pilots, student pilots, instructors, and anyone preparing for FAA knowledge tests or checkrides.
+
+Free to download and use. No account, subscription, or in-app purchases.
+
+Study core FAA material in one place:
+
+- Federal Aviation Regulations, including 591 official figures, Title 14, and key 49 CFR hazmat, NTSB, and TSA flight school/security references
+- Aeronautical Information Manual chapters and figures
+- 779 current FAA Advisory Circular records with official FAA pages and PDF links where published
+- Pilot/Controller Glossary
+- Certificate study paths for private, instrument, commercial, CFI, ATP, remote pilot, and maintenance study
+- Practice quizzes
+- Flashcard decks
+- Saved notes, highlights, and review queue
+- Study pack export/import for moving saved notes and highlights between devices
+- Fast search across reference content
+- Adjustable reader text size and spacing for cockpit, desk, and tablet study
+- Source status, release notes, and change watch so you can see what was refreshed
+
+Content is bundled for offline access, so you can study without a network connection after install. Follow focused certificate paths, save important FAR/AIM and Advisory Circular references, adjust reader density, add instructor notes, share references, move your study pack between devices, and mark topics reviewed as you prepare for written tests, oral exams, and checkrides.
+
+FAR/AIM Pro is built for reference and training support, not operational flight planning or legal advice. Pilots remain responsible for checking current official FAA sources before flight.

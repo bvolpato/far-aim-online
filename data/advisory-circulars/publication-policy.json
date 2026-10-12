@@ -1,0 +1,10 @@
+{
+  "version": 1,
+  "excludedOfflineText": {
+    "ac-150-5360-12f": "Offline text is omitted pending permission to redistribute third-party Sign Users Guide and Lighthouse material. Read the official FAA publication.",
+    "ac-150-5320-5d": "Offline text is omitted pending review of third-party material in the incorporated DoD Surface Drainage Design publication. Read the official FAA publication.",
+    "ac-20-167b": "Offline text is omitted pending permission to redistribute incorporated copyrighted RTCA material. Read the official FAA publication.",
+    "ac-20-185a": "Offline text is omitted pending permission to redistribute incorporated copyrighted RTCA material. Read the official FAA publication.",
+    "ac-61-134": "Offline text is omitted pending permission to redistribute incorporated Flight Safety Foundation CFIT Checklist material. Read the official FAA publication."
+  }
+}

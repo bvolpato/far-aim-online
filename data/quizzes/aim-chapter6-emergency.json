@@ -1,0 +1,338 @@
+{
+  "id": "aim-chapter6-emergency",
+  "title": "Emergency Procedures Quiz",
+  "description": "Test your knowledge of emergency procedures, distress communications, ELTs, and survival techniques from AIM Chapter 6",
+  "category": "AIM",
+  "chapter": 6,
+  "difficulty": "intermediate",
+  "targetCertificate": "Private/Instrument Pilot",
+  "questionCount": 25,
+  "passingScore": 70,
+  "questions": [
+    {
+      "id": "emerg-001",
+      "question": "According to 14 CFR 91.3, who is the final authority for the operation of the aircraft?",
+      "options": [
+        "Air Traffic Control",
+        "The aircraft dispatcher",
+        "The pilot-in-command",
+        "The aircraft owner"
+      ],
+      "correctAnswer": 2,
+      "explanation": "The pilot-in-command is directly responsible for and is the final authority as to the operation of that aircraft. In an emergency, the PIC may deviate from any rule to meet that emergency.",
+      "reference": "AIM 6-1-1"
+    },
+    {
+      "id": "emerg-002",
+      "question": "What must a pilot do after using emergency authority to deviate from an ATC clearance?",
+      "options": [
+        "File a report within 10 days",
+        "Notify ATC as soon as possible and obtain an amended clearance",
+        "Land at the nearest suitable airport",
+        "No action required"
+      ],
+      "correctAnswer": 1,
+      "explanation": "If emergency authority is used to deviate from an ATC clearance, the pilot must notify ATC as soon as possible and obtain an amended clearance.",
+      "reference": "AIM 6-1-1"
+    },
+    {
+      "id": "emerg-003",
+      "question": "What are the two types of emergency conditions?",
+      "options": [
+        "Critical and severe",
+        "Distress and urgency",
+        "Emergency and Mayday",
+        "Alert and warning"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Emergency conditions are: Distress (immediate danger, requires immediate assistance) and Urgency (concerns safety but does not require immediate assistance).",
+      "reference": "AIM 6-1-2"
+    },
+    {
+      "id": "emerg-004",
+      "question": "When should a pilot declare an emergency?",
+      "options": [
+        "Only when the aircraft is on fire",
+        "When doubtful about position, fuel, weather, or any condition affecting safety",
+        "Only when structural damage has occurred",
+        "Only when requested by ATC"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Pilots should declare an emergency when doubtful about position, fuel endurance, weather, or any other condition that could adversely affect flight safety. Don't hesitate - ask for help!",
+      "reference": "AIM 6-1-2"
+    },
+    {
+      "id": "emerg-005",
+      "question": "What is the international distress voice call?",
+      "options": [
+        "EMERGENCY, EMERGENCY, EMERGENCY",
+        "MAYDAY, MAYDAY, MAYDAY",
+        "PAN-PAN, PAN-PAN, PAN-PAN",
+        "HELP, HELP, HELP"
+      ],
+      "correctAnswer": 1,
+      "explanation": "MAYDAY (said three times) is the international distress call indicating the aircraft is threatened by serious and/or imminent danger and requires immediate assistance.",
+      "reference": "AIM 6-3-1"
+    },
+    {
+      "id": "emerg-006",
+      "question": "What is the urgency voice call?",
+      "options": [
+        "MAYDAY",
+        "URGENT",
+        "PAN-PAN",
+        "HELP"
+      ],
+      "correctAnswer": 2,
+      "explanation": "PAN-PAN (said three times) is the international urgency signal indicating the aircraft has an urgent message concerning safety but is not in immediate danger.",
+      "reference": "AIM 6-3-1"
+    },
+    {
+      "id": "emerg-007",
+      "question": "What transponder code should be squawked during an emergency?",
+      "options": [
+        "7500",
+        "7600",
+        "7700",
+        "1200"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Squawk 7700 for emergencies. This code triggers special indicators on radar displays. Continue squawking 7700 even if not yet in radar contact.",
+      "reference": "AIM 6-2-2"
+    },
+    {
+      "id": "emerg-008",
+      "question": "What does squawk code 7500 indicate?",
+      "options": [
+        "Emergency",
+        "Radio failure",
+        "Hijacking/unlawful interference",
+        "Lost aircraft"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Squawk 7500 indicates hijacking or unlawful interference. ATC will respond without requiring verbal confirmation to avoid alerting the hijacker.",
+      "reference": "AIM 6-3-4"
+    },
+    {
+      "id": "emerg-009",
+      "question": "What is the international emergency frequency?",
+      "options": [
+        "122.0 MHz",
+        "121.5 MHz",
+        "123.0 MHz",
+        "119.1 MHz"
+      ],
+      "correctAnswer": 1,
+      "explanation": "121.5 MHz is the international emergency (guard) Frequency. Most ATC facilities and aircraft monitor this frequency. ELTs also transmit on 121.5 MHz.",
+      "reference": "AIM 6-3-1"
+    },
+    {
+      "id": "emerg-010",
+      "question": "What frequencies do modern 406 MHz ELTs transmit on?",
+      "options": [
+        "406 MHz only",
+        "121.5 MHz only",
+        "406 MHz and 121.5 MHz",
+        "243.0 MHz only"
+      ],
+      "correctAnswer": 2,
+      "explanation": "406 MHz ELTs transmit on 406 MHz for satellite detection and also include a low-power 121.5 MHz homing transmitter for locating the aircraft.",
+      "reference": "AIM 6-2-4"
+    },
+    {
+      "id": "emerg-011",
+      "question": "Why are 406 MHz ELTs preferred over 121.5 MHz ELTs?",
+      "options": [
+        "They are cheaper",
+        "Satellite monitoring, digital encoding with registration data, more accurate location",
+        "Longer battery life only",
+        "Required by insurance"
+      ],
+      "correctAnswer": 1,
+      "explanation": "406 MHz ELTs are monitored by Cospas-Sarsat satellites (121.5 is no longer satellite-monitored), can be encoded with owner data, provide more accurate position, and enable faster rescue.",
+      "reference": "AIM 6-2-4"
+    },
+    {
+      "id": "emerg-012",
+      "question": "With whom should 406 MHz ELTs be registered?",
+      "options": [
+        "FAA only",
+        "NOAA (National Oceanic and Atmospheric Administration)",
+        "FCC only",
+        "Local sheriff"
+      ],
+      "correctAnswer": 1,
+      "explanation": "406 MHz ELTs must be registered with NOAA, which maintains the US registration database. This enables SAR to contact the owner and avoid false alarms.",
+      "reference": "AIM 6-2-4"
+    },
+    {
+      "id": "emerg-013",
+      "question": "What should a VFR pilot do if inadvertently entering IMC?",
+      "options": [
+        "Continue to destination",
+        "Declare emergency, get radar assistance, or reverse course to VFR if possible",
+        "Climb immediately",
+        "Descend to find ground reference"
+      ],
+      "correctAnswer": 1,
+      "explanation": "AVFR pilot in IMC should declare a distress condition, state lack of instrument rating if applicable, and request radar vectors to VFR or an IFR clearance if rated/equipped.",
+      "reference": "AIM 6-2-1"
+    },
+    {
+      "id": "emerg-014",
+      "question": "What information should be included in a MAYDAY call?",
+      "options": [
+        "Callsign only",
+        "MAYDAY (3x), callsign, nature of distress, intentions, position, altitude, fuel, souls on board",
+        "Weather and visibility",
+        "Flight plan details"
+      ],
+      "correctAnswer": 1,
+      "explanation": "MAYDAY call should include: MAYDAY (3x), callsign, nature of distress, intentions/request, present position, altitude, fuel remaining, and number of souls aboard.",
+      "reference": "AIM 6-3-1"
+    },
+    {
+      "id": "emerg-015",
+      "question": "What is the Air Force Rescue Coordination Center (AFRCC)?",
+      "options": [
+        "Weather forecasting center",
+        "The agency responsible for coordinating search and rescue for inland US",
+        "Military flight center",
+        "Airport coordination center"
+      ],
+      "correctAnswer": 1,
+      "explanation": "AFRCC coordinates search and rescue for the inland US. The Coast Guard coordinates SAR for maritime areas. Both receive 406 MHz ELT alerts from NOAA.",
+      "reference": "AIM 6-2-4"
+    },
+    {
+      "id": "emerg-016",
+      "question": "When does search and rescue begin for an overdue aircraft with a flight plan?",
+      "options": [
+        "When requested by family",
+        "30 minutes after ETA, no contact, and failed communication attempts",
+        "Immediately upon landing",
+        "24 hours after ETA"
+      ],
+      "correctAnswer": 1,
+      "explanation": "SAR begins when: (1) Information suggests aircraft is missing, (2) Aircraft is overdue 30 minutes and communications are unsuccessful, or (3) ELT signal is received.",
+      "reference": "AIM 6-2-7"
+    },
+    {
+      "id": "emerg-017",
+      "question": "What light gun signal means 'cleared to land' for aircraft in flight?",
+      "options": [
+        "Flashing green",
+        "Steady green",
+        "Steady red",
+        "Flashing white"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Steady green to aircraft in flight means 'Cleared to land.' Flashing green means 'Return for landing.'",
+      "reference": "AIM 4-3-13"
+    },
+    {
+      "id": "emerg-018",
+      "question": "What should you do if you see steady red light signals while in flight?",
+      "options": [
+        "Land immediately",
+        "Continue circling and give way to other aircraft",
+        "Return to airport",
+        "Squawk 7700"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Steady red to aircraft in flight means 'Give way to other aircraft and continue circling.' The airport may be unsafe for landing.",
+      "reference": "AIM 4-3-13"
+    },
+    {
+      "id": "emerg-019",
+      "question": "What emergency equipment should pilots have for flights over uninhabited areas?",
+      "options": [
+        "Standard equipment only",
+        "Survival equipment appropriate to terrain (food, water, shelter, signaling)",
+        "Only an ELT",
+        "GPS only"
+      ],
+      "correctAnswer": 1,
+      "explanation": "For flights over uninhabited areas, carry survival equipment appropriate to the terrain: water, food, shelter material, signaling devices, first aid kit, etc.",
+      "reference": "AIM 6-2-5"
+    },
+    {
+      "id": "emerg-020",
+      "question": "What does MSAW alert controllers about?",
+      "options": [
+        "Weather hazards",
+        "Traffic conflicts",
+        "Aircraft below minimum safe altitude",
+        "Communication failures"
+      ],
+      "correctAnswer": 2,
+      "explanation": "MSAW (Minimum Safe Altitude Warning) alerts controllers when Mode C-equipped aircraft under their control are at or below a predetermined minimum safe altitude.",
+      "reference": "AIM 4-1-16"
+    },
+    {
+      "id": "emerg-021",
+      "question": "Can ATC clear pilots through hazardous weather?",
+      "options": [
+        "Yes, ATC has final authority",
+        "No, pilots must deviate when necessary for safety",
+        "Only during daytime",
+        "Only on IFR flight plans"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The pilot is the final authority. ATC assistance is advisory only. If hazardous weather is encountered, pilots should take immediate action to avoid it, even if deviating from clearance.",
+      "reference": "AIM 6-1-1"
+    },
+    {
+      "id": "emerg-022",
+      "question": "What is the DF (Direction Finding) steer?",
+      "options": [
+        "A type of instrument approach",
+        "Radar vectors based on aircraft radio transmission",
+        "A holding pattern",
+        "Navigation using NDB"
+      ],
+      "correctAnswer": 1,
+      "explanation": "DF (Direction Finding) is a service where ATC can determine aircraft bearing based on radio transmissions and provide heading guidance to an airport.",
+      "reference": "AIM 6-2-6"
+    },
+    {
+      "id": "emerg-023",
+      "question": "How should a pilot acknowledge tower light gun signals during the day?",
+      "options": [
+        "Flash landing lights",
+        "Rock wings",
+        "Squawk ident",
+        "Call on emergency frequency"
+      ],
+      "correctAnswer": 1,
+      "explanation": "During daylight, acknowledge light signals by rocking wings. At night, acknowledge by flashing landing lights or navigation lights.",
+      "reference": "AIM 4-3-13"
+    },
+    {
+      "id": "emerg-024",
+      "question": "What action should be taken if you experience an engine fire in flight?",
+      "options": [
+        "Continue to destination",
+        "Follow POH procedures: mixture cutoff, fuel shutoff, master off, emergency descent/landing",
+        "Declare urgency only",
+        "Turn off all electrical"
+      ],
+      "correctAnswer": 1,
+      "explanation": "For engine fire: follow POH emergency procedures immediately - typically mixture cutoff, fuel shutoff, attempt to extinguish, land ASAP. Declare emergency!",
+      "reference": "AIM 6-1-2"
+    },
+    {
+      "id": "emerg-025",
+      "question": "What is the 'Pilot's Discretion' aspect of emergency authority?",
+      "options": [
+        "Pilot can choose any altitude",
+        "Pilot can deviate from any rule to meet an emergency, but must be able to justify decisions",
+        "Pilot must always follow ATC",
+        "Pilot can refuse landing"
+      ],
+      "correctAnswer": 1,
+      "explanation": "In an emergency, PIC may deviate from any rule to the extent necessary. However, if requested, a written report may be required. Good judgment must be used.",
+      "reference": "AIM 6-1-1, 14 CFR 91.3"
+    }
+  ]
+}

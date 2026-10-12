@@ -1,0 +1,201 @@
+{
+  "part": 5,
+  "title": "SAFETY MANAGEMENT SYSTEMS",
+  "cfr": "14 CFR Part 5",
+  "source": "eCFR",
+  "url": "https://www.ecfr.gov/current/title-14/part-5",
+  "subchapter": "A",
+  "subchapterTitle": "Definitions and General Requirements",
+  "effectiveDate": "2026-07-24",
+  "subparts": [
+    {
+      "subpart": "A",
+      "title": "General",
+      "sections": [
+        {
+          "section": "5.1",
+          "title": "Applicability",
+          "content": "This part applies to all of the following:\n\n(a) Any person that holds or applies for a certificate issued under part 119 of this chapter authorizing the person to conduct operations under part 121 of this chapter.\n\n(b) Any person that holds or applies for a certificate issued under part 119 of this chapter authorizing the person to conduct operations under part 135 of this chapter.\n\n(c) Any person that holds or applies for a Letter of Authorization issued under § 91.147 of this chapter.\n\n(d) Any person that holds both a type certificate and a production certificate issued under part 21 of this chapter for the same product.\n\n(e) Any person that holds a production certificate issued under part 21 of this chapter for a product for which the person is a licensee of the type certificate for the same product.\n\n(f) Any person that applies for a production certificate under part 21 of this chapter for a product for which the person is the holder or licensee of the type certificate for the same product.\n\n(g) Any person that holds a type certificate issued under part 21 of this chapter for a product, except for persons that hold only type certificates issued under § 21.29 of this chapter, that allows another person to use the type certificate to manufacture the same product under a production certificate.",
+          "figures": []
+        },
+        {
+          "section": "5.3",
+          "title": "Definitions",
+          "content": "*Hazard* means a condition or an object that could foreseeably cause or contribute to an incident or aircraft accident, as defined in 49 CFR 830.2.\n\n*Risk* means the composite of predicted severity and likelihood of the potential effect of a hazard.\n\n*Risk control* means a means to reduce or eliminate the effects of hazards.\n\n*Safety assurance* means processes within the SMS that function systematically to ensure the performance and effectiveness of safety risk controls and that the organization meets or exceeds its safety objectives through the collection, analysis, and assessment of information.\n\n*Safety Management System (SMS)* means the formal, top-down, organization-wide approach to managing safety risk and assuring the effectiveness of safety risk controls. It includes systematic procedures, practices, and policies for the management of safety risk.\n\n*Safety objective* means a measurable goal or desirable outcome related to safety.\n\n*Safety performance* means realized or actual safety accomplishment relative to the organization's safety objectives.\n\n*Safety policy* means the person's documented commitment to safety, which defines its safety objectives and the accountabilities and responsibilities of its employees in regards to safety.\n\n*Safety promotion* means a combination of training and communication of safety information to support the implementation and operation of an SMS in an organization.\n\n*Safety Risk Management* means a process within the SMS composed of describing the system, identifying the hazards, and analyzing, assessing, and controlling risk.",
+          "figures": []
+        },
+        {
+          "section": "5.5",
+          "title": "General requirements",
+          "content": "(a) *SMS components.* An SMS under this part must be appropriate to the size, scope, and complexity of the person's organization and include, at a minimum, all of the following components:\n\n(1) Safety policy that meets the requirements of subpart B of this part.\n\n(2) Safety risk management that meets the requirements of subpart C of this part.\n\n(3) Safety assurance that meets the requirements of subpart D of this part.\n\n(4) Safety promotion that meets the requirements of subpart E of this part.\n\n(b) *Continuing requirements.* Any person required to develop and implement an SMS under this part must maintain the SMS in accordance with this part.",
+          "figures": []
+        },
+        {
+          "section": "5.7",
+          "title": "Requirements for domestic, flag, and supplemental operations",
+          "content": "(a) Any person authorized to conduct operations under part 121 of this chapter that has an SMS acceptable to the FAA on or before May 28, 2024, must revise its SMS to meet the requirements of this part no later than May 28, 2025.\n\n(b) Any person applying for authorization to conduct operations under part 121 of this chapter or with such application pending on or after May 28, 2024, must develop and implement an SMS that meets the requirements of this part.\n\n(c) Any person required to develop and implement an SMS under this section must maintain the SMS as long as the person is authorized to conduct operations under part 121 of this chapter.\n\n(d) Any person required to develop and implement an SMS under this section must make available to the Administrator, upon request, all necessary information and data that demonstrates that the person has an SMS that meets the requirements set forth in this part.",
+          "figures": []
+        },
+        {
+          "section": "5.9",
+          "title": "Requirements for commuter and on-demand operations or passenger-carrying flights for compensation or hire",
+          "content": "(a) Any person authorized to conduct operations under part 135 of this chapter or that holds a Letter of Authorization issued under § 91.147 of this chapter before May 28, 2024, must:\n\n(1) Develop and implement an SMS that meets the requirements of this part no later than May 28, 2027.\n\n(2) Submit to the FAA, a declaration of compliance with this part in a form and manner acceptable to the Administrator no later than May 28, 2027.\n\n(b) Any person applying for authorization to conduct operations under part 135 of this chapter or a Letter of Authorization under § 91.147 of this chapter, or with such application pending on or after May 28, 2024, must develop and implement an SMS that meets the requirements of this part.\n\n(c) Any person required to develop and implement an SMS under this section must maintain the SMS as long as the person is authorized to conduct operations under either part 135 or § 91.147 of this chapter.\n\n(d) Any person required to develop and implement an SMS under this section must make available to the Administrator, upon request, all necessary information and data that demonstrates that the person has an SMS that meets the requirements set forth in this part.\n\n(e) The following requirements do not apply to those organizations with a single pilot who is the sole individual performing all necessary functions in the conduct and execution related to, or in direct support of, the safe operation of the aircraft: §§ 5.21 (a)(4), 5.21 (a)(5), 5.21 (c), 5.23 (a)(2), 5.23 (a)(3), 5.23 (b), 5.25 (b)(3), 5.25 (c), 5.27 (a), 5.27 (b), 5.71 (a)(7), 5.93, and 5.97 (d) of this part.",
+          "figures": []
+        },
+        {
+          "section": "5.11",
+          "title": "Requirements for production certificate holders that are holders or licensees of a type certificate for the same product",
+          "content": "Any person that holds a production certificate issued under part 21 of this chapter for a product for which the person is the holder or licensee of the type certificate for the same product on or before May 28, 2024, must:\n\n(a) Develop and maintain an organizational system description in accordance with § 5.17 of this subpart.\n\n(b) Submit an implementation plan in accordance with § 5.19 of this subpart for FAA approval in a form and manner acceptable to the Administrator no later than November 28, 2024.\n\n(c) Develop an SMS that meets the requirements of this part.\n\n(d) Implement the SMS in accordance with this part no later than May 28, 2027.\n\n(e) Make available to the Administrator, upon request, all necessary information and data that demonstrates that the person has an SMS that meets the requirements set forth in this part.\n\n(f) Maintain the SMS as long as the person is both a holder of a production certificate and a holder or licensee of a type certificate for the same product.",
+          "figures": []
+        },
+        {
+          "section": "5.13",
+          "title": "Requirements for type certificate holders or licensees applying for a production certificate for the same product",
+          "content": "(a) This section applies to any holder or licensee of a type certificate for a product who either:\n\n(1) Applies for a production certificate for that same product under part 21 of this chapter on or after May 28, 2024, or\n\n(2) Has an application for a production certificate for that same product under part 21 of this chapter pending on May 28, 2024.\n\n(b) Any person that meets paragraph (a) of this section must:\n\n(1) Develop and maintain an organizational system description in accordance with § 5.17 of this subpart.\n\n(2) Submit an implementation plan in accordance with § 5.19 of this subpart for FAA approval in a form and manner acceptable to the Administrator during the certification process.\n\n(3) Develop an SMS that meets the requirements of this part.\n\n(4) Implement the SMS in accordance with this part no later than 36 months after submission of the implementation plan.\n\n(5) Make available to the Administrator, upon request, all necessary information and data that demonstrates that the person has an SMS that meets the requirements set forth in this part.\n\n(6) Maintain the SMS as long as the person is both a holder of a production certificate and a holder or licensee of a type certificate for the same product.",
+          "figures": []
+        },
+        {
+          "section": "5.15",
+          "title": "Requirements for type certificate holders that allow another person to use the type certificate to obtain a production certificate for the same product",
+          "content": "(a) This section applies to any person that holds a type certificate issued under part 21 of this chapter for a product, except for persons that hold only type certificates issued under § 21.29 of this chapter, that allows another person to use the type certificate to manufacture the same product under a production certificate.\n\n(b) Any person that meets paragraph (a) of this section and has a licensing agreement in accordance with § 21.55 of this chapter on May 28, 2024, must:\n\n(1) Develop and maintain an organizational system description in accordance with § 5.17 of this subpart.\n\n(2) Submit an implementation plan in accordance with § 5.19 of this subpart for FAA approval in a form and manner acceptable to the Administrator no later than November 28, 2024.\n\n(3) Develop an SMS that meets the requirements of this part.\n\n(4) Implement the SMS in accordance with this part no later than May 28, 2027.\n\n(5) Make available to the Administrator, upon request, all necessary information and data that demonstrates that the person has an SMS that meets the requirements set forth in this part.\n\n(6) Maintain the SMS as long as the person continues to meet paragraph (a) of this section.\n\n(c) Any person that meets paragraph (a) of this section and enters into a licensing agreement in accordance with § 21.55 of this chapter after May 28, 2024, must:\n\n(1) Develop and maintain an organizational system description in accordance with § 5.17 of this subpart.\n\n(2) Submit an implementation plan in accordance with § 5.19 of this subpart for FAA approval in a form and manner acceptable to the Administrator when providing written licensing agreements in accordance with § 21.55 of this chapter.\n\n(3) Develop an SMS that meets the requirements of this part.\n\n(4) Implement the SMS in accordance with this part no later than 36 months after submission of the person's implementation plan.\n\n(5) Make available to the Administrator, upon request, all necessary information and data that demonstrates that the person has an SMS that meets the requirements set forth in this part.\n\n(6) Maintain the SMS as long as the person continues to meet paragraph (a) of this section.",
+          "figures": []
+        },
+        {
+          "section": "5.17",
+          "title": "Organizational system description",
+          "content": "An organizational system description developed and maintained under this part must include a summary of the following information about the safety of the aviation products or services provided by the person:\n\n(a) The person's aviation-related processes, procedures, and activities.\n\n(b) The function and purpose of the aviation products or services.\n\n(c) The operating environment.\n\n(d) The personnel, equipment, and facilities necessary for operation.",
+          "figures": []
+        },
+        {
+          "section": "5.19",
+          "title": "Implementation plan",
+          "content": "(a) An implementation plan filed under this part must be based on the organizational system description as defined in § 5.17 and describe the means of compliance (including, but not limited to, new or existing policies, processes, or procedures) used to meet the requirements of this part.\n\n(b) A person required to submit an implementation plan under this part must make available to the Administrator, upon request, all necessary information and data that demonstrates that the SMS has been or will be implemented in accordance with the implementation plan.",
+          "figures": []
+        }
+      ]
+    },
+    {
+      "subpart": "B",
+      "title": "Safety Policy",
+      "sections": [
+        {
+          "section": "5.21",
+          "title": "Safety policy",
+          "content": "(a) Any person required to have an SMS under this part must have a safety policy that includes at least the following:\n\n(1) The person's safety objectives.\n\n(2) The person's commitment to fulfill the safety objectives.\n\n(3) A clear statement about the provision of the necessary resources for the implementation of the SMS.\n\n(4) A safety reporting policy that defines requirements for employee reporting of safety hazards or issues.\n\n(5) A policy that defines unacceptable behavior and conditions for disciplinary action.\n\n(6) An emergency response plan that provides for the safe transition from normal to emergency operations in accordance with the requirements of § 5.27.\n\n(7) A code of ethics that is applicable to all employees, including management personnel and officers, which clarifies that safety is the organization's highest priority.\n\n(b) The safety policy must be signed by the accountable executive described in § 5.25.\n\n(c) The safety policy must be documented and communicated throughout the person's organization.\n\n(d) The safety policy must be regularly reviewed by the accountable executive to ensure it remains relevant and appropriate to the person.\n\n[Doc. No. FAA-2009-0671, Amdt. 5-1, 80 FR 1326, Jan. 8, 2015, as amended by Amdt. 5-2, 89 FR 33106, Apr. 26, 2024]",
+          "figures": []
+        },
+        {
+          "section": "5.23",
+          "title": "Safety accountability and authority",
+          "content": "(a) Any person required to have an SMS under this part must define in its safety policy the accountability for safety of the following individuals:\n\n(1) Accountable executive, as described in § 5.25.\n\n(2) All members of management in regard to developing, implementing, and maintaining SMS processes within their area of responsibility, including, but not limited to:\n\n(i) Hazard identification and safety risk assessment.\n\n(ii) Assuring the effectiveness of safety risk controls.\n\n(iii) Promoting safety as required in subpart E of this part.\n\n(iv) Advising the accountable executive on the performance of the SMS and on any need for improvement.\n\n(3) Employees relative to the person's safety performance.\n\n(b) The person must identify the levels of management with the authority to make decisions regarding safety risk acceptance.\n\n[Doc. No. FAA-2009-0671, Amdt. 5-1, 80 FR 1326, Jan. 8, 2015, as amended by Amdt. 5-2, 89 FR 33106, Apr. 26, 2024]",
+          "figures": []
+        },
+        {
+          "section": "5.25",
+          "title": "Designation and responsibilities of required safety management personnel",
+          "content": "(a) *Designation of the accountable executive.* Any person required to have an SMS under this part must identify an accountable executive who, irrespective of other functions, satisfies the following:\n\n(1) Is the final authority over operations authorized to be conducted under the person's certificate(s) or Letter(s) of Authorization.\n\n(2) Controls the financial resources required for the operations to be conducted under the person's certificate(s) or Letter(s) of Authorization.\n\n(3) Controls the human resources required for the operations authorized to be conducted under the person's certificate(s) or Letter(s) of Authorization.\n\n(4) Retains ultimate responsibility for the safety performance of the operations conducted under the person's certificate(s) or Letter(s) of Authorization.\n\n(b) *Responsibilities of the accountable executive.* The accountable executive must accomplish the following:\n\n(1) Ensure that the SMS is properly implemented and is performing across all pertinent areas.\n\n(2) Develop and sign the safety policy.\n\n(3) Communicate the safety policy throughout the person's organization.\n\n(4) Regularly review the safety policy to ensure it remains relevant and appropriate to the person.\n\n(5) Regularly review the safety performance and direct actions necessary to address substandard safety performance in accordance with § 5.75.\n\n(c) *Designation of management personnel.* The accountable executive must designate sufficient management personnel who, on behalf of the accountable executive, are responsible for the following:\n\n(1) Coordinate implementation, maintenance, and integration of the SMS throughout the person's organization.\n\n(2) Facilitate hazard identification and safety risk analysis.\n\n(3) Monitor the effectiveness of safety risk controls.\n\n(4) Ensure safety promotion throughout the person's organization as required in subpart E of this part.\n\n(5) Regularly report to the accountable executive on the performance of the SMS and on any need for improvement.\n\n[Doc. No. FAA-2021-0419, Amdt. 5-2, 89 FR 33106, Apr. 26, 2024]",
+          "figures": []
+        },
+        {
+          "section": "5.27",
+          "title": "Coordination of emergency response planning",
+          "content": "Where emergency response procedures are necessary, any person required to have an SMS under this part must develop, and the accountable executive must approve as part of the safety policy, an emergency response plan that addresses at least the following:\n\n(a) Delegation of emergency authority throughout the person's organization.\n\n(b) Assignment of employee responsibilities during the emergency.\n\n(c) Coordination of the emergency response plans with the emergency response plans of other organizations it must interface with during the provision of its services.\n\n[Doc. No. FAA-2021-0419, Amdt. 5-2, 89 FR 33106, Apr. 26, 2024]",
+          "figures": []
+        }
+      ]
+    },
+    {
+      "subpart": "C",
+      "title": "Safety Risk Management",
+      "sections": [
+        {
+          "section": "5.51",
+          "title": "Applicability",
+          "content": "Any person required to have an SMS under this part must apply safety risk management to the following:\n\n(a) Implementation of new systems.\n\n(b) Revision of existing systems.\n\n(c) Development of operational procedures.\n\n(d) Identification of hazards or ineffective risk controls through the safety assurance processes in subpart D of this part.\n\n[Doc. No. FAA-2009-0671, Amdt. 5-1, 80 FR 1326, Jan. 8, 2015, as amended by Amdt. 5-2, 89 FR 33107, Apr. 26, 2024]",
+          "figures": []
+        },
+        {
+          "section": "5.53",
+          "title": "System analysis and hazard identification",
+          "content": "(a) When applying safety risk management, any person required to have an SMS under this part must analyze the systems identified in § 5.51. Those system analyses must be used to identify hazards under paragraph (c) of this section and in developing and implementing risk controls related to the system under § 5.55 (c).\n\n(b) In conducting the system analysis, the following information must be considered:\n\n(1) Function and purpose of the system.\n\n(2) The system's operating environment.\n\n(3) An outline of the system's processes and procedures.\n\n(4) The personnel, equipment, and facilities necessary for operation of the system.\n\n(5) The interfaces of the system.\n\n(c) Any person required to have an SMS under this part must develop and maintain processes to identify hazards within the context of the system analysis.\n\n[Doc. No. FAA-2009-0671, Amdt. 5-1, 80 FR 1326, Jan. 8, 2015, as amended by Amdt. 5-2, 89 FR 33106, Apr. 26, 2024]",
+          "figures": []
+        },
+        {
+          "section": "5.55",
+          "title": "Safety risk assessment and control",
+          "content": "Any person required to have an SMS under this part must:\n\n(a) Develop and maintain processes to analyze safety risk associated with the hazards identified in § 5.53 (c).\n\n(b) Define a process for conducting risk assessment that allows for the determination of acceptable safety risk.\n\n(c) Develop and maintain processes to develop safety risk controls that are necessary as a result of the safety risk assessment process under paragraph (b) of this section.\n\n(d) Evaluate whether the risk will be acceptable with the proposed safety risk control applied before the safety risk control is implemented.\n\n[Doc. No. FAA-2021-0419, Amdt. 5-2, 89 FR 33107, Apr. 26, 2024]",
+          "figures": []
+        },
+        {
+          "section": "5.57",
+          "title": "Notification of hazards to interfacing persons",
+          "content": "If a person required to have an SMS under this part identifies a hazard in the operating environment, the person must provide notice of the hazard to any interfacing person that, to the best of the person's knowledge, could address the hazard or mitigate the risk. For the purpose of this section, interfacing persons are those that contribute to the safety of the certificate or Letter of Authorization holder's aviation-related products and services.\n\n[Doc. No. FAA-2021-0419, Amdt. 5-2, 89 FR 33107, Apr. 26, 2024]",
+          "figures": []
+        }
+      ]
+    },
+    {
+      "subpart": "D",
+      "title": "Safety Assurance",
+      "sections": [
+        {
+          "section": "5.71",
+          "title": "Safety performance monitoring and measurement",
+          "content": "(a) Any person required to have an SMS under this part must develop and maintain processes and systems to acquire data with respect to its operations, products, and services to monitor the safety performance of the organization. These processes and systems must include, at a minimum, the following:\n\n(1) Monitoring of operational processes.\n\n(2) Monitoring of the operational environment to detect changes.\n\n(3) Auditing of operational processes and systems.\n\n(4) Evaluations of the SMS and operational processes and systems.\n\n(5) Investigations of incidents and accidents.\n\n(6) Investigations of reports regarding potential non-compliance with regulatory standards or other safety risk controls established by the person through the safety risk management process established in subpart C of this part.\n\n(7) A confidential employee reporting system in which employees can report hazards, issues, concerns, occurrences, incidents, as well as propose solutions and safety improvements, without concern of reprisal for reporting.\n\n(8) Investigations of hazard notifications that have been received from external sources.\n\n(b) Any person required to have an SMS under this part must develop and maintain processes that analyze the data acquired through the processes and systems identified under paragraph (a) of this section and any other relevant data with respect to its operations, products, and services.\n\n(c) Any person that holds both a type certificate and a production certificate issued under part 21 of this chapter for the same product must submit a summary of the confidential employee reports received under paragraph (a) (7) of this section to the Administrator once every 6 months.\n\n[Doc. No. FAA-2021-0419, Amdt. 5-2, 89 FR 33107, Apr. 26, 2024]",
+          "figures": []
+        },
+        {
+          "section": "5.73",
+          "title": "Safety performance assessment",
+          "content": "(a) Any person required to have an SMS under this part must conduct assessments of its safety performance against its safety objectives, which include reviews by the accountable executive, to:\n\n(1) Ensure compliance with the safety risk controls established by the person.\n\n(2) Evaluate the performance of the SMS.\n\n(3) Evaluate the effectiveness of the safety risk controls established under § 5.55 (c) and identify any ineffective controls.\n\n(4) Identify changes in the operational environment that may introduce new hazards.\n\n(5) Identify new hazards.\n\n(b) Upon completion of the assessment, if ineffective controls or new hazards are identified under paragraphs (a) (2) through (5) of this section, the person must use the safety risk management process described in subpart C of this part.\n\n[Doc. No. FAA-2009-0671, Amdt. 5-1, 80 FR 1326, Jan. 8, 2015, as amended by Amdt. 5-2, 89 FR 33108, Apr. 26, 2024]",
+          "figures": []
+        },
+        {
+          "section": "5.75",
+          "title": "Continuous improvement",
+          "content": "Any person required to have an SMS under this part must establish and implement processes to correct safety performance deficiencies identified in the assessments conducted under § 5.73.\n\n[Doc. No. FAA-2021-0419, Amdt. 5-2, 89 FR 33108, Apr. 26, 2024]",
+          "figures": []
+        }
+      ]
+    },
+    {
+      "subpart": "E",
+      "title": "Safety Promotion",
+      "sections": [
+        {
+          "section": "5.91",
+          "title": "Competencies and training",
+          "content": "Any person required to have an SMS under this part must provide training to each individual identified in § 5.23 of this part to ensure the individuals attain and maintain the competencies necessary to perform their duties relevant to the operation and performance of the SMS.\n\n[Doc. No. FAA-2021-0419, Amdt. 5-2, 89 FR 33108, Apr. 26, 2024]",
+          "figures": []
+        },
+        {
+          "section": "5.93",
+          "title": "Safety communication",
+          "content": "Any person required to have an SMS under this part must develop and maintain means for communicating safety information that, at a minimum:\n\n(a) Ensures that employees are aware of the SMS policies, processes, and tools that are relevant to their responsibilities.\n\n(b) Conveys hazard information relevant to the employee's responsibilities.\n\n(c) Explains why safety actions have been taken.\n\n(d) Explains why safety procedures are introduced or changed.\n\n[Doc. No. FAA-2009-0671, Amdt. 5-1, 80 FR 1326, Jan. 8, 2015, as amended by Amdt. 5-2, 89 FR 33108, Apr. 26, 2024]",
+          "figures": []
+        }
+      ]
+    },
+    {
+      "subpart": "F",
+      "title": "SMS Documentation and Recordkeeping",
+      "sections": [
+        {
+          "section": "5.95",
+          "title": "SMS documentation",
+          "content": "Any person required to have an SMS under this part must develop and maintain the following SMS documentation:\n\n(a) Safety policy.\n\n(b) SMS processes and procedures.\n\n[Doc. No. FAA-2009-0671, Amdt. 5-1, 80 FR 1326, Jan. 8, 2015, as amended by Amdt. 5-2, 89 FR 33108, Apr. 26, 2024]",
+          "figures": []
+        },
+        {
+          "section": "5.97",
+          "title": "SMS records",
+          "content": "Any person required to have an SMS under this part must:\n\n(a) Maintain records of outputs of safety risk management processes as described in subpart C of this part. Such records must be retained for as long as the control remains relevant to the operation.\n\n(b) Maintain records of outputs of safety assurance processes as described in subpart D of this part. Such records must be retained for a minimum of 5 years.\n\n(c) Maintain a record of all training provided under § 5.91 for each individual. Such records must be retained for as long as the individual is employed by the person.\n\n(d) Retain records of all communications provided under § 5.93 or § 5.57 for a minimum of 24 consecutive calendar months.\n\n[Doc. No. FAA-2021-0419, Amdt. 5-2, 89 FR 33108, Apr. 26, 2024]",
+          "figures": []
+        }
+      ]
+    }
+  ],
+  "sections": [],
+  "appendices": [],
+  "isPilotIndex": true
+}

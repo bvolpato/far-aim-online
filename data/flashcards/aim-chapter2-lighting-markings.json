@@ -1,0 +1,250 @@
+{
+  "id": "aim-chapter2-lighting-markings",
+  "title": "Airport Lighting, Markings & Signs",
+  "description": "Key concepts from AIM Chapter 2 covering airport lighting systems, visual approach aids, runway/taxiway markings, and airport signs",
+  "category": "AIM",
+  "chapter": 2,
+  "cardCount": 40,
+  "cards": [
+    {
+      "id": "ch2-001",
+      "front": "Approach Light Systems (ALS)",
+      "back": "• Provide transition from instrument to visual flight\n• Precision runways: 2,400-3,000 feet\n• Nonprecision runways: 1,400-1,500 feet\n• May include sequenced flashing lights ('ball of light' effect)\n• Various configurations: ALSF-1, ALSF-2, SSALR, MALSR, etc.",
+      "reference": "AIM 2-1-1"
+    },
+    {
+      "id": "ch2-002",
+      "front": "VASI Indications (Visual Approach Slope Indicator)",
+      "back": "Memory aid: 'Red over White, You're Alright'\n\n• All RED = Below glidepath (too low)\n• Red over White = On glidepath (correct)\n• All WHITE = Above glidepath (too high)\n\nNormal glidepath: 3°\nVisibility: 3-5 miles day, 20+ miles night",
+      "reference": "AIM 2-1-2"
+    },
+    {
+      "id": "ch2-003",
+      "front": "VASI Obstruction Clearance",
+      "back": "• Safe clearance: ±10° of extended centerline\n• Range: 4 NM from threshold\n• Don't initiate descent until visually aligned with runway\n• VASI provides vertical guidance only\n• Runway/runway lights provide lateral guidance",
+      "reference": "AIM 2-1-2"
+    },
+    {
+      "id": "ch2-004",
+      "front": "3-Bar VASI for High Cockpit Aircraft",
+      "back": "• Provides TWO visual glidepaths\n• Lower path: Near & middle bars (normal 3°)\n• Upper path: Middle & far bars (¼° higher)\n• Upper path for high cockpit aircraft\n• Ensures sufficient threshold crossing height\n• Use appropriate glidepath for your aircraft type",
+      "reference": "AIM 2-1-2"
+    },
+    {
+      "id": "ch2-005",
+      "front": "PAPI (Precision Approach Path Indicator)",
+      "back": "Similar to VASI but uses single row of 4 lights:\n• 4 WHITE = Too high\n• 3 WHITE, 1 RED = Slightly high\n• 2 WHITE, 2 RED = On glidepath\n• 1 WHITE, 3 RED = Slightly low\n• 4 RED = Too low\n\nUsually on left side of runway",
+      "reference": "AIM 2-1-2"
+    },
+    {
+      "id": "ch2-006",
+      "front": "REILs (Runway End Identifier Lights)",
+      "back": "• Synchronized flashing lights at threshold\n• Located on each side of runway\n• Provides rapid identification of approach end\n• Useful for:\n - Runway surrounded by other lighting\n - Low terrain contrast\n - Reduced visibility",
+      "reference": "AIM 2-1-3"
+    },
+    {
+      "id": "ch2-007",
+      "front": "Runway Edge Light Classifications",
+      "back": "• HIRL: High Intensity (variable control)\n• MIRL: Medium Intensity (variable control)\n• LIRL: Low Intensity (single setting)\n\nColors:\n• White along edges\n• Yellow last 2,000 ft or ½ runway (caution zone) on instrument runways\n• End lights: Red toward runway, Green outward",
+      "reference": "AIM 2-1-4"
+    },
+    {
+      "id": "ch2-008",
+      "front": "Runway Centerline Lights (RCLS)",
+      "back": "Color progression from threshold:\n• WHITE: Until last 3,000 feet\n• ALTERNATING RED/WHITE: Next 2,000 feet\n• ALL RED: Last 1,000 feet\n\n• Spaced 50 feet apart\n• On precision approach runways",
+      "reference": "AIM 2-1-5"
+    },
+    {
+      "id": "ch2-009",
+      "front": "Touchdown Zone Lights (TDZL)",
+      "back": "• Two rows of light bars on each side of centerline\n• Steady-burning white lights\n• Start 100 feet beyond threshold\n• Extend to 3,000 feet or runway midpoint\n• Indicates touchdown zone in low visibility",
+      "reference": "AIM 2-1-5"
+    },
+    {
+      "id": "ch2-010",
+      "front": "Taxiway Lead-Off/Lead-On Lights",
+      "back": "• Color: Alternating GREEN and YELLOW\n• Warn of runway environment or ILS critical area\n• Lead-off: Guide aircraft exiting runway\n• Lead-on: Guide aircraft entering runway\n• Same fixtures, bidirectional",
+      "reference": "AIM 2-1-5"
+    },
+    {
+      "id": "ch2-011",
+      "front": "Land and Hold Short Lights",
+      "back": "• Pulsing WHITE lights across runway\n• Located at LAHSO hold short point\n• ON only when LAHSO is in effect\n• OFF when LAHSO not in effect\n• Must stop before these lights if instructed to hold short",
+      "reference": "AIM 2-1-5"
+    },
+    {
+      "id": "ch2-012",
+      "front": "RWSL System Components",
+      "back": "Runway Status Light System (Automated):\n\nREL (Runway Entrance Lights):\n• At taxiway/runway intersections\n• Red = unsafe to enter\n\nTHL (Takeoff Hold Lights):\n• On runway centerline\n• Red = unsafe to take off\n\nDoes NOT substitute for ATC clearance!",
+      "reference": "AIM 2-1-6"
+    },
+    {
+      "id": "ch2-013",
+      "front": "Pilot-Controlled Lighting (PCL)",
+      "back": "Key microphone on CTAF within 5 seconds:\n• 7 clicks = Highest intensity\n• 5 clicks = Medium intensity\n• 3 clicks = Lowest intensity\n\n• Lights remain on for 15 minutes\n• Available at uncontrolled airports\n• All lighting systems on same frequency",
+      "reference": "AIM 2-1-8"
+    },
+    {
+      "id": "ch2-014",
+      "front": "Airport Rotating Beacon Colors",
+      "back": "• WHITE + GREEN = Lighted land airport\n• WHITE + YELLOW = Lighted water airport\n• GREEN + YELLOW + WHITE = Heliport\n• WHITE (dual-peaked) + GREEN = Military airport\n\nFlash rate: 24-30/min (airports), 30-45/min (heliports)",
+      "reference": "AIM 2-1-9"
+    },
+    {
+      "id": "ch2-015",
+      "front": "Daytime Beacon Operation",
+      "back": "May indicate:\n• Visibility < 3 statute miles, AND/OR\n• Ceiling < 1,000 feet\n\nCAUTION:\n• Don't rely solely on beacon for weather\n• May be photoelectric/timer controlled\n• ATC may not have control\n• Always verify weather independently",
+      "reference": "AIM 2-1-9"
+    },
+    {
+      "id": "ch2-016",
+      "front": "Taxiway Lighting Colors",
+      "back": "• Edge lights: BLUE\n• Centerline lights: GREEN\n• Clearance bar lights: YELLOW (3 in-pavement)\n• Runway guard lights: YELLOW (flashing or in-pavement)\n• Stop bar lights: RED (unidirectional)",
+      "reference": "AIM 2-1-10"
+    },
+    {
+      "id": "ch2-017",
+      "front": "Stop Bar Lights - Critical Rule",
+      "back": "NEVER cross a red illuminated stop bar, even if cleared by ATC!\n\n• Red, unidirectional, in-pavement lights\n• Across entire taxiway at holding position\n• Used in low visibility (<1,200 RVR)\n• If lights extinguish after crossing, HOLD and contact ATC",
+      "reference": "AIM 2-1-10"
+    },
+    {
+      "id": "ch2-018",
+      "front": "Pavement Marking Colors",
+      "back": "RUNWAY = WHITE markings\n• Centerline, threshold, numbers, etc.\n\nTAXIWAY = YELLOW markings\n• Centerlines, edges, holding positions\n\nHELIPAD = WHITE (red 'H' on white cross for hospitals)",
+      "reference": "AIM 2-3-2"
+    },
+    {
+      "id": "ch2-019",
+      "front": "Three Types of Runway Markings",
+      "back": "1. VISUAL: Basic markings (centerline, numbers, threshold)\n\n2. NONPRECISION INSTRUMENT: Visual + aiming point, threshold bars\n\n3. PRECISION INSTRUMENT: All above + touchdown zone markings, side stripes\n\nMore markings = more capable runway",
+      "reference": "AIM 2-3-3"
+    },
+    {
+      "id": "ch2-020",
+      "front": "Runway Aiming Point",
+      "back": "• Two broad white rectangular stripes\n• Located ~1,000 feet from threshold\n• On both sides of centerline\n• Visual aiming point for landing\n• Found on instrument runways",
+      "reference": "AIM 2-3-3"
+    },
+    {
+      "id": "ch2-021",
+      "front": "Touchdown Zone Markings",
+      "back": "• Groups of 1, 2, or 3 bars\n• Symmetrical about centerline\n• Coded for distance in 500-ft increments\n• Pattern: 1, 2, 3, 2, 1 bars\n• Marks touchdown zone area\n• On precision instrument runways",
+      "reference": "AIM 2-3-3"
+    },
+    {
+      "id": "ch2-022",
+      "front": "Runway Threshold Markings",
+      "back": "• White stripes across runway width\n• Number of stripes indicates runway width:\n - 4 stripes = 60 ft\n - 6 stripes = 75 ft\n - 8 stripes = 100 ft\n - 12 stripes = 150 ft\n - 16 stripes = 200 ft",
+      "reference": "AIM 2-3-3"
+    },
+    {
+      "id": "ch2-023",
+      "front": "Taxiway Centerline Markings",
+      "back": "NORMAL: Single continuous yellow line (6-12 inches wide)\n\nENHANCED: Yellow dashes parallel to centerline\n• Up to 150 ft before holding position\n• Warning of approaching hold line\n• Prepare to stop!",
+      "reference": "AIM 2-3-4"
+    },
+    {
+      "id": "ch2-024",
+      "front": "Taxiway Edge Marking Types",
+      "back": "CONTINUOUS double yellow lines:\n• Do NOT cross\n• Separates taxiway from non-aircraft areas\n\nDASHED double yellow lines:\n• May cross\n• Adjacent pavement is for aircraft use (apron)",
+      "reference": "AIM 2-3-4"
+    },
+    {
+      "id": "ch2-025",
+      "front": "Runway Holding Position Markings",
+      "back": "• Four yellow lines: 2 solid, 2 dashed\n• Solid lines on hold side\n• MUST STOP at solid lines\n• Aircraft not clear until ALL parts cross\n\nLocations:\n• Taxiway/runway intersection\n• Runway/runway intersection\n• Approach area holding position",
+      "reference": "AIM 2-3-5"
+    },
+    {
+      "id": "ch2-026",
+      "front": "ILS Critical Area Holding Position",
+      "back": "• Yellow ladder pattern marking\n• Hold here when ILS in use\n• Protects ILS signal integrity\n• Sign: ILS with graphic\n• Must hold unless cleared by ATC",
+      "reference": "AIM 2-3-5"
+    },
+    {
+      "id": "ch2-027",
+      "front": "Six Types of Airport Signs",
+      "back": "1. MANDATORY INSTRUCTION: Red/White\n2. LOCATION: Black/Yellow border\n3. DIRECTION: Yellow/Black\n4. DESTINATION: Yellow/Black\n5. INFORMATION: Yellow/Black\n6. RUNWAY DISTANCE REMAINING: Black/White",
+      "reference": "AIM 2-3-7"
+    },
+    {
+      "id": "ch2-028",
+      "front": "Mandatory Instruction Signs",
+      "back": "• RED background, WHITE text\n• Must comply - no entry without clearance\n\nExamples:\n• Runway holding position: '15-33'\n• ILS critical area\n• No entry signs\n\nNumbers arranged to match runway thresholds",
+      "reference": "AIM 2-3-8"
+    },
+    {
+      "id": "ch2-029",
+      "front": "Location Signs",
+      "back": "• BLACK background, YELLOW text/border\n• Identifies WHERE you are\n\nTypes:\n• Taxiway location (e.g., 'A')\n• Runway location (e.g., '27')\n• Runway boundary (leaving runway)\n• ILS critical area boundary",
+      "reference": "AIM 2-3-9"
+    },
+    {
+      "id": "ch2-030",
+      "front": "Direction Signs",
+      "back": "• YELLOW background, BLACK text\n• Shows intersecting taxiways and directions\n• Arrows indicate direction of turn\n• Located before intersection\n• Arranged clockwise from left\n• May include location sign in array",
+      "reference": "AIM 2-3-10"
+    },
+    {
+      "id": "ch2-031",
+      "front": "Destination Signs",
+      "back": "• YELLOW background, BLACK text\n• Shows route to specific destinations\n• Always includes direction arrow\n\nCommon legends:\n• APRON, FBO, GA, CARGO\n• FUEL, TERM (terminal)\n• Runway numbers (outbound)",
+      "reference": "AIM 2-3-11"
+    },
+    {
+      "id": "ch2-032",
+      "front": "Runway Distance Remaining Signs",
+      "back": "• BLACK background, WHITE numbers\n• Number = thousands of feet remaining\n• '3' = 3,000 ft remaining\n• Last sign ('1') at least 950 ft from end\n• Located on one or both sides of runway",
+      "reference": "AIM 2-3-13"
+    },
+    {
+      "id": "ch2-033",
+      "front": "Obstruction Lighting Types",
+      "back": "1. Aviation RED: Flashing beacons + steady lights (night)\n2. Medium White: Flashing, day/twilight/night adjustable\n3. High Intensity White: Flashing, all conditions\n4. Dual: Red at night, white during day\n5. Catenary: For transmission lines",
+      "reference": "AIM 2-2-3"
+    },
+    {
+      "id": "ch2-034",
+      "front": "EMAS (Engineered Materials Arresting System)",
+      "back": "• Located beyond runway end\n• Crushes under aircraft weight\n• Stops overruns safely\n• Marked with yellow chevrons\n• May be as close as 35 ft from runway end\n• NEVER taxi or drive across EMAS!",
+      "reference": "AIM 2-3-14"
+    },
+    {
+      "id": "ch2-035",
+      "front": "Closed Runway/Taxiway Marking",
+      "back": "• Yellow 'X' placed at each end\n• Indicates runway/taxiway closed\n• May be temporary or permanent\n• Do NOT use closed surface\n• Check NOTAMs for closure information",
+      "reference": "AIM 2-3-6"
+    },
+    {
+      "id": "ch2-036",
+      "front": "Movement vs Non-Movement Area",
+      "back": "• Movement area: Under ATC control\n• Non-movement area: NOT under ATC\n\nBoundary marking:\n• Yellow solid line (non-movement side)\n• Yellow dashed line (movement side)\n• Need clearance to enter movement area at towered airports",
+      "reference": "AIM 2-3-6"
+    },
+    {
+      "id": "ch2-037",
+      "front": "Displaced Threshold",
+      "back": "• Threshold not at runway beginning\n• White arrows lead to threshold\n• Area before threshold:\n - OK for taxi, takeoff, rollout\n - NOT for landing\n• Threshold bar marks landing start point",
+      "reference": "AIM 2-3-3"
+    },
+    {
+      "id": "ch2-038",
+      "front": "VOR Checkpoint Marking",
+      "back": "• Painted circle with arrow\n• Arrow aligned with checkpoint azimuth\n• Located on apron/taxiway\n• Sign shows:\n - VOR ID and course\n - 'VOR CHECK COURSE'\n - DME data if applicable",
+      "reference": "AIM 2-3-6"
+    },
+    {
+      "id": "ch2-039",
+      "front": "SIDA (Security Identification Display Area)",
+      "back": "• Limited access security area\n• Requires proper badge/ID\n• Can include AOA or secured areas\n• Unauthorized entry prohibited\n• Subject to civil/criminal penalties\n• Report suspicious activity: 866-427-3287",
+      "reference": "AIM 2-3-15"
+    },
+    {
+      "id": "ch2-040",
+      "front": "Sign Color Memory Aid",
+      "back": "RED = STOP/MANDATORY (runway holding)\nYELLOW background = Direction/Destination\nBLACK background = Location (where you ARE)\nBLACK with WHITE = Distance remaining\n\n'Red means stop, Yellow means go (direction), Black tells you where you are'",
+      "reference": "AIM 2-3-7 through 2-3-13"
+    }
+  ]
+}

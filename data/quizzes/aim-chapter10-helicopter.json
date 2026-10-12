@@ -1,0 +1,208 @@
+{
+  "id": "aim-chapter10-helicopter",
+  "title": "Helicopter Operations Quiz",
+  "description": "Test your knowledge of helicopter IFR operations, special procedures, and safety from AIM Chapter 10",
+  "category": "AIM",
+  "chapter": 10,
+  "difficulty": "intermediate",
+  "targetCertificate": "Helicopter Pilot",
+  "questionCount": 15,
+  "passingScore": 70,
+  "questions": [
+    {
+      "id": "heli-001",
+      "question": "What is the maximum speed for helicopters on Copter instrument approach procedures unless otherwise specified?",
+      "options": [
+        "70 KIAS",
+        "90 KIAS",
+        "110 KIAS",
+        "120 KIAS"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Unless otherwise specified, the maximum speed on Copter approach procedures is 90 KIAS. For RNAV Copter approaches, final and missed approach speeds are limited to 70 KIAS unless charted otherwise.",
+      "reference": "AIM 10-1-2"
+    },
+    {
+      "id": "heli-002",
+      "question": "Can helicopters fly conventional (non-Copter) instrument approaches?",
+      "options": [
+        "No, only Copter approaches are allowed",
+        "Yes, with reduced visibility minimums in most cases",
+        "Yes, but only at night",
+        "Only with special authorization"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Helicopters may fly any published IAP for which they are properly equipped. On conventional approaches, helicopters can reduce visibility to half the Cat A minimums (but not less than 1/4 SM/1200 RVR) unless annotated NA.",
+      "reference": "AIM 10-1-2"
+    },
+    {
+      "id": "heli-003",
+      "question": "What does 'Point-in-Space' (PinS) approach mean?",
+      "options": [
+        "Approach to a specific runway",
+        "Approach ending with a visual segment to a heliport not aligned with the approach",
+        "An ILS approach",
+        "An emergency approach"
+      ],
+      "correctAnswer": 1,
+      "explanation": "A Point-in-Space approach guides the helicopter to a MAP from which the pilot proceeds visually (VFR) or directly to a landing area. Used for heliports that don't meet IFR design standards.",
+      "reference": "AIM 10-1-3"
+    },
+    {
+      "id": "heli-004",
+      "question": "What is the Gulf of Mexico Grid System?",
+      "options": [
+        "A weather observation network",
+        "An IFR navigational route structure for offshore helicopter operations",
+        "Oil platform identification system",
+        "Radio communication network"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The Gulf of Mexico Grid System is an IFR navigational route structure independent of ground-based NAVAIDs, designed for helicopter IFR operations to offshore destinations using GPS waypoints.",
+      "reference": "AIM 10-1-4"
+    },
+    {
+      "id": "heli-005",
+      "question": "What is the recommended minimum landing zone (LZ) size for a medium helicopter (like Bell 412)?",
+      "options": [
+        "60 x 60 feet",
+        "75 x 75 feet",
+        "100 x 100 feet",
+        "120 x 120 feet"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Recommended minimum LZ dimensions: Small helicopters (like Bell 206): 60x60 feet; Medium helicopters (like Bell 412): 100x100 feet; Large helicopters (like Blackhawk): 120x120 feet.",
+      "reference": "AIM 10-2-3"
+    },
+    {
+      "id": "heli-006",
+      "question": "At what distance should spectators be kept from an LZ during helicopter operations?",
+      "options": [
+        "50 feet",
+        "100 feet",
+        "200 feet",
+        "500 feet"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Spectators should be kept at least 200 feet away from a helicopter landing zone. Emergency vehicles should remain 100 feet away with fire equipment standing by.",
+      "reference": "AIM 10-2-3"
+    },
+    {
+      "id": "heli-007",
+      "question": "What defines 'high lighting conditions' for night VFR helicopter operations?",
+      "options": [
+        "Full moon any time of month",
+        "Moon above horizon with 50%+ illumination OR extensive cultural/surface lighting",
+        "City lights only",
+        "Any amount of moonlight"
+      ],
+      "correctAnswer": 1,
+      "explanation": "High lighting conditions require: (1) Moon above horizon with ≥50% illumination and <5/8 cloud cover, OR (2) Surface lighting providing obstacle visibility, terrain identification, and horizontal reference.",
+      "reference": "AIM 10-2-2"
+    },
+    {
+      "id": "heli-008",
+      "question": "What is OSAP in helicopter offshore operations?",
+      "options": [
+        "Offshore Standard Approach Procedure",
+        "Operational Safety Assessment Program",
+        "Offshore Special Authorization Permit",
+        "Oil Spill Avoidance Protocol"
+      ],
+      "correctAnswer": 0,
+      "explanation": "OSAP (Offshore Standard Approach Procedure) is one of the approach procedures available for Gulf of Mexico grid system operations, along with HEDA and ARA approaches.",
+      "reference": "AIM 10-1-4"
+    },
+    {
+      "id": "heli-009",
+      "question": "What frequency should be used for helicopter air-to-air communications?",
+      "options": [
+        "122.75 MHz",
+        "123.025 MHz",
+        "121.5 MHz",
+        "122.9 MHz"
+      ],
+      "correctAnswer": 1,
+      "explanation": "123.025 MHz is the designated frequency for helicopter air-to-air communications, including coordination at EMS landing zones and multiple helicopter operations.",
+      "reference": "AIM 10-2-4"
+    },
+    {
+      "id": "heli-010",
+      "question": "When multiple EMS helicopters respond to a scene, what should the first helicopter do?",
+      "options": [
+        "Land immediately",
+        "Establish communications and coordinate altitudes/orbits for arriving helicopters",
+        "Wait for all helicopters to arrive",
+        "Request vectors from ATC"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The first helicopter should establish communications on 123.025 MHz, provide LZ briefing to arriving helicopters, and establish altitude separation (recommended 500 feet) and orbit locations.",
+      "reference": "AIM 10-2-4"
+    },
+    {
+      "id": "heli-011",
+      "question": "What is HCH (Heliport Crossing Height)?",
+      "options": [
+        "Maximum hover height",
+        "Minimum hover height to begin climb on departure",
+        "Approach decision height",
+        "Pattern altitude"
+      ],
+      "correctAnswer": 1,
+      "explanation": "HCH (Heliport Crossing Height) specifies a minimum hover height to begin the climb on a PinS SID, helping avoid obstacles during the initial departure phase.",
+      "reference": "AIM 10-1-5"
+    },
+    {
+      "id": "heli-012",
+      "question": "What hazard is created when crane operations occur near an active heliport?",
+      "options": [
+        "Radio interference",
+        "Potential for collision or obstruction of approach/departure paths",
+        "Noise complaints",
+        "Fuel contamination"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Crane operations near heliports create collision hazards and can obstruct approach/departure paths. Crane-helicopter coordination procedures are critical for safety.",
+      "reference": "AIM 10-2-1"
+    },
+    {
+      "id": "heli-013",
+      "question": "What visual references must be visible for a helicopter 'Proceed Visually' segment?",
+      "options": [
+        "Any ground contact",
+        "At least one specified reference (FATO, TLOF, HILS, HALS, VGSI, or windsock)",
+        "Runway lights only",
+        "City lights"
+      ],
+      "correctAnswer": 1,
+      "explanation": "For 'Proceed Visually' approaches to heliports, at least one specified visual reference must be visible: FATO/TLOF lights, HILS, HALS, VGSI, or windsock/windsock light.",
+      "reference": "AIM 10-1-3"
+    },
+    {
+      "id": "heli-014",
+      "question": "What is the purpose of Stability Augmentation Systems (SAS) in helicopters?",
+      "options": [
+        "Navigation assistance",
+        "Short-term rate damping to increase stability",
+        "Communication enhancement",
+        "Engine management"
+      ],
+      "correctAnswer": 1,
+      "explanation": "SAS provides short-term rate damping control inputs to increase helicopter stability. It supports 'hands on' flying and is part of systems that enable IFR operations.",
+      "reference": "AIM 10-1-1"
+    },
+    {
+      "id": "heli-015",
+      "question": "What should ground personnel do during helicopter landing zone operations?",
+      "options": [
+        "Stand upwind with arms raised",
+        "Wear eye protection, secure hats/helmets, and stay clear until rotor stops",
+        "Wave a flag",
+        "Shine a spotlight at the helicopter"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Ground personnel should: wear eye protection, secure chin straps on helmets, remove hats, stay clear of rotor disk, wet down dusty LZs, and keep spectators 200+ feet away.",
+      "reference": "AIM 10-2-3"
+    }
+  ]
+}

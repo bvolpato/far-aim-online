@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "id": "ac-20-119",
+  "number": "20-119",
+  "title": "Fuel Drain Valves",
+  "status": "parsed",
+  "fetched": "2026-07-14",
+  "documentUrl": "https://www.faa.gov/regulations_policies/advisory_circulars/index.cfm/go/document.information/documentID/22126",
+  "pdfUrl": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_20-119.pdf",
+  "sha256": "b28cfae9b803cf31613459997f46b11f4de6cf7a7250284dd39c20eed1cee101",
+  "pageCount": 1,
+  "wordCount": 193,
+  "ocrPageCount": 0,
+  "pages": [
+    {
+      "page": 1,
+      "text": "Advisory U.S.Department of Federal Transportation Aviation Circular Administration\n\nSubject: FUEL DRAIN VALVFS Date: 2/7/83 AC No: 20-119 Initiated by: AWS-130 Change: 1. PURFCGE: This advisory circular provides an acceptable ireans, but rot the only means, of compliance with the requirements of the Federal Aviation Regulations (FAR) for EX)Sitive locking of fuel drain valves in the closed position. 2. BllCKGroUND. FAR Sections 23.999(b}, 25.999(b), 27.999(b), and 29.999(b) require, in part: \"Each drain • must have manual or autcmatic ireans for positive locking in the closed position . • \" This requirement refers to the required drain valves. The PJrpose of this advisory circular is to respond to the question as to whether a spring loaded valve in the closed p:>sition could be considered a \"positive locking valve.\" 3. GUIDANCE. Spring loaded fuel drain valves ronforming to MIL-V-25023B or TSO-C76 or equivalent may be approved for those installations \\,,l[lere the person cperating the valve can visually confirm that the valve is closed, provided the applicant has sho.vn that the valve will rot open inadvertently ~~eq:,erating oondition, M. c. Beard\n\nDirector of Airworthiness"
+    }
+  ],
+  "extractedPageCount": 1
+}

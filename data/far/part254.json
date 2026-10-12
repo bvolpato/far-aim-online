@@ -1,0 +1,51 @@
+{
+  "part": 254,
+  "title": "DOMESTIC BAGGAGE LIABILITY",
+  "cfr": "14 CFR Part 254",
+  "source": "eCFR",
+  "url": "https://www.ecfr.gov/current/title-14/part-254",
+  "subchapter": "A",
+  "subchapterTitle": "Economic Regulations",
+  "effectiveDate": "2026-07-24",
+  "subparts": [],
+  "sections": [
+    {
+      "section": "254.1",
+      "title": "Purpose",
+      "content": "The purpose of this part is to establish rules for the carriage of baggage in interstate and intrastate air transportation. The part sets permissible limitations of air carrier liability for loss, damage, or delay in the carriage of passenger baggage and requires air carriers to provide certain types of notice to passengers.\n\n[ER-1374, 49 FR 5071, Feb. 10, 1984, as amended at 64 FR 70575, Dec. 17, 1999]",
+      "figures": []
+    },
+    {
+      "section": "254.2",
+      "title": "Applicability",
+      "content": "This part applies to any air carrier that provides charter or scheduled passenger service in interstate or intrastate air transportation.\n\n[ER-1374, 49 FR 5071, Feb. 10, 1984, as amended at 64 FR 70575, Dec. 17, 1999]",
+      "figures": []
+    },
+    {
+      "section": "254.3",
+      "title": "Definitions",
+      "content": "*Large aircraft* means any aircraft designed to have a maximum passenger capacity of more than 60 seats.",
+      "figures": []
+    },
+    {
+      "section": "254.4",
+      "title": "Carrier liability",
+      "content": "On any flight segment using large aircraft, or on any flight segment that is included on the same ticket as another flight segment that uses large aircraft, an air carrier shall not limit its liability for provable direct or consequential damages resulting from the disappearance of, damage to, or delay in delivery of a passenger's personal property, including baggage, in its custody to an amount less than $4,700 for each passenger.\n\n[72 FR 3943, Jan. 29, 2007, as amended at 73 FR 70592, Nov. 21, 2008; 78 FR 14914, Mar. 8, 2013; 80 FR 30147, May 27, 2015; Doc. No. DOT-OST-2020-0251, 86 FR 2539, Jan. 13, 2021; 89 FR 84819, Oct. 24, 2024]",
+      "figures": []
+    },
+    {
+      "section": "254.5",
+      "title": "Notice requirement",
+      "content": "In any flight segment using large aircraft, or on any flight segment that is included on the same ticket as another flight segment that uses large aircraft, an air carrier shall provide to passengers, by conspicuous written material included on or with its ticket, either:\n\n(a) Notice of any monetary limitation on its baggage liability to passengers; or\n\n(b) The following notice: \"Federal rules require any limit on an airline's baggage liability to be at least $4,700 per passenger.\"\n\n[72 FR 3943, Jan. 29, 2007, as amended by Doc. No. DOT-OST-2008-0332, 73 FR 70592, Nov. 21, 2008; 78 FR 14914, Mar. 8, 2013; 80 FR 30147, May 27, 2015; Doc. No. DOT-OST-2020-0251, 86 FR 2539, Jan. 13, 2021; 89 FR 84819, Oct. 24, 2024]",
+      "figures": []
+    },
+    {
+      "section": "254.6",
+      "title": "Periodic adjustments",
+      "content": "The Department of Transportation will review the domestic baggage liability limit prescribed in this part every two years. The Department will use the Consumer Price Index for All Urban Consumers as of July of each review year to calculate the revised domestic baggage liability limit amount. The Department will use the following formula: $2500 × (a/b) rounded to the nearest $100, where a = July CPI-U of year of current adjustment and b = the CPI-U figure in December 1999 when the inflation adjustment provision was added to this part.\n\n[Doc. No. DOT-OST-2020-0251, 86 FR 2539, Jan. 13, 2021]",
+      "figures": []
+    }
+  ],
+  "appendices": [],
+  "isPilotIndex": false
+}

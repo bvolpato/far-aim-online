@@ -1,0 +1,337 @@
+{
+  "id": "airspace-quiz",
+  "title": "Airspace Knowledge Quiz",
+  "description": "Test your knowledge of US airspace classifications and requirements",
+  "category": "AIM",
+  "difficulty": "intermediate",
+  "targetCertificate": "All Pilots",
+  "questionCount": 25,
+  "passingScore": 70,
+  "questions": [
+    {
+      "id": "as-001",
+      "question": "What is the vertical extent of Class A airspace?",
+      "options": [
+        "Surface to 18,000 feet MSL",
+        "18,000 feet MSL to FL450",
+        "18,000 feet MSL to FL600",
+        "14,500 feet MSL to FL600"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Class A airspace extends from 18,000 feet MSL up to and including FL600 (60,000 feet).",
+      "reference": "AIM 3-2-2"
+    },
+    {
+      "id": "as-002",
+      "question": "What type of flight operations are permitted in Class A airspace?",
+      "options": [
+        "VFR and IFR",
+        "IFR only",
+        "SVFR only",
+        "VFR only"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Class A airspace requires IFR operations only. VFR flight is not permitted in Class A airspace.",
+      "reference": "AIM 3-2-2"
+    },
+    {
+      "id": "as-003",
+      "question": "What is typically the upper limit of Class B airspace?",
+      "options": [
+        "4,000 feet AGL",
+        "8,000 feet MSL",
+        "10,000 feet MSL",
+        "18,000 feet MSL"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Class B airspace typically extends from the surface to 10,000 feet MSL, though dimensions vary by location.",
+      "reference": "AIM 3-2-3"
+    },
+    {
+      "id": "as-004",
+      "question": "What cloud clearance is required for VFR flight in Class B airspace?",
+      "options": [
+        "Clear of clouds",
+        "500 below, 1000 above, 2000 horizontal",
+        "1000 below, 1000 above, 1 mile horizontal",
+        "1000 below, 2000 above, 3 miles horizontal"
+      ],
+      "correctAnswer": 0,
+      "explanation": "In Class B airspace, VFR aircraft must remain clear of clouds. The visibility requirement is 3 statute miles.",
+      "reference": "AIM 3-2-3, 14 CFR 91.155"
+    },
+    {
+      "id": "as-005",
+      "question": "What is required to enter Class B airspace?",
+      "options": [
+        "Two-way radio communication",
+        "An ATC clearance",
+        "A flight plan",
+        "Transponder only"
+      ],
+      "correctAnswer": 1,
+      "explanation": "To operate in Class B airspace, pilots must receive an ATC clearance prior to entering. Simply establishing communication is not sufficient.",
+      "reference": "AIM 3-2-3"
+    },
+    {
+      "id": "as-006",
+      "question": "What is the standard core dimension of Class C airspace?",
+      "options": [
+        "5 NM radius, surface to 4,000 feet AGL",
+        "4 NM radius, surface to 2,500 feet AGL",
+        "10 NM radius, surface to 10,000 feet MSL",
+        "5 NM radius, surface to 10,000 feet MSL"
+      ],
+      "correctAnswer": 0,
+      "explanation": "The Class C core area (inner circle) extends from the surface to 4,000 feet above the airport elevation within a 5 NM radius.",
+      "reference": "AIM 3-2-4"
+    },
+    {
+      "id": "as-007",
+      "question": "What is required before entering Class C airspace?",
+      "options": [
+        "ATC clearance",
+        "Two-way radio communication with ATC",
+        "Filing a flight plan",
+        "Special VFR clearance"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Two-way radio communication must be established with ATC before entering Class C airspace. An actual clearance is not required as it is in Class B.",
+      "reference": "AIM 3-2-4"
+    },
+    {
+      "id": "as-008",
+      "question": "What is the standard dimension of Class D airspace?",
+      "options": [
+        "5 NM radius, surface to 4,000 feet AGL",
+        "4 NM radius, surface to 2,500 feet AGL",
+        "Tailored to IFR procedures, typically 4-5 NM",
+        "10 NM radius, surface to 10,000 feet MSL"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Class D airspace normally extends from the surface to 2,500 feet above the airport elevation with a radius tailored for instrument procedures, typically about 4-5 NM.",
+      "reference": "AIM 3-2-5"
+    },
+    {
+      "id": "as-009",
+      "question": "What happens to Class D airspace when the tower closes?",
+      "options": [
+        "It becomes Class A airspace",
+        "It becomes Class B airspace",
+        "It becomes Class E or Class G airspace",
+        "It remains Class D"
+      ],
+      "correctAnswer": 2,
+      "explanation": "When the tower closes, Class D airspace typically reverts to Class E (if instrument procedures exist) or Class G airspace.",
+      "reference": "AIM 3-2-5"
+    },
+    {
+      "id": "as-010",
+      "question": "What indicates Class E airspace with a floor of 700 feet AGL on a sectional chart?",
+      "options": [
+        "Blue vignette (fade)",
+        "Magenta vignette (fade)",
+        "Blue dashed line",
+        "Magenta dashed line"
+      ],
+      "correctAnswer": 1,
+      "explanation": "A magenta vignette (fading color) indicates Class E airspace with a floor of 700 feet AGL. Blue vignette indicates 1,200 feet AGL floor.",
+      "reference": "AIM 3-2-6"
+    },
+    {
+      "id": "as-011",
+      "question": "What indicates Class E airspace extending to the surface on a sectional chart?",
+      "options": [
+        "Solid magenta line",
+        "Dashed magenta line",
+        "Blue dashed line",
+        "Solid blue line"
+      ],
+      "correctAnswer": 1,
+      "explanation": "A dashed magenta line indicates Class E airspace that extends to the surface, typically around airports with instrument approaches but no operating tower.",
+      "reference": "AIM 3-2-6"
+    },
+    {
+      "id": "as-012",
+      "question": "What is the minimum visibility and cloud clearance for Class G airspace at or below 1,200 feet AGL during the day?",
+      "options": [
+        "3 SM, 500/1000/2000",
+        "1 SM, clear of clouds",
+        "5 SM, 1000/1000/1SM",
+        "1 SM, 500/1000/2000"
+      ],
+      "correctAnswer": 1,
+      "explanation": "In Class G airspace at or below 1,200 feet AGL during the day, the minimum visibility is 1 statute mile and aircraft must remain clear of clouds.",
+      "reference": "14 CFR 91.155"
+    },
+    {
+      "id": "as-013",
+      "question": "What is the purpose of a Prohibited Area?",
+      "options": [
+        "To protect aircraft from ground fire",
+        "To protect national security or welfare",
+        "To provide training areas for military",
+        "To separate IFR and VFR traffic"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Prohibited areas are established for security or other reasons associated with the national welfare. Flight is prohibited without exception.",
+      "reference": "AIM 3-4-2"
+    },
+    {
+      "id": "as-014",
+      "question": "How is a Restricted Area designated?",
+      "options": [
+        "A-xxx",
+        "P-xxx",
+        "R-xxx",
+        "W-xxx"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Restricted areas are designated with an R followed by numbers (e.g., R-2301).",
+      "reference": "AIM 3-4-3"
+    },
+    {
+      "id": "as-015",
+      "question": "What hazards might be found in a Restricted Area?",
+      "options": [
+        "Heavy air traffic only",
+        "Artillery firing, aerial gunnery, guided missiles",
+        "Low visibility conditions",
+        "Bird migration"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Restricted areas may contain hazardous activities such as artillery firing, aerial gunnery, or guided missiles.",
+      "reference": "AIM 3-4-3"
+    },
+    {
+      "id": "as-016",
+      "question": "What is the difference between a Warning Area and a Restricted Area?",
+      "options": [
+        "Warning areas have less hazardous activities",
+        "Warning areas extend over international waters where U.S. has no jurisdiction",
+        "Warning areas are only for military aircraft",
+        "There is no difference"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Warning areas extend over international waters (3+ NM from the coast) where the U.S. government has no jurisdiction to restrict flight. They contain similar activities to restricted areas.",
+      "reference": "AIM 3-4-4"
+    },
+    {
+      "id": "as-017",
+      "question": "What is the purpose of a Military Operations Area (MOA)?",
+      "options": [
+        "To prohibit all civilian aircraft",
+        "To separate military training activities from IFR traffic",
+        "To restrict access to military bases",
+        "To provide emergency landing areas"
+      ],
+      "correctAnswer": 1,
+      "explanation": "MOAs are established to separate certain military training activities from IFR traffic. VFR traffic is not prohibited but should exercise extreme caution.",
+      "reference": "AIM 3-4-5"
+    },
+    {
+      "id": "as-018",
+      "question": "What should VFR pilots do when flying through an active MOA?",
+      "options": [
+        "Obtain permission from the controlling agency",
+        "File an IFR flight plan",
+        "Exercise extreme caution",
+        "Avoid the MOA entirely"
+      ],
+      "correctAnswer": 2,
+      "explanation": "VFR traffic is permitted in MOAs but pilots should exercise extreme caution due to military training activities.",
+      "reference": "AIM 3-4-5"
+    },
+    {
+      "id": "as-019",
+      "question": "What designates an Alert Area?",
+      "options": [
+        "R-xxx",
+        "P-xxx",
+        "A-xxx",
+        "W-xxx"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Alert areas are designated with an A followed by numbers (e.g., A-631).",
+      "reference": "AIM 3-4-6"
+    },
+    {
+      "id": "as-020",
+      "question": "Why are Controlled Firing Areas not charted?",
+      "options": [
+        "They are classified military information",
+        "They are too small to chart",
+        "Activities are suspended when aircraft approach",
+        "They only exist at night"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Controlled firing areas are not charted because activities are suspended immediately when spotter aircraft, radar, or ground lookout positions indicate an aircraft might be approaching.",
+      "reference": "AIM 3-4-7"
+    },
+    {
+      "id": "as-021",
+      "question": "What is the purpose of a Temporary Flight Restriction (TFR)?",
+      "options": [
+        "To permanently restrict airspace",
+        "To temporarily restrict aircraft operations in a defined area",
+        "To restrict military operations",
+        "To designate new Class B airspace"
+      ],
+      "correctAnswer": 1,
+      "explanation": "TFRs temporarily restrict aircraft operations within specified areas for reasons such as disaster relief, VIP movement, or hazardous conditions.",
+      "reference": "AIM 3-5-3"
+    },
+    {
+      "id": "as-022",
+      "question": "Where are TFRs published?",
+      "options": [
+        "Sectional charts only",
+        "NOTAMs",
+        "AIM only",
+        "FAR Part 91"
+      ],
+      "correctAnswer": 1,
+      "explanation": "TFRs are published as NOTAMs (Notices to Air Missions). Pilots should check NOTAMs before every flight.",
+      "reference": "AIM 3-5-3"
+    },
+    {
+      "id": "as-023",
+      "question": "What equipment is required in Class C airspace?",
+      "options": [
+        "Transponder only",
+        "Two-way radio only",
+        "Transponder with Mode C and two-way radio",
+        "ADF and VOR"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Class C airspace requires a transponder with Mode C (altitude reporting) capability and two-way radio communication.",
+      "reference": "AIM 3-2-4"
+    },
+    {
+      "id": "as-024",
+      "question": "What is the Mode C veil?",
+      "options": [
+        "30 NM radius around Class B airports requiring transponder with Mode C",
+        "The outer ring of Class C airspace",
+        "Airspace above 10,000 feet MSL",
+        "Special use airspace around military bases"
+      ],
+      "correctAnswer": 0,
+      "explanation": "The Mode C veil is an area within 30 NM of certain Class B airports where a transponder with altitude reporting (Mode C) is required.",
+      "reference": "14 CFR 91.215"
+    },
+    {
+      "id": "as-025",
+      "question": "At what altitude does Class E airspace typically begin if there is no magenta or blue vignette on the chart?",
+      "options": [
+        "700 feet AGL",
+        "1,200 feet AGL",
+        "14,500 feet MSL",
+        "18,000 feet MSL"
+      ],
+      "correctAnswer": 2,
+      "explanation": "In areas without magenta (700 AGL) or blue (1,200 AGL) vignettes, Class E airspace typically begins at 14,500 feet MSL.",
+      "reference": "AIM 3-2-6"
+    }
+  ]
+}

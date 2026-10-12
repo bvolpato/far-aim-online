@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "id": "ac-150-5000-16",
+  "number": "150/5000-16",
+  "title": "Announcement of Availability of the Guide for Private Flyers - U.S. International Airports",
+  "status": "parsed",
+  "fetched": "2026-07-14",
+  "documentUrl": "https://www.faa.gov/regulations_policies/advisory_circulars/index.cfm/go/document.information/documentID/393461",
+  "pdfUrl": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_150_5000-16.pdf",
+  "sha256": "bc1b5d7cfefebdd9ce61021001bbf3ce05ccb5ce6736d53bc024db37794db838",
+  "pageCount": 1,
+  "wordCount": 198,
+  "ocrPageCount": 0,
+  "pages": [
+    {
+      "page": 1,
+      "text": "U.S. Department of Transportation Federal Aviation Administration Advisory Circular\n\nSubject: Announcement of Availability of the Guide for Private Flyers – U.S. International Airports Date: 9/29/2010 Initiated by: AAS-100 AC No: 150/5000-16 Change: 1. Purpose. This Advisory Circular announces the availability of the Guide for Private Flyers published by the Department of Homeland Security, U.S. Customs and Border Protection\n\n(CBP).\n\n2. Scope. The Guide for Private Flyers lists all U.S. international airports, designated airports, landing rights airports, and user fee airports. It also defines the term International Airport and clarifies the use of the word International in an airport name. Any airport may use the word International in its name. However, only airports listed in the CBP guide are considered international airports for CBP purposes. 3. Availability. The CBP makes the Guide for Private Flyers available online at http://cbp.gov/linkhandler/cgov/travel/pleasure_boats/private_flyers/private_flyers_guide.ctt/priv ate_flyers_guide.pdf. 4. Requests for Information. For questions and general inquiries, please contact the Customs and Border Protection Information Center. Their contact information is available at http://cbp.gov/xp/cgov/toolbox/contacts/customer_service.xml. Michael J. O'Donnell Director of Airport Safety and Standards"
+    }
+  ],
+  "extractedPageCount": 1
+}

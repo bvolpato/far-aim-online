@@ -1,0 +1,273 @@
+{
+  "id": "aim-chapter11-uas",
+  "title": "UAS (Drone) Operations Quiz",
+  "description": "Test your knowledge of UAS/drone regulations, airspace access, and safe operations from AIM Chapter 11",
+  "category": "AIM",
+  "chapter": 11,
+  "difficulty": "intermediate",
+  "targetCertificate": "Remote Pilot",
+  "questionCount": 20,
+  "passingScore": 70,
+  "questions": [
+    {
+      "id": "uas-001",
+      "question": "What weight limit defines a small UAS (sUAS) under Part 107?",
+      "options": [
+        "Under 25 pounds",
+        "Under 55 pounds",
+        "Under 100 pounds",
+        "Under 0.55 pounds"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Part 107 applies to small UAS weighing less than 55 pounds. UAS 55 pounds or more require different authorization (Part 91 with COA or exemption).",
+      "reference": "AIM 11-1-1"
+    },
+    {
+      "id": "uas-002",
+      "question": "What is the maximum altitude for sUAS operations in Class G airspace under Part 107?",
+      "options": [
+        "200 feet AGL",
+        "400 feet AGL",
+        "500 feet AGL",
+        "1,200 feet AGL"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Part 107 sUAS operations are limited to 400 feet AGL in Class G airspace, or within 400 feet of a structure if flying over it.",
+      "reference": "AIM 11-4-2"
+    },
+    {
+      "id": "uas-003",
+      "question": "What is LAANC?",
+      "options": [
+        "Low Altitude Aircraft Notification Center",
+        "Low Altitude Authorization and Notification Capability",
+        "Limited Airspace Access for Non-Commercial aircraft",
+        "Landing Area Authorization for National Coverage"
+      ],
+      "correctAnswer": 1,
+      "explanation": "LAANC (Low Altitude Authorization and Notification Capability) automates the application and approval process for UAS airspace authorizations in controlled airspace.",
+      "reference": "AIM 11-1-2"
+    },
+    {
+      "id": "uas-004",
+      "question": "What test must recreational drone flyers pass?",
+      "options": [
+        "Part 107 knowledge test",
+        "Private pilot written exam",
+        "TRUST (The Recreational UAS Safety Test)",
+        "No test required"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Recreational flyers must pass TRUST (The Recreational UAS Safety Test), an online safety test with no minimum age requirement.",
+      "reference": "AIM 11-2-1"
+    },
+    {
+      "id": "uas-005",
+      "question": "At what weight must a recreational UAS be registered?",
+      "options": [
+        "All recreational UAS",
+        "Over 0.55 pounds (250 grams)",
+        "Over 5 pounds",
+        "Over 55 pounds"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Recreational UAS weighing more than 0.55 pounds (250 grams) must be registered with the FAA. Part 107 UAS must be registered regardless of weight.",
+      "reference": "AIM 11-2-2"
+    },
+    {
+      "id": "uas-006",
+      "question": "What is required for Part 107 operations in controlled airspace?",
+      "options": [
+        "No authorization needed",
+        "Prior authorization from ATC via LAANC or DroneZone",
+        "Only verbal permission",
+        "File a flight plan"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Part 107 operations in Class B, C, D, or surface E airspace require prior ATC authorization via LAANC (for UASFM altitudes) or DroneZone (for further coordination).",
+      "reference": "AIM 11-4-2"
+    },
+    {
+      "id": "uas-007",
+      "question": "What is Remote Identification (RID)?",
+      "options": [
+        "A type of insurance",
+        "The ability of a UAS in flight to broadcast identification and location information",
+        "A remote control feature",
+        "A pilot license requirement"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Remote ID enables a UAS in flight to broadcast identification and location data receivable by others, helping FAA and law enforcement identify operators.",
+      "reference": "AIM 11-4-4"
+    },
+    {
+      "id": "uas-008",
+      "question": "What is a FRIA?",
+      "options": [
+        "Flight Risk Integration Area",
+        "FAA-Recognized Identification Area",
+        "Federal Remote Identification Authority",
+        "Flight Restriction Implementation Area"
+      ],
+      "correctAnswer": 1,
+      "explanation": "FRIA (FAA-Recognized Identification Area) is a geographic area where UAS can operate without Remote ID, maintaining visual line of sight.",
+      "reference": "AIM 11-4-4"
+    },
+    {
+      "id": "uas-009",
+      "question": "What minimum age is required for a Part 107 remote pilot certificate?",
+      "options": [
+        "14 years",
+        "16 years",
+        "17 years",
+        "18 years"
+      ],
+      "correctAnswer": 1,
+      "explanation": "To obtain a Part 107 remote pilot certificate, applicants must be at least 16 years old and able to speak and understand English.",
+      "reference": "AIM 11-5-1"
+    },
+    {
+      "id": "uas-010",
+      "question": "What is the UASFM?",
+      "options": [
+        "UAS Flight Manual",
+        "UAS Facility Map",
+        "Unmanned Aircraft Safety Matrix",
+        "Universal Airspace Flight Map"
+      ],
+      "correctAnswer": 1,
+      "explanation": "UASFM (UAS Facility Map) shows maximum altitudes for UAS operations that can be approved via LAANC without further coordination with ATC.",
+      "reference": "AIM 11-1-2"
+    },
+    {
+      "id": "uas-011",
+      "question": "Can Part 107 operators fly at night?",
+      "options": [
+        "No, never",
+        "Yes, with proper training and anti-collision lighting",
+        "Only with a waiver",
+        "Only in emergencies"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Part 107 allows night operations with initial pilot training and anti-collision lighting visible for 3 statute miles. No waiver required.",
+      "reference": "AIM 11-8-3"
+    },
+    {
+      "id": "uas-012",
+      "question": "What must a Part 107 remote pilot report to the FAA?",
+      "options": [
+        "All flights",
+        "Accidents causing serious injury or >$500 property damage (other than UAS)",
+        "Any landing",
+        "Battery failures"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Part 107 pilots must report accidents causing serious injury, loss of consciousness, or property damage (other than to the UAS) exceeding $500.",
+      "reference": "AIM 11-8-4"
+    },
+    {
+      "id": "uas-013",
+      "question": "What does VLOS mean in UAS operations?",
+      "options": [
+        "Very Low Obstacle System",
+        "Visual Line of Sight",
+        "Variable Lighting Operation Standard",
+        "Vertical Launch Operating System"
+      ],
+      "correctAnswer": 1,
+      "explanation": "VLOS (Visual Line of Sight) means the remote pilot can see the UAS with unaided vision (except corrective lenses). Required for Part 107 operations unless waived.",
+      "reference": "AIM 11-2-1"
+    },
+    {
+      "id": "uas-014",
+      "question": "Who has right-of-way between a manned aircraft and a UAS?",
+      "options": [
+        "The UAS",
+        "The manned aircraft",
+        "Whoever is lower",
+        "Neither - equal priority"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The UAS operator must always give way to manned aircraft. The pilot retains ultimate responsibility to avoid manned aircraft traffic.",
+      "reference": "AIM 11-8-3"
+    },
+    {
+      "id": "uas-015",
+      "question": "What Part regulates commercial drone package delivery BVLOS operations?",
+      "options": [
+        "Part 107",
+        "Part 91",
+        "Part 135",
+        "Part 61"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Commercial package delivery BVLOS and interstate HAZMAT transport require Part 135 certification, not Part 107.",
+      "reference": "AIM 11-4-5"
+    },
+    {
+      "id": "uas-016",
+      "question": "What is a COA for UAS operations?",
+      "options": [
+        "Certificate of Airworthiness",
+        "Certificate of Waiver or Authorization",
+        "Controlled Operations Agreement",
+        "Commercial Operator Authorization"
+      ],
+      "correctAnswer": 1,
+      "explanation": "COA (Certificate of Waiver or Authorization) grants public UAS operators and certain civil operators access to specific airspace.",
+      "reference": "AIM 11-4-3"
+    },
+    {
+      "id": "uas-017",
+      "question": "What recurrent training is required for Part 107 pilots?",
+      "options": [
+        "None",
+        "Every 6 months",
+        "Every 24 months",
+        "Every 3 years"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Part 107 remote pilots must complete recurrent training or pass a recurrent knowledge test every 24 months to exercise certificate privileges.",
+      "reference": "AIM 11-5-1"
+    },
+    {
+      "id": "uas-018",
+      "question": "Where can recreational flyers find airspace restrictions?",
+      "options": [
+        "Only on paper charts",
+        "B4UFLY app and LAANC applications",
+        "ATC hotline",
+        "Local police"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The B4UFLY mobile app and LAANC applications help recreational and Part 107 flyers identify airspace restrictions and obtain authorizations.",
+      "reference": "AIM 11-8-7"
+    },
+    {
+      "id": "uas-019",
+      "question": "What happens if a recreational flyer violates 49 USC 44809 requirements?",
+      "options": [
+        "Warning only",
+        "The flight is treated as Part 107, potentially with greater penalties",
+        "No consequence",
+        "Equipment confiscation"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Failure to adhere to recreational flyer requirements under 49 USC 44809 results in the FAA treating the operation as Part 107, potentially with greater penalties.",
+      "reference": "AIM 11-4-1"
+    },
+    {
+      "id": "uas-020",
+      "question": "What is Advanced Air Mobility (AAM)?",
+      "options": [
+        "A new drone racing league",
+        "Emerging sector integrating highly automated aircraft including UAM and cargo delivery",
+        "Military drone program",
+        "A weather service"
+      ],
+      "correctAnswer": 1,
+      "explanation": "AAM (Advanced Air Mobility) encompasses emerging technologies including Urban Air Mobility, Regional Air Mobility, cargo delivery, and automated aircraft integration.",
+      "reference": "AIM 11-6-1"
+    }
+  ]
+}

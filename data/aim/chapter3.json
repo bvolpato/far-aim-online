@@ -1,0 +1,1139 @@
+{
+  "chapter": 3,
+  "title": "Airspace",
+  "sections": [
+    {
+      "section": "3-1-1",
+      "title": "General",
+      "content": "• There are two categories of airspace or airspace areas:\n\n• Regulatory (Class A, B, C, D and E airspace areas, restricted and prohibited areas); and\n\n• Nonregulatory (military operations areas [MOA], warning areas, alert areas, controlled firing areas [CFA], and national security areas [NSA]).\n\nNOTE-\n\nAdditional information on special use airspace (prohibited areas, restricted areas [permanent or temporary], warning areas, MOAs [permanent or temporary], alert areas, CFAs, and NSAs) may be found in Chapter 3, Airspace, Section 4 (https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap3_section_4.html#chap3_section_4), Special Use Airspace, paragraphs  3-4-1 (https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap3_section_4.html#3-4-1) through 3-4-8 (https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap3_section_4.html#3-4-8) .\n\n• Within these two categories, there are four types:\n\n• Controlled,\n\n• Uncontrolled,\n\n• Special use, and\n\n• Other airspace.\n\n• The categories and types of airspace are dictated by:\n\n• The complexity or density of aircraft movements,\n\n• The nature of the operations conducted within the airspace,\n\n• The level of safety required, and\n\n• The national and public interest.\n\n• It is important that pilots be familiar with the operational requirements for each of the various types or classes of airspace. Subsequent sections will cover each class in sufficient detail to facilitate understanding.",
+      "subsections": [],
+      "figures": [],
+      "tables": []
+    },
+    {
+      "section": "3-1-2",
+      "title": "General Dimensions of Airspace Segments",
+      "content": "Refer to Title 14 of the U.S. Code of Federal Regulations (CFR) for specific dimensions, exceptions, geographical areas covered, exclusions, specific transponder/ADS-B or other equipment requirements, and flight operations.",
+      "subsections": [],
+      "figures": [],
+      "tables": []
+    },
+    {
+      "section": "3-1-3",
+      "title": "Hierarchy of Overlapping Airspace Designations",
+      "content": "• When overlapping airspace designations apply to the same airspace, the operating rules associated with the more restrictive airspace designation apply.\n\n• For the purpose of clarification:\n\n• Class A airspace is more restrictive than Class B, Class C, Class D, Class E, or Class G airspace;\n\n• Class B airspace is more restrictive than Class C, Class D, Class E, or Class G airspace;\n\n• Class C airspace is more restrictive than Class D, Class E, or Class G airspace;\n\n• Class D airspace is more restrictive than Class E or Class G airspace; and\n\n• Class E is more restrictive than Class G airspace.",
+      "subsections": [],
+      "figures": [],
+      "tables": []
+    },
+    {
+      "section": "3-1-4",
+      "title": "Basic VFR Weather Minimums",
+      "content": "• No person may operate an aircraft under basic VFR when the flight visibility is less, or at a distance from clouds that is less, than that prescribed for the corresponding altitude and class of airspace. (See TBL 3-1-1 (https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap3_section_1.html#3-1-4) .)\n\nNOTE-\n\nStudent pilots must comply with 14 CFR section 61.89 (a) (6) and (7).\n\n• Except as provided in 14 CFR section 91.157, Special VFR Weather Minimums, no person may operate an aircraft beneath the ceiling under VFR within the lateral boundaries of controlled airspace designated to the surface for an airport when the ceiling is less than 1,000 feet. (See 14 CFR section 91.155 (c).)",
+      "subsections": [],
+      "figures": [],
+      "tables": [
+        {
+          "headers": [
+            "",
+            "",
+            ""
+          ],
+          "rows": [
+            [
+              "",
+              "",
+              ""
+            ],
+            [
+              "Class A",
+              "Not Applicable",
+              "Not Applicable"
+            ],
+            [
+              "Class B",
+              "3 statute miles",
+              "Clear of Clouds"
+            ],
+            [
+              "Class C",
+              "3 statute miles",
+              "500 feet below 1,000 feet above 2,000 feet horizontal"
+            ],
+            [
+              "Class D",
+              "3 statute miles",
+              "500 feet below 1,000 feet above 2,000 feet horizontal"
+            ],
+            [
+              "Class E Less than 10,000 feet MSL",
+              "3 statute miles",
+              "500 feet below 1,000 feet above 2,000 feet horizontal"
+            ],
+            [
+              "At or above 10,000 feet MSL",
+              "5 statute miles",
+              "1,000 feet below 1,000 feet above 1 statute mile horizontal"
+            ],
+            [
+              "Class G 1,200 feet or less above the surface (regardless of MSL altitude).",
+              "",
+              ""
+            ],
+            [
+              "For aircraft other than helicopters:",
+              "",
+              ""
+            ],
+            [
+              "Day, except as provided in §91.155(b)",
+              "1 statute mile",
+              "Clear of clouds"
+            ],
+            [
+              "Night, except as provided in §91.155(b)",
+              "3 statute miles",
+              "500 feet below 1,000 feet above 2,000 feet horizontal"
+            ],
+            [
+              "For helicopters:",
+              "",
+              ""
+            ],
+            [
+              "Day",
+              "½ statute mile",
+              "Clear of clouds"
+            ],
+            [
+              "Night, except as provided in §91.155(b)",
+              "1 statute mile",
+              "Clear of clouds"
+            ],
+            [
+              "More than 1,200 feet above the surface but less than 10,000 feet MSL.",
+              "",
+              ""
+            ],
+            [
+              "Day",
+              "1 statute mile",
+              "500 feet below 1,000 feet above 2,000 feet horizontal"
+            ],
+            [
+              "Night",
+              "3 statute miles",
+              "500 feet below 1,000 feet above 2,000 feet horizontal"
+            ],
+            [
+              "More than 1,200 feet above the surface and at or above 10,000 feet MSL.",
+              "5 statute miles",
+              "1,000 feet below 1,000 feet above 1 statute mile horizontal"
+            ]
+          ],
+          "caption": "TBL 3-1-4 Basic VFR Weather Minimums"
+        }
+      ]
+    },
+    {
+      "section": "3-1-5",
+      "title": "VFR Cruising Altitudes and Flight Levels",
+      "content": "(See TBL 3-1-2 (https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap3_section_1.html#3-1-5) .)",
+      "subsections": [],
+      "figures": [],
+      "tables": [
+        {
+          "headers": [
+            "If your magnetic course (ground track) is:",
+            "And you are more than 3,000 feet above the surface but below 18,000 feet MSL, fly:",
+            "And you are above 18,000 feet MSL to FL 290, fly:"
+          ],
+          "rows": [
+            [
+              "0 ∘ to 179 ∘",
+              "Odd thousands MSL, plus 500 feet (3,500; 5,500; 7,500, etc.)",
+              "Odd Flight Levels plus 500 feet (FL 195; FL 215; FL 235, etc.)"
+            ],
+            [
+              "180 ∘ to 359 ∘",
+              "Even thousands MSL, plus 500 feet (4,500; 6,500; 8,500, etc.)",
+              "Even Flight Levels plus 500 feet (FL 185; FL 205; FL 225, etc.)"
+            ]
+          ],
+          "caption": "TBL 3-1-5 VFR Cruising Altitudes and Flight Levels"
+        }
+      ]
+    },
+    {
+      "section": "3-2-1",
+      "title": "General",
+      "content": "• **Controlled Airspace. **A generic term that covers the different classification of airspace (Class A, Class B, Class C, Class D, and Class E airspace) and defined dimensions within which air traffic control service is provided to IFR flights and to VFR flights in accordance with the airspace classification. (See FIG 3-2-1 (https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap3_section_2.html#3-2-1) .)\n\n• **IFR Requirements.** IFR operations in any class of controlled airspace requires that a pilot must file an IFR flight plan and receive an appropriate ATC clearance.\n\n• **IFR Separation.** Standard IFR separation is provided to all aircraft operating under IFR in controlled airspace.\n\n• **VFR Requirements.** It is the responsibility of the pilot to ensure that ATC clearance or radio communication requirements are met prior to entry into Class B, Class C, or Class D airspace. The pilot retains this responsibility when receiving ATC radar advisories. (See 14 CFR part 91.)\n\n• **Traffic Advisories.** Traffic advisories will be provided to all aircraft as the controller's work situation permits.\n\n• **Safety Alerts.** Safety Alerts are mandatory services and are provided to ALL aircraft. There are two types of Safety Alerts:\n\n• **Terrain/Obstruction Alert.** A Terrain/Obstruction Alert is issued when, in the controller's judgment, an aircraft's altitude places it in unsafe proximity to terrain and/or obstructions; and\n\n• **Aircraft Conflict/Mode C Intruder Alert.** An Aircraft Conflict/Mode C Intruder Alert is issued if the controller observes another aircraft which places it in an unsafe proximity. When feasible, the controller will offer the pilot an alternative course of action.\n\nFIG 3-2-1Airspace Classes\nAirspace Classes\n\n• **Ultralight Vehicles.** No person may operate an ultralight vehicle within Class A, Class B, Class C, or Class D airspace or within the lateral boundaries of the surface area of Class E airspace designated for an airport unless that person has prior authorization from the ATC facility having jurisdiction over that airspace. (See 14 CFR part 103.)\n\n• **Unmanned Free Balloons.** Unless otherwise authorized by ATC, no person may operate an unmanned free balloon below 2,000 feet above the surface within the lateral boundaries of Class B, Class C, Class D, or Class E airspace designated for an airport. (See 14 CFR part 101.)\n\n• **Parachute Jumps.** No person may make a parachute jump, and no pilot-in-command may allow a parachute jump to be made from that aircraft, in or into Class A, Class B, Class C, or Class D airspace without, or in violation of, the terms of an ATC authorization issued by the ATC facility having jurisdiction over the airspace. (See 14 CFR part 105.)",
+      "subsections": [],
+      "figures": [
+        {
+          "src": "chapter3/section-3-2-1-img-1.png",
+          "alt": "Airspace Classes",
+          "caption": "FIG 3-2-1 Airspace Classes",
+          "originalUrl": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/images/aim0302_At_Anchor0.png"
+        }
+      ],
+      "tables": []
+    },
+    {
+      "section": "3-2-2",
+      "title": "Class A Airspace",
+      "content": "• **Definition. **Generally, that airspace from 18,000 feet MSL up to and including FL 600, including the airspace overlying the waters within 12 nautical miles off the coast of the 48 contiguous States and Alaska; and designated international airspace beyond 12 nautical miles off the coast of the 48 contiguous States and Alaska within areas of domestic radio navigational signal or ATC radar coverage, and within which domestic procedures are applied.\n\n• **Operating Rules and Pilot/Equipment Requirements.** Unless otherwise authorized, all persons must operate their aircraft under IFR. (See 14 CFR section 71.33, sections 91.167 through 91.193, sections 91.215 through 91.217, and sections 91.225 through 91.227.)\n\n• **Charts. **Class A airspace is not specifically charted.",
+      "subsections": [],
+      "figures": [],
+      "tables": []
+    },
+    {
+      "section": "3-2-3",
+      "title": "Class B Airspace",
+      "content": "• **Definition.** Generally, that airspace from the surface to 10,000 feet MSL surrounding the nation's busiest airports in terms of IFR operations or passenger enplanements. The configuration of each Class B airspace area is individually tailored and consists of a surface area and two or more layers (some Class B airspace areas resemble upside-down wedding cakes), and is designed to contain all published instrument procedures once an aircraft enters the airspace. An ATC clearance is required for all aircraft to operate in the area, and all aircraft that are so cleared receive separation services within the airspace. The cloud clearance requirement for VFR operations is \"clear of clouds.\"\n\n• **Operating Rules and Pilot/Equipment Requirements.** Regardless of weather conditions, an ATC clearance is required prior to operating within Class B airspace. Pilots should not request a clearance to operate within Class B airspace unless the requirements of 14 CFR sections 91.131, 91.215, and 91.225 are met. Included among these requirements are:\n\n• Unless otherwise authorized by ATC, aircraft must be equipped with an operable two-way radio capable of communicating with ATC on appropriate frequencies for that Class B airspace.\n\n• No person may take off or land a civil aircraft at the following primary airports within Class B airspace unless the pilot-in-command holds at least a private pilot certificate:\n\n• Andrews Air Force Base, MD\n\n• Atlanta Hartsfield Airport, GA\n\n• Boston Logan Airport, MA\n\n• Chicago O'Hare Intl. Airport, IL\n\n• Dallas/Fort Worth Intl. Airport, TX\n\n• Los Angeles Intl. Airport, CA\n\n• Miami Intl. Airport, FL\n\n• Newark Intl. Airport, NJ\n\n• New York Kennedy Airport, NY\n\n• New York La Guardia Airport, NY\n\n• Ronald Reagan Washington National Airport, DC\n\n• San Francisco Intl. Airport, CA\n\n• No person may take off or land a civil aircraft at an airport within Class B airspace or operate a civil aircraft within Class B airspace unless:\n\n• The pilot-in-command holds at least a private pilot certificate; or\n\n• The pilot-in-command holds a recreational pilot certificate and has met the requirements of 14 CFR section 61.101; or\n\n• The pilot-in-command holds a sport pilot certificate and has met the requirements of 14 CFR section 61.325; or\n\n• The aircraft is operated by a student pilot:\n\n• Who seeks a private pilot certificate and has met the requirements of 14 CFR section 61.95.\n\n• Who seeks a recreational pilot or sport pilot certificate and has met the requirements of 14 CFR section 61.94.\n\n• Unless otherwise authorized by ATC, each person operating a large turbine engine-powered airplane to or from a primary airport must operate at or above the designated floors while within the lateral limits of Class B airspace.\n\n• Unless otherwise authorized by ATC, each aircraft must be equipped as follows:\n\n• For IFR operations, an operable VOR or TACAN receiver or an operable and suitable RNAV system; and\n\n• For all operations, a two-way radio capable of communications with ATC on appropriate frequencies for that area; and\n\n• Unless otherwise authorized by ATC, an operable radar beacon transponder with automatic altitude reporting capability and operable ADS-B Out equipment.\n\nNOTE-\n\nATC may, upon notification, immediately authorize a deviation from the altitude reporting equipment requirement; however, a request for a deviation from the 4096 transponder equipment requirement must be submitted to the controlling ATC facility at least one hour before the proposed operation. A request for a deviation from the ADS-B equipage requirement must be submitted using the FAA's automated web authorization tool at least one hour but not more than 24 hours before the proposed operation.\n\nREFERENCE-\n\nAIM, Para 4-1-20 (https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap4_section_1.html#4-1-20), Transponder and ADS-B Out Operation.\n\nAC 90-114, Automatic Dependent Surveillance-Broadcast Operations.\n\n• **Mode C Veil.** The airspace within 30 nautical miles of an airport listed in Appendix D, section 1 of 14 CFR part 91 (generally primary airports within Class B airspace areas), from the surface upward to 10,000 feet MSL. Unless otherwise authorized by ATC, aircraft operating within this airspace must be equipped with an operable radar beacon transponder with automatic altitude reporting capability and operable ADS-B Out equipment.\n\nHowever, aircraft that were not originally certificated with an engine-driven electrical system or that have not subsequently been certified with a system installed may conduct operations within a Mode C veil provided the aircraft remains outside Class A, B or C airspace; and below the altitude of the ceiling of a Class B or Class C airspace area designated for an airport or 10,000 feet MSL, whichever is lower.\n\n• **Charts. **Class B airspace is charted on Sectional Charts, IFR En Route Low Altitude, and Terminal Area Charts.\n\n• **Flight Procedures.**\n\n• **Flights.**Aircraft within Class B airspace are required to operate in accordance with current IFR procedures. A clearance for a visual approach to a primary airport is not authorization for turbine- powered airplanes to operate below the designated floors of the Class B airspace.\n\n• **VFR Flights.**\n\n• Arriving aircraft must obtain an ATC clearance prior to entering Class B airspace and must contact ATC on the appropriate frequency, and in relation to geographical fixes shown on local charts. Although a pilot may be operating beneath the floor of the Class B airspace on initial contact, communications with ATC should be established in relation to the points indicated for spacing and sequencing purposes.\n\n• Departing aircraft require a clearance to depart Class B airspace and should advise the clearance delivery position of their intended altitude and route of flight. ATC will normally advise VFR aircraft when leaving the geographical limits of the Class B airspace. Radar service is not automatically terminated with this advisory unless specifically stated by the controller.\n\n• Aircraft not landing or departing the primary airport may obtain an ATC clearance to transit the Class B airspace when traffic conditions permit and provided the requirements of 14 CFR section 91.131 are met. Such VFR aircraft are encouraged, to the extent possible, to operate at altitudes above or below the Class B airspace or transit through established VFR corridors. Pilots operating in VFR corridors are urged to use frequency 122.750 MHz for the exchange of aircraft position information.\n\n• **ATC Clearances and Separation.** An ATC clearance is required to enter and operate within Class B airspace. VFR pilots are provided sequencing and separation from other aircraft while operating within Class B airspace.\n\nREFERENCE-\n\nAIM, Para 4-1-18 (https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap4_section_1.html#4-1-18), Terminal Radar Services for VFR Aircraft.\n\nNOTE-\n\nSeparation and sequencing of VFR aircraft will be suspended in the event of a radar outage as this service is dependent on radar. The pilot will be advised that the service is not available and issued wind, runway information and the time or place to contact the tower.\n\n• VFR aircraft are separated from all VFR/IFR aircraft which weigh 19,000 pounds or less by a minimum of:\n\n• Target resolution, or\n\n• 500 feet vertical separation, or\n\n• Visual separation.\n\n• VFR aircraft are separated from all VFR/IFR aircraft which weigh more than 19,000 and turbojets by no less than:\n\n• 1 ^1^/_2_ miles lateral separation, or\n\n• 500 feet vertical separation, or\n\n• Visual separation.\n\n• This program is not to be interpreted as relieving pilots of their responsibilities to see and avoid other traffic operating in basic VFR weather conditions, to adjust their operations and flight path as necessary to preclude serious wake encounters, to maintain appropriate terrain and obstruction clearance or to remain in weather conditions equal to or better than the minimums required by 14 CFR section 91.155. Approach control should be advised and a revised clearance or instruction obtained when compliance with an assigned route, heading and/or altitude is likely to compromise pilot responsibility with respect to terrain and obstruction clearance, vortex exposure, and weather minimums.\n\n• ATC may assign altitudes to VFR aircraft that do not conform to 14 CFR section 91.159. **\"RESUME APPROPRIATE VFR ALTITUDES\"** will be broadcast when the altitude assignment is no longer needed for separation or when leaving Class B airspace. Pilots must return to an altitude that conforms to 14 CFR section 91.159.\n\n• **Proximity Operations.** VFR aircraft operating in proximity to Class B airspace are cautioned against operating too closely to the boundaries, especially where the floor of the Class B airspace is 3,000 feet or less above the surface or where VFR cruise altitudes are at or near the floor of higher levels. Observance of this precaution will reduce the potential for encountering an aircraft operating at the altitudes of Class B floors. Additionally, VFR aircraft are encouraged to utilize the VFR Planning Chart as a tool for planning flight in proximity to Class B airspace. Charted VFR Flyway Planning Charts are published on the back of the existing VFR Terminal Area Charts.",
+      "subsections": [],
+      "figures": [],
+      "tables": []
+    },
+    {
+      "section": "3-2-4",
+      "title": "Class C Airspace",
+      "content": "• **Definition.** Generally, that airspace from the surface to 4,000 feet above the airport elevation (charted in MSL) surrounding those airports that have an operational control tower, are serviced by a radar approach control, and that have a certain number of IFR operations or passenger enplanements. Although the configuration of each Class C airspace area is individually tailored, the airspace usually consists of a 5 NM radius core surface area that extends from the surface up to 4,000 feet above the airport elevation, and a 10 NM radius shelf area that extends no lower than 1,200 feet up to 4,000 feet above the airport elevation.\n\n• **Charts. **Class C airspace is charted on Sectional Charts, IFR En Route Low Altitude, and Terminal Area Charts where appropriate.\n\n• **Operating Rules and Pilot/Equipment Requirements:**\n\n• **Pilot Certification.**No specific certification required.\n\n• **Equipment.**\n\n• Two-way radio; and\n\n• Unless otherwise authorized by ATC, an operable radar beacon transponder with automatic altitude reporting capability and operable ADS-B Out equipment.\n\nNOTE-\n\nSee paragraph 4-1-20 (https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap4_section_1.html#4-1-20), Transponder and ADS-B Out Operation, subparagraph f (https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap4_section_1.html#4-1-20) for Mode C transponder/ ADS-B requirements for operating above Class C airspace.\n\n• **Arrival or Through Flight Entry Requirements. **Two-way radio communication must be established with the ATC facility providing ATC services prior to entry and thereafter maintain those communications while in Class C airspace. Pilots of arriving aircraft should contact the Class C airspace ATC facility on the publicized frequency and give their position, altitude, radar beacon code, destination, and request Class C service. Radio contact should be initiated far enough from the Class C airspace boundary to preclude entering Class C airspace before two-way radio communications are established.\n\nNOTE-\n\n• If the controller responds to a radio call with, \"(aircraft callsign) standby,\" radio communications have been established and the pilot can enter the Class C airspace.\n\n• If workload or traffic conditions prevent immediate provision of Class C services, the controller will inform the pilot to remain outside the Class C airspace until conditions permit the services to be provided.\n\n• It is important to understand that if the controller responds to the initial radio call without using the aircraft identification, radio communications have not been established and the pilot may not enter the Class C airspace.\n\n• Class C airspace areas have a procedural Outer Area. Normally this area is 20 NM from the primary Class C airspace airport. Its vertical limit extends from the lower limits of radio/radar coverage up to the ceiling of the approach control's delegated airspace, excluding the Class C airspace itself, and other airspace as appropriate. (This outer area is not charted.)\n\n• Pilots approaching an airport with Class C service should be aware that if they descend below the base altitude of the 5 to 10 mile shelf during an instrument or visual approach, they may encounter non-transponder/non-ADS-B VFR aircraft.\n\nEXAMPLE-\n\n• [Aircraft callsign] \"remain outside the Class Charlie airspace and standby.\"\n\n• \"Aircraft calling Dulles approach control, standby.\"\n\n• **Departures from:**\n\n• A primary or satellite airport with an operating control tower. Two-way radio communications must be established and maintained with the control tower, and thereafter as instructed by ATC while operating in Class C airspace.\n\n• A satellite airport without an operating control tower. Two-way radio communications must be established as soon as practicable after departing with the ATC facility having jurisdiction over the Class C airspace.\n\n• **Aircraft Speed.**Unless otherwise authorized or required by ATC, no person may operate an aircraft at or below 2,500 feet above the surface within 4 nautical miles of the primary airport of a Class C airspace area at an indicated airspeed of more than 200 knots (230 mph).\n\n• **Air Traffic Services.** When two-way radio communications and radar contact are established, all VFR aircraft are:\n\n• Sequenced to the primary airport.\n\n• Provided Class C services within the Class C airspace and the outer area.\n\n• Provided basic radar services beyond the outer area on a workload permitting basis. This can be terminated by the controller if workload dictates.\n\n• **Aircraft Separation.** Separation is provided within the Class C airspace and the outer area after two-way radio communications and radar contact are established. VFR aircraft are separated from IFR aircraft within the Class C airspace by any of the following:\n\n• Visual separation.\n\n• 500 feet vertical separation.\n\n• Target resolution.\n\n• Wake turbulence separation will be provided to all aircraft operating:\n\n• Behind and less than 1,000 feet below super or heavy aircraft,\n\n• To small aircraft operating behind and less than 500 feet below B757 aircraft, and\n\n• To small aircraft following a large aircraft on final approach.\n\nNOTE-\n\n• Separation and sequencing of VFR aircraft will be suspended in the event of a radar outage as this service is dependent on radar. The pilot will be advised that the service is not available and issued wind, runway information and the time or place to contact the tower.\n\n• Pilot participation is voluntary within the outer area and can be discontinued, within the outer area, at the pilot's request. Class C services will be provided in the outer area unless the pilot requests termination of the service.\n\n• Some facilities provide Class C services only during published hours. At other times, terminal IFR radar service will be provided. It is important to note that the communications and transponder/ADS-B requirements are dependent on the class of airspace established outside of the published hours.\n\n• **Secondary Airports**\n\n• In some locations Class C airspace may overlie the Class D surface area of a secondary airport. In order to allow that control tower to provide service to aircraft, portions of the overlapping Class C airspace may be procedurally excluded when the secondary airport tower is in operation. Aircraft operating in these procedurally excluded areas will only be provided airport traffic control services when in communication with the secondary airport tower.\n\n• Aircraft proceeding inbound to a satellite airport will be terminated at a sufficient distance to allow time to change to the appropriate tower or advisory frequency. Class C services to these aircraft will be discontinued when the aircraft is instructed to contact the tower or change to advisory frequency.\n\n• Aircraft departing secondary controlled airports will not receive Class C services until they have been radar identified and two-way communications have been established with the Class C airspace facility.\n\n• This program is not to be interpreted as relieving pilots of their responsibilities to see and avoid other traffic operating in basic VFR weather conditions, to adjust their operations and flight path as necessary to preclude serious wake encounters, to maintain appropriate terrain and obstruction clearance or to remain in weather conditions equal to or better than the minimums required by 14 CFR section 91.155. Approach control should be advised and a revised clearance or instruction obtained when compliance with an assigned route, heading and/or altitude is likely to compromise pilot responsibility with respect to terrain and obstruction clearance, vortex exposure, and weather minimums.\n\n• **Class C Airspace Areas by State. **These states currently have designated Class C airspace areas that are depicted on sectional charts. Pilots should consult current sectional charts and NOTAMs for the latest information on services available. Pilots should be aware that some Class C airspace underlies or is adjacent to Class B airspace. (See TBL 3-2-1 (https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap3_section_2.html#3-2-4) .)",
+      "subsections": [],
+      "figures": [],
+      "tables": [
+        {
+          "headers": [
+            "",
+            ""
+          ],
+          "rows": [
+            [
+              "",
+              "Airport"
+            ],
+            [
+              "ALABAMA",
+              ""
+            ],
+            [
+              "Birmingham",
+              "Birmingham-Shuttlesworth International"
+            ],
+            [
+              "Huntsville",
+              "International-Carl T Jones Fld"
+            ],
+            [
+              "Mobile",
+              "Regional"
+            ],
+            [
+              "ALASKA",
+              ""
+            ],
+            [
+              "Anchorage",
+              "Ted Stevens International"
+            ],
+            [
+              "ARIZONA",
+              ""
+            ],
+            [
+              "Davis-Monthan",
+              "AFB"
+            ],
+            [
+              "Tucson",
+              "International"
+            ],
+            [
+              "ARKANSAS",
+              ""
+            ],
+            [
+              "Fayetteville (Springdale)",
+              "Northwest Arkansas Regional"
+            ],
+            [
+              "Little Rock",
+              "Adams Field"
+            ],
+            [
+              "CALIFORNIA",
+              ""
+            ],
+            [
+              "Beale",
+              "AFB"
+            ],
+            [
+              "Burbank",
+              "Bob Hope"
+            ],
+            [
+              "Fresno",
+              "Yosemite International"
+            ],
+            [
+              "Monterey",
+              "Peninsula"
+            ],
+            [
+              "Oakland",
+              "Metropolitan Oakland International"
+            ],
+            [
+              "Ontario",
+              "International"
+            ],
+            [
+              "Riverside",
+              "March AFB"
+            ],
+            [
+              "Sacramento",
+              "International"
+            ],
+            [
+              "San Jose",
+              "Norman Y. Mineta International"
+            ],
+            [
+              "Santa Ana",
+              "John Wayne/Orange County"
+            ],
+            [
+              "Santa Barbara",
+              "Municipal"
+            ],
+            [
+              "COLORADO",
+              ""
+            ],
+            [
+              "Colorado Springs",
+              "Municipal"
+            ],
+            [
+              "CONNECTICUT",
+              ""
+            ],
+            [
+              "Windsor Locks",
+              "Bradley International"
+            ],
+            [
+              "FLORIDA",
+              ""
+            ],
+            [
+              "Daytona Beach",
+              "International"
+            ],
+            [
+              "Fort Lauderdale",
+              "Hollywood International"
+            ],
+            [
+              "Fort Myers",
+              "SW Florida Regional"
+            ],
+            [
+              "Jacksonville",
+              "International"
+            ],
+            [
+              "Orlando",
+              "Sanford International"
+            ],
+            [
+              "",
+              "Airport"
+            ],
+            [
+              "Palm Beach",
+              "President Donald J. Trump International"
+            ],
+            [
+              "Pensacola",
+              "NAS"
+            ],
+            [
+              "Pensacola",
+              "International"
+            ],
+            [
+              "Sarasota",
+              "Bradenton International"
+            ],
+            [
+              "Tallahassee",
+              "Regional"
+            ],
+            [
+              "Whiting",
+              "NAS"
+            ],
+            [
+              "GEORGIA",
+              ""
+            ],
+            [
+              "Savannah",
+              "Hilton Head International"
+            ],
+            [
+              "HAWAII",
+              ""
+            ],
+            [
+              "Kahului",
+              "Kahului"
+            ],
+            [
+              "IDAHO",
+              ""
+            ],
+            [
+              "Boise",
+              "Air Terminal"
+            ],
+            [
+              "ILLINOIS",
+              ""
+            ],
+            [
+              "Champaign",
+              "Urbana U of Illinois-Willard"
+            ],
+            [
+              "Chicago",
+              "Midway International"
+            ],
+            [
+              "Moline",
+              "Quad City International"
+            ],
+            [
+              "Peoria",
+              "Greater Peoria Regional"
+            ],
+            [
+              "Springfield",
+              "Abraham Lincoln Capital"
+            ],
+            [
+              "INDIANA",
+              ""
+            ],
+            [
+              "Evansville",
+              "Regional"
+            ],
+            [
+              "Fort Wayne",
+              "International"
+            ],
+            [
+              "Indianapolis",
+              "International"
+            ],
+            [
+              "South Bend",
+              "Regional"
+            ],
+            [
+              "IOWA",
+              ""
+            ],
+            [
+              "Cedar Rapids",
+              "The Eastern Iowa"
+            ],
+            [
+              "Des Moines",
+              "International"
+            ],
+            [
+              "KANSAS",
+              ""
+            ],
+            [
+              "Wichita",
+              "Mid-Continent"
+            ],
+            [
+              "KENTUCKY",
+              ""
+            ],
+            [
+              "Lexington",
+              "Blue Grass"
+            ],
+            [
+              "Louisville",
+              "International-Standiford Field"
+            ],
+            [
+              "LOUISIANA",
+              ""
+            ],
+            [
+              "Baton Rouge",
+              "Metropolitan, Ryan Field"
+            ],
+            [
+              "Lafayette",
+              "Regional"
+            ],
+            [
+              "",
+              "Airport"
+            ],
+            [
+              "Shreveport",
+              "Barksdale AFB"
+            ],
+            [
+              "Shreveport",
+              "Regional"
+            ],
+            [
+              "MAINE",
+              ""
+            ],
+            [
+              "Bangor",
+              "International"
+            ],
+            [
+              "Portland",
+              "International Jetport"
+            ],
+            [
+              "MICHIGAN",
+              ""
+            ],
+            [
+              "Flint",
+              "Bishop International"
+            ],
+            [
+              "Grand Rapids",
+              "Gerald R. Ford International"
+            ],
+            [
+              "Lansing",
+              "Capital City"
+            ],
+            [
+              "MISSISSIPPI",
+              ""
+            ],
+            [
+              "Columbus",
+              "AFB"
+            ],
+            [
+              "Jackson",
+              "Jackson-Evers International"
+            ],
+            [
+              "MISSOURI",
+              ""
+            ],
+            [
+              "Springfield",
+              "Springfield-Branson National"
+            ],
+            [
+              "MONTANA",
+              ""
+            ],
+            [
+              "Billings",
+              "Logan International"
+            ],
+            [
+              "NEBRASKA",
+              ""
+            ],
+            [
+              "Lincoln",
+              "Lincoln"
+            ],
+            [
+              "Omaha",
+              "Eppley Airfield"
+            ],
+            [
+              "Offutt",
+              "AFB"
+            ],
+            [
+              "NEVADA",
+              ""
+            ],
+            [
+              "Reno",
+              "Reno/Tahoe International"
+            ],
+            [
+              "NEW HAMPSHIRE",
+              ""
+            ],
+            [
+              "Manchester",
+              "Manchester"
+            ],
+            [
+              "NEW JERSEY",
+              ""
+            ],
+            [
+              "Atlantic City",
+              "International"
+            ],
+            [
+              "NEW MEXICO",
+              ""
+            ],
+            [
+              "Albuquerque",
+              "International Sunport"
+            ],
+            [
+              "NEW YORK",
+              ""
+            ],
+            [
+              "Albany",
+              "International"
+            ],
+            [
+              "Buffalo",
+              "Niagara International"
+            ],
+            [
+              "Islip",
+              "Long Island MacArthur"
+            ],
+            [
+              "Rochester",
+              "Greater Rochester International"
+            ],
+            [
+              "Syracuse",
+              "Hancock International"
+            ],
+            [
+              "NORTH CAROLINA",
+              ""
+            ],
+            [
+              "Asheville",
+              "Regional"
+            ],
+            [
+              "Fayetteville",
+              "Regional/Grannis Field"
+            ],
+            [
+              "Greensboro",
+              "Piedmont Triad International"
+            ],
+            [
+              "Pope",
+              "AFB"
+            ],
+            [
+              "Raleigh",
+              "Raleigh-Durham International"
+            ],
+            [
+              "OHIO",
+              ""
+            ],
+            [
+              "Akron",
+              "Akron-Canton Regional"
+            ],
+            [
+              "Columbus",
+              "Port Columbus International"
+            ],
+            [
+              "Dayton",
+              "James M. Cox International"
+            ],
+            [
+              "Toledo",
+              "Express"
+            ],
+            [
+              "OKLAHOMA",
+              ""
+            ],
+            [
+              "Oklahoma City",
+              "Will Rogers World"
+            ],
+            [
+              "Tinker",
+              "AFB"
+            ],
+            [
+              "Tulsa",
+              "International"
+            ],
+            [
+              "OREGON",
+              ""
+            ],
+            [
+              "",
+              "Airport"
+            ],
+            [
+              "Portland",
+              "International"
+            ],
+            [
+              "PENNSYLVANIA",
+              ""
+            ],
+            [
+              "Allentown",
+              "Lehigh Valley International"
+            ],
+            [
+              "PUERTO RICO",
+              ""
+            ],
+            [
+              "San Juan",
+              "Luis Munoz Marin International"
+            ],
+            [
+              "RHODE ISLAND",
+              ""
+            ],
+            [
+              "Providence",
+              "Theodore Francis Green State"
+            ],
+            [
+              "SOUTH CAROLINA",
+              ""
+            ],
+            [
+              "Charleston",
+              "AFB/International"
+            ],
+            [
+              "Columbia",
+              "Metropolitan"
+            ],
+            [
+              "Greer",
+              "Greenville-Spartanburg International"
+            ],
+            [
+              "Myrtle Beach",
+              "Myrtle Beach International"
+            ],
+            [
+              "Shaw",
+              "AFB"
+            ],
+            [
+              "TENNESSEE",
+              ""
+            ],
+            [
+              "Chattanooga",
+              "Lovell Field"
+            ],
+            [
+              "Knoxville",
+              "McGhee Tyson"
+            ],
+            [
+              "Nashville",
+              "International"
+            ],
+            [
+              "TEXAS",
+              ""
+            ],
+            [
+              "Abilene",
+              "Regional"
+            ],
+            [
+              "Amarillo",
+              "Rick Husband International"
+            ],
+            [
+              "Austin",
+              "Austin-Bergstrom International"
+            ],
+            [
+              "Corpus Christi",
+              "International"
+            ],
+            [
+              "Dyess",
+              "AFB"
+            ],
+            [
+              "El Paso",
+              "International"
+            ],
+            [
+              "Harlingen",
+              "Valley International"
+            ],
+            [
+              "Laughlin",
+              "AFB"
+            ],
+            [
+              "Lubbock",
+              "Preston Smith International"
+            ],
+            [
+              "Midland",
+              "International"
+            ],
+            [
+              "San Antonio",
+              "International"
+            ],
+            [
+              "VERMONT",
+              ""
+            ],
+            [
+              "Burlington",
+              "International"
+            ],
+            [
+              "VIRGIN ISLANDS",
+              ""
+            ],
+            [
+              "St. Thomas",
+              "Charlotte Amalie Cyril E. King"
+            ],
+            [
+              "VIRGINIA",
+              ""
+            ],
+            [
+              "Richmond",
+              "International"
+            ],
+            [
+              "Norfolk",
+              "International"
+            ],
+            [
+              "Roanoke",
+              "Regional/Woodrum Field"
+            ],
+            [
+              "WASHINGTON",
+              ""
+            ],
+            [
+              "Point Roberts",
+              "Vancouver International"
+            ],
+            [
+              "Spokane",
+              "Fairchild AFB"
+            ],
+            [
+              "Spokane",
+              "International"
+            ],
+            [
+              "Whidbey Island",
+              "NAS, Ault Field"
+            ],
+            [
+              "WEST VIRGINIA",
+              ""
+            ],
+            [
+              "Charleston",
+              "Yeager"
+            ],
+            [
+              "WISCONSIN",
+              ""
+            ],
+            [
+              "Green Bay",
+              "Austin Straubel International"
+            ],
+            [
+              "Madison",
+              "Dane County Regional-Traux Field"
+            ],
+            [
+              "Milwaukee",
+              "General Mitchell International"
+            ]
+          ],
+          "caption": "TBL 3-2-4 Class C Airspace Areas by State"
+        }
+      ]
+    },
+    {
+      "section": "3-2-5",
+      "title": "Class D Airspace",
+      "content": "• **Definition.** Generally, Class D airspace extends upward from the surface to 2,500 feet above the airport elevation (charted in MSL) surrounding those airports that have an operational control tower. The configuration of each Class D airspace area is individually tailored and when instrument procedures are published, the airspace will normally be designed to contain the procedures.\n\n• Class D surface areas may be designated as full-time (24 hour tower operations) or part-time. Part-time Class D effective times are published in the Chart Supplement.\n\n• Where a Class D surface area is part-time, the airspace may revert to either a Class E surface area (see paragraph 3-2-6 (https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap3_section_2.html#3-2-6) e (https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap3_section_2.html#3-2-6) 1 (https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap3_section_2.html#3-2-6)) or Class G airspace. When a part-time Class D surface area changes to Class G, the surface area becomes Class G airspace up to, but not including, the overlying controlled airspace.\n\nNOTE-\n\n• The airport listing in the Chart Supplement will state the part-time surface area status (for example, \"other times CLASS E\" or \"other times CLASS G\").\n\n• Normally, the overlying controlled airspace is the Class E transition area airspace that begins at either 700 feet AGL (charted as magenta vignette) or 1200 feet AGL (charted as blue vignette). This may be determined by consulting the applicable VFR Sectional or Terminal Area Charts.\n\n• **Operating Rules and Pilot/Equipment Requirements:**\n\n• **Pilot Certification.**No specific certification required.\n\n• **Equipment.**Unless otherwise authorized by ATC, an operable two-way radio is required.\n\n• **Arrival or Through Flight Entry Requirements. **Two-way radio communication must be established with the ATC facility providing ATC services prior to entry and thereafter maintain those communications while in the Class D airspace. Pilots of arriving aircraft should contact the control tower on the publicized frequency and give their position, altitude, destination, and any request(s). Radio contact should be initiated far enough from the Class D airspace boundary to preclude entering the Class D airspace before two-way radio communications are established.\n\nNOTE-\n\n• If the controller responds to a radio call with, \"[aircraft callsign] standby,\" radio communications have been established and the pilot can enter the Class D airspace.\n\n• If workload or traffic conditions prevent immediate entry into Class D airspace, the controller will inform the pilot to remain outside the Class D airspace until conditions permit entry.\n\nEXAMPLE-\n\n• \"[Aircraft callsign] remain outside the Class Delta airspace and standby.\"\n\nIt is important to understand that if the controller responds to the initial radio call without using the aircraft callsign, radio communications have not been established and the pilot may not enter the Class D airspace.\n\n• \"Aircraft calling Manassas tower standby.\"\n\nAt those airports where the control tower does not operate 24 hours a day, the operating hours of the tower will be listed on the appropriate charts and in the Chart Supplement. During the hours the tower is not in operation, the Class E surface area rules or a combination of Class E rules to 700 feet above ground level and Class G rules to the surface will become applicable. Check the Chart Supplement for specifics.\n\n• **Departures from:**\n\n• A primary or satellite airport with an operating control tower. Two-way radio communications must be established and maintained with the control tower, and thereafter as instructed by ATC while operating in the Class D airspace.\n\n• A satellite airport without an operating control tower. Two-way radio communications must be established as soon as practicable after departing with the ATC facility having jurisdiction over the Class D airspace as soon as practicable after departing.\n\n• **Aircraft Speed. **Unless otherwise authorized or required by ATC, no person may operate an aircraft at or below 2,500 feet above the surface within 4 nautical miles of the primary airport of a Class D airspace area at an indicated airspeed of more than 200 knots (230 mph).\n\n• Class D airspace areas are depicted on Sectional and Terminal charts with blue segmented lines, and on IFR En Route Lows with a boxed [D].\n\n• Surface area arrival extensions:\n\n• Class D surface area arrival extensions for instrument approach procedures may be Class D or Class E airspace. As a general rule, if all extensions are 2 miles or less, they remain part of the Class D surface area. However, if any one extension is greater than 2 miles, then all extensions will be Class E airspace.\n\n• Surface area arrival extensions are effective during the published times of the surface area. For part-time Class D surface areas that revert to Class E airspace, the arrival extensions will remain in effect as Class E airspace. For part-time Class D surface areas that change to Class G airspace, the arrival extensions will become Class G at the same time.\n\n• **Separation for VFR Aircraft.** No separation services are provided to VFR aircraft.",
+      "subsections": [],
+      "figures": [],
+      "tables": []
+    },
+    {
+      "section": "3-2-6",
+      "title": "Class E Airspace",
+      "content": "• **Definition.** Class E airspace is controlled airspace that is designated to serve a variety of terminal or en route purposes as described in this paragraph.\n\n• **Operating Rules and Pilot/Equipment Requirements:**\n\n• **Pilot Certification.**No specific certification required.\n\n• **Equipment.**Unless otherwise authorized by ATC:\n\n• An operable radar beacon transponder with automatic altitude reporting capability and operable ADS-B Out equipment are required at and above 10,000 feet MSL within the 48 contiguous states and the District of Columbia, excluding the airspace at and below 2,500 feet above the surface, and\n\n• Operable ADS-B Out equipment at and above 3,000 feet MSL over the Gulf of America from the coastline of the United States out to 12 nautical miles.\n\nNOTE-\n\nThe airspace described in (b) is specified in 14 CFR § 91.225 for ADS-B Out requirements. However, 14 CFR § 91.215 does not include this airspace for transponder requirements.\n\n• **Arrival or Through Flight Entry Requirements. **No specific requirements.\n\n• **Charts. **Class E airspace below 14,500 feet MSL is charted on Sectional, Terminal, and IFR Enroute Low Altitude charts.\n\n• **Vertical limits.** Except where designated at a lower altitude (see paragraph 3-2-6 (https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap3_section_2.html#3-2-6) e (https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap3_section_2.html#3-2-6), below, for specifics), Class E airspace in the United States consists of:\n\n• The airspace extending upward from 14,500 feet MSL to, but not including, 18,000 feet MSL overlying the 48 contiguous states, the District of Columbia and Alaska, including the waters within nautical 12 miles from the coast of the 48 contiguous states and Alaska; excluding:\n\n• The Alaska peninsula west of longitude 160°00'00''W.; and\n\n• The airspace below 1,500 feet above the surface of the earth unless specifically designated lower (for example, in mountainous terrain higher than 13,000 feet MSL).\n\n• The airspace above FL 600 is Class E airspace.\n\n• **Functions of Class E Airspace. **Class E airspace may be designated for the following purposes:\n\n• **Surface area designated for an airport where a control tower is not in operation.** Class E surface areas extend upward from the surface to a designated altitude, or to the adjacent or overlying controlled airspace. The airspace will be configured to contain all instrument procedures.\n\n• To qualify for a Class E surface area, the airport must have weather observation and reporting capability, and communications capability must exist with aircraft down to the runway surface.\n\n• A Class E surface area may also be designated to accommodate part-time operations at a Class C or Class D airspace location (for example, those periods when the control tower is not in operation).\n\n• Pilots should refer to the airport page in the applicable Chart Supplement for surface area status information.\n\n• **Extension to a surface area.**Class E airspace may be designated as extensions to Class B, Class C, Class D, and Class E surface areas. Class E airspace extensions begin at the surface and extend up to the overlying controlled airspace. The extensions provide controlled airspace to contain standard instrument approach procedures without imposing a communications requirement on pilots operating under VFR. Surface area arrival extensions become part of the surface area and are in effect during the same times as the surface area.\n\nNOTE-\n\nWhen a Class C or Class D surface area is not in effect continuously (for example, where a control tower only operates part-time), the surface area airspace will change to either a Class E surface area or Class G airspace. In such cases, the \"Airspace\" entry for the airport in the Chart Supplement will state \"other times Class E\" or \"other times Class G.\" When a part-time surface area changes to Class E airspace, the Class E arrival extensions will remain in effect as Class E airspace. If a part-time Class C, Class D, or Class E surface area becomes Class G airspace, the arrival extensions will change to Class G at the same time.\n\n• **Airspace used for transition. **Class E airspace areas may be designated for transitioning aircraft to/from the terminal or en route environment.\n\n• Class E transition areas extend upward from either 700 feet AGL (shown as magenta vignette on sectional charts) or 1,200 feet AGL (blue vignette) and are designated for airports with an approved instrument procedure.\n\n• The 700-foot/1200-foot AGL Class E airspace transition areas remain in effect continuously, regardless of airport operating hours or surface area status.\n\nNOTE-\n\nDo not confuse the 700-foot and 1200-foot Class E transition areas with surface areas or surface area extensions.\n\n• **En Route Domestic Areas. **There are Class E airspace areas that extend upward from a specified altitude and are en route domestic airspace areas that provide controlled airspace in those areas where there is a requirement to provide IFR en route ATC services but the Federal airway system is inadequate.\n\n• **Federal Airways and Low-Altitude RNAV Routes.**Federal airways and low-altitude RNAV routes are Class E airspace areas and, unless otherwise specified, extend upward from 1,200 feet AGL to, but not including,18,000 feet MSL.\n\n• Federal airways consist of Low/Medium Frequency (L/MF) airways (colored Federal airways) and VOR Federal airways.\n\n• L/MF airways are based on non-directional beacons (NDB) and are identified as green, red, amber, or blue.\n\n• VOR Federal airways are based on VOR/VORTAC facilities and are identified by a \"V\" prefix.\n\n• Low-altitude RNAV routes consist of T-routes and helicopter RNAV routes (TK-routes).\n\nNOTE-\n\nSee AIM paragraph 5-3-4 (https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap5_section_3.html#5-3-4), Airways and Route Systems, for more details and charting information.\n\n• **Offshore Airspace Areas. **There are Class E airspace areas that extend upward from a specified altitude to, but not including, 18,000 feet MSL and are designated as offshore airspace areas. These areas provide controlled airspace beyond 12 miles from the coast of the U.S. in those areas where there is a requirement to provide IFR en route ATC services and within which the U.S. is applying domestic procedures.\n\n• **Separation for VFR Aircraft.** No separation services are provided to VFR aircraft.",
+      "subsections": [],
+      "figures": [],
+      "tables": []
+    },
+    {
+      "section": "3-3-1",
+      "title": "General",
+      "content": "Class G airspace (uncontrolled) is that portion of airspace that has not been designated as Class A, Class B, Class C, Class D, or Class E airspace.",
+      "subsections": [],
+      "figures": [],
+      "tables": []
+    },
+    {
+      "section": "3-3-2",
+      "title": "VFR Requirements",
+      "content": "Rules governing VFR flight have been adopted to assist the pilot in meeting the responsibility to see and avoid other aircraft. Minimum flight visibility and distance from clouds required for VFR flight are contained in 14 CFR section 91.155. (See TBL 3-1-1 (https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap3_section_1.html#3-1-4) .)",
+      "subsections": [],
+      "figures": [],
+      "tables": []
+    },
+    {
+      "section": "3-3-3",
+      "title": "IFR Requirements",
+      "content": "• Title 14 CFR specifies the pilot and aircraft equipment requirements for IFR flight. Pilots are reminded that in addition to altitude or flight level requirements, 14 CFR section 91.177 includes a requirement to remain at least 1,000 feet (2,000 feet in designated mountainous terrain) above the highest obstacle within a horizontal distance of 4 nautical miles from the course to be flown.\n\n• IFR Altitudes. (See TBL 3-3-1 (https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap3_section_3.html#3-3-3) .)",
+      "subsections": [],
+      "figures": [],
+      "tables": [
+        {
+          "headers": [
+            "If your magnetic course (ground track) is:",
+            "And you are below 18,000 feet MSL, fly:"
+          ],
+          "rows": [
+            [
+              "0° to 179°",
+              "Odd thousands MSL, (3,000; 5,000; 7,000, etc.)"
+            ],
+            [
+              "180° to 359°",
+              "Even thousands MSL, (2,000; 4,000; 6,000, etc.)"
+            ]
+          ],
+          "caption": "TBL 3-3-3 IFR Altitudes Class G Airspace"
+        }
+      ]
+    },
+    {
+      "section": "3-4-1",
+      "title": "General",
+      "content": "• Special use airspace (SUA) consists of that airspace wherein activities must be confined because of their nature, or wherein limitations are imposed upon aircraft operations that are not a part of those activities, or both. SUA areas are depicted on aeronautical charts, except for controlled firing areas (CFA), temporary military operations areas (MOA), and temporary restricted areas.\n\n• Prohibited and restricted areas are regulatory special use airspace and are established in 14 CFR part 73 through the rulemaking process.\n\n• Warning areas, MOAs, alert areas, CFAs, and national security areas (NSA) are nonregulatory special use airspace.\n\n• Special use airspace descriptions (except CFAs) are contained in FAA Order JO 7400.10, Special Use Airspace.\n\n• Permanent SUA (except CFAs) is charted on Sectional Aeronautical, VFR Terminal Area, and applicable En Route charts, and include the hours of operation, altitudes, and the controlling agency.\n\nNOTE-\n\nFor temporary restricted areas and temporary MOAs, pilots should review the Domestic Notices found on the Federal NOTAM System (FNS) NOTAM Search website under External Links or the Air Traffic Plans and Publications website, the FAA SUA website, and/or contact the appropriate overlying ATC facility to determine the effect of non-depicted SUA areas along their routes of flight.",
+      "subsections": [],
+      "figures": [],
+      "tables": []
+    },
+    {
+      "section": "3-4-2",
+      "title": "Prohibited Areas",
+      "content": "Prohibited areas contain airspace of defined dimensions identified by an area on the surface of the earth within which the flight of aircraft is prohibited. Such areas are established for security or other reasons associated with the national welfare. These areas are published in the Federal Register and are depicted on aeronautical charts.",
+      "subsections": [],
+      "figures": [],
+      "tables": []
+    },
+    {
+      "section": "3-4-3",
+      "title": "Restricted Areas",
+      "content": "• Restricted areas contain airspace identified by an area on the surface of the earth within which the flight of aircraft, while not wholly prohibited, is subject to restrictions. Activities within these areas must be confined because of their nature or limitations imposed upon aircraft operations that are not a part of those activities or both. Restricted areas denote the existence of unusual, often invisible, hazards to aircraft such as artillery firing, aerial gunnery, or guided missiles. Penetration of restricted areas without authorization from the using or controlling agency may be extremely hazardous to the aircraft and its occupants. Restricted areas are published in the Federal Register and constitute 14 CFR part 73.\n\n• ATC facilities apply the following procedures when aircraft are operating on an IFR clearance (including those cleared by ATC to maintain VFR-on-top) via a route which lies within joint-use restricted airspace.\n\n• If the restricted area is not active and has been released to the controlling agency (FAA), the ATC facility will allow the aircraft to operate in the restricted airspace without issuing specific clearance for it to do so.\n\n• If the restricted area is active and has not been released to the controlling agency (FAA), the ATC facility will issue a clearance which will ensure the aircraft avoids the restricted airspace unless it is on an approved altitude reservation mission or has obtained its own permission to operate in the airspace and so informs the controlling facility.\n\nNOTE-\n\nThe above apply only to joint-use restricted airspace and not to prohibited and nonjoint-use airspace. For the latter categories, the ATC facility will issue a clearance so the aircraft will avoid the restricted airspace unless it is on an approved altitude reservation mission or has obtained its own permission to operate in the airspace and so informs the controlling facility.\n\n• Permanent restricted areas are charted on Sectional Aeronautical, VFR Terminal Area, and the appropriate En Route charts.\n\nNOTE-\n\nTemporary restricted areas are not charted.",
+      "subsections": [],
+      "figures": [],
+      "tables": []
+    },
+    {
+      "section": "3-4-4",
+      "title": "Warning Areas",
+      "content": "A warning area is airspace of defined dimensions, extending from three nautical miles outward from the coast of the U.S., that contains activity that may be hazardous to nonparticipating aircraft. The purpose of such warning areas is to warn nonparticipating pilots of the potential danger. A warning area may be located over domestic or international waters or both.",
+      "subsections": [],
+      "figures": [],
+      "tables": []
+    },
+    {
+      "section": "3-4-5",
+      "title": "Military Operations Areas",
+      "content": "• MOAs consist of airspace of defined vertical and lateral limits established for the purpose of separating certain military training activities from IFR traffic. Whenever a MOA is being used, nonparticipating IFR traffic may be cleared through a MOA if IFR separation can be provided by ATC. Otherwise, ATC will reroute or restrict nonparticipating IFR traffic.\n\n• Examples of activities conducted in MOAs include, but are not limited to: air combat tactics, air intercepts, aerobatics, formation training, and low-altitude tactics. Military pilots flying in an active MOA are exempted from the provisions of 14 CFR section 91.303 (c) and (d) which prohibits aerobatic flight within Class D and Class E surface areas, and within Federal airways. Additionally, the Department of Defense has been issued an authorization to operate aircraft at indicated airspeeds in excess of 250 knots below 10,000 feet MSL within active MOAs.\n\n• Pilots operating under VFR should exercise extreme caution while flying within a MOA when military activity is being conducted. The activity status (active/inactive) of MOAs may change frequently. Therefore, pilots should contact any FSS within 100 miles of the area to obtain accurate real-time information concerning the MOA hours of operation. Prior to entering an active MOA, pilots should contact the controlling agency for traffic advisories.\n\n• Permanent MOAs are charted on Sectional Aeronautical, VFR Terminal Area, and the appropriate En Route Low Altitude charts.\n\nNOTE-\n\nTemporary MOAs are not charted.",
+      "subsections": [],
+      "figures": [],
+      "tables": []
+    },
+    {
+      "section": "3-4-6",
+      "title": "Alert Areas",
+      "content": "Alert areas are depicted on aeronautical charts to inform nonparticipating pilots of areas that may contain a high volume of pilot training or an unusual type of aerial activity. Pilots should be particularly alert when flying in these areas. All activity within an alert area must be conducted in accordance with CFRs, without waiver, and pilots of participating aircraft as well as pilots transiting the area must be equally responsible for collision avoidance.",
+      "subsections": [],
+      "figures": [],
+      "tables": []
+    },
+    {
+      "section": "3-4-7",
+      "title": "Controlled Firing Areas",
+      "content": "CFAs contain activities which, if not conducted in a controlled environment, could be hazardous to nonparticipating aircraft. The distinguishing feature of the CFA, as compared to other special use airspace, is that its activities are suspended immediately when spotter aircraft, radar, or ground lookout positions indicate an aircraft might be approaching the area. There is no need to chart CFAs since they do not cause a nonparticipating aircraft to change its flight path.",
+      "subsections": [],
+      "figures": [],
+      "tables": []
+    },
+    {
+      "section": "3-4-8",
+      "title": "National Security Areas",
+      "content": "NSAs consist of airspace of defined vertical and lateral dimensions established at locations where there is a requirement for increased security and safety of ground facilities. Pilots are requested to voluntarily avoid flying through the depicted NSA. When it is necessary to provide a greater level of security and safety, flight in NSAs may be temporarily prohibited by regulation under the provisions of 14 CFR section 99.7. Regulatory prohibitions will be issued by System Operations Security and disseminated via NOTAM. Inquiries about NSAs should be directed to System Operations Security.\n\nREFERENCE-\n\nAIM, Para 5-6-1, National Security",
+      "subsections": [],
+      "figures": [],
+      "tables": []
+    },
+    {
+      "section": "3-4-9",
+      "title": "Obtaining Special Use Airspace Status",
+      "content": "• Pilots can request the status of SUA by contacting the using or controlling agency. The frequency for the controlling agency is tabulated in the margins of the applicable IFR and VFR charts.\n\n• An airspace NOTAM will be issued for SUA when the SUA airspace (permanent and/or temporary) requires a NOTAM for activation. Pilots should check ARTCC NOTAMs for airspace activation.\n\n• **Special Use Airspace Information Service (SUAIS) (Alaska Only).** The SUAIS is a 24-hour service operated by the military that provides civilian pilots, flying VFR, with information regarding military flight operations in certain MOAs and restricted airspace within central Alaska. The service provides \"near real time\" information on military flight activity in the interior Alaska MOA and Restricted Area complex. SUAIS also provides information on artillery firing, known helicopter operations, and unmanned aerial vehicle operations. Pilots flying VFR are encouraged to use SUAIS. See the Alaska Chart Supplement for hours of operation, phone numbers, and radio frequencies.\n\n• Special use airspace scheduling data for preflight planning is available via the FAA SUA website.",
+      "subsections": [],
+      "figures": [],
+      "tables": []
+    },
+    {
+      "section": "3-5-1",
+      "title": "Airport Advisory/Information Services",
+      "content": "• There are two advisory type services available at selected airports.\n\n• Local Airport Advisory (LAA) service is available only in Alaska and is operated within 10 statute miles of an airport where a control tower is not operating but where a FSS is located on the airport. At such locations, the FSS provides a complete local airport advisory service to arriving and departing aircraft. During periods of fast changing weather the FSS will automatically provide Final Guard as part of the service from the time the aircraft reports \"on-final\" or \"taking-the-active-runway\" until the aircraft reports \"on-the-ground\" or \"airborne.\"\n\nNOTE-\n\nCurrent policy, when requesting remote ATC services, requires that a pilot monitor the automated weather broadcast at the landing airport prior to requesting ATC services. The FSS automatically provides Final Guard, when appropriate, during LAA/Remote Airport Advisory (RAA) operations. Final Guard is a value added wind/altimeter monitoring service, which provides an automatic wind and altimeter check during active weather situations when the pilot reports on-final or taking the active runway. During the landing or take-off operation when the winds or altimeter are actively changing the FSS will blind broadcast significant changes when the specialist believes the change might affect the operation. Pilots should acknowledge the first wind/altimeter check but due to cockpit activity no acknowledgement is expected for the blind broadcasts. It is prudent for a pilot to report on-the-ground or airborne to end the service.\n\n• Remote Airport Information Service (RAIS) is provided in support of short term special events like small to medium fly-ins. The service is advertised by NOTAM D only. The FSS will not have access to a continuous readout of the current winds and altimeter; therefore, RAIS does not include weather and/or Final Guard service. However, known traffic, special event instructions, and all other services are provided.\n\nNOTE-\n\nThe airport authority and/or manager should request RAIS support on official letterhead directly with the manager of the FSS that will provide the service at least 30 days in advance. Approval authority rests with the FSS manager and is based on workload and resource availability.\n\nREFERENCE-\n\nAIM, Para 4-1-9 (https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap4_section_1.html#4-1-9), Traffic Advisory Practices at Airports Without Operating Control Towers.\n\n• It is not mandatory that pilots participate in the Airport Advisory programs. Participation enhances safety for everyone operating around busy GA airports; therefore, everyone is encouraged to participate and provide feedback that will help improve the program.",
+      "subsections": [],
+      "figures": [],
+      "tables": []
+    },
+    {
+      "section": "3-5-2",
+      "title": "Military Training Routes",
+      "content": "• National security depends largely on the deterrent effect of our airborne military forces. To be proficient, the military services must train in a wide range of airborne tactics. One phase of this training involves \"low level\" combat tactics. The required maneuvers and high speeds are such that they may occasionally make the see-and-avoid aspect of VFR flight more difficult without increased vigilance in areas containing such operations. In an effort to ensure the greatest practical level of safety for all flight operations, the Military Training Route (MTR) program was conceived.\n\n• The MTR program is a joint venture by the FAA and the Department of Defense (DoD). MTRs are mutually developed for use by the military for the purpose of conducting low-altitude, high-speed training. The routes above 1,500 feet AGL are developed to be flown, to the maximum extent possible, under IFR. The routes at 1,500 feet AGL and below are generally developed to be flown under VFR.\n\n• Generally, MTRs are established below 10,000 feet MSL for operations at speeds in excess of 250 knots. However, route segments may be defined at higher altitudes for purposes of route continuity. For example, route segments may be defined for descent, climbout, and mountainous terrain. There are IFR and VFR routes as follows:\n\n• **IFR Military Training Routes- (IR).** Operations on these routes are conducted in accordance with IFR regardless of weather conditions.\n\n• **VFR Military Training Routes- (VR). **Operations on these routes are conducted in accordance with VFR except flight visibility must be 5 miles or more; and flights must not be conducted below a ceiling of less than 3,000 feet AGL.\n\n• Military training routes will be identified and charted as follows:\n\n• **Route identification.**\n\n• MTRs with no segment above 1,500 feet AGL must be identified by four number characters; e.g., IR1206, VR1207.\n\n• MTRs that include one or more segments above 1,500 feet AGL must be identified by three number characters; e.g., IR206, VR207.\n\n• Alternate IR/VR routes or route segments are identified by using the basic/principal route designation followed by a letter suffix, e.g., IR008A, VR1007B, etc.\n\n• **Route charting.**\n\n• **IFR Enroute Low Altitude Chart. **This chart will depict all IR routes and all VR routes that accommodate operations above 1,500 feet AGL.\n\n• VFR Sectional Aeronautical Charts. These charts will depict military training activities such as IR and VR information. Special Military Activity Routes (SMARs) may also be charted on the VFR Sectional Chart, showing the extent of the airspace allocated to the associated IFR Military Training Routes within which the Department of Defense conducts periodic operations involving Unmanned Aircraft Systems. These aircraft may be accompanied by military or other aircraft that provide the pilots of the Unmanned Aircraft Systems visual observation information about other aircraft operations near them. Further information on SMAR charting can be found on the border of the printed VFR Sectional Chart and in the FAA Aeronautical Chart Users' Guide available online at: https://www.faa.gov/air_traffic/flight_info/aeronav/digital_products/aero_guide/ (https://www.faa.gov/air_traffic/flight_info/aeronav/digital_products/aero_guide/) .\n\n• **Area Planning (AP/1B) Chart (DoD Flight Information Publication-FLIP). **This chart is published by the National Geospatial-Intelligence Agency (NGA) primarily for military users and contains detailed information on both IR and VR routes.\n\nREFERENCE-\n\nAIM, Para 9-1-6 (https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap9_section_1.html#9-1-6), Subpara a, National Geospatial-Intelligence Agency (NGA) Products.\n\n• DoD FLIP- Department of Defense Flight Information Publications describe IR/VR routes through charts and narratives, and the FAA provides information regarding these routes to all users via IFR and VFR charts.\n\nNOTE-\n\nDoD users that require copies of FLIP should contact: Defense Logistics Agency for Aviation\n\nMapping Customer Operations (DLA AVN/QAM)\n\n8000 Jefferson Davis Highway\n\nRichmond, VA 23297-5339\n\nToll free phone: 1-800-826-0342\n\nCommercial: 804-279-6500\n\nMTR information from the FLIP is available for pilot briefings through Flight Service. (See subparagraph f (https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap3_section_5.html#3-5-2) below.)\n\n• Availability of MTR information.\n\n• Pilots may obtain preflight MTR information through Flight Service (see paragraph 5-1-1 (https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap5_section_1.html#5-1-1), Preflight Preparation).\n\n• MTR routes are depicted on IFR En Route Low Altitude Charts and VFR Sectional Charts, which are available for free download on the FAA website at\n\nhttps://www.faa.gov/air_traffic/flight_info/aeronav/digital_products/ (https://www.faa.gov/air_traffic/flight_info/aeronav/digital_products/) .\n\n• Nonparticipating aircraft are not prohibited from flying within an MTR or SMAR; however, extreme vigilance should be exercised when conducting flight through or near these routes. Pilots, while inflight, should contact the FSS within 100 NM of a particular MTR to obtain current information or route usage in their vicinity. Information available includes times of scheduled activity, altitudes in use on each route segment, and actual route width. Route width varies for each MTR and can extend several miles on either side of the charted MTR centerline. Route width information for IFR Military Training Route (IR) and VFR Military Training Route (VR) MTRs is also available in the FLIP AP/1B along with additional MTR (slow routes/air refueling routes) information. When requesting MTR information, pilots should give the FSS the MTR designation of interest, their position, route of flight, and destination in order to reduce frequency congestion and permit the FSS specialist to identify the MTR or SMAR that could be a factor.",
+      "subsections": [],
+      "figures": [],
+      "tables": []
+    },
+    {
+      "section": "3-5-3",
+      "title": "Temporary Flight Restrictions",
+      "content": "• **General. **This paragraph describes the types of conditions under which the FAA may impose temporary flight restrictions. It also explains which FAA elements have been delegated authority to issue a temporary flight restrictions NOTAM and lists the types of responsible agencies/offices from which the FAA will accept requests to establish temporary flight restrictions. The 14 CFR is explicit as to what operations are prohibited, restricted, or allowed in a temporary flight restrictions area. Pilots are responsible to comply with 14 CFR sections 91.137, 91.138, 91.141 and 91.143 when conducting flight in an area where a temporary flight restrictions area is in effect, and should check appropriate NOTAMs during flight planning.\n\n• **The purpose for establishing a temporary flight restrictions area is to:**\n\n• Protect persons and property in the air or on the surface from an existing or imminent hazard associated with an incident on the surface when the presence of low flying aircraft would magnify, alter, spread, or compound that hazard (14 CFR section 91.137 (a)(1));\n\n• Provide a safe environment for the operation of disaster relief aircraft (14 CFR section 91.137 (a)(2)); or\n\n• Prevent an unsafe congestion of sightseeing aircraft above an incident or event which may generate a high degree of public interest (14 CFR section 91.137 (a)(3)).\n\n• Protect declared national disasters for humanitarian reasons in the State of Hawaii (14 CFR section 91.138).\n\n• Protect the President, Vice President, or other public figures (14 CFR section 91.141).\n\n• Provide a safe environment for space agency operations (14 CFR section 91.143).\n\n• Except for hijacking situations, when the provisions of 14 CFR section 91.137 (a)(1) or (a) (2) are necessary, a temporary flight restrictions area will only be established by or through the area manager at the Air Route Traffic Control Center (ARTCC) having jurisdiction over the area concerned. A temporary flight restrictions NOTAM involving the conditions of 14 CFR section 91.137 (a)(3) will be issued at the direction of the service area office director having oversight of the airspace concerned. When hijacking situations are involved, a temporary flight restrictions area will be implemented through the TSA Aviation Command Center. The appropriate FAA air traffic element, upon receipt of such a request, will establish a temporary flight restrictions area under 14 CFR section 91.137 (a)(1).\n\n• The FAA accepts recommendations for the establishment of a temporary flight restrictions area under 14 CFR section 91.137 (a)(1) from military major command headquarters, regional directors of the Office of Emergency Planning, Civil Defense State Directors, State Governors, or other similar authority. For the situations involving 14 CFR section 91.137 (a)(2), the FAA accepts recommendations from military commanders serving as regional, subregional, or Search and Rescue (SAR) coordinators; by military commanders directing or coordinating air operations associated with disaster relief; or by civil authorities directing or coordinating organized relief air operations (includes representatives of the Office of Emergency Planning, U.S. Forest Service, and State aeronautical agencies). Appropriate authorities for a temporary flight restrictions establishment under 14 CFR section 91.137 (a)(3) are any of those listed above or by State, county, or city government entities.\n\n• The type of restrictions issued will be kept to a minimum by the FAA consistent with achievement of the necessary objective. Situations which warrant the extreme restrictions of 14 CFR section 91.137 (a)(1) include, but are not limited to: toxic gas leaks or spills, flammable agents, or fumes which if fanned by rotor or propeller wash could endanger persons or property on the surface, or if entered by an aircraft could endanger persons or property in the air; imminent volcano eruptions which could endanger airborne aircraft and occupants; nuclear accident or incident; and hijackings. Situations which warrant the restrictions associated with 14 CFR section 91.137 (a)(2) include: forest fires which are being fought by releasing fire retardants from aircraft; and aircraft relief activities following a disaster (earthquake, tidal wave, flood, etc.). 14 CFR section 91.137 (a)(3) restrictions are established for events and incidents that would attract an unsafe congestion of sightseeing aircraft.\n\n• The amount of airspace needed to protect persons and property or provide a safe environment for rescue/relief aircraft operations is normally limited to within 2,000 feet above the surface and within a 3-nautical-mile radius. Incidents occurring within Class B, Class C, or Class D airspace will normally be handled through existing procedures and should not require the issuance of a temporary flight restrictions NOTAM. Temporary flight restrictions affecting airspace outside of the U.S. and its territories and possessions are issued with verbiage excluding that airspace outside of the 12-mile coastal limits.\n\n• The FSS nearest the incident site is normally the \"coordination facility.\" When FAA communications assistance is required, the designated FSS will function as the primary communications facility for coordination between emergency control authorities and affected aircraft. The ARTCC may act as liaison for the emergency control authorities if adequate communications cannot be established between the designated FSS and the relief organization. For example, the coordination facility may relay authorizations from the on-scene emergency response official in cases where news media aircraft operations are approved at the altitudes used by relief aircraft.\n\n• ATC may authorize operations in a temporary flight restrictions area under its own authority only when flight restrictions are established under 14 CFR section 91.137 (a)(2) and (a) (3). The appropriate ARTCC/airport traffic control tower manager will, however, ensure that such authorized flights do not hamper activities or interfere with the event for which restrictions were implemented. However, ATC will not authorize local IFR flights into the temporary flight restrictions area.\n\n• To preclude misunderstanding, the implementing NOTAM will contain specific and formatted information. The facility establishing a temporary flight restrictions area will format a NOTAM beginning with the phrase \"FLIGHT RESTRICTIONS\" followed by: the location of the temporary flight restrictions area; the effective period; the area defined in statute miles; the altitudes affected; the FAA coordination facility and commercial telephone number; the reason for the temporary flight restrictions; the agency directing any relief activities and its commercial telephone number; and other information considered appropriate by the issuing authority.\n\nEXAMPLE-\n\n• 14 CFR section 91.137 (a)(1):\n\nThe following NOTAM prohibits all aircraft operations except those specified in the NOTAM.\n\nFlight restrictions Matthews, Virginia, effective immediately until 9610211200. Pursuant to 14 CFR section 91.137 (a)(1) temporary flight restrictions are in effect. Rescue operations in progress. Only relief aircraft operations under the direction of the Department of Defense are authorized in the airspace at and below 5,000 feet MSL within a 2-nautical-mile radius of Laser AFB, Matthews, Virginia. Commander, Laser AFB, in charge (897) 946-5543 (122.4). Steenson FSS (792) 555-6141 (123.1) is the FAA coordination facility.\n\n• 14 CFR section 91.137 (a)(2):\n\nThe following NOTAM permits flight operations in accordance with 14 CFR section 91.137 (a)(2). The on-site emergency response official to authorize media aircraft operations below the altitudes used by the relief aircraft. Flight restrictions 25 miles east of Bransome, Idaho, effective immediately until 9601202359 UTC. Pursuant to 14 CFR section 91.137 (a)(2) temporary flight restrictions are in effect within a 4-nautical-mile radius of the intersection of county roads 564 and 315 at and below 3,500 feet MSL to provide a safe environment for fire fighting aircraft operations. Davis County sheriff's department (792) 555-8122 (122.9) is in charge of on-scene emergency response activities. Glivings FSS (792) 555-1618 (122.2) is the FAA coordination facility.\n\n• 14 CFR section 91.137 (a)(3):\n\nThe following NOTAM prohibits sightseeing aircraft operations.\n\nFlight restrictions Brown, Tennessee, due to olympic activity. Effective 9606181100 UTC until 9607190200 UTC**.** Pursuant to 14 CFR section 91.137 (a)(3) temporary flight restrictions are in effect within a 3-nautical-mile radius of N355783/W835242 and Volunteer VORTAC 019 degree radial 3.7 DME fixat and below 2,500 feet MSL. Norton FSS (423) 555-6742(126.6) is the FAA coordination facility.\n\n• 14 CFR section 91.138:\n\nThe following NOTAM prohibits all aircraft except those operating under the authorization of the official in charge of associated emergency or disaster relief response activities, aircraft carrying law enforcement officials, aircraft carrying personnel involved in an emergency or legitimate scientific purposes, carrying properly accredited news media, and aircraft operating in accordance with an ATC clearance or instruction.\n\nFlight restrictions Kapalua, Hawaii, effective 9605101200 UTC until 9605151500UTC. Pursuant to 14 CFR section 91.138 temporary flight restrictions are in effect within a 3-nautical-mile radius of N205778/W1564038 and Maui/OGG/VORTAC 275 degree radial at 14.1 nautical miles. John Doe 808-757-4469 or 122.4 is in charge of the operation. Honolulu/HNL 808-757-4470 (123.6) FSS is the FAA coordination facility.\n\n• 14 CFR section 91.141:\n\nThe following NOTAM prohibits all aircraft.\n\nFlight restrictions Stillwater, Oklahoma, June 21, 1996. Pursuant to 14 CFR section 91.141 aircraft flight operations are prohibited within a 3-nautical-mile radius, below 2000 feet AGL of N360962/W970515 and the Stillwater/SWO/VOR/DME 176 degree radial 3.8-nautical-mile fix from 1400 local time to 1700 local time June 21, 1996, unless otherwise authorized by ATC.\n\n• 14 CFR section 91.143:\n\nThe following NOTAM prohibits any aircraft of U.S. registry, or pilot any aircraft under the authority of an airman certificate issued by the FAA.\n\nKennedy space center space operations area effective immediately until 9610152100 UTC. Pursuant to 14 CFR section 91.143, flight operations conducted by FAA certificated pilots or conducted in aircraft of U.S. registry are prohibited at any altitude from surface to unlimited, within the following area 30-nautical-mile radius of the Melbourne/MLB/VORTAC 010 degree radial 21-nautical-mile fix. St. Petersburg, Florida/PIE/FSS 813-545-1645 (122.2) is the FAA coordination facility and should be contacted for the current status of any airspace associated with the space shuttle operations. This airspace encompasses R2933, R2932, R2931, R2934, R2935, W497A and W158A. Additional warning and restricted areas will be active in conjunction with the operations. Pilots must consult all NOTAMs regarding this operation.",
+      "subsections": [],
+      "figures": [],
+      "tables": []
+    },
+    {
+      "section": "3-5-4",
+      "title": "Parachute Jump Aircraft Operations",
+      "content": "• Procedures relating to parachute jump areas are contained in 14 CFR part 105. Tabulations of parachute jump areas in the U.S. are contained in the Chart Supplement.\n\n• Pilots of aircraft engaged in parachute jump operations are reminded that all reported altitudes must be with reference to mean sea level, or flight level, as appropriate, to enable ATC to provide meaningful traffic information.\n\n• Parachute operations in the vicinity of an airport without an operating control tower - there is no substitute for alertness while in the vicinity of an airport. It is essential that pilots conducting parachute operations be alert, look for other traffic, and exchange traffic information as recommended in paragraph  4-1-9 (https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap4_section_1.html#4-1-9), Traffic Advisory Practices at Airports Without Operating Control Towers. In addition, pilots should avoid releasing parachutes while in an airport traffic pattern when there are other aircraft in that pattern. Pilots should make appropriate broadcasts on the designated Common Traffic Advisory Frequency (CTAF), and monitor that CTAF until all parachute activity has terminated or the aircraft has left the area. Prior to commencing a jump operation, the pilot should broadcast the aircraft's altitude and position in relation to the airport, the approximate relative time when the jump will commence and terminate, and listen to the position reports of other aircraft in the area.",
+      "subsections": [],
+      "figures": [],
+      "tables": []
+    },
+    {
+      "section": "3-5-5",
+      "title": "Published VFR Routes",
+      "content": "Published VFR routes for transitioning around, under and through complex airspace such as Class B airspace were developed through a number of FAA and industry initiatives. All of the following terms, i.e., \"VFR Flyway\" \"VFR Corridor\" and \"VFR Transition Route\" have been used when referring to the same or different types of routes or airspace. The following paragraphs identify and clarify the functionality of each type of route and specify where and when an ATC clearance is required.\n\n• **VFR Flyways.**\n\n• A VFR Flyway is defined as a general flight path not defined as a specific course, for use by pilots in planning flights into, out of, through or near complex terminal airspace to avoid Class B airspace. An ATC clearance is NOT required to fly these routes.\n\nFIG 3-5-5VFR Flyway Planning Chart\nVFR Flyway Planning Chart\n\n• VFR Flyways are depicted on the reverse side of some VFR Terminal Area Charts (TACs). (See FIG 3-5-1.) These charts identify VFR Flyways designed to help VFR pilots avoid major controlled traffic flows. They may further depict multiple VFR routings throughout the area which may be used as an alternative to flight within Class B airspace. The ground references provide a guide for improved visual navigation. These routes are not intended to discourage requests for VFR operations within Class B airspace but are designed solely to assist pilots in planning for flights under and around busy Class B airspace without entering Class B airspace.\n\n• It is very important to remember that these suggested routes are not sterile of other traffic. The entire Class B airspace, and the airspace underneath it, may be heavily congested with many different types of aircraft. Pilot adherence to VFR rules must be exercised at all times. **C**ommunications must be established and maintained between your aircraft and any control tower while transiting Class C** or** Class D surface areas of airports under Class B airspace.\n\n• **VFR Corridors.**\n\n• The design of a few of the first Class B airspace areas provided a corridor for the passage of uncontrolled traffic. A VFR corridor is defined as airspace through Class B airspace, with defined vertical and lateral boundaries, in which aircraft may operate without an ATC clearance or communication with air traffic control.\n\n• These corridors are, in effect, a \"hole\" through Class B airspace. (See FIG 3-5-2 (https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap3_section_5.html#3-5-5) .) A classic example would be the corridor through the Los Angeles Class B airspace, which has been subsequently changed to Special Flight Rules airspace (SFR). A corridor is surrounded on all sides by Class B airspace and does not extend down to the surface like a VFR Flyway. Because of their finite lateral and vertical limits, and the volume of VFR traffic using a corridor, extreme caution and vigilance must be exercised.\n\nFIG 3-5-5Class B Airspace\nClass B Airspace\n\n• Because of the heavy traffic volume and the procedures necessary to efficiently manage the flow of traffic, it has not been possible to incorporate VFR corridors in the development or modifications of Class B airspace in recent years.\n\n• **VFR Transition Routes.**\n\n• To accommodate VFR traffic through terminal airspace, VFR Transition Routes were developed. A VFR Transition Route is defined as a specific flight course depicted and described on a TAC and/or VFR Flyway Planning Chart. Communication with ATC where the route transitions Class B, Class C, and/or Class D airspace is required. In addition to communication requirements, a clearance is required to operate in Class B airspace. VFR Transition Routes may include published altitudes or ATC-assigned altitudes. Per 14 CFR section 91.123, pilot compliance is expected for all route and altitude restrictions as published or assigned by ATC. VFR Transition Route and altitude assignments do not relieve pilots from their duty to comply with 14 CFR section 91.119. Pilots are expected to request an alternate clearance if necessary for compliance.\n\n• These routes, as depicted in FIG 3-5-3 (https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap3_section_5.html#3-5-5), are designed to show the pilot where to position the aircraft where an ATC assignment or clearance for the route can normally be expected with minimal or no delay. Until ATC authorization is received, pilots must remain clear of Class B airspace. On initial contact, pilots should advise ATC of their position, altitude, route name desired, and direction of flight.\n\n• For secondary airports underlying or in close proximity to Class B or Class C airspace, VFR Transition Routes may be developed and depicted for arrivals/departures. These arrivals/departures may be requested from or assigned by ATC.\n\nFIG 3-5-5VFR Transition Route\nVFR Transition Route\n\n• **Helicopter Route Chart.**\n\n• Helicopter Routes are depicted on a specialized VFR chart established for select high traffic density areas to enhance helicopter access and ease of operation. The Helicopter Route Chart depicts prominent geographical features, roads and obstructions. A Helicopter Route is a specific VFR flight course and is depicted on the Helicopter Route Chart. These routes contain specific altitudes and instructions for navigating over visual reference points as published, or as instructed by ATC.\n\n• Helicopter Route Charts, as depicted in FIG 3-5-4 (https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap3_section_5.html#3-5-5), incorporate expanded ground reference and unique symbology to improve visual navigation. The charts contain additional information such as frequencies to self-announce on and other route information. On initial contact, pilots should advise ATC of their position, altitude, and route name desired. Helicopter Routes may include published altitudes or ATC-assigned altitudes. Per 14 CFR section 91.123, pilot compliance is expected for all route and altitude restrictions as published or assigned by ATC. Helicopter Route and altitude assignments do not relieve pilots from their duty to comply with 14 CFR section 91.119 and 132.203 (b). Pilots are expected to request an alternate clearance if necessary for compliance.\n\n• VFR Helicopter routes are available at the following website: https://www.faa.gov/air_traffic/flight_info/aeronav/digital_products/vfr/ (https://www.faa.gov/air_traffic/flight_info/aeronav/digital_products/vfr/) .\n\nFIG 3-5-5Helicopter Route Chart\nHelicopter Route Chart",
+      "subsections": [],
+      "figures": [
+        {
+          "src": "chapter3/section-3-5-5-img-1.png",
+          "alt": "VFR Flyway Planning Chart",
+          "caption": "FIG 3-5-5 VFR Flyway Planning Chart",
+          "originalUrl": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/images/aim0305_Page0.png"
+        },
+        {
+          "src": "chapter3/section-3-5-5-img-2.png",
+          "alt": "Class B Airspace",
+          "caption": "FIG 3-5-5 Class B Airspace",
+          "originalUrl": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/images/aim0305_Auto1.png"
+        },
+        {
+          "src": "chapter3/section-3-5-5-img-3.png",
+          "alt": "VFR Transition Route",
+          "caption": "FIG 3-5-5 VFR Transition Route",
+          "originalUrl": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/images/aim0305_At_Anchor1.png"
+        },
+        {
+          "src": "chapter3/section-3-5-5-img-4.png",
+          "alt": "Helicopter Route Chart",
+          "caption": "FIG 3-5-5 Helicopter Route Chart",
+          "originalUrl": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/images/aim0305_At_Anchor0.png"
+        }
+      ],
+      "tables": []
+    },
+    {
+      "section": "3-5-6",
+      "title": "Terminal Radar Service Area (TRSA)",
+      "content": "• **Background. **TRSAs were originally established as part of the Terminal Radar Program at selected airports. TRSAs were never controlled airspace from a regulatory standpoint because the establishment of TRSAs was never subject to the rulemaking process; consequently, TRSAs are not contained in 14 CFR part 71 nor are there any TRSA operating rules in 14 CFR part 91. Part of the Airport Radar Service Area (ARSA) program was to eventually replace all TRSAs. However, the ARSA requirements became relatively stringent and it was subsequently decided that TRSAs would have to meet ARSA criteria before they would be converted. TRSAs do not fit into any of the U.S. airspace classes; therefore, they will continue to be non-part 71 airspace areas where participating pilots can receive additional radar services which have been redefined as TRSA Service.\n\n• **TRSAs. **The primary airport(s) within the TRSA become(s) Class D airspace. The remaining portion of the TRSA overlies other controlled airspace which is normally Class E airspace beginning at 700 or 1,200 feet and established to transition to/from the en route/terminal environment.\n\n• **Participation. **Pilots operating under VFR are encouraged to contact the radar approach control and avail themselves of the TRSA Services. However, participation is voluntary on the part of the pilot. See Chapter 4 (https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap4_section_1.html#chap4_section_1), Air Traffic Control, for details and procedures.\n\n• **Charts. **TRSAs are depicted on VFR sectional and terminal area charts with a solid black line and altitudes for each segment. The Class D portion is charted with a blue segmented line.",
+      "subsections": [],
+      "figures": [],
+      "tables": []
+    },
+    {
+      "section": "3-5-7",
+      "title": "Special Air Traffic Rules (SATR) and Special Flight Rules Area (SFRA)",
+      "content": "• **Background.** The Code of Federal Regulations (CFR) prescribes special air traffic rules for aircraft operating within the boundaries of certain designated airspace. These areas are listed in 14 CFR part 93 and can be found throughout the NAS. Procedures, nature of operations, configuration, size, and density of traffic vary among the identified areas.\n\n• **SFRAs.** Airspace of defined dimensions, above land areas or territorial waters, within which the flight of aircraft is subject to the rules set forth in 14 CFR part 93, unless otherwise authorized by air traffic control. Not all areas listed in 14 CFR part 93 are designated SFRA, but special air traffic rules apply to all areas described in 14 CFR part 93.\n\nREFERENCE-\n\n14 CFR Part 93, Special Air Traffic Rules\n\nFAA Order JO 7110.65, Para 9-2-10, Special Air Traffic Rules (SATR) and Special Flight Rules Area (SFRA)\n\nP/CG - Special Air Traffic Rules (SATR)\n\n• **Participation.** Each person operating an aircraft to, from, or within airspace designated as a SATR area or SFRA must adhere to the special air traffic rules set forth in 14 CFR part 93, as applicable, unless otherwise authorized or required by ATC.\n\n• **Charts.** SFRAs are depicted on VFR sectional, terminal area, and helicopter route charts. (See FIG 3-5-5 (https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap3_section_5.html#3-5-7) .)\n\nFIG 3-5-7SFRA Boundary\nSFRA Boundary\n\n• Additional information and resources regarding SFRA, including procedures for flight in individual areas, may be found on the FAA Safety website at http://www.faasafety.gov",
+      "subsections": [],
+      "figures": [
+        {
+          "src": "chapter3/section-3-5-7-img-1.png",
+          "alt": "SFRA Boundary",
+          "caption": "FIG 3-5-7 SFRA Boundary",
+          "originalUrl": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/images/aim0305_Auto0.png"
+        }
+      ],
+      "tables": []
+    },
+    {
+      "section": "3-5-8",
+      "title": "Washington, DC, Special Flight Rules Area (SFRA) including the Flight Restricted Zone (FRZ)",
+      "content": "A pilot conducting any type of flight operation in the Washington, DC, SFRA/FRZ must comply with the requirements in:\n\n• 14 CFR section 93.339, Washington, DC, Metropolitan Area Special Flight Rules Area including the FRZ.\n\n• 14 CFR section 91.161, Special Awareness Training for the DC SFRA/FRZ, also located on the FAA website at https://www.faasafety.gov (https://www.faasafety.gov) /.\n\n• Any 14 CFR section 99.7 special security instructions for the DC SFRA/FRZ published via NOTAM by FAA in the interest of national security.",
+      "subsections": [],
+      "figures": [],
+      "tables": []
+    },
+    {
+      "section": "3-5-9",
+      "title": "Weather Reconnaissance Area (WRA)",
+      "content": "• **General.** Hurricane Hunters from the United States Air Force Reserve 53^rd^ Weather Reconnaissance Squadron (WRS) and the National Oceanic and Atmospheric Administration (NOAA) Aircraft Operations Center (AOC) operate weather reconnaissance/research aircraft missions, in support of the National Hurricane Operations Plan (NHOP), to gather meteorological data on hurricanes and tropical cyclones. 53^rd^ WRS and NOAA AOC aircraft normally conduct these missions in airspace identified in a published WRA Notice to Airmen (NOTAM).\n\n• **WRAs.** Airspace with defined dimensions and published by a NOTAM, which is established to support weather reconnaissance/research flights. ATC services are not provided within WRAs. Only participating weather reconnaissance/research aircraft from the 53^rd^ WRS and NOAA AOC are permitted to operate within a WRA. A WRA may only be established in airspace within U. S. Flight Information Regions (FIR) outside of U. S. territorial airspace.\n\n• A published WRA NOTAM describes the airspace dimensions of the WRA and the expected activities within the WRA. WRAs may border adjacent foreign FIRs, but are wholly contained within U.S. FIRs. As ATC services are not provided within a WRA, non-participating aircraft should avoid WRAs, and IFR aircraft should expect to be rerouted to avoid WRAs.",
+      "subsections": [],
+      "figures": [],
+      "tables": []
+    },
+    {
+      "section": "3-5-10",
+      "title": "Other Non-Charted Airspace Areas",
+      "content": "• Stationary or Moving Altitude Reservation (ALTRV). A Stationary or Moving ALTRV is announced via an airspace NOTAM issued by the Central Altitude Reservation Facility (CARF) or ARTCC. These announcements will appear in CARF and/or ARTCC NOTAMS. This airspace ensures non-participating IFR aircraft remain separated from special activity. Non-participating VFR aircraft are permitted to fly through the area but should exercise vigilance.\n\n• ATC ASSIGNED AIRSPACE. Airspace of defined vertical/lateral limits, assigned by ATC, for the purpose of providing air traffic segregation between the specified activities being conducted within the assigned airspace and other IFR air traffic. ATCAA locations and scheduled activation information can be found on the FAA SUA website; a NOTAM will not be issued to announce the activation of this airspace.",
+      "subsections": [],
+      "figures": [],
+      "tables": []
+    }
+  ]
+}

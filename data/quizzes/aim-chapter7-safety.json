@@ -1,0 +1,403 @@
+{
+  "id": "aim-chapter7-safety",
+  "title": "Safety of Flight - Weather Quiz",
+  "description": "Test your knowledge of aviation weather services, hazards, and safety considerations from AIM Chapter 7",
+  "category": "AIM",
+  "chapter": 7,
+  "difficulty": "intermediate",
+  "targetCertificate": "Private/Instrument Pilot",
+  "questionCount": 30,
+  "passingScore": 70,
+  "questions": [
+    {
+      "id": "safety-001",
+      "question": "What does METAR stand for?",
+      "options": [
+        "Meteorological Aviation Terminal Report",
+        "Aviation Routine Weather Report",
+        "Measured Air Terminal Report",
+        "Meteorological Aerodrome Report"
+      ],
+      "correctAnswer": 1,
+      "explanation": "METAR is the Aviation Routine Weather Report, an hourly surface observation of conditions at an airport.",
+      "reference": "AIM 7-1-9"
+    },
+    {
+      "id": "safety-002",
+      "question": "What is a TAF?",
+      "options": [
+        "Traffic Advisory Forecast",
+        "Terminal Area Frequency",
+        "Terminal Aerodrome Forecast",
+        "Total Accumulated Flight"
+      ],
+      "correctAnswer": 2,
+      "explanation": "TAF (Terminal Aerodrome Forecast) is a forecast of weather conditions expected at an airport, valid for 24-30 hours.",
+      "reference": "AIM 7-1-24"
+    },
+    {
+      "id": "safety-003",
+      "question": "What is the difference between SIGMET and AIRMET?",
+      "options": [
+        "SIGMETs are for IFR, AIRMETs are for VFR",
+        "SIGMETs are for significant weather hazardous to ALL aircraft; AIRMETs are for lighter aircraft",
+        "They are the same",
+        "SIGMETs are issued by NWS, AIRMETs by FAA"
+      ],
+      "correctAnswer": 1,
+      "explanation": "SIGMETs warn of weather significant to all aircraft (severe icing, turbulence, volcanic ash). AIRMETs warn of conditions hazardous to small/single-engine aircraft (moderate icing/turbulence, IFR, mountain obscuration).",
+      "reference": "AIM 7-1-6"
+    },
+    {
+      "id": "safety-004",
+      "question": "What are the three categories of AIRMETs?",
+      "options": [
+        "Sierra, Tango, Zulu",
+        "Alpha, Bravo, Charlie",
+        "Red, Yellow, Green",
+        "Light, Moderate, Severe"
+      ],
+      "correctAnswer": 0,
+      "explanation": "AIRMET Sierra: IFR/mountain obscuration. AIRMET Tango: Turbulence, strong surface winds, LLWS. AIRMET Zulu: Icing and freezing levels.",
+      "reference": "AIM 7-1-6"
+    },
+    {
+      "id": "safety-005",
+      "question": "What does a Convective SIGMET indicate?",
+      "options": [
+        "Volcanic ash",
+        "Thunderstorms, tornadoes, or severe convective activity",
+        "Mountain waves",
+        "Dense fog"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Convective SIGMETs warn of: tornadoes, lines of thunderstorms, embedded thunderstorms, areas of thunderstorms affecting 40%+ of area, and hail ≥3/4 inch.",
+      "reference": "AIM 7-1-6"
+    },
+    {
+      "id": "safety-006",
+      "question": "What weather categories describe VFR conditions?",
+      "options": [
+        "Ceiling <1,000 feet, visibility <3 miles",
+        "Ceiling >3,000 feet and visibility >5 miles",
+        "Ceiling 1,000-3,000 feet, visibility 3-5 miles",
+        "Ceiling 500-1,000 feet, visibility 1-3 miles"
+      ],
+      "correctAnswer": 1,
+      "explanation": "VFR: Ceiling >3,000 feet AND visibility >5 miles. MVFR: 1,000-3,000 and/or 3-5 miles. IFR: 500-1,000 and/or 1-3 miles. LIFR: <500 and/or <1 mile.",
+      "reference": "AIM 7-1-7"
+    },
+    {
+      "id": "safety-007",
+      "question": "What is a PIREP?",
+      "options": [
+        "Pilot Weather Report",
+        "Preliminary Report",
+        "Priority Report",
+        "Private Information Report"
+      ],
+      "correctAnswer": 0,
+      "explanation": "PIREP (Pilot Weather Report) is a report of actual weather conditions encountered in flight. PIREPs are valuable because they represent real-time observations.",
+      "reference": "AIM 7-1-18"
+    },
+    {
+      "id": "safety-008",
+      "question": "When should pilots submit a PIREP?",
+      "options": [
+        "Only when requested by ATC",
+        "Anytime conditions differ from forecast or are hazardous",
+        "Only in IMC",
+        "Only during commercial operations"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Pilots are encouraged to submit PIREPs anytime conditions differ from forecasts, when encountering hazardous weather, or when cloud tops/bases are observed.",
+      "reference": "AIM 7-1-18"
+    },
+    {
+      "id": "safety-009",
+      "question": "What is wind shear?",
+      "options": [
+        "A gradual change in wind over a long distance",
+        "A sudden change in wind speed and/or direction over a short distance",
+        "High winds at altitude",
+        "Turbulence in clouds"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Wind shear is a sudden, drastic change in wind speed and/or direction over a short distance. It can occur at any altitude and is particularly hazardous during takeoff and landing.",
+      "reference": "AIM 7-1-25"
+    },
+    {
+      "id": "safety-010",
+      "question": "What is the primary danger of a microburst?",
+      "options": [
+        "Hail damage",
+        "Rapid altitude loss due to strong downdraft and wind shear",
+        "Lightning strikes",
+        "Reduced visibility"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Microbursts produce intense downdrafts and horizontal wind shear. Aircraft can experience rapid lift loss followed by a tailwind, causing dangerous altitude loss near the ground.",
+      "reference": "AIM 7-1-26"
+    },
+    {
+      "id": "safety-011",
+      "question": "How long does a microburst typically last?",
+      "options": [
+        "5-10 seconds",
+        "5-15 minutes",
+        "30 minutes to 1 hour",
+        "Several hours"
+      ],
+      "correctAnswer": 1,
+      "explanation": "A microburst typically lasts 5-15 minutes, with peak intensity lasting 2-4 minutes. This short duration makes them difficult to predict.",
+      "reference": "AIM 7-1-26"
+    },
+    {
+      "id": "safety-012",
+      "question": "What types of aircraft icing are there?",
+      "options": [
+        "Light and heavy",
+        "Clear, rime, and mixed",
+        "Structural and engine",
+        "Wing and tail"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Icing types: Clear (large droplets, smooth/hard), Rime (small droplets, rough/opaque), and Mixed (combination). Clear ice is most dangerous due to weight and shape.",
+      "reference": "AIM 7-1-21"
+    },
+    {
+      "id": "safety-013",
+      "question": "At what temperature range is structural icing most likely?",
+      "options": [
+        "Above freezing",
+        "0°C to -20°C (32°F to -4°F)",
+        "Below -40°C",
+        "-20°C to -40°C"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Structural icing is most common between 0°C and -20°C when visible moisture is present. Below -20°C, moisture becomes ice crystals which are less adhesive.",
+      "reference": "AIM 7-1-21"
+    },
+    {
+      "id": "safety-014",
+      "question": "What is the most important action if you encounter icing in flight?",
+      "options": [
+        "Increase altitude",
+        "Continue to destination",
+        "Exit the icing conditions immediately",
+        "Reduce power"
+      ],
+      "correctAnswer": 2,
+      "explanation": "If icing is encountered, leave the area immediately. Change altitude, route, or request ATC assistance. Continuing in icing conditions can be fatal.",
+      "reference": "AIM 7-1-21"
+    },
+    {
+      "id": "safety-015",
+      "question": "What weather condition produces the most severe turbulence?",
+      "options": [
+        "Fronts",
+        "Thunderstorms",
+        "Clear air turbulence",
+        "Mountain waves"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Thunderstorms produce the most severe turbulence due to strong updrafts, downdrafts, and wind shear. AVOID thunderstorms by at least 20 NM.",
+      "reference": "AIM 7-1-27"
+    },
+    {
+      "id": "safety-016",
+      "question": "How far from a thunderstorm should you maintain clearance?",
+      "options": [
+        "5 NM",
+        "10 NM",
+        "20 NM",
+        "30 NM"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Stay at least 20 NM from thunderstorms with heavy precipitation (indicated by red returns on radar). Hail can be thrown miles from the storm core.",
+      "reference": "AIM 7-1-27"
+    },
+    {
+      "id": "safety-017",
+      "question": "What are mountain waves?",
+      "options": [
+        "Waves caused by water near mountains",
+        "Atmospheric waves created by wind flowing over mountains",
+        "Radar interference near mountains",
+        "Communication waves"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Mountain waves are atmospheric waves created when stable air flows over mountain ridges. Can cause severe turbulence, especially in the rotor zone below the crest.",
+      "reference": "AIM 7-5-6"
+    },
+    {
+      "id": "safety-018",
+      "question": "What indicates the presence of mountain waves?",
+      "options": [
+        "Cumulus clouds",
+        "Lenticular (lens-shaped) clouds",
+        "Stratus clouds",
+        "Fog"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Lenticular clouds (lens or almond-shaped) indicate mountain wave activity. Cap clouds over peaks and rotor clouds on the lee side also indicate wave activity.",
+      "reference": "AIM 7-5-6"
+    },
+    {
+      "id": "safety-019",
+      "question": "What is density altitude?",
+      "options": [
+        "The actual altitude above sea level",
+        "Altitude corrected for non-standard temperature",
+        "The altitude indicated by the altimeter",
+        "Altitude above the terrain"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Density altitude is pressure altitude corrected for non-standard temperature. High density altitude = reduced aircraft performance (like flying at higher altitude).",
+      "reference": "AIM 7-5-7"
+    },
+    {
+      "id": "safety-020",
+      "question": "What factors increase density altitude?",
+      "options": [
+        "High pressure, low temperature",
+        "High altitude, high temperature, high humidity",
+        "Low altitude, low temperature",
+        "Sea level, standard temperature"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Density altitude increases with: higher elevation, higher temperature, and higher humidity. This reduces engine power and aerodynamic efficiency.",
+      "reference": "AIM 7-5-7"
+    },
+    {
+      "id": "safety-021",
+      "question": "What is a CWA (Center Weather Advisory)?",
+      "options": [
+        "A long-term forecast",
+        "An unscheduled advisory issued by ARTCC for conditions affecting center airspace",
+        "A clearance from center",
+        "A pilot report"
+      ],
+      "correctAnswer": 1,
+      "explanation": "CWA is an unscheduled advisory issued by Center Weather Service Units for conditions that may affect flights within ARTCC airspace. Valid for up to 2 hours.",
+      "reference": "AIM 7-1-6"
+    },
+    {
+      "id": "safety-022",
+      "question": "What should pilots do before flying in mountainous terrain?",
+      "options": [
+        "Only check winds aloft",
+        "Obtain thorough briefing on winds, turbulence forecasts, and PIREPs for the area",
+        "File VFR only",
+        "Avoid all mountains"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Before mountain flying, obtain thorough weather briefing including winds aloft (direction and speed), turbulence forecasts, and PIREPs. Consider mountain flying course.",
+      "reference": "AIM 7-5-6"
+    },
+    {
+      "id": "safety-023",
+      "question": "What is the typical lifetime of a thunderstorm cell?",
+      "options": [
+        "5-10 minutes",
+        "20-30 minutes",
+        "2-3 hours",
+        "6-12 hours"
+      ],
+      "correctAnswer": 1,
+      "explanation": "A typical thunderstorm cell lasts about 20-30 minutes in its most intense stage. However, new cells can develop creating a longer-lasting storm system.",
+      "reference": "AIM 7-1-27"
+    },
+    {
+      "id": "safety-024",
+      "question": "What are the three stages of a thunderstorm?",
+      "options": [
+        "Early, Middle, Late",
+        "Cumulus, Mature, Dissipating",
+        "Building, Peak, Declining",
+        "Formation, Development, Decay"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Thunderstorm stages: Cumulus (building, all updrafts), Mature (most dangerous, rain, hail, lightning, downdrafts and updrafts), Dissipating (mostly downdrafts).",
+      "reference": "AIM 7-1-27"
+    },
+    {
+      "id": "safety-025",
+      "question": "What is the freezing level?",
+      "options": [
+        "The altitude where temperature is 32°F/0°C",
+        "Ground level when it's cold",
+        "The top of clouds",
+        "Where ice forms on the aircraft"
+      ],
+      "correctAnswer": 0,
+      "explanation": "The freezing level is the altitude at which the temperature drops to 0°C (32°F). Critical for predicting where structural icing may occur in visible moisture.",
+      "reference": "AIM 7-1-21"
+    },
+    {
+      "id": "safety-026",
+      "question": "What type of fog forms when warm, moist air moves over a cold surface?",
+      "options": [
+        "Radiation fog",
+        "Advection fog",
+        "Steam fog",
+        "Upslope fog"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Advection fog forms when warm, moist air moves over a cooler surface. Unlike radiation fog, it can form during day or night and may be thick and persistent.",
+      "reference": "AIM 7-5-8"
+    },
+    {
+      "id": "safety-027",
+      "question": "When is radiation fog most likely to form?",
+      "options": [
+        "Hot summer afternoons",
+        "Clear nights with calm winds",
+        "During frontal passage",
+        "Over large bodies of water"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Radiation fog forms on clear nights with light winds when ground cools by radiation, cooling the air above it. Burns off after sunrise.",
+      "reference": "AIM 7-5-8"
+    },
+    {
+      "id": "safety-028",
+      "question": "What is LLWS?",
+      "options": [
+        "Low Level Weather System",
+        "Low Level Wind Shear",
+        "Localized Light Weather Station",
+        "Long Line Weather Service"
+      ],
+      "correctAnswer": 1,
+      "explanation": "LLWS (Low Level Wind Shear) is wind shear below 2,000 feet AGL. It's particularly dangerous during takeoff and landing. Many airports have LLWAS detection systems.",
+      "reference": "AIM 7-1-25"
+    },
+    {
+      "id": "safety-029",
+      "question": "What should you do if you suspect LLWS during approach?",
+      "options": [
+        "Continue the approach",
+        "Increase approach speed, be prepared to go around",
+        "Decrease speed",
+        "Request different runway"
+      ],
+      "correctAnswer": 1,
+      "explanation": "If LLWS is suspected: add airspeed (typically half gust factor plus full gust factor), maintain awareness, be prepared for immediate go-around, and report any shear encountered.",
+      "reference": "AIM 7-1-25"
+    },
+    {
+      "id": "safety-030",
+      "question": "What does 'VFR flight not recommended' in a briefing mean?",
+      "options": [
+        "VFR flight is prohibited",
+        "Weather conditions make VFR flight doubtful, but PIC decision",
+        "IFR flight only",
+        "Flight cancelled"
+      ],
+      "correctAnswer": 1,
+      "explanation": "'VFR flight not recommended' means conditions are present or forecast that make VFR flight doubtful. The final decision to fly remains with the pilot-in-command.",
+      "reference": "AIM 7-1-5"
+    }
+  ]
+}

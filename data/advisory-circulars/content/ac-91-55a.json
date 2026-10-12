@@ -1,0 +1,29 @@
+{
+  "version": 1,
+  "id": "ac-91-55a",
+  "number": "91-55A",
+  "title": "Reduction of Electrical System Failures Following Aircraft Engine Starting",
+  "status": "parsed",
+  "fetched": "2026-07-14",
+  "documentUrl": "https://www.faa.gov/regulations_policies/advisory_circulars/index.cfm/go/document.information/documentID/1042192",
+  "pdfUrl": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_91-55A.pdf",
+  "sha256": "11e4027b30fea255bf91fe46b037aca0e76adc518b7f7e964bff32e910db97c2",
+  "pageCount": 3,
+  "wordCount": 576,
+  "ocrPageCount": 0,
+  "pages": [
+    {
+      "page": 1,
+      "text": "U.S. Department of Transportation Federal Aviation Administration Advisory Circular\n\nSubject: Reduction of Electrical System Failures Following Aircraft Engine Starting Date: 10/11/23 AC No: 91-55A Initiated by: AFS-300 Change: 1 PURPOSE OF THIS ADVISORY CIRCULAR (AC). This AC is to warn general aviation aircraft owners/pilots and maintenance personnel of possible total electrical system failure following aircraft engine starting. The contents of this document do not have the force and effect of law and are not meant to bind the public in any way, and the document is intended only to provide information to the public regarding existing requirements under the law or agency policies. 2 AUDIENCE. This AC applies to operators of reciprocating engine powered aircraft and maintenance, repair, and overhaul (MRO) organizations. 3 WHERE YOU CAN FIND THIS AC. You can find this AC on the Federal Aviation Administration’s (FAA) website at https://www.faa.gov/regulations_policies/advisory_cir culars and the Dynamic Regulatory System (DRS) at https://drs.faa.gov. 4 WHAT THIS AC CANCELS. AC 91-55, Reduction of Electrical System Failures Following Aircraft Engine Starting, dated October 28, 1980, is canceled. 5 BACKGROUND. This AC is being issued in response to a safety recommendation made by the National Transportation Safety Board (NTSB) to the FAA. Aircraft accidents and incidents have occurred shortly after takeoff because the starter relay (solenoid) failed mechanically in the “on” position. This condition causes the starter to run, and if allowed to continue, can result in electrical system overload, overheating of components, and in some cases complete failure of the electrical system and/or destruction of the starter motor and drive assembly. Destruction of the starter drive shaft and gear assembly may also damage the aircraft engine. 6 SAFETY SUGGESTIONS. During maintenance activities, inspect the starter motor, electrical cables, and starter relay areas for evidence of overheating and damage. In addition, a good practice for pilots is to be completely familiar with instrument readings, cockpit sounds, and other indicators following normal engine starting periods. Indications that problems are developing in the starter system could be low voltage, high ammeter or loadmeter readings, dimming of lights, or excessive noise in radio receivers. A noted change in such known normal conditions could indicate prolonged starter motor running and the engine should be shut down. No further flight operations should be attempted until the cause is determined and repaired."
+    },
+    {
+      "page": 2,
+      "text": "10/11/23 AC 91-55A\n\n7 AC FEEDBACK FORM. For your convenience, the AC Feedback Form is the last page of this AC. Note any deficiencies found, clarifications needed, or suggested improvements regarding the contents of this AC on the Feedback Form. Wesley L. Mooty Acting Deputy Executive Director, Flight Standards Service"
+    },
+    {
+      "page": 3,
+      "text": "Advisory Circular Feedback Form If you find an error in this AC, have recommendations for improving it, or have suggestions for new items/subjects to be added, you may let us know by contacting the Flight Standards Directives Management Officer at 9-AWA-AFB-120-Directives@faa.gov.\n\nSubject: AC 91-55A, Reduction of Electrical System Failures Following Aircraft Engine Starting Date: _____________________ Please check all appropriate line items: An error (procedural or typographical) has been noted in paragraph ____________ on page _______. Recommend paragraph _____________ on page __________ be changed as follows: ______________________________________________________________________ ______________________________________________________________________ In a future change to this AC, please cover the following subject: (Briefly describe what you want added.) ______________________________________________________________________ ______________________________________________________________________ Other comments: ______________________________________________________________________ ______________________________________________________________________ I would like to discuss the above. Please contact me. Submitted by: Date: ______________________"
+    }
+  ],
+  "extractedPageCount": 3
+}

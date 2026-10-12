@@ -1,0 +1,338 @@
+{
+  "id": "far-part43-maintenance",
+  "title": "Part 43: Aircraft Maintenance",
+  "description": "Learn maintenance requirements, inspections, preventive maintenance, and airworthiness from 14 CFR Part 43",
+  "category": "FAR",
+  "part": 43,
+  "difficulty": "intermediate",
+  "targetCertificate": "Private/Commercial Pilot",
+  "questionCount": 25,
+  "passingScore": 70,
+  "questions": [
+    {
+      "id": "maint-001",
+      "question": "What is the maximum interval for an annual inspection?",
+      "options": [
+        "12 calendar months",
+        "100 hours of operation",
+        "24 calendar months",
+        "Every 6 months"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Per 14 CFR 91.409, an annual inspection is required every 12 calendar months.",
+      "reference": "14 CFR 91.409"
+    },
+    {
+      "id": "maint-002",
+      "question": "When is a 100-hour inspection required?",
+      "options": [
+        "For all aircraft",
+        "For aircraft used for hire or flight instruction",
+        "Only for commercial air carriers",
+        "Only for turbine aircraft"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Per 14 CFR 91.409, a 100-hour inspection is required for aircraft carrying passengers for hire or providing flight instruction for hire.",
+      "reference": "14 CFR 91.409"
+    },
+    {
+      "id": "maint-003",
+      "question": "How much can the 100-hour inspection interval be exceeded to reach a place of inspection?",
+      "options": [
+        "5 hours",
+        "10 hours",
+        "20 hours",
+        "Cannot be exceeded"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Per 14 CFR 91.409, the 100-hour limit may be exceeded by up to 10 hours to reach a place where the inspection can be done, but the excess must be included in the next 100-hour interval.",
+      "reference": "14 CFR 91.409"
+    },
+    {
+      "id": "maint-004",
+      "question": "Who may perform an annual inspection?",
+      "options": [
+        "Any A&P mechanic",
+        "Only an IA (Inspection Authorization) holder",
+        "A&P with IA or appropriately rated repair station",
+        "The aircraft owner"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Per 14 CFR 43.3 and 43.7, annual inspections may only be performed by an A&P mechanic with Inspection Authorization (IA) or an appropriately rated repair station.",
+      "reference": "14 CFR 43.3, 43.7"
+    },
+    {
+      "id": "maint-005",
+      "question": "Who may perform a 100-hour inspection?",
+      "options": [
+        "Only an IA holder",
+        "Any A&P mechanic or appropriately rated repair station",
+        "Only a repair station",
+        "The aircraft owner"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Per 14 CFR 43.3, a 100-hour inspection may be performed by any certificated A&P mechanic or appropriately rated repair station.",
+      "reference": "14 CFR 43.3"
+    },
+    {
+      "id": "maint-006",
+      "question": "What preventive maintenance may a private pilot perform on an aircraft they own or operate?",
+      "options": [
+        "None",
+        "Any maintenance they feel qualified to do",
+        "Specific items listed in Part 43 Appendix A",
+        "Only oil changes"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Per 14 CFR 43.3(g), a certificated pilot may perform preventive maintenance on an aircraft owned or operated by that pilot, limited to items in Appendix A.",
+      "reference": "14 CFR 43.3(g)"
+    },
+    {
+      "id": "maint-007",
+      "question": "Which of the following is considered preventive maintenance a pilot may perform?",
+      "options": [
+        "Replacing brake pads",
+        "Replenishing hydraulic fluid",
+        "Adjusting control cables",
+        "Replacing engine oil"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Per Part 43 Appendix A, replenishing hydraulic fluid is preventive maintenance. Replacing brake pads and adjusting cables require an A&P.",
+      "reference": "14 CFR Part 43 Appendix A"
+    },
+    {
+      "id": "maint-008",
+      "question": "What must be done after preventive maintenance is performed?",
+      "options": [
+        "Nothing, just fly the aircraft",
+        "Entry in aircraft maintenance records",
+        "Notify the FAA",
+        "Have an A&P sign off the work"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Per 14 CFR 43.9, the person performing preventive maintenance must make an entry in the maintenance records describing the work performed.",
+      "reference": "14 CFR 43.9"
+    },
+    {
+      "id": "maint-009",
+      "question": "What is an Airworthiness Directive (AD)?",
+      "options": [
+        "A recommendation from the manufacturer",
+        "A legally enforceable rule requiring corrective action",
+        "An optional safety bulletin",
+        "A maintenance manual update"
+      ],
+      "correctAnswer": 1,
+      "explanation": "An AD is a legally enforceable rule issued by the FAA when an unsafe condition exists in a product and is likely to exist in other products of the same design.",
+      "reference": "14 CFR Part 39"
+    },
+    {
+      "id": "maint-010",
+      "question": "Who is responsible for ensuring compliance with Airworthiness Directives?",
+      "options": [
+        "The manufacturer",
+        "The FAA",
+        "The aircraft owner or operator",
+        "The mechanic who performs maintenance"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Per 14 CFR 91.403, the owner or operator is primarily responsible for maintaining the aircraft in an airworthy condition, including compliance with ADs.",
+      "reference": "14 CFR 91.403"
+    },
+    {
+      "id": "maint-011",
+      "question": "What records must be kept for an aircraft?",
+      "options": [
+        "Only the most recent annual inspection",
+        "Maintenance records, 100-hour/annual inspections, AD compliance, major alterations",
+        "Only records from the past 5 years",
+        "Only engine records"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Per 14 CFR 91.417, records must be kept for maintenance, inspections, AD compliance, and major alterations/repairs.",
+      "reference": "14 CFR 91.417"
+    },
+    {
+      "id": "maint-012",
+      "question": "How long must maintenance records be retained?",
+      "options": [
+        "1 year",
+        "Until work is superseded or for 1 year after work performed",
+        "5 years",
+        "Permanently"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Per 14 CFR 91.417, maintenance records must be retained until the work is repeated or superseded, or for 1 year after the work is performed.",
+      "reference": "14 CFR 91.417"
+    },
+    {
+      "id": "maint-013",
+      "question": "What must a maintenance record entry include?",
+      "options": [
+        "Just the date",
+        "Description of work, date, signature, and certificate number",
+        "Only the mechanic's name",
+        "Just the aircraft registration"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Per 14 CFR 43.9, entries must include description of work, date completed, signature, certificate number, and certificate type.",
+      "reference": "14 CFR 43.9"
+    },
+    {
+      "id": "maint-014",
+      "question": "What is a major repair?",
+      "options": [
+        "Any repair over $1000",
+        "A repair that might appreciably affect weight, balance, structural strength, or other qualities affecting airworthiness",
+        "Any engine repair",
+        "Any repair requiring more than 8 hours"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Per 14 CFR 43.2, a major repair is one that might appreciably affect weight, balance, structural strength, performance, powerplant operation, flight characteristics, or other qualities affecting airworthiness.",
+      "reference": "14 CFR 43.2"
+    },
+    {
+      "id": "maint-015",
+      "question": "After a major repair, what is required before returning the aircraft to service?",
+      "options": [
+        "A test flight",
+        "Approval for return to service by authorized person and FAA Form 337",
+        "Only a logbook entry",
+        "Notification to the FSDO"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Per 14 CFR 43.9 and 43.5, major repairs require approval for return to service by an authorized person and completion of FAA Form 337.",
+      "reference": "14 CFR 43.5, 43.9"
+    },
+    {
+      "id": "maint-016",
+      "question": "What is the purpose of a progressive inspection program?",
+      "options": [
+        "To avoid annual inspections entirely",
+        "To spread inspection requirements over time for aircraft in continuous service",
+        "To reduce maintenance costs",
+        "To allow pilots to do their own inspections"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Per 14 CFR 91.409(d), a progressive inspection program spreads the inspection requirements over time, useful for aircraft in continuous service.",
+      "reference": "14 CFR 91.409(d)"
+    },
+    {
+      "id": "maint-017",
+      "question": "What does 'return to service' mean?",
+      "options": [
+        "The aircraft is sold",
+        "The aircraft is approved as airworthy after maintenance",
+        "The aircraft is registered",
+        "The aircraft completes a test flight"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Return to service means the aircraft has been approved as airworthy after maintenance, preventive maintenance, rebuilding, or alteration.",
+      "reference": "14 CFR 43.5"
+    },
+    {
+      "id": "maint-018",
+      "question": "Who may approve an aircraft for return to service after an annual inspection?",
+      "options": [
+        "Any A&P mechanic",
+        "Only an IA holder or appropriately rated repair station",
+        "The aircraft owner",
+        "An FAA inspector"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Per 14 CFR 43.7, only an A&P with IA or an appropriately rated repair station may approve return to service after an annual inspection.",
+      "reference": "14 CFR 43.7"
+    },
+    {
+      "id": "maint-019",
+      "question": "What is required for an aircraft to be considered airworthy?",
+      "options": [
+        "Current registration only",
+        "Conformity to type certificate and safe operating condition",
+        "Recent annual inspection only",
+        "Insurance coverage"
+      ],
+      "correctAnswer": 1,
+      "explanation": "An aircraft is airworthy when it conforms to its type certificate (or approved alterations) and is in a condition for safe operation.",
+      "reference": "14 CFR 3.5"
+    },
+    {
+      "id": "maint-020",
+      "question": "Which of these is preventive maintenance a pilot may perform?",
+      "options": [
+        "Replacing landing gear tires",
+        "Replacing spark plugs",
+        "Adjusting magneto timing",
+        "Replacing fuel lines"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Per Part 43 Appendix A, replacing landing gear tires is preventive maintenance. Spark plug replacement and magneto timing require an A&P.",
+      "reference": "14 CFR Part 43 Appendix A"
+    },
+    {
+      "id": "maint-021",
+      "question": "What is the ELT battery replacement interval?",
+      "options": [
+        "Every 6 months",
+        "When 50% of useful life expires or after 1 hour cumulative use",
+        "Every 24 months",
+        "Only when it fails"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Per 14 CFR 91.207, ELT batteries must be replaced when 50% of useful life has expired or after 1 hour of cumulative use.",
+      "reference": "14 CFR 91.207"
+    },
+    {
+      "id": "maint-022",
+      "question": "How often must a transponder be inspected?",
+      "options": [
+        "Every 12 calendar months",
+        "Every 24 calendar months",
+        "Every 100 hours",
+        "Only when malfunctioning"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Per 14 CFR 91.413, transponders must be inspected every 24 calendar months.",
+      "reference": "14 CFR 91.413"
+    },
+    {
+      "id": "maint-023",
+      "question": "How often must a static system and altimeter be inspected for IFR flight?",
+      "options": [
+        "Every 12 calendar months",
+        "Every 24 calendar months",
+        "Every 100 hours",
+        "Only for commercial operations"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Per 14 CFR 91.411, the altimeter and static system must be inspected every 24 calendar months for IFR operations.",
+      "reference": "14 CFR 91.411"
+    },
+    {
+      "id": "maint-024",
+      "question": "What documents must be on board the aircraft for flight?",
+      "options": [
+        "Only the registration",
+        "ARROW: Airworthiness certificate, Registration, Radio license (international), Operating limitations, Weight and balance",
+        "Only the POH",
+        "Only the airworthiness certificate"
+      ],
+      "correctAnswer": 1,
+      "explanation": "ARROW documents must be on board: Airworthiness certificate, Registration, Radio station license (if international), Operating limitations (POH), Weight and balance data.",
+      "reference": "14 CFR 91.203, 91.9"
+    },
+    {
+      "id": "maint-025",
+      "question": "What is a Special Flight Permit (ferry permit)?",
+      "options": [
+        "Permission to fly in special use airspace",
+        "Authorization to fly an aircraft that doesn't meet airworthiness requirements for a specific purpose",
+        "A permit for aerobatic flight",
+        "Authorization for international flight"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Per 14 CFR 21.197, a Special Flight Permit allows operation of an aircraft that doesn't currently meet airworthiness requirements for purposes like flying to a repair facility.",
+      "reference": "14 CFR 21.197"
+    }
+  ]
+}

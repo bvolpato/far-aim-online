@@ -1,0 +1,220 @@
+{
+  "id": "aim-chapter5-procedures",
+  "title": "Air Traffic Procedures",
+  "description": "Key concepts from AIM Chapter 5 covering preflight planning, flight plans, NOTAMs, departure/arrival procedures, and instrument approaches",
+  "category": "AIM",
+  "chapter": 5,
+  "cardCount": 35,
+  "cards": [
+    {
+      "id": "ch5-001",
+      "front": "Preflight Requirements (14 CFR 91.103)",
+      "back": "Before flight, become familiar with ALL available information:\n• Weather reports and forecasts\n• Fuel requirements\n• Alternatives if flight cannot be completed\n• Known ATC traffic delays\n• Runway lengths at airports of intended use\n• Takeoff and landing distance data",
+      "reference": "AIM 5-1-1"
+    },
+    {
+      "id": "ch5-002",
+      "front": "Three Types of Weather Briefings",
+      "back": "STANDARD: Complete briefing for planning\n• Request when no prior briefing received\n\nABBREVIATED: Update/supplement to prior briefing\n• Request specific information only\n\nOUTLOOK: For planning purposes\n• Departure 6+ hours away\n• General weather trends",
+      "reference": "AIM 7-1-5"
+    },
+    {
+      "id": "ch5-003",
+      "front": "NOTAM Categories",
+      "back": "NOTAM (D): Disseminated to all pilots\n• Aeronautical facilities, services, procedures\n• Navigational aids, obstacles\n\nFDC NOTAM: Flight Data Center\n• Regulatory - amendments to procedures\n• TFRs and airspace changes\n\nMilitary NOTAMs\n• Affects military operations",
+      "reference": "AIM 5-1-3"
+    },
+    {
+      "id": "ch5-004",
+      "front": "VFR Flight Plan Tips",
+      "back": "• NOT required but RECOMMENDED\n• Provides search and rescue protection\n• File via phone, internet, or app\n• ACTIVATE before departure\n• CLOSE upon arrival (or SAR initiates!)\n• Valid for 2 hours after proposed departure\n• Does NOT provide ATC services",
+      "reference": "AIM 5-1-4"
+    },
+    {
+      "id": "ch5-005",
+      "front": "IFR Clearance (CRAFT Mnemonic)",
+      "back": "C - Clearance limit (usually destination)\nR - Route of flight\nA - Altitude (initial and expect)\nF - Frequency (departure control)\nT - Transponder code\n\nAlways READ BACK complete clearance!",
+      "reference": "AIM 5-2-5"
+    },
+    {
+      "id": "ch5-006",
+      "front": "Lost Communication Procedure - Route",
+      "back": "Fly in this order (AVE-F):\n\nA - Assigned (last route assigned by ATC)\nV - Vectored (direct to fix, route, or airway being vectored to)\nE - Expected (route ATC said to expect)\nF - Filed (route in flight plan)",
+      "reference": "AIM 5-3-3, 14 CFR 91.185"
+    },
+    {
+      "id": "ch5-007",
+      "front": "Lost Communication Procedure - Altitude",
+      "back": "Maintain the HIGHEST of:\n\n• Last ASSIGNED altitude\n• Altitude ATC said to EXPECT\n• MINIMUM en route altitude (MEA)\n\nRemember: 'Highest of the three'\n\nAlso squawk 7600!",
+      "reference": "AIM 5-3-3, 14 CFR 91.185"
+    },
+    {
+      "id": "ch5-008",
+      "front": "SID (Standard Instrument Departure)",
+      "back": "• Preplanned IFR departure procedure\n• Provides obstacle clearance\n• Improves traffic flow\n• Simplifies clearance delivery\n\nTypes:\n• Pilot Nav - pilot navigates the route\n• Vector - ATC vectors after takeoff\n• Must have charts to accept SID",
+      "reference": "AIM 5-2-9"
+    },
+    {
+      "id": "ch5-009",
+      "front": "STAR (Standard Terminal Arrival Route)",
+      "back": "• Preplanned IFR arrival procedure\n• Transition from en route to terminal\n• Simplifies clearance delivery\n• Reduces pilot/controller workload\n• May include altitude/speed restrictions\n• Must have chart to accept STAR",
+      "reference": "AIM 5-4-1"
+    },
+    {
+      "id": "ch5-010",
+      "front": "Holding Pattern Entries",
+      "back": "DIRECT (within 70° sector):\n• Turn right, fly pattern\n\nTEARDROP (from 70° opposite side):\n• Fly outbound 30° offset, turn to inbound\n\nPARALLEL (from remaining sector):\n• Fly outbound parallel, turn back to fix\n\n'When in doubt, go direct'",
+      "reference": "AIM 5-3-8"
+    },
+    {
+      "id": "ch5-011",
+      "front": "Holding Pattern Speeds",
+      "back": "Below 6,000' MSL: 200 KIAS\n6,001' - 14,000' MSL: 230 KIAS\nAbove 14,000' MSL: 265 KIAS\n\nLeg timing (below 14,000'):\n• Inbound leg: 1 minute\n• Above 14,000': 1.5 minutes\n\nOR: DME/GPS distance if specified",
+      "reference": "AIM 5-3-8"
+    },
+    {
+      "id": "ch5-012",
+      "front": "EFC (Expect Further Clearance) Time",
+      "back": "• Provided when entering holding\n• Time to expect clearance to continue\n• CRITICAL for lost comm procedures\n\nIf lost comm while holding:\n• Leave holding fix at EFC time\n• Continue via expected route\n• Begin approach at expected time",
+      "reference": "AIM 5-3-8"
+    },
+    {
+      "id": "ch5-013",
+      "front": "DA vs MDA",
+      "back": "DA (Decision Altitude):\n• Precision approaches (ILS, GLS)\n• Continue descent if visual\n• Initiate missed if not\n\nMDA (Minimum Descent Altitude):\n• Non-precision approaches\n• Level off at MDA\n• Only descend when runway in sight\n• May not descend below without visual ref",
+      "reference": "AIM 5-4-5"
+    },
+    {
+      "id": "ch5-014",
+      "front": "Required Visual References Below DA/MDA",
+      "back": "Must see at least ONE:\n• Approach light system (if can identify threshold)\n• Threshold or markings\n• Threshold lights\n• REIL (Runway End Identifier Lights)\n• VASI/PAPI\n• Touchdown zone or markings\n• Touchdown zone lights\n• Runway or markings\n• Runway lights",
+      "reference": "AIM 5-4-5, 14 CFR 91.175"
+    },
+    {
+      "id": "ch5-015",
+      "front": "Procedure Turn",
+      "back": "• Course reversal to establish inbound\n• Normally within 10 NM of fix\n• Remain on maneuvering side\n• NOT authorized when:\n - 'NoPT' shown\n - Radar vectors to final\n - Timed approach\n - Holding in lieu of PT\n• Barbed arrow shows direction",
+      "reference": "AIM 5-4-9"
+    },
+    {
+      "id": "ch5-016",
+      "front": "VDP (Visual Descent Point)",
+      "back": "• Defined point on non-precision approach\n• Normal 3° descent from MDA to runway\n• Shown as 'V' on approach plate\n• If no VDP, may need steeper descent\n• Helps with stabilized approach\n• Not required to use, but recommended",
+      "reference": "AIM 5-4-5"
+    },
+    {
+      "id": "ch5-017",
+      "front": "FAF (Final Approach Fix)",
+      "back": "Non-Precision:\n• Maltese cross symbol on profile\n• Begin descent, start timing\n\nPrecision:\n• Lightning bolt (glideslope intercept)\n• Where glidepath is intercepted\n\nAlways at published altitude when crossing FAF",
+      "reference": "AIM 5-4-5"
+    },
+    {
+      "id": "ch5-018",
+      "front": "Circling Approach",
+      "back": "• Visual maneuver to land on different runway\n• Higher minimums than straight-in\n• Protected areas by aircraft category:\n - Cat A: 1.3 NM\n - Cat B: 1.5 NM\n - Cat C: 1.7 NM\n - Cat D: 2.3 NM\n• Remain at MDA until in position to land\n• If lost visual, execute missed",
+      "reference": "AIM 5-4-20"
+    },
+    {
+      "id": "ch5-019",
+      "front": "Missed Approach Procedure",
+      "back": "Upon going missed:\n1. Apply full power, climb\n2. Follow published procedure\n3. Advise ATC as soon as practical\n\nProcedure includes:\n• Initial climb instructions\n• Turning instructions\n• Holding fix and altitude\n\nDon't delay - act immediately!",
+      "reference": "AIM 5-4-21"
+    },
+    {
+      "id": "ch5-020",
+      "front": "Visual Approach",
+      "back": "• Assigned by ATC (or requested)\n• Requires: ceiling ≥1,000', visibility ≥3 SM\n• Pilot must have airport OR preceding aircraft in sight\n• IFR flight plan remains active\n• Pilot responsible for obstruction clearance\n• Can be assigned even without approach procedure",
+      "reference": "AIM 5-4-23"
+    },
+    {
+      "id": "ch5-021",
+      "front": "Contact Approach",
+      "back": "• Must be REQUESTED by pilot (never assigned)\n• Requires: 1 SM flight visibility, clear of clouds\n• Pilot must reasonably expect to continue\n• Airport must have an IAP\n• Pilot responsible for obstruction clearance\n• Lower requirements than visual approach",
+      "reference": "AIM 5-4-25"
+    },
+    {
+      "id": "ch5-022",
+      "front": "IFR Approach Categories",
+      "back": "Based on approach speed (Vref x 1.3):\n\nA: <91 knots\nB: 91-120 knots\nC: 121-140 knots\nD: 141-165 knots\nE: >165 knots\n\nUse higher category if circling faster than normal approach speed",
+      "reference": "AIM 5-4-7"
+    },
+    {
+      "id": "ch5-023",
+      "front": "When to Cancel IFR",
+      "back": "May cancel:\n• Anytime in VFR conditions\n• Except Class A (IFR required)\n\nBenefits:\n• Releases airspace for others\n• No approach sequence delay\n• More flexibility\n\nCaution:\n• No IFR separation once cancelled\n• Can't reenter clouds\n• May need new clearance if weather deteriorates",
+      "reference": "AIM 5-1-15"
+    },
+    {
+      "id": "ch5-024",
+      "front": "Departure Procedures (ODP vs SID)",
+      "back": "ODP (Obstacle Departure Procedure):\n• Provides obstacle clearance only\n• Textual or graphical\n• Not assigned by ATC\n• Pilot's responsibility to use\n\nSID:\n• ATC procedure for traffic flow\n• Must be assigned/accepted\n• Also provides obstacle clearance",
+      "reference": "AIM 5-2-9"
+    },
+    {
+      "id": "ch5-025",
+      "front": "Standard Takeoff Minimums",
+      "back": "Part 91 (not required to comply, but recommended):\n\n1 & 2 engine: 1 SM visibility\n3+ engines: 1/2 SM visibility\n\nNon-standard minimums:\n• Symbol 'T' in approach chart margin\n• Check departure procedure\n• May require higher minimums or climb gradient",
+      "reference": "AIM 5-2-9"
+    },
+    {
+      "id": "ch5-026",
+      "front": "ILS Components and Signals",
+      "back": "Localizer: Lateral guidance (27.9 NM)\n• 'Blue/Yellow' or 'Fly Left/Right'\n\nGlide Slope: Vertical guidance\n• Usually 3° angle\n• 10 NM range\n\nMarker Beacons:\n• OM (Outer): Blue, dashes\n• MM (Middle): Amber, dots/dashes\n• IM (Inner): White, dots\n\nApproach Lights: Visual transition",
+      "reference": "AIM 1-1-9"
+    },
+    {
+      "id": "ch5-027",
+      "front": "RNAV Approach Types",
+      "back": "LNAV: Lateral navigation only (non-precision)\nLP: Localizer Performance (WAAS, no vertical)\nLNAV/VNAV: Lateral + vertical nav (baro-VNAV)\nLPV: Localizer Performance with Vertical (WAAS)\n\nLPV provides near-ILS precision with WAAS GPS",
+      "reference": "AIM 5-4-5"
+    },
+    {
+      "id": "ch5-028",
+      "front": "Cruise Clearance",
+      "back": "• Authorizes flight at any altitude from minimum IFR to assigned\n• May climb/descend at pilot's discretion\n• Once leaving altitude, may NOT return to it without clearance\n• Includes clearance for approach at destination\n• Report leaving each altitude",
+      "reference": "AIM 4-4-3"
+    },
+    {
+      "id": "ch5-029",
+      "front": "VFR-on-Top",
+      "back": "• Fly VFR altitudes (odd+500 E, even+500 W)\n• Must maintain VFR cloud clearance\n• Still on IFR flight plan\n• ATC separation still provided\n• Must request - 'Request VFR-on-top'\n• Cannot be assigned by ATC\n• Not available in Class A",
+      "reference": "AIM 4-4-8"
+    },
+    {
+      "id": "ch5-030",
+      "front": "Approach Lighting Systems (ALS)",
+      "back": "Purpose: Visual transition from instruments\n\nTypes:\n• ALSF-1, ALSF-2: With sequenced flashers\n• MALSR: Medium intensity\n• MALSF: With flashers\n• SSALR, SSALF: Simplified short\n• ODALS: Omnidirectional\n\nWith ALS, can descend to 100' above TDZE if see ALS and can identify threshold",
+      "reference": "AIM 2-1-1"
+    },
+    {
+      "id": "ch5-031",
+      "front": "Pilot-Controlled Lighting",
+      "back": "On CTAF frequency:\n7 clicks: High intensity\n5 clicks: Medium intensity\n3 clicks: Low intensity\n\n• Within 5 seconds\n• Lights stay on ~15 minutes\n• Works for runway, approach, VASI/PAPI\n• Key again to change intensity or reset timer",
+      "reference": "AIM 2-1-8"
+    },
+    {
+      "id": "ch5-032",
+      "front": "Minimum Fuel Advisory",
+      "back": "Declare when:\n• Cannot accept undue delay\n• Emergency fuel status NOT YET reached\n\nPhrase: 'Minimum Fuel'\n\nNOT an emergency declaration\nInforms ATC of priority need\n\nIf fuel critical:\nDeclare EMERGENCY instead",
+      "reference": "AIM 5-5-15"
+    },
+    {
+      "id": "ch5-033",
+      "front": "RAIM and GPS Approach Requirements",
+      "back": "RAIM: Receiver Autonomous Integrity Monitoring\n\nRequired:\n• Verify RAIM availability preflight\n• Check GPS NOTAMs\n• Must be present for approach\n\nIf RAIM fails during approach:\n• Cannot continue to DA/MDA\n• Execute missed approach\n• Report to ATC",
+      "reference": "AIM 1-1-17"
+    },
+    {
+      "id": "ch5-034",
+      "front": "Minimum Safe/Sector Altitudes (MSA)",
+      "back": "• Shown on approach charts\n• 1,000 feet obstacle clearance\n• Within 25 NM of facility/waypoint\n• For emergency use only\n• Does NOT guarantee NAVAID reception\n• May be divided into sectors",
+      "reference": "AIM 5-4-5"
+    },
+    {
+      "id": "ch5-035",
+      "front": "Position Reports (Non-Radar)",
+      "back": "Report at each compulsory reporting point:\n1. Aircraft identification\n2. Position\n3. Time (UTC)\n4. Altitude/FL\n5. Type of flight plan\n6. ETA next reporting point\n7. Name of following point\n8. Remarks\n\nSolid triangle = compulsory\nOpen triangle = on request",
+      "reference": "AIM 5-3-2"
+    }
+  ]
+}

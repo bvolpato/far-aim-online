@@ -1,0 +1,272 @@
+{
+  "id": "hard-challenge",
+  "title": "The Ultimate Pilot Challenge",
+  "description": "Test your mastery of the most difficult FAR and AIM regulations. Only for the experts!",
+  "category": "Miscellaneous",
+  "difficulty": "hard",
+  "targetCertificate": "Commercial/ATP/CFI",
+  "questionCount": 20,
+  "passingScore": 80,
+  "questions": [
+    {
+      "id": "hard-001",
+      "question": "Under FAR 91.175, which of the following is NOT a required visual reference to descend below DA/MDA?",
+      "options": [
+        "The approach light system (descending to 100 feet above TDZE)",
+        "The runway end identifier lights (REIL)",
+        "The taxiway lead-in lights",
+        "The touchdown zone or touchdown zone markings"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Taxiway lead-in lights are NOT a listed visual reference in 91.175(c)(3) that permits descent below DA/MDA. Permitted items include the threshold, threshold markings/lights, runway end identifier lights, visual approach slope indicator, touchdown zone/markings/lights, and runway/markings/lights.",
+      "reference": "14 CFR 91.175(c)(3)"
+    },
+    {
+      "id": "hard-002",
+      "question": "For Special VFR operations at night, what requirements must be met?",
+      "options": [
+        "The pilot must be instrument rated",
+        "The aircraft must be instrument equipped",
+        "Both the pilot and aircraft must be instrument qualified",
+        "Special VFR is not permitted at night"
+      ],
+      "correctAnswer": 2,
+      "explanation": "FAR 91.157(b)(4) states that for Special VFR at night, the person must meet the requirements for Instrument Flight under Part 61 AND the aircraft must be equipped for IFR flight.",
+      "reference": "14 CFR 91.157(b)(4)"
+    },
+    {
+      "id": "hard-003",
+      "question": "What is the specific cloud clearance requirement for VFR flight in Class G airspace at night, below 1,200 feet AGL?",
+      "options": [
+        "Clear of clouds",
+        "500 feet below, 1,000 feet above, 2,000 feet horizontal",
+        "1,000 feet below, 1,000 feet above, 1 mile horizontal",
+        "3 miles visibility and 500/1000/2000 cloud clearance"
+      ],
+      "correctAnswer": 3,
+      "explanation": "Normally Class G below 1,200 AGL is 'Clear of Clouds' during the day. However, AT NIGHT (regardless of altitude in Class G), the requirement increases to 3 statute miles visibility and 500 below, 1000 above, 2000 horizontal cloud clearance (FAR 91.155).",
+      "reference": "14 CFR 91.155(b)"
+    },
+    {
+      "id": "hard-004",
+      "question": "When is an alternate airport NOT required for an IFR flight plan (the '1-2-3 Rule')?",
+      "options": [
+        "If the destination has an instrument approach",
+        "If from 1 hour before to 1 hour after ETA, the ceiling is at least 2,000 feet and visibility is at least 3 statute miles",
+        "If from 1 hour before to 1 hour after ETA, the ceiling is at least 1,000 feet and visibility is at least 2 statute miles",
+        "If the destination has a TAF"
+      ],
+      "correctAnswer": 1,
+      "explanation": "An alternate is always required unless the destination has an IAP AND weather reports forecast, from 1 hour before to 1 hour after ETA, a ceiling of at least 2,000 feet above airport elevation and visibility of at least 3 statute miles.",
+      "reference": "14 CFR 91.169(b)"
+    },
+    {
+      "id": "hard-005",
+      "question": "According to the AIM, what does a 'Steady Green' light gun signal mean to an aircraft in flight?",
+      "options": [
+        "Cleared for takeoff",
+        "Cleared to land",
+        "Return for landing",
+        "Exercise extreme caution"
+      ],
+      "correctAnswer": 1,
+      "explanation": "For an aircraft in flight, Steady Green means 'Cleared to land'. On the ground, it means 'Cleared for takeoff'.",
+      "reference": "AIM 4-3-13 / 14 CFR 91.125"
+    },
+    {
+      "id": "hard-006",
+      "question": "Unless otherwise authorized, what is the maximum indicated airspeed underneath the shelf of Class B airspace?",
+      "options": [
+        "250 knots",
+        "200 knots",
+        "No limit",
+        "156 knots"
+      ],
+      "correctAnswer": 1,
+      "explanation": "FAR 91.117(c) states: No person may operate an aircraft in the airspace underlying a Class B airspace area designated for an airport or in a VFR corridor designated through such a Class B airspace area, at an indicated airspeed of more than 200 knots.",
+      "reference": "14 CFR 91.117(c)"
+    },
+    {
+      "id": "hard-007",
+      "question": "What is the transponder requirement for flying over Class C airspace?",
+      "options": [
+        "Mode C transponder is required above the ceiling and lateral boundaries of Class C up to 10,000 feet MSL",
+        "No transponder is required above Class C",
+        "Mode C is only required within the Class C itself",
+        "ADS-B Out is required, but not a transponder"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Unless otherwise authorized, a Mode C transponder is required in and above all Class C airspace up to 10,000 feet MSL. (See FAR 91.215(b)(4))",
+      "reference": "14 CFR 91.215(b)(4)"
+    },
+    {
+      "id": "hard-008",
+      "question": "Regarding oxygen requirements (91.211), at what altitude must the required minimum flight crew use supplemental oxygen for the entire duration of the flight?",
+      "options": [
+        "Above 12,500 feet MSL",
+        "Above 14,000 feet MSL",
+        "Above 15,000 feet MSL",
+        "Above 12,500 feet MSL after 30 minutes"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Above 14,000 feet MSL (cabin pressure altitude), the required minimum flight crew is required to use supplemental oxygen for the entire flight time at those altitudes. (12,500-14,000 is only after 30 mins).",
+      "reference": "14 CFR 91.211(a)(2)"
+    },
+    {
+      "id": "hard-009",
+      "question": "If an instrument currency (6 approaches, holding, intercepting/tracking) expires, how long is the 'grace period' during which a pilot can regain currency with a safety pilot before an IPC is required?",
+      "options": [
+        "6 months",
+        "12 months",
+        "24 months",
+        "90 days"
+      ],
+      "correctAnswer": 0,
+      "explanation": "After the initial 6 months of currency passes, you have a second 6-month period (grace period) to regain currency with a safety pilot/instructor. After that total 12 months (6+6), an Instrument Proficiency Check (IPC) is required.",
+      "reference": "14 CFR 61.57(c)"
+    },
+    {
+      "id": "hard-010",
+      "question": "In the METAR code 'R35L/2400V4000FT', what does the 'V' indicate?",
+      "options": [
+        "Vertical visibility",
+        "Variable visual range",
+        "Velocity",
+        "Very low visibility"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The 'V' indicates 'Variable'. The runway visual range for Runway 35 Left is variable between 2,400 feet and 4,000 feet.",
+      "reference": "AIM 7-1-30"
+    },
+    {
+      "id": "hard-011",
+      "question": "If you experience two-way radio communications failure while on an IFR flight plan in VFR conditions, what action should you take?",
+      "options": [
+        "Continue the flight under VFR and land as soon as practicable",
+        "Continue the flight according to the filed flight plan",
+        "Maintain the highest of the assigned, minimum, or expected altitude",
+        "Squawk 7600 and proceed to the alternate airport"
+      ],
+      "correctAnswer": 0,
+      "explanation": "If the failure occurs in VFR conditions, or if VFR conditions are encountered after the failure, each pilot shall continue the flight under VFR and land as soon as practicable.",
+      "reference": "14 CFR 91.185(b)"
+    },
+    {
+      "id": "hard-012",
+      "question": "Which transponder code indicates a lost communications situation?",
+      "options": [
+        "7500",
+        "7600",
+        "7700",
+        "7777"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Code 7600 is used to indicate a lost communications failure. 7500 is for hijacking, and 7700 is for general emergency.",
+      "reference": "AIM 6-4-1"
+    },
+    {
+      "id": "hard-013",
+      "question": "When operating VFR in level cruising flight at more than 3,000 feet AGL, on a magnetic course of 175 degrees, what is the appropriate altitude?",
+      "options": [
+        "Odd thousand plus 500 feet (e.g., 3,500, 5,500)",
+        "Even thousand plus 500 feet (e.g., 4,500, 6,500)",
+        "Odd thousand feet (e.g., 3,000, 5,000)",
+        "Any altitude as long as VFR weather minimums are maintained"
+      ],
+      "correctAnswer": 0,
+      "explanation": "On a magnetic course of 0 degrees through 179 degrees (Easterly), fly at an odd thousand foot MSL altitude plus 500 feet.",
+      "reference": "14 CFR 91.159(a)"
+    },
+    {
+      "id": "hard-014",
+      "question": "No person may act as a crewmember of a civil aircraft within how many hours after the consumption of any alcoholic beverage?",
+      "options": [
+        "8 hours",
+        "12 hours",
+        "24 hours",
+        "48 hours"
+      ],
+      "correctAnswer": 0,
+      "explanation": "FAR 91.17(a) prohibits acting as a crewmember within 8 hours after the consumption of any alcoholic beverage.",
+      "reference": "14 CFR 91.17(a)(1)"
+    },
+    {
+      "id": "hard-015",
+      "question": "When two aircraft of different categories are converging at approximately the same altitude (except head-on), which aircraft has the right-of-way?",
+      "options": [
+        "The aircraft to the other's right",
+        "The faster aircraft",
+        "The less maneuverable aircraft",
+        "The aircraft on a flight plan"
+      ],
+      "correctAnswer": 2,
+      "explanation": "If the aircraft are of different categories, the following applies: Balloon > Glider > Airship > Airplane/Rotorcraft. Generally, the less maneuverable aircraft has the right-of-way.",
+      "reference": "14 CFR 91.113(d)"
+    },
+    {
+      "id": "hard-016",
+      "question": "When must aircraft position lights be turned on?",
+      "options": [
+        "From sunset to sunrise",
+        "From 1 hour after sunset to 1 hour before sunrise",
+        "From end of evening civil twilight to beginning of morning civil twilight",
+        "Only when visibility is less than 3 miles"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Position lights are required from sunset to sunrise. This differs from the logging of night flight time (end of civil twilight) or night passenger currency (1 hour after sunset).",
+      "reference": "14 CFR 91.209(a)"
+    },
+    {
+      "id": "hard-017",
+      "question": "What is the minimum visibility requirement for VFR flight in Class E airspace at or above 10,000 feet MSL?",
+      "options": [
+        "3 statute miles",
+        "5 statute miles",
+        "1 statute mile",
+        "Clear of clouds"
+      ],
+      "correctAnswer": 1,
+      "explanation": "In Class E airspace at or above 10,000 feet MSL, the visibility requirement increases to 5 statute miles.",
+      "reference": "14 CFR 91.155(a)"
+    },
+    {
+      "id": "hard-018",
+      "question": "Which of the following is considered 'preventive maintenance' that may be performed by a private pilot?",
+      "options": [
+        "Replacing a fuel pump",
+        "Replacing a tire",
+        "Repairing a propeller blade",
+        "Disassembling a cylinder"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Replacing a tire is listed in Part 43 Appendix A(c) as preventive maintenance. Replacing a fuel pump or repairing a prop are generally not.",
+      "reference": "14 CFR Part 43 Appendix A(c)"
+    },
+    {
+      "id": "hard-019",
+      "question": "How long is a standard Aircraft Registration Certificate generally valid for?",
+      "options": [
+        "1 year",
+        "3 years",
+        "Indefinitely",
+        "Until the aircraft is sold"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Aircraft registration expires three years after the last day of the month in which it was issued.",
+      "reference": "14 CFR 47.40"
+    },
+    {
+      "id": "hard-020",
+      "question": "Which of the following incidents requires IMMEDIATE notification to the NTSB?",
+      "options": [
+        "A flat tire on landing",
+        "Flight control system malfunction or failure",
+        "Engine failure during taxi",
+        "Radio failure"
+      ],
+      "correctAnswer": 1,
+      "explanation": "NTSB 830.5 requires immediate notification for specific incidents, including flight control system malfunction or failure.",
+      "reference": "49 CFR 830.5(a)(1)"
+    }
+  ]
+}

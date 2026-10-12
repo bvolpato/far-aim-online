@@ -1,0 +1,411 @@
+{
+  "part": 107,
+  "title": "SMALL UNMANNED AIRCRAFT SYSTEMS",
+  "cfr": "14 CFR Part 107",
+  "source": "eCFR",
+  "url": "https://www.ecfr.gov/current/title-14/part-107",
+  "subchapter": "F",
+  "subchapterTitle": "Air Traffic and General Operating Rules",
+  "effectiveDate": "2026-07-24",
+  "subparts": [
+    {
+      "subpart": "A",
+      "title": "General",
+      "sections": [
+        {
+          "section": "107.1",
+          "title": "Applicability",
+          "content": "(a) Except as provided in paragraph (b) of this section, this part applies to the registration, airman certification, and operation of civil small unmanned aircraft systems within the United States. This part also applies to the eligibility of civil small unmanned aircraft systems to operate over human beings in the United States.\n\n(b) This part does not apply to the following:\n\n(1) Air carrier operations;\n\n(2) Any aircraft subject to the provisions of 49 U.S.C. 44809;\n\n(3) Any operation that the holder of an exemption under section 333 of Public Law 112-95 or 49 U.S.C. 44807 elects to conduct pursuant to the exemption, unless otherwise specified in the exemption; or\n\n(4) Any operation that a person elects to conduct under part 91 of this chapter with a small unmanned aircraft system that has been issued an airworthiness certificate.\n\n[Amdt. 107-8, 86 FR 4381, Jan. 15, 2021]",
+          "figures": []
+        },
+        {
+          "section": "107.2",
+          "title": "Applicability of certification procedures for products and articles",
+          "content": "The provisions of part 21 of this chapter do not apply to small unmanned aircraft systems operated under this part unless the small unmanned aircraft system will operate over human beings in accordance with § 107.140.\n\n[Amdt. 107-8, 86 FR 4381, Jan. 15, 2021]",
+          "figures": []
+        },
+        {
+          "section": "107.3",
+          "title": "Definitions",
+          "content": "The following definitions apply to this part. If there is a conflict between the definitions of this part and definitions specified in § 1.1 of this chapter, the definitions in this part control for purposes of this part:\n\n*Control station* means an interface used by the remote pilot to control the flight path of the small unmanned aircraft.\n\n*Corrective lenses* means spectacles or contact lenses.\n\n*Declaration of compliance* means a record submitted to the FAA that certifies the small unmanned aircraft conforms to the Category 2 or Category 3 requirements under subpart D of this part.\n\n*Small unmanned aircraft* means an unmanned aircraft weighing less than 55 pounds on takeoff, including everything that is on board or otherwise attached to the aircraft.\n\n*Small unmanned aircraft system (small UAS)* means a small unmanned aircraft and its associated elements (including communication links and the components that control the small unmanned aircraft) that are required for the safe and efficient operation of the small unmanned aircraft in the national airspace system.\n\n*Unmanned aircraft* means an aircraft operated without the possibility of direct human intervention from within or on the aircraft.\n\n*Visual observer* means a person who is designated by the remote pilot in command to assist the remote pilot in command and the person manipulating the flight controls of the small UAS to see and avoid other air traffic or objects aloft or on the ground.\n\n[Docket FAA-2015-0150, Amdt. 107-1, 81 FR 42209, June 28, 2016, as amended by Amdt. 107-8, 86 FR 4381, Jan. 15, 2021]",
+          "figures": []
+        },
+        {
+          "section": "107.5",
+          "title": "[Reserved]",
+          "content": "",
+          "figures": []
+        },
+        {
+          "section": "107.7",
+          "title": "Inspection, testing, and demonstration of compliance",
+          "content": "(a) A remote pilot in command, owner, or person manipulating the flight controls of a small unmanned aircraft system must-\n\n(1) Have in that person's physical possession and readily accessible the remote pilot certificate with a small UAS rating and identification when exercising the privileges of that remote pilot certificate.\n\n(2) Present his or her remote pilot certificate with a small UAS rating and identification that contains the information listed at § 107.67 (b)(1) through (3) for inspection upon a request from-\n\n(i) The Administrator;\n\n(ii) An authorized representative of the National Transportation Safety Board;\n\n(iii) Any Federal, State, or local law enforcement officer; or\n\n(iv) An authorized representative of the Transportation Security Administration.\n\n(3) Make available, upon request, to the Administrator any document, record, or report required to be kept under the regulations of this chapter.\n\n(b) The remote pilot in command, visual observer, owner, operator, or person manipulating the flight controls of a small unmanned aircraft system must, upon request, allow the Administrator to make any test or inspection of the small unmanned aircraft system, the remote pilot in command, the person manipulating the flight controls of a small unmanned aircraft system, and, if applicable, the visual observer to determine compliance with this part.\n\n(c) Any person holding an FAA-accepted declaration of compliance under subpart D of this part must, upon request, make available to the Administrator:\n\n(1) The declaration of compliance required under subpart D of this part; and\n\n(2) Any other document, record, or report required to be kept under the regulations of this chapter.\n\n(d) Any person holding an FAA-accepted declaration of compliance under subpart D of this part must, upon request, allow the Administrator to inspect its facilities, technical data, and any manufactured small UAS and witness any tests necessary to determine compliance with that subpart.\n\n[Amdt. 107-8, 86 FR 4381, Jan. 15, 2021]",
+          "figures": []
+        },
+        {
+          "section": "107.9",
+          "title": "Safety event reporting",
+          "content": "No later than 10 calendar days after an operation that meets the criteria of either paragraph (a) or (b) of this section, a remote pilot in command must report to the FAA, in a manner acceptable to the Administrator, any operation of the small unmanned aircraft involving at least:\n\n(a) Serious injury to any person or any loss of consciousness; or\n\n(b) Damage to any property, other than the small unmanned aircraft, unless one of the following conditions is satisfied:\n\n(1) The cost of repair (including materials and labor) does not exceed $500; or\n\n(2) The fair market value of the property does not exceed $500 in the event of total loss.\n\n[Docket FAA-2015-0150, Amdt. 107-1, 81 FR 42209, June 28, 2016, as amended by Docket FAA-2022-1355, Amdt. 107-10, 87 FR 75846, Dec. 9 2022]",
+          "figures": []
+        }
+      ]
+    },
+    {
+      "subpart": "B",
+      "title": "Operating Rules",
+      "sections": [
+        {
+          "section": "107.11",
+          "title": "Applicability",
+          "content": "This subpart applies to the operation of all civil small unmanned aircraft systems subject to this part.",
+          "figures": []
+        },
+        {
+          "section": "107.12",
+          "title": "Requirement for a remote pilot certificate with a small UAS rating",
+          "content": "(a) Except as provided in paragraph (c) of this section, no person may manipulate the flight controls of a small unmanned aircraft system unless:\n\n(1) That person has a remote pilot certificate with a small UAS rating issued pursuant to subpart C of this part and satisfies the requirements of § 107.65; or\n\n(2) That person is under the direct supervision of a remote pilot in command and the remote pilot in command has the ability to immediately take direct control of the flight of the small unmanned aircraft.\n\n(b) Except as provided in paragraph (c) of this section, no person may act as a remote pilot in command unless that person has a remote pilot certificate with a small UAS rating issued pursuant to Subpart C of this part and satisfies the requirements of § 107.65.\n\n(c) The Administrator may, consistent with international standards, authorize an airman to operate a civil foreign-registered small unmanned aircraft without an FAA-issued remote pilot certificate with a small UAS rating.",
+          "figures": []
+        },
+        {
+          "section": "107.13",
+          "title": "Registration",
+          "content": "A person operating a civil small unmanned aircraft system for purposes of flight must comply with the provisions of § 91.203 (a)(2) of this chapter.",
+          "figures": []
+        },
+        {
+          "section": "107.15",
+          "title": "Condition for safe operation",
+          "content": "(a) No person may operate a civil small unmanned aircraft system unless it is in a condition for safe operation. Prior to each flight, the remote pilot in command must check the small unmanned aircraft system to determine whether it is in a condition for safe operation.\n\n(b) No person may continue flight of the small unmanned aircraft when he or she knows or has reason to know that the small unmanned aircraft system is no longer in a condition for safe operation.",
+          "figures": []
+        },
+        {
+          "section": "107.17",
+          "title": "Medical condition",
+          "content": "No person may manipulate the flight controls of a small unmanned aircraft system or act as a remote pilot in command, visual observer, or direct participant in the operation of the small unmanned aircraft if he or she knows or has reason to know that he or she has a physical or mental condition that would interfere with the safe operation of the small unmanned aircraft system.",
+          "figures": []
+        },
+        {
+          "section": "107.19",
+          "title": "Remote pilot in command",
+          "content": "(a) A remote pilot in command must be designated before or during the flight of the small unmanned aircraft.\n\n(b) The remote pilot in command is directly responsible for and is the final authority as to the operation of the small unmanned aircraft system.\n\n(c) The remote pilot in command must ensure that the small unmanned aircraft will pose no undue hazard to other people, other aircraft, or other property in the event of a loss of control of the small unmanned aircraft for any reason.\n\n(d) The remote pilot in command must ensure that the small UAS operation complies with all applicable regulations of this chapter.\n\n(e) The remote pilot in command must have the ability to direct the small unmanned aircraft to ensure compliance with the applicable provisions of this chapter.\n\n[Docket FAA-2015-0150, Amdt. 107-1, 81 FR 42209, June 28, 2016, as amended by Amdt. 107-8, 86 FR 4382, Jan. 15, 2021]",
+          "figures": []
+        },
+        {
+          "section": "107.21",
+          "title": "In-flight emergency",
+          "content": "(a) In an in-flight emergency requiring immediate action, the remote pilot in command may deviate from any rule of this part to the extent necessary to meet that emergency.\n\n(b) Each remote pilot in command who deviates from a rule under paragraph (a) of this section must, upon request of the Administrator, send a written report of that deviation to the Administrator.",
+          "figures": []
+        },
+        {
+          "section": "107.23",
+          "title": "Hazardous operation",
+          "content": "No person may:\n\n(a) Operate a small unmanned aircraft system in a careless or reckless manner so as to endanger the life or property of another; or\n\n(b) Allow an object to be dropped from a small unmanned aircraft in a manner that creates an undue hazard to persons or property.",
+          "figures": []
+        },
+        {
+          "section": "107.25",
+          "title": "Operation from a moving vehicle or aircraft",
+          "content": "No person may operate a small unmanned aircraft system-\n\n(a) From a moving aircraft; or\n\n(b) From a moving land or water-borne vehicle unless the small unmanned aircraft is flown over a sparsely populated area and is not transporting another person's property for compensation or hire.",
+          "figures": []
+        },
+        {
+          "section": "107.27",
+          "title": "Alcohol or drugs",
+          "content": "A person manipulating the flight controls of a small unmanned aircraft system or acting as a remote pilot in command or visual observer must comply with the provisions of §§ 91.17 and 91.19 of this chapter.",
+          "figures": []
+        },
+        {
+          "section": "107.29",
+          "title": "Operation at night",
+          "content": "(a) Except as provided in paragraph (d) of this section, no person may operate a small unmanned aircraft system at night unless-\n\n(1) The remote pilot in command of the small unmanned aircraft has completed an initial knowledge test or training, as applicable, under § 107.65 after April 6, 2021; and\n\n(2) The small unmanned aircraft has lighted anti-collision lighting visible for at least 3 statute miles that has a flash rate sufficient to avoid a collision. The remote pilot in command may reduce the intensity of, but may not extinguish, the anti-collision lighting if he or she determines that, because of operating conditions, it would be in the interest of safety to do so.\n\n(b) No person may operate a small unmanned aircraft system during periods of civil twilight unless the small unmanned aircraft has lighted anti-collision lighting visible for at least 3 statute miles that has a flash rate sufficient to avoid a collision. The remote pilot in command may reduce the intensity of, but may not extinguish, the anti-collision lighting if he or she determines that, because of operating conditions, it would be in the interest of safety to do so.\n\n(c) For purposes of paragraph (b) of this section, civil twilight refers to the following:\n\n(1) Except for Alaska, a period of time that begins 30 minutes before official sunrise and ends at official sunrise;\n\n(2) Except for Alaska, a period of time that begins at official sunset and ends 30 minutes after official sunset; and\n\n(3) In Alaska, the period of civil twilight as defined in the Air Almanac.\n\n(d) After May 17, 2021, no person may operate a small unmanned aircraft system at night in accordance with a certificate of waiver issued prior to April 21, 2021 under § 107.200. The certificates of waiver issued prior to March 16, 2021 under § 107.200 that authorize deviation from § 107.29 terminate on May 17, 2021.\n\n[Docket FAA-2015-0150, Amdt. 107-1, 81 FR 42209, June 28, 2016, as amended by Amdt. 107-8, 86 FR 4382, Jan. 15, 2021; 86 FR 13631, Mar. 10, 2020]",
+          "figures": []
+        },
+        {
+          "section": "107.31",
+          "title": "Visual line of sight aircraft operation",
+          "content": "(a) With vision that is unaided by any device other than corrective lenses, the remote pilot in command, the visual observer (if one is used), and the person manipulating the flight control of the small unmanned aircraft system must be able to see the unmanned aircraft throughout the entire flight in order to:\n\n(1) Know the unmanned aircraft's location;\n\n(2) Determine the unmanned aircraft's attitude, altitude, and direction of flight;\n\n(3) Observe the airspace for other air traffic or hazards; and\n\n(4) Determine that the unmanned aircraft does not endanger the life or property of another.\n\n(b) Throughout the entire flight of the small unmanned aircraft, the ability described in paragraph (a) of this section must be exercised by either:\n\n(1) The remote pilot in command and the person manipulating the flight controls of the small unmanned aircraft system; or\n\n(2) A visual observer.",
+          "figures": []
+        },
+        {
+          "section": "107.33",
+          "title": "Visual observer",
+          "content": "If a visual observer is used during the aircraft operation, all of the following requirements must be met:\n\n(a) The remote pilot in command, the person manipulating the flight controls of the small unmanned aircraft system, and the visual observer must maintain effective communication with each other at all times.\n\n(b) The remote pilot in command must ensure that the visual observer is able to see the unmanned aircraft in the manner specified in § 107.31.\n\n(c) The remote pilot in command, the person manipulating the flight controls of the small unmanned aircraft system, and the visual observer must coordinate to do the following:\n\n(1) Scan the airspace where the small unmanned aircraft is operating for any potential collision hazard; and\n\n(2) Maintain awareness of the position of the small unmanned aircraft through direct visual observation.",
+          "figures": []
+        },
+        {
+          "section": "107.35",
+          "title": "Operation of multiple small unmanned aircraft",
+          "content": "A person may not manipulate flight controls or act as a remote pilot in command or visual observer in the operation of more than one unmanned aircraft at the same time.\n\n[Amdt. 107-8, 86 FR 4382, Jan. 15, 2021]",
+          "figures": []
+        },
+        {
+          "section": "107.36",
+          "title": "Carriage of hazardous material",
+          "content": "A small unmanned aircraft may not carry hazardous material. For purposes of this section, the term hazardous material is defined in 49 CFR 171.8.",
+          "figures": []
+        },
+        {
+          "section": "107.37",
+          "title": "Operation near aircraft; right-of-way rules",
+          "content": "(a) Each small unmanned aircraft must yield the right of way to all aircraft, airborne vehicles, and launch and reentry vehicles. Yielding the right of way means that the small unmanned aircraft must give way to the aircraft or vehicle and may not pass over, under, or ahead of it unless well clear.\n\n(b) No person may operate a small unmanned aircraft so close to another aircraft as to create a collision hazard.",
+          "figures": []
+        },
+        {
+          "section": "107.39",
+          "title": "Operation over human beings",
+          "content": "No person may operate a small unmanned aircraft over a human being unless-\n\n(a) That human being is directly participating in the operation of the small unmanned aircraft;\n\n(b) That human being is located under a covered structure or inside a stationary vehicle that can provide reasonable protection from a falling small unmanned aircraft; or\n\n(c) The operation meets the requirements of at least one of the operational categories specified in subpart D of this part.\n\n[Amdt. 107-8, 86 FR 4382, Jan. 15, 2021]",
+          "figures": []
+        },
+        {
+          "section": "107.41",
+          "title": "Operation in certain airspace",
+          "content": "No person may operate a small unmanned aircraft in Class B, Class C, or Class D airspace or within the lateral boundaries of the surface area of Class E airspace designated for an airport unless that person has prior authorization from Air Traffic Control (ATC).",
+          "figures": []
+        },
+        {
+          "section": "107.43",
+          "title": "Operation in the vicinity of airports",
+          "content": "No person may operate a small unmanned aircraft in a manner that interferes with operations and traffic patterns at any airport, heliport, or seaplane base.",
+          "figures": []
+        },
+        {
+          "section": "107.45",
+          "title": "Operation in prohibited or restricted areas",
+          "content": "No person may operate a small unmanned aircraft in prohibited or restricted areas unless that person has permission from the using or controlling agency, as appropriate.",
+          "figures": []
+        },
+        {
+          "section": "107.47",
+          "title": "Flight restrictions in the proximity of certain areas designated by notice to airmen",
+          "content": "A person acting as a remote pilot in command must comply with the provisions of §§ 91.137 through 91.145 and 99.7 of this chapter.",
+          "figures": []
+        },
+        {
+          "section": "107.49",
+          "title": "Preflight familiarization, inspection, and actions for aircraft operation",
+          "content": "Prior to flight, the remote pilot in command must:\n\n(a) Assess the operating environment, considering risks to persons and property in the immediate vicinity both on the surface and in the air. This assessment must include:\n\n(1) Local weather conditions;\n\n(2) Local airspace and any flight restrictions;\n\n(3) The location of persons and property on the surface; and\n\n(4) Other ground hazards.\n\n(b) Ensure that all persons directly participating in the small unmanned aircraft operation are informed about the operating conditions, emergency procedures, contingency procedures, roles and responsibilities, and potential hazards;\n\n(c) Ensure that all control links between ground control station and the small unmanned aircraft are working properly;\n\n(d) If the small unmanned aircraft is powered, ensure that there is enough available power for the small unmanned aircraft system to operate for the intended operational time;\n\n(e) Ensure that any object attached or carried by the small unmanned aircraft is secure and does not adversely affect the flight characteristics or controllability of the aircraft; and\n\n(f) If the operation will be conducted over human beings under subpart D of this part, ensure that the aircraft meets the requirements of § 107.110, § 107.120 (a), § 107.130 (a), or § 107.140, as applicable.\n\n[Docket FAA-2015-0150, Amdt. 107-1, 81 FR 42209, June 28, 2016, as amended by Amdt. 107-8, 86 FR 4382, Jan. 15, 2021]",
+          "figures": []
+        },
+        {
+          "section": "107.51",
+          "title": "Operating limitations for small unmanned aircraft",
+          "content": "A remote pilot in command and the person manipulating the flight controls of the small unmanned aircraft system must comply with all of the following operating limitations when operating a small unmanned aircraft system:\n\n(a) The groundspeed of the small unmanned aircraft may not exceed 87 knots (100 miles per hour).\n\n(b) The altitude of the small unmanned aircraft cannot be higher than 400 feet above ground level, unless the small unmanned aircraft:\n\n(1) Is flown within a 400-foot radius of a structure; and\n\n(2) Does not fly higher than 400 feet above the structure's immediate uppermost limit.\n\n(c) The minimum flight visibility, as observed from the location of the control station must be no less than 3 statute miles. For purposes of this section, flight visibility means the average slant distance from the control station at which prominent unlighted objects may be seen and identified by day and prominent lighted objects may be seen and identified by night.\n\n(d) The minimum distance of the small unmanned aircraft from clouds must be no less than:\n\n(1) 500 feet below the cloud; and\n\n(2) 2,000 feet horizontally from the cloud.",
+          "figures": []
+        }
+      ]
+    },
+    {
+      "subpart": "C",
+      "title": "Remote Pilot Certification",
+      "sections": [
+        {
+          "section": "107.52",
+          "title": "ATC transponder equipment prohibition",
+          "content": "Unless otherwise authorized by the Administrator, no person may operate a small unmanned aircraft system under this part with a transponder on.\n\n[Amdt. 107-7, 86 FR 4513, Jan. 15, 2021]",
+          "figures": []
+        },
+        {
+          "section": "107.53",
+          "title": "Automatic Dependent Surveillance-Broadcast (ADS-B) Out prohibition",
+          "content": "Unless otherwise authorized by the Administrator, no person may operate a small unmanned aircraft system under this part with ADS-B Out equipment in transmit mode.\n\n[Amdt. 107-7, 86 FR 4513, Jan. 15, 2021]",
+          "figures": []
+        },
+        {
+          "section": "107.56",
+          "title": "Applicability",
+          "content": "This subpart prescribes the requirements for issuing a remote pilot certificate with a small UAS rating.\n\n[ Docket FAA-2015-0150, Amdt. 107-1, 81 FR 42209, June 28, 2016. Redesignated by Amdt. 107-7, 86 FR 4513, Jan. 15, 2021]",
+          "figures": []
+        },
+        {
+          "section": "107.57",
+          "title": "Offenses involving alcohol or drugs",
+          "content": "(a) A conviction for the violation of any Federal or State statute relating to the growing, processing, manufacture, sale, disposition, possession, transportation, or importation of narcotic drugs, marijuana, or depressant or stimulant drugs or substances is grounds for:\n\n(1) Denial of an application for a remote pilot certificate with a small UAS rating for a period of up to 1 year after the date of final conviction; or\n\n(2) Suspension or revocation of a remote pilot certificate with a small UAS rating.\n\n(b) Committing an act prohibited by § 91.17 (a) or § 91.19 (a) of this chapter is grounds for:\n\n(1) Denial of an application for a remote pilot certificate with a small UAS rating for a period of up to 1 year after the date of that act; or\n\n(2) Suspension or revocation of a remote pilot certificate with a small UAS rating.",
+          "figures": []
+        },
+        {
+          "section": "107.59",
+          "title": "Refusal to submit to an alcohol test or to furnish test results",
+          "content": "A refusal to submit to a test to indicate the percentage by weight of alcohol in the blood, when requested by a law enforcement officer in accordance with § 91.17 (c) of this chapter, or a refusal to furnish or authorize the release of the test results requested by the Administrator in accordance with § 91.17 (c) or (d) of this chapter, is grounds for:\n\n(a) Denial of an application for a remote pilot certificate with a small UAS rating for a period of up to 1 year after the date of that refusal; or\n\n(b) Suspension or revocation of a remote pilot certificate with a small UAS rating.",
+          "figures": []
+        },
+        {
+          "section": "107.61",
+          "title": "Eligibility",
+          "content": "Subject to the provisions of §§ 107.57 and 107.59, in order to be eligible for a remote pilot certificate with a small UAS rating under this subpart, a person must:\n\n(a) Be at least 16 years of age;\n\n(b) Be able to read, speak, write, and understand the English language. If the applicant is unable to meet one of these requirements due to medical reasons, the FAA may place such operating limitations on that applicant's certificate as are necessary for the safe operation of the small unmanned aircraft;\n\n(c) Not know or have reason to know that he or she has a physical or mental condition that would interfere with the safe operation of a small unmanned aircraft system; and\n\n(d) Demonstrate aeronautical knowledge by satisfying one of the following conditions, in a manner acceptable to the Administrator:\n\n(1) Pass an initial aeronautical knowledge test covering the areas of knowledge specified in § 107.73; or\n\n(2) If a person holds a pilot certificate (other than a student pilot certificate) issued under part 61 of this chapter and meets the flight review requirements specified in § 61.56, complete training covering the areas of knowledge specified in § 107.74.\n\n[Docket FAA-2015-0150, Amdt. 107-1, 81 FR 42209, June 28, 2016, as amended by Amdt. 107-8, 86 FR 4382, Jan. 15, 2021]",
+          "figures": []
+        },
+        {
+          "section": "107.63",
+          "title": "Issuance of a remote pilot certificate with a small UAS rating",
+          "content": "An applicant for a remote pilot certificate with a small UAS rating under this subpart must make the application in a form and manner acceptable to the Administrator.\n\n(a) The application must include either:\n\n(1) Evidence showing that the applicant passed an initial aeronautical knowledge test. If applying using a paper application, this evidence must be an airman knowledge test report showing passage of the knowledge test; or\n\n(2) If a person holds a pilot certificate (other than a student pilot certificate) issued under part 61 of this chapter and meets the flight review requirements specified in § 61.56, a certificate of completion of an initial training course under this part that covers the areas of knowledge specified in § 107.74.\n\n(b) If the application is being made pursuant to paragraph (a) (2) of this section:\n\n(1) The application must be submitted to the responsible Flight Standards office, a designated pilot examiner, an airman certification representative for a pilot school, a certificated flight instructor, or other person authorized by the Administrator;\n\n(2) The person accepting the application submission must verify the identity of the applicant in a manner acceptable to the Administrator; and\n\n(3) The person making the application must, by logbook endorsement or other manner acceptable to the Administrator, show the applicant meets the flight review requirements specified in § 61.56 of this chapter.\n\n[Docket FAA-2015-0150, Amdt. 107-1, 81 FR 42209, June 28, 2016, as amended by Docket FAA-2018-0119, Amdt. 107-2, 83 FR 9172, Mar. 5, 2018; Amdt. 107-8, 86 FR 4382, Jan. 15, 2021]\n]",
+          "figures": []
+        },
+        {
+          "section": "107.64",
+          "title": "Temporary certificate",
+          "content": "(a) A temporary remote pilot certificate with a small UAS rating is issued for up to 120 calendar days, at which time a permanent certificate will be issued to a person whom the Administrator finds qualified under this part.\n\n(b) A temporary remote pilot certificate with a small UAS rating expires:\n\n(1) On the expiration date shown on the certificate;\n\n(2) Upon receipt of the permanent certificate; or\n\n(3) Upon receipt of a notice that the certificate sought is denied or revoked.",
+          "figures": []
+        },
+        {
+          "section": "107.65",
+          "title": "Aeronautical knowledge recency",
+          "content": "A person may not exercise the privileges of a remote pilot in command with small UAS rating unless that person has accomplished one of the following in a manner acceptable to the Administrator within the previous 24 calendar months:\n\n(a) Passed an initial aeronautical knowledge test covering the areas of knowledge specified in § 107.73;\n\n(b) Completed recurrent training covering the areas of knowledge specified in § 107.73; or\n\n(c) If a person holds a pilot certificate (other than a student pilot certificate) issued under part 61 of this chapter and meets the flight review requirements specified in § 61.56, completed training covering the areas of knowledge specified in § 107.74.\n\n(d) A person who has passed a recurrent aeronautical knowledge test in a manner acceptable to the Administrator or who has satisfied the training requirement of paragraph (c) of this section prior to April 6, 2021 within the previous 24 calendar months is considered to be in compliance with the requirement of paragraph (b) or (c) of this section, as applicable.\n\n[Amdt. 107-8, 86 FR 4382, Jan. 15, 2021; 86 FR 13631, Mar. 10, 2021]",
+          "figures": []
+        },
+        {
+          "section": "107.67",
+          "title": "Knowledge tests: General procedures and passing grades",
+          "content": "(a) Knowledge tests prescribed by or under this part are given by persons and in the manner designated by the Administrator.\n\n(b) An applicant for a knowledge test must have proper identification at the time of application that contains the applicant's:\n\n(1) Photograph;\n\n(2) Signature;\n\n(3) Date of birth, which shows the applicant meets or will meet the age requirements of this part for the certificate and rating sought before the expiration date of the airman knowledge test report; and\n\n(4) Permanent mailing address. If the applicant's permanent mailing address is a post office box number, then the applicant must also provide a current residential address.\n\n(c) The minimum passing grade for the knowledge test will be specified by the Administrator.",
+          "figures": []
+        },
+        {
+          "section": "107.69",
+          "title": "Knowledge tests: Cheating or other unauthorized conduct",
+          "content": "(a) An applicant for a knowledge test may not:\n\n(1) Copy or intentionally remove any knowledge test;\n\n(2) Give to another applicant or receive from another applicant any part or copy of a knowledge test;\n\n(3) Give or receive assistance on a knowledge test during the period that test is being given;\n\n(4) Take any part of a knowledge test on behalf of another person;\n\n(5) Be represented by, or represent, another person for a knowledge test;\n\n(6) Use any material or aid during the period that the test is being given, unless specifically authorized to do so by the Administrator; and\n\n(7) Intentionally cause, assist, or participate in any act prohibited by this paragraph.\n\n(b) An applicant who the Administrator finds has committed an act prohibited by paragraph (a) of this section is prohibited, for 1 year after the date of committing that act, from:\n\n(1) Applying for any certificate, rating, or authorization issued under this chapter; and\n\n(2) Applying for and taking any test under this chapter.\n\n(c) Any certificate or rating held by an applicant may be suspended or revoked if the Administrator finds that person has committed an act prohibited by paragraph (a) of this section.",
+          "figures": []
+        },
+        {
+          "section": "107.71",
+          "title": "Retesting after failure",
+          "content": "An applicant for a knowledge test who fails that test may not reapply for the test for 14 calendar days after failing the test.",
+          "figures": []
+        },
+        {
+          "section": "107.73",
+          "title": "Knowledge and training",
+          "content": "An initial aeronautical knowledge test and recurrent training covers the following areas of knowledge:\n\n(a) Applicable regulations relating to small unmanned aircraft system rating privileges, limitations, and flight operation;\n\n(b) Airspace classification, operating requirements, and flight restrictions affecting small unmanned aircraft operation;\n\n(c) Aviation weather sources and effects of weather on small unmanned aircraft performance;\n\n(d) Small unmanned aircraft loading;\n\n(e) Emergency procedures;\n\n(f) Crew resource management;\n\n(g) Radio communication procedures;\n\n(h) Determining the performance of the small unmanned aircraft;\n\n(i) Physiological effects of drugs and alcohol;\n\n(j) Aeronautical decision-making and judgment;\n\n(k) Airport operations;\n\n(l) Maintenance and preflight inspection procedures; and\n\n(m) Operation at night.\n\n[Amdt. 107-8, 86 FR 4383, Jan. 15, 2021]",
+          "figures": []
+        },
+        {
+          "section": "107.74",
+          "title": "Small unmanned aircraft system training",
+          "content": "Training for pilots who hold a pilot certificate (other than a student pilot certificate) issued under part 61 of this chapter and meet the flight review requirements specified in § 61.56 covers the following areas of knowledge:\n\n(a) Applicable regulations relating to small unmanned aircraft system rating privileges, limitations, and flight operation;\n\n(b) Effects of weather on small unmanned aircraft performance;\n\n(c) Small unmanned aircraft loading;\n\n(d) Emergency procedures;\n\n(e) Crew resource management;\n\n(f) Determining the performance of the small unmanned aircraft;\n\n(g) Maintenance and preflight inspection procedures; and\n\n(h) Operation at night.\n\n[Amdt. 107-8, 86 FR 4383, Jan. 15, 2021]",
+          "figures": []
+        },
+        {
+          "section": "107.77",
+          "title": "Change of name or address",
+          "content": "(a) *Change of name.* An application to change the name on a certificate issued under this subpart must be accompanied by the applicant's:\n\n(1) Remote pilot certificate with small UAS rating; and\n\n(2) A copy of the marriage license, court order, or other document verifying the name change.\n\n(b) The documents in paragraph (a) of this section will be returned to the applicant after inspection.\n\n(c) *Change of address.* The holder of a remote pilot certificate with small UAS rating issued under this subpart who has made a change in permanent mailing address may not, after 30 days from that date, exercise the privileges of the certificate unless the holder has notified the FAA of the change in address using one of the following methods:\n\n(1) By letter to the FAA Airman Certification Branch, P.O. Box 25082, Oklahoma City, OK 73125 providing the new permanent mailing address, or if the permanent mailing address includes a post office box number, then the holder's current residential address; or\n\n(2) By using the FAA Web site portal at *www.faa.gov* providing the new permanent mailing address, or if the permanent mailing address includes a post office box number, then the holder's current residential address.",
+          "figures": []
+        },
+        {
+          "section": "107.79",
+          "title": "Voluntary surrender of certificate",
+          "content": "(a) The holder of a certificate issued under this subpart may voluntarily surrender it for cancellation.\n\n(b) Any request made under paragraph (a) of this section must include the following signed statement or its equivalent: \"I voluntarily surrender my remote pilot certificate with a small UAS rating for cancellation. This request is made for my own reasons, with full knowledge that my certificate will not be reissued to me unless I again complete the requirements specified in §§ 107.61 and 107.63.\"",
+          "figures": []
+        }
+      ]
+    },
+    {
+      "subpart": "D",
+      "title": "Operations Over Human Beings",
+      "sections": [
+        {
+          "section": "107.100",
+          "title": "Applicability",
+          "content": "This subpart prescribes the eligibility and operating requirements for civil small unmanned aircraft to operate over human beings or over moving vehicles in the United States, in addition to those operations permitted by § 107.39 (a) and (b).",
+          "figures": []
+        },
+        {
+          "section": "107.105",
+          "title": "Limitations on operations over human beings",
+          "content": "Except as provided in §§ 107.39 (a) and (b) and 107.145, a remote pilot in command may conduct operations over human beings only in accordance with the following, as applicable: § 107.110 for Category 1 operations; §§ 107.115 and 107.120 for Category 2 operations; §§ 107.125 and 107.130 for Category 3 operations; or § 107.140 for Category 4 operations.",
+          "figures": []
+        },
+        {
+          "section": "107.110",
+          "title": "Category 1 operations",
+          "content": "To conduct Category 1 operations-\n\n(a) A remote pilot in command must use a small unmanned aircraft that-\n\n(1) Weighs 0.55 pounds or less on takeoff and throughout the duration of each operation under Category 1, including everything that is on board or otherwise attached to the aircraft; and\n\n(2) Does not contain any exposed rotating parts that would lacerate human skin upon impact with a human being.\n\n(b) No remote pilot in command may operate a small unmanned aircraft in sustained flight over open-air assemblies of human beings unless the operation meets the requirements of either § 89.110 or § 89.115 (a) of this chapter.\n\n[Amdt. 107-8, 86 FR 4382, Jan. 15, 2021, as amended by 86 FR 62473, Nov. 10, 2021]",
+          "figures": []
+        },
+        {
+          "section": "107.115",
+          "title": "Category 2 operations: Operating requirements",
+          "content": "To conduct Category 2 operations-\n\n(a) A remote pilot in command must use a small unmanned aircraft that-\n\n(1) Is eligible for Category 2 operations pursuant to § 107.120 (a);\n\n(2) Is listed on an FAA-accepted declaration of compliance as eligible for Category 2 operations in accordance with § 107.160; and\n\n(3) Is labeled as eligible to conduct Category 2 operations in accordance with § 107.120 (b)(1).\n\n(b) No remote pilot in command may operate a small unmanned aircraft in sustained flight over open-air assemblies of human beings unless the operation meets the requirements of either § 89.110 or § 89.115 (a) of this chapter.",
+          "figures": []
+        },
+        {
+          "section": "107.120",
+          "title": "Category 2 operations: Eligibility of small unmanned aircraft and other applicant requirements",
+          "content": "(a) To be eligible for use in Category 2 operations, the small unmanned aircraft must be designed, produced, or modified such that it-\n\n(1) Will not cause injury to a human being that is equivalent to or greater than the severity of injury caused by a transfer of 11 foot-pounds of kinetic energy upon impact from a rigid object;\n\n(2) Does not contain any exposed rotating parts that would lacerate human skin upon impact with a human being; and\n\n(3) Does not contain any safety defects.\n\n(b) The applicant for a declaration of compliance for a small unmanned aircraft that is eligible for use in Category 2 operations in accordance with paragraph (a) of this section, must meet all of the following requirements for the applicant's unmanned aircraft to be used in Category 2 operations:\n\n(1) Display a label on the small unmanned aircraft indicating eligibility to conduct Category 2 operations. The label must be in English and be legible, prominent, and permanently affixed to the small unmanned aircraft.\n\n(2) Have remote pilot operating instructions that apply to the operation of the small unmanned aircraft system. The applicant for a declaration of compliance must make available these instructions upon sale or transfer of the aircraft or use of the aircraft by someone other than the applicant who submitted a declaration of compliance pursuant to § 107.160. Such instructions must address, at a minimum-\n\n(i) A system description that includes the required small unmanned aircraft system components, any system limitations, and the declared category or categories of operation;\n\n(ii) Modifications that will not change the ability of the small unmanned aircraft system to meet the requirements for the category or categories of operation the small unmanned aircraft system is eligible to conduct; and\n\n(iii) Instructions for how to verify and change the mode or configuration of the small unmanned aircraft system, if they are variable.\n\n(3) Maintain a product support and notification process. The applicant for a declaration of compliance must maintain product support and notification procedures to notify the public and the FAA of-\n\n(i) Any defect or condition that causes the small unmanned aircraft to no longer meet the requirements of this subpart; and\n\n(ii) Any identified safety defect that causes the small unmanned aircraft to exceed a low probability of casualty.",
+          "figures": []
+        },
+        {
+          "section": "107.125",
+          "title": "Category 3 operations: Operating requirements",
+          "content": "To conduct Category 3 operations, a remote pilot in command-\n\n(a) Must use a small unmanned aircraft that-\n\n(1) Is eligible for Category 3 operations pursuant to § 107.130 (a);\n\n(2) Is listed on an FAA-accepted declaration of compliance as eligible for Category 3 operations in accordance with § 107.160; and\n\n(3) Is labeled as eligible for Category 3 operations in accordance with § 107.130 (b)(1);\n\n(b) Must not operate the small unmanned aircraft over open-air assemblies of human beings; and\n\n(c) May only operate the small unmanned aircraft above any human being if operation meets one of the following conditions:\n\n(1) The operation is within or over a closed- or restricted-access site and all human beings located within the closed- or restricted-access site must be on notice that a small unmanned aircraft may fly over them; or\n\n(2) The small unmanned aircraft does not maintain sustained flight over any human being unless that human being is-\n\n(i) Directly participating in the operation of the small unmanned aircraft; or\n\n(ii) Located under a covered structure or inside a stationary vehicle that can provide reasonable protection from a falling small unmanned aircraft.\n\n[Amdt. 107-8, 86 FR 4382, Jan. 15, 2021, as amended by 86 FR 62473, Nov. 10, 2021]",
+          "figures": []
+        },
+        {
+          "section": "107.130",
+          "title": "Category 3 operations: Eligibility of small unmanned aircraft and other applicant requirements",
+          "content": "(a) To be eligible for use in Category 3 operations, the small unmanned aircraft must be designed, produced, or modified such that it-\n\n(1) Will not cause injury to a human being that is equivalent to or greater than the severity of the injury caused by a transfer of 25 foot-pounds of kinetic energy upon impact from a rigid object;\n\n(2) Does not contain any exposed rotating parts that would lacerate human skin upon impact with a human being; and\n\n(3) Does not contain any safety defects.\n\n(b) The applicant for a declaration of compliance for a small unmanned aircraft that is eligible for use in Category 3 operations in accordance with paragraph (a) of this section, must meet all of the following requirements for the applicant's small unmanned aircraft to be used in Category 3 operations:\n\n(1) Display a label on the small unmanned aircraft indicating eligibility to conduct Category 3 operations. The label must be in English and be legible, prominent, and permanently affixed to the small unmanned aircraft.\n\n(2) Have remote pilot operating instructions that apply to the operation of the small unmanned aircraft system. The applicant for a declaration of compliance must make available these instructions upon sale or transfer of the aircraft or use of the aircraft by someone other than the applicant who submitted a declaration of compliance pursuant to § 107.160. Such instructions must address, at a minimum-\n\n(i) A system description that includes the required small unmanned aircraft system components, any system limitations, and the declared category or categories of operation;\n\n(ii) Modifications that will not change the ability of the small unmanned aircraft system to meet the requirements for the category or categories of operation the small unmanned aircraft system is eligible to conduct; and\n\n(iii) Instructions for how to verify and change the mode or configuration of the small unmanned aircraft system, if they are variable.\n\n(3) Maintain a product support and notification process. The applicant for a declaration of compliance must maintain product support and notification procedures to notify the public and the FAA of-\n\n(i) Any defect or condition that causes the small unmanned aircraft to no longer meet the requirements of this subpart; and\n\n(ii) Any identified safety defect that causes the small unmanned aircraft to exceed a low probability of fatality.",
+          "figures": []
+        },
+        {
+          "section": "107.135",
+          "title": "Labeling by remote pilot in command for Category 2 and 3 operations",
+          "content": "If a Category 2 or Category 3 label affixed to a small unmanned aircraft is damaged, destroyed, or missing, a remote pilot in command must label the aircraft in English such that the label is legible, prominent, and will remain on the small unmanned aircraft for the duration of the operation before conducting operations over human beings. The label must correctly identify the category or categories of operation over human beings that the small unmanned aircraft is qualified to conduct in accordance with this subpart.",
+          "figures": []
+        },
+        {
+          "section": "107.140",
+          "title": "Category 4 operations",
+          "content": "(a) *Remote pilot in command requirements.* To conduct Category 4 operations-\n\n(1) A remote pilot in command-\n\n(i) Must use a small unmanned aircraft that is eligible for Category 4 operations pursuant to paragraph (b) of this section; and\n\n(ii) Must operate the small unmanned aircraft in accordance with all operating limitations that apply to the small unmanned aircraft, as specified by the Administrator.\n\n(2) No remote pilot in command may operate a small unmanned aircraft in sustained flight over open-air assemblies of human beings unless the operation meets the requirements of either § 89.110 or § 89.115 (a) of this chapter.\n\n(b) *Small unmanned aircraft requirements for Category 4.* To be eligible to operate over human beings under this section, the small unmanned aircraft must-\n\n(1) Have an airworthiness certificate issued under part 21 of this chapter.\n\n(2) Be operated in accordance with the operating limitations specified in the approved Flight Manual or as otherwise specified by the Administrator. The operating limitations must not prohibit operations over human beings.\n\n(3) Have maintenance, preventive maintenance, alterations, or inspections performed in accordance with paragraph (c) (1) of this section.\n\n(c) *Maintenance requirements for Category 4.* The owner must (unless the owner enters into an agreement with an operator to meet the requirements of this paragraph (c), then the operator must) meet the requirements of this paragraph (c):\n\n(1) Ensure the person performing any maintenance, preventive maintenance, alterations, or inspections:\n\n(i) Uses the methods, techniques, and practices prescribed in the manufacturer's current maintenance manual or Instructions for Continued Airworthiness that are acceptable to the Administrator, or other methods, techniques, and practices acceptable to the Administrator;\n\n(ii) Has the knowledge, skill, and appropriate equipment to perform the work;\n\n(iii) Performs the maintenance, preventive maintenance, or alterations on the small unmanned aircraft in a manner using the methods, techniques, and practices prescribed in the manufacturer's current maintenance manual or Instructions for Continued Airworthiness prepared by its manufacturer, or other methods, techniques, and practices acceptable to the Administrator;\n\n(iv) Inspects the small unmanned aircraft in accordance with the manufacturer's instructions or other instructions acceptable to the Administrator; and\n\n(v) Performs the maintenance, preventive maintenance, or alterations using parts of such a quality that the condition of the aircraft will be at least equal to its original or properly altered condition.\n\n(2) Maintain all records of maintenance, preventive maintenance, and alterations performed on the aircraft and ensure the records are documented in a manner acceptable to the Administrator. The records must contain the description of the work performed, the date the work was completed, and the name of the person who performed the work.\n\n(3) Maintain all records containing-\n\n(i) The status of life-limited parts that are installed on, or part of, the small unmanned aircraft;\n\n(ii) The inspection status of the aircraft; and\n\n(iii) The status of applicable airworthiness directives including the method of compliance, the airworthiness directive number, and revision date. If the airworthiness directive involves recurring action, the record must contain the time and date of the next required action.\n\n(4) Retain the records required under paragraphs (c) (2) and (3) of this section, as follows:\n\n(i) The records documenting maintenance, preventive maintenance, or alterations performed must be retained for 1 year from when the work is completed or until the maintenance is repeated or superseded by other work.\n\n(ii) The records documenting the status of life-limited parts, compliance with airworthiness directives, and inspection status of the small unmanned aircraft must be retained and transferred with the aircraft upon change in ownership.\n\n(5) Ensure all records under paragraphs (c) (2) and (3) of this section are available for inspection upon request from the Administrator or any authorized representative of the National Transportation Safety Board (NTSB).\n\n(d) *Compliance with parts 43 and 91 of this chapter.* Compliance with part 43 and part 91, subpart E, of this chapter fulfills the requirements in paragraphs (b) (3) and (c) of this section.\n\n[Amdt. 107-8, 86 FR 4383, Jan. 15, 2021; 86 FR 13633, Mar. 10, 2021]",
+          "figures": []
+        },
+        {
+          "section": "107.145",
+          "title": "Operations over moving vehicles",
+          "content": "No person may operate a small unmanned aircraft over a human being located inside a moving vehicle unless the following conditions are met:\n\n(a) The operation occurs in accordance with § 107.110 for Category 1 operations; § 107.115 for Category 2 operations; § 107.125 for Category 3 operations; or § 107.140 for Category 4 operations.\n\n(b) For an operation under Category 1, Category 2, or Category 3, the small unmanned aircraft, throughout the operation-\n\n(1) Must remain within or over a closed- or restricted-access site, and all human beings located inside a moving vehicle within the closed- or restricted-access site must be on notice that a small unmanned aircraft may fly over them; or\n\n(2) Must not maintain sustained flight over moving vehicles.\n\n(c) For a Category 4 operation, the small unmanned aircraft must-\n\n(1) Have an airworthiness certificate issued under part 21 of this chapter.\n\n(2) Be operated in accordance with the operating limitations specified in the approved Flight Manual or as otherwise specified by the Administrator. The operating limitations must not prohibit operations over human beings located inside moving vehicles.",
+          "figures": []
+        },
+        {
+          "section": "107.150",
+          "title": "Variable mode and variable configuration of small unmanned aircraft systems",
+          "content": "A small unmanned aircraft system may be eligible for one or more categories of operation over human beings under this subpart, as long as a remote pilot in command cannot inadvertently switch between modes or configurations.",
+          "figures": []
+        },
+        {
+          "section": "107.155",
+          "title": "Means of compliance",
+          "content": "(a) *Establishment of compliance.* To meet the requirements of § 107.120 (a) for operations in Category 2, or the requirements of § 107.130 (a) for operations in Category 3, the means of compliance must consist of test, analysis, or inspection.\n\n(b) *Required information.* An applicant requesting FAA acceptance of a means of compliance must submit the following information to the FAA in a manner specified by the Administrator:\n\n(1) *Procedures.* Detailed description of the means of compliance, including applicable test, analysis, or inspection procedures to demonstrate how the small unmanned aircraft meets the requirements of § 107.120 (a) for operations in Category 2 or the requirements of § 107.130 (a) for operations in Category 3. The description should include conditions, environments, and methods, as applicable.\n\n(2) *Compliance explanation.* Explanation of how application of the means of compliance fulfills the requirements of § 107.120 (a) for operations in Category 2 or the requirements of § 107.130 (a) for operations in Category 3.\n\n(c) *FAA acceptance.* If the FAA determines the applicant has demonstrated compliance with paragraphs (a) and (b) of this section, it will notify the applicant that it has accepted the means of compliance.\n\n(d) *Rescission.* (1) A means of compliance is subject to ongoing review by the Administrator. The Administrator may rescind its acceptance of a means of compliance if the Administrator determines that a means of compliance does not meet any or all of the requirements of this subpart.\n\n(2) The Administrator will publish a notice of rescission in the Federal Register.\n\n(e) *Inapplicability of part 13, subpart D, of this chapter.* Part 13, subpart D, of this chapter does not apply to the procedures of paragraph (a) of this section.",
+          "figures": []
+        },
+        {
+          "section": "107.160",
+          "title": "Declaration of compliance",
+          "content": "(a) *Required information.* In order for an applicant to declare a small unmanned aircraft is compliant with the requirements of this subpart for Category 2 or Category 3 operations, an applicant must submit a declaration of compliance for acceptance by the FAA, in a manner specified by the Administrator, that includes the following information:\n\n(1) Applicant's name;\n\n(2) Applicant's physical address;\n\n(3) Applicant's email address;\n\n(4) The small unmanned aircraft make and model name, and series, if applicable;\n\n(5) The small unmanned aircraft serial number or range of serial numbers that are the subject of the declaration of compliance;\n\n(6) Whether the declaration of compliance is an initial declaration or an amended declaration;\n\n(7) If the declaration of compliance is an amended declaration, the reason for the re-submittal;\n\n(8) The accepted means of compliance the applicant used to fulfill requirements of § 107.120 (a) or § 107.130 (a) or both;\n\n(9) A declaration that the applicant-\n\n(i) Has demonstrated that the small unmanned aircraft, or specific configurations of that aircraft, satisfies § 107.120 (a) or § 107.130 (a) or both, through the accepted means of compliance identified in paragraph (a) (8) of this section;\n\n(ii) Has verified that the unmanned aircraft does not contain any safety defects;\n\n(iii) Has satisfied § 107.120 (b)(3) or § 107.130 (b)(3), or both; and\n\n(iv) Will, upon request, allow the Administrator to inspect its facilities, technical data, and any manufactured small unmanned aircraft and witness any tests necessary to determine compliance with this subpart; and\n\n(10) Other information as required by the Administrator.\n\n(b) *FAA acceptance.* If the FAA determines the applicant has demonstrated compliance with the requirements of this subpart, it will notify the applicant that it has accepted the declaration of compliance.\n\n(c) *Notification of a safety issue.* Prior to initiating rescission proceedings pursuant to paragraphs (d) (1) through (3) of this section, the FAA will notify the applicant if a safety issue has been identified for the declaration of compliance.\n\n(d) *Rescission.* (1) No person may operate a small unmanned aircraft identified on a declaration of compliance that the FAA has rescinded pursuant to this subpart while that declaration of compliance is rescinded.\n\n(2) The FAA may rescind a declaration of compliance if any of the following conditions occur:\n\n(i) A small unmanned aircraft for which a declaration of compliance was accepted no longer complies with § 107.120 (a) or § 107.130 (a);\n\n(ii) The FAA finds a declaration of compliance is in violation of § 107.5 (a); or\n\n(iii) The Administrator determines an emergency exists related to safety in accordance with the authority in 49 U.S.C. 46105.\n\n(3) If a safety issue identified under paragraph (c) of this section has not been resolved, the FAA may rescind the declaration of compliance as follows:\n\n(i) The FAA will issue a notice proposing to rescind the declaration of compliance. The notice will set forth the Agency's basis for the proposed rescission and provide the holder of the declaration of compliance with 30 calendar days from the date of issuance of the proposed notice to submit evidentiary information to refute the proposed notice.\n\n(ii) The holder of the declaration of compliance must submit information demonstrating how the small unmanned aircraft meets the requirements of this subpart within 30 calendar days from the date of issuance of the proposed notice.\n\n(iii) If the FAA does not receive the information required by paragraph (d) (3)(ii) of this section within 30 calendar days from the date of the issuance of the proposed notice, the FAA will issue a notice rescinding the declaration of compliance.\n\n(4) If the Administrator determines that an emergency exists in accordance with paragraph (d) (2)(iii) of this section, the FAA will exercise its authority under 49 U.S.C. 46105 (c) to issue an order rescinding a declaration of compliance without initiating the process in paragraph (d) (3) of this section.\n\n(e) *Petition to reconsider the rescission of a declaration of compliance.* A person subject to an order of rescission under paragraph (d) (3) of this section may petition the FAA to reconsider the rescission of a declaration of compliance by submitting a request to the FAA in a manner specified by the Administrator within 60 days of the date of issuance of the rescission.\n\n(1) A petition to reconsider the rescission of a declaration of compliance must demonstrate at least one of the following:\n\n(i) A material fact that was not present in the original response to the notification of the safety issue and an explanation for why it was not present in the original response;\n\n(ii) The FAA made a material factual error in the decision to rescind the declaration of compliance; or\n\n(iii) The FAA did not correctly interpret a law, regulation, or precedent.\n\n(2) Upon consideration of the information submitted under paragraph (e) (1) of this section, the FAA will issue a notice either affirming the rescission or withdrawing the rescission.\n\n(f) *Inapplicability of part 13, subpart D, of this chapter.* Part 13, subpart D, of this chapter does not apply to the procedures of paragraphs (d) and (e) of this section.",
+          "figures": []
+        },
+        {
+          "section": "107.165",
+          "title": "Record retention",
+          "content": "(a) A person who submits a declaration of compliance under this subpart must retain and make available to the Administrator, upon request, the information described in paragraph (a) (1) of this section for the period of time described in paragraph (a) (2) of this section.\n\n(1) All supporting information used to demonstrate the small unmanned aircraft meets the requirements of §§ 107.120 (a), for operations in Category 2, and 107.130 (a), for operations in Category 3.\n\n(2) The following time periods apply:\n\n(i) If the person who submits a declaration of compliance produces a small unmanned aircraft, that person must retain the information described in paragraph (a) (1) of this section for two years after the cessation of production of the small unmanned aircraft system for which the person declared compliance.\n\n(ii) If the person who submits a declaration of compliance designs or modifies a small unmanned aircraft, that person must retain the information described in paragraph (a) (1) of this section for two years after the person submitted the declaration of compliance.\n\n(b) A person who submits a means of compliance under this subpart must retain and make available to the Administrator, upon request, and for as long as the means of compliance remains accepted, the detailed description of the means of compliance and justification showing how the means of compliance meets the requirements of §§ 107.120 (a), for operations in Category 2, and 107.130 (a), for operations in Category 3.",
+          "figures": []
+        }
+      ]
+    },
+    {
+      "subpart": "E",
+      "title": "Waivers",
+      "sections": [
+        {
+          "section": "107.200",
+          "title": "Waiver policy and requirements",
+          "content": "(a) The Administrator may issue a certificate of waiver authorizing a deviation from any regulation specified in § 107.205 if the Administrator finds that a proposed small UAS operation can safely be conducted under the terms of that certificate of waiver.\n\n(b) A request for a certificate of waiver must contain a complete description of the proposed operation and justification that establishes that the operation can safely be conducted under the terms of a certificate of waiver.\n\n(c) The Administrator may prescribe additional limitations that the Administrator considers necessary.\n\n(d) A person who receives a certificate of waiver issued under this section:\n\n(1) May deviate from the regulations of this part to the extent specified in the certificate of waiver; and\n\n(2) Must comply with any conditions or limitations that are specified in the certificate of waiver.",
+          "figures": []
+        },
+        {
+          "section": "107.205",
+          "title": "List of regulations subject to waiver",
+          "content": "A certificate of waiver issued pursuant to § 107.200 may authorize a deviation from the following regulations of this part:\n\n(a) Section 107.25-Operation from a moving vehicle or aircraft. However, no waiver of this provision will be issued to allow the carriage of property of another by aircraft for compensation or hire.\n\n(b) Section 107.29 (a)(2) and (b)-Anti-collision light required for operations at night and during periods of civil twilight.\n\n(c) Section 107.31-Visual line of sight aircraft operation. However, no waiver of this provision will be issued to allow the carriage of property of another by aircraft for compensation or hire.\n\n(d) Section 107.33-Visual observer.\n\n(e) Section 107.35-Operation of multiple small unmanned aircraft systems.\n\n(f) Section 107.37 (a)-Yielding the right of way.\n\n(g) Section 107.39-Operation over people.\n\n(h) Section 107.41-Operation in certain airspace.\n\n(i) Section 107.51-Operating limitations for small unmanned aircraft.\n\n(j) Section 107.145-Operations over moving vehicles.\n\n[Docket FAA-2015-0150, Amdt. 107-1, 81 FR 42209, June 28, 2016, as amended by Amdt. 107-8, 86 FR 4387, Jan. 15, 2021]",
+          "figures": []
+        }
+      ]
+    }
+  ],
+  "sections": [],
+  "appendices": [],
+  "isPilotIndex": true
+}

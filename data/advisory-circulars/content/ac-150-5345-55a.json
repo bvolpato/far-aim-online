@@ -1,0 +1,73 @@
+{
+  "version": 1,
+  "id": "ac-150-5345-55a",
+  "number": "150/5345-55A",
+  "title": "Specification for L-893, Lighted Visual Aid to Indicate Temporary Runway Closure",
+  "status": "parsed",
+  "fetched": "2026-07-14",
+  "documentUrl": "https://www.faa.gov/regulations_policies/advisory_circulars/index.cfm/go/document.information/documentID/22296",
+  "pdfUrl": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_150_5345-55A.pdf",
+  "sha256": "9c503c47e6004a7346ebbc372865f77e000a344ac5ff7a609ee23197f9c81e6f",
+  "pageCount": 14,
+  "wordCount": 1823,
+  "ocrPageCount": 0,
+  "pages": [
+    {
+      "page": 1,
+      "text": "Advisory Circular U.S. Department of Transportation Federal Aviation Administration\n\nSubject: SPECIFICATION FOR L-893, Date: 06/27/07 AC No.: 150/5345-55A\n\nLIGHTED VISUAL AID TO\n\nINDICATE TEMPORARY\n\nInitiated by: AAS-100 Change:\n\nRUNWAY CLOSURE\n\n1. PURPOSE. This advisory circular (AC) provides guidance in the design of a lighted visual aid to indicate temporary runway closure. 2. EFFECTIVE DATE. Effective 6 months after the date of this circular, only that equipment qualified per this specification will be listed in AC 150/5345-53, Airport Lighting Equipment Certification Program. 3. CANCELLATION. AC 150/5345-55, Lighted Visual Aid to Indicative Temporary Runway Closure, dated 07/14/03, is cancelled. 4. APPLICATION. The standards contained herein are recommended by the FAA in all applications involving airport development of this nature. The use of these standards is mandatory for airport projects receiving Federal funds under the airport grant assistance program and those using funds under the passenger facility charge (PFC) program. 5. BACKGROUND. There have been instances of aircraft landing on runways that are temporarily closed for maintenance or snow removal operations. The likelihood of unintended landings increases during periods of reduced visibility and at night whenever runway lighting must be on for electrical maintenance or snow removal. The lighted visual aid is intended to eliminate ambiguity concerning the status of the runway and to reduce instances of aircraft landing on temporarily closed runways. This AC is based on FAA Technical Center report number DOT/FAA/CT-TN87/3. See Chapter 2 for information on how to obtain the report.\n\n6. PRINCIPAL CHANGES.\n\na. Added photometric requirements and testing. b. Deleted 150W/120V type lamp. c. All applicable documents and document sources have been updated. 7. METRIC UNITS. To promote an orderly transition to metric units, this AC contains both English and metric dimensions. The metric conversions may not be exact metric equivalents and, until there is an official changeover to the metric system, the English dimensions will govern."
+    },
+    {
+      "page": 2,
+      "text": "8. COMMENTS OR SUGGESTIONS for improvements to this AC should be sent to: Manager, Airport Engineering Division Federal Aviation Administration\n\nATTN: AAS-100\n\n800 Independence Avenue, S.W. Washington DC 20591 9. COPIES OF THIS AC. The Office of Airport Safety and Standards makes this AC available online at www.faa.gov. David L. Bennett Director of Airport Safety and Standards"
+    },
+    {
+      "page": 3,
+      "text": "06/27/07 AC 150/5345-55A\n\nCHAPTER 1. SCOPE AND CLASSIFICATION.\n\n1.1 Scope.\n\nThis specification sets forth the Federal Aviation Administration (FAA) requirements for a lighted visual aid to indicate temporary runway closure. This AC does not discuss the use of a lighted visual aid to indicate runway closure. The use and application of a lighted visual aid for runway closure is the subject of AC 150/5340-1, Standards for Airport Markings, and AC 150/5370-2, Operational Safety on Airports During Construction.\n\n1.2 Classification.\n\nThe lighted visual aid equipment covered in this AC is classified as L-893."
+    },
+    {
+      "page": 4,
+      "text": "AC 150/5345-55A 06/27/07\n\nIntentionally left blank."
+    },
+    {
+      "page": 5,
+      "text": "06/27/07 AC 150/5345-55A\n\nCHAPTER 2. REFERENCED DOCUMENTS.\n\n2.1 General.\n\nThe following is a listing of documents referenced in this AC.\n\n2.2 FAA Advisory Circulars (ACs) and Technical Report.\n\nAC 150/5345-53 Airport Lighting Equipment Certification Program. AC 150/5340-1 Standards for Airport Markings. AC 150/5370-2 Operational Safety on Airports During Construction. DOT/FAA/CT-TN87/3 Development of a Visual Aid to Indicate Temporary Runway Closure.\n\n2.3 Federal Standards.\n\nFED-STD-595 Colors Used in Government Procurement\n\n2.4 Society of Automotive Engineers (SAE) Aerospace Standards.\n\nSAE-AS25050 Colors, Aeronautical Lights and Lighting Equipment, General Requirement For,\n\n2.5 Document Sources.\n\nFAA ACs may be obtained from: U.S. Department of Transportation Subsequent Distribution Office Ardmore East Business Center 3341 Q 75th Ave. Landover, MD 20785 Telephone: (301) 322-4961\n\nFAX: (301) 386-5394\n\nWebsite: www.faa.gov/airports_airtraffic/airports/resources/advisory_circulars/ FAA Technical Reports may be obtained from:\n\nWilliam J. Hughes Technical Center, Information Services Management Branch Atlantic City International Airport, NJ. 08405 Telephone: (609) 485-5000 Website: http://www.airtech.tc.faa.gov/safety/downloads/ Federal Standards may be obtained from: Federal Supply Services"
+    },
+    {
+      "page": 6,
+      "text": "AC 150/5345-55A 06/27/07\n\nSpecification Section 470 L'Enfant Plaza East SW Suite 8100 Washington, DC 20407 Telephone: (202) 619-8925\n\nFAX: (202) 619-8985\n\nWebsite: www.dsp.dla.mil SAE standards may be obtained from: SAE World Headquarters 400 Commonwealth Drive Warrendale, PA 15096-0001 Telephone : (724) 776-4841 Fax : (248) 273-2494 Website : www.sae.org"
+    },
+    {
+      "page": 7,
+      "text": "06/27/07 AC 150/5345-55A\nCHAPTER 3. EQUIPMENT REQUIREMENTS.\n3.1 GENERAL.\nThis Chapter addresses the environmental, design, and photometric requirements for an L-893, Lighted\nVisual Aid.\n3.2 ENVIRONMENTAL REQUIREMENTS.\nThe L-893 must be designed to operate in the following conditions:\na. Temperature. Operating: -40 degrees F (-40 degrees C) to 130 degrees F (55 degrees C).\nNOTE: The portable power supply (see paragraph 3.3c) is exempt from the low temperature\nrequirement.\n\nb. Humidity. 95 percent relative humidity.\nc. Wind. Withstand a minimum wind speed of at least 40 mph (64.40 km/h) without adversely\naffecting the aiming or operation.\nd. Sunshine. Exposure to solar radiation.\n3.3 PERFORMANCE STANDARDS.\nThe L-893 must:\na. Be a portable unit that can be quickly towed to and from the runway.\nb. Consist of light sources that transmit an aviation white color per SAE-AS25050. The light\nsources must be arranged in the shape of a letter \"X\" with arms crossed at an appropriate angle to\nmake the “X” readily discernible (see Figure 2). The arms must be painted yellow on all sides so\nthat the unit will be clearly visible when it is in position. The color must be No. 13538, aviation\nyellow, per FED-STD-595.\nc. Be energized by a portable power supply capable of a minimum of 24 hours continuous\noperation. The light unit must also accept 120 volts alternating current external power when\navailable on the airfield.\nd. Simultaneously flash all light sources mounted on the X at a rate of 2.5 seconds on (± 20%) and\n2.5 seconds off (±20%).\ne. Be able to switch between day and night intensities per paragraph 3.3f.\nf. Provide a minimum day effective intensity of 70,000 candela (cd) at the beam center, 34,000 cd\nat 10 degrees radius, 13,000 cd at 15 degrees radius per Figure 1. The minimum night effective\nintensity must be 2,000 cd at beam center, 970 cd at 10 degrees radius, and 370 cd at 15 degrees\nradius per Figure 1."
+    },
+    {
+      "page": 8,
+      "text": "AC 150/5345-55A 06/27/07\nNOTE: The minimum intensity for each light source is determined by dividing the specified\nminimum int\n-15 °\n15 °\n-10 °\n10°\nX\nmain beam\nouter beam\nensity by the number of light sources.\nY\n15 ° -15 °\n3°\nFigure 1. Beam Pattern\ng. Provide fail-safe protection to ensure that the unit stays on as continuous light if the flasher unit\nfails.\nh. Include an operations placard placed in a conspicuous location that instructs operators to visually\ncheck the operation of the device every 2 hours.\ni. Provide means for adjusting and leveling to allow tilting to an optimum angle of 5 degrees from\nvertical.\nj. Provide a minimum lighting arrangement with at least 9 light sources equally spaced per Figure 2."
+    },
+    {
+      "page": 9,
+      "text": "06/27/07 AC 150/5345-55A\n14 feet\n3 ft. 6 in.\nLAMP\nFigure 2. Lighted X Dimensions\nk. Be set up by one person in less than 5 minutes.\n3.4 MATERIALS AND FINISH.\nAll components must be suitable for the intended purpose and adequately protected against corrosion.\nThe components must have adequate capacity and must not be operated in excess of the component\nmanufacturer’s recommended rating. All surfaces of the assembly must be smooth without burrs or sharp\nedges."
+    },
+    {
+      "page": 10,
+      "text": "AC 150/5345-55A 06/27/07\n\nCHAPTER 4. EQUIPMENT QUALIFICATION REQUIREMENTS.\n\n4.1 Qualification Procedures.\n\nProcedures for qualifying equipment to be furnished under the Federal grant assistance program for airports are contained in AC 150/5345-53, Airport Lighting Equipment Certification Program. Qualification tests must be conducted on the equipment to ensure the requirements and performance standards are met.\n\n4.2 Visual Examination Test.\n\nConduct a visual examination to ensure the equipment complies with the requirements in this AC for size, paint color, materials, finish and quality of workmanship.\n\n4.3 Photometric Tests.\n\nA photometric test for the light source color (per paragraph 3.3b), intensity and beam pattern requirements (per paragraph 3.3f) must be conducted.\n\na. The light source (lamps) must be tested at ±3 percent of their nominal operating voltage. b. Beam coverage is given for the extremities of a circle per Figure 1.\n\n4.4 Operational Tests.\n\nVerify that all operations requirements conform to this AC. a. Energize the unit. b. Verify that all lights are lit. c. Verify that the lights flash per paragraph 3.3d. d. Verify that the capability for switching between day and night use is operational per paragraph 3.3e. e. Verify that the fail-safe mode (per paragraph 3.3g) is operational by defeating the flasher.\n\n4.5 Wind Load Test.\n\nEvidence must be provided, either by testing or by calculation of mechanical force, to demonstrate that the equipment can withstand wind velocities per paragraph 3.2c.\n\n4.6 High Temperature Test.\n\nThe high temperature test must be conducted per MIL-STD-810F, Method 501.4 Procedure II. a. The high temperature test must be conducted per MIL-STD-810F, Method 501.4, Procedure II. The equipment must be subjected to a constant temperature of +130 degrees F (+55 degrees C) for 4 hours after equipment temperature stabilization and be operated throughout the test. The equipment must operate at the specified flash rate (paragraph 3.3d) and intensity (paragraph 3.3f)."
+    },
+    {
+      "page": 11,
+      "text": "06/27/07 AC 150/5345-55A\n\nb. A visual examination must be conducted after the equipment is removed from the chamber. Failure of the equipment to operate as specified is cause for rejection.\n\n4.7 Low Temperature Test.\n\nThe low temperature test must be conducted per MIL-STD-810F, Method 502.4 Procedure II. NOTE: The portable power supply is exempt from this requirement. a. Equipment operation must be demonstrated at the beginning of the test per paragraph 4.4. b. The equipment, with input power off, must then be exposed to a 24-hour soaking period at -40 degrees F (-40 degrees C) after which the equipment must be turned on for one hour, and must achieve specified flash rate (paragraph 3.3d) and intensity (paragraph 3.3f) within 1 minute after being energized."
+    },
+    {
+      "page": 12,
+      "text": "AC 150/5345-55A 06/27/07\n\nIntentionally left blank."
+    },
+    {
+      "page": 13,
+      "text": "06/27/07 AC 150/5345-55A\n\nCHAPTER 5. PRODUCTION TEST REQUIREMENTS.\n\n5.1 Production Tests.\n\nA visual examination must be performed per paragraph 4.2. a. Perform an operational test on each production unit per paragraph 4.4a through 4.4e.\n\n5.2 Production Test Records.\n\nThe manufacturer must maintain records showing actual test results of all the tests required by paragraph\n\n5.1 for a period of three years."
+    },
+    {
+      "page": 14,
+      "text": "AC 150/5345-55A 06/27/07\n\nIntentionally left blank."
+    }
+  ],
+  "extractedPageCount": 14
+}

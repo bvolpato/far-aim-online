@@ -1,0 +1,25 @@
+{
+  "version": 1,
+  "id": "ac-20-41a",
+  "number": "20-41A",
+  "title": "Substitute Technical Standard Order (TSO) Aircraft Equipment",
+  "status": "parsed",
+  "fetched": "2026-07-14",
+  "documentUrl": "https://www.faa.gov/regulations_policies/advisory_circulars/index.cfm/go/document.information/documentID/22579",
+  "pdfUrl": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_20-41A.pdf",
+  "sha256": "d1a1184d1063a5d2b7b9ddffe24850f46becb5ec6e80e3c4387123422306b57e",
+  "pageCount": 2,
+  "wordCount": 548,
+  "ocrPageCount": 0,
+  "pages": [
+    {
+      "page": 1,
+      "text": "r .. , ,., ~ '\nr::\n1, ' :-:i .. ·' ·,.,\\\nM~Y-J,J//ADVISORY r 1 \"r. ., ,~·y·\n\n,.;u:v.i•:;\nCIRCULAR\nDEPARTMENT OF TRANSPORTATION\nFEDERAL AVIATION ADMINISTRATION\nSUBJECT: SUB.5TITUTE TECHNICAL STANDARD ORDER (TSO) AIRCRAFr EQUIPMENT\n1. PURPOSE. This circular sets forth an acceptable means for complying with\nthe rules governing aircraft equipment installations in cases involving\nthe substitution of technical standard order (TSO) equipment for\nfunctionally similar TSO approved equipment.\n2. CANCELLATION. AC 20-41, dated August 30, 1965, is cancelled.\n3. REFERENCE REGULATIONS. Parts 23, 25, 27, and 29, and sections 21.95,\n21.113, 21.115, and 43.13 of the Federal Aviation Regulations.\n4. BACKGROUND. Under the referenced rules, the determination of compliance\nwith the regulations may require that an aircraft be flown for functional\ncheck of any replacement parts or installations. There have been dis-cussions relative to the possibility of substantiating the acceptability\nof installations, without a flight check, when functionally similar TSO'd\nequipment is substituted for previously approved TSO'd equipment. The\nacceptable means of compliance :i.n paragraph 5 deals with this question and\nis applicable to the evaluation of replacements under the alterations\nperformance rules of section 43.13, a minor change in type design per\nsection 21@95, or supplemental type certificate procedures of sections\n21.113 and 21.115.\n5. ACCEPTABLE MEANS OF CCMPLIANCE. In the case of an aircraft alteration\ninvolving the substitution of TSO-approved equipment for functionally\nsimilar TSO'd equipment, an acceptable means of compliance with applicable\nairworthiness regulation~without the aircraft being flight checked, is to:\na. Show, by means of ground functional tests, analyses, drawings,\n\ndescriptive data or combination of these that:\n\n(1) The substitute equipment anq its installation meet the\nairworthiness regulations which are applicable to the\nequipment to be replaced;\nInitiated by: AFS-130"
+    },
+    {
+      "page": 2,
+      "text": "AC 20-41A 4/5/77\n\n(2) The connections (electrical, electronic, mechanical, or fluid) between the equipment under consideration and other equipment in the aircraft either remain the same 0r, if these connections are modified, the modification does not affect the TSO status of the equipment; and (3) The radiation system (including transmission lines) and other electrical or electronic aircraft equipment that connect to the equipment under consideration either remain the same, or if modified, the modification does not adversely affect the per-formance of such systems or equipment and the subject equipment. b. Include necessary information in the appropriate part of the Federal Aviation Administration approved Flight Manual concerning any signif-icant change in equipment capability as determined from the evaluation outlined in items 5.a. 6. EXCLUDED EQUIPMENT. The substitution procedures provided by this circular should not be used in connection with auto pilots, flight directors, iner-tial navigation systems, stability augmentation systems, stall prevention systems, tires, wheel-brake systems, or any other equipment directly affecting flight controls or flight characteristics. Substitutions which affect equipment in the cockpit should be evaluated by appropriate flight test personnel. 7. FLIGHT TESTS. Flight tests may be necessary, in some cases, to adequately evaluate the effects of changes and this decision rests with the approving authority. 1(f}ff Director, Flight Standards Service Page 2 Par 5 DEPART~fENT OF TRANSPORTATION FEDERAL AVIATION AD1\\1INISTRATION POS'l1 AGE AND l!'EES PAID Washington, D.C. 20591 FEDERAL AVIATION ADl!INISTRATIOX Officinl BusinesA DOT 515 U.S.MAIL\n\nPENALTY FOR PRIVATE USE, $300 FIRST CLASS"
+    }
+  ],
+  "extractedPageCount": 2
+}

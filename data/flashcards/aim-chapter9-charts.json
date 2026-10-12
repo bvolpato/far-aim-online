@@ -1,0 +1,160 @@
+{
+  "id": "aim-chapter9-charts",
+  "title": "Aeronautical Charts and Publications",
+  "description": "Key concepts from AIM Chapter 9 covering chart types, symbols, and publications",
+  "category": "AIM",
+  "chapter": 9,
+  "cardCount": 25,
+  "cards": [
+    {
+      "id": "ch9-001",
+      "front": "VFR Chart Types and Scales",
+      "back": "SECTIONAL: 1:500,000 (1\" ≈ 6.86 NM)\n• Most common VFR chart\n• Updated every 56 days\n\nTAC (Terminal Area): 1:250,000 (1\" ≈ 3.43 NM)\n• Greater detail for busy terminal areas\n\nWORLD AERONAUTICAL (WAC): 1:1,000,000\n• For long-distance navigation\n• Less detail",
+      "reference": "AIM 9-1-4"
+    },
+    {
+      "id": "ch9-002",
+      "front": "Airspace Depiction on Charts",
+      "back": "CLASS B: Solid BLUE lines\nCLASS C: Solid MAGENTA lines\nCLASS D: Dashed BLUE lines\nCLASS E (surface): Dashed MAGENTA lines\nCLASS E (above 700/1200'): Faded magenta tint\n\nBrackets [ceiling/floor]: Altitudes in hundreds of feet MSL",
+      "reference": "AIM 9-1-4"
+    },
+    {
+      "id": "ch9-003",
+      "front": "Airport Symbol Colors",
+      "back": "BLUE: Towered airport (control tower operating)\nMAGENTA: Non-towered airport\n\nSymbol shapes indicate services:\n• Circle with runways = hard surface\n• Open circle = soft surface only\n• 'R' in circle = private\n• Seaplane symbol = seaplane base",
+      "reference": "AIM 9-1-4"
+    },
+    {
+      "id": "ch9-004",
+      "front": "Airport Data on Sectional",
+      "back": "Format: Name (Identifier)\nBelow: Elevation, Lighting, Runway length\n\nExample: CENTERVILLE (CTL)\n 1250 L 72\n\n• 1250 = Field elevation (ft MSL)\n• L = Lighting available\n• 72 = Longest runway (7,200 ft)\n• Star = ATIS available",
+      "reference": "AIM 9-1-4"
+    },
+    {
+      "id": "ch9-005",
+      "front": "MEF (Maximum Elevation Figure)",
+      "back": "• Largest bold number in each quadrangle\n• Format: First digit(s) = thousands, last digit = hundreds\n• Example: '45' = 4,500 feet MSL\n\nIncludes:\n• Highest terrain\n• Highest obstruction\n• Safety buffer added\n\nUseful for VFR minimum altitude planning",
+      "reference": "AIM 9-1-4"
+    },
+    {
+      "id": "ch9-006",
+      "front": "Obstruction Symbols",
+      "back": "Small dot with tower:\n• Less than 1,000' AGL\n\nLarge dot with tower (group):\n• 1,000' AGL or higher\n\nStar/Lightning bolt = High-intensity lighting\n\nNumbers show:\n• Top = MSL altitude\n• (Bottom) = AGL height",
+      "reference": "AIM 9-1-4"
+    },
+    {
+      "id": "ch9-007",
+      "front": "Special Use Airspace Symbols",
+      "back": "P = Prohibited (never enter)\nR = Restricted (may be active, permission needed)\nW = Warning (hazardous over international waters)\nMOA = Military Operations Area (VFR may enter)\nA = Alert Area (high pilot training activity)\nCFA = Controlled Firing Area (ceases when traffic detected)",
+      "reference": "AIM 9-1-4"
+    },
+    {
+      "id": "ch9-008",
+      "front": "Military Training Routes (MTR)",
+      "back": "IR = IFR Military Training Routes\nVR = VFR Military Training Routes\n\nRoutes with 4 digits: Operations at/below 1,500' AGL\nRoutes with 3 digits: At least one segment above 1,500' AGL\n\nGray lines on charts with route number\nHigh-speed military training",
+      "reference": "AIM 9-1-4"
+    },
+    {
+      "id": "ch9-009",
+      "front": "NAVAID Symbols",
+      "back": "VOR: Compass rose with center dot\nVORTAC: VOR with 3-sided box\nVOR/DME: VOR with small square\nNDB: Solid dot with circle\nDME only: 'DME' label\n\nBox around identifier = NAVAID part of Federal Airway system",
+      "reference": "AIM 9-1-4"
+    },
+    {
+      "id": "ch9-010",
+      "front": "Chart Supplement U.S.",
+      "back": "Contains for each airport:\n• Location and communications\n• Runway information (length, width, surface)\n• Lighting, approaches available\n• Services (fuel, repairs)\n• Special procedures\n• NOTAMs\n• Frequencies\n\nUpdated every 56 days",
+      "reference": "AIM 9-1-4"
+    },
+    {
+      "id": "ch9-011",
+      "front": "Visual Reporting Points",
+      "back": "Depicted as:\n• Magenta flag symbol\n• Name in magenta\n\nUsed for:\n• Position reports\n• Traffic advisories\n• Local area familiarity\n• Arrival/departure procedures\n\nCommon near busy airports",
+      "reference": "AIM 9-1-4"
+    },
+    {
+      "id": "ch9-012",
+      "front": "VFR Flyways and Transitions",
+      "back": "VFR Flyway: Suggested route for VFR traffic\n• Printed on TAC chart\n• Helps avoid busy terminal areas\n\nVFR Transition Route: Specific route through Class B\n• Requires clearance\n• Specific altitudes\n• Printed on TAC chart",
+      "reference": "AIM 9-1-4"
+    },
+    {
+      "id": "ch9-013",
+      "front": "Mode C Veil",
+      "back": "• 30 NM radius from primary Class B airport\n• Depicted by solid blue circle\n• Transponder with Mode C required\n• ADS-B Out also required\n• Exception: Aircraft without engine-driven electrical system",
+      "reference": "AIM 9-1-4"
+    },
+    {
+      "id": "ch9-014",
+      "front": "Parachute Jumping Areas",
+      "back": "Depicted as:\n• Parachute symbol\n• MSL altitude\n• Frequency (if available)\n\nCaution:\n• Active without notice\n• Traffic may be circling\n• Jumpers difficult to see",
+      "reference": "AIM 9-1-4"
+    },
+    {
+      "id": "ch9-015",
+      "front": "Isogonic Lines",
+      "back": "• Dashed magenta lines\n• Connect points of equal magnetic variation\n• Show degrees East or West\n• 'Agonic line' = zero variation\n\nUsed to convert:\n• True heading to magnetic\n• 'East is least, West is best'",
+      "reference": "AIM 9-1-4"
+    },
+    {
+      "id": "ch9-016",
+      "front": "Latitude and Longitude on Charts",
+      "back": "Lines of LATITUDE:\n• Horizontal, parallel to equator\n• Degrees N or S\n\nLines of LONGITUDE:\n• Vertical, converge at poles\n• Degrees E or W from Prime Meridian\n\n1° latitude = 60 NM\n1 minute latitude = 1 NM",
+      "reference": "AIM 9-1-4"
+    },
+    {
+      "id": "ch9-017",
+      "front": "IFR En Route Charts",
+      "back": "LOW ALTITUDE (L-charts):\n• Below 18,000' MSL\n• Victor Airways (V-xxx)\n\nHIGH ALTITUDE (H-charts):\n• 18,000' MSL and above\n• Jet Routes (J-xxx)\n\nUpdated every 56 days\nShow MEAs, MOCAs, airways, NAVAIDs",
+      "reference": "AIM 9-1-4"
+    },
+    {
+      "id": "ch9-018",
+      "front": "Terminal Procedures Publication",
+      "back": "Contains:\n• Instrument Approach Procedures (IAPs)\n• Standard Instrument Departures (SIDs)\n• Standard Terminal Arrivals (STARs)\n• Airport diagrams\n• Takeoff/alternate minimums\n\nUpdated every 28 days",
+      "reference": "AIM 9-1-4"
+    },
+    {
+      "id": "ch9-019",
+      "front": "Chart Currency",
+      "back": "Always use CURRENT charts!\n\nUpdate cycles:\n• Sectional/TAC: 56 days\n• IFR En Route: 56 days\n• Terminal Procedures: 28 days\n• Chart Supplement: 56 days\n\nExpired charts may have incorrect:\n• Frequencies\n• Procedures\n• Airspace",
+      "reference": "AIM 9-1-4"
+    },
+    {
+      "id": "ch9-020",
+      "front": "Terrain Coloring on Charts",
+      "back": "GREEN: Lower elevations\nYELLOW/TAN: Higher elevations\nBROWN: Mountains\n\nContour lines:\n• Connect points of equal elevation\n• Closer lines = steeper terrain\n\nShaded relief shows terrain features",
+      "reference": "AIM 9-1-4"
+    },
+    {
+      "id": "ch9-021",
+      "front": "TRSA (Terminal Radar Service Area)",
+      "back": "Depicted as:\n• Solid black line\n• TRSA label\n\nCharacteristics:\n• Participation voluntary\n• Service similar to Class C\n• No transponder requirement\n• Good place for student practice",
+      "reference": "AIM 9-1-4"
+    },
+    {
+      "id": "ch9-022",
+      "front": "Wildlife Refuge Boundaries",
+      "back": "Depicted as:\n• Dotted line pattern\n• May have altitude restriction noted\n\nRecommendations:\n• Maintain 2,000' AGL\n• Avoid disturbing wildlife\n• Check for specific restrictions",
+      "reference": "AIM 9-1-4"
+    },
+    {
+      "id": "ch9-023",
+      "front": "Wilderness and Park Areas",
+      "back": "National Parks/Wilderness Areas:\n• Boundaries shown\n• May have altitude restrictions\n\nRecommendations:\n• 2,000' AGL minimum encouraged\n• No commercial air tours without permit\n• Noise-sensitive areas",
+      "reference": "AIM 9-1-4"
+    },
+    {
+      "id": "ch9-024",
+      "front": "Class G Airspace on Charts",
+      "back": "NOT directly depicted!\n\nClass G exists where no other airspace is designated:\n• Below Class E (where E starts at 700' or 1,200')\n• Generally uncontrolled\n• No communication required\n\nInfer from absence of other airspace symbology",
+      "reference": "AIM 9-1-4"
+    },
+    {
+      "id": "ch9-025",
+      "front": "Digital Chart Sources",
+      "back": "Official FAA sources:\n• faa.gov/air_traffic/flight_info/aeronav\n\nFree digital products:\n• VFR charts (raster and geo-referenced)\n• IFR charts\n• Chart Supplement\n\nThird-party EFB apps also available\nAlways verify currency",
+      "reference": "AIM 9-1-4"
+    }
+  ]
+}

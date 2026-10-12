@@ -1,0 +1,280 @@
+{
+  "id": "far-part91-operating-rules",
+  "title": "Part 91: General Operating Rules",
+  "description": "Essential VFR/IFR flight rules, weather minimums, equipment requirements, and operating limitations every pilot must know",
+  "category": "FAR",
+  "part": 91,
+  "cardCount": 45,
+  "cards": [
+    {
+      "id": "fc91-001",
+      "front": "VFR Weather Minimums - Class B",
+      "back": "Visibility: 3 SM\nCloud Clearance: Clear of clouds\n\nMemory aid: 'In Bravo, just see 3 and stay clear'",
+      "reference": "14 CFR 91.155"
+    },
+    {
+      "id": "fc91-002",
+      "front": "VFR Weather Minimums - Class C, D, E (below 10,000')",
+      "back": "Visibility: 3 SM\nCloud Clearance: 500' below, 1000' above, 2000' horizontal\n\nMemory aid: '3-152' (3 miles, 1000 above, 500 below, 2000 horizontal)",
+      "reference": "14 CFR 91.155"
+    },
+    {
+      "id": "fc91-003",
+      "front": "VFR Weather Minimums - Above 10,000' MSL",
+      "back": "Visibility: 5 SM\nCloud Clearance: 1000' below, 1000' above, 1 SM horizontal\n\nMemory aid: '5-111' (5 miles, 1000 all around, 1 mile horizontal)",
+      "reference": "14 CFR 91.155"
+    },
+    {
+      "id": "fc91-004",
+      "front": "VFR Weather Minimums - Class G Day (below 1200' AGL)",
+      "back": "Visibility: 1 SM\nCloud Clearance: Clear of clouds\n\nLowest VFR minimums in the NAS!",
+      "reference": "14 CFR 91.155"
+    },
+    {
+      "id": "fc91-005",
+      "front": "VFR Weather Minimums - Class G Night (below 1200' AGL)",
+      "back": "Visibility: 3 SM\nCloud Clearance: 500' below, 1000' above, 2000' horizontal\n\nSame as Class C/D/E below 10,000'",
+      "reference": "14 CFR 91.155"
+    },
+    {
+      "id": "fc91-006",
+      "front": "Special VFR Requirements",
+      "back": "Visibility: 1 SM flight visibility\nCloud Clearance: Clear of clouds\n\nRequirements:\n• ATC clearance required\n• At night: Pilot must be instrument rated, aircraft IFR-equipped\n• Not available at all airports (see chart)",
+      "reference": "14 CFR 91.157"
+    },
+    {
+      "id": "fc91-007",
+      "front": "Speed Limits - Below 10,000' MSL",
+      "back": "Maximum: 250 KIAS\n\nExceptions:\n• ATC authorization\n• Flight test operations",
+      "reference": "14 CFR 91.117"
+    },
+    {
+      "id": "fc91-008",
+      "front": "Speed Limits - Within Class B or Below/Through Class B",
+      "back": "Maximum: 200 KIAS\n\nApplies:\n• Below Class B shelf\n• Through VFR corridor\n• Within 4 NM of Class C/D primary airport at/below 2500' AGL",
+      "reference": "14 CFR 91.117"
+    },
+    {
+      "id": "fc91-009",
+      "front": "Minimum Safe Altitudes - Congested Areas",
+      "back": "1000 feet above the highest obstacle within a horizontal radius of 2000 feet\n\nAllows safe emergency landing if engine fails",
+      "reference": "14 CFR 91.119"
+    },
+    {
+      "id": "fc91-010",
+      "front": "Minimum Safe Altitudes - Non-Congested Areas",
+      "back": "500 feet above surface except:\n• Cannot fly within 500 feet of any person, vessel, vehicle, or structure\n\nMemory aid: '500/500 rule'",
+      "reference": "14 CFR 91.119"
+    },
+    {
+      "id": "fc91-011",
+      "front": "Minimum Safe Altitudes - Open Water/Sparsely Populated",
+      "back": "No closer than 500 feet to any person, vessel, vehicle, or structure\n\n(Same as other than congested, no 500' AGL minimum)",
+      "reference": "14 CFR 91.119"
+    },
+    {
+      "id": "fc91-012",
+      "front": "VFR Cruising Altitudes (Above 3000' AGL)",
+      "back": "Magnetic course 0°-179°: ODD thousands + 500\n(3500, 5500, 7500, 9500...)\n\nMagnetic course 180°-359°: EVEN thousands + 500\n(4500, 6500, 8500...)\n\nMemory aid: 'East is Odd, West is Even (EWOE) + 500'",
+      "reference": "14 CFR 91.159"
+    },
+    {
+      "id": "fc91-013",
+      "front": "IFR Cruising Altitudes",
+      "back": "Magnetic course 0°-179°: ODD thousands\n(3000, 5000, 7000...)\n\nMagnetic course 180°-359°: EVEN thousands\n(4000, 6000, 8000...)\n\nNo +500 for IFR!",
+      "reference": "14 CFR 91.179"
+    },
+    {
+      "id": "fc91-014",
+      "front": "Fuel Requirements - VFR Day",
+      "back": "Enough fuel to:\n• Fly to first point of intended landing\n• PLUS 30 minutes reserve at normal cruise",
+      "reference": "14 CFR 91.151"
+    },
+    {
+      "id": "fc91-015",
+      "front": "Fuel Requirements - VFR Night",
+      "back": "Enough fuel to:\n• Fly to first point of intended landing\n• PLUS 45 minutes reserve at normal cruise\n\nMemory aid: 'Night needs 45'",
+      "reference": "14 CFR 91.151"
+    },
+    {
+      "id": "fc91-016",
+      "front": "Fuel Requirements - IFR",
+      "back": "Enough fuel to:\n• Complete flight to destination\n• Fly to alternate (if required)\n• PLUS 45 minutes at normal cruise\n\nAlways file REAL fuel endurance!",
+      "reference": "14 CFR 91.167"
+    },
+    {
+      "id": "fc91-017",
+      "front": "IFR Alternate Requirements (1-2-3 Rule)",
+      "back": "Alternate NOT required if destination weather:\n• 1 hour before to 1 hour after ETA\n• Ceiling at least 2000 feet\n• Visibility at least 3 SM\n\nMemory aid: '1-2-3: 1 hour window, 2000 ceiling, 3 SM vis'",
+      "reference": "14 CFR 91.169"
+    },
+    {
+      "id": "fc91-018",
+      "front": "Required Equipment - VFR Day (TOMATO FLAMES)",
+      "back": "T - Tachometer\nO - Oil pressure gauge\nM - Manifold pressure (if constant-speed prop)\nA - Altimeter\nT - Temperature gauge (liquid-cooled engine)\nO - Oil temperature gauge\n\nF - Fuel gauge\nL - Landing gear position indicator\nA - Airspeed indicator\nM - Magnetic compass\nE - ELT\nS - Seatbelts/shoulder harnesses",
+      "reference": "14 CFR 91.205"
+    },
+    {
+      "id": "fc91-019",
+      "front": "Additional Equipment - VFR Night (FLAPS)",
+      "back": "F - Fuses (spare set or 3 of each kind)\nL - Landing light (if for hire)\nA - Anti-collision lights\nP - Position lights\nS - Source of electrical power",
+      "reference": "14 CFR 91.205(c)"
+    },
+    {
+      "id": "fc91-020",
+      "front": "Required Equipment - IFR (GRABCARD)",
+      "back": "G - Generator/alternator\nR - Radios (nav and comm)\nA - Attitude indicator\nB - Ball (slip/skid indicator)\n\nC - Clock (sweep second hand or digital)\nA - Altimeter (adjustable)\nR - Rate of turn indicator\nD - Directional gyro (heading indicator)\n\nPLUS all VFR day/night equipment",
+      "reference": "14 CFR 91.205(d)"
+    },
+    {
+      "id": "fc91-021",
+      "front": "Transponder Requirements",
+      "back": "Mode C transponder required:\n• Class A (all)\n• Class B (in and above)\n• Class C (in and above)\n• Within 30 NM of Class B primary airport to 10,000' MSL\n• Above 10,000' MSL (except below 2500' AGL)\n• Within ADIZ",
+      "reference": "14 CFR 91.215"
+    },
+    {
+      "id": "fc91-022",
+      "front": "ADS-B Out Requirements",
+      "back": "Required in same airspace as Mode C transponder:\n• Class A, B, C\n• Within 30 NM of Class B primary\n• Above 10,000' MSL\n• Within ADIZ\n\nEffective January 1, 2020",
+      "reference": "14 CFR 91.225"
+    },
+    {
+      "id": "fc91-023",
+      "front": "Emergency Transponder Codes",
+      "back": "7500 - Hijack (Hi-Jack, 75)\n7600 - Communications failure (Can't Communicate, 76)\n7700 - Emergency (7 + 7 = 14, 2×7 = 14, lots of 7s = really bad)\n\nMemory aid: '75 taken alive, 76 need a fix, 77 going to heaven'",
+      "reference": "AIM 4-1-20"
+    },
+    {
+      "id": "fc91-024",
+      "front": "Right-of-Way Rules - Hierarchy",
+      "back": "1. Aircraft in distress (ALWAYS first)\n2. Balloons\n3. Gliders\n4. Airships\n5. Aircraft towing/refueling\n6. Airplanes/rotorcraft\n\nMemory aid: 'Balloons & Gliders Always (win)'",
+      "reference": "14 CFR 91.113"
+    },
+    {
+      "id": "fc91-025",
+      "front": "Right-of-Way Rules - Converging",
+      "back": "Aircraft on the RIGHT has right-of-way\n\nThe other aircraft must give way (usually by turning right or climbing/descending)",
+      "reference": "14 CFR 91.113"
+    },
+    {
+      "id": "fc91-026",
+      "front": "Right-of-Way Rules - Head-On",
+      "back": "Both aircraft turn RIGHT\n\nNo matter who sees whom first",
+      "reference": "14 CFR 91.113"
+    },
+    {
+      "id": "fc91-027",
+      "front": "Right-of-Way Rules - Overtaking",
+      "back": "Aircraft being overtaken has right-of-way\n\nOvertaking aircraft passes to the RIGHT",
+      "reference": "14 CFR 91.113"
+    },
+    {
+      "id": "fc91-028",
+      "front": "Oxygen Requirements - Flight Crew",
+      "back": "12,500' - 14,000' cabin altitude:\n• Required after 30 minutes at altitude\n\nAbove 14,000' cabin altitude:\n• Required continuously",
+      "reference": "14 CFR 91.211"
+    },
+    {
+      "id": "fc91-029",
+      "front": "Oxygen Requirements - Passengers",
+      "back": "Above 15,000' cabin altitude:\n• Must be provided supplemental oxygen\n\nNote: Pilots should offer oxygen earlier for passenger comfort",
+      "reference": "14 CFR 91.211"
+    },
+    {
+      "id": "fc91-030",
+      "front": "Position Lights",
+      "back": "Required: Sunset to sunrise\n\nColors:\n• Red - Left wing\n• Green - Right wing\n• White - Tail\n\nMemory aid: 'Red-Right-Returning (maritime)'... wait, it's opposite! Left=Red, Right=Green",
+      "reference": "14 CFR 91.209"
+    },
+    {
+      "id": "fc91-031",
+      "front": "Anti-Collision Lights",
+      "back": "Required for ALL operations (day and night)\n\nExceptions: Safety reasons (such as during maintenance or when they might blind passengers during boarding)\n\nUsually red rotating beacon and/or white strobes",
+      "reference": "14 CFR 91.209"
+    },
+    {
+      "id": "fc91-032",
+      "front": "Class B Airspace Entry",
+      "back": "Requirement: Must receive ATC CLEARANCE\n\n'Cleared into Bravo' = you may enter\n'Remain outside Bravo' = do not enter\n\nAlso need: Mode C, ADS-B Out",
+      "reference": "14 CFR 91.131"
+    },
+    {
+      "id": "fc91-033",
+      "front": "Class C/D Airspace Entry",
+      "back": "Requirement: Two-way radio communication ESTABLISHED\n\n'Established' = ATC has said your callsign\n'Standby' = NOT established!\n\nMust have working radio and Mode C",
+      "reference": "14 CFR 91.130"
+    },
+    {
+      "id": "fc91-034",
+      "front": "Preflight Action Required (91.103)",
+      "back": "ALL FLIGHTS:\n• Become familiar with all available information\n\nAway from vicinity of airport:\n• Weather reports and forecasts\n• Fuel requirements\n• Alternatives if flight cannot be completed\n• Runway lengths at intended airports\n• Takeoff and landing distance data",
+      "reference": "14 CFR 91.103"
+    },
+    {
+      "id": "fc91-035",
+      "front": "PIC Authority and Responsibility",
+      "back": "The PIC is:\n• Directly responsible for operation of aircraft\n• Final authority as to operation of that aircraft\n\nMay deviate from ANY rule to meet an emergency!\n\nIf requested, must submit written report to FAA",
+      "reference": "14 CFR 91.3"
+    },
+    {
+      "id": "fc91-036",
+      "front": "Seatbelt Requirements",
+      "back": "PIC shall ensure each person is briefed on seatbelts and shoulder harnesses\n\nMust be fastened:\n• During takeoff and landing\n• When directed by PIC\n\nChildren under 2: May be held by adult",
+      "reference": "14 CFR 91.107"
+    },
+    {
+      "id": "fc91-037",
+      "front": "Inoperative Equipment - Without MEL",
+      "back": "Can fly if equipment is NOT required by:\n1. Type certificate / Equipment list\n2. 91.205 (VFR day/night, IFR)\n3. Airworthiness Directive\n4. Any other Part 91 rule\n\nMust: Placard inoperative, deactivate or remove",
+      "reference": "14 CFR 91.213(d)"
+    },
+    {
+      "id": "fc91-038",
+      "front": "ELT Requirements",
+      "back": "Required on most U.S. civil aircraft\n\nExceptions:\n• Training flights within 50 NM of departure\n• Design/development flights\n• Ferry flights to install/repair\n• Agricultural operations\n• Aerial advertising\n\nMust be inspected within 12 calendar months",
+      "reference": "14 CFR 91.207"
+    },
+    {
+      "id": "fc91-039",
+      "front": "Formation Flight Rules",
+      "back": "No person may operate in formation flight:\n• Unless arranged with each PIC beforehand\n• Never with passengers for hire",
+      "reference": "14 CFR 91.111"
+    },
+    {
+      "id": "fc91-040",
+      "front": "Aerobatic Flight Restrictions",
+      "back": "Aerobatics prohibited:\n• Over congested areas or open-air assemblies\n• Below 1500' AGL\n• Less than 3 miles flight visibility\n• Within Class B, C, D, E surface areas\n• Federal airways\n• Without parachutes (if carrying passengers)",
+      "reference": "14 CFR 91.303"
+    },
+    {
+      "id": "fc91-041",
+      "front": "Traffic Pattern Altitude (TPA)",
+      "back": "Standard TPA: 1000' AGL\n\nLarger/turbine aircraft: 1500' AGL\n\nAlways check Chart Supplement for non-standard TPAs!",
+      "reference": "AIM 4-3-3"
+    },
+    {
+      "id": "fc91-042",
+      "front": "Lost Communication Procedures - VFR",
+      "back": "Continue VFR, land as soon as practicable\n\nRemember: Squawk 7600",
+      "reference": "14 CFR 91.185"
+    },
+    {
+      "id": "fc91-043",
+      "front": "Lost Communication Procedures - IFR (AVE-FMEA)",
+      "back": "Altitude: Highest of:\n• Assigned\n• Vectored\n• Expected\n• Filed (MEA)\n\nRoute: Continue on route cleared, then expected, then filed",
+      "reference": "14 CFR 91.185"
+    },
+    {
+      "id": "fc91-044",
+      "front": "Airspace Dimensions - Class A",
+      "back": "18,000' MSL to FL600\n\nIFR only\nNo VFR allowed\nNo Special VFR",
+      "reference": "14 CFR 71.33"
+    },
+    {
+      "id": "fc91-045",
+      "front": "Accident/Incident Reporting Quick Reference",
+      "back": "IMMEDIATELY notify NTSB:\n• Aircraft accident\n• Listed serious incidents (91.271)\n\nWithin 10 days:\n• Written report if accident\n\nSee Part 830 for details!",
+      "reference": "49 CFR 830"
+    }
+  ]
+}

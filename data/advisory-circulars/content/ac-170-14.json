@@ -1,0 +1,25 @@
+{
+  "version": 1,
+  "id": "ac-170-14",
+  "number": "170-14",
+  "title": "Implementation of 50 kHz/Y Channels for ILS/VOR/DME",
+  "status": "parsed",
+  "fetched": "2026-07-14",
+  "documentUrl": "https://www.faa.gov/regulations_policies/advisory_circulars/index.cfm/go/document.information/documentID/23102",
+  "pdfUrl": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_170-14.pdf",
+  "sha256": "552369b176804e2f6d783c210ec01183e5aece670fdf94728cc4cd5001f406c1",
+  "pageCount": 2,
+  "wordCount": 504,
+  "ocrPageCount": 0,
+  "pages": [
+    {
+      "page": 1,
+      "text": "*\n\nSubject: IMPLEMENTATION OF July CHANNELS FOR Initiated by: This circular advises aircraft owners,. operators, and radio equipment manufacturers of the FAA's continued implementation of or\n\nsplit channel Instrument Landing System and Very High Frequency Omnidirectional Range frequency assignments.\n\nAdvisory Circular AC NO: AC Subject: Implementation of Channels for dated October is\n\ncanceled.\n\nGENERAL. The continuing requirement for expanding precision navigation services in all areas of the country has resulted in the need for more facilities. Also, the need for new en route navigation facilities, and the realignment and restructuring of the air traffic flow patterns into and out of the major airports, requires that more services be available from the system, These needs are resulting in acute frequency congestion in the and frequency bands, Frequency studies have been performed by the FAA and these clearly demonstrate that projected precision landing requirements cannot be satisfied without the use of and channels and the associated\n\nchannels. The situation is critical in many areas of the country, in particular, east of the Mississippi California and Texas,\n\nThe shortage of available frequencies led to the implementation of channel assignments. The first split channels were assigned in and since then over assignments have been made for and locations.\n\nThe existing FAA policy concerning the use of channels was first\n\npublished in the Federal Register on October and provides in part that:\n\nFAA will continue to install new facilities at frequency assignments unless frequency congestion necessitates the use of a frequency assignment in which case the facility will be installed at A proposed frequency change to an existing or facility, from a to a channel, or the installation of a new navigational aid facility\n\non a channel, will be coordinated, where applicable, through airspace review, the user groups, and the airport owner or manager,\n\nThis circular gives notice that aircraft, not configured with 2OO-channel NAVAID receivers, may not be able to receive full navigational services. The present equipment has limited life expectancy depending on the area of use and services desired."
+    },
+    {
+      "page": 2,
+      "text": "AC New channels that are assigned have been engineered to protect the old 1000channel NAVAID receivers using the adjacent 100 kHz frequencies, This practice is continuing, and all presently assigned frequencies meet this criteria. The FAA will continue this policy for the foreseeable future. However, there may be special site-specific cases where aircraft, using the adjacent facility, must be equipped with equipment to receive full precision landing and en route navigation services. SUMMARY. The FAA will continue to assign or split channel and frequencies because of a nationwide problem of acute frequency congestion in these bands and the need for additional navigational aid services, Aircraft owners and users are hereby alerted that navigational aid receivers, which are not compatible with channel operation, may not receive full en route or precision landing navigation services in certain areas of the country where frequency congestion is prevalent. Systems U.S. Department of Transportation Federal Aviation Administration Independence Ave., Washington, D.C. 20591\n\nFORWARDING\n\nPOSTAGE GUARANTEED\n\nOfficial Business Penalty for Private Use $300"
+    }
+  ],
+  "extractedPageCount": 2
+}

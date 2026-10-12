@@ -1,0 +1,160 @@
+{
+  "id": "far-part830-ntsb",
+  "title": "Part 830: NTSB Accident Reporting",
+  "description": "NTSB accident and incident definitions, notification requirements, and reporting procedures",
+  "category": "FAR",
+  "part": 830,
+  "cardCount": 25,
+  "cards": [
+    {
+      "id": "fcntsb-001",
+      "front": "Aircraft Accident Definition",
+      "back": "An occurrence associated with aircraft operation from boarding to deplaning resulting in:\n\n• Death\n• Serious injury\n• Substantial damage to aircraft\n\nAll three elements: occurrence + operation period + result",
+      "reference": "49 CFR 830.2"
+    },
+    {
+      "id": "fcntsb-002",
+      "front": "Substantial Damage Definition",
+      "back": "Damage that adversely affects:\n• Structural strength\n• Performance\n• Flight characteristics\n\nAND requires major repair or component replacement\n\nExclusions: Engine damage, bent fairings, small holes, landing gear, prop/rotor blades",
+      "reference": "49 CFR 830.2"
+    },
+    {
+      "id": "fcntsb-003",
+      "front": "NOT Substantial Damage",
+      "back": "• Engine damage (engine only)\n• Bent fairings or cowling\n• Dented skin\n• Small puncture holes\n• Damage to landing gear\n• Damage to wheels, tires, flaps\n• Damage to propeller/rotor blades\n• Damage to accessories (antennas, lights)",
+      "reference": "49 CFR 830.2"
+    },
+    {
+      "id": "fcntsb-004",
+      "front": "Serious Injury Definition",
+      "back": "• Hospitalization >48 hours (within 7 days of injury)\n• Bone fracture (except simple nose/finger/toe)\n• Severe hemorrhage\n• Nerve, muscle, or tendon damage\n• Internal organ injury\n• 2nd/3rd degree burns >5% of body",
+      "reference": "49 CFR 830.2"
+    },
+    {
+      "id": "fcntsb-005",
+      "front": "Accident Notification Timeline",
+      "back": "IMMEDIATELY notify NTSB\n\nBy most expeditious means available (usually telephone)\n\nNTSB Response Center: 1-844-373-9922",
+      "reference": "49 CFR 830.5"
+    },
+    {
+      "id": "fcntsb-006",
+      "front": "Written Report Timeline",
+      "back": "Within 10 DAYS of accident\n\nForm: NTSB Form 6120.1/2\n\nIncidents: Only when NTSB requests",
+      "reference": "49 CFR 830.15"
+    },
+    {
+      "id": "fcntsb-007",
+      "front": "Who Must Notify NTSB",
+      "back": "The OPERATOR of the aircraft\n\nOperator = person who causes or authorizes operation\n\nUsually: Owner, lessee, or person exercising operational control",
+      "reference": "49 CFR 830.5"
+    },
+    {
+      "id": "fcntsb-008",
+      "front": "Incidents Requiring Immediate Notification",
+      "back": "• Flight control malfunction/failure\n• Inability of required crew to perform duties (incapacitation)\n• In-flight fire\n• Aircraft collision in flight\n• Damage to property >$25,000\n• Overdue aircraft believed in accident\n• Release of propeller blade\n• Turbine engine debris escape",
+      "reference": "49 CFR 830.5"
+    },
+    {
+      "id": "fcntsb-009",
+      "front": "More Incidents Requiring Immediate Notification",
+      "back": "• Complete loss of flight recorder info\n• TCAS Resolution Advisory in RVSM airspace\n• Aircraft evacuation using emergency egress\n• Emergency descent from flight crew oxygen deficiency\n• Runway incursion requiring evasive action",
+      "reference": "49 CFR 830.5"
+    },
+    {
+      "id": "fcntsb-010",
+      "front": "Information Required in Notification",
+      "back": "• Type/registration of aircraft\n• Name of owner/operator\n• Name of PIC\n• Date and time of accident\n• Last departure point and intended destination\n• Position of aircraft\n• Number of persons aboard\n• Injuries and fatalities\n• Nature of accident and damage",
+      "reference": "49 CFR 830.6"
+    },
+    {
+      "id": "fcntsb-011",
+      "front": "Wreckage Preservation",
+      "back": "Operator must preserve wreckage, mail, and cargo until NTSB takes custody\n\nMay move ONLY to:\n• Protect wreckage from further damage\n• Remove persons (injured or deceased)\n• Protect public from injury",
+      "reference": "49 CFR 830.10"
+    },
+    {
+      "id": "fcntsb-012",
+      "front": "If Wreckage Must Be Moved",
+      "back": "Before moving, document:\n• Sketches of original positions\n• Descriptive notes\n• Photographs\n\nPreserve condition of wreckage as much as possible",
+      "reference": "49 CFR 830.10"
+    },
+    {
+      "id": "fcntsb-013",
+      "front": "Incident vs Accident",
+      "back": "ACCIDENT: Results in death, serious injury, or substantial damage\n\nINCIDENT: Occurrence other than accident that affects or could affect safety\n\nSome incidents require immediate notification (see list)",
+      "reference": "49 CFR 830.2"
+    },
+    {
+      "id": "fcntsb-014",
+      "front": "Engine Failure Reporting",
+      "back": "Engine failure alone is NOT automatically reportable\n\nBecomes ACCIDENT if results in:\n• Death\n• Serious injury\n• Substantial damage\n\nForced landing with no damage/injury = no report required",
+      "reference": "49 CFR 830.2"
+    },
+    {
+      "id": "fcntsb-015",
+      "front": "Gear-Up Landing Reporting",
+      "back": "Usually NOT substantial damage if only:\n• Landing gear damaged\n• Propeller damaged\n• Skin scraped/dented\n\nBecomes accident if structural damage or injury occurs",
+      "reference": "49 CFR 830.2"
+    },
+    {
+      "id": "fcntsb-016",
+      "front": "NTSB vs FAA Roles",
+      "back": "NTSB:\n• Investigates accidents\n• Determines probable cause\n• Makes safety recommendations\n\nFAA:\n• Enforces regulations\n• Takes certificate action\n• Implements safety changes\n\nNTSB is independent of FAA",
+      "reference": "49 CFR 830"
+    },
+    {
+      "id": "fcntsb-017",
+      "front": "Reporting Memory Aid",
+      "back": "IMMEDIATELY notify NTSB of:\n• Any ACCIDENT\n• Specific INCIDENTS (fire, collision, control failure, etc.)\n\n10 DAYS: Written report for accidents\n\nRemember: When in doubt, report!",
+      "reference": "49 CFR 830.5, 830.15"
+    },
+    {
+      "id": "fcntsb-018",
+      "front": "Crew Incapacitation",
+      "back": "Immediately reportable incident:\n\n'Inability of any required flight crewmember to perform normal flight duties as a result of injury or illness'\n\nIncludes: Heart attack, stroke, loss of consciousness, severe illness",
+      "reference": "49 CFR 830.5"
+    },
+    {
+      "id": "fcntsb-019",
+      "front": "Property Damage Threshold",
+      "back": "Immediately reportable incident:\n\nDamage to property OTHER than aircraft exceeds $25,000\n\nExamples: Hangar damage, vehicle damage, building damage",
+      "reference": "49 CFR 830.5"
+    },
+    {
+      "id": "fcntsb-020",
+      "front": "Overdue Aircraft",
+      "back": "Immediately reportable:\n\n'An aircraft is overdue and is believed to have been involved in an accident'\n\nNotify NTSB even before confirmation of accident",
+      "reference": "49 CFR 830.5"
+    },
+    {
+      "id": "fcntsb-021",
+      "front": "Flight Control Malfunction",
+      "back": "Immediately reportable incident:\n\n'Flight control system malfunction or failure'\n\nIncludes: Jammed controls, cable failure, hydraulic failure affecting controls, autopilot malfunction",
+      "reference": "49 CFR 830.5"
+    },
+    {
+      "id": "fcntsb-022",
+      "front": "In-Flight Fire",
+      "back": "Immediately reportable incident:\n\n'In-flight fire'\n\nIncludes: Engine fire, electrical fire, cabin fire\n\nReport regardless of whether fire was extinguished or damage occurred",
+      "reference": "49 CFR 830.5"
+    },
+    {
+      "id": "fcntsb-023",
+      "front": "Mid-Air Collision",
+      "back": "Immediately reportable incident:\n\n'Aircraft collision in flight'\n\nReport regardless of damage or injury\n\nIncludes: Any contact between aircraft in flight",
+      "reference": "49 CFR 830.5"
+    },
+    {
+      "id": "fcntsb-024",
+      "front": "NTSB Contact Information",
+      "back": "24-Hour Response Center:\n1-844-373-9922\n\nOnline: www.ntsb.gov\n\nForm 6120.1: Available online\n\nWhen in doubt, CALL!",
+      "reference": "49 CFR 830"
+    },
+    {
+      "id": "fcntsb-025",
+      "front": "Fatal Injury Definition",
+      "back": "Death within 30 days of accident\n\nDeath directly resulting from:\n• Injuries sustained\n• Damage to aircraft\n\nExcludes: Natural causes, self-inflicted, inflicted by others",
+      "reference": "49 CFR 830.2"
+    }
+  ]
+}

@@ -1,0 +1,57 @@
+[project]
+name = "far-aim-pro-scripts"
+version = "1.0.0"
+description = "Data crawling and processing scripts for FAR/AIM Pro"
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+authors = [
+    { name = "FAR/AIM Pro Team" }
+]
+
+dependencies = [
+    "requests>=2.33.0",
+    "urllib3>=2.8.0",
+    "beautifulsoup4>=4.12.0",
+    "lxml>=6.1.0",
+    "pillow>=12.1.1",
+    "pypdf>=6.19.0",
+    "pypdfium2>=5.11.0",
+    "tqdm>=4.66.0",
+]
+
+[project.optional-dependencies]
+ocr = [
+    "onnxruntime>=1.27.0",
+    "rapidocr>=3.9.1",
+]
+dev = [
+    "pytest>=9.0.3",
+    "black>=26.3.1",
+    "ruff>=0.1.0",
+]
+
+[project.scripts]
+crawl-far = "crawl_far:main"
+crawl-aim = "crawl_aim:main"
+crawl-ac-content = "crawl_advisory_circulars:main"
+check-source-freshness = "check_source_freshness:main"
+
+[dependency-groups]
+dev = [
+    "pytest>=9.0.3",
+    "black>=26.3.1",
+    "ruff>=0.1.0",
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "N", "W"]
+ignore = ["E501"]
+
+[tool.black]
+line-length = 100
+target-version = ["py311"]

@@ -1,0 +1,403 @@
+{
+  "id": "aim-chapter4-atc",
+  "title": "Air Traffic Control Services & Communications Quiz",
+  "description": "Test your knowledge of ATC services, radio communications, transponder operations, and flight plans from AIM Chapter 4",
+  "category": "AIM",
+  "chapter": 4,
+  "difficulty": "intermediate",
+  "targetCertificate": "Private/Instrument Pilot",
+  "questionCount": 30,
+  "passingScore": 70,
+  "questions": [
+    {
+      "id": "atc-001",
+      "question": "What does CTAF stand for and what is its purpose?",
+      "options": [
+        "Controlled Traffic Advisory Frequency - for ATC coordination",
+        "Common Traffic Advisory Frequency - for airport advisory practices at non-towered airports",
+        "Center Traffic Alert Frequency - for en route advisories",
+        "Control Tower Advisory Frequency - for tower communications"
+      ],
+      "correctAnswer": 1,
+      "explanation": "CTAF (Common Traffic Advisory Frequency) is designated for carrying out airport advisory practices at airports without an operating control tower. It may be UNICOM, MULTICOM, FSS, or tower frequency.",
+      "reference": "AIM 4-1-9"
+    },
+    {
+      "id": "atc-002",
+      "question": "What is the standard MULTICOM frequency used when no tower, FSS, or UNICOM is available?",
+      "options": [
+        "121.5 MHz",
+        "122.8 MHz",
+        "122.9 MHz",
+        "122.75 MHz"
+      ],
+      "correctAnswer": 2,
+      "explanation": "122.9 MHz is the MULTICOM frequency used at airports with no tower, FSS, or UNICOM. 122.75 MHz is used for air-to-air communications between private fixed-wing aircraft.",
+      "reference": "AIM 4-1-11"
+    },
+    {
+      "id": "atc-003",
+      "question": "What information is included in an ATIS broadcast?",
+      "options": [
+        "Only weather and runway information",
+        "Airport name, phonetic code, time, weather, instrument approach, and runway in use",
+        "Traffic advisories and sequencing information",
+        "Flight following frequencies only"
+      ],
+      "correctAnswer": 1,
+      "explanation": "ATIS includes: airport/facility name, phonetic letter code, time (UTC), weather (wind, visibility, sky condition, temperature, dewpoint, altimeter), instrument approach, and runway in use.",
+      "reference": "AIM 4-1-13"
+    },
+    {
+      "id": "atc-004",
+      "question": "What should you say to indicate you have received the ATIS information?",
+      "options": [
+        "Have the numbers",
+        "Information [phonetic letter] received",
+        "Weather received",
+        "ATIS copy"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Say 'Information [Alpha/Bravo/etc.] received' to indicate you have the current ATIS. 'Have the numbers' only indicates wind, runway, and altimeter - not the full ATIS.",
+      "reference": "AIM 4-1-13"
+    },
+    {
+      "id": "atc-005",
+      "question": "What are the two types of safety alerts ATC may issue?",
+      "options": [
+        "Weather alert and traffic alert",
+        "Terrain/obstruction alert and aircraft conflict alert",
+        "SIGMET alert and AIRMET alert",
+        "Mode C alert and radar contact alert"
+      ],
+      "correctAnswer": 1,
+      "explanation": "ATC issues: (1) Terrain/Obstruction Alert when aircraft altitude places it in unsafe proximity to terrain/obstructions, and (2) Aircraft Conflict Alert when another aircraft creates unsafe proximity.",
+      "reference": "AIM 4-1-16"
+    },
+    {
+      "id": "atc-006",
+      "question": "What does MSAW stand for and what does it do?",
+      "options": [
+        "Minimum Standard Altitude Warning - warns of low altitude in mountains",
+        "Mode Select Altitude Warning - selects safe altitudes",
+        "Minimum Safe Altitude Warning - alerts controllers to unsafe terrain proximity",
+        "Mandatory Safe Altitude Watch - monitors all aircraft altitudes"
+      ],
+      "correctAnswer": 2,
+      "explanation": "MSAW (Minimum Safe Altitude Warning) is an automated function that alerts controllers when a Mode C equipped aircraft is below or predicted to be below minimum safe altitude.",
+      "reference": "AIM 4-1-16"
+    },
+    {
+      "id": "atc-007",
+      "question": "What services are included in basic radar service for VFR aircraft?",
+      "options": [
+        "Standard radar separation only",
+        "Safety alerts, traffic advisories, limited vectoring, and sequencing where established",
+        "Full IFR separation services",
+        "Approach clearances and holding instructions"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Basic radar services for VFR include: safety alerts, traffic advisories, limited radar vectoring (workload permitting), and sequencing at locations with established procedures.",
+      "reference": "AIM 4-1-18"
+    },
+    {
+      "id": "atc-008",
+      "question": "What does the squawk code 7500 indicate?",
+      "options": [
+        "Radio failure",
+        "Emergency",
+        "Hijacking",
+        "VFR flight"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Squawk 7500 indicates hijacking/unlawful interference. Memory aid: '75 - taken alive' (hijack), '76 - need a fix' (radio failure), '77 - going to heaven' (emergency).",
+      "reference": "AIM 4-1-20"
+    },
+    {
+      "id": "atc-009",
+      "question": "What does the squawk code 7600 indicate?",
+      "options": [
+        "Emergency",
+        "Radio failure",
+        "Hijacking",
+        "IFR flight"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Squawk 7600 indicates radio/communication failure. If experiencing comm failure, squawk 7600 and continue to your destination following lost communication procedures.",
+      "reference": "AIM 4-1-20"
+    },
+    {
+      "id": "atc-010",
+      "question": "What does the squawk code 7700 indicate?",
+      "options": [
+        "Radio failure",
+        "Hijacking",
+        "Emergency",
+        "Military intercept"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Squawk 7700 indicates an emergency. This code alerts ATC and triggers special handling. Use when declaring an emergency.",
+      "reference": "AIM 4-1-20"
+    },
+    {
+      "id": "atc-011",
+      "question": "What is the standard squawk code for VFR aircraft not receiving radar services?",
+      "options": [
+        "0000",
+        "1200",
+        "7700",
+        "4000"
+      ],
+      "correctAnswer": 1,
+      "explanation": "VFR aircraft not in contact with ATC should squawk 1200. When receiving radar services, ATC will assign a discrete transponder code.",
+      "reference": "AIM 4-1-20"
+    },
+    {
+      "id": "atc-012",
+      "question": "When must you have Mode C altitude reporting capability?",
+      "options": [
+        "Only in Class A airspace",
+        "In Class A, B, C airspace and above 10,000 MSL (except below 2,500 AGL)",
+        "Only when IFR",
+        "Only at night"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Mode C is required in: Class A, B, C airspace; within 30 NM of Class B primary airports (Mode C veil); and at/above 10,000 MSL except when at/below 2,500 AGL.",
+      "reference": "AIM 4-1-20, 14 CFR 91.215"
+    },
+    {
+      "id": "atc-013",
+      "question": "What is a 'cleared as filed' clearance?",
+      "options": [
+        "Clearance to fly exactly as you filed with no changes",
+        "Clearance to proceed via the route filed with possible altitude/departure changes",
+        "Clearance to file a new flight plan",
+        "Clearance for VFR-on-top"
+      ],
+      "correctAnswer": 1,
+      "explanation": "'Cleared as filed' authorizes flight via the route filed. However, ATC may still assign different altitude, departure procedure, or include other restrictions.",
+      "reference": "AIM 4-4-3"
+    },
+    {
+      "id": "atc-014",
+      "question": "What is the correct readback of a clearance?",
+      "options": [
+        "Roger",
+        "Wilco",
+        "Full readback of route, altitude, and any hold short instructions",
+        "Just the altitude"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Pilots should read back: route, altitude, hold short instructions, and any runway assignments. This confirms understanding and helps catch errors.",
+      "reference": "AIM 4-4-7"
+    },
+    {
+      "id": "atc-015",
+      "question": "What does 'radar contact' mean?",
+      "options": [
+        "You are cleared for approach",
+        "Your aircraft has been identified on radar and radar services are being provided",
+        "You must squawk 1200",
+        "You are in controlled airspace"
+      ],
+      "correctAnswer": 1,
+      "explanation": "'Radar contact' means ATC has identified your aircraft on radar and will provide applicable radar services. You'll receive a discrete transponder code.",
+      "reference": "AIM 4-1-15"
+    },
+    {
+      "id": "atc-016",
+      "question": "What does 'radar service terminated' mean?",
+      "options": [
+        "Squawk 7600",
+        "Radar services no longer being provided; squawk 1200 if VFR",
+        "You've entered Class A airspace",
+        "Emergency services activated"
+      ],
+      "correctAnswer": 1,
+      "explanation": "'Radar service terminated' means ATC is no longer providing radar services. VFR aircraft should squawk 1200 and are responsible for their own navigation and traffic avoidance.",
+      "reference": "AIM 4-1-18"
+    },
+    {
+      "id": "atc-017",
+      "question": "What is the proper phraseology to request VFR flight following?",
+      "options": [
+        "Request radar vectors",
+        "Request VFR advisories or request flight following",
+        "Request IFR clearance",
+        "Request priority handling"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Request 'VFR advisories' or 'flight following' from approach/center. Include: callsign, aircraft type, position, altitude, destination, and request.",
+      "reference": "AIM 4-1-18"
+    },
+    {
+      "id": "atc-018",
+      "question": "What should you include in an initial call to ATC?",
+      "options": [
+        "Just your callsign",
+        "Your callsign, position, altitude, and request",
+        "Passenger count and fuel state",
+        "Departure time and ETA"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Initial call should include: facility name, your callsign, aircraft type, position, altitude, transponder code (if assigned), destination, and request.",
+      "reference": "AIM 4-2-3"
+    },
+    {
+      "id": "atc-019",
+      "question": "What is a 'Land and Hold Short Operation' (LAHSO)?",
+      "options": [
+        "Landing on a short runway",
+        "Holding short of runway before takeoff",
+        "Landing and stopping before an intersecting runway/taxiway/point",
+        "Emergency landing procedure"
+      ],
+      "correctAnswer": 2,
+      "explanation": "LAHSO requires landing and stopping before an intersecting runway, taxiway, or designated point. Pilots can decline LAHSO; acceptance is not mandatory for Part 91.",
+      "reference": "AIM 4-3-11"
+    },
+    {
+      "id": "atc-020",
+      "question": "When can a pilot decline a LAHSO clearance?",
+      "options": [
+        "Never - LAHSO is mandatory",
+        "Only in emergencies",
+        "Anytime - pilot acceptance is voluntary for Part 91",
+        "Only if runway is wet"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Pilots operating under Part 91 may decline LAHSO clearances. If you're unable to comply, simply state 'unable' and you'll receive alternative instructions.",
+      "reference": "AIM 4-3-11"
+    },
+    {
+      "id": "atc-021",
+      "question": "What does 'position and hold' (now 'line up and wait') mean?",
+      "options": [
+        "Cleared for takeoff",
+        "Taxi onto the runway and wait for takeoff clearance",
+        "Hold short of runway",
+        "Begin takeoff roll"
+      ],
+      "correctAnswer": 1,
+      "explanation": "'Line up and wait' (formerly 'position and hold') means taxi onto the runway and await takeoff clearance. You are NOT cleared for takeoff.",
+      "reference": "AIM 4-3-10"
+    },
+    {
+      "id": "atc-022",
+      "question": "What does 'immediately' mean in ATC communications?",
+      "options": [
+        "When convenient",
+        "Within 5 minutes",
+        "Comply without delay - safety of aircraft may be involved",
+        "Standard priority"
+      ],
+      "correctAnswer": 2,
+      "explanation": "'Immediately' means comply without delay. This word is used when safety of aircraft is involved or when expeditious compliance is required.",
+      "reference": "AIM 4-2-1"
+    },
+    {
+      "id": "atc-023",
+      "question": "How should you report leaving an altitude?",
+      "options": [
+        "No report required",
+        "'Leaving [altitude] for [new altitude]'",
+        "Just say 'climbing' or 'descending'",
+        "Report only at the new altitude"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Report altitude changes as: 'Leaving [current altitude] for [assigned altitude]'. This helps ATC maintain separation and traffic sequencing.",
+      "reference": "AIM 4-4-9"
+    },
+    {
+      "id": "atc-024",
+      "question": "What does 'say altitude' mean?",
+      "options": [
+        "Report your assigned altitude",
+        "Report your present altitude",
+        "Request a new altitude",
+        "Confirm altitude read from instruments"
+      ],
+      "correctAnswer": 1,
+      "explanation": "'Say altitude' is ATC requesting your current indicated altitude. Respond with your current altitude as shown on your altimeter.",
+      "reference": "AIM 4-2-1"
+    },
+    {
+      "id": "atc-025",
+      "question": "What is the correct phraseology when unable to comply with an ATC instruction?",
+      "options": [
+        "'Negative'",
+        "'Unable' followed by reason if possible",
+        "'Disregard'",
+        "'Standby'"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Say 'Unable' followed by the reason if possible. ATC will provide alternative instructions. Never comply with an instruction that would compromise safety.",
+      "reference": "AIM 4-4-10"
+    },
+    {
+      "id": "atc-026",
+      "question": "What are Flight Service Stations (FSS) primary services?",
+      "options": [
+        "Radar separation and vectors",
+        "Weather briefings, flight plan processing, en route advisories, search and rescue",
+        "Airport traffic control",
+        "Approach control services"
+      ],
+      "correctAnswer": 1,
+      "explanation": "FSSs provide: pilot briefings, flight plan processing, en route advisories, search and rescue services, assistance to lost/emergency aircraft, relay ATC clearances, broadcast weather and NOTAMs.",
+      "reference": "AIM 4-1-3"
+    },
+    {
+      "id": "atc-027",
+      "question": "What is the standard direction of turns in a traffic pattern?",
+      "options": [
+        "Always right turns",
+        "Always left turns unless otherwise indicated",
+        "Alternating turns",
+        "Depends on wind direction"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Standard traffic pattern uses left turns. Right traffic patterns are designated and noted in the Chart Supplement. Always check for non-standard patterns.",
+      "reference": "AIM 4-3-3"
+    },
+    {
+      "id": "atc-028",
+      "question": "When should you obtain a special VFR clearance?",
+      "options": [
+        "Anytime you want radar services",
+        "When weather is below basic VFR minimums but at least 1 SM visibility and clear of clouds",
+        "Only at night",
+        "For all flights in Class B airspace"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Special VFR allows flight in controlled airspace when weather is below basic VFR but at least 1 SM visibility and clear of clouds. Requires ATC clearance.",
+      "reference": "AIM 4-4-6"
+    },
+    {
+      "id": "atc-029",
+      "question": "What is ADS-B?",
+      "options": [
+        "Automatic Direction Beacon",
+        "Automatic Dependent Surveillance-Broadcast",
+        "Altitude Deviation Safety Buffer",
+        "Air Data System Backup"
+      ],
+      "correctAnswer": 1,
+      "explanation": "ADS-B (Automatic Dependent Surveillance-Broadcast) broadcasts aircraft position and other information from GPS. ADS-B Out is required in most controlled airspace.",
+      "reference": "AIM 4-1-20"
+    },
+    {
+      "id": "atc-030",
+      "question": "What is the purpose of the phonetic alphabet in aviation?",
+      "options": [
+        "To sound professional",
+        "To ensure clear communication and prevent misunderstanding",
+        "It's optional for experienced pilots",
+        "Only used internationally"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The phonetic alphabet (Alpha, Bravo, Charlie...) ensures clear communication, especially for callsigns and clearances, preventing potentially dangerous misunderstandings.",
+      "reference": "AIM 4-2-7"
+    }
+  ]
+}

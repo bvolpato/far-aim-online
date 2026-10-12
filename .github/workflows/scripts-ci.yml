@@ -1,0 +1,56 @@
+name: Scripts CI
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    name: Scripts tests
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    defaults:
+      run:
+        working-directory: scripts
+
+    steps:
+      - name: Check out source
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Set up uv
+        uses: astral-sh/setup-uv@1c37ad07a6a961277cf70c0d37d6f313000f5884 # v10.3.0
+        with:
+          enable-cache: true
+          cache-dependency-glob: scripts/uv.lock
+
+      - name: Set up Python
+        run: uv python install 3.12
+
+      - name: Sync dependencies
+        run: uv sync --frozen --python 3.12
+
+      - name: Sync shared data to mobile bundles
+        working-directory: ${{ github.workspace }}
+        run: ./scripts/sync-data.sh all
+
+      - name: Validate shell scripts
+        working-directory: ${{ github.workspace }}
+        run: |
+          (printf '%s\0' test.sh deploy.sh; find scripts mobile -path '*/build' -prune -o -path '*/.venv' -prune -o -name '*.sh' -type f -print0) \
+            | xargs -0 -n1 bash -n
+
+      - name: Lint Python
+        run: uv run ruff check .
+
+      - name: Run Python tests
+        run: uv run pytest -q

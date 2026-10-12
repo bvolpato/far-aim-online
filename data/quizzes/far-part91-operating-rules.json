@@ -1,0 +1,533 @@
+{
+  "id": "far-part91-operating-rules",
+  "title": "Part 91: General Operating Rules",
+  "description": "Master VFR/IFR flight rules, weather minimums, equipment requirements, and operating limitations from 14 CFR Part 91",
+  "category": "FAR",
+  "part": 91,
+  "difficulty": "intermediate",
+  "targetCertificate": "Private/Instrument Pilot",
+  "questionCount": 40,
+  "passingScore": 70,
+  "questions": [
+    {
+      "id": "p91-001",
+      "question": "What are the VFR weather minimums for Class E airspace below 10,000 feet MSL?",
+      "options": [
+        "1 SM visibility, clear of clouds",
+        "3 SM visibility, 500' below, 1000' above, 2000' horizontal",
+        "5 SM visibility, 1000' below, 1000' above, 1 SM horizontal",
+        "1 SM visibility, 500' below, 1000' above, 2000' horizontal"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Per 14 CFR 91.155, Class E airspace below 10,000' MSL requires 3 SM visibility and 500' below, 1000' above, 2000' horizontal from clouds.",
+      "reference": "14 CFR 91.155"
+    },
+    {
+      "id": "p91-002",
+      "question": "What are the VFR weather minimums for Class B airspace?",
+      "options": [
+        "1 SM visibility, clear of clouds",
+        "3 SM visibility, clear of clouds",
+        "3 SM visibility, 500' below, 1000' above, 2000' horizontal",
+        "5 SM visibility, 1000' below, 1000' above, 1 SM horizontal"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Per 14 CFR 91.155, Class B airspace requires 3 SM visibility and clear of clouds.",
+      "reference": "14 CFR 91.155"
+    },
+    {
+      "id": "p91-003",
+      "question": "What is the maximum speed below Class B airspace or in a VFR corridor through Class B?",
+      "options": [
+        "200 knots",
+        "230 knots",
+        "250 knots",
+        "No speed limit"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Per 14 CFR 91.117, the maximum speed below Class B airspace or in a VFR corridor through Class B is 200 knots indicated.",
+      "reference": "14 CFR 91.117"
+    },
+    {
+      "id": "p91-004",
+      "question": "Below 10,000 feet MSL, what is the maximum indicated airspeed?",
+      "options": [
+        "200 knots",
+        "230 knots",
+        "250 knots",
+        "288 knots"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Per 14 CFR 91.117, no person may operate an aircraft below 10,000 feet MSL at an indicated airspeed greater than 250 knots.",
+      "reference": "14 CFR 91.117"
+    },
+    {
+      "id": "p91-005",
+      "question": "Within 4 NM of a Class C or D airport at or below 2,500 feet AGL, the maximum speed is:",
+      "options": [
+        "180 knots",
+        "200 knots",
+        "230 knots",
+        "250 knots"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Per 14 CFR 91.117, within 4 NM of the primary airport of a Class C or D airspace area at or below 2,500 feet AGL, maximum speed is 200 knots.",
+      "reference": "14 CFR 91.117"
+    },
+    {
+      "id": "p91-006",
+      "question": "At what altitude must a pilot use supplemental oxygen?",
+      "options": [
+        "Above 10,000 feet cabin altitude",
+        "Above 12,500 feet cabin altitude for more than 30 minutes",
+        "Above 14,000 feet cabin altitude",
+        "Above 15,000 feet cabin altitude"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Per 14 CFR 91.211, above 12,500' through 14,000' cabin altitude, crew must use supplemental oxygen after 30 minutes; above 14,000' at all times.",
+      "reference": "14 CFR 91.211"
+    },
+    {
+      "id": "p91-007",
+      "question": "Passengers must be provided supplemental oxygen when the cabin altitude exceeds:",
+      "options": [
+        "10,000 feet",
+        "12,500 feet",
+        "14,000 feet",
+        "15,000 feet"
+      ],
+      "correctAnswer": 3,
+      "explanation": "Per 14 CFR 91.211, each occupant must be provided supplemental oxygen when cabin altitude exceeds 15,000 feet.",
+      "reference": "14 CFR 91.211"
+    },
+    {
+      "id": "p91-008",
+      "question": "What equipment is required for VFR day flight?",
+      "options": [
+        "TOMATO FLAMES",
+        "ATOMATOFLAMES",
+        "FLAPS",
+        "GRABCARD"
+      ],
+      "correctAnswer": 0,
+      "explanation": "VFR day requires TOMATO FLAMES: Tachometer, Oil pressure/temp, Manifold pressure (if applicable), Altimeter, Temperature gauge (liquid cooled), Oil quantity, Magnetic compass, Airspeed, Fuel gauges, Landing gear indicator, Anti-collision lights, Manifold pressure (constant-speed prop), ELT, Seatbelts.",
+      "reference": "14 CFR 91.205"
+    },
+    {
+      "id": "p91-009",
+      "question": "What additional equipment is required for VFR night flight beyond VFR day?",
+      "options": [
+        "Flashlight and fuses",
+        "Position lights, anti-collision lights, landing light (for hire), fuses, source of electrical power",
+        "Strobe lights only",
+        "Instrument lights only"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Per 14 CFR 91.205(c), VFR night additionally requires FLAPS: Fuses, Landing light (if for hire), Anti-collision lights, Position lights, Source of electrical power.",
+      "reference": "14 CFR 91.205(c)"
+    },
+    {
+      "id": "p91-010",
+      "question": "What is the minimum safe altitude over a congested area?",
+      "options": [
+        "500 feet above the surface",
+        "1000 feet above the highest obstacle within a 2000-foot radius",
+        "1000 feet above the highest obstacle within a horizontal radius of 2000 feet",
+        "500 feet from any person, vessel, vehicle, or structure"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Per 14 CFR 91.119, over congested areas: 1000 feet above the highest obstacle within a horizontal radius of 2000 feet.",
+      "reference": "14 CFR 91.119"
+    },
+    {
+      "id": "p91-011",
+      "question": "What is the minimum safe altitude over other than congested areas?",
+      "options": [
+        "500 feet AGL",
+        "500 feet from any person, vessel, vehicle, or structure",
+        "1000 feet AGL",
+        "1000 feet above the highest obstacle"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Per 14 CFR 91.119, over other than congested areas: 500 feet above the surface except within 500 feet of any person, vessel, vehicle, or structure.",
+      "reference": "14 CFR 91.119"
+    },
+    {
+      "id": "p91-012",
+      "question": "What is the right-of-way rule when two aircraft are converging at approximately the same altitude?",
+      "options": [
+        "The faster aircraft has the right-of-way",
+        "The aircraft on the left shall give way",
+        "The aircraft on the right has the right-of-way",
+        "Both aircraft should turn right"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Per 14 CFR 91.113, when aircraft of the same category converge at approximately the same altitude, the aircraft on the right has the right-of-way.",
+      "reference": "14 CFR 91.113"
+    },
+    {
+      "id": "p91-013",
+      "question": "Which aircraft has the right-of-way over all other air traffic?",
+      "options": [
+        "Aircraft on IFR flight plans",
+        "Aircraft in distress",
+        "Aircraft towing other aircraft",
+        "Military aircraft"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Per 14 CFR 91.113, an aircraft in distress has the right-of-way over all other air traffic.",
+      "reference": "14 CFR 91.113"
+    },
+    {
+      "id": "p91-014",
+      "question": "What is the right-of-way hierarchy among different aircraft categories?",
+      "options": [
+        "Powered > Glider > Balloon > Airship",
+        "Balloon > Glider > Airship > Airplane towing > Powered",
+        "Airship > Glider > Balloon > Airplane",
+        "All aircraft have equal right-of-way"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Per 14 CFR 91.113: Balloon > Glider > Airship > Airplane/rotorcraft towing > Airplane/rotorcraft.",
+      "reference": "14 CFR 91.113"
+    },
+    {
+      "id": "p91-015",
+      "question": "When two aircraft are approaching head-on, each pilot shall:",
+      "options": [
+        "Climb to avoid collision",
+        "Alter course to the right",
+        "Maintain course and altitude",
+        "Alter course to the left"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Per 14 CFR 91.113(e), when aircraft approach head-on or nearly so, each pilot shall alter course to the right.",
+      "reference": "14 CFR 91.113"
+    },
+    {
+      "id": "p91-016",
+      "question": "What is the transponder code for VFR flight?",
+      "options": [
+        "1200",
+        "7500",
+        "7600",
+        "7700"
+      ],
+      "correctAnswer": 0,
+      "explanation": "The standard VFR transponder code is 1200. Emergency codes: 7500 (hijack), 7600 (comm failure), 7700 (emergency).",
+      "reference": "14 CFR 91.215"
+    },
+    {
+      "id": "p91-017",
+      "question": "Where is a Mode C transponder required?",
+      "options": [
+        "Only in Class A airspace",
+        "In and above Class B and C airspace, within 30 NM of Class B primary airport",
+        "Only above 10,000 feet MSL",
+        "Only in controlled airspace"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Per 14 CFR 91.215, Mode C is required in Class A, B, C; within 30 NM of Class B primary airport from surface to 10,000' MSL; and above 10,000' MSL (excluding below 2500' AGL).",
+      "reference": "14 CFR 91.215"
+    },
+    {
+      "id": "p91-018",
+      "question": "When must an aircraft have an Emergency Locator Transmitter (ELT)?",
+      "options": [
+        "Always required",
+        "Required for most aircraft, with specific exceptions",
+        "Only for overwater flights",
+        "Only for IFR flights"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Per 14 CFR 91.207, ELT is required for most U.S. registered civil aircraft with exceptions for training flights within 50 NM, ferrying for inspection/installation, etc.",
+      "reference": "14 CFR 91.207"
+    },
+    {
+      "id": "p91-019",
+      "question": "What VFR cruising altitude should be used when flying a magnetic course of 180° at 5,500 feet MSL?",
+      "options": [
+        "4,500 feet",
+        "5,500 feet",
+        "6,500 feet",
+        "Any altitude below 10,000 feet"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Per 14 CFR 91.159, VFR cruising altitudes above 3,000' AGL: Magnetic courses 0-179° use odd thousands + 500 (3500, 5500, etc.); 180-359° use even thousands + 500 (4500, 6500, etc.). 180° would use even + 500.",
+      "reference": "14 CFR 91.159"
+    },
+    {
+      "id": "p91-020",
+      "question": "What is the fuel reserve requirement for VFR day flight?",
+      "options": [
+        "20 minutes reserve at cruise speed",
+        "30 minutes reserve at cruise speed",
+        "45 minutes reserve at cruise speed",
+        "1 hour reserve at cruise speed"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Per 14 CFR 91.151, VFR day requires enough fuel to fly to first point of intended landing plus 30 minutes reserve at normal cruise speed.",
+      "reference": "14 CFR 91.151"
+    },
+    {
+      "id": "p91-021",
+      "question": "What is the fuel reserve requirement for VFR night flight?",
+      "options": [
+        "30 minutes reserve",
+        "45 minutes reserve",
+        "1 hour reserve",
+        "2 hours reserve"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Per 14 CFR 91.151, VFR night requires enough fuel to fly to first point of intended landing plus 45 minutes reserve at normal cruise speed.",
+      "reference": "14 CFR 91.151"
+    },
+    {
+      "id": "p91-022",
+      "question": "What is the fuel reserve requirement for IFR flight?",
+      "options": [
+        "30 minutes reserve",
+        "45 minutes reserve at normal cruise speed",
+        "Fly to destination, then alternate, plus 45 minutes at normal cruise",
+        "1 hour reserve"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Per 14 CFR 91.167, IFR requires enough fuel to complete flight to destination, fly to alternate (if required), plus 45 minutes at normal cruise speed.",
+      "reference": "14 CFR 91.167"
+    },
+    {
+      "id": "p91-023",
+      "question": "When is an alternate airport required for an IFR flight plan?",
+      "options": [
+        "Always required",
+        "When weather at destination is forecast below VFR minimums",
+        "When destination weather is forecast below 2000' ceiling or 3 SM visibility (1 hour before to 1 hour after ETA)",
+        "Only for flights over 500 NM"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Per 14 CFR 91.169, an alternate is required if destination weather (1 hr before to 1 hr after ETA) is forecast below 2000' ceiling or 3 SM visibility. Remember: '1-2-3 rule'.",
+      "reference": "14 CFR 91.169"
+    },
+    {
+      "id": "p91-024",
+      "question": "What is the preflight action required for all flights?",
+      "options": [
+        "File a flight plan",
+        "Become familiar with all available information concerning the flight",
+        "Contact ATC for a briefing",
+        "Check NOTAMs only"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Per 14 CFR 91.103, pilots must become familiar with all available information concerning the flight, including weather, fuel requirements, runway lengths, and alternatives.",
+      "reference": "14 CFR 91.103"
+    },
+    {
+      "id": "p91-025",
+      "question": "For flights not in the vicinity of an airport, preflight action must include:",
+      "options": [
+        "ATIS information",
+        "Weather reports and forecasts, fuel requirements, alternatives if planned flight cannot be completed",
+        "A filed flight plan",
+        "Radar advisories"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Per 14 CFR 91.103, for flights not in the vicinity of an airport, information must include weather reports/forecasts, fuel requirements, and alternatives.",
+      "reference": "14 CFR 91.103"
+    },
+    {
+      "id": "p91-026",
+      "question": "When is ADS-B Out equipment required?",
+      "options": [
+        "Only in Class A airspace",
+        "In the same airspace that requires a transponder",
+        "Only above 10,000 feet MSL",
+        "Only for IFR flights"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Per 14 CFR 91.225, ADS-B Out is required in essentially the same airspace as Mode C transponder: Class A, B, C; within 30 NM of Class B; above 10,000' MSL; etc.",
+      "reference": "14 CFR 91.225"
+    },
+    {
+      "id": "p91-027",
+      "question": "What must a pilot do before entering Class B airspace?",
+      "options": [
+        "Squawk 1200",
+        "Receive a clearance from ATC",
+        "Contact ATIS only",
+        "No special requirements"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Per 14 CFR 91.131, no person may operate an aircraft in Class B airspace unless ATC has authorized that specific operation.",
+      "reference": "14 CFR 91.131"
+    },
+    {
+      "id": "p91-028",
+      "question": "What is required to operate in Class C airspace?",
+      "options": [
+        "A clearance from ATC",
+        "Two-way radio communications",
+        "Only a transponder",
+        "Special VFR clearance"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Per 14 CFR 91.130, two-way radio communications must be established before entering Class C airspace. Established means ATC has acknowledged aircraft callsign.",
+      "reference": "14 CFR 91.130"
+    },
+    {
+      "id": "p91-029",
+      "question": "What constitutes 'established communication' with ATC for Class C/D entry?",
+      "options": [
+        "Transmitting your callsign",
+        "Hearing ATIS",
+        "ATC acknowledging your callsign",
+        "Receiving radar contact"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Two-way communication is established when ATC acknowledges your callsign. 'Aircraft calling, standby' is NOT establishment.",
+      "reference": "14 CFR 91.130"
+    },
+    {
+      "id": "p91-030",
+      "question": "What is the duration of a Special VFR clearance at night?",
+      "options": [
+        "Special VFR is not permitted at night",
+        "Pilot must be instrument rated and aircraft IFR-equipped",
+        "Only for helicopters",
+        "Same as daytime Special VFR"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Per 14 CFR 91.157, Special VFR at night requires pilot to be instrument rated and aircraft to be IFR-equipped.",
+      "reference": "14 CFR 91.157"
+    },
+    {
+      "id": "p91-031",
+      "question": "What are Special VFR weather minimums?",
+      "options": [
+        "1 SM visibility, clear of clouds",
+        "3 SM visibility, 500' below clouds",
+        "1 SM visibility, 1000' ceiling",
+        "Flight visibility 1 SM, remain clear of clouds"
+      ],
+      "correctAnswer": 3,
+      "explanation": "Per 14 CFR 91.157, Special VFR requires 1 SM flight visibility and clear of clouds. Ground visibility not applicable.",
+      "reference": "14 CFR 91.157"
+    },
+    {
+      "id": "p91-032",
+      "question": "When must position lights be on?",
+      "options": [
+        "From sunrise to sunset",
+        "From sunset to sunrise",
+        "At all times in flight",
+        "Only in IMC"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Per 14 CFR 91.209, aircraft must display lighted position lights from sunset to sunrise.",
+      "reference": "14 CFR 91.209"
+    },
+    {
+      "id": "p91-033",
+      "question": "What is the maximum altitude for VFR flight in Class G airspace at night?",
+      "options": [
+        "10,000 feet MSL",
+        "14,500 feet MSL",
+        "18,000 feet MSL",
+        "No specific limit"
+      ],
+      "correctAnswer": 3,
+      "explanation": "There is no specific altitude limit for VFR in Class G at night, but weather minimums apply and Class G typically ends at 14,500' MSL.",
+      "reference": "14 CFR 91.155"
+    },
+    {
+      "id": "p91-034",
+      "question": "Above 10,000 feet MSL, what are the VFR visibility and cloud clearance requirements?",
+      "options": [
+        "3 SM visibility, 500' below, 1000' above, 2000' horizontal",
+        "5 SM visibility, 1000' below, 1000' above, 1 SM horizontal",
+        "3 SM visibility, clear of clouds",
+        "1 SM visibility, clear of clouds"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Per 14 CFR 91.155, above 10,000' MSL: 5 SM visibility, 1000' below, 1000' above, 1 SM horizontal from clouds.",
+      "reference": "14 CFR 91.155"
+    },
+    {
+      "id": "p91-035",
+      "question": "What is the minimum visibility for VFR flight in Class G airspace at night below 1,200 feet AGL?",
+      "options": [
+        "1 SM",
+        "3 SM",
+        "5 SM",
+        "Same as day"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Per 14 CFR 91.155, Class G at night below 1200' AGL requires 3 SM visibility and 500' below, 1000' above, 2000' horizontal.",
+      "reference": "14 CFR 91.155"
+    },
+    {
+      "id": "p91-036",
+      "question": "When must seat belts be worn during flight?",
+      "options": [
+        "At all times",
+        "During takeoff and landing only",
+        "During takeoff, landing, and when PIC directs",
+        "Only in turbulence"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Per 14 CFR 91.107, each person must have their seat belt fastened during takeoff, landing, and at any time the PIC directs.",
+      "reference": "14 CFR 91.107"
+    },
+    {
+      "id": "p91-037",
+      "question": "AVFR pilot encounters IMC. What is the appropriate action?",
+      "options": [
+        "Continue to destination",
+        "Execute a 180-degree turn",
+        "Declare emergency and request IFR clearance",
+        "Either turn around or, if necessary, request assistance and maintain aircraft control"
+      ],
+      "correctAnswer": 3,
+      "explanation": "VFR into IMC is dangerous. Best action is 180° turn if possible; if not, maintain aircraft control, request assistance, and declare emergency if needed.",
+      "reference": "14 CFR 91.185, AC 61-134"
+    },
+    {
+      "id": "p91-038",
+      "question": "What is the minimum equipment list (MEL) and when can it be used?",
+      "options": [
+        "A list of optional equipment",
+        "An FAA-approved document allowing operations with certain equipment inoperative",
+        "A checklist for preflight inspection",
+        "Required only for air carriers"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Per 14 CFR 91.213, an MEL is an FAA-approved document that allows operations with specific equipment inoperative, as alternative to 91.213(d) Procedures.",
+      "reference": "14 CFR 91.213"
+    },
+    {
+      "id": "p91-039",
+      "question": "Without an MEL, what must a pilot do if equipment is inoperative?",
+      "options": [
+        "Cannot fly",
+        "Determine if equipment is required; if not, placard inoperative and deactivate or remove",
+        "Call the manufacturer",
+        "Get a ferry permit"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Per 14 CFR 91.213(d), without an MEL: determine if equipment is required by regs/AD/equipment list; if not required, placard inoperative, deactivate or remove.",
+      "reference": "14 CFR 91.213(d)"
+    },
+    {
+      "id": "p91-040",
+      "question": "What is the pilot's responsibility regarding weather?",
+      "options": [
+        "ATC is responsible for weather avoidance",
+        "The pilot is responsible for weather avoidance at all times",
+        "Only responsible during VFR flight",
+        "Only responsible when radar is inoperative"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The pilot in command is ALWAYS responsible for weather avoidance and safe operation of the aircraft, regardless of ATC radar assistance or flight rules.",
+      "reference": "14 CFR 91.3"
+    }
+  ]
+}

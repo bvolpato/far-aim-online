@@ -1,0 +1,220 @@
+{
+  "id": "aim-chapter7-safety",
+  "title": "Safety of Flight - Weather Services and Hazards",
+  "description": "Key concepts from AIM Chapter 7 covering aviation weather services, products, and flight hazards",
+  "category": "AIM",
+  "chapter": 7,
+  "cardCount": 35,
+  "cards": [
+    {
+      "id": "ch7-001",
+      "front": "Weather Briefing Sources",
+      "back": "Flight Service: 1-800-WX-BRIEF\nOnline: www.1800wxbrief.com\nAWC: aviationweather.gov\n\nTypes of briefings:\n• Standard - Complete, planning\n• Abbreviated - Update/supplement\n• Outlook - 6+ hours out",
+      "reference": "AIM 7-1-5"
+    },
+    {
+      "id": "ch7-002",
+      "front": "METAR Decoding Basics",
+      "back": "Example: KORD 121856Z 27015G25KT 3SM RA BKN010 OVC025 18/16 A2992\n\nKORD: Airport\n121856Z: Day/time (UTC)\n27015G25KT: Wind 270° at 15, gusting 25\n3SM: Visibility 3 statute miles\nRA: Rain\nBKN010: Broken at 1,000'\nOVC025: Overcast at 2,500'\n18/16: Temp/dewpoint\nA2992: Altimeter 29.92",
+      "reference": "AIM 7-1-9"
+    },
+    {
+      "id": "ch7-003",
+      "front": "TAF Decoding Basics",
+      "back": "Example: TAF KORD 121720Z 1218/1324 28012KT P6SM SCT030...\n\nKORD: Airport\n121720Z: Issued day/time\n1218/1324: Valid 18Z day 12 to 24Z day 13\n28012KT: Wind\nP6SM: Visibility > 6 SM\nSCT030: Scattered at 3,000'\n\nChange groups: FM, TEMPO, PROB, BECMG",
+      "reference": "AIM 7-1-24"
+    },
+    {
+      "id": "ch7-004",
+      "front": "Flight Categories",
+      "back": "VFR: Ceiling >3,000' AND visibility >5 SM\n\nMVFR (Marginal VFR): Ceiling 1,000-3,000' AND/OR visibility 3-5 SM\n\nIFR: Ceiling 500-<1,000' AND/OR visibility 1-<3 SM\n\nLIFR (Low IFR): Ceiling <500' AND/OR visibility <1 SM",
+      "reference": "AIM 7-1-7"
+    },
+    {
+      "id": "ch7-005",
+      "front": "AIRMET Categories",
+      "back": "AIRMET Sierra (S):\n• IFR conditions\n• Mountain obscuration\n\nAIRMET Tango (T):\n• Moderate turbulence\n• Strong surface winds (>30 kts)\n• Low-level wind shear\n\nAIRMET Zulu (Z):\n• Moderate icing\n• Freezing levels",
+      "reference": "AIM 7-1-6"
+    },
+    {
+      "id": "ch7-006",
+      "front": "SIGMET Criteria",
+      "back": "Issued for weather hazardous to ALL aircraft:\n\n• Severe icing (not associated with thunderstorms)\n• Severe or extreme turbulence/CAT\n• Dust/sandstorms reducing visibility <3 SM\n• Volcanic ash\n\nValid: 4 hours (6 for volcanic ash/tropical cyclone)",
+      "reference": "AIM 7-1-6"
+    },
+    {
+      "id": "ch7-007",
+      "front": "Convective SIGMET Criteria",
+      "back": "Issued for convective hazards:\n\n• Tornadoes\n• Lines of thunderstorms\n• Thunderstorms with heavy precipitation (≥40% of area)\n• Embedded thunderstorms\n• Severe thunderstorms with:\n - Surface winds ≥50 kts\n - Hail ≥3/4 inch\n - Tornadoes",
+      "reference": "AIM 7-1-6"
+    },
+    {
+      "id": "ch7-008",
+      "front": "PIREP Format",
+      "back": "UA (routine) Or UUA (urgent)\n/OV Location\n/TM Time (UTC)\n/FL Flight level or altitude\n/TP Aircraft type\n/SK Sky conditions\n/WX Weather\n/TA Temperature\n/WV Wind\n/TB Turbulence\n/IC Icing\n/RM Remarks",
+      "reference": "AIM 7-1-18"
+    },
+    {
+      "id": "ch7-009",
+      "front": "When to File a PIREP",
+      "back": "ALWAYS report:\n• Icing (any intensity)\n• Turbulence (moderate or greater)\n• Wind shear/LLWS\n• Volcanic ash\n\nAlso helpful:\n• Cloud tops and bases\n• Visibility\n• Conditions differing from forecast\n• Good weather (confirms forecast)",
+      "reference": "AIM 7-1-18"
+    },
+    {
+      "id": "ch7-010",
+      "front": "Turbulence Intensity",
+      "back": "LIGHT: Slight, erratic altitude/attitude changes\n\nMODERATE: Aircraft control remains positive but occupants feel strain against belts\n\nSEVERE: Large, abrupt changes; aircraft may be momentarily out of control\n\nEXTREME: Aircraft practically impossible to control; structural damage possible",
+      "reference": "AIM 7-1-22"
+    },
+    {
+      "id": "ch7-011",
+      "front": "Icing Intensity",
+      "back": "TRACE: Barely perceptible, not hazardous\n\nLIGHT: Rate allows extended flight, deicing/anti-icing manages it\n\nMODERATE: Rate of accumulation requires diversion\n\nSEVERE: Rate is such that deice/anti-ice fails to reduce hazard; immediate exit required",
+      "reference": "AIM 7-1-21"
+    },
+    {
+      "id": "ch7-012",
+      "front": "Icing Types",
+      "back": "CLEAR ICE:\n• Large supercooled droplets\n• Smooth, hard, glossy\n• Difficult to remove\n• Most hazardous\n\nRIME ICE:\n• Small supercooled droplets\n• Rough, milky, opaque\n• Lighter, easier to remove\n\nMIXED: Combination of both",
+      "reference": "AIM 7-1-21"
+    },
+    {
+      "id": "ch7-013",
+      "front": "Thunderstorm Stages",
+      "back": "CUMULUS (Building):\n• All updrafts\n• 15-25 min\n\nMATURE (Most Dangerous):\n• Updrafts AND downdrafts\n• Rain, hail, lightning\n• 15-30 min\n\nDISSIPATING:\n• Mostly downdrafts\n• Light rain\n• Anvil spreads",
+      "reference": "AIM 7-1-27"
+    },
+    {
+      "id": "ch7-014",
+      "front": "Thunderstorm Avoidance",
+      "back": "• Don't fly under a thunderstorm\n• Stay 20 NM from severe storms\n• Don't fly between cells if <2/3 apart\n• Don't rely solely on onboard radar\n• Avoid flying into anvil cloud\n• If penetration unavoidable:\n - Fly straight through (shortest path)\n - Maintain attitude, not altitude\n - Slow to maneuvering speed",
+      "reference": "AIM 7-1-27"
+    },
+    {
+      "id": "ch7-015",
+      "front": "Wind Shear / Microburst",
+      "back": "MICROBURST:\n• Intense localized downdraft\n• <1 mile diameter, 5-15 min duration\n• Downdraft >6,000 fpm possible\n• Wind changes of 45+ kts\n\nSurvival:\n• Add power, pitch up\n• Don't try to maintain altitude\n• Escape the shear envelope",
+      "reference": "AIM 7-1-26"
+    },
+    {
+      "id": "ch7-016",
+      "front": "Density Altitude",
+      "back": "Pressure altitude corrected for temperature\n\nHigh density altitude = thin air = reduced performance:\n• Less lift\n• Less engine power\n• Longer takeoff roll\n• Reduced climb rate\n\nWorst: Hot, High, Humid\n(3 H's of hazard)",
+      "reference": "AIM 7-5-7"
+    },
+    {
+      "id": "ch7-017",
+      "front": "Mountain Wave Indicators",
+      "back": "Visual indicators:\n• Lenticular clouds (lens-shaped)\n• Cap clouds over peaks\n• Rotor clouds (turbulent)\n\nHazards:\n• Severe turbulence in rotor zone\n• Downdrafts on lee side\n• Can exceed aircraft climb rate\n\nCross ridges at 45° angle for escape",
+      "reference": "AIM 7-5-6"
+    },
+    {
+      "id": "ch7-018",
+      "front": "Fog Types",
+      "back": "RADIATION: Clear nights, light winds, cools ground\nADVECTION: Warm moist air over cold surface\nUPSLOPE: Air rises along terrain\nSTEAM: Cold air over warm water\nPRECIPITATION: Rain falling through cold air\nICE: Supercooled droplets, temps below -25°F\n\nMost common: Radiation & Advection",
+      "reference": "AIM 7-5-8"
+    },
+    {
+      "id": "ch7-019",
+      "front": "Frontal Weather",
+      "back": "COLD FRONT:\n• Fast-moving, steep slope\n• Short duration, intense weather\n• Cumuliform clouds, T-storms possible\n\nWARM FRONT:\n• Slow-moving, shallow slope\n• Prolonged weather, gradual change\n• Stratiform clouds, steady precip\n• Wider area of IFR conditions",
+      "reference": "AIM 7-1-9"
+    },
+    {
+      "id": "ch7-020",
+      "front": "Standard Atmosphere",
+      "back": "At sea level:\n• Temperature: 15°C (59°F)\n• Pressure: 29.92 in Hg (1013.25 mb)\n• Lapse rate: 2°C per 1,000 ft\n\nWhy it matters:\n• Calibration of instruments\n• Performance charts based on std atm\n• Density altitude calculations",
+      "reference": "AIM 7-2-2"
+    },
+    {
+      "id": "ch7-021",
+      "front": "Wake Turbulence",
+      "back": "Generated by all aircraft, worst:\n• Heavy, clean, slow aircraft\n• Sinks at 400-500 fpm\n• Levels off ~900 ft below flight path\n\nAvoidance:\n• Stay above/upwind of heavy aircraft path\n• Rotate before their rotation point\n• Land beyond their touchdown point\n• Wait 3 min (same runway) or 2 min (parallel)",
+      "reference": "AIM 7-4-2"
+    },
+    {
+      "id": "ch7-022",
+      "front": "Bird Strike Hazards",
+      "back": "Peak times: Dawn, dusk, spring/fall migration\n\nHigh-risk areas:\n• Near water\n• Landfills, grain areas\n• Wildlife refuges\n• Below 3,000 AGL\n\nIf strike occurs:\n• Assess damage\n• Return to airport if able\n• Report bird strikes to FAA",
+      "reference": "AIM 7-4-1"
+    },
+    {
+      "id": "ch7-023",
+      "front": "Volcanic Ash Hazards",
+      "back": "Volcanic ash is EXTREMELY hazardous:\n• Abrasive - damages windscreen\n• Can cause engine failure\n• Clogs pitot/static systems\n• Electrical failures\n\nIf encountered:\n• Reduce thrust\n• Exit area immediately\n• Descend to warmer air if possible\n• Squawk 7700, report",
+      "reference": "AIM 7-5-9"
+    },
+    {
+      "id": "ch7-024",
+      "front": "LLWAS (Low Level Windshear Alert System)",
+      "back": "Ground-based sensors around airport\n\nDetects:\n• Wind shear between sensors\n• Microburst signatures\n\nATC reports:\n• 'Microburst alert [location]'\n• Wind shear with loss/gain info\n\nPilot action: Delay takeoff or landing until clear",
+      "reference": "AIM 7-1-25"
+    },
+    {
+      "id": "ch7-025",
+      "front": "GFA (Graphical Forecasts for Aviation)",
+      "back": "Online at aviationweather.gov/gfa\n\nProvides:\n• Ceiling/visibility forecasts\n• Clouds, precipitation\n• Icing, turbulence, winds\n• 3,000 ft increments to 48,000 ft\n• Observed and forecast data\n• 14 hours past to 15 hours future",
+      "reference": "AIM 7-1-4"
+    },
+    {
+      "id": "ch7-026",
+      "front": "Winds Aloft Forecast",
+      "back": "Issued every 6 hours for:\n3, 6, 9, 12, 18, 24, 30, 34, 39, 45, 53 thousand feet\n\nFormat: DDff+TT\n• DD = wind direction (tens of degrees)\n• ff = wind speed (knots)\n• TT = temperature (°C)\n\nExample: 2714-08 = 270° at 14 kts, -8°C\n\nLight/variable: 9900",
+      "reference": "AIM 7-1-26"
+    },
+    {
+      "id": "ch7-027",
+      "front": "CWA (Center Weather Advisory)",
+      "back": "Issued by CWSU (Center Weather Service Unit)\n\n• Unscheduled advisory\n• Valid up to 2 hours\n• Conditions affecting ARTCC airspace\n\nWarns of:\n• Conditions meeting SIGMET criteria\n• Conditions below SIGMET but significant\n• Rapidly developing weather",
+      "reference": "AIM 7-1-6"
+    },
+    {
+      "id": "ch7-028",
+      "front": "Clear Air Turbulence (CAT)",
+      "back": "Turbulence above 15,000' not associated with clouds\n\nCauses:\n• Jet stream shear zones\n• Strong temperature gradients\n• Mountain waves at altitude\n\nIndicators:\n• Near jet stream (>100 kt winds)\n• Sharp troughs\n• High lapse rates\n\nOften no visual warning",
+      "reference": "AIM 7-1-22"
+    },
+    {
+      "id": "ch7-029",
+      "front": "Carburetor Icing",
+      "back": "Can occur: 20-70°F with visible moisture or high humidity\n\nMost dangerous: 50-70°F (fuel vaporization cooling effect)\n\nSymptoms:\n• RPM drop (fixed pitch)\n• Manifold pressure drop (constant speed)\n• Engine roughness\n\nPrevention: Carb heat as required",
+      "reference": "AIM 7-5-7"
+    },
+    {
+      "id": "ch7-030",
+      "front": "Temperature/Dewpoint Spread",
+      "back": "When temperature and dewpoint converge:\n\nSmall spread (<5°F):\n• High humidity\n• Fog/low clouds likely\n• Expect visibility reduction\n\nWatch for spread closing:\n• Indicates moisture condensing\n• Fog may form rapidly\n• Plan for alternates",
+      "reference": "AIM 7-5-8"
+    },
+    {
+      "id": "ch7-031",
+      "front": "SLD (Supercooled Large Droplets)",
+      "back": "Large supercooled droplets that freeze on impact\n\nMore hazardous because:\n• Accumulate rapidly\n• Form behind protected surfaces\n• Affect control surfaces\n• Can overwhelm deice equipment\n\nSLD conditions:\n• Look for freezing rain/drizzle\n• Exit immediately if encountered",
+      "reference": "AIM 7-1-21"
+    },
+    {
+      "id": "ch7-032",
+      "front": "Pressure Systems and Weather",
+      "back": "HIGH PRESSURE:\n• Descending air\n• Generally fair weather\n• Clockwise flow (NH)\n\nLOW PRESSURE:\n• Rising air\n• Clouds, precipitation likely\n• Counter-clockwise flow (NH)\n\nWind flows from high to low\nFronts separate pressure systems",
+      "reference": "AIM 7-1-9"
+    },
+    {
+      "id": "ch7-033",
+      "front": "Altimeter Settings",
+      "back": "Types:\n• QNH: Local altimeter (airport elevation when on ground)\n• QNE: Standard (29.92 / 1013.25)\n• QFE: Field elevation (reads zero on ground)\n\nRule: High to low, look out below!\n(Flying into lower pressure without resetting = true altitude lower than indicated)",
+      "reference": "AIM 7-2-2"
+    },
+    {
+      "id": "ch7-034",
+      "front": "HIWAS (Hazardous Inflight Weather Advisory Service)",
+      "back": "Continuous broadcast of:\n• SIGMETs\n• Convective SIGMETs\n• AIRMETs\n• Urgent PIREPs\n• Center Weather Advisories\n\nBroadcast on selected VOR/NDB frequencies\n\nIndicated by 'H' next to NAVAID on charts",
+      "reference": "AIM 7-1-9"
+    },
+    {
+      "id": "ch7-035",
+      "front": "'VFR Flight Not Recommended'",
+      "back": "Issued during briefing when:\n• Current or forecast conditions questionable for VFR\n• IFR conditions present/expected\n• Mountain obscuration likely\n\nNOT a prohibition!\n• Final go/no-go decision is PILOT's\n• FSS specialist expressing concern\n• Carefully consider the warning",
+      "reference": "AIM 7-1-5"
+    }
+  ]
+}

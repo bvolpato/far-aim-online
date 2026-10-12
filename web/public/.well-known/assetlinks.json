@@ -1,0 +1,15 @@
+[
+  {
+    "relation": [
+      "delegate_permission/common.handle_all_urls"
+    ],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.faraimpro.app",
+      "sha256_cert_fingerprints": [
+        "DF:B4:A4:3F:D8:BC:A3:3B:BE:AD:04:A5:FB:D7:07:93:F2:C3:94:E7:9B:1A:58:50:44:8F:F7:B5:17:35:56:2D",
+        "97:86:63:98:F6:4C:4D:E3:D2:4E:9B:C3:60:14:4B:27:46:85:AE:FF:09:49:85:DA:C9:6D:EC:4E:10:5B:35:4B"
+      ]
+    }
+  }
+]

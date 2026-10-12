@@ -1,0 +1,189 @@
+{
+  "part": 460,
+  "title": "HUMAN SPACE FLIGHT REQUIREMENTS",
+  "cfr": "14 CFR Part 460",
+  "source": "eCFR",
+  "url": "https://www.ecfr.gov/current/title-14/part-460",
+  "subchapter": "C",
+  "subchapterTitle": "Licensing",
+  "effectiveDate": "2026-07-24",
+  "subparts": [
+    {
+      "subpart": "A",
+      "title": "Launch and Reentry with Crew",
+      "sections": [
+        {
+          "section": "460.1",
+          "title": "Scope",
+          "content": "This subpart establishes requirements for crew of a vehicle whose operator is licensed or permitted under this chapter.",
+          "figures": []
+        },
+        {
+          "section": "460.3",
+          "title": "Applicability",
+          "content": "(a) This subpart applies to:\n\n(1) An applicant for a license or permit under this chapter who proposes to have flight crew on board a vehicle or proposes to employ a remote operator of a vehicle with a human on board.\n\n(2) An operator licensed or permitted under this chapter who has flight crew on board a vehicle or who employs a remote operator of a vehicle with a human on board.\n\n(3) A crew member participating in an activity authorized under this chapter.\n\n(b) Each member of the crew must comply with all requirements of the laws of the United States that apply to crew.",
+          "figures": []
+        },
+        {
+          "section": "460.5",
+          "title": "Crew qualifications and training",
+          "content": "(a) Each crew member must-\n\n(1) Complete training on how to carry out his or her role on board or on the ground so that the vehicle will not harm the public; and\n\n(2) Train for his or her role in nominal and non-nominal conditions. The conditions must include-\n\n(i) Abort scenarios; and\n\n(ii) Emergency operations.\n\n(b) Each member of a flight crew must demonstrate an ability to withstand the stresses of space flight, which may include high acceleration or deceleration, microgravity, and vibration, in sufficient condition to safely carry out his or her duties so that the vehicle will not harm the public.\n\n(c) A pilot and a remote operator must-\n\n(1) Possess and carry an FAA pilot certificate with an instrument rating.\n\n(2) Possess aeronautical knowledge, experience, and skills necessary to pilot and control the launch or reentry vehicle that will operate in the National Airspace System (NAS). Aeronautical experience may include hours in flight, ratings, and training.\n\n(3) Receive vehicle and mission-specific training for each phase of flight by using one or more of the following-\n\n(i) A method or device that simulates the flight;\n\n(ii) An aircraft whose characteristics are similar to the vehicle or that has similar phases of flight to the vehicle ;\n\n(iii) Flight testing; or\n\n(iv) An equivalent method of training approved by the FAA through the license or permit process.\n\n(4) Train in procedures that direct the vehicle away from the public in the event the flight crew abandons the vehicle during flight; and\n\n(5) Train for each mode of control or propulsion, including any transition between modes, such that the pilot or remote operator is able to control the vehicle.\n\n(d) A pilot or a remote operator may demonstrate an equivalent level of safety to paragraph (c) (1) of this section through the license or permit process.\n\n(e) Each crew member with a safety-critical role must possess and carry an FAA second-class airman medical certificate issued in accordance with 14 CFR part 67, no more than 12 months prior to the month of launch and reentry.\n\n[Docket No. FAA-2005-23449, 71 FR 75632, Dec. 15, 2006, as amended by Doc. No. FAA-2016-6761, Amdt. No. 460-2, 83 FR 28535, June 20, 2018]",
+          "figures": []
+        },
+        {
+          "section": "460.7",
+          "title": "Operator training of crew",
+          "content": "(a) *Implementation of training.* An operator must train each member of its crew and define standards for successful completion in accordance with § 460.5.\n\n(b) *Training device fidelity.* An operator must\n\n(1) Ensure that any crew-training device used to meet the training requirements realistically represents the vehicle's configuration and mission, or\n\n(2) Inform the crew member being trained of the differences between the two.\n\n(c) *Maintenance of training records.* An operator must continually update the crew training to ensure that it incorporates lessons learned from training and operational missions. An operator must-\n\n(1) Track each revision and update in writing; and\n\n(2) Document the completed training for each crew member and maintain the documentation for each active crew member.\n\n(d) *Current qualifications and training.* An operator must establish a recurrent training schedule and ensure that all crew qualifications and training required by § 460.5 are current before launch and reentry.",
+          "figures": []
+        },
+        {
+          "section": "460.9",
+          "title": "Informing crew of risk",
+          "content": "An operator must inform in writing any individual serving as crew that the United States Government has not certified the launch vehicle and any reentry vehicle as safe for carrying flight crew or space flight participants. An operator must provide this information-\n\n(a) Before entering into any contract or other arrangement to employ that individual; or\n\n(b) For any crew member employed as of December 23, 2004, as early as possible and prior to any launch in which that individual will participate as crew.",
+          "figures": []
+        },
+        {
+          "section": "460.11",
+          "title": "Environmental control and life support systems",
+          "content": "(a) An operator must provide atmospheric conditions adequate to sustain life and consciousness for all inhabited areas within a vehicle. The operator or flight crew must monitor and control the following atmospheric conditions in the inhabited areas or demonstrate through the license or permit process that an alternate means provides an equivalent level of safety-\n\n(1) Composition of the atmosphere, which includes oxygen and carbon dioxide, and any revitalization;\n\n(2) Pressure, temperature and humidity;\n\n(3) Contaminants that include particulates and any harmful or hazardous concentrations of gases, or vapors; and\n\n(4) Ventilation and circulation.\n\n(b) An operator must provide an adequate redundant or secondary oxygen supply for the flight crew.\n\n(c) An operator must\n\n(1) Provide a redundant means of preventing cabin depressurization; or\n\n(2) Prevent incapacitation of any of the flight crew in the event of loss of cabin pressure.",
+          "figures": []
+        },
+        {
+          "section": "460.13",
+          "title": "Smoke detection and fire suppression",
+          "content": "An operator or crew must have the ability to detect smoke and suppress a cabin fire to prevent incapacitation of the flight crew.",
+          "figures": []
+        },
+        {
+          "section": "460.15",
+          "title": "Human factors",
+          "content": "An operator must take the precautions necessary to account for human factors that can affect a crew's ability to perform safety-critical roles, including in the following safety critical areas-\n\n(a) Design and layout of displays and controls;\n\n(b) Mission planning, which includes analyzing tasks and allocating functions between humans and equipment;\n\n(c) Restraint or stowage of all individuals and objects in a vehicle; and\n\n(d) Vehicle operation, so that the vehicle will be operated in a manner that flight crew can withstand any physical stress factors, such as acceleration, vibration, and noise.",
+          "figures": []
+        },
+        {
+          "section": "460.17",
+          "title": "Verification program",
+          "content": "An operator must successfully verify the integrated performance of a vehicle's hardware and any software in an operational flight environment before allowing any space flight participant on board during a flight. Verification must include flight testing.",
+          "figures": []
+        },
+        {
+          "section": "460.19",
+          "title": "Crew waiver of claims against U.S. Government",
+          "content": "Each member of a flight crew and any remote operator must execute a reciprocal waiver of claims with the Federal Aviation Administration of the Department of Transportation in accordance with the requirements of part 440.",
+          "figures": []
+        },
+        {
+          "section": "460.20-460.40",
+          "title": "[Reserved]",
+          "content": "",
+          "figures": []
+        }
+      ]
+    },
+    {
+      "subpart": "B",
+      "title": "Launch and Reentry with a Space Flight participant",
+      "sections": [
+        {
+          "section": "460.41",
+          "title": "Scope",
+          "content": "This subpart establishes requirements for space flight participants on board a vehicle whose operator is licensed or permitted under this chapter.",
+          "figures": []
+        },
+        {
+          "section": "460.43",
+          "title": "Applicability",
+          "content": "This subpart applies to:\n\n(a) An applicant for a license or permit under this chapter who proposes to have a space flight participant on board a vehicle;\n\n(b) An operator licensed or permitted under this chapter who has a space flight participant on board a vehicle; and\n\n(c) A space flight participant in an activity authorized under this chapter.",
+          "figures": []
+        },
+        {
+          "section": "460.45",
+          "title": "Operator informing space flight participant of risk",
+          "content": "(a) Before receiving compensation or making an agreement to fly a space flight participant, an operator must satisfy the requirements of this section. An operator must inform each space flight participant in writing about the risks of the launch and reentry, including the safety record of the launch or reentry vehicle type. An operator must present this information in a manner that can be readily understood by a space flight participant with no specialized education or training, and must disclose in writing-\n\n(1) For each mission, each known hazard and risk that could result in a serious injury, death, disability, or total or partial loss of physical and mental function;\n\n(2) That there are hazards that are not known; and\n\n(3) That participation in space flight may result in death, serious injury, or total or partial loss of physical or mental function.\n\n(b) An operator must inform each space flight participant that the United States Government has not certified the launch vehicle and any reentry vehicle as safe for carrying crew or space flight participants.\n\n(c) An operator must inform each space flight participant of the safety record of all launch or reentry vehicles that have carried one or more persons on board, including both U.S. government and private sector vehicles. This information must include-\n\n(1) The total number of people who have been on a suborbital or orbital space flight and the total number of people who have died or been seriously injured on these flights; and\n\n(2) The total number of launches and reentries conducted with people on board and the number of catastrophic failures of those launches and reentries.\n\n(d) An operator must describe the safety record of its vehicle to each space flight participant. The operator's safety record must cover any event that meets any of paragraph (1), (4), (5), or (8) of the definition of \"mishap\" in § 401.7 that occurred during and after vehicle verification performed in accordance with § 460.17, and include:\n\n(1) The number of vehicle flights;\n\n(2) The number of events that meet any of paragraph (1), (4), (5), or (8) of the definition of \"mishap\" in section § 401.7; and\n\n(3) Whether any corrective actions were taken to resolve these mishaps.\n\n(e) An operator must inform a space flight participant that he or she may request additional information regarding any accidents and human space flight incidents reported.\n\n(f) Before flight, an operator must provide each space flight participant an opportunity to ask questions orally to acquire a better understanding of the hazards and risks of the mission, and each space flight participant must then provide consent in writing to participate in a launch or reentry. The consent must-\n\n(1) Identify the specific launch vehicle the consent covers;\n\n(2) State that the space flight participant understands the risk, and his or her presence on board the launch vehicle is voluntary; and\n\n(3) Be signed and dated by the space flight participant.\n\n[Docket No. FAA-2005-23449, 71 FR 75632, Dec. 15, 2006, as amended by Docket No. FAA-2019-0229, Amdt. 460-3, 85 FR 79739, 79740, Dec. 10, 2020]",
+          "figures": []
+        },
+        {
+          "section": "460.47",
+          "title": "[Reserved]",
+          "content": "",
+          "figures": []
+        },
+        {
+          "section": "460.49",
+          "title": "Space flight participant waiver of claims against U.S. Government",
+          "content": "Each space flight participant must execute a reciprocal waiver of claims with the Federal Aviation Administration of the Department of Transportation in accordance with the requirements of part 440 of this chapter.",
+          "figures": []
+        },
+        {
+          "section": "460.51",
+          "title": "Space flight participant training",
+          "content": "An operator must train each space flight participant before flight on how to respond to emergency situations, including smoke, fire, loss of cabin pressure, and emergency exit.",
+          "figures": []
+        },
+        {
+          "section": "460.53",
+          "title": "Security",
+          "content": "An operator must implement security requirements to prevent any space flight participant from jeopardizing the safety of the flight crew or the public. A space flight participant may not carry on board any explosives, firearms, knives, or other weapons.",
+          "figures": []
+        }
+      ]
+    },
+    {
+      "subpart": "C",
+      "title": "Launch and Reentry with a Government Astronaut with a Safety-Critical Role",
+      "sections": [
+        {
+          "section": "460.55",
+          "title": "Scope",
+          "content": "This subpart establishes requirements for operators and applicants whose licensed or permitted operations involve government astronauts on board a vehicle.",
+          "figures": []
+        },
+        {
+          "section": "460.57",
+          "title": "Applicability",
+          "content": "This subpart applies to:\n\n(a) An applicant for a license or permit under this chapter who proposes to have a government astronaut with a safety-critical role on board a vehicle.\n\n(b) An operator licensed or permitted under this chapter who has a government astronaut with a safety-critical role on board a vehicle.",
+          "figures": []
+        },
+        {
+          "section": "460.59",
+          "title": "Training of government astronauts with a safety-critical role",
+          "content": "(a) An operator must ensure that each government astronaut with a safety-critical role is trained on-\n\n(1) How to carry out their safety-critical role on board or on the ground so that the vehicle will not harm the public; and\n\n(2) Their role in nominal and non-nominal conditions, including abort scenarios and emergency operations, to the extent that performance of their role could impact public safety.\n\n(b) An operator must ensure any government astronaut who has the capability to control, in real time, a launch or reentry vehicle's flight path during a phase of flight capable of endangering the public:\n\n(1) Receives vehicle and mission-specific training for each phase of flight capable of endangering the public and over which the government astronaut has the capability to control the vehicle by using one or more of the following:\n\n(i) A method or device that simulates the flight;\n\n(ii) An aircraft whose characteristics are similar to the vehicle or that has similar phases of flight to the vehicle;\n\n(iii) Flight testing; or\n\n(iv) An equivalent method of training approved by the FAA through the license process.\n\n(2) Trains for each mode of control or propulsion, including any transition between modes, such that the government astronaut is able to control the vehicle.\n\n(3) Possesses aeronautical knowledge, experience, and skills necessary to pilot and control the launch or reentry vehicle that will operate in the National Airspace System (NAS). Aeronautical experience may include hours in flight, ratings, and training.\n\n(c) With respect to training device fidelity, an operator must:\n\n(1) Ensure that any government astronaut training device used to meet the training requirements realistically represents the vehicle's configuration and mission; or,\n\n(2) Inform the government astronaut being trained of the differences between the training device and the vehicle's configuration and mission.\n\n(d) An operator must update the government astronaut training to ensure that the training incorporates lessons learned from training and operational missions including-\n\n(1) Providing traceability to revisions or changes; and\n\n(2) Documenting the completed training for each government astronaut and maintaining the documentation for each active government astronaut.\n\n(e) An operator must establish a recurrent training schedule and ensure that all training of government astronauts performing safety-critical roles is current before launch or reentry.\n\n(f) For licensed missions supporting U.S. Government contracts, operators may meet the training requirements of this section through U.S. Government's contractual requirements.",
+          "figures": []
+        },
+        {
+          "section": "460.61",
+          "title": "Environmental control and life support systems",
+          "content": "(a) An operator must provide atmospheric conditions adequate to sustain life and consciousness for all inhabited areas within a vehicle that house a government astronaut. The operator must monitor and control the following atmospheric conditions in the inhabited areas or demonstrate through the license or permit process that an alternate means provides an equivalent level of safety-\n\n(1) Composition of the atmosphere, which includes oxygen and carbon dioxide, and any revitalization;\n\n(2) Pressure, temperature and humidity;\n\n(3) Contaminants that include particulates and any harmful or hazardous concentrations of gases, or vapors; and\n\n(4) Ventilation and circulation.\n\n(b) An operator must provide an adequate redundant or secondary oxygen supply for any government astronaut with a safety-critical role.\n\n(c) An operator must provide a redundant means of preventing cabin depressurization; or prevent incapacitation of any government astronaut with a safety-critical role in the event of loss of cabin pressure.",
+          "figures": []
+        }
+      ]
+    },
+    {
+      "subpart": "D",
+      "title": "Launch and Reentry with a Government Astronaut Without a Safety-Critical Role",
+      "sections": [
+        {
+          "section": "460.63",
+          "title": "Scope",
+          "content": "This subpart establishes requirements for operators and applicants whose licensed or permitted operations involve government astronauts on board a vehicle without a safety-critical role.",
+          "figures": []
+        },
+        {
+          "section": "460.65",
+          "title": "Applicability",
+          "content": "This subpart applies to:\n\n(a) An applicant for a license or permit under this chapter who proposes to have a government astronaut without a safety-critical role on board a vehicle.\n\n(b) An operator licensed or permitted under this chapter who has a government astronaut without a safety-critical role on board a vehicle.",
+          "figures": []
+        },
+        {
+          "section": "460.67",
+          "title": "Training of government astronauts without a safety-critical role",
+          "content": "An operator must ensure that each government astronaut without a safety-critical role is trained on how to respond to emergency situations, including smoke, fire, loss of cabin pressure, and emergency exit.",
+          "figures": []
+        }
+      ]
+    }
+  ],
+  "sections": [],
+  "appendices": [],
+  "isPilotIndex": false
+}

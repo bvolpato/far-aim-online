@@ -1,0 +1,25 @@
+{
+  "version": 1,
+  "id": "ac-20-120",
+  "number": "20-120",
+  "title": "Nondirectional Beacon Frequency Congestion",
+  "status": "parsed",
+  "fetched": "2026-07-14",
+  "documentUrl": "https://www.faa.gov/regulations_policies/advisory_circulars/index.cfm/go/document.information/documentID/22127",
+  "pdfUrl": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_20-120.pdf",
+  "sha256": "9416bb40519191612104e0b88ed7dbfc2700ee3b528737c64708836464899bde",
+  "pageCount": 2,
+  "wordCount": 435,
+  "ocrPageCount": 0,
+  "pages": [
+    {
+      "page": 1,
+      "text": "~IIC-&tf./J / .. ,' 0 ' ' Advisory U.S. Department of Federal Transportation Aviation Circular Administration\n\nSubject: NONDIRECTIONAL BEACON Date: 6/18/84 AC No: AC 20-120 FREQUENCY CONGESTION Initiated by: AES-520 Change: 1. PURPOSE. This advisory circular recommends several actions that the user can\n\ntake to help alleviate problems of frequency congestion in the 190-535 kHz frequency\n\nrange.\n\n2. BACKGROUND. Low/medium frequency (L/MF) congestion has been a problem for decades. In large areas of the United States, frequency congestion makes it difficult or impossible to make frequency assignments to satisfy new nondirectional beacon (NOB) requirements. In an effort to alleviate this frequency congestion problem, the FAA requested that the Radio Technical Commission for Aeronautics (RTCA) form a special committee (SC-146) to develop and recommend improved automatic direction finder (ADF) standards. The resultant document, D0-179 Minimum Operational Performance Standards (MOPS), recommends an increase in tuning range and a tighter selectivity than those specified in the existing D0-142 Minimum Performance Standards (MPS). (Technical Standard Order TSO-c4ld is based on RTCA D0-179.)\n\n3. RECOMMENDATIONS.\n\na, ADF Receiver Selectivity, If you have decided to purchase an ADF and plan to use it in 1992-2000, the FAA recommends that you choose a receiver with at least 00-142 Category A selectivity. If you have decided to purchase an ADF and plan to use it after the year 2000, the FAA recommends that you choose a receiver with 00-179 selectivity. b. ADF Tuning Range. In the United States, NOB assignments are being made in the 190-535 kHz range. If you have decided to purchase an ADF, the FAA recommends that you choose a receiver capable of tuning over all of this frequency range. c. Flying Overseas. In many countries throughout the world, NOB assignments have been made on \"half-kilohertz\" frequencies (i.e., XXX.50 kHz). Thus, when flying overseas, the FAA recommends that your ADF be capable of tuning in one-half-kilohertz increments. (Since a large number of current ADF receivers tune in one-kilohertz increments rather than one-half-kilohertz increments, the FAA does not plan to make NOB assignments on \"half-kilohertz\" frequencies.)"
+    },
+    {
+      "page": 2,
+      "text": "AC 20-120 6/18/84 4. REQUEST FOR INFORMATION. Additional information may be obtained from the FAA at the following address: Federal Aviation Administration\n\nSystems Engineering Service\n\nSpectrum Engineering Division, AES-500\n\n800 Independence Avenue, S.W.\n\nWashington, D.C. 20591\n\nt1Eqt:A._ land F. Page\n\ncting Director, ystems Engineering Service\n\nus. Department of lalsportation Federal Auiation Adml1111t1allan 600 Independence A~e • S W Wilshu\\glon. DC 20591 Olhc1al Business Penally for Privale Use SJOO Par 4\n\nBULK MAIL\n\nPOSTAGE & FEES PAID\n\nFEDERAL AVIATION ADMINISTRATION\n\nPERMIT NO. G-44\n\nRETURN POSTAGE GUARANTEED"
+    }
+  ],
+  "extractedPageCount": 2
+}

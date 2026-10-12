@@ -1,0 +1,25 @@
+{
+  "version": 1,
+  "id": "ac-23-607-1",
+  "number": "23.607-1",
+  "title": "Self-Locking Nuts on Bolts Subject to Rotation",
+  "status": "parsed",
+  "fetched": "2026-07-14",
+  "documentUrl": "https://www.faa.gov/regulations_policies/advisory_circulars/index.cfm/go/document.information/documentID/22452",
+  "pdfUrl": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_23_607-1.pdf",
+  "sha256": "a3f07aebebdc2ab49585992fc6cd18dff2cecad5aabe688445218f5d7d018128",
+  "pageCount": 2,
+  "wordCount": 547,
+  "ocrPageCount": 0,
+  "pages": [
+    {
+      "page": 1,
+      "text": "Advisory\nU.S Department\nof\nFederal\nTransportation\nAviation Circular\nAdministration\nSubject: SELF-LOCKING NUTS ON Date: August 24, 1984 AC~o: 23.607-1\n\nBOLTS SUBJECT TO ROTATION Initiated b): AC E-100 Change:\n\nl. PURPOSE. This advisory circular provides infonnat ion and guidance concerning\nacceptable means, but not the only means, of compliance with Part 3 of the Civil\nAir Regulations (CAR) and with Part 23 of the Federal Aviation Regulations (FAR)\napplicable to self-locking nuts used on bolts subject to rotation in operation,\n2, RELATED fAR AND CAR SECTION. Section 23,607 and Section 3.294.\n3. BACKGROUND. CAR Section 3,294 and FAR Section 23,607 require that no self-locking nut may be used on any bolt subject to rotation in operation unless a non-friction locking device is used in addition to the self-locking device, No speci-fic systems in the airplane are named where the double-lock feature is required.\nIn the past, this section was not uniformly applied. For some projects, bolts\nwhich were installed through a bushing, bearing or uniball were required to have\nonly a self-locking nut for retention since there was no relative motion between\nthe bolt and the surface against which it was bearing, On other projects for a\nsimilar installation, a nonfriction locking device, in addition to the self-locking\nnut, was required because it was deemed possible for the bushing, hearing or\nuniball to seize, thus transmitting the relative motion to the bolt,\n4. APPLICATION, This guidance material is applicable for new, amended and\nsupplemental type certificates and alterations using self-locking nuts on bolts\nsubject to rotation.\n5. ACCEPTABLE MEANS OF COMPLIANCE. For the systems and areas noted below, one\nmeans for showing compliance with the requirements of CAR Section 3.294 and FAR\nSection 23,607 is as follows:\na. Self-locking nuts alone should not be used in any system when movement of\nthe joint may result in motion of the nut or bolt head relative to the surface\nagainst which it is hearing. .Joint seizure (bearing, unihal 1, or bushing seizure)\ndoes not have to be considered by this regulation when determining the relative\nmotinn of the parts in question, although it is advisable to do so. Suitable\nprotection and material properties of the joint are required by Sections 23,609 and\n23.613.\nb. Self-locking castellated nuts with cotter pins or lockwire may be used in\nany system.\nc, Self-locking nuts should not he used wit½ bolts or screws on turbine\nengine airplanes in locations where the loose nut, bolt, washer or screw could fall\nor be drawn into the engine air intake scoop,"
+    },
+    {
+      "page": 2,
+      "text": "23.607-1 8/24/84 d. Self-locking nuts should not be used with bolts, screws or studs to attach access panels or doors or to assemble any parts that are routinely disassembled prior to or after each flight. (Note: Information and guidance concerning dual locking devices on removable\n\nfasteners for rotorcraft and transport category airplanes are covered by AC 20-71).\n\nM?~~ Director, Central Region us. Department of Transportation Federal Aviation Administration 800 :•1deoenoence Ave S w Wasc,,,g1on DC 2059· O!l·c·a1 Bus,ress Pena:'v 'or Pr11 ,a'.e use $3:)C BULK MAIL ---i POSTAGE & FEES PAID j\n\nFEDERAL AVIATION ADMINISTRATION I\n\n____________ PERMIT NO G-44 i j\n\nRETURN POSTAGE GUARANTEED"
+    }
+  ],
+  "extractedPageCount": 2
+}

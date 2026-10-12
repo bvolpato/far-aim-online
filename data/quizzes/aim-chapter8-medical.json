@@ -1,0 +1,338 @@
+{
+  "id": "aim-chapter8-medical",
+  "title": "Medical Facts for Pilots Quiz",
+  "description": "Test your knowledge of aeromedical factors, physiological hazards, and fitness for flight from AIM Chapter 8",
+  "category": "AIM",
+  "chapter": 8,
+  "difficulty": "intermediate",
+  "targetCertificate": "Private/Instrument Pilot",
+  "questionCount": 25,
+  "passingScore": 70,
+  "questions": [
+    {
+      "id": "med-001",
+      "question": "What is hypoxia?",
+      "options": [
+        "Excess oxygen in the body",
+        "A state of oxygen deficiency in the body",
+        "Fear of heights",
+        "Motion sickness"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Hypoxia is a state of oxygen deficiency in the body sufficient to impair functions of the brain and other organs. The brain is highly sensitive to oxygen reduction.",
+      "reference": "AIM 8-1-2"
+    },
+    {
+      "id": "med-002",
+      "question": "At what cabin altitude does night vision begin to deteriorate?",
+      "options": [
+        "Sea level",
+        "5,000 feet",
+        "10,000 feet",
+        "12,000 feet"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Night vision deteriorates at cabin altitudes as low as 5,000 feet due to reduced oxygen. This is why supplemental oxygen is recommended for night flights above 5,000 feet.",
+      "reference": "AIM 8-1-2"
+    },
+    {
+      "id": "med-003",
+      "question": "At what altitude do significant effects of hypoxia typically begin for healthy pilots during daytime?",
+      "options": [
+        "5,000 feet",
+        "8,000 feet",
+        "12,000 feet",
+        "18,000 feet"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Significant effects of altitude hypoxia usually don't occur in healthy pilots below 12,000 feet during daytime. From 12,000-15,000 feet, judgment and coordination become impaired.",
+      "reference": "AIM 8-1-2"
+    },
+    {
+      "id": "med-004",
+      "question": "What are common symptoms of hypoxia?",
+      "options": [
+        "Increased energy and alertness",
+        "Headache, dizziness, euphoria, impaired judgment",
+        "Nausea and stomach cramps",
+        "Muscle cramps and stiffness"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Hypoxia symptoms include: headache, drowsiness, dizziness, euphoria OR belligerence, impaired judgment, memory loss, blue fingernails (cyanosis), and tunnel vision.",
+      "reference": "AIM 8-1-2"
+    },
+    {
+      "id": "med-005",
+      "question": "What is hyperventilation?",
+      "options": [
+        "Breathing too slowly",
+        "Abnormal increase in breathing rate that reduces CO2",
+        "Holding your breath",
+        "Shallow breathing"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Hyperventilation is an abnormal increase in the volume of air breathed that blows off excessive CO2. Can be caused by stress, anxiety, or hypoxia itself.",
+      "reference": "AIM 8-1-3"
+    },
+    {
+      "id": "med-006",
+      "question": "How can you treat hyperventilation?",
+      "options": [
+        "Increase breathing rate",
+        "Slow your breathing rate and breathe into a paper bag",
+        "Use 100% oxygen",
+        "Descend immediately"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Treat hyperventilation by consciously slowing your breathing rate and depth. Breathing into a paper bag helps restore CO2 levels. If using oxygen, first ensure it's working properly.",
+      "reference": "AIM 8-1-3"
+    },
+    {
+      "id": "med-007",
+      "question": "What is unique about the symptoms of hyperventilation and hypoxia?",
+      "options": [
+        "They are completely different",
+        "Their early symptoms are similar and can occur together",
+        "Hypoxia never occurs with hyperventilation",
+        "Only hypoxia affects pilots"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Early symptoms of hyperventilation and hypoxia are similar (lightheadedness, tingling). They can occur simultaneously. If on oxygen and experiencing symptoms, first ensure oxygen system is working.",
+      "reference": "AIM 8-1-3"
+    },
+    {
+      "id": "med-008",
+      "question": "What causes carbon monoxide poisoning in aircraft?",
+      "options": [
+        "Fuel fumes",
+        "Exhaust fumes entering cabin, often through heater",
+        "Battery fumes",
+        "Hydraulic fluid"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Carbon monoxide enters the cabin through exhaust fumes, typically via cracks in the heater shroud around the exhaust manifold. CO is colorless and odorless.",
+      "reference": "AIM 8-1-4"
+    },
+    {
+      "id": "med-009",
+      "question": "If you suspect carbon monoxide poisoning in flight, what should you do?",
+      "options": [
+        "Increase heater use",
+        "Turn off heater, open vents, land as soon as practical",
+        "Increase altitude",
+        "Nothing, it will clear on its own"
+      ],
+      "correctAnswer": 1,
+      "explanation": "If CO poisoning is suspected: shut off heater, open air vents, use supplemental oxygen if available, and land as soon as practical. Seek medical attention.",
+      "reference": "AIM 8-1-4"
+    },
+    {
+      "id": "med-010",
+      "question": "What is spatial disorientation?",
+      "options": [
+        "Fear of flying",
+        "Inability to determine aircraft position/attitude due to sensory conflicts",
+        "Getting lost",
+        "Reading instruments incorrectly"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Spatial disorientation is the inability to correctly determine position or attitude due to the brain's misinterpretation of sensory signals, particularly when visual references are lost.",
+      "reference": "AIM 8-1-5"
+    },
+    {
+      "id": "med-011",
+      "question": "What is 'the leans'?",
+      "options": [
+        "A type of approach",
+        "An illusion where pilot feels banked when actually level",
+        "Leaning the mixture",
+        "A weather phenomenon"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The leans occur when a gradual bank isn't sensed, then correction creates the illusion of banking the opposite way. Pilot may lean toward the perceived vertical or roll back to original bank.",
+      "reference": "AIM 8-1-5"
+    },
+    {
+      "id": "med-012",
+      "question": "What is the somatogravic illusion?",
+      "options": [
+        "Feeling of climbing when descending",
+        "Rapid acceleration creating the illusion of nose-up attitude",
+        "A visual illusion",
+        "Related to gravity"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Somatogravic illusion: rapid acceleration (e.g., takeoff) creates false sensation of nose-up pitch. Pilot may push nose down into dangerous attitude. Rapid deceleration creates opposite effect.",
+      "reference": "AIM 8-1-5"
+    },
+    {
+      "id": "med-013",
+      "question": "What causes the 'black hole' approach illusion?",
+      "options": [
+        "Flying in clouds",
+        "Approach over water or unlit terrain on a dark night",
+        "Flying into the sun",
+        "Ice on windscreen"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The black hole approach occurs over water or dark featureless terrain at night. Without visual cues, pilots tend to fly lower approaches than intended, risking CFIT.",
+      "reference": "AIM 8-1-5"
+    },
+    {
+      "id": "med-014",
+      "question": "How long does it take for complete dark adaptation?",
+      "options": [
+        "5 minutes",
+        "20-30 minutes",
+        "1 hour",
+        "10 minutes"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Complete dark adaptation requires about 30 minutes in total darkness, though moderate adaptation occurs within 20 minutes under dim red cockpit lighting.",
+      "reference": "AIM 8-1-6"
+    },
+    {
+      "id": "med-015",
+      "question": "What impairs dark adaptation?",
+      "options": [
+        "Red cockpit lighting",
+        "Bright light exposure, smoking, carbon monoxide, altitude above 5,000 feet",
+        "Sunglasses during day",
+        "Eating before flight"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Dark adaptation is impaired by exposure to bright light (even briefly), smoking, carbon monoxide, cabin altitude above 5,000 feet, and Vitamin A deficiency.",
+      "reference": "AIM 8-1-6"
+    },
+    {
+      "id": "med-016",
+      "question": "How should pilots scan for other traffic?",
+      "options": [
+        "Quick sweeping motion across entire sky",
+        "Systematic series of short movements with stops to focus",
+        "Focus only straight ahead",
+        "Rely entirely on radar"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Effective scanning requires short, regularly spaced eye movements with stops to focus. The eye detects motion best in peripheral vision but needs to stop to detect stationary targets.",
+      "reference": "AIM 8-1-6"
+    },
+    {
+      "id": "med-017",
+      "question": "What is the IMSAFE checklist used for?",
+      "options": [
+        "Preflight inspection",
+        "Self-assessment of pilot fitness for flight",
+        "Aircraft systems check",
+        "Weather evaluation"
+      ],
+      "correctAnswer": 1,
+      "explanation": "IMSAFE: Illness, Medication, Stress, Alcohol, Fatigue, Eating (Emotion). A personal checklist for assessing fitness to fly before each flight.",
+      "reference": "AIM 8-1-1"
+    },
+    {
+      "id": "med-018",
+      "question": "How long before flight must a pilot wait after consuming alcohol?",
+      "options": [
+        "4 hours",
+        "8 hours and must have blood alcohol below 0.04%",
+        "12 hours",
+        "24 hours"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Per 14 CFR 91.17: No flying within 8 hours after drinking alcohol OR while under the influence OR with blood alcohol concentration of 0.04% or greater.",
+      "reference": "AIM 8-1-1"
+    },
+    {
+      "id": "med-019",
+      "question": "What effect does alcohol have at altitude?",
+      "options": [
+        "No different effect",
+        "Effects are magnified due to reduced oxygen",
+        "Effects are reduced",
+        "It becomes a stimulant"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Alcohol's impairing effects are magnified at altitude. Altitude multiplies the effect of alcohol because both reduce oxygen supply to the brain.",
+      "reference": "AIM 8-1-1"
+    },
+    {
+      "id": "med-020",
+      "question": "What is the recommended wait time after scuba diving before flying above 8,000 feet?",
+      "options": [
+        "4 hours for non-decompression dives",
+        "12-24 hours depending on dive profile",
+        "1 hour",
+        "No wait required"
+      ],
+      "correctAnswer": 1,
+      "explanation": "After diving: wait at least 12 hours for non-decompression dives, 24 hours for decompression dives, before flying above 8,000 feet to avoid decompression sickness.",
+      "reference": "AIM 8-1-2"
+    },
+    {
+      "id": "med-021",
+      "question": "What is the primary cause of G-LOC (G-induced Loss of Consciousness)?",
+      "options": [
+        "Hypoxia",
+        "Blood draining from the brain during positive G maneuvers",
+        "Dehydration",
+        "Fatigue"
+      ],
+      "correctAnswer": 1,
+      "explanation": "G-LOC occurs during positive G maneuvers when blood is forced from the brain toward the lower body. Symptoms progress from gray-out to tunnel vision to blackout to unconsciousness.",
+      "reference": "AIM 8-1-7"
+    },
+    {
+      "id": "med-022",
+      "question": "What is 'red-out'?",
+      "options": [
+        "Seeing red due to anger",
+        "Blood pooling in the head during negative G maneuvers",
+        "Sunlight effect",
+        "Instrument malfunction"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Red-out occurs during negative G (push-over) maneuvers when blood is forced toward the head. Results in red vision due to blood pressure in the eyes.",
+      "reference": "AIM 8-1-7"
+    },
+    {
+      "id": "med-023",
+      "question": "How does fatigue affect pilot performance?",
+      "options": [
+        "Improves alertness due to adrenaline",
+        "Impairs judgment, slows reactions, reduces attention",
+        "No significant effect",
+        "Only affects long flights"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Fatigue impairs judgment, increases reaction time, reduces attention span, affects memory, and leads to poor decisions. Both acute and chronic fatigue are hazardous.",
+      "reference": "AIM 8-1-1"
+    },
+    {
+      "id": "med-024",
+      "question": "What visual illusion can make a runway appear farther away than it is?",
+      "options": [
+        "Rain on windscreen",
+        "Narrower than usual runway",
+        "Upsloping runway",
+        "Runway lights too bright"
+      ],
+      "correctAnswer": 1,
+      "explanation": "A runway narrower than usual can make it appear farther away, leading to a lower approach. A wider runway creates the opposite illusion. Always use VASI/PAPI when available.",
+      "reference": "AIM 8-1-5"
+    },
+    {
+      "id": "med-025",
+      "question": "What is the most important sense for safe flight?",
+      "options": [
+        "Hearing",
+        "Touch",
+        "Vision",
+        "Balance (vestibular)"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Vision is the most important sense for safe flight. In VMC, vision provides orientation. In IMC, pilots must trust instruments over vestibular (balance) Sensations.",
+      "reference": "AIM 8-1-6"
+    }
+  ]
+}

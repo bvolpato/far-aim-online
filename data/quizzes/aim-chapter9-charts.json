@@ -1,0 +1,273 @@
+{
+  "id": "aim-chapter9-charts",
+  "title": "Aeronautical Charts Quiz",
+  "description": "Test your knowledge of aeronautical charts, symbols, and publications from AIM Chapter 9",
+  "category": "AIM",
+  "chapter": 9,
+  "difficulty": "intermediate",
+  "targetCertificate": "Private Pilot",
+  "questionCount": 20,
+  "passingScore": 70,
+  "questions": [
+    {
+      "id": "chart-001",
+      "question": "What organization produces aeronautical charts for the United States?",
+      "options": [
+        "National Weather Service",
+        "FAA Aeronautical Information Services (AIS)",
+        "NOAA",
+        "National Geospatial-Intelligence Agency"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Civil aeronautical charts for the US are produced by FAA Aeronautical Information Services (AIS), part of FAA's Air Traffic Organization.",
+      "reference": "AIM 9-1-1"
+    },
+    {
+      "id": "chart-002",
+      "question": "What is the scale of a VFR Sectional Aeronautical Chart?",
+      "options": [
+        "1:250,000",
+        "1:500,000",
+        "1:1,000,000",
+        "1:2,000,000"
+      ],
+      "correctAnswer": 1,
+      "explanation": "VFR Sectional Charts have a scale of 1:500,000 (1 inch = approximately 6.86 NM). They are the most commonly used VFR charts.",
+      "reference": "AIM 9-1-4"
+    },
+    {
+      "id": "chart-003",
+      "question": "What is the scale of a VFR Terminal Area Chart (TAC)?",
+      "options": [
+        "1:500,000",
+        "1:250,000",
+        "1:1,000,000",
+        "1:100,000"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Terminal Area Charts (TACs) have a scale of 1:250,000 (1 inch = approximately 3.43 NM). They provide greater detail for congested terminal areas.",
+      "reference": "AIM 9-1-4"
+    },
+    {
+      "id": "chart-004",
+      "question": "What color are Class B airspace boundaries on sectional charts?",
+      "options": [
+        "Magenta",
+        "Blue",
+        "Gray",
+        "Brown"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Class B airspace is depicted with solid blue lines. Class C is solid magenta, Class D is dashed blue, and Class E surface areas are dashed magenta.",
+      "reference": "AIM 9-1-4"
+    },
+    {
+      "id": "chart-005",
+      "question": "What color are Class C airspace boundaries on sectional charts?",
+      "options": [
+        "Blue",
+        "Magenta",
+        "Yellow",
+        "Green"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Class C airspace is depicted with solid magenta lines. The magenta color indicates that two-way radio communication is required.",
+      "reference": "AIM 9-1-4"
+    },
+    {
+      "id": "chart-006",
+      "question": "How is Class D airspace depicted on a sectional chart?",
+      "options": [
+        "Solid blue line",
+        "Solid magenta line",
+        "Dashed blue line",
+        "Dashed magenta line"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Class D airspace is depicted with a dashed blue line (segmented blue). It typically surrounds airports with operating control towers.",
+      "reference": "AIM 9-1-4"
+    },
+    {
+      "id": "chart-007",
+      "question": "What does a magenta shaded area around an airport indicate?",
+      "options": [
+        "Class B airspace",
+        "Class E airspace extending to the surface",
+        "Class C airspace",
+        "Restricted area"
+      ],
+      "correctAnswer": 1,
+      "explanation": "A dashed magenta line indicates Class E airspace extending to the surface. The magenta tint extends inward from the boundary.",
+      "reference": "AIM 9-1-4"
+    },
+    {
+      "id": "chart-008",
+      "question": "What is the Chart Supplement U.S.?",
+      "options": [
+        "An en route chart",
+        "A publication with detailed airport and facility information",
+        "A weather publication",
+        "A type of approach plate"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The Chart Supplement U.S. (formerly Airport/Facility Directory) provides detailed airport information including runways, frequencies, services, and special procedures.",
+      "reference": "AIM 9-1-4"
+    },
+    {
+      "id": "chart-009",
+      "question": "How often are VFR Sectional Charts updated?",
+      "options": [
+        "Every 28 days",
+        "Every 56 days",
+        "Every 6 months",
+        "Annually"
+      ],
+      "correctAnswer": 1,
+      "explanation": "VFR Sectional Charts are revised and reissued every 56 days (every other 28-day cycle).",
+      "reference": "AIM 9-1-4"
+    },
+    {
+      "id": "chart-010",
+      "question": "What does a star symbol on a sectional chart indicate?",
+      "options": [
+        "VOR location",
+        "Obstruction with high-intensity lighting",
+        "Military airfield",
+        "Seaplane base"
+      ],
+      "correctAnswer": 1,
+      "explanation": "A star or lightning bolt on an obstruction symbol indicates the obstruction has high-intensity lighting.",
+      "reference": "AIM 9-1-4"
+    },
+    {
+      "id": "chart-011",
+      "question": "What do the numbers inside airspace brackets represent (e.g., [80/SFC])?",
+      "options": [
+        "Speed limit and floor",
+        "Ceiling/floor in hundreds of feet MSL or SFC",
+        "Communication frequency",
+        "Distance and bearing"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Airspace brackets show ceiling/floor (e.g., [80/SFC] means ceiling 8,000 MSL, floor is surface). Altitudes in hundreds of feet MSL unless SFC (surface) Noted.",
+      "reference": "AIM 9-1-4"
+    },
+    {
+      "id": "chart-012",
+      "question": "What does a blue airport symbol indicate?",
+      "options": [
+        "Airport with control tower",
+        "Airport without control tower",
+        "Military airport",
+        "Private airport"
+      ],
+      "correctAnswer": 0,
+      "explanation": "A blue airport symbol indicates an airport with an operating control tower. Magenta indicates no operating tower. The symbol shape indicates services available.",
+      "reference": "AIM 9-1-4"
+    },
+    {
+      "id": "chart-013",
+      "question": "What does a magenta airport symbol indicate?",
+      "options": [
+        "Towered airport",
+        "Non-towered airport",
+        "Military airport",
+        "Closed airport"
+      ],
+      "correctAnswer": 1,
+      "explanation": "A magenta airport symbol indicates a non-towered airport (no operating control tower). Services may still be available.",
+      "reference": "AIM 9-1-4"
+    },
+    {
+      "id": "chart-014",
+      "question": "What publication contains instrument approach procedures?",
+      "options": [
+        "Chart Supplement",
+        "Sectional Chart",
+        "Terminal Procedures Publication (TPP)",
+        "En Route Chart"
+      ],
+      "correctAnswer": 2,
+      "explanation": "The Terminal Procedures Publication (TPP), also known as approach plates, contains instrument approach procedures, departure procedures, and arrival procedures.",
+      "reference": "AIM 9-1-4"
+    },
+    {
+      "id": "chart-015",
+      "question": "What does maximum elevation figure (MEF) on a sectional chart indicate?",
+      "options": [
+        "Highest altitude you can fly",
+        "Highest known elevation including obstacles within a quadrangle",
+        "Minimum safe altitude",
+        "Pattern altitude"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The MEF is the highest known elevation (terrain or obstacles) within each quadrangle, rounded up to the next 100 feet, plus a safety factor.",
+      "reference": "AIM 9-1-4"
+    },
+    {
+      "id": "chart-016",
+      "question": "What does a flag symbol on a sectional chart represent?",
+      "options": [
+        "Visual reporting point",
+        "VOR",
+        "Intersection",
+        "Marker beacon"
+      ],
+      "correctAnswer": 0,
+      "explanation": "A flag symbol indicates a visual checkpoint or visual reporting point, often used for position reporting in busy terminal areas.",
+      "reference": "AIM 9-1-4"
+    },
+    {
+      "id": "chart-017",
+      "question": "What does the letter 'R' followed by numbers on a chart indicate?",
+      "options": [
+        "Radio frequency",
+        "Restricted airspace",
+        "Required altitude",
+        "Radar coverage"
+      ],
+      "correctAnswer": 1,
+      "explanation": "R followed by numbers (e.g., R-2501) designates Restricted airspace. Other special use airspace designations include W (Warning), P (Prohibited), A (Alert), MOA (Military Operations Area).",
+      "reference": "AIM 9-1-4"
+    },
+    {
+      "id": "chart-018",
+      "question": "How is a Military Training Route (MTR) depicted on a chart?",
+      "options": [
+        "Blue shaded area",
+        "IR/VR followed by route number",
+        "Red boundary line",
+        "Green overlay"
+      ],
+      "correctAnswer": 1,
+      "explanation": "MTRs are depicted as gray lines with route designations: IR (IFR routes) or VR (VFR routes) followed by numbers. 4-digit routes are 1,500' AGL and below.",
+      "reference": "AIM 9-1-4"
+    },
+    {
+      "id": "chart-019",
+      "question": "What are the tick marks around airports on a sectional chart?",
+      "options": [
+        "Distance reference marks",
+        "Runways extending beyond the symbol",
+        "Services available marks",
+        "Beacon rotation direction"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Tick marks extending from airport symbols represent runways. Their orientation shows actual runway alignment. Longer tick marks may indicate longer runways.",
+      "reference": "AIM 9-1-4"
+    },
+    {
+      "id": "chart-020",
+      "question": "What does L or RP next to an airport symbol indicate?",
+      "options": [
+        "L = Landing fee, RP = Right pattern",
+        "L = Lighting available, RP = Right traffic pattern",
+        "L = Long runway, RP = Radar equipped",
+        "L = Low activity, RP = Restricted procedures"
+      ],
+      "correctAnswer": 1,
+      "explanation": "L indicates lighting is available (pilot-controlled or other). RP indicates non-standard (right) Traffic pattern for that runway.",
+      "reference": "AIM 9-1-4"
+    }
+  ]
+}

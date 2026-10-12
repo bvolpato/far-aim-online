@@ -1,0 +1,171 @@
+{
+  "part": 414,
+  "title": "SAFETY ELEMENT APPROVALS",
+  "cfr": "14 CFR Part 414",
+  "source": "eCFR",
+  "url": "https://www.ecfr.gov/current/title-14/part-414",
+  "subchapter": "C",
+  "subchapterTitle": "Licensing",
+  "effectiveDate": "2026-07-24",
+  "subparts": [
+    {
+      "subpart": "A",
+      "title": "General",
+      "sections": [
+        {
+          "section": "414.1",
+          "title": "Scope",
+          "content": "This part establishes procedures for obtaining a safety element approval and renewing and transferring an existing safety element approval. Safety element approvals issued under this part may be used to support the application review for one or more vehicle operator license requests under other parts of this chapter.",
+          "figures": []
+        },
+        {
+          "section": "414.3",
+          "title": "Definitions",
+          "content": "*Safety element.* For purposes of this part, a safety element is any one of the items or persons (personnel) listed in paragraphs (1) and (2) of the definition of \"safety element approval\" in this section.\n\n*Safety element approval.* For purposes of this part, a safety element approval is an FAA document containing the FAA determination that one or more of the safety elements listed in paragraphs (1) and (2) of this definition, when used or employed within a defined envelope, parameter, or situation, will not jeopardize public health and safety or safety of property. A safety element approval may be issued independent of a license, and does not confer any authority to conduct activities for which a license is required under 14 CFR chapter III. A safety element approval does not relieve its holder of the duty to comply with all applicable requirements of law or regulation that may apply to the holder's activities.\n\n(1) Launch vehicle, reentry vehicle, safety system, process, service, or any identified component thereof; or\n\n(2) Qualified and trained personnel, performing a process or function related to licensed activities or vehicles.",
+          "figures": []
+        },
+        {
+          "section": "414.5",
+          "title": "Applicability",
+          "content": "This part applies to an applicant that wants to obtain a safety element approval for any of the safety elements defined under this part and to persons granted a safety element approval under this part. Any person eligible under this part may apply to become the holder of a safety element approval.",
+          "figures": []
+        },
+        {
+          "section": "414.7",
+          "title": "Eligibility",
+          "content": "(a) There is no citizenship requirement to obtain a safety element approval.\n\n(b) You may be eligible for a safety element approval if you are-\n\n(1) A designer, manufacturer, or operator of a launch or reentry vehicle or component thereof;\n\n(2) The designer or developer of a safety system or process; or\n\n(3) Personnel who perform safety-critical functions in conducting a licensed launch or reentry.\n\n(c) A safety element approval applicant must have sufficient knowledge and expertise to show that the design and operation of the safety element for which safety element approval is sought qualify for a safety element approval.\n\n(d) Only the safety elements defined under this part are eligible for a safety element approval.",
+          "figures": []
+        }
+      ]
+    },
+    {
+      "subpart": "B",
+      "title": "Application Procedures",
+      "sections": [
+        {
+          "section": "414.9",
+          "title": "Pre-application consultation",
+          "content": "The applicant must consult with the FAA before submitting an application. Unless the applicant or the FAA requests another form of consultation, consultation is oral discussion with the FAA about the application process and the potential issues relevant to the FAA's safety element approval decision.",
+          "figures": []
+        },
+        {
+          "section": "414.11",
+          "title": "Application",
+          "content": "An applicant may submit an application for a safety element approval in one of two ways:\n\n(a) Separate from a vehicle operator license application in accordance with § 414.13; or\n\n(b) Concurrent with a vehicle operator license application in accordance with § 414.15.",
+          "figures": []
+        },
+        {
+          "section": "414.13",
+          "title": "Application separate from a vehicle operator license application",
+          "content": "(a) An applicant must make an application in writing and in English. The applicant must file the application with the Federal Aviation Administration either by paper, by use of physical electronic storage, or by email in the following manner:\n\n(1) For an application submitted on paper, an applicant must send two copies of the application to the Federal Aviation Administration, Associate Administrator for Commercial Space Transportation, Room 331, 800 Independence Avenue SW, Washington, DC 20591. Attention: Application Review.\n\n(2) For an application submitted by use of physical electronic storage, the applicant must either mail the application to the address specified in paragraph (a) (1) of this section or hand-deliver the application to an authorized FAA representative. The application and the physical electronic storage containing the application must also satisfy all of the following criteria:\n\n(i) The application must include a cover letter that is printed on paper and signed by the person who signed the application or by an authorized representative of the applicant;\n\n(ii) The cover letter must identify each document that is included on the physical electronic storage; and\n\n(iii) The physical electronic storage must be in a format such that its contents cannot be altered.\n\n(3) For an application submitted by email, an applicant must send the application as an email attachment, or as a link to a secure server, to *ASTApplications@faa.gov*. The application and the email to which the application is attached must also satisfy the following criteria:\n\n(i) The email to which the application is attached must be sent from an email address controlled by the person who signed the application or by an authorized representative of the applicant; and\n\n(ii) The email must identify each document that is included as an attachment or that is stored on a secure server; and\n\n(iii) The electronic files must be date-stamped and have version control documentation.\n\n(b) The application must identify the following basic information:\n\n(1) Name and address of the applicant.\n\n(2) Name, address, and telephone number of any person to whom inquiries and correspondence should be directed.\n\n(3) Safety element as defined under this part for which the applicant seeks a safety element approval.\n\n(c) The application must contain the following technical information:\n\n(1) A Statement of Conformance letter, describing the specific criteria the applicant used to show the adequacy of the safety element for which a safety element approval is sought, and showing how the safety element complies with the specific criteria.\n\n(2) The specific operating limits for which the safety element approval is sought.\n\n(3) The following as applicable:\n\n(i) Information and analyses required under this chapter that may be applicable to demonstrating safe performance of the safety element for which the safety element approval is sought.\n\n(ii) Engineering design and analyses that show the adequacy of the proposed safety element for its intended use, such that the use in a licensed launch or reentry will not jeopardize public health or safety or the safety of property.\n\n(iii) Relevant manufacturing processes.\n\n(iv) Test and evaluation procedures.\n\n(v) Test results.\n\n(vi) Maintenance procedures.\n\n(vii) Personnel qualifications and training procedures.\n\n(d) The application must be legibly signed, dated, and certified as true, complete, and accurate by one of the following:\n\n(1) For a corporation, an officer or other individual authorized to act for the corporation in licensing or safety element approval matters.\n\n(2) For a partnership or a sole proprietorship, a general partner or proprietor, respectively.\n\n(3) For a joint venture, association, or other entity, an officer or other individual duly authorized to act for the joint venture, association, or other entity in licensing matters.\n\n(e) Failure to comply with any of the requirements set forth in this section is sufficient basis for denial of a safety element approval application.",
+          "figures": []
+        },
+        {
+          "section": "414.15",
+          "title": "Application concurrent with vehicle operator license application",
+          "content": "(a) An applicant for a vehicle operator license may also identify one or more sections of its application for which it seeks to obtain a safety element approval concurrently with a license. An applicant applying for a safety element approval concurrently with a license must-\n\n(1) Meet the applicable requirements of part 450;\n\n(2) Provide the information required in § 414.13 (b)(3) and (c) (2) and (3); and\n\n(3) Specify the sections of the license application that support the application for a safety element approval.\n\n(b) The scope of the safety element approval will be limited to what the application supports. The technical criteria for reviewing a safety element submitted as part of a vehicle operator license application are limited to the applicable requirements of part 450.",
+          "figures": []
+        },
+        {
+          "section": "414.17",
+          "title": "Confidentiality",
+          "content": "(a) To ensure confidentiality of data or information in the application, the applicant must-\n\n(1) Send a written request with the application that trade secrets or proprietary commercial or financial data be treated as confidential, and include in the request the specific time frame confidential treatment is required.\n\n(2) Mark data or information that require confidentiality with an identifying legend, such as \"Proprietary Information,\" \"Proprietary Commercial Information,\" \"Trade Secret,\" or \"Confidential Treatment Requested.\" Where this marking proves impracticable, attach a cover sheet that contains the identifying legend to the data or information for which confidential treatment is sought.\n\n(b) If the applicant requests confidential treatment for previously submitted data or information, the FAA will honor that request to the extent practicable in case of any prior distribution of the data or information.\n\n(c) Data or information for which confidential treatment is requested or data or information that qualifies for exemption under section 552 (b)(4) of title 5, U.S.C., will not be disclosed to the public unless the Associate Administrator determines that withholding the data or information is contrary to the public or national interest.",
+          "figures": []
+        },
+        {
+          "section": "414.19",
+          "title": "Processing the initial application",
+          "content": "(a) The FAA will initially screen an application to determine if the application is complete enough for the FAA to start the review.\n\n(b) After completing the initial screening, the FAA will inform the applicant in writing of one of the following:\n\n(1) The FAA accepts the application and will begin the reviews or evaluations required for a safety element approval determination under this part.\n\n(2) The FAA rejects the application because it is incomplete or indefinite, making initiation of the reviews or evaluations required for a safety element approval determination under this part inappropriate.\n\n(c) The written notice will state the reason(s) for rejection and corrective actions necessary for the application to be accepted. The FAA may return a rejected application to the applicant or may hold it until the applicant provides more information.\n\n(d) The applicant may withdraw, amend, or supplement an application any time before the FAA makes a final determination on the safety element approval application by making a written request to the Associate Administrator. If the applicant amends or supplements the initial application, the revised application must meet all the applicable requirements under this part.",
+          "figures": []
+        },
+        {
+          "section": "414.21",
+          "title": "Maintaining the continued accuracy of the initial application",
+          "content": "The applicant is responsible for the continuing accuracy and completeness of information provided to the FAA as part of the safety element approval application. If at any time after submitting the application, circumstances occur that cause the information to no longer be accurate and complete in any material respect, the applicant must submit a written statement to the Associate Administrator explaining the circumstances and providing the new or corrected information. The revised application must meet all requirements under § 414.13 or § 414.15.",
+          "figures": []
+        }
+      ]
+    },
+    {
+      "subpart": "C",
+      "title": "Safety Element Approval Review and Issuance",
+      "sections": [
+        {
+          "section": "414.23",
+          "title": "Technical criteria for reviewing a safety element approval application",
+          "content": "The FAA will determine whether a safety element is eligible for and may be issued a safety element approval. The FAA will base its determination on performance-based criteria, against which it may assess the effect on public health and safety and on safety of property, in the following hierarchy:\n\n(a) FAA or other appropriate Federal regulations.\n\n(b) Government-developed or adopted standards.\n\n(c) Industry consensus performance-based criteria or standard.\n\n(d) Applicant-developed criteria. Applicant-developed criteria are performance standards customized by the manufacturer that intends to produce the system, system component, or part. The applicant-developed criteria must define-\n\n(1) Design and minimum performance;\n\n(2) Quality assurance system requirements;\n\n(3) Production acceptance test specifications; and\n\n(4) Continued operational safety monitoring system characteristics.",
+          "figures": []
+        },
+        {
+          "section": "414.25",
+          "title": "Terms and conditions for issuing a safety element approval; duration of a safety element approval",
+          "content": "(a) The FAA will issue a safety element approval to an applicant that meets all the requirements under this part.\n\n(b) The scope of the safety element approval will be limited by the scope of the safety demonstration contained in the application on which the FAA based the decision to grant the safety element approval.\n\n(c) The FAA will determine specific terms and conditions of a safety element approval individually, limiting the safety element approval to the scope for which it was approved. The terms and conditions will include reporting requirements tailored to the individual safety element approval.\n\n(d) A safety element approval is valid for five years and may be renewed.",
+          "figures": []
+        },
+        {
+          "section": "414.27",
+          "title": "Maintaining the continued accuracy of the safety element approval application",
+          "content": "(a) The holder of a safety element approval must ensure the continued accuracy and completeness of representations contained in the safety element approval application, on which the approval was issued, for the entire term of the safety element approval.\n\n(b) If any representation contained in the application that is material to public health and safety or safety of property ceases to be accurate and complete, the safety element approval holder must prepare and submit a revised application according to § 414.13 or § 414.15 under this part. The safety element approval holder must point out any part of the safety element approval or the associated application that would be changed or affected by a proposed modification. The FAA will review and make a determination on the revised application under the terms of this part.",
+          "figures": []
+        },
+        {
+          "section": "414.29",
+          "title": "Safety element approval records",
+          "content": "The holder of a safety element approval must maintain all records necessary to verify that the holder's activities are consistent with the representations contained in the application for which the approval was issued for the duration of the safety element approval plus one year.",
+          "figures": []
+        },
+        {
+          "section": "414.31",
+          "title": "Safety element approval renewal",
+          "content": "(a) *Eligibility.* A holder of a safety element approval may apply to renew it by sending the FAA a written application at least 90 days before the expiration date of the approval, unless the Administrator agrees to a different time frame in accordance with § 404.15.\n\n(b) *Application.* (1) A safety element approval renewal application must meet all the requirements under § 414.13 or § 414.15.\n\n(2) The application may incorporate by reference information provided as part of the application for the expiring safety element approval or any modification to that approval.\n\n(3) Any proposed changes in the conduct of a safety element for which the FAA has issued a safety element approval must be described and must include any added information necessary to support the fitness of the proposed changes to meet the criteria upon which the FAA evaluated the safety element approval application.\n\n(c) *Review of application.* The FAA conducts the reviews required under this part to determine whether the safety element approval may be renewed. We may incorporate by reference any findings that are part of the record for the expiring safety element approval.\n\n(d) *Grant of safety element approval renewal.* If the FAA makes a favorable safety element approval determination, the FAA issues an order that amends the expiration date of the safety element approval or issues a new safety element approval. The FAA may impose added or revised terms and conditions necessary to protect public health and safety and the safety of property.\n\n(e) *Written notice.* The FAA will provide written notice to the applicant of its determination on the safety element approval renewal request.\n\n(f) *Denial of a safety element approval renewal.* If the FAA denies the renewal application, the applicant may correct any deficiency the FAA identified and request a reconsideration of the revised application. The applicant also has the right to appeal a denial as set forth in subpart D of this part.",
+          "figures": []
+        },
+        {
+          "section": "414.33",
+          "title": "Safety element approval transfer",
+          "content": "(a) Only the FAA may approve a transfer of a safety element approval.\n\n(b) Either the holder of a safety element approval or the prospective transferee may request a safety element approval transfer.\n\n(c) Both the holder and prospective transferee must agree to the transfer.\n\n(d) The person requesting the transfer must submit a safety element approval application according to § 414.13 or § 414.15, must meet the applicable requirements of this part, and may incorporate by reference relevant portions of the initial application.\n\n(e) The FAA will approve a transfer of a safety element approval only after all the approvals and determinations required under this chapter for a safety element approval have been met. In conducting reviews and issuing approvals and determinations, the FAA may incorporate by reference any findings made part of the record to support the initial safety element approval determination. The FAA may modify the terms and conditions of a safety element approval to reflect any changes necessary because of a safety element approval transfer.\n\n(f) The FAA will provide written notice to the person requesting the safety element approval transfer of our determination.",
+          "figures": []
+        },
+        {
+          "section": "414.35",
+          "title": "Monitoring compliance with the terms and conditions of a safety element approval",
+          "content": "Each holder of a safety element approval must allow access by, and cooperate with, Federal officers or employees or other individuals authorized by the Associate Administrator to inspect manufacturing, production, testing, or assembly performed by a holder of a safety element approval or its contractor. The FAA may also inspect a safety element approval process or service, including training programs and personnel qualifications.",
+          "figures": []
+        },
+        {
+          "section": "414.37",
+          "title": "Modification, suspension, or revocation of a safety element approval",
+          "content": "(a) *The safety element approval holder.* The safety element approval holder may submit an application to the FAA to modify the terms and conditions of the holder's safety element approval. The application must meet all the applicable requirements under this part. The FAA will review and make a determination on the application using the same procedures under this part applicable to an initial safety element approval application. If the FAA denies the request to modify a safety element approval, the holder may correct any deficiency the FAA identified and request reconsideration. The holder also has the right to appeal a denial as set forth in subpart D of this part.\n\n(b) *The FAA.* If the FAA finds it is in the interest of public health and safety, safety of property, or if the safety element approval holder fails to comply with any applicable requirements of this part, any terms and conditions of the safety element approval, or any other applicable requirement, the FAA may-\n\n(1) Modify the terms and conditions of the safety element approval; or\n\n(2) Suspend or revoke the safety element approval.\n\n(c) *Effective date.* Unless otherwise stated by the FAA, any modification, suspension, or revocation of a safety element approval under paragraph (b)-\n\n(1) Takes effect immediately; and\n\n(2) Continues in effect during any reconsideration or appeal of such action under this part.\n\n(d) *Notification and right to appeal.* If the FAA determines it is necessary to modify, suspend, or revoke a safety element approval, we will notify the safety element approval holder in writing. If the holder disagrees with the FAA's determination, the holder may correct any deficiency the FAA identified and request a reconsideration of the determination. The applicant also has the right to appeal the determination as set forth in subpart D of this part.",
+          "figures": []
+        }
+      ]
+    },
+    {
+      "subpart": "D",
+      "title": "Appeal Procedures",
+      "sections": [
+        {
+          "section": "414.41",
+          "title": "Hearings in safety element approval actions",
+          "content": "(a) The FAA will give the safety element approval applicant or holder, as appropriate, written notice stating the reason for issuing a denial or for modifying, suspending, or revoking a safety element approval under this part.\n\n(b) A safety element approval applicant or holder is entitled to a determination on the record after an opportunity for a hearing.",
+          "figures": []
+        },
+        {
+          "section": "414.43",
+          "title": "Submissions; oral presentations in safety element approval actions",
+          "content": "(a) Determinations in safety element approval actions under this part will be made on the basis of written submissions unless the administrative law judge, on petition or on their own initiative, determines that an oral presentation is required.\n\n(b) Submissions must include a detailed exposition of the evidence or arguments supporting the petition.\n\n(c) Petitions must be filed as soon as practicable, but in no event more than 30 days after issuance of decision or finding under § 414.37.",
+          "figures": []
+        },
+        {
+          "section": "414.45",
+          "title": "Administrative law judge's recommended decision in safety element approval actions",
+          "content": "(a) The Associate Administrator, who will make the final decision on the matter at issue, will review the recommended decision of the administrative law judge. The Associate Administrator will make such final decision within 30 days of issuance of the recommended decision.\n\n(b) The authority and responsibility to review and decide rests solely with the Associate Administrator and may not be delegated.",
+          "figures": []
+        }
+      ]
+    }
+  ],
+  "sections": [],
+  "appendices": [],
+  "isPilotIndex": false
+}

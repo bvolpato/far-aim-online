@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "id": "ac-20-40",
+  "number": "20-40",
+  "title": "Placards for Battery-Excited Alternators Installed in Light Aircraft",
+  "status": "parsed",
+  "fetched": "2026-07-14",
+  "documentUrl": "https://www.faa.gov/regulations_policies/advisory_circulars/index.cfm/go/document.information/documentID/22578",
+  "pdfUrl": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_20-40.pdf",
+  "sha256": "6eadc6bd8b549cd67dd93d4297ab3fa02e1ae272e4a129e8bae0b1899860aa0a",
+  "pageCount": 1,
+  "wordCount": 238,
+  "ocrPageCount": 0,
+  "pages": [
+    {
+      "page": 1,
+      "text": "AC NO: AC 20-40\n.AIRCRAFT\nEFFECTIVE :\n8/11/65\nSU BJ ECT : PLACARDS FOR BA'l'TERY- EX.CITED ALTERNATORS INSTALLED IN\nLIGHT AIRCRAFT\n1. PURPOSE: This advisory circular sets forth an acceptable means of\n\ncomplying with placarding rules in Federal Aviation Regulations 23\n\nand 27 with respect to battery-excited alternator installations.\n\n2. REGULATIONS AFFECTED: Federal Aviation Regulations 23.l54l(a)(2)\n\nand 27.l54l(a)(2).\n\n3. BACKGROUND: Since an alternator is but one class of generator, approval\nof alternator installations in light aircraft have been made by the\nAgency under those rules in FAR 23 and 27 which deal with generator\nsystems. It has been found, however, that certain types of alternators\n(which are apparently used in a number of automotive applications)\nobtain their field excitation from the battery. When field excitation\nis obtained in this wa:y, there is the danger that, if the alternator\nis turned off in flight, subsequent loss or discharge of the battery\nwould result in loss of the alternator as well. This unusual design\nfeature invokes the provisions in §s23.154l(a)(2) and 27.l54l(a)(2).\n4. ACCEPTABLE MEANS OF COMPLIANCE: With respect to battery-excited\nalternator installations, an acceptable method of complying with\n§§23.154l(a)(2) and 27.1541(a)(2) is to provide a placard advising\nthe pilot not to turn off the alternators in flight, except in case\nof emergency.\n-~~ George S, Moore\n/\" Director\nFlight Standards Service\n. ."
+    }
+  ],
+  "extractedPageCount": 1
+}

@@ -1,0 +1,130 @@
+{
+  "id": "aim-chapter11-uas",
+  "title": "UAS (Drone) Operations",
+  "description": "Key concepts from AIM Chapter 11 covering UAS regulations, Part 107, recreational operations, and airspace access",
+  "category": "AIM",
+  "chapter": 11,
+  "cardCount": 20,
+  "cards": [
+    {
+      "id": "ch11-001",
+      "front": "Part 107 sUAS Requirements",
+      "back": "Weight: <55 pounds\nPilot: Remote Pilot Certificate (16+ years)\nOperations:\n• Daylight or twilight with lighting\n• Visual line of sight (VLOS)\n• Class G: Up to 400' AGL\n• Controlled airspace: Need authorization\n• No flying over people (without waiver)\n• Max 100 mph (87 knots)",
+      "reference": "AIM 11-2-1"
+    },
+    {
+      "id": "ch11-002",
+      "front": "Recreational UAS Requirements",
+      "back": "Under 49 USC 44809:\n• Purely recreational purpose\n• Pass TRUST (no age limit)\n• Register if >0.55 lbs (250g)\n• Follow CBO safety guidelines\n• Class G: 400' AGL max\n• Controlled airspace: Need authorization\n• Give way to manned aircraft\n• Keep in sight",
+      "reference": "AIM 11-4-1"
+    },
+    {
+      "id": "ch11-003",
+      "front": "LAANC (Low Altitude Authorization and Notification)",
+      "back": "Automates airspace authorization:\n• Near real-time approval\n• At or below UASFM altitudes\n• Works with FAA-approved apps\n\nUASFM: UAS Facility Map\n• Shows max altitudes by location\n• Above UASFM = 'further coordination'\n\nAvailable for Part 107 and recreational",
+      "reference": "AIM 11-1-2"
+    },
+    {
+      "id": "ch11-004",
+      "front": "UAS Registration",
+      "back": "Part 48 (online):\n• Part 107: All UAS regardless of weight\n• Recreational: >0.55 lbs (250g)\n• DroneZone website\n\nPart 47 (traditional):\n• UAS ≥55 lbs\n• Results in N-number\n\nMark registration on exterior of aircraft",
+      "reference": "AIM 11-2-2"
+    },
+    {
+      "id": "ch11-005",
+      "front": "Remote Identification (RID)",
+      "back": "Broadcasts from UAS:\n• Unique identifier\n• Location and altitude\n• Velocity\n• Control station location\n• Time mark\n\nThree ways to comply:\n1. Standard RID drone\n2. RID Broadcast Module\n3. Fly in FRIA (FAA-Recognized ID Area)",
+      "reference": "AIM 11-4-4"
+    },
+    {
+      "id": "ch11-006",
+      "front": "Part 107 Pilot Certification",
+      "back": "Initial:\n• Age 16+, speak English\n• Pass knowledge test OR\n• Part 61 pilot with online training\n• TSA security check\n\nRecurrent:\n• Every 24 months\n• Complete training OR\n• Pass recurrent test\n\nCarry certificate when flying",
+      "reference": "AIM 11-5-1"
+    },
+    {
+      "id": "ch11-007",
+      "front": "TRUST (Recreational UAS Safety Test)",
+      "back": "Required for recreational flyers:\n• Free online test\n• No minimum age\n• Administered by FAA-approved providers\n• No expiration\n• Keep proof of completion\n\nCovers:\n• Airspace rules\n• Safety practices\n• Where to fly",
+      "reference": "AIM 11-2-1"
+    },
+    {
+      "id": "ch11-008",
+      "front": "Part 107 Waivers",
+      "back": "May waive certain requirements:\n• Night operations (now standard with training)\n• Over people (categories exist)\n• VLOS operations\n• Multiple aircraft\n• Yield right-of-way\n• Operations from moving vehicle\n\nNOT waivable:\n• HAZMAT carriage\n• Foreign object drop with intent to harm",
+      "reference": "AIM 11-4-2"
+    },
+    {
+      "id": "ch11-009",
+      "front": "UAS Airspace Restrictions",
+      "back": "NO flying without authorization:\n• Class B, C, D airspace\n• Surface Class E at airports\n• Within TFRs\n• Prohibited areas\n• Restricted areas (when active)\n• Over stadiums during events\n• Near wildfires\n• Near emergency response",
+      "reference": "AIM 11-4-6"
+    },
+    {
+      "id": "ch11-010",
+      "front": "UAS Accident Reporting (Part 107)",
+      "back": "Report within 10 days if:\n• Serious injury to any person\n• Loss of consciousness\n• Property damage >$500 (not to UAS)\n\nNTSB reporting if:\n• Death or serious injury\n• Midair collision\n• Substantial damage to type-certificated UAS",
+      "reference": "AIM 11-8-4"
+    },
+    {
+      "id": "ch11-011",
+      "front": "Night Operations (Part 107)",
+      "back": "Allowed with:\n• Initial/recurrent training completed\n• Anti-collision lighting visible for 3 SM\n\nConsiderations:\n• Maintain VLOS\n• Account for reduced visibility\n• Know terrain/obstacles\n• Check weather visibility",
+      "reference": "AIM 11-8-3"
+    },
+    {
+      "id": "ch11-012",
+      "front": "Operations Over People (OOP)",
+      "back": "Part 107 Subpart D categories:\n\nCat 1: <0.55 lbs, no exposed rotating parts\nCat 2: No injury beyond minor\nCat 3: No injury requiring hospitalization\nCat 4: FAA airworthiness certified\n\nSustained flight over open-air assemblies: Cat 3 or 4 only",
+      "reference": "AIM 11-8-3"
+    },
+    {
+      "id": "ch11-013",
+      "front": "Public Aircraft UAS Operations",
+      "back": "Operated by government entities:\n• Federal, state, local agencies\n• Governmental function required\n• Self-certify pilots\n• Require COA for NAS access\n\nExamples:\n• Law enforcement\n• Fire/rescue\n• Search and rescue\n• Border patrol",
+      "reference": "AIM 11-4-3"
+    },
+    {
+      "id": "ch11-014",
+      "front": "VLOS (Visual Line of Sight)",
+      "back": "Required for most operations:\n• See UAS with unaided vision\n• Corrective lenses allowed\n• Binoculars NOT allowed for maintaining VLOS\n\nVisual observer (VO):\n• May assist scanning\n• Must coordinate with RPIC\n• Does NOT replace RPIC requirement",
+      "reference": "AIM 11-2-1"
+    },
+    {
+      "id": "ch11-015",
+      "front": "UAS Resources",
+      "back": "FAA.gov/UAS: Central information\nDroneZone: Registration, authorizations\nLAANC apps: Near real-time authorization\nB4UFLY: Airspace restrictions\nFSDO: Local FAA office\nNOTAMs: Airspace activity\n\nAviation Weather: aviationweather.gov",
+      "reference": "AIM 11-8-7"
+    },
+    {
+      "id": "ch11-016",
+      "front": "UTM (UAS Traffic Management)",
+      "back": "Framework for UAS operations:\n• Information sharing between operators\n• Distributed network vs voice comms\n• Operators coordinate/deconflict\n• FAA provides constraints\n• Not traditional ATC services\n\nFuture integration tool",
+      "reference": "AIM 11-4-7"
+    },
+    {
+      "id": "ch11-017",
+      "front": "Commercial Delivery (Part 135)",
+      "back": "Required for:\n• Package delivery BVLOS\n• Interstate HAZMAT transport\n\nRequirements:\n• Part 135 certificate\n• Part 91 operations rules\n• COA from ATO\n• Exemptions as needed\n\nCannot operate under Part 107 alone",
+      "reference": "AIM 11-4-5"
+    },
+    {
+      "id": "ch11-018",
+      "front": "Environmental Best Practices",
+      "back": "Consider:\n• Wildlife refuges/conservation areas\n• National parks (often restricted)\n• Noise-sensitive areas\n• Bird strike hazards (raptors may attack)\n\nRecommendations:\n• 2,000' AGL over parks\n• Check B4UFLY for restrictions\n• Engine-out procedures near birds",
+      "reference": "AIM 11-8-6"
+    },
+    {
+      "id": "ch11-019",
+      "front": "Manned Aircraft Avoidance",
+      "back": "UAS ALWAYS yields to manned aircraft\n\nRemember:\n• Manned aircraft may fly below 400' AGL\n• Helicopters, ag aircraft, military\n• Blocked sight doesn't excuse collision\n• See and avoid is pilot responsibility\n\nSubstantial fines for interference with emergency aircraft",
+      "reference": "AIM 11-8-3"
+    },
+    {
+      "id": "ch11-020",
+      "front": "UAS Operations on Airports",
+      "back": "Requires coordination with:\n• Airport operator\n• ATC facility\n• FAA Regional Office\n\nSubmit via DroneZone\nEvaluated case-by-case\nHigh risk: near manned aircraft operations\n\nLarge UAS: May use runways with agreements",
+      "reference": "AIM 11-7-1"
+    }
+  ]
+}

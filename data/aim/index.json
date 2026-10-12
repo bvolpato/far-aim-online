@@ -1,0 +1,94 @@
+{
+  "title": "Aeronautical Information Manual (AIM)",
+  "description": "Official guide to basic flight information and ATC procedures",
+  "lastUpdated": "2026-07-09",
+  "source": "Federal Aviation Administration",
+  "totalSections": 438,
+  "totalImages": 212,
+  "chapters": [
+    {
+      "chapter": 0,
+      "title": "General Information and Appendices",
+      "file": "aim/chapter0.json",
+      "sectionCount": 6,
+      "imageCount": 5
+    },
+    {
+      "chapter": 1,
+      "title": "Air Navigation",
+      "file": "aim/chapter1.json",
+      "sectionCount": 24,
+      "imageCount": 20
+    },
+    {
+      "chapter": 2,
+      "title": "Aeronautical Lighting and Other Airport Visual Aids",
+      "file": "aim/chapter2.json",
+      "sectionCount": 29,
+      "imageCount": 45
+    },
+    {
+      "chapter": 3,
+      "title": "Airspace",
+      "file": "aim/chapter3.json",
+      "sectionCount": 33,
+      "imageCount": 6
+    },
+    {
+      "chapter": 4,
+      "title": "Air Traffic Control",
+      "file": "aim/chapter4.json",
+      "sectionCount": 108,
+      "imageCount": 20
+    },
+    {
+      "chapter": 5,
+      "title": "Air Traffic Procedures",
+      "file": "aim/chapter5.json",
+      "sectionCount": 93,
+      "imageCount": 47
+    },
+    {
+      "chapter": 6,
+      "title": "Emergency Procedures",
+      "file": "aim/chapter6.json",
+      "sectionCount": 19,
+      "imageCount": 5
+    },
+    {
+      "chapter": 7,
+      "title": "Safety of Flight",
+      "file": "aim/chapter7.json",
+      "sectionCount": 76,
+      "imageCount": 27
+    },
+    {
+      "chapter": 8,
+      "title": "Medical Facts for Pilots",
+      "file": "aim/chapter8.json",
+      "sectionCount": 8,
+      "imageCount": 0
+    },
+    {
+      "chapter": 9,
+      "title": "Aeronautical Charts and Related Publications",
+      "file": "aim/chapter9.json",
+      "sectionCount": 6,
+      "imageCount": 15
+    },
+    {
+      "chapter": 10,
+      "title": "Helicopter Operations",
+      "file": "aim/chapter10.json",
+      "sectionCount": 9,
+      "imageCount": 17
+    },
+    {
+      "chapter": 11,
+      "title": "Unmanned Aircraft Systems (UAS)",
+      "file": "aim/chapter11.json",
+      "sectionCount": 27,
+      "imageCount": 5
+    }
+  ]
+}

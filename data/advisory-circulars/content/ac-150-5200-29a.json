@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "id": "ac-150-5200-29a",
+  "number": "150/5200-29A",
+  "title": "Announcement Of Availability Of Airport Self-Inspection DVD",
+  "status": "parsed",
+  "fetched": "2026-07-14",
+  "documentUrl": "https://www.faa.gov/regulations_policies/advisory_circulars/index.cfm/go/document.information/documentID/74197",
+  "pdfUrl": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_150_5200-29A.pdf",
+  "sha256": "30ee1de486ba72cb134917c57e7682fef356ad90bcebbb0d7aed8f0cb93232f6",
+  "pageCount": 1,
+  "wordCount": 188,
+  "ocrPageCount": 0,
+  "pages": [
+    {
+      "page": 1,
+      "text": "U.S. Department of Transportation Federal Aviation Administration Advisory Circular\n\nSubject: ANNOUNCEMENT OF\n\nAVAILABILITY OF AIRPORT SAFETY\n\nSELF-INSPECTION DVD\n\nDate: June 5, 2007 Initiated by: AAS-300 AC No: 150/5200-29A 1. PURPOSE. This advisory circular (AC) announces the availability of the Airport Safety Self-Inspection DVD, which replaces the previously issued videotape. It also corrects a previously released announcement, dated January 31, 2007, that was incorrectly numbered AC 150/5200-18C. 2. FOCUS. This material is intended primarily for airport operators, at both Part 139 and General Aviation airports, that conduct daily airport safety self-inspections generally associated with Part 139 – Certification of Airports. 3. CANCELLATION. This AC cancels AC 150/5200-29, Announcement of Availability: Airport Safety Self-Inspection Videotape, dated November 6, 1987. 4. HOW TO ORDER. Copies of the Self-Inspection DVD may be obtained by contacting your local Regional Airports Office. 5. QUESTIONS AND COMMENTS. If you have questions about this AC, write or call— Federal Aviation Administration Office of Airport Safety and Standards Airport Safety and Operations Division, AAS-300 800 Independence Avenue, SW Washington, DC 20591 Telephone (202) 267-8729 David L. Bennett Director, Office of Airport Safety and Standards"
+    }
+  ],
+  "extractedPageCount": 1
+}

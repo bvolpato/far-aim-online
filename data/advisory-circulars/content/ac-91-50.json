@@ -1,0 +1,25 @@
+{
+  "version": 1,
+  "id": "ac-91-50",
+  "number": "91-50",
+  "title": "Importance of Transponder Operation and Altitude Reporting",
+  "status": "parsed",
+  "fetched": "2026-07-14",
+  "documentUrl": "https://www.faa.gov/regulations_policies/advisory_circulars/index.cfm/go/document.information/documentID/22418",
+  "pdfUrl": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC91-50.pdf",
+  "sha256": "e09abb6e92e25780b599faac5d01e9c9770b785220d742df6d616d43ac98ffb8",
+  "pageCount": 2,
+  "wordCount": 596,
+  "ocrPageCount": 0,
+  "pages": [
+    {
+      "page": 1,
+      "text": "AC NO: 91-50\n\nDATE: 8/24/77 . .\n\nADVISORY\n\nCIRCULAR -.\n\nDEPARTMENT OF TRANSPORTATION\n\nFEDERAL AVIATION ADMlNRTRITION - ’ SUBJECT: IMPCRTANCE OF !t!fUBPONDER OPEBA!l!ION AND ALTm RBPCRTING 1. PURPOSE. This advisory circular provides information and guidance concerning the importance of transponder operation and altitude reporting in the National Airspace System (NAS).\n\n2. BACKGROUND.\n\na. The forerunner of today’s beacon system was developed during World War 11 to enable radar operators to identify targets as.either friendly or enemy. It was originally called “IFF” (identification fri’end &foe’) and the system used both ground and airborne equipment. The ground transmitter sent a signal to the aircraft transceiver which, in turn, replied in a set code, depending upon how the pilot had set the “black box.” Only a few codes could be used and these were changed daily,if not more often. b. Following the war, there seemed to be no civilian requirement for this identification system until radar itself was phased into the Air Traffic Control (ATC) system. At first,the number of aircraft presented few problems. The normal “skin paint” or echo return on a scope was sufficient to identify an aircraft for the controller. But heavier traffic , particularly in high density terminal areas, highlighted the need for some rapid, positive means of identifying each target; eliminating the need for identifying turns. c. Subsequently, the Air Traffic Control Radar Beacon System (ATCRBS) was developed which provided the controller with continuous, reliable,and accurate information concerning the position and identity of all transponder-equipped aircraft within an area by a series of coded replies which appeared on the radar scope. The first ATC transponder had a capability of only 64 different codes. Now, the NAS uses 4,096 individual codes in addition to Mode C replies from aircraft transponders which report an aircraft’s altitude in 1000foot increments. With this system, the controller is able to identify any ATC transponder-equipped aircraft up to a distance of 200 nautical miles (slant range) and at an altitude limited only by the service ceiling of the aircraft. lnitioted by: A-4"
+    },
+    {
+      "page": 2,
+      "text": "’ . AC 91-50 a 8/24/77 3 TRANSPONDER AND ALTITUDE REPORTING REQUIREMENTS (FAR 91.24). Pilots disirfpg to fly in Group I Terminal Control Areas (TCA) or at altitudes above 12,500 MSL, excluding airspace at and below 2,500 AGL, are required to have a tranrponder with 40960code capability on Mode 3/A and altitude reporting Mode C. Pilots desiring to fly in a Group II TCA are required to have a transponder with 40960code capability on Mode 3/A. Specific details can be found in FAR 91.90. Operators of aircraft that are transponder-equipped can expect 8afer and more efficient handling by ATC when flying in VFR or IFR conditions. 4 AIRWORTHINESS REQUIREMENT. Certification rules (FAR 23.1301 and 25.1301) riquire equipment to function properly when installed. The rules apply to transponder equipment and include the TSO requiremept as specified in FAR 91.24. The owner/operator is primarily responsible for maintaining an aircraft in an airworthy condition. Maintenance facilities are responsible for maintaining transponders at least equal to their original or properly altered condition (#AR 43.13). Fur&&, manufacturers’ maintenance instructions should be followed. The maintenanc’e record entry should indicate that the system has been properly tested and meets the requirements of the applicable regulations (FAR 43, Appendix F). Each person approving the aircraft for return to service should comply with the provisions of FAR 43.9 regarding content, form, and disposition of the record.\n\n.R. P, SKULLY\n\nDirector, Flight Standards Service Page 2 Par 3"
+    }
+  ],
+  "extractedPageCount": 2
+}

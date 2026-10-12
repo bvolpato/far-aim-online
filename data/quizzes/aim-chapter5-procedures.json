@@ -1,0 +1,403 @@
+{
+  "id": "aim-chapter5-procedures",
+  "title": "Air Traffic Procedures Quiz",
+  "description": "Test your knowledge of preflight planning, flight plans, NOTAMs, departure/arrival procedures, and instrument approaches from AIM Chapter 5",
+  "category": "AIM",
+  "chapter": 5,
+  "difficulty": "intermediate",
+  "targetCertificate": "Private/Instrument Pilot",
+  "questionCount": 30,
+  "passingScore": 70,
+  "questions": [
+    {
+      "id": "proc-001",
+      "question": "What regulation requires pilots to become familiar with all available information concerning a flight before departure?",
+      "options": [
+        "14 CFR 91.101",
+        "14 CFR 91.103",
+        "14 CFR 91.107",
+        "14 CFR 91.113"
+      ],
+      "correctAnswer": 1,
+      "explanation": "14 CFR 91.103 (Preflight Action) requires pilots to become familiar with all available information concerning that flight, including weather, fuel requirements, alternatives, and known traffic delays.",
+      "reference": "AIM 5-1-1"
+    },
+    {
+      "id": "proc-002",
+      "question": "Where can pilots access NOTAMs online?",
+      "options": [
+        "weather.gov",
+        "faa.gov/weather",
+        "notams.aim.faa.gov/notamSearch",
+        "pilots.faa.gov"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Pilots can access NOTAM information online via the FAA's Federal NOTAM System (FNS) NOTAM Search at notams.aim.faa.gov/notamSearch.",
+      "reference": "AIM 5-1-3"
+    },
+    {
+      "id": "proc-003",
+      "question": "What are the three types of preflight weather briefings?",
+      "options": [
+        "Basic, Detailed, Complete",
+        "Standard, Abbreviated, Outlook",
+        "Full, Partial, Update",
+        "Primary, Secondary, Supplemental"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The three types of preflight briefings are: Standard (complete briefing), Abbreviated (update or supplement to previous briefing), and Outlook (planning purposes when departure is 6+ hours away).",
+      "reference": "AIM 7-1-5"
+    },
+    {
+      "id": "proc-004",
+      "question": "How long is a VFR flight plan valid after the proposed departure time?",
+      "options": [
+        "1 hour",
+        "2 hours",
+        "4 hours",
+        "24 hours"
+      ],
+      "correctAnswer": 1,
+      "explanation": "AVFR flight plan is held by FSS for 2 hours after the proposed departure time. If not activated within that time, it's automatically cancelled.",
+      "reference": "AIM 5-1-4"
+    },
+    {
+      "id": "proc-005",
+      "question": "What happens if you fail to close a VFR flight plan?",
+      "options": [
+        "You receive a violation",
+        "Search and rescue is initiated",
+        "Your certificate is suspended",
+        "Nothing - it closes automatically"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Failure to close a VFR flight plan can result in costly search and rescue operations being initiated. ALWAYS close your flight plan upon arrival.",
+      "reference": "AIM 5-1-4"
+    },
+    {
+      "id": "proc-006",
+      "question": "What does FDC NOTAM stand for and what does it contain?",
+      "options": [
+        "Federal Data Center - facility information",
+        "Flight Data Center - regulatory information affecting instrument procedures",
+        "FAA Document Center - chart corrections",
+        "Flight Dispatch Center - weather updates"
+      ],
+      "correctAnswer": 1,
+      "explanation": "FDC (Flight Data Center) NOTAMs contain regulatory information such as amendments to instrument approach procedures, airspace changes, and TFRs.",
+      "reference": "AIM 5-1-3"
+    },
+    {
+      "id": "proc-007",
+      "question": "What is a CRAFT clearance?",
+      "options": [
+        "A special clearance for small aircraft",
+        "A mnemonic for IFR clearance components",
+        "A clearance for crossing airspace",
+        "A type of approach clearance"
+      ],
+      "correctAnswer": 1,
+      "explanation": "CRAFT is a mnemonic for IFR clearance components: Clearance limit, Route, Altitude, Frequency, Transponder code.",
+      "reference": "AIM 5-2-5"
+    },
+    {
+      "id": "proc-008",
+      "question": "What altitude should you expect to maintain if communications are lost during an IFR flight?",
+      "options": [
+        "The last assigned altitude only",
+        "Minimum en route altitude",
+        "The highest of: assigned, expected, or MEA",
+        "Return to filed altitude"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Per 14 CFR 91.185, maintain the HIGHEST of: last assigned altitude, altitude ATC said to expect, or minimum en route altitude for each segment.",
+      "reference": "AIM 5-3-3"
+    },
+    {
+      "id": "proc-009",
+      "question": "What is a SID (Standard Instrument Departure)?",
+      "options": [
+        "An emergency departure procedure",
+        "A preplanned IFR departure procedure for obstacle clearance and traffic flow",
+        "AVFR departure procedure",
+        "A departure clearance for jets only"
+      ],
+      "correctAnswer": 1,
+      "explanation": "ASID is a preplanned IFR ATC departure procedure printed for pilot/controller use. It provides obstacle clearance and improves traffic flow.",
+      "reference": "AIM 5-2-9"
+    },
+    {
+      "id": "proc-010",
+      "question": "What does 'expect further clearance' (EFC) time mean?",
+      "options": [
+        "Time to expect landing clearance",
+        "Time to expect clearance out of holding",
+        "Time to expect approach clearance",
+        "Time to expect altitude change"
+      ],
+      "correctAnswer": 1,
+      "explanation": "EFC (Expect Further Clearance) time is provided when you're holding. It's the time you should expect clearance to continue. Critical for lost comm procedures.",
+      "reference": "AIM 5-3-8"
+    },
+    {
+      "id": "proc-011",
+      "question": "What is the standard holding pattern entry direction for an aircraft arriving on a heading directly opposite the outbound leg?",
+      "options": [
+        "Parallel entry",
+        "Direct entry",
+        "Teardrop entry",
+        "Any of the above"
+      ],
+      "correctAnswer": 1,
+      "explanation": "When arriving from opposite the outbound direction (within 70° sector), use the Direct entry - turn right and fly the pattern.",
+      "reference": "AIM 5-3-8"
+    },
+    {
+      "id": "proc-012",
+      "question": "What are the three holding pattern entry procedures?",
+      "options": [
+        "Standard, Non-standard, Reversed",
+        "Clockwise, Counter-clockwise, Direct",
+        "Direct, Parallel, Teardrop",
+        "Left, Right, Straight-in"
+      ],
+      "correctAnswer": 2,
+      "explanation": "The three holding pattern entries are: Direct (within 70° sector), Parallel (parallel the outbound course), and Teardrop (30° offset entry).",
+      "reference": "AIM 5-3-8"
+    },
+    {
+      "id": "proc-013",
+      "question": "What is the maximum indicated airspeed for holding patterns below 6,000 feet MSL?",
+      "options": [
+        "175 knots",
+        "200 knots",
+        "230 knots",
+        "265 knots"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Maximum holding airspeeds: Below 6,000' MSL = 200 KIAS; 6,001' to 14,000' MSL = 230 KIAS; Above 14,000' MSL = 265 KIAS.",
+      "reference": "AIM 5-3-8"
+    },
+    {
+      "id": "proc-014",
+      "question": "What is the purpose of a STAR (Standard Terminal Arrival Route)?",
+      "options": [
+        "To provide obstacle clearance during approach",
+        "To simplify clearance delivery and transition from en route to terminal",
+        "To provide emergency routing",
+        "To separate VFR and IFR traffic"
+      ],
+      "correctAnswer": 1,
+      "explanation": "STARs are preplanned IFR ATC arrival procedures that simplify clearance delivery and facilitate transition from en route to the terminal environment.",
+      "reference": "AIM 5-4-1"
+    },
+    {
+      "id": "proc-015",
+      "question": "What does DA (Decision Altitude) represent on a precision approach?",
+      "options": [
+        "The altitude to begin descent",
+        "The altitude at which a missed approach must be initiated if visual reference is not established",
+        "The altitude of the runway threshold",
+        "The minimum safe altitude"
+      ],
+      "correctAnswer": 1,
+      "explanation": "DA (Decision Altitude) is the altitude on a precision approach at which a missed approach must be initiated if the required visual reference to continue is not established.",
+      "reference": "AIM 5-4-5"
+    },
+    {
+      "id": "proc-016",
+      "question": "What is the difference between DA and MDA?",
+      "options": [
+        "DA is for VFR, MDA is for IFR",
+        "DA is for precision approaches (you descend through it), MDA is for non-precision (you level off)",
+        "They are the same thing",
+        "DA is higher than MDA"
+      ],
+      "correctAnswer": 1,
+      "explanation": "DA (Decision Altitude) is used for precision approaches - you continue descent through DA if visual. MDA (Minimum Descent Altitude) is for non-precision - you level off and can only descend further when runway environment is in sight.",
+      "reference": "AIM 5-4-5"
+    },
+    {
+      "id": "proc-017",
+      "question": "What visual references are required to descend below DA/MDA?",
+      "options": [
+        "Only the runway lights",
+        "The runway environment (threshold, markings, lights, VASI, etc.)",
+        "Any ground contact",
+        "ALS lights only"
+      ],
+      "correctAnswer": 1,
+      "explanation": "To descend below DA/MDA, pilot must have runway environment in sight: threshold, threshold markings/lights, REIL, VASI, touchdown zone, runway or its markings, or ALS (if can identify threshold).",
+      "reference": "AIM 5-4-5, 14 CFR 91.175"
+    },
+    {
+      "id": "proc-018",
+      "question": "What is the Final Approach Fix (FAF) on a non-precision approach?",
+      "options": [
+        "The point where you begin timing",
+        "The fix from which the final approach segment begins",
+        "The point where you contact tower",
+        "The missed approach point"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The FAF is the fix from which the final approach to the runway begins. It's identified by a Maltese cross on the profile view. Timing for missed approach starts here.",
+      "reference": "AIM 5-4-5"
+    },
+    {
+      "id": "proc-019",
+      "question": "What does the term 'procedure turn' refer to?",
+      "options": [
+        "Any turn during an approach",
+        "A course reversal maneuver to establish inbound on the final approach course",
+        "A turn at the missed approach point",
+        "A turn during holding"
+      ],
+      "correctAnswer": 1,
+      "explanation": "A procedure turn is a maneuver to reverse direction and establish the aircraft inbound on the intermediate or final approach course. Normally remain within 10 NM.",
+      "reference": "AIM 5-4-9"
+    },
+    {
+      "id": "proc-020",
+      "question": "When is a procedure turn NOT authorized?",
+      "options": [
+        "When 'NoPT' is shown on the chart",
+        "When radar vectors are provided to final",
+        "When on a timed approach",
+        "All of the above"
+      ],
+      "correctAnswer": 3,
+      "explanation": "A procedure turn is not required/authorized when: 'NoPT' is shown, radar vectors to final are provided, holding is in lieu of PT, timed approach, or direct approach via feeder route.",
+      "reference": "AIM 5-4-9"
+    },
+    {
+      "id": "proc-021",
+      "question": "What is a circling approach?",
+      "options": [
+        "Flying circles over the airport",
+        "A visual maneuver to land on a runway not aligned with the approach",
+        "Holding at the airport",
+        "A go-around procedure"
+      ],
+      "correctAnswer": 1,
+      "explanation": "A circling approach is a visual maneuver conducted after completing an instrument approach to land on a runway that is not aligned with the final approach course (greater than 30° offset).",
+      "reference": "AIM 5-4-20"
+    },
+    {
+      "id": "proc-022",
+      "question": "What is the missed approach point (MAP)?",
+      "options": [
+        "The decision altitude",
+        "The point at which a missed approach must be initiated if visual reference not established",
+        "The FAF",
+        "The holding fix"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The MAP is the point at which a missed approach procedure is executed if visual reference is not established. It varies by approach type (DA for precision, timing/DME for non-precision).",
+      "reference": "AIM 5-4-5"
+    },
+    {
+      "id": "proc-023",
+      "question": "What should you do immediately upon initiating a missed approach?",
+      "options": [
+        "Call ATC for vectors",
+        "Climb to cruise altitude",
+        "Fly the published missed approach procedure",
+        "Return to the FAF"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Upon going missed, immediately climb and fly the published missed approach procedure unless given alternate instructions by ATC. Advise ATC as soon as practical.",
+      "reference": "AIM 5-4-21"
+    },
+    {
+      "id": "proc-024",
+      "question": "What is the purpose of the Visual Descent Point (VDP)?",
+      "options": [
+        "To begin the approach",
+        "A point from which a normal descent can be made to the runway",
+        "The decision altitude",
+        "The point to contact tower"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The VDP is a defined point on non-precision approaches from which a normal (approximately 3°) descent from MDA to touchdown can be made. Shown as 'V' on approach plate.",
+      "reference": "AIM 5-4-5"
+    },
+    {
+      "id": "proc-025",
+      "question": "What does 'vectors to final' mean?",
+      "options": [
+        "Flying direct to the airport",
+        "ATC radar guidance to intercept the final approach course",
+        "Proceeding via published route",
+        "Following another aircraft"
+      ],
+      "correctAnswer": 1,
+      "explanation": "'Vectors to final' means ATC is providing radar headings to guide you to intercept the final approach course. No procedure turn is authorized.",
+      "reference": "AIM 5-4-3"
+    },
+    {
+      "id": "proc-026",
+      "question": "When can you cancel IFR with ATC?",
+      "options": [
+        "Only on the ground",
+        "Anytime you're in VFR conditions (Class A excluded)",
+        "Only when cleared by ATC",
+        "Never in controlled airspace"
+      ],
+      "correctAnswer": 1,
+      "explanation": "You may cancel IFR anytime you're in VFR conditions, except in Class A airspace (IFR required). Canceling releases the airspace for other IFR traffic.",
+      "reference": "AIM 5-1-15"
+    },
+    {
+      "id": "proc-027",
+      "question": "What is a contact approach?",
+      "options": [
+        "An approach flown to a specific runway",
+        "A pilot-requested approach to an airport with at least 1 SM visibility while clear of clouds",
+        "An approach using ground contact only",
+        "The same as a visual approach"
+      ],
+      "correctAnswer": 1,
+      "explanation": "A contact approach must be requested by the pilot (can't be assigned). Requires: at least 1 SM flight visibility, clear of clouds, and reasonably expect to continue to destination.",
+      "reference": "AIM 5-4-25"
+    },
+    {
+      "id": "proc-028",
+      "question": "What is required for ATC to assign a visual approach?",
+      "options": [
+        "Pilot must request it",
+        "Pilot reports airport or preceding aircraft in sight with ceiling at/above 1,000 feet and visibility 3+ miles",
+        "Only available at tower-controlled airports",
+        "IFR flight plan must be closed first"
+      ],
+      "correctAnswer": 1,
+      "explanation": "For a visual approach: ceiling at or above 1,000 feet and visibility 3+ miles at the airport. Pilot must report airport in sight or preceding aircraft in sight (if following).",
+      "reference": "AIM 5-4-23"
+    },
+    {
+      "id": "proc-029",
+      "question": "What NOTAMs are NOT provided in a standard briefing unless specifically requested?",
+      "options": [
+        "Airport NOTAMs",
+        "Runway closures",
+        "FDC NOTAMs for special IAPs",
+        "Weather NOTAMs"
+      ],
+      "correctAnswer": 2,
+      "explanation": "FSS briefers do not provide FDC NOTAM information for special instrument approach procedures unless specifically requested. Pilots authorized to use special IAPs must request these.",
+      "reference": "AIM 5-1-1"
+    },
+    {
+      "id": "proc-030",
+      "question": "What is the recommended minimum altitude for VFR flight at night in mountainous terrain?",
+      "options": [
+        "1,000 feet AGL",
+        "At or above the MEA shown on charts",
+        "2,000 feet AGL",
+        "500 feet below clouds"
+      ],
+      "correctAnswer": 1,
+      "explanation": "When flying VFR at night, especially in mountainous terrain, maintain an altitude at or above the minimum en route altitude (MEA) shown on charts. Don't rely on eyes alone.",
+      "reference": "AIM 5-1-2"
+    }
+  ]
+}

@@ -1,0 +1,309 @@
+{
+  "id": "far-definitions",
+  "title": "FAR Definitions",
+  "description": "Key definitions from 14 CFR Part 1 and Part 61",
+  "category": "FAR",
+  "cardCount": 50,
+  "cards": [
+    {
+      "id": "fd-001",
+      "front": "Aircraft",
+      "back": "A device that is used or intended to be used for flight in the air.",
+      "reference": "14 CFR 1.1"
+    },
+    {
+      "id": "fd-002",
+      "front": "Airplane",
+      "back": "An engine-driven fixed-wing aircraft heavier than air, that is supported in flight by the dynamic reaction of the air against its wings.",
+      "reference": "14 CFR 1.1"
+    },
+    {
+      "id": "fd-003",
+      "front": "Airport",
+      "back": "An area of land or water that is used or intended to be used for the landing and takeoff of aircraft, and includes its buildings and facilities, if any.",
+      "reference": "14 CFR 1.1"
+    },
+    {
+      "id": "fd-004",
+      "front": "Pilot in Command (PIC)",
+      "back": "The person who: (1) Has final authority and responsibility for the operation and safety of the flight; (2) Has been designated as pilot in command before or during the flight; and (3) Holds the appropriate category, class, and type rating, if appropriate, for the conduct of the flight.",
+      "reference": "14 CFR 1.1"
+    },
+    {
+      "id": "fd-005",
+      "front": "Night (for logging flight time)",
+      "back": "The time between the end of evening civil twilight and the beginning of morning civil twilight, as published in the Air Almanac, converted to local time.",
+      "reference": "14 CFR 1.1"
+    },
+    {
+      "id": "fd-006",
+      "front": "Flight Time",
+      "back": "Pilot time that commences when an aircraft moves under its own power for the purpose of flight and ends when the aircraft comes to rest after landing.",
+      "reference": "14 CFR 1.1"
+    },
+    {
+      "id": "fd-007",
+      "front": "Category (airman certification)",
+      "back": "A broad classification of aircraft. Examples include: airplane, rotorcraft, glider, and lighter-than-air.",
+      "reference": "14 CFR 1.1"
+    },
+    {
+      "id": "fd-008",
+      "front": "Class (airman certification)",
+      "back": "A classification of aircraft within a category having similar operating characteristics. Examples include: single-engine, multi-engine, land, water, gyroplane, helicopter, airship, and free balloon.",
+      "reference": "14 CFR 1.1"
+    },
+    {
+      "id": "fd-009",
+      "front": "Type (airman certification)",
+      "back": "A specific make and basic model of aircraft, including modifications thereto that do not change its handling or flight characteristics.",
+      "reference": "14 CFR 1.1"
+    },
+    {
+      "id": "fd-010",
+      "front": "IFR Conditions",
+      "back": "Weather conditions below the minimum for flight under visual flight rules.",
+      "reference": "14 CFR 1.1"
+    },
+    {
+      "id": "fd-011",
+      "front": "VFR Conditions / VMC",
+      "back": "Visual Meteorological Conditions - weather conditions equal to or greater than the minimums prescribed for flight under visual flight rules.",
+      "reference": "14 CFR 1.1"
+    },
+    {
+      "id": "fd-012",
+      "front": "Ceiling",
+      "back": "The height above the earth's surface of the lowest layer of clouds or obscuring phenomena that is reported as 'broken', 'overcast', or 'obscuration', and not classified as 'thin' or 'partial'.",
+      "reference": "14 CFR 1.1"
+    },
+    {
+      "id": "fd-013",
+      "front": "Flight Visibility",
+      "back": "The average forward horizontal distance, from the cockpit of an aircraft in flight, at which prominent unlighted objects may be seen and identified by day and prominent lighted objects may be seen and identified by night.",
+      "reference": "14 CFR 1.1"
+    },
+    {
+      "id": "fd-014",
+      "front": "Ground Visibility",
+      "back": "Prevailing horizontal visibility near the earth's surface as reported by the United States National Weather Service or an accredited observer.",
+      "reference": "14 CFR 1.1"
+    },
+    {
+      "id": "fd-015",
+      "front": "Controlled Airspace",
+      "back": "An airspace of defined dimensions within which air traffic control service is provided to IFR flights and to VFR flights in accordance with the airspace classification.",
+      "reference": "14 CFR 1.1"
+    },
+    {
+      "id": "fd-016",
+      "front": "Air Traffic Control",
+      "back": "A service operated by appropriate authority to promote the safe, orderly, and expeditious flow of air traffic.",
+      "reference": "14 CFR 1.1"
+    },
+    {
+      "id": "fd-017",
+      "front": "Air Traffic Clearance",
+      "back": "An authorization by air traffic control for the purpose of preventing collision between known aircraft, for an aircraft to proceed under specified traffic conditions within controlled airspace.",
+      "reference": "14 CFR 1.1"
+    },
+    {
+      "id": "fd-018",
+      "front": "Flight Level",
+      "back": "A level of constant atmospheric pressure related to a reference datum of 29.92 inches of mercury. Each is stated in three digits that represent hundreds of feet. For example, FL250 represents 25,000 feet.",
+      "reference": "14 CFR 1.1"
+    },
+    {
+      "id": "fd-019",
+      "front": "Large Aircraft",
+      "back": "Aircraft of more than 12,500 pounds, maximum certificated takeoff weight.",
+      "reference": "14 CFR 1.1"
+    },
+    {
+      "id": "fd-020",
+      "front": "Small Aircraft",
+      "back": "Aircraft of 12,500 pounds or less, maximum certificated takeoff weight.",
+      "reference": "14 CFR 1.1"
+    },
+    {
+      "id": "fd-021",
+      "front": "Crewmember",
+      "back": "A person assigned to perform duty in an aircraft during flight time.",
+      "reference": "14 CFR 1.1"
+    },
+    {
+      "id": "fd-022",
+      "front": "Flight Crewmember",
+      "back": "A pilot, flight engineer, or flight navigator assigned to duty in an aircraft during flight time.",
+      "reference": "14 CFR 1.1"
+    },
+    {
+      "id": "fd-023",
+      "front": "Maintenance",
+      "back": "Inspection, overhaul, repair, preservation, and the replacement of parts, but excludes preventive maintenance.",
+      "reference": "14 CFR 1.1"
+    },
+    {
+      "id": "fd-024",
+      "front": "Preventive Maintenance",
+      "back": "Simple or minor preservation operations and the replacement of small standard parts not involving complex assembly operations.",
+      "reference": "14 CFR 1.1"
+    },
+    {
+      "id": "fd-025",
+      "front": "Cross-country Time (for aeronautical experience)",
+      "back": "Time acquired during flight conducted by a person who holds a pilot certificate that includes a point of landing that was at least a straight-line distance of more than 50 nautical miles from the original point of departure.",
+      "reference": "14 CFR 61.1"
+    },
+    {
+      "id": "fd-026",
+      "front": "Practical Test",
+      "back": "A test on the areas of operations for an airman certificate, rating, or authorization that is conducted by having the applicant respond to questions and demonstrate maneuvers in flight, in a flight simulator, or in a flight training device.",
+      "reference": "14 CFR 61.1"
+    },
+    {
+      "id": "fd-027",
+      "front": "Rotorcraft",
+      "back": "A heavier-than-air aircraft that depends principally for its support in flight on the lift generated by one or more rotors.",
+      "reference": "14 CFR 1.1"
+    },
+    {
+      "id": "fd-028",
+      "front": "Helicopter",
+      "back": "A rotorcraft that, for its horizontal motion, depends principally on its engine-driven rotors.",
+      "reference": "14 CFR 1.1"
+    },
+    {
+      "id": "fd-029",
+      "front": "Indicated Airspeed",
+      "back": "The speed of an aircraft as shown on its pitot static airspeed indicator calibrated to reflect standard atmosphere adiabatic compressible flow at sea level uncorrected for airspeed system errors.",
+      "reference": "14 CFR 1.1"
+    },
+    {
+      "id": "fd-030",
+      "front": "True Airspeed",
+      "back": "The airspeed of an aircraft relative to undisturbed air.",
+      "reference": "14 CFR 1.1"
+    },
+    {
+      "id": "fd-031",
+      "front": "Traffic Pattern",
+      "back": "The traffic flow that is prescribed for aircraft landing at, taxiing on, or taking off from an airport.",
+      "reference": "14 CFR 1.1"
+    },
+    {
+      "id": "fd-032",
+      "front": "Alternate Airport",
+      "back": "An airport at which an aircraft may land if a landing at the intended airport becomes inadvisable.",
+      "reference": "14 CFR 1.1"
+    },
+    {
+      "id": "fd-033",
+      "front": "Airframe",
+      "back": "The fuselage, booms, nacelles, cowlings, fairings, airfoil surfaces (including rotors but excluding propellers and rotating airfoils of engines), and landing gear of an aircraft and their accessories and controls.",
+      "reference": "14 CFR 1.1"
+    },
+    {
+      "id": "fd-034",
+      "front": "Propeller",
+      "back": "A device for propelling an aircraft that has blades on an engine-driven shaft and that, when rotated, produces by its action on the air, a thrust approximately perpendicular to its plane of rotation.",
+      "reference": "14 CFR 1.1"
+    },
+    {
+      "id": "fd-035",
+      "front": "Operational Control",
+      "back": "With respect to a flight, means the exercise of authority over initiating, conducting, or terminating a flight.",
+      "reference": "14 CFR 1.1"
+    },
+    {
+      "id": "fd-036",
+      "front": "Area Navigation (RNAV)",
+      "back": "A method of navigation that permits aircraft operation on any desired flight path within the coverage of ground- or space-based navigation aids or within the limits of the capability of self-contained aids, or a combination of these.",
+      "reference": "14 CFR 1.1"
+    },
+    {
+      "id": "fd-037",
+      "front": "VFR",
+      "back": "Visual Flight Rules - rules that govern the procedures for conducting flight under visual conditions.",
+      "reference": "14 CFR 1.1"
+    },
+    {
+      "id": "fd-038",
+      "front": "IFR",
+      "back": "Instrument Flight Rules - rules governing the procedures for conducting instrument flight.",
+      "reference": "14 CFR 1.1"
+    },
+    {
+      "id": "fd-039",
+      "front": "Medical Certificate",
+      "back": "Acceptable evidence of physical fitness on a form prescribed by the Administrator.",
+      "reference": "14 CFR 1.1"
+    },
+    {
+      "id": "fd-040",
+      "front": "High-Performance Airplane",
+      "back": "An airplane with an engine of more than 200 horsepower.",
+      "reference": "14 CFR 61.31"
+    },
+    {
+      "id": "fd-041",
+      "front": "Complex Airplane",
+      "back": "An airplane that has retractable landing gear, flaps, and a controllable-pitch propeller.",
+      "reference": "14 CFR 61.31"
+    },
+    {
+      "id": "fd-042",
+      "front": "Standard Atmosphere",
+      "back": "The atmosphere defined in U.S. Standard Atmosphere, 1962. At sea level: 59°F (15°C), 29.92 inches Hg, with temperature decreasing 2°C per 1,000 feet.",
+      "reference": "14 CFR 1.1"
+    },
+    {
+      "id": "fd-043",
+      "front": "Mach Number",
+      "back": "The ratio of true airspeed to the speed of sound.",
+      "reference": "14 CFR 1.1"
+    },
+    {
+      "id": "fd-044",
+      "front": "Positive Control",
+      "back": "Control of all air traffic within designated airspace by air traffic control.",
+      "reference": "14 CFR 1.1"
+    },
+    {
+      "id": "fd-045",
+      "front": "Special VFR Conditions",
+      "back": "Meteorological conditions that are less than those required for basic VFR flight in controlled airspace and in which some aircraft are permitted flight under visual flight rules.",
+      "reference": "14 CFR 1.1"
+    },
+    {
+      "id": "fd-046",
+      "front": "Instrument",
+      "back": "A device using an internal mechanism to show visually or aurally the attitude, altitude, or operation of an aircraft or aircraft part. It includes electronic devices for automatically controlling an aircraft in flight.",
+      "reference": "14 CFR 1.1"
+    },
+    {
+      "id": "fd-047",
+      "front": "Appliance",
+      "back": "Any instrument, mechanism, equipment, part, apparatus, appurtenance, or accessory, including communications equipment, that is used or intended to be used in operating or controlling an aircraft in flight, is installed in or attached to the aircraft, and is not part of an airframe, engine, or propeller.",
+      "reference": "14 CFR 1.1"
+    },
+    {
+      "id": "fd-048",
+      "front": "V-Speeds: VA",
+      "back": "Design maneuvering speed - the maximum speed at which full, abrupt control movements can be made without exceeding structural limitations.",
+      "reference": "14 CFR 1.2"
+    },
+    {
+      "id": "fd-049",
+      "front": "V-Speeds: VNE",
+      "back": "Never-exceed speed - the speed which should never be exceeded in any operation.",
+      "reference": "14 CFR 1.2"
+    },
+    {
+      "id": "fd-050",
+      "front": "V-Speeds: VS0",
+      "back": "Stalling speed or minimum steady flight speed in the landing configuration.",
+      "reference": "14 CFR 1.2"
+    }
+  ]
+}

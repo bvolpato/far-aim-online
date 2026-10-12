@@ -1,0 +1,29 @@
+{
+  "version": 1,
+  "id": "ac-91-80",
+  "number": "91-80",
+  "title": "Air Traffic Control System Command Center (ATCSCC) Hotlines",
+  "status": "parsed",
+  "fetched": "2026-07-14",
+  "documentUrl": "https://www.faa.gov/regulations_policies/advisory_circulars/index.cfm/go/document.information/documentID/73553",
+  "pdfUrl": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_91-80.pdf",
+  "sha256": "b4504f60150578c134e82a834f285d99d77ee146267df243633fe93e81ed63a4",
+  "pageCount": 3,
+  "wordCount": 756,
+  "ocrPageCount": 0,
+  "pages": [
+    {
+      "page": 1,
+      "text": "Advisory U.S. Department of Transportation Federal Aviation Circular Administration\n\nSubject: David J. Hurley Air Traffic Date: June 24, 2008 AC No: Control System Command Center (ATCSCC) Hotlines Initiated by: AJR-133 91-80\n\n1. PURPOSE.\n\nThis advisory circular provides guidance to customers of the National Airspace System (NAS) in regard to the use of and participation on ATCSCC hotlines.\n\n2. RELATED REGULATIONS.\n\n• Federal Aviation Administration Order 7210.3V, Facility Operation and Administration, Chapter 17, Traffic Management National, Center, and Terminal.\n\n3. WHAT IS A HOTLINE?\n\nThe mission of the ATCSCC is to balance air traffic demand with system capacity, ensuring the efficient use of the NAS. The objective is to provide a safe, orderly, and expeditious flow of traffic while minimizing delays, and providing efficient responses to aviation business demands. This requires continued analysis, dynamic use of traffic management initiatives, and coordination with all concerned parties. The ATCSCC monitors and manages the flow of air traffic throughout the NAS and is delegated the authority to direct the operation of the NAS with safety being the primary principle. To meet these goals, communication with all aviation services is vital. Receiving real-time information on how the air traffic system and all of its components are performing is fundamental to providing beneficial service. When the NAS experiences constraints because of weather, loss of equipment capability, volume, or any other capacity-limiting event, information sharing between all stakeholders and support services is crucial. The ATCSCC has a comprehensive communications capability that provides rapid contact with a diverse directory of aviation support services, military components, technicians, and NAS customers. During large-scale events that require real-time participation from a wide variety of sources, a “hotline” may be activated. The hotline is a phone conference that provides immediate contact with all parties necessary to manage an impacting event. Hotlines"
+    },
+    {
+      "page": 2,
+      "text": "AC No: 91-80 6/24/08 allow many participants the capability to solve complicated issues and to reduce the amount of coordination needed to implement collaborated strategies. Hotlines may be initiated at the request of both the FAA and other aviation entities that substantiate its use. The operational hotlines are authorized for all customers to attend; however, they may be limited to listen-only capability.\n\n4. WHAT BENEFITS ARE PROVIDED BY HOTLINES?\n\n• Rapid communication between air traffic services, aviation support services, and system customers. • Real-time information sharing of system constraints between the FAA and the aviation community. • Greatly reduced phone traffic to provide updated information as it becomes available. • Single-source communication capability between all necessary support services and decisionmaking stakeholders.\n\n5. HOW DO I PARTICIPATE IN ATCSCC HOTLINES?\n\n• When a hotline is activated, the ATCSCC sends an advisory stating the use of the hotline. The advisory contains the necessary information to participate. • Because of FAA requirements and communications needs, some hotlines will be limited to “listen-only” capability for our customers. This will be determined before the hotline activation and will be stated in the advisory. However, after the hotline is activated, response capability may change if the situation dictates.\n\n6. WHAT INFORMATION CAN BE DISCUSSED ON THE HOTLINE?\n\n• The following information may be exchanged on the hotline: 1. Airport arrival rates 2. Airport capacity issues 3. Information affecting a flow of traffic 4. Airport ramp/taxi and capacity issues 5. Significant arrival and departure delays 6. Route information a. Routes that are unavailable b. Route alternatives c. Routes that are becoming available 7. Meteorological information 8. Equipment outage/restoration information"
+    },
+    {
+      "page": 3,
+      "text": "6/24/08 AC No. 91-80 • The following information is excluded from hotline discussion: 1. Issues that are complex and will require lengthy coordination 2. Items of a sensitive or secure nature 3. Single aircraft issues NOTE-For collaborative decisionmaking participants, please discuss these issues with the Tactical Customer Advocate (TCA) via TCA Web page at the ATCSCC. For National Business Aircraft Association members, please contact your representative. For general aviation pilots, please visit www.fly.faa.gov.\n\n7. WHERE CAN I FIND ADDITIONAL INFORMATION ON DELAYS AND\n\nROUTE ALTERNATIVES?\n\n• The FAA Web site, www.fly.faa.gov, maintains a number of information resources that can be helpful during system constraints. Some of these resources are: 1. Airport Delay Information: www.fly.faa.gov 2. Advisories Database: http://www.fly.faa.gov/adv/advADB.jsp 3. Current Reroutes: http://www.fly.faa.gov/ratreader/jsp/index.jsp 4. Expect Departure Clearance Time Lookup: http://www.fly.faa.gov/edct/jsp/edctLookUp.jsp\n\n5. Current Restrictions: http://www.fly.faa.gov/current_restrictions/jsp/index.jsp\n\nNancy B. Kalinowski Vice President, System Operations Services _____________ Air Traffic Organization Date Signed"
+    }
+  ],
+  "extractedPageCount": 3
+}

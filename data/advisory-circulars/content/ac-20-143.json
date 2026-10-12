@@ -1,0 +1,105 @@
+{
+  "version": 1,
+  "id": "ac-20-143",
+  "number": "20-143",
+  "title": "Installation, Inspection, and Maintenance of Controls for General Aviation Reciprocating Aircraft Engines",
+  "status": "parsed",
+  "fetched": "2026-07-14",
+  "documentUrl": "https://www.faa.gov/regulations_policies/advisory_circulars/index.cfm/go/document.information/documentID/22202",
+  "pdfUrl": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_20-143.pdf",
+  "sha256": "6a96f4de8e8e88bdec31c915e32d7933c0a1dc84346d8411ccfd23aa487334d0",
+  "pageCount": 22,
+  "wordCount": 2219,
+  "ocrPageCount": 0,
+  "pages": [
+    {
+      "page": 1,
+      "text": "Advisory\nus. Depanment\nof\nFederal\nTransportatiOn\nIINiation Circular\nAdministration\nSubject: INSTALLATION, INSPECTION, AND Date: 6/06/00 ACNo: 20-143\nMAINTENANCE OF CONTROLS FOR Initiated By: ACE-100 Change:\nGENERALAVIATIONRECIPROCATING\nAIRCRAFT ENGINES\n1. PURPOSE. A review of service history on engine control installations indicates that a\nsignificant percentage ofthe problems are related to maintenance. Of the control system problems\nrelated to maintenance, approximately 75 percent ofthe problems with these systems result from lack\nofproper maintenance of airplane manufacturer installed engine controls. The other 25 percent ofthe\nservice problems originate from a lack of maintenance of the engine manufacturers' throttle, mixture,\nand propeller governor levers/linkages. Most airplane or engine maintenance manuals lack detailed\ninformation on inspection and installation of engine controls. Therefore, this advisory circular (A C)\npresents information regarding the inspection, maintenance, and instaliation of engine controls with\nemphasis on the airframe portion ofthese systems. It provides guidance to design and maintenance\npersonnel to reduce the number of airplane accidents and incidents related to the loss of engine power\ncontrol. This material is neither mandatory nor regulatory in nature and does not constitute a\nregulation. This AC is provided to supplement, but not replace the procedures in the manufacturers'\nmaintenance manuals. Where the content ofthis AC differs from, or conflicts with, the\nmanufacturer's maintenance manual, instructions contained in the manufacturer's manual take\nprecedence over the guidelines provided in this AC.\n2. RELATED REGULATIONS. Title 14 Code of Federal Regulations (14 CFR) Part 21,\n§ 21.50. Airplane airworthiness regulations are specified in 14 CFR Part 23, §§ 23.1141,23.1143,\n23.1147,23.1149, and 23.1529, and the corresponding Civil Air Regulations (CAR) under Part 3.\nEngine airworthiness regulations are specified in 14 CFR Part 33, §§ 33.4, 33.15 and 33.19, and their\ncorresponding CAR under Part 13. Propeller airworthiness regulations are specified in 14 CFR Part\n35, § 35.4, and the corresponding CAR under Part 14. Inspection requirements can be found in 14\nCFR Part 43, appendix D, and§ 43.15(c).\n3. BACKGROUND. Current 14 CFR design rules require throttle and mixture controls on\nsingle reciprocating engine-powered airplanes that will allow continued safe flight and landing in the\nevent of a control separation at the engine fuel metering device. The current rules (§§ 23.1143(g) and\n23.1147(b)) are not applicable to older airplanes. This AC has been prepared to address proper"
+    },
+    {
+      "page": 2,
+      "text": "AC 20-143 6/06/00\n\ninstallation, inspection, and maintenance of many different types of engine controls on airplanes old and new regardless of the rules under which they were certified. General requirements are contained in Part 43, appendix D, which specify the scope and detail of items to be included in annual and 100 hour inspections, ofwhich paragraph (d)(6) states, \"Engine controls-for defects, improper travel, and improper safetying.\" This AC will provide expanded guidance for general aviation airplanes equipped with reciprocating engines."
+    },
+    {
+      "page": 3,
+      "text": "6/06/00 AC 20-143\n\n4. DEFINITIONS.\na. Rod End. A machined fitting on one end of a control cable or rod, which is usually threaded\non one end and has a hollow ball and socket at the other end, that allows a swivel motion at\nthe engine lever attachment (see figure 1 ).\nFIGURE 1. LINKAGE CONNECTION TO ENGINE\nl. CLAMP\n2. BRACKET\n3. MIXTURE\nCONTROL ARM\nl\n4. RODEND\n5. AIR THROTTLE ARM\n6. RODEND\n7. MIXTURE LINK ROD\n8. THROITLE LINK ROD\n9. THROTTLE BELL\nCRANK\n10. MIXTURE BELL\nCRANK\n11. ROD END\n12. RETAINING RING\n6 13. RODEND\n14. RETAINING\nRING\n15. THROTTLE\nCONTROL\n16. MlXTURE\nCONTROL"
+    },
+    {
+      "page": 4,
+      "text": "AC 20-143 6106/00\n\nb. Secondary Retainment Washer. A large load-bearing washer adjacent to the outside face of\nrod end fitting (see figure 2).\nFIGURE 2. ROD END SAFETY PROCEDURE USING\n\nSECONDARY WASHER RETAINMENT\n\nTHROTTLE\nCONTROL LEVER\nROD END\n\nBEARING\n\nWASHERS\nSECONDARY\nRETAINMENT WASHER"
+    },
+    {
+      "page": 5,
+      "text": "6/06/00 AC20-143\n\nc. Swaged Joint. A connection of a cable end to a rigid rod or tube (usually by staking or crimping) that transmits cable motion to the engine control lever. d. Alternate Air Control. A flexible or rigid control attached to a small door at the carburetor air inlet, or fuel-injector throttle body, that allows entry of heated air or sheltered compartment air. e. Fire Sleeve. A protective sleeve covering (e.g., steel, aluminum, asbestos) added to a control cable or rod end connection that provides local heat or fire protection. 5. INSPECTION PROCEDURE- GENERAL. The need for the correct installation ofthe engine control cable, attaching hardware, and fuel system component levers and linkages cannot be overemphasized. The use of approved attachment procedures and techniques is required to assure proper operation and to prevent accelerated wear.\n\nCAUTION\n\nReplacement of rotatable powerplant controls capable of knob rotation at the instrument panel with non-rotatable solid shaft controls is discouraged. Solid shaft controls (non-rotatable at the instrument panel knob) have been found disconnected at the rod end as a result of pilots attempting to adjust a friction lock without realizing that the knob was also being rotated. Solid shaft powerplant controls may be replaced with rotatable knob controls when acceptable data exists. a. L'l the absence of specific inspection intenrals, repetitive inspections of the engine controls in the nacelle and cockpit areas should be conducted as part of the annual and 1 00-hour inspections described in Part 43, appendix D. b. Inspect all engine control cables for proper tension, routing, security, and signs of damage caused by chafing and heat distress. Improper installation of cables will significantly reduce their service life. c. In addition to the throttle and mixture controls, inspect the operation of each engine-related control such as the propeller, carburetor heat, alternate air, and cowl flap controls as applicable. Make certain that each control has full limit oftravel, and that no binding or excessive play caused by worn parts or improper installation is evident. d. Apply simulated air loads by manually pressing on cowl flaps and alternate air controls to ensure cables are not slipping in support clamps. Check for looseness ofthrottle, mixture, and propeller controls to ensure proper security ofthese components. e. Replace all control cables, levers, link rods, and attaching hardware found damaged or worn beyond acceptable service limits. Engine-related levers, link rods, and attaching hardware should be installed in accordance with the instructions provided in the applicable aircraft or engine maintenance manuals. Consult the airframe/engine manufacturer's published"
+    },
+    {
+      "page": 6,
+      "text": "AC 20-143 6/06100\n\ninstructions for routing and attaclunent of the various engine-related control cables.\nAttaclunent of components that have relative motion should be accomplished by using bolts\n(screws) drilled for cotter pins, using castellated nuts, cotter pins, and large secondary washer\nretention devices. (See figures I, 2, and 3.)\nWARNING:\nConnections requiring torque fasteners should not exhibit\n\nany relative movement or motion between components.\n\nFIGURE 3. CABLE RETENTION METHOD\n\" s ~g~- CONTROL\n'\\._ , CABLES\nI §~-----.RETAINER"
+    },
+    {
+      "page": 7,
+      "text": "6/06/00 AC 20-143\n\n6. LUBRICATION OF CONTROL RODS, LINKAGES, AND JOINTS (see figures 4 and 5). Damage and wear to the actuating components of engine control systems can be attributed to improper (or the lack of) lubrication. During scheduled and unscheduled maintenance, engines are normally cleaned using a solvent or soap solution pressure wash. This tends to remove lubrication from fuel system levers, linkages, and bushings. Therefore, it is necessary that these areas be lubricated after engine cleaning and during scheduled maintenance as indicated in the following paragraphs: a. Consult with the airplane and engine manufacturers, plus the control cable manufacturer if necessary, for published instructions covering powerplant control cable service-life limits and attach-point inspection, repair, installation, and lubrication. b. Inspect the pivot points ofthe levers and linkages for dirt, wear, and rust, and replace as necessary. Direct cleaning ofthese areas may be necessary to remove contamination including a buildup of old grease or oil. After cleaning with clean solvent or soap solution, dry each area using compressed air."
+    },
+    {
+      "page": 8,
+      "text": "AC 20-143 6/06/00\n\nFIGURE 4. SOLID ROD LINKAGE LUBRICATION"
+    },
+    {
+      "page": 9,
+      "text": "6/06/00 AC 20-143\n\nFIGURE 5. SOLID ROD ADJUSTMENT AND LUBRiCATION\n0 = REFERENCE THE AIRFRAME\nMANUFACTIJRER'S INSTALLATION. CLEANING\nAND LUBRICATION INSTRUCTIONS"
+    },
+    {
+      "page": 10,
+      "text": "AC 20-143 6/06/00\n\nc. Lubrication of control cables (including pressure lubrication) should not be attempted without a specific approved procedure. Engine controls without an approved procedure should be permanently tagged. Pressure lubrication should not be performed on any control without an approved procedure. Contact the airframe or engine manufacturer for additional guidance. d. Use proper tools and holding devices when installing, adjusting, or removing controls and fittings. Avoid using tongue and groove pliers or locking grip pliers. Failure to use the proper tools may result in crushed or bent engine control components. e. In the absence of specific lubrication information from the manufacturer, it is acceptable to apply LPS 2®, Permatex \"Maintain®\" Lubricant, or equivalent, to each pivot point, including throttle shaft bushings. If parts such as a lever or link rod are to be replaced or reassembled, initial lubrication may be accomplished by using Shell Number 5 grease, or LUBRIPLA TE®, Number 630AA, or equivalent. NOTE. These lubricants function well in cold weather. However, airplanes operating in extremely cold conditions may be better offwith little or no lubricant on the control levers, linkages, and bushings."
+    },
+    {
+      "page": 11,
+      "text": "6/06/00 AC 20-143\n\n7. RIGGING PRACTICES (see figure 6). A typical rigging check procedure is as follows:\nFIGURE 6. ROD END FITTING WITH PROTECTIVE SLEEVE\nAND THREAD ENGAGEMENT\nBRASS ROD END CONTROL BUSHING\nSHAFT\n,.:..-:•\n... tVPI~~~ HOLDING, EXISTING 1 AREA DRIVE SCREW\nDRlVESCREW\n~mrrs HOLE\nBRASS __j ' SLEEVE I\nCONTROL\n\nHOUSING\nL ' . __"
+    },
+    {
+      "page": 12,
+      "text": "AC 20-143 6106100\n\na. The appropriate airplane and engine manuals, and service bulletins, should be consulted for each installation. b. Examine the alignment ofthe accessory end (engine end) ofthe control, ensuring that the accessory unit operating arm does not cause binding or bending of the control cable, push rod, or swivel fitting. c. Ensure that there is freedom of movement of rod-end fittings and clevis-fork fittings\n\nthroughout their entire range of travel.\n\nd. Ensure that any threaded shank has at least the minimum required thread engagement. e. Rig engine controls in a manner leaving 1116- to 118-inch of unused travel in the full throttle, full rich, or maximum r.p.m. position. This is achieved by having the accessory unit control arm against its travel stop, while the engine control knob in the cockpit has 1116- to 118-inch margin before contacting its stop. 8. INSTALLATION VERIFICATION. After proper installation, lubrication, and rigging have been accomplished, the following should be verified: a. Each control should be able to maintain any necessary position without constant attention by the pilot or without tendency to creep due to control loads, or vibration (see§ 23.114l(c)). b. Each control should permit full limit oftravel and have the required safety or locking device in place. There should be no binding oflevers, linkages, control rods, or cables. There should be freedom of movement unrestricted by contact with other parts or components that are located in close proximity. c. Verify that separation between engine controls and exhaust system components is consistent with the manufacturer's guidelines, or are secured as far away from each other as possible. Ensure that heat shields are installed in accordance with the manufacturer's instructions. d. Check fuel system flow (after mixture control, shutoff valve, or selector valve linkage installation) and adjust, as required, in accordance with the engine/airplane manufacturers' applicable maintenance manual or service bulletin instructions."
+    },
+    {
+      "page": 13,
+      "text": "6/06/00 AC 20-143\n\n9. Appendix I provides supplemental illustrations for inspection, maintenance, and installation of engine lever and cable controls. These figures are for guidance only and may not represent actual installations. S/ Marvin Nuss for Michael Gallagher Manager, Small Airplane Directorate Aircraft Certification Service"
+    },
+    {
+      "page": 14,
+      "text": "6/06/00 AC 20-143\n\nAppendix 1\n\nAPPENDIX!\n\nSUPPLEMENTAL ILLUSTRATIONS\n\nFIGURE 1. INSTRUMENT PANEL CONTROL CONFIGURATION\nFLEXIBLE\n\nKNOB\nCONDUIT RIGID\nCONDUIT\n....___INSTRUMENT\nFRICTION PANEL\nLOCK"
+    },
+    {
+      "page": 15,
+      "text": "AC 20-143 6/06/00\n\nAppendix I\nFIGURE 2. SWIVEL (SWAGED) BALL JOINT INSPECTION CONFIGURATION  -CONTROL ASSEMBLY\n\nSWIVEL BALL JOINT\nDUST SEAL\n---~~ D=:::l\n.050 MOVEMENT PLUNGER GUIDE TYPICAL"
+    },
+    {
+      "page": 16,
+      "text": "6/06/00 AC 20-143\n\nAppendix 1\nFIGURE 3. CONTROL CABLE ROUTING FROM IDGH HEAT SOURCES\nALTERNATE AIR\nCABLE\nLACING MIXTURE TIES CONTROL\nCABLE\nPROPELLER\nCONTROL\nCABLE\nAND\nFIRESLE.EVE\nFLAP\nCONTROL\nCABLE CONTROL\nCABLE"
+    },
+    {
+      "page": 17,
+      "text": "AC 20-143 6106100\n\nAppendix I\nFIGURE 4. CONTROL CABLE ROUTING FROM IDGH HEAT SOURCES\nPROPELLER\n\nCONTROL\n\nAND\n\nFIRE SLEEVE\n\nCLAMPS\nWITH\nLINK\n,\\\n~\nMay not represent actual installations."
+    },
+    {
+      "page": 18,
+      "text": "6106/00 AC 20-143\nAppendix 1\nFIGURE 5. CONTROL ROUTING IN ENGINE COMPARTMENT\n~-----cONTROL ASSEMBLY ______ CARBURETOR HEAT n!...---\"'\"'\"\n\nl\n\n_, '? ~ ~\nb._ SECUREON\nCABLE HOUSfNG\n,,\n'-,,\n'',,,'',-AIR BOX\nQ MAXlMUM BEND\nRADIUS POSSIBLE"
+    },
+    {
+      "page": 19,
+      "text": "INSTRUflriiDH-->R4N:'\">,,\nPANEL e---\nAC 20-143 6/06/00\nAppendix I\nFIGURE 6. CONTROL CABLE BEND RADII\nPREFERRED ROUTING\nOF MlXTURE CONTROL\n-UNDESIRABLE\nROUTING OF\nMIXTURE\nCONTROL .,_;~~\nTHROTTLE CONTROL\nPREFERRED ROUTfNG OF\nTHROTTLE CONTROL MOUNTING\n;.--\"\"'!\nFIREWALL.---!\nBRACKET\nUNJ)ES;UUlBLE ROUTING OFJ"
+    },
+    {
+      "page": 20,
+      "text": "6106/00 AC 20-143\n\nAppendix I\n\nFIGURE 7. CONTROL SYSTEM OVERVIEW\nINSTRU~tEN'T\nPANEl\nSUPPORT\nFIREWALL\nHOUSING SLEEVE\nFRICTION SPRING\n& BALl\nFACEPLATE\nSPACER\n0 MAXIMUM BEND\nR.oi\\DIUS POSSIBLE\n., SECUREON\n/ \\ C'ABLE HOUSING"
+    },
+    {
+      "page": 21,
+      "text": "AC 20-143 6106100\n\nAppendix I\nFIGURE 8. CONTROL CABLE ROUTING IN HIGH\n\nHEAT SOURCE AREAS\n\nIvliXTURE\nCONTROL COWL FLAP\nCABLE CONTROL\nf,/\n,.\nCABLE\nBRACKET\nFIRE SLEEVE\nALL FOUR\nCONTROL\nCABLES\nCLAMP\nCONTROL CONTROL\nCABLE CABLE"
+    },
+    {
+      "page": 22,
+      "text": "6106/00 AC 20-143\n\nAppendix 1\nFIGURE 9. CONTROL CABLE SECURITY\nBRACKET\nAI.TFiRl'<ATE\nAIR-CONTROL\nCABLE\nLACING TIE"
+    }
+  ],
+  "extractedPageCount": 22
+}

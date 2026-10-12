@@ -1,0 +1,33 @@
+{
+  "version": 1,
+  "id": "ac-43-15",
+  "number": "43-15",
+  "title": "Recommended Guidelines for Instrument Shops",
+  "status": "parsed",
+  "fetched": "2026-07-14",
+  "documentUrl": "https://www.faa.gov/regulations_policies/advisory_circulars/index.cfm/go/document.information/documentID/22592",
+  "pdfUrl": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_43-15.pdf",
+  "sha256": "8e3ce2b4363ad6c6926c71d66542472c1954d7905b15aa1541a5273451917c8f",
+  "pageCount": 4,
+  "wordCount": 716,
+  "ocrPageCount": 0,
+  "pages": [
+    {
+      "page": 1,
+      "text": "Initiated by AFS-804 1. PURPOSE. This Advisory Circular provides guidelines concerning environmental conditions for instrument repair and overhaul shops and information regarding calibration of test equipment. 2. REFERENCES. Federal Aviation Regulations (FAR) Parts 43 and 145 and Advisory Circular (AC) 43-2 A, Minimum Barometry for Calibration and Test of Atmospheric Pressure Instruments, Federal Standard No. 209, Air Force Technical Order No. 00-25-203, American National Standard Report A-11.1 Society of Automotive Engineers (SAE) Aerospace Recommended Practice No. 421. 3. BACKGROUND. Recent comments from members of the aviation community have indicated a need for information concerning recommended guidelines for instrument repair and overhaul shops. This information is general and can be used by instrument shop operators regarding acceptable standards when applicable directives are unavailable. 4. SCOPE. These recommended guidelines cover the general environmental of the controlled area for repair, overhaul and servicing of aircraft related components whose performance would be adversely affected by uncontrolled environmental conditions. 5. GENERAL. Repaired and overhauled equipment (including parts and accessories) should equal or exceed the original condition set forth in the manufacturers’ maintenance or overhaul manuals (Reference FAR 43.13 and FAR 145.57). Particular attention should be given to good shop practices such as proper use of tools, equipment, and test apparatus necessary to assure completion of the work in accordance with accepted industry practices. All manufacturers’ service manuals, instructions, and service bulletins that relate to articles being repaired or overhauled should be maintained, in current condition, in accordance with FAR 145.57."
+    },
+    {
+      "page": 2,
+      "text": "AC 43-15 8/15/77 Page 2 Par 6\n\n6. ENVIRONMENTAL CONDITIONS.\n\na. General. Repair and overhaul facilities should maintain a clean, well-lighted, well-ventilated work area, and control cleanliness, temperature, humidity and lighting, when necessary. b. Environmental Factors for All Instrument Shops. (1) Temperature. The temperature should be between 70° and 80° F (21.1° and 26.7° C). (2) Humidity. Relative humidity should not exceed a maximum of 50 percent. This can normally be achieved by the use of air conditioning and/or humidifiers. (3) Lighting. It is recommended that a minimum of 500 foot-candles be maintained in the work area for fine bench work and 1000 foot-candles for extra fine bench work. (4) Cleaning. Should be done periodically by vacuum or other dust suppression type cleaning methods. (5) Smoking and Eating. Smoking and eating should not be permitted at work benches. c. Environmental Factors for Overhaul and Repair of Gyroscopic Instruments and Altitude Encoders. (1) Overhaul and Repair. For overhaul and repair of gyroscopic instruments and altitude encoders, the air in the work area should contain no more than 20,000 particles per cubic foot with maximum average particle size not exceeding 5 microns. (2) Positive Pressure. It is recommended that a positive pressure be maintained in the contamination-controlled areas. (3) Personnel. It is recommended that personnel entering or working in the contamination-controlled areas wear lint-free clothes. (4) Smoking and Eating. Smoking and eating should not be permitted in the contamination-controlled areas.\n\n7. CALIBRATION OF TEST EQUIPMENT.\n\na. Barometers. Calibration of barometers should be accomplished in accordance with AC 43-2A and manufacturers’ instructions. However, it is recommended that a secondary standard be used to verify initial calibration of the working barometer and to verify its accuracy each six months."
+    },
+    {
+      "page": 3,
+      "text": "8/15/77 AC 43-15 Par 7 Page 3 b. Electronic and Mechanical Test Equipment. Electronic and mechanical test equipment should be calibrated with the use of a standard each six months. However, this interval may be extended to a one-year period if the operating history of the unit warrants the extension."
+    },
+    {
+      "page": 4,
+      "text": "Advisory Circular Feedback Form If you find an error in this AC, have recommendations for improving it, or have suggestions for new items/subjects to be added, you may let us know by emailing the Flight Standards Directives Management Officer at 9-AWA-AFS-140-Directives@faa.gov.\n\nSubject: AC 43-15, Recommended Guidelines for Instrument Shops Date: _____________________ Please check all appropriate line items: An error (procedural or typographical) has been noted in paragraph ____________ on page _______. Recommend paragraph _____________ on page __________ be changed as follows: ______________________________________________________________________ ______________________________________________________________________ In a future change to this AC, please cover the following subject: (Briefly describe what you want added.) ______________________________________________________________________ ______________________________________________________________________ Other comments: ______________________________________________________________________ ______________________________________________________________________ I would like to discuss the above. Please contact me. Submitted by: Date: ______________________"
+    }
+  ],
+  "extractedPageCount": 4
+}

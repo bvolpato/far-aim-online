@@ -1,0 +1,105 @@
+{
+  "part": 103,
+  "title": "ULTRALIGHT VEHICLES",
+  "cfr": "14 CFR Part 103",
+  "source": "eCFR",
+  "url": "https://www.ecfr.gov/current/title-14/part-103",
+  "subchapter": "F",
+  "subchapterTitle": "Air Traffic and General Operating Rules",
+  "effectiveDate": "2026-07-24",
+  "subparts": [
+    {
+      "subpart": "A",
+      "title": "General",
+      "sections": [
+        {
+          "section": "103.1",
+          "title": "Applicability",
+          "content": "This part prescribes rules governing the operation of ultralight vehicles in the United States. For the purposes of this part, an ultralight vehicle is a vehicle that:\n\n(a) Is used or intended to be used for manned operation in the air by a single occupant;\n\n(b) Is used or intended to be used for recreation or sport purposes only;\n\n(c) Does not have any U.S. or foreign airworthiness certificate; and\n\n(d) If unpowered, weighs less than 155 pounds; or\n\n(e) If powered:\n\n(1) Weighs less than 254 pounds empty weight, excluding floats and safety devices which are intended for deployment in a potentially catastrophic situation;\n\n(2) Has a fuel capacity not exceeding 5 U.S. gallons;\n\n(3) Is not capable of more than 55 knots calibrated airspeed at full power in level flight; and\n\n(4) Has a power-off stall speed which does not exceed 24 knots calibrated airspeed.",
+          "figures": []
+        },
+        {
+          "section": "103.3",
+          "title": "Inspection requirements",
+          "content": "(a) Any person operating an ultralight vehicle under this part shall, upon request, allow the Administrator, or his designee, to inspect the vehicle to determine the applicability of this part.\n\n(b) The pilot or operator of an ultralight vehicle must, upon request of the Administrator, furnish satisfactory evidence that the vehicle is subject only to the provisions of this part.",
+          "figures": []
+        },
+        {
+          "section": "103.5",
+          "title": "Waivers",
+          "content": "No person may conduct operations that require a deviation from this part except under a written waiver issued by the Administrator.",
+          "figures": []
+        },
+        {
+          "section": "103.7",
+          "title": "Certification and registration",
+          "content": "(a) Notwithstanding any other section pertaining to certification of aircraft or their parts or equipment, ultralight vehicles and their component parts and equipment are not required to meet the airworthiness certification standards specified for aircraft or to have certificates of airworthiness.\n\n(b) Notwithstanding any other section pertaining to airman certification, operators of ultralight vehicles are not required to meet any aeronautical knowledge, age, or experience requirements to operate those vehicles or to have airman or medical certificates.\n\n(c) Notwithstanding any other section pertaining to registration and marking of aircraft, ultralight vehicles are not required to be registered or to bear markings of any type.",
+          "figures": []
+        }
+      ]
+    },
+    {
+      "subpart": "B",
+      "title": "Operating Rules",
+      "sections": [
+        {
+          "section": "103.9",
+          "title": "Hazardous operations",
+          "content": "(a) No person may operate any ultralight vehicle in a manner that creates a hazard to other persons or property.\n\n(b) No person may allow an object to be dropped from an ultralight vehicle if such action creates a hazard to other persons or property.",
+          "figures": []
+        },
+        {
+          "section": "103.11",
+          "title": "Daylight operations",
+          "content": "(a) No person may operate an ultralight vehicle except between the hours of sunrise and sunset.\n\n(b) Notwithstanding paragraph (a) of this section, ultralight vehicles may be operated during the twilight periods 30 minutes before official sunrise and 30 minutes after official sunset or, in Alaska, during the period of civil twilight as defined in the Air Almanac, if:\n\n(1) The vehicle is equipped with an operating anticollision light visible for at least 3 statute miles; and\n\n(2) All operations are conducted in uncontrolled airspace.",
+          "figures": []
+        },
+        {
+          "section": "103.13",
+          "title": "Operation near aircraft; right-of-way rules",
+          "content": "(a) Each person operating an ultralight vehicle shall maintain vigilance so as to see and avoid aircraft and shall yield the right-of-way to all aircraft.\n\n(b) No person may operate an ultralight vehicle in a manner that creates a collision hazard with respect to any aircraft.\n\n(c) Powered ultralights shall yield the right-of-way to unpowered ultralights.",
+          "figures": []
+        },
+        {
+          "section": "103.15",
+          "title": "Operations over congested areas",
+          "content": "No person may operate an ultralight vehicle over any congested area of a city, town, or settlement, or over any open air assembly of persons.",
+          "figures": []
+        },
+        {
+          "section": "103.17",
+          "title": "Operations in certain airspace",
+          "content": "No person may operate an ultralight vehicle within Class A, Class B, Class C, or Class D airspace or within the lateral boundaries of the surface area of Class E airspace designated for an airport unless that person has prior authorization from the ATC facility having jurisdiction over that airspace.\n\n[Amdt. 103-17, 56 FR 65662, Dec. 17, 1991]",
+          "figures": []
+        },
+        {
+          "section": "103.19",
+          "title": "Operations in prohibited or restricted areas",
+          "content": "No person may operate an ultralight vehicle in prohibited or restricted areas unless that person has permission from the using or controlling agency, as appropriate.",
+          "figures": []
+        },
+        {
+          "section": "103.20",
+          "title": "Flight restrictions in the proximity of certain areas designated by notice to airmen",
+          "content": "No person may operate an ultralight vehicle in areas designated in a Notice to Airmen under § 91.137, § 91.138, § 91.141, § 91.143 or § 91.145 of this chapter, unless authorized by:\n\n(a) Air Traffic Control (ATC); or\n\n(b) A Flight Standards Certificate of Waiver or Authorization issued for the demonstration or event.\n\n[Docket FAA-2000-8274, 66 FR 47378, Sept. 11, 2001]",
+          "figures": []
+        },
+        {
+          "section": "103.21",
+          "title": "Visual reference with the surface",
+          "content": "No person may operate an ultralight vehicle except by visual reference with the surface.",
+          "figures": []
+        },
+        {
+          "section": "103.23",
+          "title": "Flight visibility and cloud clearance requirements",
+          "content": "No person may operate an ultralight vehicle when the flight visibility or distance from clouds is less than that in the table found below. All operations in Class A, Class B, Class C, and Class D airspace or Class E airspace designated for an airport must receive prior ATC authorization as required in § 103.17 of this part.\n\n| Airspace\n| Flight visibility\n| Distance from clouds\n\n| Class A\n| Not applicable\n| Not Applicable.\n\n| Class B\n| 3 statute miles\n| Clear of Clouds.\n\n| Class C\n| 3 statute miles\n| 500 feet below.\n1,000 feet above.\n2,000 feet horizontal.\n\n| Class D\n| 3 statute miles\n| 500 feet below.\n1,000 feet above.\n2,000 feet horizontal.\n\n| Class E:\n\n| Less than 10,000 feet MSL\n| 3 statute miles\n| 500 feet below.\n1,000 feet above.\n2,000 feet horizontal.\n\n| At or above 10,000 feet MSL\n| 5 statute miles\n| 1,000 feet below.\n1,000 feet above.\n1 statute mile horizontal.\n\n| Class G:\n\n| 1,200 feet or less above the surface (regardless of MSL altitude)\n| 1 statute mile\n| Clear of clouds.\n\n| More than 1,200 feet above the surface but less than 10,000 feet MSL\n| 1 statute mile\n| 500 feet below.\n1,000 feet above.\n2,000 feet horizontal.\n\n| More than 1,200 feet above the surface and at or above 10,000 feet MSL\n| 5 statute miles\n| 1,000 feet below.\n1,000 feet above.\n1 statute mile horizontal.\n\n[Amdt. 103-17, 56 FR 65662, Dec. 17, 1991]",
+          "figures": []
+        }
+      ]
+    }
+  ],
+  "sections": [],
+  "appendices": [],
+  "isPilotIndex": true
+}

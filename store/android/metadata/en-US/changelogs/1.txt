@@ -1,0 +1,18 @@
+FAR/AIM Pro — Initial Release
+
+<en-US>
+First release of FAR/AIM Pro.
+
+- Federal Aviation Regulations: 213 bundled CFR parts, including core pilot, maintenance, UAS, commercial operations, hazmat, NTSB accident reporting, and TSA flight school/security references
+- Aeronautical Information Manual: all 11 chapters with figures
+- Pilot/Controller Glossary
+- Practice quizzes with explanations
+- Flashcard decks for study review
+- Full-text search across FAR and AIM content
+- Saved notes, highlights, review queue, and reference sharing
+- Study pack export/import for moving notes and highlights between devices
+- Adjustable reader text size and spacing for FAR/AIM references
+- Source status, release notes, and change watch
+- Dark mode support
+- Completely offline after install
+</en-US>

@@ -1,0 +1,291 @@
+{
+  "part": 437,
+  "title": "EXPERIMENTAL PERMITS",
+  "cfr": "14 CFR Part 437",
+  "source": "eCFR",
+  "url": "https://www.ecfr.gov/current/title-14/part-437",
+  "subchapter": "C",
+  "subchapterTitle": "Licensing",
+  "effectiveDate": "2026-07-24",
+  "subparts": [
+    {
+      "subpart": "A",
+      "title": "General Information",
+      "sections": [
+        {
+          "section": "437.1",
+          "title": "Scope and organization of this part",
+          "content": "(a) *Scope.* This part prescribes requirements for obtaining an experimental permit. It also prescribes post-permitting requirements with which a permittee must comply to maintain its permit. Part 413 of this subchapter contains procedures for applying for an experimental permit.\n\n(b) *Equivalent level of safety.* Each requirement of this part applies unless the applicant or permittee clearly and convincingly demonstrates that an alternative approach provides an equivalent level of safety to the requirement of this part.\n\n(c) *Organization of this part.* Subpart A contains general information about an experimental permit. Subpart B contains requirements to obtain an experimental permit. Subpart C contains the safety requirements with which a permittee must comply while conducting permitted activities. Subpart D contains terms and conditions of an experimental permit.\n\n[Doc. No. FAA-2016-6761, Amdt. No. 437-2, 83 FR 28535, June 20, 2018]",
+          "figures": []
+        },
+        {
+          "section": "437.3",
+          "title": "Definitions",
+          "content": "*Envelope expansion* means any portion of a flight where planned operations will subject a reusable suborbital vehicle to the effects of altitude, velocity, acceleration, or burn duration that exceed a level or duration successfully verified during an earlier flight.\n\n*Exclusion area* means an area, within an operating area, that a reusable suborbital vehicle's instantaneous impact point may not traverse.\n\n*Operating area* means a three-dimensional region where permitted flights may take place.\n\n*Permitted vehicle* means a reusable suborbital rocket or a reusable launch vehicle that will be launched into a suborbital trajectory or reentered that is operated by a launch or reentry operator under an experimental permit.\n\n*Reentry impact point* means the location of a reusable suborbital vehicle's instantaneous impact point during its unpowered exoatmospheric suborbital flight.\n\n[Doc. No. FAA-2023-1656, Amdt. No. 437-\n4, 89 FR 76726, Sept. 19, 2024]",
+          "figures": []
+        },
+        {
+          "section": "437.5",
+          "title": "Eligibility for an experimental permit",
+          "content": "The FAA will issue an experimental permit to a person to launch or reenter a reusable suborbital vehicle only for-\n\n(a) Research and development to test design concepts, equipment, or operating techniques;\n\n(b) A showing of compliance with requirements for obtaining a license under this subchapter; or\n\n(c) Crew training for a launch or reentry using the design of the reusable suborbital vehicle for which the permit would be issued.\n\n[Doc. No. FAA-2023-1656, Amdt. No. 437-\n4, 89 FR 76726, Sept. 19, 2024]",
+          "figures": []
+        },
+        {
+          "section": "437.7",
+          "title": "Scope of an experimental permit",
+          "content": "An experimental permit authorizes launch or reentry of a reusable suborbital vehicle. The authorization includes pre- and post-flight ground operations as defined in this section.\n\n(a) A pre-flight ground operation includes each operation that-\n\n(1) Takes place at a U.S. launch site; and\n\n(2) Meets the following criteria:\n\n(i) Is closely proximate in time to flight,\n\n(ii) Entails critical steps preparatory to initiating flight,\n\n(iii) Is unique to space launch, and\n\n(iv) Is inherently so hazardous as to warrant the FAA's regulatory oversight.\n\n(b) A post-flight ground operation includes each operation necessary to return the reusable suborbital vehicle to a safe condition after it lands or impacts.\n\n[Doc. No. FAA-2006-24197, Amdt. No. 437-0, 72 FR 17019, Apr. 6, 2007, as amended by Amdt. No. 437-4, 89 FR 76726, Sept. 19, 2024]",
+          "figures": []
+        },
+        {
+          "section": "437.9",
+          "title": "Issuance of an experimental permit",
+          "content": "The FAA issues an experimental permit authorizing an unlimited number of launches or reentries for a reusable suborbital vehicle design for the uses described in § 437.5.\n\n[Doc. No. FAA-2023-1656; Amdt. No.\n437-4, 89 FR 76726, Sept. 19, 2024]",
+          "figures": []
+        },
+        {
+          "section": "437.11",
+          "title": "Duration of an experimental permit",
+          "content": "An experimental permit lasts for one year from the date it is issued. A permittee may apply to renew a permit yearly under part 413 of this subchapter.",
+          "figures": []
+        },
+        {
+          "section": "437.13",
+          "title": "Additional experimental permit terms and conditions",
+          "content": "The FAA may modify an experimental permit at any time by modifying or adding permit terms and conditions to ensure compliance with 51 U.S.C. Subtitle V, chapter 509.\n\n[Doc. No. FAA-2012-0232, 77 FR 20533, Apr. 5, 2012]",
+          "figures": []
+        },
+        {
+          "section": "437.15",
+          "title": "Transfer of an experimental permit",
+          "content": "An experimental permit is not transferable.",
+          "figures": []
+        },
+        {
+          "section": "437.17",
+          "title": "Rights not conferred by an experimental permit",
+          "content": "Issuance of an experimental permit does not relieve a permittee of its obligation to comply with any requirement of law that applies to its activities.",
+          "figures": []
+        }
+      ]
+    },
+    {
+      "subpart": "B",
+      "title": "Requirements to Obtain an Experimental Permit",
+      "sections": [
+        {
+          "section": "437.21",
+          "title": "General",
+          "content": "To obtain an experimental permit an applicant must make the demonstrations and provide the information required by this section.\n\n(a) *This subpart.* An applicant must provide a program description, a flight test plan, and operational safety documentation as required by this subpart.\n\n(b) *Other regulations*- (1) *Environmental*- (i) *General.* The FAA is responsible for complying with the procedures and policies of the National Environmental Policy Act (NEPA) and other applicable environmental laws, regulations, and Executive Orders to consider and document the potential environmental effects associated with proposed reusable suborbital vehicle launches or reentries. An applicant must provide the FAA with information needed to comply with such requirements. The FAA will consider and document the potential environmental effects associated with proposed reusable suborbital vehicle launches or reentries.\n\n(ii) *Environmental Impact Statement or Environmental Assessment.* When directed by the FAA, an applicant must-\n\n(A) Prepare an Environmental Assessment with FAA oversight;\n\n(B) Assume financial responsibility for preparation of an Environmental Impact Statement by an FAA-selected and -managed consultant contractor; or\n\n(C) Submit information to support a written re-evaluation of a previously submitted Environmental Assessment or Environmental Impact Statement.\n\n(iii) *Categorical exclusion.* The FAA may determine that a categorical exclusion determination is appropriate upon receipt of supporting information from an applicant.\n\n(iv) *Information requirements.* An application must include an approved FAA Environmental Assessment, Environmental Impact Statement, categorical exclusion determination, or written re-evaluation covering all planned permitted activities in compliance with NEPA and the Council on Environmental Quality Regulations for Implementing the Procedural Provisions of NEPA.\n\n(2) *Financial responsibility.* An applicant must provide the information required by part 3 of appendix A of part 440 for the FAA to conduct a maximum probable loss analysis.\n\n(3) *Human space flight.* An applicant proposing to conduct a permitted operation with a space flight participant, crew, or government astronaut on board a reusable suborbital vehicle must demonstrate compliance with §§ 460.5, 460.7, 460.11, 460.13, 460.15, 460.17, 460.51, 460.53, 460.59, 460.61, and 460.67 of this subchapter.\n\n(c) *Use of a safety element approval.* If an applicant proposes to use any reusable suborbital vehicle, safety system, process, service, or personnel for which the FAA has issued a safety element approval under part 414 of this chapter, the FAA will not reevaluate that safety element to the extent its use is within its approved scope. As part of the application process, the FAA will evaluate the integration of that safety element into vehicle systems or operations.\n\n(d) *Inspection before issuing a permit.* Before the FAA issues an experimental permit, an applicant must make each reusable suborbital vehicle planned to be flown available to the FAA for inspection. The FAA will determine whether each reusable suborbital vehicle is built as represented in the application.\n\n(e) *Other requirements.* The FAA may require additional analyses, information, or agreements if necessary to protect public health and safety, safety of property, and national security and foreign policy interests of the United States.\n\n[Docket No. FAA-2006-24197, 72 FR 17019, Apr. 6, 2007, as amended by Doc. No. FAA-2019-0229, Amdt. 437-3, 85 FR 79718, Dec. 10, 2020; Doc. No. FAA-2023-1656, Amdt. No. 437-4, 89 FR 76727, Sept. 19, 2024]",
+          "figures": []
+        },
+        {
+          "section": "437.23",
+          "title": "Program description",
+          "content": "(a) An applicant must provide-\n\n(1) Dimensioned three-view drawings or photographs of the reusable suborbital vehicle; and\n\n(2) Gross liftoff weight and thrust profile of the reusable suborbital vehicle.\n\n(b) An applicant must describe-\n\n(1) All reusable suborbital vehicle systems, including any structural, flight control, thermal, pneumatic, hydraulic, propulsion, electrical, environmental control, software and computing systems, avionics, and guidance systems used in the reusable suborbital vehicle;\n\n(2) The types and quantities of all propellants used in the reusable suborbital vehicle;\n\n(3) The types and quantities of any hazardous materials used in the reusable suborbital vehicle;\n\n(4) The purpose for which a reusable suborbital vehicle is to be flown; and\n\n(5) Each payload or payload class planned to be flown.\n\n(c) An applicant must identify any foreign ownership of the applicant as follows:\n\n(1) For a sole proprietorship or partnership, identify all foreign ownership,\n\n(2) For a corporation, identify any foreign ownership interests of 10% or more, and\n\n(3) For a joint venture, association, or other entity, identify any participating foreign entities.\n\n[Doc. No. FAA-2006-24197, Amdt. No. 437-0, 72 FR 17019, Apr. 6, 2007, as amended by Doc. No. FAA-2023-1656, Amdt. No. 437-4, 89 FR 76727, Sept. 19, 2024]",
+          "figures": []
+        },
+        {
+          "section": "437.25",
+          "title": "Flight test plan",
+          "content": "An applicant must-\n\n(a) Describe any flight test program, including estimated number of flights and key flight-safety events.\n\n(b) Identify and describe the geographic coordinates of the boundaries of one or more proposed operating areas where it plans to perform its flights and that satisfy § 437.57 (b) of subpart C. The FAA may designate one or more exclusion areas in accordance with § 437.57 (c) of subpart C.\n\n(c) For each operating area, provide the planned maximum altitude of the reusable suborbital vehicle.\n\n[Doc. No. FAA-2006-24197, Amdt. No. 437-0, 72 FR 17019, Apr. 6, 2007, as amended by Doc. No. FAA-2023-1656, Amdt. No. 437-4, 89 FR 76727, Sept. 19, 2024]",
+          "figures": []
+        },
+        {
+          "section": "437.27",
+          "title": "Pre-flight and post-flight operations",
+          "content": "An applicant must demonstrate how it will meet the requirements of § 437.53 (a) and (b) to establish a safety clear zone and verify that the public is outside that zone before and during any hazardous operation.",
+          "figures": []
+        },
+        {
+          "section": "437.29",
+          "title": "Hazard analysis",
+          "content": "(a) An applicant must perform a hazard analysis that complies with § 437.55 (a).\n\n(b) An applicant must provide to the FAA all the results of each step of the hazard analysis required by paragraph (a) of this section.",
+          "figures": []
+        },
+        {
+          "section": "437.31",
+          "title": "Verification of operating area containment and key flight-safety event limitations",
+          "content": "(a) An applicant must identify, describe, and provide verification evidence of the methods and systems used to meet the requirement of § 437.57 (a) to contain its reusable suborbital vehicle's instantaneous impact point within an operating area and outside any exclusion area. The description must include, at a minimum-\n\n(1) Proof of physical limits on the ability of the reusable suborbital vehicle to leave the operating area; or\n\n(2) Abort procedures and other safety measures derived from a system safety engineering process.\n\n(b) An applicant must identify, describe, and provide verification evidence of the methods and systems used to meet the requirements of § 437.59 to conduct any key flight-safety event so that the reusable suborbital vehicle's instantaneous impact point, including its expected dispersions, is over unpopulated or sparsely populated areas, and to conduct each reusable suborbital vehicle flight so that the reentry impact point does not loiter over a populated area.\n\n[Docket No. FAA-2006-24197, 72 FR 17019, Apr. 6, 2007, as amended by Docket No. FAA-2023-1656, Amdt. No. 437-4, 89 FR 76727, Sept. 19, 2024]",
+          "figures": []
+        },
+        {
+          "section": "437.33",
+          "title": "Landing and impact locations",
+          "content": "An applicant must demonstrate that each location for nominal landing or any contingency abort landing of the reusable suborbital vehicle, and each location for any nominal or contingency impact or landing of a component of that reusable suborbital vehicle, satisfies § 437.61.\n\n[Docket No. FAA-2023-1656, Amdt. No. 437-4, 89 FR 76727, Sept. 19, 2024",
+          "figures": []
+        },
+        {
+          "section": "437.35",
+          "title": "Agreements",
+          "content": "An applicant must enter into the agreements required by § 437.63, and provide a copy to the FAA.",
+          "figures": []
+        },
+        {
+          "section": "437.37",
+          "title": "Tracking",
+          "content": "An applicant must identify and describe each method or system used to meet the tracking requirements of § 437.67.",
+          "figures": []
+        },
+        {
+          "section": "437.39",
+          "title": "Flight rules",
+          "content": "An applicant must provide flight rules as required by § 437.71.",
+          "figures": []
+        },
+        {
+          "section": "437.41",
+          "title": "Mishap plan",
+          "content": "An applicant must submit a mishap plan that meets the requirements of § 450.173 of this chapter.\n\n[Docket No. FAA-2019-0229, Amdt. 437-3, 85 FR 79718, Dec. 10, 2020]",
+          "figures": []
+        }
+      ]
+    },
+    {
+      "subpart": "C",
+      "title": "Safety Requirements",
+      "sections": [
+        {
+          "section": "437.51",
+          "title": "Rest rules for vehicle safety operations personnel",
+          "content": "A permittee must ensure that all vehicle safety operations personnel adhere to the work and rest standards in this section during permitted activities.\n\n(a) No vehicle safety operations personnel may work more than:\n\n(1) 12 consecutive hours,\n\n(2) 60 hours in the 7 days preceding a permitted activity, or\n\n(3) 14 consecutive work days.\n\n(b) All vehicle safety operations personnel must have at least 8 hours of rest after 12 hours of work.\n\n(c) All vehicle safety operations personnel must receive a minimum 48-hour rest period after 5 consecutive days of 12-hour shifts.",
+          "figures": []
+        },
+        {
+          "section": "437.53",
+          "title": "Pre-flight and post-flight operations",
+          "content": "A permittee must protect the public from adverse effects of hazardous operations and systems in preparing a reusable suborbital vehicle for flight at a launch site in the United States and returning the reusable suborbital vehicle and any support equipment to a safe condition after flight. At a minimum, a permittee must-\n\n(a) Establish a safety clear zone that will contain the adverse effects of each operation involving a hazard; and\n\n(b) Verify that the public is outside of the safety clear zone before and during any hazardous operation.\n\n[Doc. No. FAA-2006-24197, Amdt. No. 437-0, 72 FR 17019, Apr. 6, 2007, as amended by Doc. No. FAA-2023-1656, Amdt. No. 437-4, 89 FR 76727, Sept. 19, 2024]",
+          "figures": []
+        },
+        {
+          "section": "437.55",
+          "title": "Hazard analysis",
+          "content": "(a) A permittee must identify and characterize each of the hazards and assess the risk to public health and safety and the safety of property resulting from each permitted flight. This hazard analysis must-\n\n(1) Identify and describe hazards, including but not limited to each of those that result from-\n\n(i) Component, subsystem, or system failures or faults;\n\n(ii) Software errors;\n\n(iii) Environmental conditions;\n\n(iv) Human errors;\n\n(v) Design inadequacies; or\n\n(vi) Procedural deficiencies.\n\n(2) Determine the likelihood of occurrence and consequence for each hazard before risk elimination or mitigation.\n\n(3) Ensure that the likelihood and consequence of each hazard meet the following criteria through risk elimination and mitigation measures:\n\n(i) The likelihood of any hazardous condition that may cause death or serious injury to the public must be extremely remote.\n\n(ii) The likelihood of any hazardous condition that may cause major property damage to the public, major safety-critical system damage or reduced capability, a significant reduction in safety margins, or a significant increase in crew workload must be remote.\n\n(4) Identify and describe the risk elimination and mitigation measures required to satisfy paragraph (a) (3) of this section. The measures must include one or more of the following:\n\n(i) Designing for minimum risk,\n\n(ii) Incorporating safety devices,\n\n(iii) Providing warning devices, or\n\n(iv) Implementing procedures and training.\n\n(5) Demonstrate that the risk elimination and mitigation measures achieve the risk levels of paragraph (a) (3)(i) of this section through validation and verification. Verification includes:\n\n(i) Test data,\n\n(ii) Inspection results, or\n\n(iii) Analysis.\n\n(b) A permittee must carry out the risk elimination and mitigation measures derived from its hazard analysis.\n\n(c) A permittee must ensure the continued accuracy and validity of its hazard analysis throughout the term of its permit.",
+          "figures": []
+        },
+        {
+          "section": "437.57",
+          "title": "Operating area containment",
+          "content": "(a) During each permitted flight, a permittee must contain its reusable suborbital vehicle's instantaneous impact point within an operating area determined in accordance with paragraph (b) of this section and outside any exclusion area defined by the FAA in accordance with paragraph (c) of this section.\n\n(b) An operating area-\n\n(1) Must be large enough to contain each planned trajectory and all expected vehicle dispersions;\n\n(2) Must contain enough unpopulated or sparsely populated area to perform key flight-safety events as required by § 437.59;\n\n(3) May not contain or be adjacent to a densely populated area or large concentrations of members of the public; and\n\n(4) May not contain or be adjacent to significant automobile traffic, railway traffic, or waterborne vessel traffic.\n\n(c) The FAA may prohibit a reusable suborbital vehicle's instantaneous impact point from traversing certain areas within an operating area by designating one or more areas as exclusion areas, if necessary to protect public health and safety, safety of property, or foreign policy or national security interests of the United States. An exclusion area may be confined to a specific phase of flight.\n\n[Doc. No. FAA-2006-24197, Amdt. No. 437-0, 72 FR 17019, Apr. 6, 2007, as amended by Doc. No. FAA-2023-1656, Amdt. No. 437-4, 89 FR 76727, Sept. 19, 2024]",
+          "figures": []
+        },
+        {
+          "section": "437.59",
+          "title": "Key flight-safety event limitations",
+          "content": "(a) A permittee must conduct any key flight-safety event so that the reusable suborbital vehicle's instantaneous impact point, including its expected dispersion, is over an unpopulated or sparsely populated area. At a minimum, a key flight-safety event includes:\n\n(1) Ignition of any primary rocket engine,\n\n(2) Any staging event, or\n\n(3) Any envelope expansion.\n\n(b) A permittee must conduct each reusable suborbital vehicle flight so that the reentry impact point does not loiter over a populated area.\n\n[Doc. No. FAA-2006-24197, Amdt. No. 437-0, 72 FR 17019, Apr. 6, 2007, as amended by Doc. No. FAA-2023-1656, Amdt. No. 437-4, 89 FR 76727, Sept. 19, 2024]",
+          "figures": []
+        },
+        {
+          "section": "437.61",
+          "title": "Landing and impact locations",
+          "content": "For a nominal or any contingency abort landing of a reusable suborbital vehicle, or for any nominal or contingency impact or landing of a component of that reusable suborbital vehicle, a permittee must use a location that-\n\n(a) Is big enough to contain an impact, including debris dispersion upon impact; and\n\n(b) At the time of landing or impact, does not contain any members of the public.\n\n[Doc. No. FAA-2006-24197, Amdt. No. 437-0, 72 FR 17019, Apr. 6, 2007, as amended by Doc. No. FAA-2023-1656, Amdt. No. 437-4, 89 FR 76727, Sept. 19, 2024]",
+          "figures": []
+        },
+        {
+          "section": "437.63",
+          "title": "Agreements with other entities involved in a launch or reentry",
+          "content": "A permittee must comply with the agreements required by this section.\n\n(a) A permittee must have an agreement in writing with a Federal launch range operator, a licensed launch site operator, or any other party that provides access to or use of property and services required to support the safe launch or reentry under a permit.\n\n(b) Unless otherwise addressed in agreements with a licensed launch site operator or a Federal launch range, a permittee must have an agreement in writing with the following:\n\n(1) For overflight of navigable water, a written agreement between the applicant and the local United States Coast Guard district to establish procedures for issuing a Notice to Mariners before a permitted flight, and\n\n(2) A written agreement between the applicant and responsible Air Traffic Control authority having jurisdiction over the airspace through which a permitted launch or reentry is to take place, for measures necessary to ensure the safety of aircraft. The agreement must, at a minimum, demonstrate satisfaction of §§ 437.69 (a) and 437.71 (d).",
+          "figures": []
+        },
+        {
+          "section": "437.65",
+          "title": "Collision avoidance analysis",
+          "content": "For a permitted flight with a planned maximum altitude greater than 150 kilometers, a permittee must obtain a collision avoidance analysis in accordance with § 450.169 of this chapter.\n\n[Docket No. FAA-2019-0229, Amdt. 437-3, 85 FR 79718, Dec. 10, 2020]",
+          "figures": []
+        },
+        {
+          "section": "437.67",
+          "title": "Tracking a reusable suborbital rocket",
+          "content": "A permittee must-\n\n(a) During permitted flight, measure in real time the position and velocity of its reusable suborbital rocket; and\n\n(b) Provide position and velocity data to the FAA for post-flight use.",
+          "figures": []
+        },
+        {
+          "section": "437.69",
+          "title": "Communications",
+          "content": "(a) A permittee must be in communication with Air Traffic Control during all phases of flight.\n\n(b) A permittee must record communications affecting the safety of the flight.",
+          "figures": []
+        },
+        {
+          "section": "437.71",
+          "title": "Flight rules",
+          "content": "(a) Before initiating flight, a permittee must confirm that all systems and operations necessary to ensure that safety measures derived from §§ 437.55, 437.57, 437.59, 437.61, 437.63, 437.65, 437.67, and 437.69 are within acceptable limits.\n\n(b) During all phases of flight, a permittee must-\n\n(1) Follow flight rules that ensure compliance with §§ 437.55, 437.57, 437.59, and 437.61; and\n\n(2) Abort the flight if it would endanger the public.\n\n(c) A permittee may not operate a reusable suborbital vehicle in a careless or reckless manner that would endanger any member of the public during any phase of flight.\n\n(d) A permittee may not operate a reusable suborbital vehicle in areas designated in a Notice to Airmen under 14 CFR 91.137, 91.138, 91.141, or 91.145, unless authorized by:\n\n(1) Air Traffic Control; or\n\n(2) A Flight Standards Certificate of Waiver or Authorization.\n\n(e) For any phase of flight where a permittee operates a reusable suborbital vehicle like an aircraft in the National Airspace System, a permittee must comply with the provisions of 14 CFR part 91 specified in an experimental permit issued under this part.\n\n[Docket No. FAA-2006-24197, 72 FR 17019, Apr. 6, 2007, as amended by, Doc. No. FAA-2023-1656, Amdt. No. 437-4, 89 FR 76728, Sept. 19, 2024]",
+          "figures": []
+        },
+        {
+          "section": "437.73",
+          "title": "Anomaly recording, reporting and implementation of corrective actions",
+          "content": "(a) A permittee must record each anomaly that affects a safety-critical system, subsystem, process, facility, or support equipment.\n\n(b) A permittee must identify all root causes of each anomaly, and implement all corrective actions for each anomaly.\n\n(c) A permittee must report to the FAA any anomaly of any system that is necessary for complying with §§ 437.55 (a)(3), 437.57, and 437.59, and must report the corrective action for each reported anomaly.\n\n(d) A permittee must implement each corrective action before the next flight.",
+          "figures": []
+        },
+        {
+          "section": "437.75",
+          "title": "[Reserved]",
+          "content": "",
+          "figures": []
+        },
+        {
+          "section": "437.77",
+          "title": "Additional safety requirements",
+          "content": "The FAA may impose additional safety requirements on an applicant or permittee proposing an activity with a hazard not otherwise addressed in this part. This may include a toxic hazard or the use of solid propellants. The FAA may also require the permittee to conduct additional analyses of the cause of any anomaly and corrective actions.",
+          "figures": []
+        }
+      ]
+    },
+    {
+      "subpart": "D",
+      "title": "Terms and Conditions of an Experimental Permit",
+      "sections": [
+        {
+          "section": "437.81",
+          "title": "Public safety responsibility",
+          "content": "A permittee must ensure that a launch or reentry conducted under an experimental permit is safe, and must protect public health and safety and the safety of property.",
+          "figures": []
+        },
+        {
+          "section": "437.83",
+          "title": "Compliance with experimental permit",
+          "content": "A permittee must conduct any launch or reentry under an experimental permit in accordance with representations made in its permit application, with subparts C and D of this part, and with terms and conditions contained in the permit.",
+          "figures": []
+        },
+        {
+          "section": "437.85",
+          "title": "Allowable design changes; modification of an experimental permit",
+          "content": "(a) The FAA will identify in the experimental permit the type of changes that the permittee may make to the reusable suborbital vehicle design without invalidating the permit.\n\n(b) Except for design changes made under paragraph (a) of this section, a permittee must ask the FAA to modify the experimental permit if-\n\n(1) It proposes to conduct permitted activities in a manner not authorized by the permit; or\n\n(2) Any representation in its permit application that is material to public health and safety or the safety of property is no longer accurate or complete.\n\n(c) A permittee must prepare an application to modify an experimental permit and submit it in accordance with part 413 of this subchapter. If requested during the application process, the FAA may approve an alternate method for requesting permit modifications. The permittee must indicate any part of its permit that would be changed or affected by a proposed modification.\n\n(d) When a permittee proposes a modification, the FAA reviews the determinations made on the experimental permit to decide whether they remain valid.\n\n(e) When the FAA approves a modification, it issues the permittee either a written approval or a permit order modifying the permit if a stated term or condition of the permit is changed, added, or deleted. An approval has the full force and effect of a permit order and is part of the permit record.\n\n[Doc. No. FAA-2006-24197, Amdt. No. 437-0, 72 FR 17019, Apr. 6, 2007, as amended by Doc. No. FAA-2023-1656, Amdt. No. 437-4, 89 FR 76727, Sept. 19, 2024]",
+          "figures": []
+        },
+        {
+          "section": "437.87",
+          "title": "Records",
+          "content": "(a) Except as required by paragraph (b) of this section, a permittee must maintain for 3 years all records, data, and other material necessary to verify that a permittee conducted its launch or reentry in accordance with its permit.\n\n(b) For any event that meets any of paragraphs (1) through (3), (5), or (8) of the definition of \"mishap\" in § 401.7 of this chapter, a permittee must preserve all records related to the event. Records shall be retained until any Federal investigation is complete and the FAA advises the permittee that the records need not be retained.\n\n(c) A permittee must make all records that it must maintain under this section available to Federal officials for inspection and copying.\n\n[Docket No. FAA-2006-24197, 72 FR 17019, Apr. 6, 2007, as amended by Docket No. FAA-2019-0229, Amdt. 437-3, 85 FR 79718, Dec. 10, 2020]",
+          "figures": []
+        },
+        {
+          "section": "437.89",
+          "title": "Pre-flight reporting",
+          "content": "(a) Not later than 30 days before each flight or series of flights conducted under an experimental permit, unless the Administrator agrees to a different time frame in accordance with § 404.15, a permittee must provide the FAA with the following information:\n\n(1) Any payload to be flown, including any payload operations during the flight,\n\n(2) When the flight or series of flights are planned,\n\n(3) The operating area for each flight, and\n\n(4) The planned maximum altitude for each flight.\n\n(b) Not later than 15 days before each permitted flight planned to reach greater than 150 km altitude, unless the Administrator agrees to a different time frame in accordance with § 404.15, a permittee must provide the FAA its planned trajectory for a collision avoidance analysis.\n\n[Docket No. FAA-2006-24197, 72 FR 17019, Apr. 6, 2007, as amended by Docket No. FAA-2019-0229, Amdt. 437-3, 85 FR 79718, Dec. 10, 2020]",
+          "figures": []
+        },
+        {
+          "section": "437.91",
+          "title": "For-hire prohibition",
+          "content": "No permittee may carry any property or human being for compensation or hire on a reusable suborbital vehicle.\n\n[Doc. No. FAA-2023-1656, Amdt. No. 437-4, 89 FR 76728, Sept. 19, 2024]",
+          "figures": []
+        },
+        {
+          "section": "437.93",
+          "title": "Compliance monitoring",
+          "content": "A permittee must allow access by, and cooperate with, federal officers or employees or other individuals authorized by the FAA to observe any activities of the permittee, or of its contractors or subcontractors, associated with the conduct of permitted activities.",
+          "figures": []
+        },
+        {
+          "section": "437.95",
+          "title": "Inspection of additional reusable suborbital vehicles",
+          "content": "A permittee may launch or reenter additional reusable suborbital vehicles of the same design under the permit after the FAA inspects each additional reusable suborbital vehicle.\n\n[Doc. No. FAA-2023-1656, Amdt. No. 437-4, 89 FR 76728, Sept. 19, 2024]",
+          "figures": []
+        }
+      ]
+    }
+  ],
+  "sections": [],
+  "appendices": [],
+  "isPilotIndex": false
+}

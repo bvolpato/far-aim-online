@@ -1,0 +1,33 @@
+{
+  "part": 402,
+  "title": "GENERAL REQUIREMENTS",
+  "cfr": "14 CFR Part 402",
+  "source": "eCFR",
+  "url": "https://www.ecfr.gov/current/title-14/part-402",
+  "subchapter": "A",
+  "subchapterTitle": "General",
+  "effectiveDate": "2026-07-24",
+  "subparts": [],
+  "sections": [
+    {
+      "section": "402.1",
+      "title": "Applicability and definitions",
+      "content": "(a) This part applies to any person subject to the requirements in subchapter C of this chapter.\n\n(b) For purposes of this part, \"document in any format\" includes documents (electronic or physical), and also other tangible items, such as data plates or marked parts.",
+      "figures": []
+    },
+    {
+      "section": "402.3",
+      "title": "Falsification, reproduction, alteration, or omission",
+      "content": "(a) No person may make or cause to be made any fraudulent or intentionally false statement in:\n\n(1) Any document in any format, submitted under any provision referenced in § 402.1 of this part, consisting of or related to any acceptance, application, approval, authorization, permit, license, waiver, record, report, or similar; or\n\n(2) Any document in any format that is kept, made, or used to show compliance with any requirement under the provisions referenced in § 402.1.\n\n(b) No person may make or cause to be made any production, reproduction, or alteration, for fraudulent purpose, of:\n\n(1) Any document in any format, submitted or granted under any provision referenced in § 402.1, consisting of or related to any acceptance, application, approval, authorization, permit, license, waiver, record, report, or similar; or\n\n(2) Any document in any format that is kept, made, or used to show compliance with any requirement under the provisions referenced in § 402.1.\n\n(c) No person may knowingly omit or cause to be omitted a material fact in:\n\n(1) Any document in any format, submitted under any provision referenced in § 402.1, consisting of or related to any acceptance, application, approval, authorization, permit, license, waiver, record, report, or similar; or\n\n(2) Any document in any format that is kept, made, or used to show compliance with any requirement under the provisions referenced in § 402.1.\n\n(d) The commission by any person of an act prohibited under paragraphs (a) through (c) of this section is a basis for:\n\n(1) Denying, suspending, modifying, revoking, rescinding, removing, or withdrawing any acceptance, application, approval, authorization, permit, license, waiver, or similar, issued or granted by the Administrator and held by that person; or\n\n(2) A civil penalty.",
+      "figures": []
+    },
+    {
+      "section": "402.5",
+      "title": "Incorrect statement or omission",
+      "content": "(a) The following may serve as a basis for suspending, modifying, revoking, rescinding, removing, withdrawing, or denying an acceptance, application, approval, authorization, permit, license, waiver, or similar, issued or granted by the Administrator:\n\n(1) An incorrect statement or omission of fact, by any person, in or from any document in any format, submitted under any provision referenced in § 402.1, that was material to the issuance, validity, or granting of that acceptance, application, approval, authorization, permit, license, waiver, or similar; or\n\n(2) An incorrect statement or omission of a material fact by any person, in or from any document in any format that is kept, made, or used to show compliance with any requirement under the provisions referenced in § 402.1, that was material to the issuance, validity, or granting of that acceptance, application, approval, authorization, permit, license, waiver, or similar.\n\n(b) [Reserved]",
+      "figures": []
+    }
+  ],
+  "appendices": [],
+  "isPilotIndex": false
+}

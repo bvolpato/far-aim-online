@@ -1,0 +1,37 @@
+{
+  "version": 1,
+  "id": "ac-20-69",
+  "number": "20-69",
+  "title": "Conspicuity of Aircraft Instrument Malfunction Indicators",
+  "status": "parsed",
+  "fetched": "2026-07-14",
+  "documentUrl": "https://www.faa.gov/regulations_policies/advisory_circulars/index.cfm/go/document.information/documentID/22028",
+  "pdfUrl": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_20-69.pdf",
+  "sha256": "32b13b2c411adfeb7cf099cf73f55c886dd54592a1e11eaf3bf0ad84cb12f7f3",
+  "pageCount": 5,
+  "wordCount": 633,
+  "ocrPageCount": 0,
+  "pages": [
+    {
+      "page": 1,
+      "text": "AC NO: 20- 69\n\nDATE: 5/14/7°\n\nADVISORY\n\nCIRCULAR\n\nDEPARTMENT OF TRANSPORTATION\n\nFEDERAL AVIATION ADMINISTRATION\n\nSUBJECT: CONSPICUITY OF AIRCRAFT INSTRUMENT MALFUNCTION INDICATORS\n\n1. PURPOSE. This advisory circular provides design guidance information on methods of improving conspicuity of malfunction indication devices. 2. BACKGROUND, Malfunction indication devices (warning flags or other visual devices to show when an instrument is not usable) are sometimes marginally conspicuous, The conspicuity of these devices may be improved considerably by the use of the design and installation param-eters discussed in this circular.\n\n3, .CONSPICUITY GUIDELINES.\n\na. ~- Conspicuity increases as the size of the warning flag or oth~r visual device increases in relation to the displayed infor-mation. Sufficient conspicuity may be p~ovided if the warning device or other visual device (1) Has an area of 3/32 square inch or more, with length and width of 3/16 inch or more, and (2) Covers 25% or more of the related calibration or fixed pointer, or has an area of 5% or more of the related face area. b. Contrast. A warning flag or other visual device that contrasts with its background is more easily discernible under cockpit lighting conditions likely to occur. It may be color.ed, shaped and marked so as to be distinccly different from the area color, shapes and markings. Evaluating the complete instrument in a panel having the same color, lighting and markings as the one in which it is to be installed would most clearly indicate its conspicuity. When panels or instruments, subsequent to their installation, are changed in color, lighting or markings, Initiated by: FS-130"
+    },
+    {
+      "page": 2,
+      "text": "Page 2 AC 20- 69 5/14/70 the combination should be reevaluated. Flags or shutters which sufficiently o~scure the displayed information may be conspicuous without contrast. c. Position, The most conspicuous location for a warning flag or other visual device is a position in line with or as close to the appro-priate reading index of the instrument as ~racticable, d. Unusual Indicators. Special designs which incorporate additional means for malfunction indication may provide sufficient conspicuity regardless of the size, contrast, and position of the flags. These include: (1) Dynamic or waving flags. (2) Waving pointers. (3) Retraction of pointers. (4) Indicating lights. (5) Audio warnings. 4. FACE AREA GUIDELINES. The FAA has found that warning flags or other visual devices provide good conspicuity when the following face areas are considered in determining their size under paragraph 3 of this advisory circular. a, Compass. Five percent or more of the area of the smallest outlined face area containing the calibration (See Figure 1). b, Attitude Indicator. Five percent of 1/2 the project-cl area of the instrument face which moves with respect to the panel (See Figure 2), c. VOR/LOC. Five percent of the area of the face which is the smallest outlined circular area containing the VOR/LOC information ( See Figure 3). d. Flight Director Indicators, For computer or command information, consider the same area as that for the attitude indicator (See Figure 2). Par 3"
+    },
+    {
+      "page": 3,
+      "text": "AC 20- 69 Page 3 5/14/70 e. Rectangular Areas. For calibrations which do not associate with a circular area, consider the area of the smallest rectangle which will include all of the pointers and calibrations (See Figure 4). NOTE: Figures referred to appear in Appendix 1. ?J;//4., i(/L._j. A'~ f:.. ~ Director, Flight Standards Service"
+    },
+    {
+      "page": 4,
+      "text": "Appendix l AC.. 2Q_- 69\n\n5/14(70 Page l Area =1Tr/ - 1rr2\n\nFigure 1 Compass Area\n\nArea =1T'r\n\nFigure 2 Attitude Gyro Area"
+    },
+    {
+      "page": 5,
+      "text": "Api:iendix 1 AC 20- 69 Page 2 5/14/70 • • • • • ~r -~· .. • • • Area = 1r r2 Figure 3 Cross Pointer Area r-7 I • I I I I I I t I • I I L..,._J I• --1 d1 GS Area= d1 d2 Figure 4 Rectangular Area"
+    }
+  ],
+  "extractedPageCount": 5
+}

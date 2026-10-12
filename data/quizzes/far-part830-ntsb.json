@@ -1,0 +1,273 @@
+{
+  "id": "far-part830-ntsb",
+  "title": "Part 830: NTSB Accident Reporting",
+  "description": "Master NTSB accident and incident notification and reporting requirements from 49 CFR Part 830",
+  "category": "FAR",
+  "part": 830,
+  "difficulty": "intermediate",
+  "targetCertificate": "All Pilots",
+  "questionCount": 20,
+  "passingScore": 70,
+  "questions": [
+    {
+      "id": "ntsb-001",
+      "question": "What is the definition of an aircraft accident?",
+      "options": [
+        "Any damage to an aircraft",
+        "An occurrence resulting in death, serious injury, or substantial damage between boarding and deplaning",
+        "Any incident requiring an emergency landing",
+        "Any event that grounds an aircraft"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Per 49 CFR 830.2, an aircraft accident is an occurrence associated with aircraft operation from boarding to deplaning that results in death, serious injury, or substantial damage.",
+      "reference": "49 CFR 830.2"
+    },
+    {
+      "id": "ntsb-002",
+      "question": "What is considered 'substantial damage' to an aircraft?",
+      "options": [
+        "Any damage requiring repair",
+        "Damage that adversely affects structural strength, performance, or flight characteristics requiring major repair or replacement",
+        "Damage exceeding $5,000",
+        "Any damage to the engine"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Per 49 CFR 830.2, substantial damage adversely affects structural strength, performance, or flight characteristics and requires major repair or component replacement.",
+      "reference": "49 CFR 830.2"
+    },
+    {
+      "id": "ntsb-003",
+      "question": "Which of the following is NOT considered substantial damage?",
+      "options": [
+        "Bent wing spar",
+        "Engine failure requiring engine replacement",
+        "Bent fairings or cowling",
+        "Damaged landing gear requiring major repair"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Per 49 CFR 830.2, damage to fairings, cowlings, small dents, or holes is specifically excluded from the definition of substantial damage.",
+      "reference": "49 CFR 830.2"
+    },
+    {
+      "id": "ntsb-004",
+      "question": "What is a 'serious injury' under Part 830?",
+      "options": [
+        "Any injury requiring medical attention",
+        "Hospitalization for more than 48 hours within 7 days, fractures (except simple), severe hemorrhage, nerve/muscle/tendon damage, internal organ injury, or burns",
+        "Any broken bone",
+        "Any injury preventing return to work"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Per 49 CFR 830.2, serious injury includes hospitalization >48 hours within 7 days, bone fractures (except simple nose/finger/toe), severe hemorrhage, nerve/muscle/tendon damage, internal organ injury, or 2nd/3rd degree burns >5% of body.",
+      "reference": "49 CFR 830.2"
+    },
+    {
+      "id": "ntsb-005",
+      "question": "When must the NTSB be notified of an aircraft accident?",
+      "options": [
+        "Within 24 hours",
+        "Immediately",
+        "Within 10 days",
+        "Within 48 hours"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Per 49 CFR 830.5, the operator must notify the NTSB immediately of any aircraft accident.",
+      "reference": "49 CFR 830.5"
+    },
+    {
+      "id": "ntsb-006",
+      "question": "Who is responsible for notifying the NTSB of an accident?",
+      "options": [
+        "The pilot in command only",
+        "The aircraft owner only",
+        "The operator of the aircraft",
+        "Air Traffic Control"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Per 49 CFR 830.5, the operator of an aircraft is responsible for immediately notifying the NTSB.",
+      "reference": "49 CFR 830.5"
+    },
+    {
+      "id": "ntsb-007",
+      "question": "Which incident requires immediate notification to the NTSB?",
+      "options": [
+        "A hard landing with no damage",
+        "Flight control system malfunction or failure",
+        "A go-around due to traffic",
+        "An aborted takeoff"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Per 49 CFR 830.5, flight control system malfunction or failure is one of the incidents requiring immediate NTSB notification.",
+      "reference": "49 CFR 830.5"
+    },
+    {
+      "id": "ntsb-008",
+      "question": "An in-flight fire requires:",
+      "options": [
+        "No notification unless there is damage",
+        "Immediate notification to the NTSB",
+        "Notification within 10 days",
+        "Notification only if passengers are aboard"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Per 49 CFR 830.5, in-flight fire is an incident requiring immediate NTSB notification.",
+      "reference": "49 CFR 830.5"
+    },
+    {
+      "id": "ntsb-009",
+      "question": "When is a written report required to be filed with the NTSB?",
+      "options": [
+        "Within 7 days of any accident",
+        "Within 10 days of an accident or when requested for an incident",
+        "Within 30 days of any incident",
+        "Only when requested by the FAA"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Per 49 CFR 830.15, a written report (NTSB Form 6120.1) must be filed within 10 days of an accident, or when requested for an incident.",
+      "reference": "49 CFR 830.15"
+    },
+    {
+      "id": "ntsb-010",
+      "question": "An aircraft overdue and believed to be involved in an accident requires:",
+      "options": [
+        "No notification until confirmed",
+        "Immediate notification to the NTSB",
+        "Notification within 24 hours",
+        "Notification to local police only"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Per 49 CFR 830.5, an aircraft that is overdue and believed to have been involved in an accident requires immediate NTSB notification.",
+      "reference": "49 CFR 830.5"
+    },
+    {
+      "id": "ntsb-011",
+      "question": "What information must be provided in the immediate notification to NTSB?",
+      "options": [
+        "Only the location of the accident",
+        "Type of aircraft, name of operator, names of crew, date/time, location, nature of accident, injuries, and damage",
+        "Only the pilot's name and certificate number",
+        "Only whether there were fatalities"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Per 49 CFR 830.6, immediate notification must include aircraft type, operator, crew names, date/time, location, last departure point, nature of accident, injuries, and damage extent.",
+      "reference": "49 CFR 830.6"
+    },
+    {
+      "id": "ntsb-012",
+      "question": "A mid-air collision requires:",
+      "options": [
+        "Notification only if there is injury or damage",
+        "Immediate notification to the NTSB",
+        "Notification within 10 days",
+        "No notification if both aircraft land safely"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Per 49 CFR 830.5, collision between aircraft in flight requires immediate NTSB notification, regardless of damage or injury.",
+      "reference": "49 CFR 830.5"
+    },
+    {
+      "id": "ntsb-013",
+      "question": "May aircraft wreckage be moved before the NTSB arrives?",
+      "options": [
+        "Yes, for any reason",
+        "No, never",
+        "Only to protect the wreckage, prevent further damage, or protect public",
+        "Only with FAA permission"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Per 49 CFR 830.10, wreckage may only be moved to protect it from further damage, remove persons, or protect the public from injury.",
+      "reference": "49 CFR 830.10"
+    },
+    {
+      "id": "ntsb-014",
+      "question": "If wreckage must be moved before NTSB investigation, what must be done?",
+      "options": [
+        "Nothing special required",
+        "Sketches, photographs, and notes must be made of original positions",
+        "Only verbal description needed",
+        "Wait for FAA approval"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Per 49 CFR 830.10, if wreckage must be moved, sketches, descriptive notes, and photographs must be made of the original positions and condition.",
+      "reference": "49 CFR 830.10"
+    },
+    {
+      "id": "ntsb-015",
+      "question": "Damage limited to the engine does NOT constitute substantial damage if:",
+      "options": [
+        "The engine can be repaired",
+        "The damage is limited to the engine, bent cowling, dented skin, small holes, or damage to rotor/prop blades, landing gear, etc.",
+        "The cost is under $10,000",
+        "The aircraft can still fly"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Per 49 CFR 830.2, engine damage, bent fairings/cowling, dented skin, small holes, and damage to landing gear, flaps, rotor/prop blades are specifically excluded from substantial damage.",
+      "reference": "49 CFR 830.2"
+    },
+    {
+      "id": "ntsb-016",
+      "question": "An in-flight engine failure requiring a forced landing is:",
+      "options": [
+        "An accident if there is substantial damage",
+        "Always an incident requiring immediate notification",
+        "Only reportable if there are injuries",
+        "Not reportable"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Engine failure alone is not an immediately reportable incident. It becomes an accident only if it results in death, serious injury, or substantial damage.",
+      "reference": "49 CFR 830.2, 830.5"
+    },
+    {
+      "id": "ntsb-017",
+      "question": "Release of all or a portion of a propeller blade from an aircraft requires:",
+      "options": [
+        "No notification",
+        "Immediate notification to the NTSB",
+        "Notification within 10 days",
+        "Notification only if damage occurs"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Per 49 CFR 830.5, release of all or a portion of a propeller blade from an aircraft is an incident requiring immediate NTSB notification.",
+      "reference": "49 CFR 830.5"
+    },
+    {
+      "id": "ntsb-018",
+      "question": "Failure of any internal turbine engine component resulting in escape of debris requires:",
+      "options": [
+        "Notification within 30 days",
+        "Immediate notification to the NTSB",
+        "Notification only if damage to aircraft",
+        "No notification"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Per 49 CFR 830.5, turbine engine failure with debris escape through the engine exhaust case or causing structural damage requires immediate NTSB notification.",
+      "reference": "49 CFR 830.5"
+    },
+    {
+      "id": "ntsb-019",
+      "question": "An aircraft evacuation using emergency egress systems requires:",
+      "options": [
+        "No notification",
+        "Immediate notification to the NTSB",
+        "Notification within 10 days",
+        "Notification only for air carriers"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Per 49 CFR 830.5, an aircraft evacuation using emergency egress systems is an incident requiring immediate NTSB notification.",
+      "reference": "49 CFR 830.5"
+    },
+    {
+      "id": "ntsb-020",
+      "question": "How can the NTSB be notified of an accident?",
+      "options": [
+        "Only by telephone",
+        "By the quickest available means",
+        "Only in writing",
+        "Only through the FAA"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Per 49 CFR 830.5, notification must be made by the most expeditious means available. This typically means telephone to the nearest NTSB office.",
+      "reference": "49 CFR 830.5"
+    }
+  ]
+}

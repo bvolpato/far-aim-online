@@ -1,0 +1,25 @@
+{
+  "version": 1,
+  "id": "ac-20-94a",
+  "number": "20-94A",
+  "title": "Digital Clock Installation in Aircraft",
+  "status": "parsed",
+  "fetched": "2026-07-14",
+  "documentUrl": "https://www.faa.gov/regulations_policies/advisory_circulars/index.cfm/go/document.information/documentID/74352",
+  "pdfUrl": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_20-94A.pdf",
+  "sha256": "96665ae96fafcd1148952fcbbaed275401201868150f3f376d9a1f9b8522d8ca",
+  "pageCount": 2,
+  "wordCount": 332,
+  "ocrPageCount": 0,
+  "pages": [
+    {
+      "page": 1,
+      "text": "Advisory\nCircular\nSubject: Digital Clock Installation in Date: 4/13/07 AC No: 20-94A\nAircraft Initiated by: AFS-350\n1. PURPOSE. This advisory circular (AC) provides guidelines for operating and installing\ndigital clocks in aircraft.\n2. CANCELLATION. AC 20-94A, Digital Clock Installation is Aircraft, dated March 4,\n1976, is canceled.\n3. RELATED REGULATION REFERENCES.\na. Civil Air Regulation (CAR) parts 3, 4a, 4b and 6.\nb. Title 14 of the Code of Federal Regulations (14 CFR) parts 23, 25, 27, 29, 43, 91, 121,\n125 and 135.\n4. BACKGROUND. To promote safety, our regulations should be sufficiently flexible to\npermit the use of more advanced timing devices equivalent to sweep-second hand clocks.\nInquiries from members of the aviation community and manufacturers have indicated a need for\ninformation concerning approval and installation of digital clocks on certificated aircraft.\n5. EQUIPMENT. Digital clocks may be approved for installation in certificated aircraft as\nspecified in § 91.205(a) in place of clocks with sweep-second hands.\n6. INSTALLATION CRITERIA.\na. A display of hours, minutes, and seconds may appear simultaneously or be individually\nselected.\nb. The installation should be accomplished in accordance with the current edition of\nAC 43.13-2, Acceptable Methods, Techniques and Practices, Aircraft Alterations. In addition,\nthe clock and airframe manufacturer’s instructions should be consulted.\nc. The clock function switch position identification and the digital readout should be\nreadable in all lighting conditions from the pilot’s normal position.\n7. TESTING. Each person performing the installation of a digital clock should complete\nadequate testing to assure that the original type certification of the aircraft has not been\ncompromised and that the aircraft is in airworthy condition."
+    },
+    {
+      "page": 2,
+      "text": "AC 20-94A 4/13/07\n\n8. INSTALLATION APPROVAL. The owner or operator will ensure that the digital clock installation was done in accordance with data either accepted or approved by the Administrator, based on the type certification of the aircraft.\n\nORIGINAL SIGNED BY\n\nCarol Giles for James J. Ballough Director, Flight Standards Service Page 2 Par 8"
+    }
+  ],
+  "extractedPageCount": 2
+}

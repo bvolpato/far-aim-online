@@ -1,0 +1,243 @@
+{
+  "version": 1,
+  "generatedAt": "2026-10-11",
+  "appVersion": "1.1.0",
+  "sources": [
+    {
+      "id": "far",
+      "label": "Federal Aviation Regulations",
+      "shortLabel": "FAR",
+      "source": "eCFR Titles 14 and 49",
+      "status": "Current snapshot",
+      "lastUpdated": "2026-08-13",
+      "itemCount": 213,
+      "sectionCount": 6531,
+      "coverage": "213 indexed parts, 200 content parts, 6,531 sections, 181 appendices and 591 figures",
+      "officialUrl": "https://www.ecfr.gov/current/title-14",
+      "notes": [
+        "Pilot index includes 83 FAR parts most relevant to pilot study.",
+        "Official eCFR figures are bundled for offline reading and included in search.",
+        "13 indexed entries are reserved or empty in the source snapshot."
+      ]
+    },
+    {
+      "id": "aim",
+      "label": "Aeronautical Information Manual",
+      "shortLabel": "AIM",
+      "source": "Federal Aviation Administration",
+      "status": "Current app snapshot",
+      "lastUpdated": "2026-07-09",
+      "itemCount": 12,
+      "sectionCount": 438,
+      "coverage": "11 core chapters, change notes, 5 appendices, 438 sections and 212 figures",
+      "officialUrl": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/",
+      "notes": [
+        "AIM chapters, change notes, appendices, figures and structured tables are bundled for offline reading.",
+        "Chapter links, table text and image captions are searchable in app surfaces."
+      ]
+    },
+    {
+      "id": "pcg",
+      "label": "Pilot/Controller Glossary",
+      "shortLabel": "PCG",
+      "source": "Federal Aviation Administration",
+      "status": "Current app snapshot",
+      "lastUpdated": "2026-07-09",
+      "itemCount": 1555,
+      "coverage": "1,555 terms",
+      "officialUrl": "https://www.faa.gov/air_traffic/publications/atpubs/pcg_html/",
+      "notes": [
+        "Glossary terms are included in global search.",
+        "Definitions are bundled with offline content."
+      ]
+    },
+    {
+      "id": "ac",
+      "label": "FAA Advisory Circulars",
+      "shortLabel": "ACs",
+      "source": "Federal Aviation Administration",
+      "status": "Current FAA AC archive with offline text",
+      "lastUpdated": "2026-10-11",
+      "itemCount": 779,
+      "coverage": "779 current advisory circulars, 778 official PDFs, 725 complete text extractions and 48 partial extractions",
+      "officialUrl": "https://www.faa.gov/regulations_policies/advisory_circulars",
+      "notes": [
+        "Metadata is generated from the FAA current Advisory Circular export and document list.",
+        "Searchable text is bundled for 773 records; 725 include every PDF page and 48 are marked partial.",
+        "Partial records direct readers to the official PDF for omitted pages, figures and exact layout.",
+        "FAA lists AC 8260-32F as current but its content is unavailable. Offline text for 5 additional ACs is omitted pending third-party republication review; their official FAA links remain available."
+      ]
+    },
+    {
+      "id": "study",
+      "label": "Study Content",
+      "shortLabel": "Study",
+      "source": "FAR/AIM Pro curriculum",
+      "status": "Current app snapshot",
+      "lastUpdated": "2026-06-07",
+      "itemCount": 7,
+      "questionCount": 500,
+      "cardCount": 570,
+      "coverage": "7 certificate paths, 18 quizzes, 500 questions, 17 flashcard decks, 570 cards",
+      "officialUrl": "/study",
+      "notes": [
+        "Study paths map regulations, quizzes, and flashcards by certificate goal.",
+        "Saved notes, highlights, and review status stay on device unless exported."
+      ]
+    }
+  ],
+  "changeWatch": [
+    {
+      "id": "far-2026-08-13",
+      "date": "2026-08-13",
+      "sourceId": "far",
+      "severity": "review",
+      "title": "FAR/eCFR snapshot refreshed",
+      "summary": "Full FAR content, including appendices and special regulations, was refreshed from eCFR. Saved FAR sections should be rechecked before operational use or checkride prep.",
+      "affectedReferences": [
+        "14 CFR Part 61",
+        "14 CFR Part 91",
+        "14 CFR Part 107",
+        "14 CFR Part 830",
+        "Part appendices and SFARs",
+        "Pilot FAR index"
+      ],
+      "actions": [
+        "Review saved FAR notes and highlights after this snapshot date.",
+        "Use the official eCFR link on source cards for final operational verification.",
+        "Re-run written-test weak areas tied to certificate paths."
+      ],
+      "link": "/far"
+    },
+    {
+      "id": "aim-pcg-2026-07-09",
+      "date": "2026-07-09",
+      "sourceId": "aim",
+      "severity": "review",
+      "title": "AIM and glossary snapshot refreshed",
+      "summary": "AIM chapters, change notes, appendices, figures, tables and Pilot/Controller Glossary definitions were refreshed from official FAA HTML publications.",
+      "affectedReferences": [
+        "AIM Chapters 1 through 11",
+        "AIM Explanation of Changes and Appendices 1 through 5",
+        "Pilot/Controller Glossary",
+        "AIM figures and tables",
+        "Global search"
+      ],
+      "actions": [
+        "Review saved AIM notes and highlights after this publication date.",
+        "Use official FAA links for final operational verification.",
+        "Recheck glossary terms used in current study plans."
+      ],
+      "link": "/aim"
+    },
+    {
+      "id": "ac-2026-10-11",
+      "date": "2026-10-11",
+      "sourceId": "ac",
+      "severity": "review",
+      "title": "Advisory Circular archive refreshed",
+      "summary": "The Advisory Circular library includes 779 current FAA records, 778 direct PDF links, 725 complete text extractions, and 48 clearly marked partial extractions.",
+      "affectedReferences": [
+        "FAA current Advisory Circular export",
+        "Aircraft certification and airworthiness ACs",
+        "Airport guidance ACs",
+        "Pilot certification and operations ACs",
+        "Maintenance and repair station ACs"
+      ],
+      "actions": [
+        "Search across full AC text from global search when FAR text references FAA guidance.",
+        "Use the FAA page link for the source-of-record document page.",
+        "Use official PDFs when figures, tables, or formatting affect interpretation."
+      ],
+      "link": "/advisory-circulars"
+    },
+    {
+      "id": "study-2026-06-07",
+      "date": "2026-06-07",
+      "sourceId": "study",
+      "severity": "workflow",
+      "title": "Portable study-pack workflow",
+      "summary": "Saved notes, highlights, recent reading, and search history can be exported for account-free backup and transfer.",
+      "affectedReferences": [
+        "Saved FAR sections",
+        "Saved AIM sections",
+        "Saved AC items",
+        "Recent reading",
+        "Search history"
+      ],
+      "actions": [
+        "Export a study pack before switching browsers, devices, or platforms.",
+        "Import a study pack on the Study page to merge newer saved items.",
+        "Native account sync remains a planned follow-up."
+      ],
+      "link": "/study"
+    }
+  ],
+  "releaseNotes": [
+    {
+      "date": "2026-08-13",
+      "title": "FAR figure and crawler fidelity",
+      "details": [
+        "Bundled 591 official eCFR figures across FAR sections and appendices for offline web, Android, and iOS readers.",
+        "Added searchable figure labels, image-only appendix support, validated image archives, and stale-asset cleanup.",
+        "Reduced full FAR refresh to one Title 14 API response plus focused Title 49 requests while retaining structural completeness checks."
+      ]
+    },
+    {
+      "date": "2026-08-12",
+      "title": "Official FAA reference refresh",
+      "details": [
+        "Updated all 213 indexed FAR parts from eCFR with 6,531 sections and 181 appendices.",
+        "Updated 11 core AIM chapters, change notes, 5 appendices, 438 sections, 212 figures and 117 structured tables.",
+        "Refreshed 1,555 Pilot/Controller Glossary terms and repaired malformed cross-reference labels.",
+        "Updated 780 current Advisory Circular records with 779 direct PDF links, 731 complete text extractions and 48 partial extractions.",
+        "Added ACs 20-199, 21-44B, 70/7460-1N, 91-26A, and 120-127; removed superseded ACs 21-44A, 70/7460-1M, and 91-26."
+      ]
+    },
+    {
+      "date": "2026-07-31",
+      "title": "FAR/eCFR reference refresh",
+      "details": [
+        "Updated all 213 indexed FAR parts from eCFR with 6,412 sections and 83 pilot-index parts."
+      ]
+    },
+    {
+      "date": "2026-07-10",
+      "title": "Official FAA reference refresh",
+      "details": [
+        "Updated all 213 indexed FAR parts from eCFR with 6,394 sections and 83 pilot-index parts.",
+        "Updated all 11 AIM chapters and 1,555 Pilot/Controller Glossary terms from official FAA HTML publications.",
+        "Updated 778 current Advisory Circular records with 777 direct PDF links and searchable offline text."
+      ]
+    },
+    {
+      "date": "2026-07-09",
+      "title": "AIM figure integrity hardening",
+      "details": [
+        "Bundled 207 unique visible AIM figures for offline reading.",
+        "Excluded blank image placeholders returned by FAA figure URLs.",
+        "Removed stale and duplicate figure assets from earlier snapshots."
+      ]
+    },
+    {
+      "date": "2026-06-07",
+      "title": "Study workflow hardening",
+      "details": [
+        "Saved sections, notes, highlights, review queue, quizzes, flashcards, and certificate paths verified across web build checks.",
+        "Added portable study-pack export/import for saved notes, recent reading, and search history across supported platforms.",
+        "Added adjustable reader text size and spacing for FAR/AIM references."
+      ]
+    }
+  ],
+  "limitations": [
+    "Offline app content is a dated snapshot, not a substitute for official FAA/eCFR sources in operational decision-making.",
+    "FAA document pages remain the source of record for Advisory Circular details and downloads.",
+    "Extracted Advisory Circular text may omit pages, figures or exact layout when a record is marked partial; use its official PDF for source fidelity.",
+    "Cloud sync is not included; use study-pack export/import to move notes between devices."
+  ],
+  "nextChecks": [
+    "Refresh AIM at next FAA publication cycle.",
+    "Refresh Advisory Circular export before each store release.",
+    "Add store listing analytics and Search Console verification before broad paid acquisition."
+  ]
+}

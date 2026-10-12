@@ -1,0 +1,33 @@
+{
+  "version": 1,
+  "id": "ac-150-5320-17a",
+  "number": "150/5320-17A",
+  "title": "Airfield Pavement Surface Evaluation and Rating Manuals",
+  "status": "parsed",
+  "fetched": "2026-07-14",
+  "documentUrl": "https://www.faa.gov/regulations_policies/advisory_circulars/index.cfm/go/document.information/documentID/1025586",
+  "pdfUrl": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/150-5320-17a.pdf",
+  "sha256": "ed3dc28ddf5f414aac5c2f1d6eb96674e9d84a5c0003eff08d030bf544a88a23",
+  "pageCount": 4,
+  "wordCount": 602,
+  "ocrPageCount": 0,
+  "pages": [
+    {
+      "page": 1,
+      "text": "U.S. Department of Transportation Federal Aviation Administration Advisory Circular\n\nSubject: Airfield Pavement Surface Evaluation and Rating Manuals Date: 9/10/2014 Initiated By: AAS-100 AC No: 150/5320-17A\n\n1 WHAT IS THE PURPOSE OF THIS ADVISORY CIRCULAR (AC)?\n\n1.1 This Advisory Circular (AC) provides limited guidance on understanding and rating the surface condition of flexible (asphalt) and rigid (concrete) airfield pavements. Appendices A and B of this AC include the Asphalt and Concrete Airfield Pavement Surface Evaluation and Rating Manuals (PASER Manuals). These manuals describe types and causes of distress and provide a rating system to visually rate pavement condition on a scale ranging from excellent to failed.\n\n1.2 The rating manuals, found in Appendices A and B, were produced for the FAA by Engineering Professional Development, College of Engineering, University of Wisconsin–Madison, and the rating system provided in the manuals were modeled after the University of Wisconsin’s Pavement Surface Evaluation and Rating System (PASER). ASTM D5340, Standard Test Method for Airport Condition Index Surveys, provides detailed guidance regarding inspection of airfield pavements condition and development of Pavement Condition Index (PCI) data.\n\n2 DOES THIS AC CANCEL ANY PRIOR ACS?\n\nThis AC cancels AC 150/5320-17, Airfield Pavement Surface Evaluation and Rating Manuals, dated July 12, 2004.\n\n3 TO WHOM DOES THIS AC APPLY?\n\n3.1 The manuals in Appendices A and B of this AC can help airport managers understand the surface condition of airfield pavements. The FAA recommends the information and procedures contained in the manuals for use by airport staff and consultants, directly or in combination with additional testing and data collection, only when it is not possible to complete a more detailed PCI survey as part of a more comprehensive pavement maintenance management program."
+    },
+    {
+      "page": 2,
+      "text": "3.2 The information in this AC is not intended to determine the need or timeliness for pavement rehabilitation projects. These decisions should be made as a result of more technical investigations that include a detailed PCI survey, as set forth in ASTM D 5340, Standard Test Method for Airport Pavement Condition Index Surveys. ASTM D 5340 is the recommended method for pavement management programs described in AC 150/5380-7, Airport Pavement Management Program.\n\n3.3 The FAA recommends the PASER manuals’ rating system as a source of information for rating pavements under the airport safety data program. The manuals will help provide a degree of uniformity to field observations made by individuals collecting data for the Airport Master Record (FAA Form 5010). Information derived from the manuals can be incorporated into the data element description for Surface Type/Condition (Data Element 33 of the National Airspace System Resources database). Use of the PASER manuals’ rating system, however, is not a mandatory source of this information.\n\n4 WHAT IS THE PURPOSE OF THIS REVISION?\n\nThis AC reissues the Asphalt and Concrete Airfield Pavement Surface Evaluation and Rating Manuals (PASER Manuals) in Appendices A and B. The manuals are unaltered.\n\n5 ARE THERE ANY RELATED DOCUMENTS?\n\n AC 150/5380-7, Airport Pavement Management Program  AC 150/5380-6, Guidelines and Procedures for Maintenance of Airport Pavements\n\n6 WHERE CAN I SEND COMMENTS OR SUGGESTIONS?\n\nSend comments or suggestions for improving this AC to: Manager, Airport Engineering Division Federal Aviation Administration 800 Independence Avenue SW Washington DC 20591\n\n7 HOW CAN I GET THIS AND OTHER FAA PUBLICATIONS?\n\nYou can view a list of all ACs at http://www.faa.gov/regulations_policies/advisory_circulars/. Michael J. O’Donnell Director of Airport Safety and Standards"
+    },
+    {
+      "page": 3,
+      "text": "Appendix A. Asphalt Airfield Pavement Surface Evaluation and Rating Manual"
+    },
+    {
+      "page": 4,
+      "text": "Appendix B. Concrete Airfield Pavement Surface Evaluation and Rating Manual"
+    }
+  ],
+  "extractedPageCount": 4
+}

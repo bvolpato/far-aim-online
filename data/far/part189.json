@@ -1,0 +1,33 @@
+{
+  "part": 189,
+  "title": "USE OF FEDERAL AVIATION ADMINISTRATION COMMUNICATIONS SYSTEM",
+  "cfr": "14 CFR Part 189",
+  "source": "eCFR",
+  "url": "https://www.ecfr.gov/current/title-14/part-189",
+  "subchapter": "K",
+  "subchapterTitle": "Administrative Regulations",
+  "effectiveDate": "2026-07-24",
+  "subparts": [],
+  "sections": [
+    {
+      "section": "189.1",
+      "title": "Scope",
+      "content": "This part describes the kinds of messages that may be transmitted or relayed by FAA Flight Service Stations.",
+      "figures": []
+    },
+    {
+      "section": "189.3",
+      "title": "Kinds of messages accepted or relayed",
+      "content": "(a) Flight Service Stations may accept for transmission over FAA communication systems any messages concerning international or overseas aircraft operations described in paragraphs (a) (1) through (6) of this section. In addition, Flight Service Stations may relay any message described in this section that was originally accepted for transmission at an FAA Flight Service Station outside the 48 contiguous States, or was received from a foreign station of the Aeronautical Fixed Telecommunications Network that, in normal routing, would require transit of the United States to reach an overseas address:\n\n(1) Distress messages and distress traffic.\n\n(2) Messages concerning the safety of human life.\n\n(3) Flight safety messages concerning-\n\n(i) Air traffic control, including-\n\n(A) Messages concerning aircraft in flight or about to depart;\n\n(B) Departure messages;\n\n(C) Flight plan departure messages;\n\n(D) Arrival messages;\n\n(E) Flight plan messages;\n\n(F) Flight notification messages;\n\n(G) Messages concerning flight cancellation; and\n\n(H) Messages concerning delayed departure;\n\n(ii) Position reports from aircraft;\n\n(iii) Messages originated by an aircraft operating agency of immediate concern to an aircraft in flight or about to depart; and\n\n(iv) Meteorological advice of immediate concern to an aircraft in flight or about to depart.\n\n(4) Meteorological messages concerning-\n\n(i) Meteorological forecasts;\n\n(ii) Meteorological observations exclusively; or\n\n(iii) Other meteorological information exchanged between meteorological offices.\n\n(5) Aeronautical administrative messages-\n\n(i) Concerning the operation or maintenance of facilities essential to the safety or regulatory of aircraft operation;\n\n(ii) Essential to efficient functioning of aeronautical telecommunications; or\n\n(iii) Between civil aviation authorities concerning aircraft operation.\n\n(6) Notices to airmen.\n\n(b) The following messages may only be relayed through the FAA communications systems:\n\n(1) Flight regularity messages-\n\n(i) Addressed to the point of intended landing and to not more than two other addressees in the general area of the route segment of the flight to which the message refers, containing information required for weight and balance computation and remarks essential to the rapid unloading of the aircraft;\n\n(ii) Concerning changes, taking effect within 72 hours, in aircraft operating schedules;\n\n(iii) Concerning the servicing of aircraft en route or scheduled to depart within 48 hours;\n\n(iv) Concerning changes in the collective requirements for passengers, crew, or cargo of aircraft en route or about to depart, if the changes are caused by unavoidable deviations from normal operating schedules and are necessary for flight regularity;\n\n(v) Concerning non-routine landings to be made by aircraft en route or about to depart;\n\n(vi) Concerning parts or materials urgently needed to operate aircraft en route or scheduled to depart within 48 hours; or\n\n(vii) Concerning pre-flight arrangement of air navigation services and, in the case of non-scheduled or irregular operations, operational servicing of aircraft scheduled to depart within 48 hours.\n\n(2) Messages originated by and addressed to aircraft operating agencies or their representatives that directly bear on the efficient and economic conduct or day to day operations, if adequate non-United States communications facilities are not available and the messages concern-\n\n(i) Matter described in paragraph (b) (1) of this section, but not meeting the time limitations described in paragraph (b) (1) of this section;\n\n(ii) Aircraft parts, equipment, or supplies, air navigation or communications, or essential ground facilities;\n\n(iii) Train or hotel reservations for passengers or employees;\n\n(iv) Lost baggage or personal effects;\n\n(v) Tickets or cargo shipments and payment therefore;\n\n(vi) Location of passengers and cargo;\n\n(vii) New or revised passenger or cargo rates;\n\n(viii) Crew assignments and similar operations personnel matters taking effect within 7 days;\n\n(ix) Post flight reports for record purposes;\n\n(x) Publicity and special handling regarding dignitaries; or\n\n(xi) Reservations, when originated by aircraft operating agencies to secure space required in transport aircraft.",
+      "figures": []
+    },
+    {
+      "section": "189.5",
+      "title": "Limitation of liability",
+      "content": "The United States is not liable for any omission, error, or delay in transmitting or relaying, or for any failure to transmit or relay, any message accepted for transmission or relayed under this part, even if the omission, error, delay, or failure to transmit or relay is caused by the negligence of an employee of the United States.",
+      "figures": []
+    }
+  ],
+  "appendices": [],
+  "isPilotIndex": true
+}

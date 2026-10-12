@@ -1,0 +1,468 @@
+{
+  "id": "aim-chapter2-lighting-markings",
+  "title": "Airport Lighting, Markings & Signs Quiz",
+  "description": "Test your knowledge of airport lighting systems, visual aids, runway/taxiway markings, and airport signs from AIM Chapter 2",
+  "category": "AIM",
+  "chapter": 2,
+  "difficulty": "intermediate",
+  "targetCertificate": "Private/Instrument Pilot",
+  "questionCount": 35,
+  "passingScore": 70,
+  "questions": [
+    {
+      "id": "ltg-001",
+      "question": "What is the purpose of Approach Light Systems (ALS)?",
+      "options": [
+        "To identify the runway threshold from a distance",
+        "To provide transition from instrument flight to visual flight for landing",
+        "To illuminate the runway surface",
+        "To indicate wind direction"
+      ],
+      "correctAnswer": 1,
+      "explanation": "ALS provide the basic means to transition from instrument flight to visual flight for landing. They extend from the threshold into the approach area.",
+      "reference": "AIM 2-1-1"
+    },
+    {
+      "id": "ltg-002",
+      "question": "How far do approach light systems extend for precision instrument runways?",
+      "options": [
+        "1,400-1,500 feet",
+        "1,000-1,200 feet",
+        "2,400-3,000 feet",
+        "3,500-4,000 feet"
+      ],
+      "correctAnswer": 2,
+      "explanation": "ALS extend 2,400-3,000 feet for precision instrument runways and 1,400-1,500 feet for nonprecision instrument runways.",
+      "reference": "AIM 2-1-1"
+    },
+    {
+      "id": "ltg-003",
+      "question": "When using a 2-bar VASI, what indication shows you are on the correct glidepath?",
+      "options": [
+        "All lights red",
+        "All lights white",
+        "Far bar red, near bar white",
+        "Far bar white, near bar red"
+      ],
+      "correctAnswer": 2,
+      "explanation": "On glidepath: red over white (far bar red, near bar white). All red = below glidepath. All white = above glidepath. 'Red over white, you're alright.'",
+      "reference": "AIM 2-1-2"
+    },
+    {
+      "id": "ltg-004",
+      "question": "What is the safe obstruction clearance area for VASI?",
+      "options": [
+        "±5 degrees of centerline to 2 NM",
+        "±10 degrees of centerline to 4 NM",
+        "±15 degrees of centerline to 6 NM",
+        "Full width of runway to 3 NM"
+      ],
+      "correctAnswer": 1,
+      "explanation": "VASI provides safe obstruction clearance within ±10 degrees of the extended runway centerline and to 4 NM from the runway threshold.",
+      "reference": "AIM 2-1-2"
+    },
+    {
+      "id": "ltg-005",
+      "question": "What is the purpose of a 3-bar VASI system?",
+      "options": [
+        "To provide two visual glidepaths for high cockpit aircraft",
+        "To increase visibility range",
+        "To provide better lateral guidance",
+        "To accommodate faster aircraft"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Three-bar VASI provides two visual glidepaths. The upper glidepath (middle and far bars) is ¼ degree higher, intended for high cockpit aircraft to ensure sufficient threshold crossing height.",
+      "reference": "AIM 2-1-2"
+    },
+    {
+      "id": "ltg-006",
+      "question": "What are REILs and what is their purpose?",
+      "options": [
+        "Red Edge Identification Lights - mark runway edges",
+        "Runway End Identifier Lights - rapid identification of approach end",
+        "Rotating End Illumination Lights - visibility enhancement",
+        "Reflective Edge Indicator Lights - night visibility"
+      ],
+      "correctAnswer": 1,
+      "explanation": "REILs (Runway End Identifier Lights) are synchronized flashing lights on each side of the runway threshold that provide rapid and positive identification of the approach end.",
+      "reference": "AIM 2-1-3"
+    },
+    {
+      "id": "ltg-007",
+      "question": "What color are runway edge lights on the last 2,000 feet (or half the runway) of an instrument runway?",
+      "options": [
+        "White",
+        "Red",
+        "Yellow (caution zone)",
+        "Green"
+      ],
+      "correctAnswer": 2,
+      "explanation": "On instrument runways, yellow replaces white on the last 2,000 feet or half the runway length (whichever is less) to form a caution zone for landings.",
+      "reference": "AIM 2-1-4"
+    },
+    {
+      "id": "ltg-008",
+      "question": "What color do runway end lights emit toward the runway vs. Outward?",
+      "options": [
+        "White toward runway, green outward",
+        "Red toward runway, green outward",
+        "Yellow toward runway, white outward",
+        "Green toward runway, red outward"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Runway end lights emit red toward the runway (indicating end to departing aircraft) and green outward (indicating threshold to landing aircraft).",
+      "reference": "AIM 2-1-4"
+    },
+    {
+      "id": "ltg-009",
+      "question": "What is the color sequence of runway centerline lights starting from the landing threshold?",
+      "options": [
+        "White the entire length",
+        "White, then alternating red/white last 2,000 ft, all red last 1,000 ft",
+        "White, then yellow last 3,000 ft",
+        "Green at start, white middle, red at end"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Centerline lights are white until the last 3,000 feet. Then white alternates with red for the next 2,000 feet, and the last 1,000 feet are all red.",
+      "reference": "AIM 2-1-5"
+    },
+    {
+      "id": "ltg-010",
+      "question": "What is the RWSL (Runway Status Light) system?",
+      "options": [
+        "Manual lights controlled by ATC",
+        "Fully automated system indicating when it's unsafe to enter/cross/takeoff/land on runway",
+        "Weather-based lighting system",
+        "Emergency-only lighting system"
+      ],
+      "correctAnswer": 1,
+      "explanation": "RWSL is a fully automated system that provides runway status information using REL and THL lights. It does NOT substitute for ATC clearance.",
+      "reference": "AIM 2-1-6"
+    },
+    {
+      "id": "ltg-011",
+      "question": "What do illuminated red Runway Entrance Lights (REL) indicate?",
+      "options": [
+        "Cleared to enter runway",
+        "Runway closed",
+        "High speed traffic on runway or aircraft on final approach",
+        "ILS in use"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Red REL lights indicate there is high-speed traffic on the runway or an aircraft on final approach within the activation area. Do not enter the runway.",
+      "reference": "AIM 2-1-6"
+    },
+    {
+      "id": "ltg-012",
+      "question": "How does a pilot control airport lighting at an uncontrolled field?",
+      "options": [
+        "Request from FSS by telephone",
+        "Key the aircraft microphone a specific number of times",
+        "Use a dedicated lighting frequency",
+        "Automatic sensors activate lights"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Pilot-controlled lighting uses microphone keying: 7 clicks = highest intensity, 5 clicks = medium, 3 clicks = lowest. Lights stay on for 15 minutes.",
+      "reference": "AIM 2-1-8"
+    },
+    {
+      "id": "ltg-013",
+      "question": "How long do pilot-controlled lights remain illuminated after activation?",
+      "options": [
+        "5 minutes",
+        "10 minutes",
+        "15 minutes",
+        "30 minutes"
+      ],
+      "correctAnswer": 2,
+      "explanation": "All pilot-controlled lighting is illuminated for 15 minutes from the most recent time of activation.",
+      "reference": "AIM 2-1-8"
+    },
+    {
+      "id": "ltg-014",
+      "question": "What does a rotating airport beacon with alternating white and green indicate?",
+      "options": [
+        "Water airport",
+        "Heliport",
+        "Lighted land airport",
+        "Military airport"
+      ],
+      "correctAnswer": 2,
+      "explanation": "White and Green alternating = lighted land airport. White and Yellow = water airport. Green, Yellow, White = heliport. Military = dual-peaked white flashes between green.",
+      "reference": "AIM 2-1-9"
+    },
+    {
+      "id": "ltg-015",
+      "question": "What might the operation of an airport beacon during daylight hours indicate?",
+      "options": [
+        "The airport is closed",
+        "Ground visibility less than 3 miles and/or ceiling less than 1,000 feet",
+        "Military operations in progress",
+        "Night operations only"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Daytime beacon operation often indicates weather below VFR minimums (visibility <3 SM and/or ceiling <1,000 ft). However, pilots should not rely solely on this - check weather directly.",
+      "reference": "AIM 2-1-9"
+    },
+    {
+      "id": "ltg-016",
+      "question": "What color are taxiway edge lights?",
+      "options": [
+        "White",
+        "Yellow",
+        "Blue",
+        "Green"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Taxiway edge lights emit blue light. Taxiway centerline lights are green.",
+      "reference": "AIM 2-1-10"
+    },
+    {
+      "id": "ltg-017",
+      "question": "What are clearance bar lights and what color are they?",
+      "options": [
+        "Blue lights marking taxiway edges",
+        "Three in-pavement steady yellow lights at holding positions",
+        "Flashing red lights at runway intersections",
+        "Green lights marking taxiway centerlines"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Clearance bar lights are three in-pavement steady-burning yellow lights at holding positions to increase conspicuity in low visibility conditions.",
+      "reference": "AIM 2-1-10"
+    },
+    {
+      "id": "ltg-018",
+      "question": "What should a pilot NEVER do regarding stop bar lights?",
+      "options": [
+        "Request them to be turned on",
+        "Taxi past them when cleared by ATC",
+        "Cross a red illuminated stop bar, even if cleared by ATC",
+        "Report them inoperative"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Pilots should NEVER cross a red illuminated stop bar, even if an ATC clearance has been given. The lights indicate it is unsafe.",
+      "reference": "AIM 2-1-10"
+    },
+    {
+      "id": "ltg-019",
+      "question": "What color are runway markings?",
+      "options": [
+        "Yellow",
+        "White",
+        "Orange",
+        "Black"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Runway markings are white. Taxiway markings, holding positions, and closed/hazardous area markings are yellow.",
+      "reference": "AIM 2-3-2"
+    },
+    {
+      "id": "ltg-020",
+      "question": "What are the three types of runway markings?",
+      "options": [
+        "Basic, standard, and precision",
+        "Visual, nonprecision instrument, and precision instrument",
+        "Day, night, and all-weather",
+        "Primary, secondary, and emergency"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The three types are: visual (basic), nonprecision instrument, and precision instrument. Each has progressively more marking elements.",
+      "reference": "AIM 2-3-3"
+    },
+    {
+      "id": "ltg-021",
+      "question": "Where is the runway aiming point marking located?",
+      "options": [
+        "At the threshold",
+        "At the midpoint of the runway",
+        "Approximately 1,000 feet from the landing threshold",
+        "At the departure end"
+      ],
+      "correctAnswer": 2,
+      "explanation": "The aiming point marking (two broad white stripes) is located approximately 1,000 feet from the landing threshold and serves as a visual aiming point for landing.",
+      "reference": "AIM 2-3-3"
+    },
+    {
+      "id": "ltg-022",
+      "question": "What do touchdown zone markings indicate in terms of distance?",
+      "options": [
+        "Total runway length",
+        "Distance in 500-foot increments from threshold",
+        "Distance to departure end",
+        "Distance to midpoint"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Touchdown zone markings are coded to provide distance information in 500-foot increments, using groups of 1, 2, and 3 rectangular bars.",
+      "reference": "AIM 2-3-3"
+    },
+    {
+      "id": "ltg-023",
+      "question": "What does an enhanced taxiway centerline (parallel dashed yellow lines) indicate?",
+      "options": [
+        "High-speed taxiway",
+        "Approaching a runway holding position marking",
+        "ILS critical area",
+        "Construction zone"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Enhanced taxiway centerline (parallel yellow dashes on either side of centerline) warns pilots they are approaching a runway holding position marking and should prepare to stop.",
+      "reference": "AIM 2-3-4"
+    },
+    {
+      "id": "ltg-024",
+      "question": "What do runway holding position markings look like?",
+      "options": [
+        "Single solid yellow line",
+        "Dashed white line",
+        "Four yellow lines: two solid and two dashed",
+        "Chevron pattern"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Runway holding position markings consist of four yellow lines (two solid, two dashed). The solid lines are always on the side where aircraft must hold.",
+      "reference": "AIM 2-3-5"
+    },
+    {
+      "id": "ltg-025",
+      "question": "When is an aircraft 'clear of the runway' after landing?",
+      "options": [
+        "When the nose wheel crosses the holding position marking",
+        "When the main gear crosses the runway edge",
+        "When all parts of the aircraft have crossed the holding position marking",
+        "When the pilot reports clear"
+      ],
+      "correctAnswer": 2,
+      "explanation": "An aircraft is not clear of the runway until ALL parts of the aircraft have crossed the applicable holding position marking.",
+      "reference": "AIM 2-3-5"
+    },
+    {
+      "id": "ltg-026",
+      "question": "What does a mandatory instruction sign look like?",
+      "options": [
+        "Yellow background with black inscription",
+        "Red background with white inscription",
+        "Black background with yellow inscription",
+        "White background with red inscription"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Mandatory instruction signs have a red background with white inscription. They denote entrance to a runway/critical area or areas prohibited from entering.",
+      "reference": "AIM 2-3-8"
+    },
+    {
+      "id": "ltg-027",
+      "question": "What does a location sign look like?",
+      "options": [
+        "Red background with white inscription",
+        "Yellow background with black inscription",
+        "Black background with yellow inscription and border",
+        "Green background with white inscription"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Location signs have a black background with yellow inscription and yellow border. They identify which taxiway or runway you are currently on.",
+      "reference": "AIM 2-3-9"
+    },
+    {
+      "id": "ltg-028",
+      "question": "What does a direction sign look like?",
+      "options": [
+        "Yellow background with black inscription",
+        "Black background with yellow inscription",
+        "Red background with white inscription",
+        "White background with black inscription"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Direction signs have a yellow background with black inscription. They show designations of intersecting taxiways with arrows indicating direction.",
+      "reference": "AIM 2-3-10"
+    },
+    {
+      "id": "ltg-029",
+      "question": "What do runway distance remaining signs indicate?",
+      "options": [
+        "Distance to nearest exit",
+        "Distance from threshold",
+        "Remaining runway in thousands of feet",
+        "Total runway length"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Runway distance remaining signs (black background, white numbers) indicate remaining runway in thousands of feet. A '3' means 3,000 feet remaining.",
+      "reference": "AIM 2-3-13"
+    },
+    {
+      "id": "ltg-030",
+      "question": "What does EMAS stand for and what is its purpose?",
+      "options": [
+        "Emergency Marking Alert System - alerts to hazards",
+        "Engineered Materials Arresting System - stops aircraft overruns",
+        "Electronic Monitoring and Alerting System - monitors runway",
+        "Enhanced Movement Area Signage - improves navigation"
+      ],
+      "correctAnswer": 1,
+      "explanation": "EMAS (Engineered Materials Arresting System) is located beyond runway ends and is designed to crush under aircraft weight to safely stop overruns. Marked with yellow chevrons.",
+      "reference": "AIM 2-3-14"
+    },
+    {
+      "id": "ltg-031",
+      "question": "What is the normal VASI glidepath angle?",
+      "options": [
+        "2 degrees",
+        "3 degrees",
+        "4 degrees",
+        "5 degrees"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The normal VASI glidepath is set at 3 degrees. Some locations may have angles up to 4.5 degrees for obstacle clearance.",
+      "reference": "AIM 2-1-2"
+    },
+    {
+      "id": "ltg-032",
+      "question": "How far is VASI visible during day vs night?",
+      "options": [
+        "1-2 miles day, 5-10 miles night",
+        "3-5 miles day, 20+ miles night",
+        "5-10 miles day, 10-15 miles night",
+        "Same distance day and night"
+      ],
+      "correctAnswer": 1,
+      "explanation": "VASI lights are visible from 3-5 miles during the day and up to 20 miles or more at night.",
+      "reference": "AIM 2-1-2"
+    },
+    {
+      "id": "ltg-033",
+      "question": "What is a SIDA at an airport?",
+      "options": [
+        "Standard Instrument Departure Area",
+        "Security Identification Display Area",
+        "Special Interest Designated Airspace",
+        "Surface Inspection and Detection Area"
+      ],
+      "correctAnswer": 1,
+      "explanation": "SIDA (Security Identification Display Area) is a limited access area requiring proper badge/identification. Movement without authorization is prohibited.",
+      "reference": "AIM 2-3-15"
+    },
+    {
+      "id": "ltg-034",
+      "question": "What color are taxiway centerline lead-off/lead-on lights near a runway?",
+      "options": [
+        "All green",
+        "All yellow",
+        "Alternating green and yellow",
+        "All blue"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Taxiway centerline lead-off/lead-on lights alternate green and yellow, warning that you are within the runway environment or ILS critical area.",
+      "reference": "AIM 2-1-5"
+    },
+    {
+      "id": "ltg-035",
+      "question": "Which lights indicate the Land and Hold Short point when LAHSO is in effect?",
+      "options": [
+        "Steady red lights",
+        "Flashing yellow lights",
+        "Pulsing white lights",
+        "Steady green lights"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Land and Hold Short Lights are pulsing white lights installed across the runway at the hold short point. They are on only when LAHSO is in effect.",
+      "reference": "AIM 2-1-5"
+    }
+  ]
+}

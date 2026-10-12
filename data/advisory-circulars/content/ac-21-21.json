@@ -1,0 +1,29 @@
+{
+  "version": 1,
+  "id": "ac-21-21",
+  "number": "21-21",
+  "title": "Use of Automobile Gasoline in Agricultural Aircraft",
+  "status": "parsed",
+  "fetched": "2026-07-14",
+  "documentUrl": "https://www.faa.gov/regulations_policies/advisory_circulars/index.cfm/go/document.information/documentID/22248",
+  "pdfUrl": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_21-21.pdf",
+  "sha256": "aa234836b5ca2ee801a95712c486a883f3c311f7155103a67c27fb70276dc703",
+  "pageCount": 3,
+  "wordCount": 848,
+  "ocrPageCount": 0,
+  "pages": [
+    {
+      "page": 1,
+      "text": "0 Advisory U.S. Department\nFederal Aviation\nof Tronsportat10'1 Circular\nAdministration\nSubject: USE OF AU'TOM)BILE G\\SOLINE IN Date: 8 /24 / 84 AC No: 21-21\nAGRICULTURAL AIRCRAIT Initialed by: AWS-200 Change:\n1. PURPOSE. This advisory circular (AC) sets forth acceptable conditions\nunder which autarobile gasoline (autogas) may be used in restricted category\nagricultural aircraft p::,.,.rered by Pratt and Whitney R-985 and R-1340 radial\nengines, and being used in agricultural q:>erations under Federal Aviation\nRegulations (FAR) Part 137.\n2. CANCELLATION. AC 21-8, Aircraft Airworthiness: Restricted Category:\nCertification of Aircraft with Uncertificated or Altered Engines or Propellers,\ndated May 21, 1969, is canc~led.\n3. REFERENCES. FAR 21.25; Civil Air Regulations (CAR) Part 8; Civil\nAeronautics Manual (CAM) 8.10; and AC 20-33B, Technical Information Regarding\nCivil Aeronautics Manuals 1, 3, 4a, 4b, 5, 6, 7, 8, 9, 13, and 14.\n4. BACKGROUND. Under current FM policy in AC 20-33B and CAM 8.10-4(d)(2), it\nis permissible to use uncertificated engines in restricted category a;;ricult~ral\naircraft, under operating limitations in addition to those prescribed in\nFAR 91.39. The use of autogas in a type certificated engin~, without FAA\napproval, w::,ul~ be an unapproved irajor alteration of the type design, rendering\nit, in effect, tote decertificated. This AC provides guidance and cnnditions\nacceptable to the FAA under which restricted category ~ricultural aircraft may\nbe cperated if autogas is to be used i~ certain type certificated engines t~at\nmay be installed in such aircraft.\n5. APPLICABILITY. The provisions of this AC awly ooly to restricted category\naircraft equipped with Pratt and Whitney R-985 or R-1340 engines t~at are used\nin agricultural aircraft cperations under FAR Part 137.\n6. PID:EDURES. Any ~rson operating an aircraft that meets the applicability\nprovision of paragraph 5 of this AC may use autogas for operation of that\naircraft under the following ronditions:\na. An FM Fom 337, Major Repair and Alteration, must te rompleted for each\naircraft, including identification of the p:,werplant in Item 4 of the form,\nand indicating \"alteration\" in Item 5.\nb. On the reverse side of the FAA.Form 337, in Item 8, the following\nentries must te made, with each of the blank spaces filled in as ~ropriate:"
+    },
+    {
+      "page": 2,
+      "text": "AC 21-21 8/24/84 \"The procedures and nodif ications rovered by this FM Form 337 have teen found acceptable to the Administrator in Advisory Circular 21-21, Use of Autorrobile Gasoline in Agricultural Aircraft, for the p.1qx>se of oompliance with FAR 43.13. The aircraft and engine identiried in Itans land 4 on this form may be approved for return to service by a person authorized by FAR 43. 7 when the following conditions have been rret: A. The following placard is displayed en the instrument panel: NOTICE: 'IliIS AIR:RAIT Mi\\Y BE OPERATED WI'Ili AI.J'IOM:JITVE FUEL OR MIXTURES OF A!J'IDM:JI'IVE AND AVIATirn FUEL. B. The following placards are displayed in the rockpit in clear view of the pilot: THIS AIRCRAIT IS l'DT ELIGIBLE FOR AN APPIUJAL\n\nFOR OPERATION OJER \\.XN8ESTED AREAS UNDER FAR 137. 51\n\nOR FOR A WZ\\IVER OF LIMITATIOOS IN FAR 91.39(d). EN3INE SERIAL NUMBER --c---- INSTALLED IN 'IHIS AIRCRAIT AND OPERATED WI'lli AU'Il»UI'IVE TYPE FUEL IS Nor ELIGIBLE FOR INSTALI..ATIOO IN PN AIRCRAFT HAVIN8 A STANDARD AIIM'lRI'HINESS CERTIFICATE lNI'IL IT HAS\n\nBEEN SUBJECTED 'IO A MA.TOR CNERHAUL.\n\nC. The following placard is permanently affixed in the specificat/ section of the engine logb:x>k(s):\n\nTHIS EN:;INE, SERIAL NUMBER ____, HAS BEEN\n\nOPERATED WI'lli AU'IDM)TIVE 1YPE FUEL AND IS ITTI'\n\nELIGIBLE FOR INSTALLATIOO IN A NJRMAL !JI.TEGORY\n\nAIRCRAIT HAVI!~ A STANDARD AifW:>RI'HINE.5S CERI'IF'IO\\TE UNI'IL IT HAS BEEN SUBJECTED 'IO A MAJOR OvERHAUL. D. A placard is cdded at or near the fuel filler rover to reaa:· AUID ruEL - 87 OL\"\"TANE MINIMUM. E. The autarotive fuel used cbes rot contain alcoh61 additives. F. The following certification rrust b2 cnrnpleted by a certificated rilot properly rated for the aircraft (reference FAR 137.19): I certify this aircraft/engine combination has been flight checked through all anticipated agricultural type maneuvers using 87 octane (R+M/2 rnethoo) autorrotive fuel and the engine has performed without evidence of malfunctioning and within the limitations specified in the Type Certificate Data Sheets: Aircraft TC ~. ___ : Engine TC N'.:>. ___ Pilot Name ___________ Certificate No. Par 6"
+    },
+    {
+      "page": 3,
+      "text": "8/24/84 AC 21-21 G. A copy of this FAA Form 337 must be affixed in a prominent place in the logtook for the aircraft and in the logtxx>k for the engine, in addition to the maintenance record entries required by FAR 43 .9. H. This approval will be invalidated if the engine identified in Item 4 is rerroved from the aircraft and replaced with another engine. If the replacenent engine is to be q:>erated with aut03as, conditions A through G must re net for the replacement engine and a rew FAA Form 337 must be mrrpleted. 11 Director of Airworthiness Par 6"
+    }
+  ],
+  "extractedPageCount": 3
+}

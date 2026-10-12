@@ -1,0 +1,190 @@
+{
+  "id": "far-part43-maintenance",
+  "title": "Part 43: Aircraft Maintenance",
+  "description": "Maintenance requirements, inspections, preventive maintenance, and airworthiness essentials",
+  "category": "FAR",
+  "part": 43,
+  "cardCount": 30,
+  "cards": [
+    {
+      "id": "fcmaint-001",
+      "front": "Annual Inspection",
+      "back": "Required: Every 12 calendar months\n\nWho performs: A&P with IA or repair station\n\nApplies to: All aircraft (except those on progressive inspection)",
+      "reference": "14 CFR 91.409"
+    },
+    {
+      "id": "fcmaint-002",
+      "front": "100-Hour Inspection",
+      "back": "Required when:\n• Carrying passengers for hire\n• Flight instruction for hire\n\nWho performs: Any A&P or repair station\n\nMay exceed by 10 hours to reach inspection facility (counts against next interval)",
+      "reference": "14 CFR 91.409"
+    },
+    {
+      "id": "fcmaint-003",
+      "front": "Annual vs 100-Hour Comparison",
+      "back": "Same scope of inspection!\n\nDifferences:\n• Annual: 12 calendar months, requires IA\n• 100-hour: 100 tach hours, any A&P\n\n100-hour does NOT substitute for annual\nAnnual CAN reset 100-hour clock",
+      "reference": "14 CFR 91.409, 43.3"
+    },
+    {
+      "id": "fcmaint-004",
+      "front": "Preventive Maintenance - Who May Perform",
+      "back": "Certificated pilots may perform preventive maintenance on aircraft they OWN or OPERATE\n\nLimited to items in Part 43 Appendix A\n\nMust make maintenance record entry",
+      "reference": "14 CFR 43.3(g)"
+    },
+    {
+      "id": "fcmaint-005",
+      "front": "Preventive Maintenance Examples (Pilot Can Do)",
+      "back": "• Replenishing hydraulic fluid\n• Replacing/servicing landing gear tires\n• Replacing safety wire/cotter pins\n• Servicing landing gear struts (adding air/oil)\n• Replacing bulbs/reflectors/lenses\n• Cleaning/replacing fuel/oil filters\n• Replacing batteries\n• Lubricating per manufacturer",
+      "reference": "14 CFR Part 43 Appendix A"
+    },
+    {
+      "id": "fcmaint-006",
+      "front": "NOT Preventive Maintenance (Requires A&P)",
+      "back": "• Replacing brake pads/linings\n• Replacing spark plugs\n• Adjusting control cables\n• Replacing fuel lines\n• Any engine work beyond oil change\n• Propeller repairs\n• Structural repairs",
+      "reference": "14 CFR Part 43 Appendix A"
+    },
+    {
+      "id": "fcmaint-007",
+      "front": "Maintenance Record Entry Requirements",
+      "back": "Must include:\n1. Description of work performed\n2. Date of completion\n3. Signature of person performing work\n4. Certificate number\n5. Certificate type (A&P, IA, etc.)\n\nFor preventive maintenance: Pilot signs with certificate number",
+      "reference": "14 CFR 43.9"
+    },
+    {
+      "id": "fcmaint-008",
+      "front": "Airworthiness Directive (AD)",
+      "back": "Legally enforceable FAA rule\n\nIssued when: Unsafe condition exists and likely exists in other products of same design\n\nCompliance: Mandatory-owner/operator responsible\n\nTypes: Emergency, immediately adopted, standard",
+      "reference": "14 CFR Part 39"
+    },
+    {
+      "id": "fcmaint-009",
+      "front": "AD Compliance Responsibility",
+      "back": "Owner/Operator is responsible for:\n• Knowing applicable ADs\n• Ensuring compliance\n• Maintaining AD compliance records\n\nCheck: FAA AD database before flight/purchase",
+      "reference": "14 CFR 91.403"
+    },
+    {
+      "id": "fcmaint-010",
+      "front": "Major Repair Definition",
+      "back": "Repair that might appreciably affect:\n• Weight and balance\n• Structural strength\n• Performance\n• Powerplant operation\n• Flight characteristics\n• Other airworthiness qualities\n\nRequires: Form 337, IA approval",
+      "reference": "14 CFR 43.2"
+    },
+    {
+      "id": "fcmaint-011",
+      "front": "Major Alteration Definition",
+      "back": "Alteration not listed in specs that might appreciably affect:\n• Weight and balance\n• Structural strength\n• Performance\n• Powerplant operation\n• Flight characteristics\n\nRequires: Form 337, IA or repair station approval",
+      "reference": "14 CFR 43.2"
+    },
+    {
+      "id": "fcmaint-012",
+      "front": "FAA Form 337",
+      "back": "Major Repair and Alteration form\n\nRequired for:\n• Major repairs\n• Major alterations\n\nCopies:\n• One to FAA\n• One stays with aircraft records",
+      "reference": "14 CFR 43.9"
+    },
+    {
+      "id": "fcmaint-013",
+      "front": "Return to Service",
+      "back": "Approval that aircraft is airworthy after maintenance\n\nWho may approve:\n• Annual: IA or repair station only\n• 100-hour: Any A&P or repair station\n• Preventive maintenance: Person who did work\n• Major repair/alteration: IA or repair station",
+      "reference": "14 CFR 43.5, 43.7"
+    },
+    {
+      "id": "fcmaint-014",
+      "front": "Airworthiness Definition",
+      "back": "Aircraft is airworthy when:\n1. Conforms to type certificate (or approved alterations)\n2. In condition for safe operation\n\nBoth conditions must be met!",
+      "reference": "14 CFR 3.5"
+    },
+    {
+      "id": "fcmaint-015",
+      "front": "ARROW Documents",
+      "back": "Must be on board for flight:\n\nA - Airworthiness certificate\nR - Registration certificate\nR - Radio station license (international only)\nO - Operating limitations (POH/AFM)\nW - Weight and balance data",
+      "reference": "14 CFR 91.203, 91.9"
+    },
+    {
+      "id": "fcmaint-016",
+      "front": "Transponder Inspection",
+      "back": "Required: Every 24 calendar months\n\nWho performs: Certified repair station or manufacturer\n\nMust be done before operating in airspace requiring transponder",
+      "reference": "14 CFR 91.413"
+    },
+    {
+      "id": "fcmaint-017",
+      "front": "Altimeter/Static System Inspection",
+      "back": "Required: Every 24 calendar months for IFR operations\n\nIncludes: Altimeter, encoding altimeter, static system\n\nWho performs: Certified repair station or manufacturer",
+      "reference": "14 CFR 91.411"
+    },
+    {
+      "id": "fcmaint-018",
+      "front": "ELT Inspection & Battery",
+      "back": "Inspection: Every 12 calendar months\n\nBattery replacement when:\n• 50% of useful life expires\n• After 1 hour cumulative use\n\nNew expiration date must be marked on outside",
+      "reference": "14 CFR 91.207"
+    },
+    {
+      "id": "fcmaint-019",
+      "front": "VOR Check Requirements",
+      "back": "Required: Every 30 days for IFR flight\n\nMethods:\n• VOT: ±4°\n• Ground checkpoint: ±4°\n• Airborne checkpoint: ±6°\n• Dual VOR check: ±4° between receivers\n\nLog: Date, place, bearing error, signature",
+      "reference": "14 CFR 91.171"
+    },
+    {
+      "id": "fcmaint-020",
+      "front": "Maintenance Record Retention",
+      "back": "Keep until:\n• Work is repeated or superseded, OR\n• 1 year after work performed\n\nPermanent records (keep with aircraft):\n• Total time in service\n• Current status of inspections\n• Current status of ADs\n• Major alterations/repairs",
+      "reference": "14 CFR 91.417"
+    },
+    {
+      "id": "fcmaint-021",
+      "front": "Progressive Inspection Program",
+      "back": "Alternative to annual/100-hour\n\nBenefits:\n• Spreads inspection over time\n• Good for high-utilization aircraft\n\nRequirements:\n• FAA-approved program\n• Complete cycle = annual equivalent\n• Detailed schedule required",
+      "reference": "14 CFR 91.409(d)"
+    },
+    {
+      "id": "fcmaint-022",
+      "front": "Special Flight Permit (Ferry Permit)",
+      "back": "Allows flight of aircraft not meeting airworthiness requirements\n\nPurposes:\n• Flying to repair facility\n• Delivering/exporting\n• Production flight testing\n• Evacuating from danger\n\nIssued by: FSDO or DAR",
+      "reference": "14 CFR 21.197"
+    },
+    {
+      "id": "fcmaint-023",
+      "front": "Owner/Operator Responsibilities",
+      "back": "Per 91.403, owner/operator responsible for:\n• Maintaining airworthy condition\n• AD compliance\n• Making aircraft available for inspection\n\nMay not operate unless maintained per Part 43",
+      "reference": "14 CFR 91.403"
+    },
+    {
+      "id": "fcmaint-024",
+      "front": "A&P Mechanic Certificate",
+      "back": "A&P = Airframe and Powerplant\n\nMay perform:\n• Maintenance\n• Preventive maintenance\n• 100-hour inspections\n\nMay NOT perform:\n• Annual inspections (needs IA)\n• Major repairs without supervision",
+      "reference": "14 CFR Part 65"
+    },
+    {
+      "id": "fcmaint-025",
+      "front": "Inspection Authorization (IA)",
+      "back": "Additional authorization for A&P mechanics\n\nMay perform:\n• Annual inspections\n• Approve major repairs/alterations\n• Approve return to service after annual\n\nRequires: Experience, testing, renewal every 2 years",
+      "reference": "14 CFR 65.91-65.95"
+    },
+    {
+      "id": "fcmaint-026",
+      "front": "Inoperative Equipment Procedures",
+      "back": "Without MEL, per 91.213(d):\n\n1. Is it required by type certificate?\n2. Is it required by 91.205?\n3. Is it required by AD?\n4. Is it required by other Part 91 rule?\n\nIf NO to all: Placard inoperative, deactivate or remove",
+      "reference": "14 CFR 91.213(d)"
+    },
+    {
+      "id": "fcmaint-027",
+      "front": "Minimum Equipment List (MEL)",
+      "back": "FAA-approved document for specific aircraft\n\nAllows operation with certain equipment inoperative\n\nMore flexible than 91.213(d)\n\nCommon for: Commercial operators, complex aircraft",
+      "reference": "14 CFR 91.213(a)"
+    },
+    {
+      "id": "fcmaint-028",
+      "front": "Type Certificate Data Sheet (TCDS)",
+      "back": "FAA document containing:\n• Aircraft specifications\n• Operating limitations\n• Required equipment\n• Weight and balance data\n• Approved modifications\n\nAircraft must conform to TCDS to be airworthy",
+      "reference": "14 CFR Part 21"
+    },
+    {
+      "id": "fcmaint-029",
+      "front": "Supplemental Type Certificate (STC)",
+      "back": "Approval for modification to type-certificated aircraft\n\nExamples:\n• Engine upgrade\n• Avionics installation\n• Performance modifications\n\nBecomes part of aircraft's approved configuration",
+      "reference": "14 CFR 21.115"
+    },
+    {
+      "id": "fcmaint-030",
+      "front": "Preflight Inspection Responsibility",
+      "back": "PIC is responsible for determining aircraft is airworthy before flight\n\nIncludes:\n• Preflight inspection\n• Checking maintenance records\n• Verifying required inspections current\n• Checking for applicable ADs\n\nDon't fly if in doubt!",
+      "reference": "14 CFR 91.7, 91.103"
+    }
+  ]
+}

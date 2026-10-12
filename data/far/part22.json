@@ -1,0 +1,147 @@
+{
+  "part": 22,
+  "title": "DESIGN, PRODUCTION, AND AIRWORTHINESS REQUIREMENTS FOR NON-TYPE CERTIFICATED AIRCRAFT",
+  "cfr": "14 CFR Part 22",
+  "source": "eCFR",
+  "url": "https://www.ecfr.gov/current/title-14/part-22",
+  "subchapter": "C",
+  "subchapterTitle": "Aircraft",
+  "effectiveDate": "2026-07-24",
+  "subparts": [
+    {
+      "subpart": "A",
+      "title": "General",
+      "sections": [
+        {
+          "section": "22.1",
+          "title": "Applicability",
+          "content": "(a) Except as provided in paragraph (c) of this section, this part prescribes design, production, and airworthiness requirements for the issue of special airworthiness certificates, and changes to those certificates, for non-type certificated aircraft.\n\n(b) Each person who applies under part 21 of this chapter for such a certificate or change must comply with the applicable requirements in this part.\n\n(c) This part does not apply to:\n\n(1) Aircraft issued an experimental airworthiness certificate, except for light-sport category kit-built aircraft;\n\n(2) Aircraft operating under a special flight permit; or\n\n(3) Unmanned aircraft.",
+          "figures": []
+        }
+      ]
+    },
+    {
+      "subpart": "B",
+      "title": "Light-Sport Category Aircraft",
+      "sections": [
+        {
+          "section": "22.100",
+          "title": "Eligibility",
+          "content": "(a) To be eligible for a special airworthiness certificate in the light-sport category issued under § 21.190 of this chapter, an aircraft must-\n\n(1) Except for an airplane, have a maximum seating capacity of not more than two persons, including the pilot.\n\n(2) For an airplane, have a maximum seating capacity of not more than four persons, including the pilot.\n\n(3) Have a maximum stalling speed or minimum steady flight speed at the aircraft's maximum takeoff weight and most critical center of gravity of 61 knots CAS VS0 for an airplane, 45 knots CAS VS0 for a glider, or 45 knots CAS without the use of lift-enhancing devices, VS1, for a weight-shift-control aircraft.\n\n(4) Have a maximum speed of 250 knots CAS in level flight with maximum continuous power (VH) under standard atmospheric conditions at sea level.\n\n(5) Have a non-pressurized cabin, if equipped with a cabin.\n\n(6) Not have been previously issued a standard, primary, restricted, limited, or provisional airworthiness certificate, or an equivalent airworthiness certificate by a foreign civil aviation authority.\n\n(7) Meet the design, production, and airworthiness requirements specified in this subpart using a means of compliance consisting of consensus standards accepted or approved by the Federal Aviation Administration (FAA).\n\n(8) Be inspected by the FAA and found to be in a condition for safe operation.\n\n(b) For aircraft manufactured outside the United States, an applicant must also provide the FAA evidence that-\n\n(1) The aircraft was manufactured in a country with which the United States has a Bilateral Airworthiness Agreement concerning airplanes or Bilateral Aviation Safety Agreement with associated Implementation Procedures for Airworthiness concerning airplanes, or an equivalent airworthiness agreement; and\n\n(2) The aircraft is eligible for an airworthiness certificate, flight authorization, or other similar certification in its country of manufacture.",
+          "figures": []
+        },
+        {
+          "section": "22.105",
+          "title": "Control and maneuverability",
+          "content": "A light-sport category aircraft must-\n\n(a) Be consistently and predictably controllable and maneuverable at all loading conditions during all phases of flight; and,\n\n(b) Not have a tendency to inadvertently depart controlled flight or require exceptional piloting skill, alertness, or strength.",
+          "figures": []
+        },
+        {
+          "section": "22.110",
+          "title": "Structural integrity",
+          "content": "(a) The design and construction of the aircraft must provide sufficient structural integrity to enable safe operations within the aircraft's flight envelope throughout the aircraft's intended life cycle; and\n\n(b) The aircraft must be able to withstand all likely flight and ground loads, including towing and any aerial work operation, when operated within its operational limits.",
+          "figures": []
+        },
+        {
+          "section": "22.115",
+          "title": "Powered-lift: minimum safe speed",
+          "content": "To be certificated in the light-sport category, powered-lift must have a known minimum safe speed for each flight condition encountered in normal operations, including applicable sources of lift and phases of flight, to maintain controlled safe flight. The minimum safe speed determination must account for the most adverse conditions for each configuration.",
+          "figures": []
+        },
+        {
+          "section": "22.125",
+          "title": "Environmental conditions",
+          "content": "The aircraft must have design characteristics to safely accommodate all environmental conditions likely to be encountered during its intended operations.",
+          "figures": []
+        },
+        {
+          "section": "22.130",
+          "title": "Suitability and durability of materials",
+          "content": "The suitability and durability of materials used for products and articles must account for the likely environmental conditions expected in service, the failure of which could prevent continued safe flight and landing.",
+          "figures": []
+        },
+        {
+          "section": "22.135",
+          "title": "Instruments and equipment",
+          "content": "(a) The aircraft must have all instruments and equipment necessary for safe flight, to include those instruments necessary for systems control and management.\n\n(b) The aircraft must include all instruments and equipment required for the kinds of operations for which it is authorized.\n\n(c) The aircraft's, instruments, equipment, and systems must perform their intended functions under all operating conditions specified in the pilot's operating handbook. Likely failure or malfunction of equipment or a system must not cause loss of control of the aircraft. Equipment and systems must be considered separately and in relation to each other.",
+          "figures": []
+        },
+        {
+          "section": "22.140",
+          "title": "Controls and displays",
+          "content": "The aircraft must be designed and constructed so that the pilot has the ability to reach controls and displays in a manner that provides for smooth and positive operation of the aircraft.",
+          "figures": []
+        },
+        {
+          "section": "22.145",
+          "title": "Propulsion system",
+          "content": "The aircraft propulsion system must-\n\n(a) Have controls that are simple, intuitive, and not confusing;\n\n(b) Be designed so that the failure of any product or article does not prevent continued safe flight and landing or, if continued safe flight and landing cannot be ensured, the hazard has been minimized;\n\n(c) Not exceed safe operating limits under normal operating conditions; and\n\n(d) Have the necessary reliability, durability, and endurance for safe flight without failure, malfunction, excessive wear, or other anomalies.",
+          "figures": []
+        },
+        {
+          "section": "22.150",
+          "title": "Fuel system",
+          "content": "The aircraft fuel system must-\n\n(a) Provide a means to safely remove or isolate the fuel stored in the system from the aircraft; and\n\n(b) Be designed to retain fuel under all likely operating conditions.",
+          "figures": []
+        },
+        {
+          "section": "22.155",
+          "title": "Fire protection",
+          "content": "The hazards of fuel or electrical fires following a survivable emergency landing must be minimized by incorporating design features to sustain static and dynamic deceleration loads without structural damage to fuel or electrical system components or their attachments that would leak fuel to an ignition source or allow electrical power to become an ignition source.",
+          "figures": []
+        },
+        {
+          "section": "22.160",
+          "title": "Visibility",
+          "content": "The aircraft must be designed and constructed so that the pilot has-\n\n(a) Sufficient visibility of controls, instruments, equipment, and placards; and\n\n(b) Sufficient visibility outside the aircraft necessary to conduct safe aircraft operations.",
+          "figures": []
+        },
+        {
+          "section": "22.165",
+          "title": "Emergency evacuation",
+          "content": "(a) The aircraft must be designed and constructed-\n\n(1) So that all occupants have the ability to rapidly conduct an emergency evacuation; and\n\n(2) Except as provided in paragraph (b) of this section, to account for conditions likely to occur following an emergency landing.\n\n(b) Aircraft not intended for operation on water are not required to account for ditching in an emergency landing.",
+          "figures": []
+        },
+        {
+          "section": "22.170",
+          "title": "Placards and markings",
+          "content": "The aircraft must display all placards and instrument markings necessary for safe operation and occupant warning. Markings or graphics must clearly indicate the function of each control, other than primary flight controls.",
+          "figures": []
+        },
+        {
+          "section": "22.175",
+          "title": "[Reserved]",
+          "content": "",
+          "figures": []
+        },
+        {
+          "section": "22.180",
+          "title": "Special requirements for light-sport category aircraft with simplified flight controls",
+          "content": "An aircraft that meets the following requirements may be designated by the manufacturer as having simplified flight controls-\n\n(a) The aircraft's flight path and available power are automated, allowing the pilot to only intervene without the availability of primary flight controls;\n\n(b) The aircraft is designed to inherently prevent loss of control under likely circumstances, regardless of pilot input; and\n\n(c) The aircraft has a means to enable the pilot to quickly and safely discontinue or alter the flight and prevent any inadvertent activation of these functions.",
+          "figures": []
+        },
+        {
+          "section": "22.185",
+          "title": "Quality assurance system",
+          "content": "The aircraft must have been designed, produced, and tested under a documented quality assurance system to ensure each product and article conforms to its design and is in a condition for safe operation.",
+          "figures": []
+        },
+        {
+          "section": "22.190",
+          "title": "Finding of compliance by trained compliance staff",
+          "content": "The aircraft must have been found compliant with the provisions of the applicable FAA-accepted or approved consensus standards by individuals who have been trained on determining compliance with those consensus standards.",
+          "figures": []
+        },
+        {
+          "section": "22.195",
+          "title": "Ground and flight testing",
+          "content": "The aircraft must have been ground and flight tested under documented production acceptance test procedures to-\n\n(a) Verify aircraft performance data;\n\n(b) Ensure the aircraft has no hazardous operating characteristics;\n\n(c) Ensure the aircraft is in a condition for safe operation; and\n\n(d) Ensure the aircraft can safely conduct towing and any aerial work operation designated by the manufacturer.",
+          "figures": []
+        }
+      ]
+    }
+  ],
+  "sections": [],
+  "appendices": [],
+  "isPilotIndex": false
+}

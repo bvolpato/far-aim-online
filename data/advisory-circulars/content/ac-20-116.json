@@ -1,0 +1,25 @@
+{
+  "version": 1,
+  "id": "ac-20-116",
+  "number": "20-116",
+  "title": "Marking Aircraft Fuel Filler Openings with Color Coded Decals",
+  "status": "parsed",
+  "fetched": "2026-07-14",
+  "documentUrl": "https://www.faa.gov/regulations_policies/advisory_circulars/index.cfm/go/document.information/documentID/22123",
+  "pdfUrl": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_20-116.pdf",
+  "sha256": "ad767103612bed0309f3f89f56a62c68de635753ef292c270b5782739adc6dc6",
+  "pageCount": 2,
+  "wordCount": 617,
+  "ocrPageCount": 0,
+  "pages": [
+    {
+      "page": 1,
+      "text": "Advisory us.Deparrmenr of Federal Transportation Aviation Circular Administration\n\nSubject: MARKIN:; AIRCRAFT FUEL FILLER Date: 9/17/82 ACNo: 20-116\n\nOPENINGS WITH <DLOR OJDED DECALS Initiated by: A:-lS-130 Change:\n\n1. PURPOSE. 'Ibis Mvisocy Circular {AC) discusses the conditions under which color coaed decals may be used t.o a:mply with the requirements in .Parts 23, 25, 27, and 29 of the Federal Aviation Regulations for marking fuel filler openings 2. Related FAR Sections and Reading Material. Federal Aviation Regulations (FAR'S}§§ 23.1557, 25.1557, 27.1557, 29.1557, and AC 20-43C, Aircraft Fuel Control, dated October 20, 1976.\n\n3. BACKGROOND.\n\na. Aviation accident statistics cxxnpiled by the National Transportation Safety Ebard (NTSB) and the FM :indicate that a nunt>er of accidents have been caused by the use of improper fuel. M:>st of these accidents occur in general aviation q;,erations and have been related t.o misfueling with a fuel not interx:led for use with that airplane. Misfueling a reciprocating engine p:>wered aircraft with turbine fuel has had catastrophic results with engine failure occurring during the critical takeoff phase of flight. Several major fatal accidents occurred when transfX)rt airplanes were fueled with the wrong kind of fuel and crashed i.rrrnediately after takeoff. b. 'Ihe Gener.al Aviation Manufacturers Association (GAMA) has proposed a method t.o minimize the misfueling of general aviation aircraft. A specifi-cation for a rolor o:xled decal has been developed {GAMA. Specification No. 3 issued on July 1, 1982) to provide a standard for decals t.o be affixed crljacent to aircraft fuel filler J:X)rts t.o alert setvicing personnel of the proper fuel to be used~ 'Ihis is part of an OtJerall scheme of oolor matching decals at aircraft fuel filler i;orts and fuel filler nozzles. 4. DISUJSSION. Color o:xled decals reeting the material requirements, test cond1t1ons, and application and rerroval requirements for decals in GAMA Specification No. 3 are acceptable for use on small airplanes, transport airplanes and helicopters under the following conditions: a. 'Ihe oolor o:xled decal rray be affixed t.o any certificated airplane or helicoptec as an crlditional fuel filler marking as long as the requirl:!d fuel filler markings approved for that airplane or helicopter are retained and the information on the rolor o:xjed decal <'bes not ronflict wit~ the information prOlfided under the certification basis."
+    },
+    {
+      "page": 2,
+      "text": "AC 20-116 9/17/82 b. 'Ihe color coded decal may be used to show compliance with the fuel filler marking requirements of FAR'S§§ 23.1557, 25.1557, 27.1557, and 29.1557 in the certification of reciprocating engine p:,wered airplanes and helicopters prOV'ided that the decal contains all of the information required by the regulations applied during the airplane or helicopter certification. Additional information such as \"useable fuel capacity\" may be required under the airplane or helicopter certification basis. Any information that is required to supplement the information on the rolor coded decal ITUst be marked in an acceptable manner at or near the filler a,ver. 'I.be term \"Avgas\" on the decal is considered to be equivalent to the word \"Fuel'' specified in the requlations. c. 'I.be color coded decal may be used tc supplement the markings provided to show compliance with the fuel filler marking requirements of FAR's §S 23.1557, 25.1557, 27.1557, and 29.1557 in the certification of turbine engine p:,wered airplanes and helicopters. Such information as fuel designation, fuel additives, and maximum r=ennissable fueling and defueling pressures which may be required by the applicable regulations, must be marked in an acceptable manner at or near the filler cover. M. c. Bear Director of Airworthiness"
+    }
+  ],
+  "extractedPageCount": 2
+}

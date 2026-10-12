@@ -1,0 +1,335 @@
+{
+  "quizzes": [
+    {
+      "id": "aim-chapter1-navigation",
+      "title": "Air Navigation Systems Quiz",
+      "description": "Test your knowledge of navigation aids, GPS, ILS, and Performance-Based Navigation from AIM Chapter 1",
+      "category": "AIM",
+      "chapter": 1,
+      "difficulty": "intermediate",
+      "targetCertificate": "Private/Instrument Pilot",
+      "questionCount": 30,
+      "passingScore": 70
+    },
+    {
+      "id": "aim-chapter10-helicopter",
+      "title": "Helicopter Operations Quiz",
+      "description": "Test your knowledge of helicopter IFR operations, special procedures, and safety from AIM Chapter 10",
+      "category": "AIM",
+      "chapter": 10,
+      "difficulty": "intermediate",
+      "targetCertificate": "Helicopter Pilot",
+      "questionCount": 15,
+      "passingScore": 70
+    },
+    {
+      "id": "aim-chapter11-uas",
+      "title": "UAS (Drone) Operations Quiz",
+      "description": "Test your knowledge of UAS/drone regulations, airspace access, and safe operations from AIM Chapter 11",
+      "category": "AIM",
+      "chapter": 11,
+      "difficulty": "intermediate",
+      "targetCertificate": "Remote Pilot",
+      "questionCount": 20,
+      "passingScore": 70
+    },
+    {
+      "id": "aim-chapter2-lighting-markings",
+      "title": "Airport Lighting, Markings & Signs Quiz",
+      "description": "Test your knowledge of airport lighting systems, visual aids, runway/taxiway markings, and airport signs from AIM Chapter 2",
+      "category": "AIM",
+      "chapter": 2,
+      "difficulty": "intermediate",
+      "targetCertificate": "Private/Instrument Pilot",
+      "questionCount": 35,
+      "passingScore": 70
+    },
+    {
+      "id": "aim-chapter4-atc",
+      "title": "Air Traffic Control Services & Communications Quiz",
+      "description": "Test your knowledge of ATC services, radio communications, transponder operations, and flight plans from AIM Chapter 4",
+      "category": "AIM",
+      "chapter": 4,
+      "difficulty": "intermediate",
+      "targetCertificate": "Private/Instrument Pilot",
+      "questionCount": 30,
+      "passingScore": 70
+    },
+    {
+      "id": "aim-chapter5-procedures",
+      "title": "Air Traffic Procedures Quiz",
+      "description": "Test your knowledge of preflight planning, flight plans, NOTAMs, departure/arrival procedures, and instrument approaches from AIM Chapter 5",
+      "category": "AIM",
+      "chapter": 5,
+      "difficulty": "intermediate",
+      "targetCertificate": "Private/Instrument Pilot",
+      "questionCount": 30,
+      "passingScore": 70
+    },
+    {
+      "id": "aim-chapter6-emergency",
+      "title": "Emergency Procedures Quiz",
+      "description": "Test your knowledge of emergency procedures, distress communications, ELTs, and survival techniques from AIM Chapter 6",
+      "category": "AIM",
+      "chapter": 6,
+      "difficulty": "intermediate",
+      "targetCertificate": "Private/Instrument Pilot",
+      "questionCount": 25,
+      "passingScore": 70
+    },
+    {
+      "id": "aim-chapter7-safety",
+      "title": "Safety of Flight - Weather Quiz",
+      "description": "Test your knowledge of aviation weather services, hazards, and safety considerations from AIM Chapter 7",
+      "category": "AIM",
+      "chapter": 7,
+      "difficulty": "intermediate",
+      "targetCertificate": "Private/Instrument Pilot",
+      "questionCount": 30,
+      "passingScore": 70
+    },
+    {
+      "id": "aim-chapter8-medical",
+      "title": "Medical Facts for Pilots Quiz",
+      "description": "Test your knowledge of aeromedical factors, physiological hazards, and fitness for flight from AIM Chapter 8",
+      "category": "AIM",
+      "chapter": 8,
+      "difficulty": "intermediate",
+      "targetCertificate": "Private/Instrument Pilot",
+      "questionCount": 25,
+      "passingScore": 70
+    },
+    {
+      "id": "aim-chapter9-charts",
+      "title": "Aeronautical Charts Quiz",
+      "description": "Test your knowledge of aeronautical charts, symbols, and publications from AIM Chapter 9",
+      "category": "AIM",
+      "chapter": 9,
+      "difficulty": "intermediate",
+      "targetCertificate": "Private Pilot",
+      "questionCount": 20,
+      "passingScore": 70
+    },
+    {
+      "id": "airspace-quiz",
+      "title": "Airspace Knowledge Quiz",
+      "description": "Test your knowledge of US airspace classifications and requirements",
+      "category": "AIM",
+      "difficulty": "intermediate",
+      "targetCertificate": "All Pilots",
+      "questionCount": 25,
+      "passingScore": 70
+    },
+    {
+      "id": "far-part43-maintenance",
+      "title": "Part 43: Aircraft Maintenance",
+      "description": "Learn maintenance requirements, inspections, preventive maintenance, and airworthiness from 14 CFR Part 43",
+      "category": "FAR",
+      "part": 43,
+      "difficulty": "intermediate",
+      "targetCertificate": "Private/Commercial Pilot",
+      "questionCount": 25,
+      "passingScore": 70
+    },
+    {
+      "id": "far-part61-certification",
+      "title": "Part 61: Pilot Certification",
+      "description": "Master the requirements for pilot certificates, ratings, privileges, and currency from 14 CFR Part 61",
+      "category": "FAR",
+      "part": 61,
+      "difficulty": "intermediate",
+      "targetCertificate": "Private/Commercial Pilot",
+      "questionCount": 35,
+      "passingScore": 70
+    },
+    {
+      "id": "far-part67-medical",
+      "title": "Part 67 & 68: Medical Standards",
+      "description": "Understand medical certificate classes, requirements, durations, and BasicMed from 14 CFR Parts 67 and 68",
+      "category": "FAR",
+      "part": 67,
+      "difficulty": "intermediate",
+      "targetCertificate": "All Pilots",
+      "questionCount": 25,
+      "passingScore": 70
+    },
+    {
+      "id": "far-part830-ntsb",
+      "title": "Part 830: NTSB Accident Reporting",
+      "description": "Master NTSB accident and incident notification and reporting requirements from 49 CFR Part 830",
+      "category": "FAR",
+      "part": 830,
+      "difficulty": "intermediate",
+      "targetCertificate": "All Pilots",
+      "questionCount": 20,
+      "passingScore": 70
+    },
+    {
+      "id": "far-part91-operating-rules",
+      "title": "Part 91: General Operating Rules",
+      "description": "Master VFR/IFR flight rules, weather minimums, equipment requirements, and operating limitations from 14 CFR Part 91",
+      "category": "FAR",
+      "part": 91,
+      "difficulty": "intermediate",
+      "targetCertificate": "Private/Instrument Pilot",
+      "questionCount": 40,
+      "passingScore": 70
+    },
+    {
+      "id": "hard-challenge",
+      "title": "The Ultimate Pilot Challenge",
+      "description": "Test your mastery of the most difficult FAR and AIM regulations. Only for the experts!",
+      "category": "Miscellaneous",
+      "difficulty": "hard",
+      "targetCertificate": "Commercial/ATP/CFI",
+      "questionCount": 20,
+      "passingScore": 80
+    },
+    {
+      "id": "private-pilot-far",
+      "title": "Private Pilot FAR Knowledge",
+      "description": "Test your knowledge of Federal Aviation Regulations for Private Pilots",
+      "category": "FAR",
+      "difficulty": "intermediate",
+      "targetCertificate": "Private Pilot",
+      "questionCount": 50,
+      "passingScore": 70
+    }
+  ],
+  "flashcardDecks": [
+    {
+      "id": "aim-chapter1-navigation",
+      "title": "Air Navigation Systems",
+      "description": "Key concepts from AIM Chapter 1 covering navigation aids, GPS, WAAS, ILS, and Performance-Based Navigation",
+      "category": "AIM",
+      "chapter": 1,
+      "cardCount": 35
+    },
+    {
+      "id": "aim-chapter10-helicopter",
+      "title": "Helicopter Operations",
+      "description": "Key concepts from AIM Chapter 10 covering helicopter IFR operations, offshore operations, and special procedures",
+      "category": "AIM",
+      "chapter": 10,
+      "cardCount": 15
+    },
+    {
+      "id": "aim-chapter11-uas",
+      "title": "UAS (Drone) Operations",
+      "description": "Key concepts from AIM Chapter 11 covering UAS regulations, Part 107, recreational operations, and airspace access",
+      "category": "AIM",
+      "chapter": 11,
+      "cardCount": 20
+    },
+    {
+      "id": "aim-chapter2-lighting-markings",
+      "title": "Airport Lighting, Markings & Signs",
+      "description": "Key concepts from AIM Chapter 2 covering airport lighting systems, visual approach aids, runway/taxiway markings, and airport signs",
+      "category": "AIM",
+      "chapter": 2,
+      "cardCount": 40
+    },
+    {
+      "id": "aim-chapter4-atc",
+      "title": "Air Traffic Control Services & Communications",
+      "description": "Key concepts from AIM Chapter 4 covering ATC facilities, radio communications, transponder operations, and flight plans",
+      "category": "AIM",
+      "chapter": 4,
+      "cardCount": 35
+    },
+    {
+      "id": "aim-chapter5-procedures",
+      "title": "Air Traffic Procedures",
+      "description": "Key concepts from AIM Chapter 5 covering preflight planning, flight plans, NOTAMs, departure/arrival procedures, and instrument approaches",
+      "category": "AIM",
+      "chapter": 5,
+      "cardCount": 35
+    },
+    {
+      "id": "aim-chapter6-emergency",
+      "title": "Emergency Procedures",
+      "description": "Key concepts from AIM Chapter 6 covering emergency procedures, distress communications, ELTs, and survival",
+      "category": "AIM",
+      "chapter": 6,
+      "cardCount": 30
+    },
+    {
+      "id": "aim-chapter7-safety",
+      "title": "Safety of Flight - Weather Services and Hazards",
+      "description": "Key concepts from AIM Chapter 7 covering aviation weather services, products, and flight hazards",
+      "category": "AIM",
+      "chapter": 7,
+      "cardCount": 35
+    },
+    {
+      "id": "aim-chapter8-medical",
+      "title": "Medical Facts for Pilots",
+      "description": "Key aeromedical concepts from AIM Chapter 8 covering hypoxia, disorientation, vision, and fitness for flight",
+      "category": "AIM",
+      "chapter": 8,
+      "cardCount": 30
+    },
+    {
+      "id": "aim-chapter9-charts",
+      "title": "Aeronautical Charts and Publications",
+      "description": "Key concepts from AIM Chapter 9 covering chart types, symbols, and publications",
+      "category": "AIM",
+      "chapter": 9,
+      "cardCount": 25
+    },
+    {
+      "id": "airspace-requirements",
+      "title": "Airspace Classes & Requirements",
+      "description": "Flashcards covering US airspace classifications, weather minimums, and entry requirements",
+      "category": "AIM",
+      "cardCount": 50
+    },
+    {
+      "id": "far-definitions",
+      "title": "FAR Definitions",
+      "description": "Key definitions from 14 CFR Part 1 and Part 61",
+      "category": "FAR",
+      "cardCount": 50
+    },
+    {
+      "id": "far-part43-maintenance",
+      "title": "Part 43: Aircraft Maintenance",
+      "description": "Maintenance requirements, inspections, preventive maintenance, and airworthiness essentials",
+      "category": "FAR",
+      "part": 43,
+      "cardCount": 30
+    },
+    {
+      "id": "far-part61-certification",
+      "title": "Part 61: Pilot Certification",
+      "description": "Essential concepts for pilot certificates, ratings, privileges, limitations, and currency requirements",
+      "category": "FAR",
+      "part": 61,
+      "cardCount": 40
+    },
+    {
+      "id": "far-part67-medical",
+      "title": "Part 67 & 68: Medical Standards",
+      "description": "Medical certificate classes, requirements, durations, BasicMed, and fitness for flight",
+      "category": "FAR",
+      "part": 67,
+      "cardCount": 30
+    },
+    {
+      "id": "far-part830-ntsb",
+      "title": "Part 830: NTSB Accident Reporting",
+      "description": "NTSB accident and incident definitions, notification requirements, and reporting procedures",
+      "category": "FAR",
+      "part": 830,
+      "cardCount": 25
+    },
+    {
+      "id": "far-part91-operating-rules",
+      "title": "Part 91: General Operating Rules",
+      "description": "Essential VFR/IFR flight rules, weather minimums, equipment requirements, and operating limitations every pilot must know",
+      "category": "FAR",
+      "part": 91,
+      "cardCount": 45
+    }
+  ]
+}

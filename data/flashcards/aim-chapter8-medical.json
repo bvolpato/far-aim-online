@@ -1,0 +1,190 @@
+{
+  "id": "aim-chapter8-medical",
+  "title": "Medical Facts for Pilots",
+  "description": "Key aeromedical concepts from AIM Chapter 8 covering hypoxia, disorientation, vision, and fitness for flight",
+  "category": "AIM",
+  "chapter": 8,
+  "cardCount": 30,
+  "cards": [
+    {
+      "id": "ch8-001",
+      "front": "IMSAFE Checklist",
+      "back": "I - Illness (Am I sick?)\nM - Medication (Am I taking any?)\nS - Stress (Am I under pressure?)\nA - Alcohol (8 hours, 0.04%?)\nF - Fatigue (Am I rested?)\nE - Eating/Emotion (Proper nutrition? Emotionally fit?)\n\nUse BEFORE EVERY FLIGHT!",
+      "reference": "AIM 8-1-1"
+    },
+    {
+      "id": "ch8-002",
+      "front": "Hypoxia Symptoms",
+      "back": "Early:\n• Headache, drowsiness\n• Impaired judgment\n• Euphoria or belligerence\n• Tingling sensations\n\nAdvanced:\n• Tunnel vision\n• Blue fingernails (cyanosis)\n• Loss of coordination\n• Unconsciousness\n\nSymptoms vary by individual - learn yours in chamber!",
+      "reference": "AIM 8-1-2"
+    },
+    {
+      "id": "ch8-003",
+      "front": "Hypoxia Altitudes",
+      "back": "5,000': Night vision deteriorates\n\n10,000': Supplemental O2 recommended for safety\n\n12,000'-15,000': Judgment/coordination impaired\n\n15,000'+: Performance severely degraded, tunnel vision\n\n18,000'-20,000': Incapacitation in 20-30 min\n\n25,000'+: Time of useful consciousness <5 min",
+      "reference": "AIM 8-1-2"
+    },
+    {
+      "id": "ch8-004",
+      "front": "Oxygen Requirements (14 CFR 91.211)",
+      "back": "Flight crew:\n• Above 12,500' MSL over 30 min: Required\n• Above 14,000' MSL: Required entire time\n• Above 15,000' MSL: Passengers must be provided\n\nClass A (above 18,000'):\n• Required at all times\n\nRecommended: Above 10,000' day, 5,000' night",
+      "reference": "AIM 8-1-2"
+    },
+    {
+      "id": "ch8-005",
+      "front": "Hyperventilation",
+      "back": "Cause: Anxiety/stress causes rapid breathing\n\nResult: Excessive CO2 expelled\n\nSymptoms:\n• Lightheadedness\n• Tingling in extremities\n• Visual impairment\n• Muscle spasms\n\nTreatment:\n• Slow breathing rate\n• Breathe into bag\n• Talk aloud (forces slower breathing)",
+      "reference": "AIM 8-1-3"
+    },
+    {
+      "id": "ch8-006",
+      "front": "Carbon Monoxide Poisoning",
+      "back": "Source: Exhaust through heater system\n\nProperties: Colorless, odorless, tasteless\n\nSymptoms: Headache, drowsiness, dizziness (like hypoxia)\n\nAction:\n1. Heater OFF\n2. Vents/windows OPEN\n3. Use O2 if available\n4. Land ASAP\n5. Seek medical attention",
+      "reference": "AIM 8-1-4"
+    },
+    {
+      "id": "ch8-007",
+      "front": "Spatial Disorientation Illusions",
+      "back": "THE LEANS: Gradual bank undetected; correction feels like banking opposite way\n\nGRAVEYARD SPIRAL: Altitude loss in turn feels like descent with wings level\n\nSOMATOGRAVIC: Acceleration feels like pitch up\n\nINVERSION: Level-off from climb feels like tumbling backward\n\nCORIOLIS: Head movement in turn causes tumbling sensation",
+      "reference": "AIM 8-1-5"
+    },
+    {
+      "id": "ch8-008",
+      "front": "Spatial Disorientation Prevention",
+      "back": "• Trust instruments, not body sensations\n• Maintain instrument scan\n• Avoid sudden head movements in turns\n• Maintain instrument currency\n• Get instrument training even if VFR only\n• If disoriented, focus on attitude indicator\n\nStatistics: Disorientation is fatal 90%+ of time",
+      "reference": "AIM 8-1-5"
+    },
+    {
+      "id": "ch8-009",
+      "front": "Landing Illusions",
+      "back": "RUNWAY WIDTH:\n• Narrower = appears farther (fly too low)\n• Wider = appears closer (fly too high)\n\nRUNWAY SLOPE:\n• Upslope = appears closer (fly too low)\n• Downslope = appears farther (fly too high)\n\nFEATURELESS TERRAIN:\n• 'Black hole' approach\n• Tend to fly too low\n\nAlways use VASI/PAPI!",
+      "reference": "AIM 8-1-5"
+    },
+    {
+      "id": "ch8-010",
+      "front": "Night Vision",
+      "back": "Dark adaptation:\n• 30 minutes for full adaptation\n• 20 minutes moderate with dim red light\n\nImpaired by:\n• Bright light exposure\n• Smoking\n• Carbon monoxide\n• Altitude >5,000'\n• Vitamin A deficiency\n\nTip: Close one eye if using bright light",
+      "reference": "AIM 8-1-6"
+    },
+    {
+      "id": "ch8-011",
+      "front": "Scanning for Traffic",
+      "back": "Technique:\n• Short, regularly spaced eye movements\n• Stop briefly (1-2 seconds) at each segment\n• Cover entire visible sky\n• Focus at varying distances\n\nWhy stops matter:\n• Eye detects motion in periphery\n• But must FOCUS to see stationary targets\n• A collision course aircraft has NO relative motion!",
+      "reference": "AIM 8-1-6"
+    },
+    {
+      "id": "ch8-012",
+      "front": "Collision Course Target Recognition",
+      "back": "Danger signs:\n• No apparent motion in windscreen\n• Target appears stationary but grows larger\n• Stays in same position relative to horizon\n\nAction:\n• Immediate evasive maneuver\n• Watch during and after maneuver\n• Report near-miss\n\nHigh-risk areas: VORs, airports, airways",
+      "reference": "AIM 8-1-8"
+    },
+    {
+      "id": "ch8-013",
+      "front": "Alcohol and Flying",
+      "back": "Regulations (14 CFR 91.17):\n• 8 hours bottle to throttle\n• Blood alcohol <0.04%\n• Not under the influence\n\nFacts:\n• Effects amplified at altitude\n• Impairs judgment and coordination\n• Even small amounts affect performance\n• Hangover symptoms = still impaired",
+      "reference": "AIM 8-1-1"
+    },
+    {
+      "id": "ch8-014",
+      "front": "Medications and Flying",
+      "back": "Problematic medications:\n• Antihistamines (drowsiness)\n• Tranquilizers, sedatives\n• Pain medications\n• Blood pressure meds\n• Diet pills\n• Decongestants\n\nRule: If in doubt, consult AME\n\nOTC meds can be just as dangerous as prescription!",
+      "reference": "AIM 8-1-1"
+    },
+    {
+      "id": "ch8-015",
+      "front": "Fatigue Types and Effects",
+      "back": "ACUTE FATIGUE:\n• Short-term, normal\n• Rest restores performance\n\nCHRONIC FATIGUE:\n• Accumulated over time\n• Requires extended rest\n• May indicate illness\n\nEffects:\n• Slow reactions\n• Poor judgment\n• Reduced attention\n• Fixation on tasks",
+      "reference": "AIM 8-1-1"
+    },
+    {
+      "id": "ch8-016",
+      "front": "Decompression Sickness (Scuba)",
+      "back": "Wait before flying above 8,000':\n\n• Non-decompression dives: 12 hours minimum\n• Decompression dives: 24 hours minimum\n• Any dive requiring controlled ascent: 24 hours\n\nRisk: Nitrogen bubbles in blood/tissues\n\nSymptoms: Joint pain, numbness, paralysis",
+      "reference": "AIM 8-1-2"
+    },
+    {
+      "id": "ch8-017",
+      "front": "G-Force Effects",
+      "back": "POSITIVE G (pull up):\n• Blood forced to feet\n• Gray-out → tunnel vision → blackout → G-LOC\n\nNEGATIVE G (push over):\n• Blood forced to head\n• Red-out, headache, discomfort\n\nPrevention:\n• Anti-G straining maneuver\n• Physical conditioning\n• Gradual G onset",
+      "reference": "AIM 8-1-7"
+    },
+    {
+      "id": "ch8-018",
+      "front": "Stress and Flying",
+      "back": "Types:\n• Acute (situational, short-term)\n• Chronic (ongoing life issues)\n\nEffects:\n• Reduced attention\n• Impaired decision making\n• Tunnel vision\n• Increased errors\n\nManagement:\n• Recognize signs\n• Use checklists\n• Reduce workload\n• Consider not flying",
+      "reference": "AIM 8-1-1"
+    },
+    {
+      "id": "ch8-019",
+      "front": "Ear Problems and Flight",
+      "back": "MIDDLE EAR:\n• Pressure changes during climb/descent\n• Blocked by congestion = pain, hearing loss\n• Valsalva maneuver to equalize\n\nDo NOT fly with:\n• Cold or sinus infection\n• Ear infection\n• Recent ear surgery\n\nDescend slowly if ear block occurs",
+      "reference": "AIM 8-1-2"
+    },
+    {
+      "id": "ch8-020",
+      "front": "Sinus Problems and Flight",
+      "back": "Sinuses must equalize with ambient pressure\n\nBlocked sinuses (cold, allergies):\n• Severe pain during descent\n• Can cause vertigo\n• May require climb back up\n\nPrevention:\n• Don't fly congested\n• Use decongestant (if AME approved)\n• Descend slowly",
+      "reference": "AIM 8-1-2"
+    },
+    {
+      "id": "ch8-021",
+      "front": "Motion Sickness",
+      "back": "Cause: Conflict between visual and vestibular input\n\nSymptoms:\n• Nausea, sweating, pallor\n• Progresses if not addressed\n\nPrevention/Treatment:\n• Fresh air\n• Focus on horizon or instruments\n• Avoid reading\n• Medication (if approved)\n• Take control if possible",
+      "reference": "AIM 8-1-5"
+    },
+    {
+      "id": "ch8-022",
+      "front": "Sunglasses Requirements",
+      "back": "Recommended characteristics:\n• Block 85% visible light\n• Neutral gray (true color perception)\n• No image distortion\n• Non-polarized for LCD displays\n\nWhy important:\n• Reduce glare\n• Protect eyes from UV\n• Reduce fatigue\n• Preserve dark adaptation",
+      "reference": "AIM 8-1-6"
+    },
+    {
+      "id": "ch8-023",
+      "front": "Medical Certificates",
+      "back": "Classes:\n• First Class: ATP privileges (6-12 months)\n• Second Class: Commercial (12 months)\n• Third Class: Private (24-60 months depending on age)\n\nBasicMed:\n• Alternative to Third Class\n• Requires medical within 10 years\n• Online course every 24 months\n• Restrictions apply",
+      "reference": "AIM 8-1-1"
+    },
+    {
+      "id": "ch8-024",
+      "front": "Flying with Illness",
+      "back": "Don't fly with:\n• Fever\n• Cold or flu symptoms\n• Ear or sinus infection\n• Recent surgery\n• Severe headache\n• Stomach upset\n\nEven minor illness impairs:\n• Judgment\n• Reaction time\n• Attention\n• Coordination\n\nWhen in doubt, DON'T!",
+      "reference": "AIM 8-1-1"
+    },
+    {
+      "id": "ch8-025",
+      "front": "Graveyard Spiral Recognition",
+      "back": "Situation:\n• Coordinated turn goes unnoticed\n• Vestibular system adapts\n• Pilot feels level\n\nIndicators:\n• Airspeed increasing\n• Altitude decreasing\n• Turn coordinator shows bank\n\nDanger:\n• Pulling back tightens spiral\n• Can lead to structural failure or CFIT\n\nRecovery: Trust instruments, level wings FIRST",
+      "reference": "AIM 8-1-5"
+    },
+    {
+      "id": "ch8-026",
+      "front": "Autokinesis",
+      "back": "Illusion: Stationary light appears to move\n\nCause: Staring at single light in darkness\n\nRisk: Following 'moving' light into unusual attitude\n\nPrevention:\n• Avoid fixating on single light\n• Maintain instrument scan\n• Reference multiple points\n• Trust instruments",
+      "reference": "AIM 8-1-5"
+    },
+    {
+      "id": "ch8-027",
+      "front": "False Horizon Illusion",
+      "back": "Cause: Mistaking sloping cloud deck, lights, or stars for horizon\n\nResult: Flying at unusual attitude while appearing level\n\nCommon situations:\n• Night flight over water\n• Scattered lights below\n• Sloping cloud bank\n\nPrevention: Trust instruments",
+      "reference": "AIM 8-1-5"
+    },
+    {
+      "id": "ch8-028",
+      "front": "Flicker Vertigo",
+      "back": "Cause: Flickering light at certain frequencies (4-20 Hz)\n\nSources:\n• Helicopter rotor\n• Propeller in sun\n• Strobe lights\n\nEffects:\n• Nausea, disorientation\n• Seizure in susceptible individuals\n• Unconsciousness (rare)\n\nPrevention: Avoid prolonged exposure, change position",
+      "reference": "AIM 8-1-5"
+    },
+    {
+      "id": "ch8-029",
+      "front": "Nutrition and Hydration",
+      "back": "Before flying:\n• Eat regular, balanced meals\n• Avoid heavy, greasy foods\n• Stay hydrated (especially at altitude)\n• Avoid excessive caffeine\n\nAltitude effects:\n• Dehydration accelerated\n• Dry cabin air\n• Reduced appetite\n\nTip: Bring water and snacks for longer flights",
+      "reference": "AIM 8-1-1"
+    },
+    {
+      "id": "ch8-030",
+      "front": "Time of Useful Consciousness (TUC)",
+      "back": "At altitude without supplemental oxygen:\n\n25,000': 3-5 minutes\n30,000': 1-2 minutes\n35,000': 30-60 seconds\n40,000': 15-20 seconds\n43,000': 9-12 seconds\n\nNote: Times are LESS with physical activity\nRapid decompression: TUC reduced by 50%",
+      "reference": "AIM 8-1-2"
+    }
+  ]
+}

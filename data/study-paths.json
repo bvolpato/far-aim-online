@@ -1,0 +1,141 @@
+{
+  "version": 1,
+  "updated": "2026-06-07",
+  "paths": [
+    {
+      "id": "private-pilot-airplane",
+      "title": "Private Pilot Airplane",
+      "subtitle": "Core checkride regulations and procedures",
+      "category": "Certificate",
+      "description": "Focused references for student pilots preparing for the private pilot airplane written, oral, and practical test.",
+      "references": [
+        { "type": "far", "part": 61, "label": "14 CFR Part 61", "title": "Pilot certification, privileges, and recency" },
+        { "type": "far", "part": 91, "label": "14 CFR Part 91", "title": "General operating and flight rules" },
+        { "type": "far", "part": 67, "label": "14 CFR Part 67", "title": "Medical standards and certification" },
+        { "type": "far", "part": 43, "label": "14 CFR Part 43", "title": "Maintenance, preventive maintenance, and records" },
+        { "type": "far", "part": 830, "label": "49 CFR Part 830", "title": "NTSB notification and reporting" },
+        { "type": "aim", "chapter": 4, "label": "AIM Chapter 4", "title": "Air traffic control" },
+        { "type": "aim", "chapter": 5, "label": "AIM Chapter 5", "title": "Air traffic procedures" },
+        { "type": "aim", "chapter": 7, "label": "AIM Chapter 7", "title": "Safety of flight" },
+        { "type": "aim", "chapter": 8, "label": "AIM Chapter 8", "title": "Medical facts for pilots" }
+      ],
+      "quizIds": ["private-pilot-far", "airspace-quiz", "far-part61-certification", "far-part91-operating-rules", "aim-chapter4-atc", "aim-chapter5-procedures", "aim-chapter7-safety"],
+      "flashcardDeckIds": ["far-definitions", "far-part61-certification", "far-part91-operating-rules", "airspace-requirements", "aim-chapter4-atc", "aim-chapter5-procedures"]
+    },
+    {
+      "id": "instrument-rating",
+      "title": "Instrument Rating",
+      "subtitle": "IFR rules, procedures, charts, and ATC",
+      "category": "Rating",
+      "description": "Reference path for instrument students reviewing IFR privileges, clearances, procedures, charts, weather, and emergencies.",
+      "references": [
+        { "type": "far", "part": 61, "label": "14 CFR Part 61", "title": "Instrument rating requirements and currency" },
+        { "type": "far", "part": 91, "label": "14 CFR Part 91", "title": "IFR operating rules and equipment" },
+        { "type": "far", "part": 97, "label": "14 CFR Part 97", "title": "Standard instrument procedures" },
+        { "type": "aim", "chapter": 1, "label": "AIM Chapter 1", "title": "Navigation aids" },
+        { "type": "aim", "chapter": 4, "label": "AIM Chapter 4", "title": "ATC clearances and services" },
+        { "type": "aim", "chapter": 5, "label": "AIM Chapter 5", "title": "IFR procedures" },
+        { "type": "aim", "chapter": 7, "label": "AIM Chapter 7", "title": "Meteorology and flight safety" },
+        { "type": "aim", "chapter": 9, "label": "AIM Chapter 9", "title": "Aeronautical charts and publications" }
+      ],
+      "quizIds": ["airspace-quiz", "far-part91-operating-rules", "aim-chapter1-navigation", "aim-chapter4-atc", "aim-chapter5-procedures", "aim-chapter7-safety", "aim-chapter9-charts"],
+      "flashcardDeckIds": ["airspace-requirements", "far-part91-operating-rules", "aim-chapter1-navigation", "aim-chapter4-atc", "aim-chapter5-procedures", "aim-chapter7-safety", "aim-chapter9-charts"]
+    },
+    {
+      "id": "commercial-pilot",
+      "title": "Commercial Pilot",
+      "subtitle": "Privileges, limitations, and commercial operations",
+      "category": "Certificate",
+      "description": "Commercial pilot review path covering compensation or hire, operating rules, air carrier boundaries, and accident reporting.",
+      "references": [
+        { "type": "far", "part": 61, "label": "14 CFR Part 61", "title": "Commercial pilot eligibility, privileges, and limitations" },
+        { "type": "far", "part": 91, "label": "14 CFR Part 91", "title": "General operating rules" },
+        { "type": "far", "part": 119, "label": "14 CFR Part 119", "title": "Air carrier and commercial operator certification" },
+        { "type": "far", "part": 135, "label": "14 CFR Part 135", "title": "Commuter and on-demand operations" },
+        { "type": "far", "part": 830, "label": "49 CFR Part 830", "title": "Accident and incident reporting" },
+        { "type": "aim", "chapter": 4, "label": "AIM Chapter 4", "title": "ATC services" },
+        { "type": "aim", "chapter": 5, "label": "AIM Chapter 5", "title": "Operational procedures" },
+        { "type": "aim", "chapter": 7, "label": "AIM Chapter 7", "title": "Safety of flight" }
+      ],
+      "quizIds": ["far-part61-certification", "far-part91-operating-rules", "far-part830-ntsb", "aim-chapter4-atc", "aim-chapter5-procedures", "aim-chapter7-safety"],
+      "flashcardDeckIds": ["far-part61-certification", "far-part91-operating-rules", "far-part830-ntsb", "aim-chapter4-atc", "aim-chapter5-procedures", "aim-chapter7-safety"]
+    },
+    {
+      "id": "flight-instructor",
+      "title": "Flight Instructor",
+      "subtitle": "Instruction privileges, endorsements, and schools",
+      "category": "Certificate",
+      "description": "CFI review path for instructor privileges, limitations, endorsements, flight reviews, pilot schools, and training centers.",
+      "references": [
+        { "type": "far", "part": 61, "label": "14 CFR Part 61", "title": "Instructor certificates, endorsements, and limitations" },
+        { "type": "far", "part": 91, "label": "14 CFR Part 91", "title": "Operating rules used in training" },
+        { "type": "far", "part": 141, "label": "14 CFR Part 141", "title": "Pilot schools" },
+        { "type": "far", "part": 142, "label": "14 CFR Part 142", "title": "Training centers" },
+        { "type": "far", "part": 830, "label": "49 CFR Part 830", "title": "NTSB reporting responsibilities" },
+        { "type": "aim", "chapter": 4, "label": "AIM Chapter 4", "title": "ATC communication and services" },
+        { "type": "aim", "chapter": 5, "label": "AIM Chapter 5", "title": "Procedures and pilot responsibilities" },
+        { "type": "aim", "chapter": 7, "label": "AIM Chapter 7", "title": "Safety of flight" }
+      ],
+      "quizIds": ["far-part61-certification", "far-part91-operating-rules", "far-part830-ntsb", "aim-chapter4-atc", "aim-chapter5-procedures", "aim-chapter7-safety"],
+      "flashcardDeckIds": ["far-part61-certification", "far-part91-operating-rules", "far-part830-ntsb", "aim-chapter4-atc", "aim-chapter5-procedures", "aim-chapter7-safety"]
+    },
+    {
+      "id": "remote-pilot",
+      "title": "Remote Pilot",
+      "subtitle": "Small UAS certification and airspace",
+      "category": "Certificate",
+      "description": "Part 107 study path for remote pilots reviewing certification, registration, operating limits, airspace, and UAS guidance.",
+      "references": [
+        { "type": "far", "part": 107, "label": "14 CFR Part 107", "title": "Small unmanned aircraft systems" },
+        { "type": "far", "part": 48, "label": "14 CFR Part 48", "title": "Small unmanned aircraft registration and marking" },
+        { "type": "far", "part": 71, "label": "14 CFR Part 71", "title": "Airspace designations" },
+        { "type": "far", "part": 73, "label": "14 CFR Part 73", "title": "Special use airspace" },
+        { "type": "far", "part": 91, "label": "14 CFR Part 91", "title": "Relevant operating rules" },
+        { "type": "aim", "chapter": 4, "label": "AIM Chapter 4", "title": "ATC and airspace services" },
+        { "type": "aim", "chapter": 7, "label": "AIM Chapter 7", "title": "Safety and weather" },
+        { "type": "aim", "chapter": 11, "label": "AIM Chapter 11", "title": "UAS operations" }
+      ],
+      "quizIds": ["airspace-quiz", "far-part91-operating-rules", "aim-chapter4-atc", "aim-chapter7-safety", "aim-chapter11-uas"],
+      "flashcardDeckIds": ["airspace-requirements", "far-part91-operating-rules", "aim-chapter4-atc", "aim-chapter7-safety", "aim-chapter11-uas"]
+    },
+    {
+      "id": "airline-transport",
+      "title": "Airline Transport Pilot",
+      "subtitle": "ATP, crew, duty, and carrier operations",
+      "category": "Certificate",
+      "description": "ATP-oriented path covering certificates, operating rules, flight time limits, carrier certification, and scheduled/on-demand operations.",
+      "references": [
+        { "type": "far", "part": 61, "label": "14 CFR Part 61", "title": "ATP certification and privileges" },
+        { "type": "far", "part": 91, "label": "14 CFR Part 91", "title": "General operating rules" },
+        { "type": "far", "part": 117, "label": "14 CFR Part 117", "title": "Flight and duty limitations" },
+        { "type": "far", "part": 119, "label": "14 CFR Part 119", "title": "Carrier and commercial operator certification" },
+        { "type": "far", "part": 121, "label": "14 CFR Part 121", "title": "Domestic, flag, and supplemental operations" },
+        { "type": "far", "part": 135, "label": "14 CFR Part 135", "title": "Commuter and on-demand operations" },
+        { "type": "aim", "chapter": 4, "label": "AIM Chapter 4", "title": "ATC services" },
+        { "type": "aim", "chapter": 5, "label": "AIM Chapter 5", "title": "IFR and ATC procedures" },
+        { "type": "aim", "chapter": 7, "label": "AIM Chapter 7", "title": "Safety of flight" }
+      ],
+      "quizIds": ["far-part61-certification", "far-part91-operating-rules", "aim-chapter4-atc", "aim-chapter5-procedures", "aim-chapter7-safety"],
+      "flashcardDeckIds": ["far-part61-certification", "far-part91-operating-rules", "aim-chapter4-atc", "aim-chapter5-procedures", "aim-chapter7-safety"]
+    },
+    {
+      "id": "aviation-maintenance",
+      "title": "Aviation Maintenance Technician",
+      "subtitle": "Maintenance, records, airworthiness, and repair stations",
+      "category": "Certificate",
+      "description": "Maintenance-focused path for mechanics and pilots reviewing airworthiness, maintenance records, mechanic certification, and repair stations.",
+      "references": [
+        { "type": "far", "part": 43, "label": "14 CFR Part 43", "title": "Maintenance, preventive maintenance, rebuilding, and alteration" },
+        { "type": "far", "part": 45, "label": "14 CFR Part 45", "title": "Identification and registration marking" },
+        { "type": "far", "part": 65, "label": "14 CFR Part 65", "title": "Airmen other than flight crewmembers" },
+        { "type": "far", "part": 91, "label": "14 CFR Part 91", "title": "Owner/operator maintenance responsibilities" },
+        { "type": "far", "part": 145, "label": "14 CFR Part 145", "title": "Repair stations" },
+        { "type": "far", "part": 147, "label": "14 CFR Part 147", "title": "Aviation maintenance technician schools" },
+        { "type": "far", "part": 830, "label": "49 CFR Part 830", "title": "Accident and incident reporting" },
+        { "type": "aim", "chapter": 7, "label": "AIM Chapter 7", "title": "Safety of flight" }
+      ],
+      "quizIds": ["far-part43-maintenance", "far-part91-operating-rules", "far-part830-ntsb", "aim-chapter7-safety"],
+      "flashcardDeckIds": ["far-part43-maintenance", "far-part91-operating-rules", "far-part830-ntsb", "aim-chapter7-safety"]
+    }
+  ]
+}

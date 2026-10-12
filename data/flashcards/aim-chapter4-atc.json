@@ -1,0 +1,220 @@
+{
+  "id": "aim-chapter4-atc",
+  "title": "Air Traffic Control Services & Communications",
+  "description": "Key concepts from AIM Chapter 4 covering ATC facilities, radio communications, transponder operations, and flight plans",
+  "category": "AIM",
+  "chapter": 4,
+  "cardCount": 35,
+  "cards": [
+    {
+      "id": "ch4-001",
+      "front": "ATC Facilities Overview",
+      "back": "ARTCC (Center): En route IFR control\nTRACON (Approach): Terminal area control\nTower (Local): Airport traffic control\nGround: Taxiing aircraft\nClearance Delivery: IFR clearances\nFSS: Briefings, flight plans, advisories",
+      "reference": "AIM 4-1-1 through 4-1-3"
+    },
+    {
+      "id": "ch4-002",
+      "front": "Flight Service Station (FSS) Services",
+      "back": "• Pilot weather briefings\n• Flight plan filing/processing\n• En route flight advisories (Flight Watch)\n• Search and rescue initiation\n• Assistance to lost/emergency aircraft\n• Relay ATC clearances\n• Broadcast weather and NOTAMs\n• VFR Search and Rescue (SAR)",
+      "reference": "AIM 4-1-3"
+    },
+    {
+      "id": "ch4-003",
+      "front": "CTAF (Common Traffic Advisory Frequency)",
+      "back": "• Used at airports without operating tower\n• May be UNICOM, MULTICOM, FSS, or tower frequency\n• Published in Chart Supplement and on charts\n• Self-announce position and intentions\n• Key for see-and-avoid at non-towered airports",
+      "reference": "AIM 4-1-9"
+    },
+    {
+      "id": "ch4-004",
+      "front": "Common Radio Frequencies",
+      "back": "• 121.5: Emergency/guard frequency\n• 122.0: FSS (en route)\n• 122.2: FSS (local)\n• 122.7, 122.8, 122.725, 122.975: UNICOM\n• 122.9: MULTICOM (no tower, FSS, or UNICOM)\n• 122.75: Air-to-air (private fixed wing)\n• 123.0: UNICOM (towers operating)\n• 123.025: Helicopter air-to-air",
+      "reference": "AIM 4-1-11"
+    },
+    {
+      "id": "ch4-005",
+      "front": "ATIS (Automatic Terminal Information Service)",
+      "back": "Contains:\n• Airport/facility name\n• Phonetic code (Alpha, Bravo...)\n• Time (UTC)\n• Weather (wind, visibility, sky, temp, dewpoint, altimeter)\n• Instrument approach in use\n• Runway in use\n• NOTAMs/special information\n\nReport code on initial contact!",
+      "reference": "AIM 4-1-13"
+    },
+    {
+      "id": "ch4-006",
+      "front": "'Have Numbers' vs ATIS Code",
+      "back": "'Have numbers' = Wind, runway, altimeter ONLY\n\n'Information [Alpha] received' = Full ATIS broadcast\n\nUsing 'have numbers' doesn't confirm ATIS receipt - controller may need to provide additional info",
+      "reference": "AIM 4-1-13"
+    },
+    {
+      "id": "ch4-007",
+      "front": "Emergency Transponder Codes",
+      "back": "7500: Hijacking\n• '75 - taken alive'\n\n7600: Communication failure\n• '76 - need a fix' (radio)\n\n7700: Emergency\n• '77 - going to heaven'\n\n1200: VFR (no ATC services)",
+      "reference": "AIM 4-1-20"
+    },
+    {
+      "id": "ch4-008",
+      "front": "Mode C/Transponder Requirements",
+      "back": "Required in/above:\n• Class A, B, C airspace\n• Mode C veil (30 NM from Class B primary)\n• Above 10,000 MSL (except ≤2,500 AGL)\n• Within 10 NM of certain airports listed in Part 91\n\nADS-B Out also required in these areas (since 2020)",
+      "reference": "AIM 4-1-20, 14 CFR 91.215"
+    },
+    {
+      "id": "ch4-009",
+      "front": "ADS-B Out Requirements",
+      "back": "Required where Mode C is required PLUS:\n• Class E at/above 3,000 MSL over Gulf of Mexico\n• Within 12 NM of coastline\n\nMust transmit:\n• Position, altitude, velocity\n• Aircraft identification\n• NIC/NAC integrity parameters",
+      "reference": "AIM 4-1-20, 14 CFR 91.225"
+    },
+    {
+      "id": "ch4-010",
+      "front": "Safety Alerts",
+      "back": "Two types (mandatory service):\n\n1. Terrain/Obstruction Alert:\n• Aircraft in unsafe proximity to terrain/obstacles\n• 'Low altitude alert, check your altitude immediately'\n\n2. Aircraft Conflict Alert:\n• Unsafe proximity to other aircraft\n• TCAS-like ground-based detection",
+      "reference": "AIM 4-1-16"
+    },
+    {
+      "id": "ch4-011",
+      "front": "MSAW (Minimum Safe Altitude Warning)",
+      "back": "• Automated controller aid\n• Alerts when Mode C aircraft below safe altitude\n• Available for IFR aircraft\n• VFR can REQUEST MSAW monitoring\n• May not be available near borders (lack of terrain data)",
+      "reference": "AIM 4-1-16"
+    },
+    {
+      "id": "ch4-012",
+      "front": "Basic VFR Radar Services",
+      "back": "Available at all radar facilities:\n• Safety alerts (mandatory)\n• Traffic advisories (workload permitting)\n• Limited radar vectoring (workload permitting)\n• Sequencing (where established)\n\nNOT standard IFR separation - pilot must see and avoid!",
+      "reference": "AIM 4-1-18"
+    },
+    {
+      "id": "ch4-013",
+      "front": "Requesting Flight Following",
+      "back": "Include:\n1. Facility name\n2. Aircraft callsign and type\n3. Position\n4. Altitude\n5. Transponder code (if assigned)\n6. Destination\n7. 'Request VFR advisories' or 'flight following'\n\nService is workload permitting - may be denied",
+      "reference": "AIM 4-1-18"
+    },
+    {
+      "id": "ch4-014",
+      "front": "Radar Contact/Radar Service Terminated",
+      "back": "'Radar Contact':\n• ATC has identified your aircraft\n• Radar services begin\n\n'Radar Service Terminated':\n• No longer providing radar services\n• VFR: Squawk 1200\n• Resume own navigation/traffic avoidance\n\nAuto-terminated when VFR aircraft lands at tower airport",
+      "reference": "AIM 4-1-18"
+    },
+    {
+      "id": "ch4-015",
+      "front": "Traffic Pattern Entry",
+      "back": "Standard pattern: LEFT turns\n\nRecommended entry:\n• Enter at 45° to downwind\n• At pattern altitude (usually 1,000 AGL)\n• Avoid overflying airport\n\nRight traffic: Indicated by 'RP' on charts, listed in Chart Supplement\n\nAll turns in direction of traffic pattern",
+      "reference": "AIM 4-3-3"
+    },
+    {
+      "id": "ch4-016",
+      "front": "Traffic Pattern Legs",
+      "back": "1. Upwind: Parallel to runway, direction of landing\n2. Crosswind: Perpendicular after departure\n3. Downwind: Parallel to runway, opposite direction\n4. Base: Turn from downwind toward runway\n5. Final: Aligned with runway for landing\n\nDeparture: Crosswind at 300' below pattern altitude or ½ mile, or as directed",
+      "reference": "AIM 4-3-3"
+    },
+    {
+      "id": "ch4-017",
+      "front": "Line Up and Wait",
+      "back": "Formerly 'position and hold'\n\n• Taxi onto runway, await takeoff clearance\n• NOT cleared for takeoff!\n• Used for traffic sequencing\n• Be alert for takeoff clearance\n• If no clearance in reasonable time, query ATC\n\n'Cleared for takeoff' = begin takeoff roll",
+      "reference": "AIM 4-3-10"
+    },
+    {
+      "id": "ch4-018",
+      "front": "LAHSO (Land and Hold Short Operations)",
+      "back": "• Land and stop before intersection/point\n• ATC provides available landing distance\n• Pilot must determine if acceptable\n• Part 91: Acceptance is VOLUNTARY\n• Say 'Unable' if can't comply\n• Must acknowledge clearance with full readback\n• Student pilots should not participate",
+      "reference": "AIM 4-3-11"
+    },
+    {
+      "id": "ch4-019",
+      "front": "IFR Clearance Components (CRAFT)",
+      "back": "C - Clearance limit (usually destination)\nR - Route of flight\nA - Altitude (initial/expect)\nF - Frequency (departure)\nT - Transponder code\n\nRead back ALL clearances completely!",
+      "reference": "AIM 4-4-3"
+    },
+    {
+      "id": "ch4-020",
+      "front": "'Cleared As Filed'",
+      "back": "• Authorized to fly route in flight plan\n• May still have:\n - Different altitude assignment\n - Departure procedure (SID)\n - Restrictions or amendments\n\nAlways read back complete clearance including any modifications",
+      "reference": "AIM 4-4-3"
+    },
+    {
+      "id": "ch4-021",
+      "front": "Clearance Readback Requirements",
+      "back": "MUST read back:\n• Altitudes\n• Headings\n• Routes\n• Hold short instructions\n• Runway assignments\n• Any clearance to enter/cross runway\n\nNEVER assume - if unclear, ask for clarification!",
+      "reference": "AIM 4-4-7"
+    },
+    {
+      "id": "ch4-022",
+      "front": "Special VFR (SVFR)",
+      "back": "Allows flight when weather below basic VFR:\n\nRequirements:\n• 1 SM visibility minimum\n• Clear of clouds\n• ATC clearance required\n• In controlled airspace surface area\n\nNight SVFR: Pilot instrument rated, aircraft IFR equipped\n\nSome airports prohibit SVFR (see Part 91 Appendix D)",
+      "reference": "AIM 4-4-6"
+    },
+    {
+      "id": "ch4-023",
+      "front": "Radio Failure Procedures (VFR)",
+      "back": "• Squawk 7600\n• Continue VFR if possible\n• Land at suitable airport\n• If at towered airport, watch for light signals\n• Rock wings to acknowledge (day)\n• Flash landing light (night)",
+      "reference": "AIM 4-2-13"
+    },
+    {
+      "id": "ch4-024",
+      "front": "Light Gun Signals - Aircraft in Flight",
+      "back": "Steady GREEN: Cleared to land\nFlashing GREEN: Return for landing\nSteady RED: Give way, continue circling\nFlashing RED: Airport unsafe, do not land\nFlashing WHITE: Not used\nAlternating RED/GREEN: Exercise extreme caution",
+      "reference": "AIM 4-3-13"
+    },
+    {
+      "id": "ch4-025",
+      "front": "Light Gun Signals - Aircraft on Ground",
+      "back": "Steady GREEN: Cleared for takeoff\nFlashing GREEN: Cleared to taxi\nSteady RED: STOP\nFlashing RED: Taxi clear of runway in use\nFlashing WHITE: Return to starting point\nAlternating RED/GREEN: Exercise extreme caution",
+      "reference": "AIM 4-3-13"
+    },
+    {
+      "id": "ch4-026",
+      "front": "Key Radio Terminology",
+      "back": "ROGER: Message received\nWILCO: Will comply with instruction\nUNABLE: Cannot comply\nAFFIRM: Yes\nNEGATIVE: No, or that is not correct\nSTANDBY: Wait, I'll call you\nSAY AGAIN: Repeat your message\nREAD BACK: Repeat for verification\nVERIFY: Confirm accuracy",
+      "reference": "AIM 4-2-1"
+    },
+    {
+      "id": "ch4-027",
+      "front": "'Immediately' in ATC Communications",
+      "back": "• Comply without delay\n• Safety may be involved\n• Used in time-critical situations\n• Take action NOW\n• Query later if needed\n\nExample: 'Turn left immediately!' - just do it",
+      "reference": "AIM 4-2-1"
+    },
+    {
+      "id": "ch4-028",
+      "front": "Position Reporting",
+      "back": "Report:\n1. Aircraft identification\n2. Position\n3. Time\n4. Altitude/flight level\n5. Type of flight plan\n6. ETA next reporting point\n7. Name of following reporting point\n8. Remarks\n\nRequired for non-radar IFR flights",
+      "reference": "AIM 4-4-9"
+    },
+    {
+      "id": "ch4-029",
+      "front": "Altitude Reporting",
+      "back": "'Leaving [altitude] for [altitude]' - when departing\n'Maintaining [altitude]' - level flight\n'Climbing/Descending through [altitude]' - in transition\n\nATC may ask:\n'Say altitude' - report current indicated altitude\n'Verify altitude' - confirm assigned altitude",
+      "reference": "AIM 4-4-9"
+    },
+    {
+      "id": "ch4-030",
+      "front": "Tower En Route Control (TEC)",
+      "back": "• IFR routing between metro areas\n• Uses approach control airspace (no center)\n• Generally for non-turbojets at/below 10,000\n• Good for short flights (<2 hours)\n• File 'TEC' in remarks section of flight plan\n• Uses existing airways\n• Published TEC routes in Chart Supplement",
+      "reference": "AIM 4-1-19"
+    },
+    {
+      "id": "ch4-031",
+      "front": "VFR Flight Plan Filing",
+      "back": "Not required but recommended:\n• Provides SAR protection\n• File with FSS (phone, online, radio)\n• Activate before departure\n• CLOSE upon arrival (or SAR starts!)\n• Valid for 2 hours after proposed departure\n\nDoesn't provide ATC services",
+      "reference": "AIM 5-1-4"
+    },
+    {
+      "id": "ch4-032",
+      "front": "TRSA (Terminal Radar Service Area)",
+      "back": "• Participation voluntary for VFR\n• Not regulatory airspace class\n• Provides sequencing and traffic advisories\n• Primary airport is Class D\n• Charted with solid black line\n• Pilot participation encouraged\n• No transponder requirement (unlike Class C)",
+      "reference": "AIM 4-1-18"
+    },
+    {
+      "id": "ch4-033",
+      "front": "Radio Communication Basics",
+      "back": "Listen before transmitting\nThink before you key\nBe brief and clear\nUse standard phraseology\nSpeak at normal pace\nAvoid 'uh' and 'um'\nEnd with callsign if reply expected\nAcknowledge with callsign",
+      "reference": "AIM 4-2-1"
+    },
+    {
+      "id": "ch4-034",
+      "front": "Phonetic Alphabet Pronunciation",
+      "back": "A-Alpha, B-Bravo, C-Charlie, D-Delta\nE-Echo, F-Foxtrot, G-Golf, H-Hotel\nI-India, J-Juliet, K-Kilo, L-Lima\nM-Mike, N-November, O-Oscar, P-Papa\nQ-Quebec, R-Romeo, S-Sierra, T-Tango\nU-Uniform, V-Victor, W-Whiskey, X-X-ray\nY-Yankee, Z-Zulu",
+      "reference": "AIM 4-2-7"
+    },
+    {
+      "id": "ch4-035",
+      "front": "Number Pronunciation",
+      "back": "0-Zero, 1-Wun, 2-Too, 3-Tree\n4-Fow-er, 5-Fife, 6-Six, 7-Seven\n8-Ait, 9-Nin-er\n\nAltitudes: Digit by digit below 10,000\n• 4,500 = 'Four thousand five hundred'\n• 10,000+ = 'One zero thousand'\n\nFrequencies: 'Decimal' for point\n• 124.85 = 'One two four point eight five'",
+      "reference": "AIM 4-2-9"
+    }
+  ]
+}

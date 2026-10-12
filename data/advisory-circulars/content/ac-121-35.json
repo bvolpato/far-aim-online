@@ -1,0 +1,29 @@
+{
+  "version": 1,
+  "id": "ac-121-35",
+  "number": "121-35",
+  "title": "Management of Passengers during Ground Operations without Cabin Ventilation",
+  "status": "parsed",
+  "fetched": "2026-07-14",
+  "documentUrl": "https://www.faa.gov/regulations_policies/advisory_circulars/index.cfm/go/document.information/documentID/22520",
+  "pdfUrl": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC121-35.pdf",
+  "sha256": "2e1e0ad98457edfc78b2d28e6311f9b079624a33b9ece4f8e93cd74e88f34a97",
+  "pageCount": 3,
+  "wordCount": 774,
+  "ocrPageCount": 0,
+  "pages": [
+    {
+      "page": 1,
+      "text": "Subject: MANAGEMENT OF PASSENGERS\n\nDURING GROUND OPERATIONS\n\nWITHOUT CABIN VENTILATION\n\nDate: 1/16/03 Initiated by: AFS-200 AC No: 121-35 Change: 1. What is the purpose of this Advisory Circular (AC)? This AC provides guidance regarding air carrier procedures for the use of ventilation and ground based air conditioning on the ground, as well as management of passengers during ground operations with no cabin ventilation. 2. What Federal Aviation Administration (FAA) regulations does this AC cover? Title 14 of the Code of Federal Regulations (14 CFR) part 121, subpart K, subpart M, and subpart T. 3. Who should read this AC? Parts 121 and 135 air carrier certificate-holders, part 125 certificate holders and others, directors of operations, directors of safety, directors of training, crewmembers, and FAA aviation safety inspectors (cabin safety and operations). 4. What is the FAA’s guidance on this issue? Air carriers should be aware of possible health hazards to passengers and crew and make every effort to ensure that aircraft cabins are well ventilated at all times. Based on recommendations to the FAA by the National Research Council (NRC) in its December 2001 study report entitled “The Airliner Cabin Environment and the Health of Passengers and Crew,” the NRC and the FAA recommends the removal of passengers from an airplane within but no later than 30 minutes after a ventilation failure or shutdown on the ground. Air carriers whose airplanes do not have the systems to provide cabin ventilation on the ground should carefully consider the possible adverse effects of periods of time on the ground without cabin ventilation. Airplanes that have systems to accommodate cabin ventilation and cooling on the ground should use full ventilation; a failure or shutdown of the ventilation system should trigger active passenger management such as passenger removal or the introduction of ventilation ground carts."
+    },
+    {
+      "page": 2,
+      "text": "AC 121-35 1/16/03 Air carriers should develop procedures for deplaning passengers within 30 minutes of ventilation system shutdown. When making a decision to deplane passengers, air carriers should consider the possible adverse health effects of periods of time on the ground without cabin ventilation. However, air carriers should also evaluate operational and safety considerations involved with deplaning passengers. 5. Do all airplanes used in passenger operations have systems capable of producing cabin ventilation and cooling during ground operations? No. Only certain airplanes have such systems. All large transport category airplanes today tap engine bleed air for pressurization and ventilation and require a system to condition (cool) or moderate hot bleed air prior to delivery into the airplane cabin. Large transport category airplane designs include an onboard system to ventilate the cabin using conditioned (cooled) air during ground operations. In some cases they may use ground carts (or other means) to provide ventilation while airplanes are parked. Recirculated cabin air (nonconditioned) using recirculation fans may be used to increase airflow and passenger comfort. In contrast, most small commuter airplanes lack the means to effectively cool air on the ground. While some do use a ground-based refrigeration system that provides ventilation using conditioned air during ground operations, most lack an onboard system. Most use an air-to-air heat exchanger that requires some forward motion in order to obtain cold external airflow and provide effective cooling of the bleed air. These airplanes ventilate and cool the cabin effectively in flight, but must rely upon some ground-based system to provide cooling during operations on the ground. 6. What operational and safety considerations should an air carrier evaluate when considering a decision to deplane passengers due to periods of time on the ground without cabin ventilation? Air carriers should evaluate the following operational and safety considerations when considering a decision to deplane passengers: \u0001 Status of the airplane’s operation \u0001 Position of the airplane on the airport when the failure of the ventilation system occurs \u0001 Environmental issues such as weather, operational environment, and passenger handling considerations \u0001 Availability of ground support and personnel to manage the passenger deplaning process \u0001 Airport facilities and resources Page 2 Par 4"
+    },
+    {
+      "page": 3,
+      "text": "1/16/03 AC 121-35 Par 7 Page 3 (and 4) 7. What prompted the publication of this AC? The FAA is issuing this AC in response to one of ten recommendations the NRC issued in its December 2001 report entitled “The Airliner Cabin Environment and the Health of Passengers and Crew.” The NRC conducted a study and issued this report in response to the Wendell H. Ford Aviation Investment and Reform Act for the 21st Century (PL106-181). In response to recommendation 7 of this report, the FAA indicates that it will issue an AC to address issues associated with ventilation. /s/ James J. Ballough Director, Flight Standards Service"
+    }
+  ],
+  "extractedPageCount": 3
+}

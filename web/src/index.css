@@ -1,0 +1,356 @@
+@import "tailwindcss";
+@config "../tailwind.config.js";
+
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: optional;
+  src: url('@fontsource-variable/inter/files/inter-latin-wght-normal.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 100 800;
+  font-display: optional;
+  src: url('@fontsource-variable/jetbrains-mono/files/jetbrains-mono-latin-wght-normal.woff2') format('woff2');
+}
+
+@layer base {
+  :root {
+    --background: 210 40% 98%;
+    --foreground: 222 47% 11%;
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 11%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 11%;
+    --primary: 213 94% 45%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 214 32% 91%;
+    --secondary-foreground: 222 47% 11%;
+    --muted: 210 40% 96%;
+    --muted-foreground: 215 18% 42%;
+    --accent: 214 32% 91%;
+    --accent-foreground: 222 47% 11%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 214 32% 91%;
+    --input: 214 32% 91%;
+    --ring: 213 94% 48%;
+    --radius: 0.75rem;
+
+    /* Tabs-specific tokens for consistent tab styling */
+    --tab-bg: 214 32% 93%;
+    --tab-active-bg: 0 0% 100%;
+    --tab-active-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.08);
+
+    font-family: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
+    line-height: 1.6;
+    font-weight: 400;
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  .dark {
+    --background: 222 47% 11%;
+    --foreground: 210 40% 98%;
+    --card: 223 39% 14%;
+    --card-foreground: 210 40% 98%;
+    --popover: 223 39% 14%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 213 94% 56%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 217 33% 20%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217 33% 17%;
+    --muted-foreground: 215 20% 65%;
+    --accent: 217 33% 20%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 63% 31%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 217 33% 22%;
+    --input: 217 33% 22%;
+    --ring: 213 94% 56%;
+
+    --tab-bg: 217 33% 17%;
+    --tab-active-bg: 217 33% 24%;
+    --tab-active-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.3);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    margin: 0;
+    min-height: 100vh;
+  }
+
+  #root {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--muted-foreground) / 0.4);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--muted-foreground) / 0.6);
+}
+
+/* Selection */
+::selection {
+  background-color: hsl(var(--primary) / 0.3);
+}
+
+/* Animation utilities */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.3s ease-out;
+}
+
+.animate-slide-up {
+  animation: slideUp 0.4s ease-out;
+}
+
+/* Card hover effect */
+.card-hover {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card-hover:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 40px -10px hsl(var(--foreground) / 0.1);
+}
+
+/* Flashcard flip animation */
+.flashcard {
+  perspective: 1000px;
+}
+
+.flashcard-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+}
+
+.flashcard-inner.flipped {
+  transform: rotateY(180deg);
+}
+
+.flashcard-front,
+.flashcard-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 0.5rem;
+  overflow-y: auto;
+}
+
+.flashcard-back {
+  transform: rotateY(180deg);
+}
+
+/* Progress bar animation */
+.progress-bar {
+  transition: width 0.5s ease-out;
+}
+
+/* Scale in animation for celebration */
+@keyframes scaleIn {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+
+  50% {
+    transform: scale(1.2);
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.animate-scale-in {
+  animation: scaleIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+/* Bounce animation override for results */
+@keyframes bounceSubtle {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* Celebration shimmer effect */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.animate-shimmer {
+  background: linear-gradient(90deg,
+      transparent 0%,
+      hsl(var(--primary-foreground) / 0.2) 50%,
+      transparent 100%);
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+}
+
+/* Consistent tab-switcher component */
+.tab-switcher {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.25rem;
+  border-radius: 0.625rem;
+  background: hsl(var(--tab-bg));
+}
+
+.tab-switcher-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: hsl(var(--muted-foreground));
+  transition: all 0.15s ease;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+.tab-switcher-btn:hover:not(.tab-switcher-btn--active) {
+  color: hsl(var(--foreground));
+}
+
+.tab-switcher-btn--active {
+  background: hsl(var(--tab-active-bg));
+  color: hsl(var(--primary));
+  box-shadow: var(--tab-active-shadow);
+}
+
+.home-page {
+  --primary: 204 55% 32%;
+  --ring: 204 55% 32%;
+  --border: 40 19% 85%;
+  --muted: 40 25% 94%;
+  --muted-foreground: 210 14% 40%;
+  background: #f7f4ec;
+}
+
+.home-hero {
+  background: #102b40;
+  color: #f7f4ec;
+}
+
+.home-eyebrow {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+}
+
+.home-study-card {
+  background: #eef2f2;
+}
+
+.dark .home-page {
+  --primary: 198 53% 73%;
+  --primary-foreground: 204 60% 15%;
+  --ring: 198 53% 73%;
+  --border: 210 24% 27%;
+  --muted: 210 26% 19%;
+  --muted-foreground: 210 20% 70%;
+  background: #0d1d2a;
+}
+
+.dark .home-study-card {
+  background: #172e3e;
+}
+
+.home-page a:focus-visible,
+.home-page button:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home-page *,
+  .home-page *::before,
+  .home-page *::after {
+    transition: none;
+    animation: none;
+  }
+}

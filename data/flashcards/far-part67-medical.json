@@ -1,0 +1,190 @@
+{
+  "id": "far-part67-medical",
+  "title": "Part 67 & 68: Medical Standards",
+  "description": "Medical certificate classes, requirements, durations, BasicMed, and fitness for flight",
+  "category": "FAR",
+  "part": 67,
+  "cardCount": 30,
+  "cards": [
+    {
+      "id": "fcmed-001",
+      "front": "Medical Certificate Classes",
+      "back": "First Class: Required for ATP privileges\nSecond Class: Required for commercial privileges\nThird Class: Required for private/recreational/student\n\nHigher class = more stringent requirements",
+      "reference": "14 CFR 61.23, Part 67"
+    },
+    {
+      "id": "fcmed-002",
+      "front": "First Class Medical Duration",
+      "back": "Under 40: 12 calendar months (first class privileges)\nAge 40+: 6 calendar months (first class privileges)\n\nAfter expiration of first class privileges, continues as second class, then third class",
+      "reference": "14 CFR 61.23"
+    },
+    {
+      "id": "fcmed-003",
+      "front": "Second Class Medical Duration",
+      "back": "All ages: 12 calendar months (second class privileges)\n\nAfter expiration of second class privileges, continues as third class",
+      "reference": "14 CFR 61.23"
+    },
+    {
+      "id": "fcmed-004",
+      "front": "Third Class Medical Duration",
+      "back": "Under 40: 60 calendar months (5 years)\nAge 40+: 24 calendar months (2 years)\n\nMemory aid: 'Under 40 = 5 years, Over 40 = 2 years'",
+      "reference": "14 CFR 61.23"
+    },
+    {
+      "id": "fcmed-005",
+      "front": "Medical Certificate Expiration",
+      "back": "Expires at the END of the month shown\n\nExample: Certificate dated March 15, 2024 expires March 31, 2024 (for that class privilege)",
+      "reference": "14 CFR 61.23"
+    },
+    {
+      "id": "fcmed-006",
+      "front": "Third Class Vision Standards",
+      "back": "Distant: 20/40 or better each eye (with or without correction)\nNear: 20/40 or better at 16 inches (with or without correction)\nIntermediate: 20/40 at 32 inches if age 50+ (with or without correction)\n\nCorrectve lenses must be worn if required",
+      "reference": "14 CFR 67.303"
+    },
+    {
+      "id": "fcmed-007",
+      "front": "First Class Vision Standards",
+      "back": "Distant: 20/20 or better each eye (with or without correction)\nNear: 20/40 or better at 16 inches\nIntermediate: 20/40 at 32 inches\n\nMore stringent than third class!",
+      "reference": "14 CFR 67.103"
+    },
+    {
+      "id": "fcmed-008",
+      "front": "Color Vision Requirements",
+      "back": "Must perceive colors necessary for safe performance of airman duties\n\nIf failed: Limitation placed on certificate\n• 'Not valid for night flying'\n• 'Not valid for color signal control'\n\nAlternative tests available (OCVT, MFT)",
+      "reference": "14 CFR 67.103, 67.203, 67.303"
+    },
+    {
+      "id": "fcmed-009",
+      "front": "Hearing Standards",
+      "back": "Demonstrate hearing of average conversational voice at 6 feet\n• Quiet room\n• Back turned to examiner\n\nOR pass audiometric test",
+      "reference": "14 CFR 67.305"
+    },
+    {
+      "id": "fcmed-010",
+      "front": "BasicMed Requirements",
+      "back": "To use BasicMed:\n1. Valid driver's license\n2. Held medical after July 15, 2006\n3. Physical exam every 48 months\n4. Online course every 24 months\n5. No denial/revocation of most recent medical\n\nCarry: Checklist, course completion, driver's license",
+      "reference": "14 CFR 68, 61.23(c)(3)"
+    },
+    {
+      "id": "fcmed-011",
+      "front": "BasicMed Limitations",
+      "back": "Aircraft: ≤6 seats, ≤6000 lbs MTOW\nAltitude: Below 18,000' MSL\nSpeed: ≤250 KIAS\nPassengers: ≤5 (6 seats minus pilot)\nOperations: No compensation/hire\n\nMemory aid: '6-6-18-250'",
+      "reference": "14 CFR 61.113(i)"
+    },
+    {
+      "id": "fcmed-012",
+      "front": "BasicMed Disqualifications",
+      "back": "Cannot use BasicMed if:\n• Most recent medical denied/suspended/revoked\n• Never held medical after July 15, 2006\n• Certain mental health conditions\n• Cardiac conditions requiring special issuance\n\nMust obtain regular medical first to 'reset'",
+      "reference": "14 CFR 61.23(c)(3), 68.9"
+    },
+    {
+      "id": "fcmed-013",
+      "front": "Self-Certification (61.53)",
+      "back": "No person may act as PIC or required crewmember:\n• Knowing of medical condition that would prevent meeting medical standards\n• While taking medication that affects ability to operate safely\n\nApplies even with valid medical certificate!",
+      "reference": "14 CFR 61.53"
+    },
+    {
+      "id": "fcmed-014",
+      "front": "IMSAFE Checklist",
+      "back": "I - Illness (Am I sick?)\nM - Medication (Taking any?)\nS - Stress (Under pressure?)\nA - Alcohol (8 hours, 0.04%?)\nF - Fatigue (Adequate rest?)\nE - Emotion (Emotionally fit?)\n\nUse before EVERY flight!",
+      "reference": "AIM 8-1-1"
+    },
+    {
+      "id": "fcmed-015",
+      "front": "Aviation Medical Examiner (AME)",
+      "back": "Physician designated by FAA to conduct medical exams\n\nFind AME: medxpress.faa.gov\n\nMedXpress: Online application system (complete before exam)",
+      "reference": "14 CFR 67.3"
+    },
+    {
+      "id": "fcmed-016",
+      "front": "Special Issuance (SI) Medical",
+      "back": "Medical certificate issued to pilots who don't meet standard requirements\n\nRequires:\n• Documentation of condition\n• Demonstration of safe operation\n• Often requires periodic testing\n• May have limitations",
+      "reference": "14 CFR 67.401"
+    },
+    {
+      "id": "fcmed-017",
+      "front": "Conditions Requiring Special Issuance",
+      "back": "Examples:\n• Diabetes requiring medication\n• Heart conditions\n• Certain mental health conditions\n• Substance dependence history\n• Neurological conditions\n\nNot automatic denial-SI process available",
+      "reference": "14 CFR 67.401"
+    },
+    {
+      "id": "fcmed-018",
+      "front": "Alcohol Rules (Medical)",
+      "back": "8 hours bottle to throttle\n0.04% BAC maximum\nNo impairment from alcohol\n\n2 alcohol-related motor vehicle convictions in 3 years = grounds for denial\n\nMust report DUI within 60 days",
+      "reference": "14 CFR 91.17, 61.15"
+    },
+    {
+      "id": "fcmed-019",
+      "front": "Medication Considerations",
+      "back": "Many medications are disqualifying:\n• Sedatives\n• Certain antihistamines\n• Some blood pressure meds\n• Antidepressants (some allowed with SI)\n\nCheck with AME BEFORE taking new medication",
+      "reference": "14 CFR 61.53, 67"
+    },
+    {
+      "id": "fcmed-020",
+      "front": "Student Pilot Medical Requirements",
+      "back": "Student pilot certificate: No medical required to obtain\n\nTo SOLO: Must have at least third class medical (or BasicMed)\n\nStudent certificate no longer expires",
+      "reference": "14 CFR 61.23, 61.87"
+    },
+    {
+      "id": "fcmed-021",
+      "front": "Sport Pilot Medical Alternative",
+      "back": "Sport pilots may use valid driver's license instead of medical IF:\n• Never had medical denied/revoked/suspended\n• No known medical condition that makes operation unsafe\n\nSport pilot limitations apply",
+      "reference": "14 CFR 61.23(c)(2)"
+    },
+    {
+      "id": "fcmed-022",
+      "front": "Glider/Balloon Medical Requirements",
+      "back": "No medical certificate required for:\n• Glider pilots\n• Balloon pilots\n\nStill must self-certify fitness (61.53)\nStill subject to 91.17 (alcohol)",
+      "reference": "14 CFR 61.23(b)"
+    },
+    {
+      "id": "fcmed-023",
+      "front": "Medical Certificate Downgrade",
+      "back": "Higher class medical 'downgrades' over time:\n\nFirst class → Second class → Third class\n\nExample: First class at age 42:\n• First class: 6 months\n• Second class: 6 more months (12 total)\n• Third class: 12 more months (24 total)",
+      "reference": "14 CFR 61.23"
+    },
+    {
+      "id": "fcmed-024",
+      "front": "Reporting Medical Changes",
+      "back": "No requirement to report changes between exams UNLESS:\n• Applying for new medical\n• Condition makes you unable to meet standards (61.53)\n\nBest practice: Consult AME if uncertain",
+      "reference": "14 CFR 61.53, 67"
+    },
+    {
+      "id": "fcmed-025",
+      "front": "Mental Health Standards",
+      "back": "Disqualifying conditions (may get SI):\n• Psychosis\n• Bipolar disorder\n• Severe personality disorder\n• Substance dependence\n\nDepression/anxiety: Many pilots fly with SI after evaluation",
+      "reference": "14 CFR 67.107, 67.207, 67.307"
+    },
+    {
+      "id": "fcmed-026",
+      "front": "Cardiovascular Standards",
+      "back": "First class: ECG required at age 35, then annually at 40+\n\nDisqualifying (may get SI):\n• Myocardial infarction\n• Coronary artery disease\n• Certain arrhythmias\n• Heart valve replacement",
+      "reference": "14 CFR 67.111"
+    },
+    {
+      "id": "fcmed-027",
+      "front": "Neurological Standards",
+      "back": "Disqualifying (may get SI):\n• Epilepsy\n• Disturbance of consciousness without explanation\n• Transient loss of nervous system function\n\nSingle seizure: Usually 4-year wait for SI consideration",
+      "reference": "14 CFR 67.109, 67.209, 67.309"
+    },
+    {
+      "id": "fcmed-028",
+      "front": "Blood Pressure Standards",
+      "back": "Maximum (sitting): 155/95\n\nHigher readings: May still qualify if controlled\n\nMedications: Some allowed, some not-check with AME",
+      "reference": "14 CFR 67.111"
+    },
+    {
+      "id": "fcmed-029",
+      "front": "Diabetes Standards",
+      "back": "Diet/exercise controlled: Usually no issue\n\nOral medications: Special Issuance available\n\nInsulin-dependent: Special Issuance available since 2019 (strict requirements)",
+      "reference": "14 CFR 67.113"
+    },
+    {
+      "id": "fcmed-030",
+      "front": "Medical Certificate Documents to Carry",
+      "back": "Regular Medical:\n• Medical certificate\n\nBasicMed:\n• Driver's license\n• Completed medical exam checklist\n• Course completion certificate\n\nAlways have photo ID",
+      "reference": "14 CFR 61.3"
+    }
+  ]
+}

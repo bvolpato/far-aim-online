@@ -1,0 +1,662 @@
+{
+  "id": "private-pilot-far",
+  "title": "Private Pilot FAR Knowledge",
+  "description": "Test your knowledge of Federal Aviation Regulations for Private Pilots",
+  "category": "FAR",
+  "difficulty": "intermediate",
+  "targetCertificate": "Private Pilot",
+  "questionCount": 50,
+  "passingScore": 70,
+  "questions": [
+    {
+      "id": "ppf-001",
+      "question": "What is the minimum age requirement to obtain a private pilot certificate for an airplane?",
+      "options": [
+        "16 years old",
+        "17 years old",
+        "18 years old",
+        "21 years old"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Under 14 CFR 61.103, an applicant for a private pilot certificate must be at least 17 years of age (or 16 for glider or balloon).",
+      "reference": "14 CFR 61.103"
+    },
+    {
+      "id": "ppf-002",
+      "question": "How often must a flight review be accomplished to act as pilot in command?",
+      "options": [
+        "Every 12 calendar months",
+        "Every 24 calendar months",
+        "Every 36 calendar months",
+        "Every 6 calendar months"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Under 14 CFR 61.56, no person may act as pilot in command unless within the preceding 24 calendar months they have accomplished a flight review.",
+      "reference": "14 CFR 61.56"
+    },
+    {
+      "id": "ppf-003",
+      "question": "To carry passengers at night, a pilot must have made at least how many takeoffs and landings within the preceding 90 days?",
+      "options": [
+        "3 takeoffs and 3 landings",
+        "3 takeoffs and 3 landings to a full stop",
+        "5 takeoffs and 5 landings",
+        "1 takeoff and 1 landing"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Under 14 CFR 61.57, to carry passengers at night, a pilot must have made 3 takeoffs and 3 landings to a full stop during the period beginning 1 hour after sunset and ending 1 hour before sunrise within the preceding 90 days.",
+      "reference": "14 CFR 61.57"
+    },
+    {
+      "id": "ppf-004",
+      "question": "What minimum flight visibility is required for VFR flight in Class B airspace?",
+      "options": [
+        "1 statute mile",
+        "2 statute miles",
+        "3 statute miles",
+        "5 statute miles"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Under 14 CFR 91.155, the minimum flight visibility for VFR flight in Class B airspace is 3 statute miles.",
+      "reference": "14 CFR 91.155"
+    },
+    {
+      "id": "ppf-005",
+      "question": "What is the maximum indicated airspeed permitted below 10,000 feet MSL?",
+      "options": [
+        "200 knots",
+        "230 knots",
+        "250 knots",
+        "288 knots"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Under 14 CFR 91.117, no person may operate an aircraft below 10,000 feet MSL at an indicated airspeed of more than 250 knots.",
+      "reference": "14 CFR 91.117"
+    },
+    {
+      "id": "ppf-006",
+      "question": "When must a pilot have a current medical certificate to exercise private pilot privileges?",
+      "options": [
+        "Always",
+        "Never if using BasicMed",
+        "Only when carrying passengers for hire",
+        "When not using BasicMed"
+      ],
+      "correctAnswer": 3,
+      "explanation": "A pilot must have a current medical certificate unless operating under BasicMed, which requires meeting specific requirements outlined in 14 CFR 61.23 and 68.",
+      "reference": "14 CFR 61.23"
+    },
+    {
+      "id": "ppf-007",
+      "question": "What is the minimum fuel reserve required for day VFR flight?",
+      "options": [
+        "30 minutes at normal cruise",
+        "45 minutes at normal cruise",
+        "1 hour at normal cruise",
+        "20 minutes at normal cruise"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Under 14 CFR 91.151, no person may begin a VFR flight during the day unless there is enough fuel to fly to the first point of intended landing and, assuming normal cruising speed, to fly after that for at least 30 minutes.",
+      "reference": "14 CFR 91.151"
+    },
+    {
+      "id": "ppf-008",
+      "question": "What is the minimum fuel reserve required for night VFR flight?",
+      "options": [
+        "30 minutes at normal cruise",
+        "45 minutes at normal cruise",
+        "1 hour at normal cruise",
+        "20 minutes at normal cruise"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Under 14 CFR 91.151, for night VFR flight, there must be enough fuel to fly to the first point of intended landing and to fly after that for at least 45 minutes at normal cruising speed.",
+      "reference": "14 CFR 91.151"
+    },
+    {
+      "id": "ppf-009",
+      "question": "Who is responsible for determining that an aircraft is in condition for safe flight?",
+      "options": [
+        "The aircraft owner",
+        "The FAA",
+        "The pilot in command",
+        "The maintenance technician"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Under 14 CFR 91.7, the pilot in command of a civil aircraft is responsible for determining whether that aircraft is in condition for safe flight.",
+      "reference": "14 CFR 91.7"
+    },
+    {
+      "id": "ppf-010",
+      "question": "What action should be taken if a pilot deviates from an ATC instruction in an emergency?",
+      "options": [
+        "File a NASA report within 10 days",
+        "Submit a written report upon request",
+        "Land at the nearest airport",
+        "Contact FSDO immediately"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Under 14 CFR 91.123, each pilot who is given priority by ATC in an emergency shall submit a detailed report of that emergency within 48 hours to the manager of that ATC facility, if requested by ATC.",
+      "reference": "14 CFR 91.123"
+    },
+    {
+      "id": "ppf-011",
+      "question": "What is the minimum altitude for flight over congested areas?",
+      "options": [
+        "500 feet above the surface",
+        "1,000 feet above the highest obstacle within 2,000 feet horizontal",
+        "1,000 feet AGL",
+        "500 feet above the highest obstacle"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Under 14 CFR 91.119, over congested areas, aircraft must maintain an altitude of 1,000 feet above the highest obstacle within a horizontal radius of 2,000 feet.",
+      "reference": "14 CFR 91.119"
+    },
+    {
+      "id": "ppf-012",
+      "question": "How long after consuming alcohol may a person act as a flight crewmember?",
+      "options": [
+        "4 hours",
+        "8 hours",
+        "12 hours",
+        "24 hours"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Under 14 CFR 91.17, no person may act as a crewmember within 8 hours after the consumption of any alcoholic beverage.",
+      "reference": "14 CFR 91.17"
+    },
+    {
+      "id": "ppf-013",
+      "question": "What is the maximum blood alcohol content allowed to act as a crewmember?",
+      "options": [
+        "0.02%",
+        "0.04%",
+        "0.08%",
+        "0.10%"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Under 14 CFR 91.17, no person may act as a crewmember while having 0.04 percent by weight or more alcohol in the blood.",
+      "reference": "14 CFR 91.17"
+    },
+    {
+      "id": "ppf-014",
+      "question": "When two aircraft are approaching each other head-on, each pilot should:",
+      "options": [
+        "Maintain altitude and airspeed",
+        "Alter course to the left",
+        "Alter course to the right",
+        "Climb to avoid the other aircraft"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Under 14 CFR 91.113, when aircraft are approaching head-on or nearly so, each pilot shall alter course to the right.",
+      "reference": "14 CFR 91.113"
+    },
+    {
+      "id": "ppf-015",
+      "question": "Which aircraft has the right-of-way over all other traffic?",
+      "options": [
+        "A balloon",
+        "A glider",
+        "An aircraft in distress",
+        "A rotorcraft"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Under 14 CFR 91.113, an aircraft in distress has the right-of-way over all other air traffic.",
+      "reference": "14 CFR 91.113"
+    },
+    {
+      "id": "ppf-016",
+      "question": "How often must an aircraft's transponder be tested and inspected?",
+      "options": [
+        "Every 12 calendar months",
+        "Every 24 calendar months",
+        "Every annual inspection",
+        "Every 100 hours"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Under 14 CFR 91.413, the transponder must be tested and inspected within the preceding 24 calendar months.",
+      "reference": "14 CFR 91.413"
+    },
+    {
+      "id": "ppf-017",
+      "question": "When must an Emergency Locator Transmitter (ELT) be inspected?",
+      "options": [
+        "Every 6 calendar months",
+        "Every 12 calendar months",
+        "Every 24 calendar months",
+        "Every annual inspection only"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Under 14 CFR 91.207, an ELT must be inspected within 12 calendar months after the last inspection.",
+      "reference": "14 CFR 91.207"
+    },
+    {
+      "id": "ppf-018",
+      "question": "When must position lights be displayed on an aircraft?",
+      "options": [
+        "During all flight operations",
+        "Only during night flight",
+        "From sunset to sunrise",
+        "When visibility is less than 3 miles"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Under 14 CFR 91.209, no person may operate an aircraft from sunset to sunrise unless the aircraft has lighted position lights.",
+      "reference": "14 CFR 91.209"
+    },
+    {
+      "id": "ppf-019",
+      "question": "What is the required equipment for VFR flight during the day? (Remember: ATOMATOFLAMES)",
+      "options": [
+        "Attitude indicator, transponder, oil pressure gauge",
+        "Airspeed indicator, altimeter, magnetic compass, fuel gauge, oil temperature gauge",
+        "Transponder, VOR, DME",
+        "Gyroscopic heading indicator, attitude indicator, turn coordinator"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Under 14 CFR 91.205, day VFR requires airspeed indicator, altimeter, magnetic compass (direction indicator), tachometer, oil pressure gauge, manifold pressure gauge (if applicable), oil/temperature gauges, fuel gauges, landing gear indicator, anticollision lights, ELT, and safety belts.",
+      "reference": "14 CFR 91.205"
+    },
+    {
+      "id": "ppf-020",
+      "question": "What cloud clearance is required for VFR flight in Class E airspace below 10,000 feet MSL?",
+      "options": [
+        "Clear of clouds",
+        "500 below, 1000 above, 2000 horizontal",
+        "1000 below, 1000 above, 1 mile horizontal",
+        "1000 below, 2000 above, 2000 horizontal"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Under 14 CFR 91.155, VFR flight in Class E airspace below 10,000 feet MSL requires 500 feet below clouds, 1,000 feet above clouds, and 2,000 feet horizontal from clouds.",
+      "reference": "14 CFR 91.155"
+    },
+    {
+      "id": "ppf-021",
+      "question": "A private pilot may share expenses equally with passengers for:",
+      "options": [
+        "All flight expenses",
+        "Fuel, oil, airport expenditures, and aircraft rental fees",
+        "Only fuel costs",
+        "Maintenance and fuel costs"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Under 14 CFR 61.113, a private pilot may not pay less than the pro rata share of the operating expenses of a flight with passengers, provided the expenses involve only fuel, oil, airport expenditures, or rental fees.",
+      "reference": "14 CFR 61.113"
+    },
+    {
+      "id": "ppf-022",
+      "question": "At what altitude must the altimeter be set to 29.92 inches Hg?",
+      "options": [
+        "10,000 feet MSL",
+        "14,500 feet MSL",
+        "18,000 feet MSL",
+        "24,000 feet MSL"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Under 14 CFR 91.121, at or above 18,000 feet MSL, the altimeter must be set to 29.92 inches Hg (standard pressure).",
+      "reference": "14 CFR 91.121"
+    },
+    {
+      "id": "ppf-023",
+      "question": "What action is required before entering Class C airspace?",
+      "options": [
+        "File a flight plan",
+        "Receive ATC clearance",
+        "Establish two-way radio communication",
+        "Obtain a transponder code"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Under 14 CFR 91.130, pilots must establish two-way radio communication with ATC before entering Class C airspace.",
+      "reference": "14 CFR 91.130"
+    },
+    {
+      "id": "ppf-024",
+      "question": "What action is required before entering Class B airspace?",
+      "options": [
+        "Establish two-way radio communication",
+        "Receive an ATC clearance",
+        "File an IFR flight plan",
+        "Contact Flight Service"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Under 14 CFR 91.131, pilots must receive an ATC clearance from the ATC facility having jurisdiction before operating in Class B airspace.",
+      "reference": "14 CFR 91.131"
+    },
+    {
+      "id": "ppf-025",
+      "question": "What type of aircraft operations are allowed in Class A airspace?",
+      "options": [
+        "VFR only",
+        "IFR only",
+        "Both VFR and IFR",
+        "SVFR only"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Under 14 CFR 91.135, unless otherwise authorized, each person operating an aircraft in Class A airspace must operate under instrument flight rules (IFR).",
+      "reference": "14 CFR 91.135"
+    },
+    {
+      "id": "ppf-026",
+      "question": "How many hours of flight time are required for a private pilot certificate (airplane single-engine land)?",
+      "options": [
+        "35 hours",
+        "40 hours",
+        "50 hours",
+        "60 hours"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Under 14 CFR 61.109, a person who applies for a private pilot certificate with an airplane category and single-engine class rating must log at least 40 hours of flight time.",
+      "reference": "14 CFR 61.109"
+    },
+    {
+      "id": "ppf-027",
+      "question": "What is required to fly a high-performance airplane?",
+      "options": [
+        "A type rating",
+        "An instrument rating",
+        "A logbook endorsement from an authorized instructor",
+        "A commercial pilot certificate"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Under 14 CFR 61.31, a pilot must have received and logged ground and flight training in a high-performance airplane and received a logbook endorsement from an authorized instructor.",
+      "reference": "14 CFR 61.31"
+    },
+    {
+      "id": "ppf-028",
+      "question": "What defines a high-performance airplane?",
+      "options": [
+        "An airplane with retractable gear",
+        "An airplane with an engine of more than 200 horsepower",
+        "An airplane with a maximum gross weight over 12,500 lbs",
+        "An airplane capable of flight above FL250"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Under 14 CFR 61.31, a high-performance airplane is an airplane with an engine of more than 200 horsepower.",
+      "reference": "14 CFR 61.31"
+    },
+    {
+      "id": "ppf-029",
+      "question": "What defines a complex airplane?",
+      "options": [
+        "An airplane with an engine of more than 200 horsepower",
+        "An airplane with retractable gear, flaps, and controllable pitch propeller",
+        "A multiengine airplane",
+        "An airplane requiring a type rating"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Under 14 CFR 61.31, a complex airplane has retractable landing gear, flaps, and a controllable pitch propeller.",
+      "reference": "14 CFR 61.31"
+    },
+    {
+      "id": "ppf-030",
+      "question": "How often must a 100-hour inspection be performed on an aircraft used for hire?",
+      "options": [
+        "Every 100 hours of time in service",
+        "Every 12 calendar months",
+        "Every 100 hours or annual, whichever comes first",
+        "Every 200 hours of time in service"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Under 14 CFR 91.409, aircraft used for hire or flight instruction for hire must have a 100-hour inspection performed every 100 hours of time in service.",
+      "reference": "14 CFR 91.409"
+    },
+    {
+      "id": "ppf-031",
+      "question": "By how many hours may the 100-hour inspection be exceeded?",
+      "options": [
+        "5 hours",
+        "10 hours",
+        "15 hours",
+        "20 hours"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Under 14 CFR 91.409, the 100-hour limitation may be exceeded by not more than 10 hours while en route to a place where the inspection can be done.",
+      "reference": "14 CFR 91.409"
+    },
+    {
+      "id": "ppf-032",
+      "question": "What documents must be on board an aircraft during flight?",
+      "options": [
+        "Airworthiness certificate only",
+        "Registration certificate only",
+        "Airworthiness certificate, registration certificate, operating limitations, and weight and balance data",
+        "Pilot certificate and medical certificate"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Under 14 CFR 91.9 and 91.203, the aircraft must have its airworthiness certificate, registration certificate, and operating limitations (AFM, POH, placards). Weight and balance information must also be available.",
+      "reference": "14 CFR 91.9, 91.203"
+    },
+    {
+      "id": "ppf-033",
+      "question": "Where must the airworthiness certificate be displayed?",
+      "options": [
+        "In the pilot's possession",
+        "In the aircraft's maintenance records",
+        "At the cabin or cockpit entrance",
+        "Attached to the registration certificate"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Under 14 CFR 91.203, the airworthiness certificate must be displayed at the cabin or cockpit entrance so that it is legible to passengers or crew.",
+      "reference": "14 CFR 91.203"
+    },
+    {
+      "id": "ppf-034",
+      "question": "What is the validity period of a third-class medical certificate for a pilot under 40 years old?",
+      "options": [
+        "12 calendar months",
+        "24 calendar months",
+        "36 calendar months",
+        "60 calendar months"
+      ],
+      "correctAnswer": 3,
+      "explanation": "Under 14 CFR 61.23, a third-class medical certificate is valid for 60 calendar months for operations requiring a third-class medical for persons under 40 years of age.",
+      "reference": "14 CFR 61.23"
+    },
+    {
+      "id": "ppf-035",
+      "question": "What is the validity period of a third-class medical certificate for a pilot 40 years old or older?",
+      "options": [
+        "12 calendar months",
+        "24 calendar months",
+        "36 calendar months",
+        "60 calendar months"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Under 14 CFR 61.23, a third-class medical certificate is valid for 24 calendar months for operations requiring a third-class medical for persons 40 years of age or older.",
+      "reference": "14 CFR 61.23"
+    },
+    {
+      "id": "ppf-036",
+      "question": "When may a private pilot log second-in-command (SIC) time?",
+      "options": [
+        "Any time they are the sole manipulator of the controls",
+        "When required by the type certificate or regulations",
+        "During any flight with another pilot",
+        "Never, only commercial pilots can log SIC time"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Under 14 CFR 61.51, a pilot may log SIC time when the pilot serves as SIC of an aircraft on which more than one pilot is required under the type certificate or regulations.",
+      "reference": "14 CFR 61.51"
+    },
+    {
+      "id": "ppf-037",
+      "question": "What must a pilot do before a flight not in the vicinity of an airport?",
+      "options": [
+        "File a VFR flight plan",
+        "Contact Flight Service",
+        "Become familiar with all available information concerning the flight",
+        "Obtain an ATC clearance"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Under 14 CFR 91.103, each pilot in command shall become familiar with all available information concerning that flight before beginning a flight.",
+      "reference": "14 CFR 91.103"
+    },
+    {
+      "id": "ppf-038",
+      "question": "What color is a steady light signal meaning 'cleared to land' for aircraft in flight?",
+      "options": [
+        "Flashing green",
+        "Steady green",
+        "Flashing white",
+        "Steady red"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Under 14 CFR 91.125, a steady green light signal to an aircraft in flight means 'cleared to land.'",
+      "reference": "14 CFR 91.125"
+    },
+    {
+      "id": "ppf-039",
+      "question": "What color is a flashing red light signal to an aircraft on the surface?",
+      "options": [
+        "Stop",
+        "Return to starting point",
+        "Taxi clear of runway in use",
+        "Cleared for takeoff"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Under 14 CFR 91.125, a flashing red light signal to an aircraft on the surface means 'taxi clear of runway in use.'",
+      "reference": "14 CFR 91.125"
+    },
+    {
+      "id": "ppf-040",
+      "question": "At what altitudes must supplemental oxygen be used by the crew?",
+      "options": [
+        "Above 10,000 feet MSL for more than 30 minutes",
+        "Above 12,500 feet MSL for more than 30 minutes",
+        "Above 14,000 feet MSL at all times",
+        "Both B and C"
+      ],
+      "correctAnswer": 3,
+      "explanation": "Under 14 CFR 91.211, required crew must use supplemental oxygen above 12,500 feet up to 14,000 feet for more than 30 minutes, and above 14,000 feet at all times.",
+      "reference": "14 CFR 91.211"
+    },
+    {
+      "id": "ppf-041",
+      "question": "At what altitude must supplemental oxygen be provided to passengers?",
+      "options": [
+        "Above 10,000 feet MSL",
+        "Above 12,500 feet MSL",
+        "Above 14,000 feet MSL",
+        "Above 15,000 feet MSL"
+      ],
+      "correctAnswer": 3,
+      "explanation": "Under 14 CFR 91.211, above 15,000 feet MSL, each occupant must be provided with supplemental oxygen.",
+      "reference": "14 CFR 91.211"
+    },
+    {
+      "id": "ppf-042",
+      "question": "What is the maximum indicated airspeed in a Class D airspace underlying Class B airspace?",
+      "options": [
+        "200 knots",
+        "230 knots",
+        "250 knots",
+        "No speed restriction"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Under 14 CFR 91.117, the maximum indicated airspeed when operating beneath the lateral limits of Class B airspace is 200 knots.",
+      "reference": "14 CFR 91.117"
+    },
+    {
+      "id": "ppf-043",
+      "question": "What is required to act as pilot in command of an aircraft carrying passengers?",
+      "options": [
+        "3 takeoffs and landings in the preceding 90 days",
+        "A flight review in the preceding 12 months",
+        "A practical test in the preceding 24 months",
+        "An instrument proficiency check in the preceding 6 months"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Under 14 CFR 61.57, to carry passengers, a pilot must have made at least 3 takeoffs and 3 landings within the preceding 90 days in the same category, class, and type of aircraft.",
+      "reference": "14 CFR 61.57"
+    },
+    {
+      "id": "ppf-044",
+      "question": "In an emergency, the pilot in command may:",
+      "options": [
+        "Not deviate from any regulation",
+        "Deviate from any rule to the extent required",
+        "Only deviate from ATC clearances",
+        "Only deviate from airspace rules"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Under 14 CFR 91.3, in an in-flight emergency requiring immediate action, the pilot in command may deviate from any rule of Part 91 to the extent required to meet that emergency.",
+      "reference": "14 CFR 91.3"
+    },
+    {
+      "id": "ppf-045",
+      "question": "What is the definition of 'night' for logging night flight time?",
+      "options": [
+        "Sunset to sunrise",
+        "One hour after sunset to one hour before sunrise",
+        "End of evening civil twilight to beginning of morning civil twilight",
+        "When position lights are required"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Under 14 CFR 1.1, night means the time between the end of evening civil twilight and the beginning of morning civil twilight.",
+      "reference": "14 CFR 1.1"
+    },
+    {
+      "id": "ppf-046",
+      "question": "Who may perform preventive maintenance on an aircraft?",
+      "options": [
+        "Only certified mechanics",
+        "Only certified mechanics with IA authorization",
+        "The pilot-owner with appropriate limitations",
+        "Any licensed pilot"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Under 14 CFR 43.3, a pilot may perform preventive maintenance on any aircraft owned or operated by that pilot (not for hire).",
+      "reference": "14 CFR 43.3"
+    },
+    {
+      "id": "ppf-047",
+      "question": "How long must aircraft maintenance records be retained for the airframe, engine, and propeller?",
+      "options": [
+        "Until the work is superseded",
+        "1 year after the work is performed",
+        "5 years after the work is performed",
+        "Until the aircraft is sold"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Under 14 CFR 91.417, airframe, engine, and propeller records must be retained until the work is superseded by work of equivalent scope and detail.",
+      "reference": "14 CFR 91.417"
+    },
+    {
+      "id": "ppf-048",
+      "question": "What minimum pilot certificate is required to operate in Class B airspace?",
+      "options": [
+        "Student pilot certificate",
+        "Recreational pilot certificate",
+        "Private pilot certificate",
+        "Student with instructor endorsement at some locations"
+      ],
+      "correctAnswer": 3,
+      "explanation": "Under 14 CFR 91.131, a private pilot certificate is generally required, but student pilots may operate at some Class B airports with specific endorsements. Certain Class B primary airports prohibit student pilots.",
+      "reference": "14 CFR 91.131"
+    },
+    {
+      "id": "ppf-049",
+      "question": "What is the minimum flight visibility required for Special VFR during the day?",
+      "options": [
+        "1/2 statute mile",
+        "1 statute mile",
+        "2 statute miles",
+        "3 statute miles"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Under 14 CFR 91.157, Special VFR requires at least 1 statute mile flight visibility and clear of clouds during the day.",
+      "reference": "14 CFR 91.157"
+    },
+    {
+      "id": "ppf-050",
+      "question": "What additional requirement applies for Special VFR operations at night?",
+      "options": [
+        "3 statute miles visibility",
+        "Pilot must be instrument rated and aircraft instrument equipped",
+        "ATC approval and 5 miles visibility",
+        "Filing an IFR flight plan"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Under 14 CFR 91.157, for Special VFR operations at night, the pilot must be instrument rated and the aircraft must be IFR equipped.",
+      "reference": "14 CFR 91.157"
+    }
+  ]
+}

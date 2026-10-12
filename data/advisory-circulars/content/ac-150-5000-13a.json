@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "id": "ac-150-5000-13a",
+  "number": "150/5000-13A",
+  "title": "Announcement Of Availability: RTCA Inc., Document RTCA-221",
+  "status": "parsed",
+  "fetched": "2026-07-14",
+  "documentUrl": "https://www.faa.gov/regulations_policies/advisory_circulars/index.cfm/go/document.information/documentID/74196",
+  "pdfUrl": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_150_5000-13A.pdf",
+  "sha256": "51f976846c8fa456840032572698dd22315bbadd6d556595ab54704a8b1fb7b0",
+  "pageCount": 1,
+  "wordCount": 305,
+  "ocrPageCount": 0,
+  "pages": [
+    {
+      "page": 1,
+      "text": "U.S. Department of Transportation Federal Aviation Administration Advisory Circular\n\nSubject: ANNOUNCEMENT OF\n\nAVAILABILITY- RTCA INC., DOCUMENT\n\nRTCA-221\n\nDate: 09/05/08 Initiated by: AAS-100 AC No: 150/5000-13A Change: 1. PURPOSE. This advisory circular (AC) announces the availability of RTCA, Inc., Document RTCA/DO-221, Guidance and Recommended Requirements for Airport Surface Movement Sensors, dated April 24, 1994. 2. CANCELLATION. AC 150/5000-13, Announcement of Availability-RTCA Inc., Document RTCA-221, dated 09/07/94 is cancelled. 3. PRINCIPAL CHANGES. To update information. 4. BACKGROUND. Advisory Circular (AC) 120-57, Surface Movement Guidance and Control System (SMGCS), contains the requirements for U.S. airports conducting operations in visibility conditions less than 1,200 feet runway visual range (RVR). Two essential components of such as system are stop bars and taxiway lead-on lights at the entrance to an active low visibility runway. When clearance to proceed is received by a pilot, the stop bar is turned off by an air traffic controller and the taxi route to the runway is indicated by green centerline lead-on lights. Automatic relighting of the stop bar and extinguishing of lead-on lights is accomplished by the use of surface movement sensors. 5. APPLICATION. RTCA/DO-221 provides recommended minimum performance standards for airport surface movement sensors. These standards specify both sensor and system characteristics that provide guidance to airport systems designers, manufacturers, installers, and users of the equipment. Sensors used for stop bar control are eligible for funding under the Federal grant assistance program for airports. However, sensors are not required to be qualified as detailed in AC 150/5345-53, Airport Lighting Equipment Certification Program. 6. PURPOSE. Copies of RTCA/DO-221 may be purchased from RTCA, Inc., 1828 L Street, N.W., Suite 805, Washington, DC 20036. For price and ordering information call (202) 833-9339. Michael J. O’Donnell Director of Airport Safety and Standards"
+    }
+  ],
+  "extractedPageCount": 1
+}

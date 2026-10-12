@@ -1,0 +1,29 @@
+{
+  "version": 1,
+  "id": "ac-99-1e",
+  "number": "99-1E",
+  "title": "Emergency Security Control of Air Traffic (ESCAT)",
+  "status": "parsed",
+  "fetched": "2026-07-14",
+  "documentUrl": "https://www.faa.gov/regulations_policies/advisory_circulars/index.cfm/go/document.information/documentID/1034029",
+  "pdfUrl": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_91-1E.pdf",
+  "sha256": "6065ebd4107e6f8ddf11c25d2d0c8216c81fe9ffede41da20331dbbbd622d861",
+  "pageCount": 3,
+  "wordCount": 783,
+  "ocrPageCount": 0,
+  "pages": [
+    {
+      "page": 1,
+      "text": "U.S. Department of Transportation Advisory Federal Aviation Administration Circular\n\nSubject: Emergency Security Control of Air Date: 08/08/18 AC No: 99-1E Traffic (ESCAT) Initiated By: AJR-2\n\n1. PURPOSE\n\nThis Advisory Circular (AC) provides the general public with a common use document that describes the Plan for Emergency Security Control of Air Traffic (ESCAT), and its purpose for use by civil aviation. When emergency conditions prompt implementation of ESCAT, flights will be required to comply with any airspace and/or flight restrictions that may be issued in support of National Defense or Homeland Security initiatives.\n\n2. AUDIENCE\n\nThe audience for this AC includes civil aircraft operators and any other persons involved within the civil aviation community; Federal Aviation Administration (FAA) Air Traffic Organization (ATO) employees; and the appropriate elements of Department of Defense (DOD) and Department of Homeland Security (DHS).\n\n3. CANCELLATION\n\nAdvisory Circular 99-1D, dated January 18, 2007, is cancelled.\n\n4. EXPLANATION OF CHANGES\n\nAC 99-1E is revised to provide the general public and civil aviation community with an improved awareness of ESCAT. Previous content that centered on the various federal agency responsibilities, coordination, and priority aspects of ESCAT is removed from this AC and may be reviewed in 32 Code of Federal Regulations (CFR) part 245.\n\n5. BACKGROUND\n\nRules for operating civil aircraft in a defense area are prescribed in 14 CFR part 99. Further, part 99.7 (Special Security Instructions) specifies that, in addition to the applicable rules of part 99, each person operating an aircraft in a defense area must comply with special security instructions issued by the FAA in the interest of national security. Additionally,"
+    },
+    {
+      "page": 2,
+      "text": "08/08/18 AC No: 99-1E under 32 CFR 245, procedures may be implemented to identify and control air traffic within a specified air defense area in the event of air defense emergencies, defense emergency, or national emergency conditions.\n\n6. GENERAL DESCRIPTION OF ESCAT\n\nESCAT is an emergency preparedness plan that prescribes the joint action to be taken by appropriate elements of DOD, the Department of Transportation (DOT), and DHS in the interests of national security to control air traffic under emergency conditions. For purposes of this AC, the ESCAT plan: a. Establishes responsibilities, procedures, and instructions for the security control of civil and military air traffic in order to provide effective use of airspace under various emergency conditions. b. Applies to all U.S. territorial airspace and other airspace over which the FAA has air traffic control (ATC) jurisdiction by international agreement. c. Defines the authorities, responsibilities, and procedures to identify and control air traffic within a specified air defense area during air defense emergencies, defense emergency, or national emergency conditions. d. Under the provisions of 32 CFR 245, the military will direct the action to be taken in regard to landing, grounding, diversion, or dispersal of aircraft in the defense of the U.S. during emergency conditions.\n\n7. HOW CIVIL AVIATION MAY BE AFFECTED DURING ESCAT\n\na. During ESCAT implementation, special security instructions may be issued in accordance with 32 CFR 245. b. At the time a portion or all of ESCAT is implemented, ATC facilities will broadcast appropriate instructions received from the Air Traffic Control System Command Center (ATCSCC) over available ATC frequencies. Depending on instructions received from the ATCSCC, VFR flights may be directed to land at the nearest available airport, and IFR flights will be expected to proceed as directed by ATC. c. Pilots on the ground may be required to file a flight plan and obtain an approval (through FAA) prior to conducting flight operation. d. Special requirements will be considered for organized civil defense and disaster relief flights, agriculture and forest fire flights, border patrol flights, and other essential civil air operations so that maximum use of these flights, consistent with air defense requirements, will be made when ESCAT is in effect. e. Flight operations vital to national defense, as determined by appropriate military commanders, will be given priority over all other military and civil aircraft in accordance with the ESCAT Air Traffic Priority List (EATPL) as described in 32 CFR 245. f. Aircraft operators not in the approved EATPL may request permission to operate via an approved Security Control Authorization (SCA) as outlined in the ESCAT Notice to"
+    },
+    {
+      "page": 3,
+      "text": "08/08/18 AC No: 99-1E Airmen (NOTAM). NORAD Regions will approve SCA requests dependent on current and forecasted military operations within the area.\n\n8. RELATED DOCUMENTS\n\na. Title 32 Code of Federal Regulations (CFR) part 245 – Plan for the Emergency Security Control of Air Traffic (ESCAT) b. Title 14, CFR, part 99 - Security Control of Air Traffic c. Aeronautical Information Publication (AIM) d. Aeronautical Information Publication (AIP) Michael C. Artist Vice President, System Operations Services"
+    }
+  ],
+  "extractedPageCount": 3
+}

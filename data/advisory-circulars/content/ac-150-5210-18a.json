@@ -1,0 +1,25 @@
+{
+  "version": 1,
+  "id": "ac-150-5210-18a",
+  "number": "150/5210-18A",
+  "title": "Systems for Interactive Training Of Airport Personnel",
+  "status": "parsed",
+  "fetched": "2026-07-14",
+  "documentUrl": "https://www.faa.gov/regulations_policies/advisory_circulars/index.cfm/go/document.information/documentID/74201",
+  "pdfUrl": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_150_5210-18A.pdf",
+  "sha256": "a2a1a011bf7783dcff0e958ead642b3f153fc7fcd200b61136b79c932cb37854",
+  "pageCount": 2,
+  "wordCount": 510,
+  "ocrPageCount": 0,
+  "pages": [
+    {
+      "page": 1,
+      "text": "U.S. Department of Transportation Federal Aviation Administration Advisory Circular\n\nSubject: SYSTEMS FOR INTERACTIVE\n\nTRAINING OF AIRPORT PERSONNEL\n\nDate: 09/29/08 Initiated by: AAS-100 AC No: 150/5210-18A Change: 1. PURPOSE. This advisory circular (AC) provides guidance in the design of systems for interactive training of airport personnel. 2. APPLICATION. The Federal Aviation Administration (FAA) recommends the guidelines and standards in this AC for the use of systems for interactive training of airport personnel. In general, use of this AC is not mandatory. However, use of this AC is mandatory for all projects funded with federal grant monies through the Airport Improvement Program (AIP) and with revenue from the Passenger Facility Charges (PFC) Program. See Grant Assurance No.34, “Policies, Standards, and Specifications,” and PFC Assurance No. 9, “Standards and Specifications.” 3. BACKGROUND. Public Law 102-581 amended the Airport and Airway Improvement Act of 1982 (AAIA) to make systems for interactive training of airport personnel eligible for funding under the AIP or for purchase with PFC revenue. It is intended that these systems are to be used to comply with federally mandated safety and security requirements. Funds are to be used only for equipment and the acquisition of training software, and not for administrative or personnel costs. Leasing of training equipment and software is not eligible. 4. FUNCTIONS AND STANDARDS. Interactive training systems must: a. be able to provide training information to trainee(s) through audio and visual display; b. allow unrestricted scheduling of any available training program by the trainee or instructor; c. provide a means for the individual to interact with the equipment by responding to cues, questions, or options; d. be capable of storing information provided by each individual respondent and manipulate that information in such a way as to provide additional information based on the data received from each individual's response; e. allow individualized and simultaneous training of one to six (as specified by the purchaser) individuals; f. provide a means of storing and tracking personnel training records. At a minimum, record tracking capability should include name and date of training. g. provide a means by which the trainee(s) may be tested on the information presented; h. provide a means by which the results of such tests may be made immediately known to the trainee and stored or displayed for review by the trainee and/or an instructor;"
+    },
+    {
+      "page": 2,
+      "text": "AC 150/5210-18A 09/29/08\n\ni. provide a means to produce a hard copy of the test results; j. be compatible with at least one readily available series of training programs used to comply with federally mandated safety and security requirements, including, but not limited to, the Americans with Disabilities Act; the Clean Air Act; 14 CFR part 107, Airport Security; and 14 CFR part 139, Certification of Airports; and k. utilize interactive training programs which may be produced without the use of technology owned by, or available only to, the retail seller of the hardware, thereby allowing the production of programs by other parties. Michael J. O’Donnell Director of Airport Safety and Standards"
+    }
+  ],
+  "extractedPageCount": 2
+}

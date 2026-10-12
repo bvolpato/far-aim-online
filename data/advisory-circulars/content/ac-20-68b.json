@@ -1,0 +1,41 @@
+{
+  "version": 1,
+  "id": "ac-20-68b",
+  "number": "20-68B",
+  "title": "Recommended Radiation Safety Precautions for Ground Operation of Airborne Weather Radar",
+  "status": "parsed",
+  "fetched": "2026-07-14",
+  "documentUrl": "https://www.faa.gov/regulations_policies/advisory_circulars/index.cfm/go/document.information/documentID/22027",
+  "pdfUrl": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_20-68B.pdf",
+  "sha256": "d28c85d229888c39b895ac27e8c7bf5bc70bd49c54b4728827efd605be774906",
+  "pageCount": 6,
+  "wordCount": 995,
+  "ocrPageCount": 0,
+  "pages": [
+    {
+      "page": 1,
+      "text": "AC 20-68B\n\nDATE 8/8/80\n\nADVISORY CIRCULAR\n\n~·~, DEPARTMENT OF TRANSPORTATION\n\nFederal A'riation Administration a ~ WuhinJton, D.C. ~,....,at .. '\n\nRECOMMENDED RADIATION SAFETY PRECAUTIONS FOR GROUND OPERATION\n\nSubject: OF AIRBORNE WEATHER RADAR 1. PURPOSE. This circular sets forth recommended radiation safety precautions to be taken by personnel when operating airborne weather radar on the ground. 2. CANCELLATION. AC 20-68A, dated April 11, 19751 is canceled.\n\n3. RELATED READING MATERIAL.\n\na. Barnes and Taylor, Radiation Hazards and Protection (London: George Newnes Limited, 1963), p. 211. b. U.S. Department of Health, Education and Welfare, Public Health Service, Consumer Protection and Environmental Health Service, \"Environmental health microwaves, ultraviolet radiation and radiation from lasers and television receivers - An Annotated Bibliography,\" FS 2.300: R.H-35, Washington, U.S. Government Printing Office, pp. 56-57. c. Mumford, w. W., \"Some technical aspects of microwave radiation hazards,\" Proceedings of the IRE, Washington, U.S. Government Printing Office, February 1961, pp. 427-447. 4. BACKGROUND. Dangers from ground operation of airborne weather radar include the possibility of human body damage and ignition of combustible materials by radiated energy. Low tolerance parts of the body include the eyes and testes. 5. PRECAUTIONS. Management and supervisory personnel should establish procedures for advising personnel of dangers from operating airborne weather radars on the ground. Precautionary signs should be displayed i~ affected areas to alert personnel of ground testing. a. General. (l) Airborne weather radar should be operated on the ground only by qualified personnel. Initiated by: AF0-512"
+    },
+    {
+      "page": 2,
+      "text": "AC 20-68B 8/8/80\n\n(2) Installed airborne radar should not be operated while the aircraft is in a hangar or other enclosure unless the radar transmitter is not operating, or the energy is directed toward an absorption shield which dissipates the radio frequency energy. Otherwise, radiition within the enclosure can be reflected throughout the area. b. Body Damage. To prevent possible human body damage, the following precautions should be taken: (1) Personnel should never stand nearby and in front of a radar antenna which is transmitting. When the antenna is not scanning, the danger increases. (2) A recommended safe distance from operating airborne weather radars should be established. A safe distance can be determined by using the equations ip Appendix l or the graphs of figures 1 and 2. This criterion is now accepted by many industrial organizations and is based on limiting exposure of humans to an average power density not greater than 10 milliwatts per square centimeter. (3) Personnel should be advised to avoid the end of an open waveguide unless the radar is turned off. (4) Personnel should be advised to avoid looking into a waveguide, or into the open end of a coaxial connector or line connector to a radar transmitter output, as severe eye damage may result. (5) Personnel should be advised that when high power radar transmitters are operated out of their protective cases, X-rays may be emitted. Stray X-rays may emanate from the glass envelope type pulser, oscillator, clipper, or rectifier tubes, as well as magnetrons. c. Combustible Materials. To prevent possible fuel ignition, an installed airborne weather radar should not be operated while an aircraft is being refueled or defueled. Director of Airworthiness 2 Per 5"
+    },
+    {
+      "page": 3,
+      "text": "8/8/80 AC 20-68B\n\nAppendix 1\n\nAPPENDIX 1. SAFE DISTANCE DETERMINATION\n\nThe following information can be used in establishing a minimum safe distance from the antenna for personnel near an operating airborne weather radar. l,,zJ. applicable g;aph is shown in figure 1. 1. NEAR FIELD/FAR FIELD INTERSECTION. The distance to the near field/far field intersection can be computed by: where R1 ~ Intersection distance from the antenna (in meters)\n\n). ·\"' Wave length (in meters)\n\nG • Antenna gain\n\n2. DISTANCE TO 10 mw/cm2 SAFE LIMIT. For a far field power density of 10 mw/cm2, the distance (in meters) from the antenna may be calculated by: Rs == / GP/400 n (2) where Rs~ The minimum safe distance in meters.\n\nP = Transmitted average power in watts.\n\nG = Antenna gain\n\nAn applicable graph is sho~~ in figure 2. 3. PiWCE::-~·F2:s-. The abovE: formulas or the graphs of figures l and 2 may bE used to determine the minimum safe distance. In either case the following procedures apply: a. Determine the distance (R1 ) to the near field/far field interse ction {paragraph 1). b. Determine the distan~e (R5 ) to 10 mw/cm2 power density ( paragraph 2). c. If the distance (R6 ) determined in 3b above is less than (R1) found in 3 a above, use distance (Ri) as the minimum safe distance. d. If the distance (R5 ) determined in 3b above is greater than (R1) founc ir, 3.;. above., use diztance (R6 ) as the minimum safe distance."
+    },
+    {
+      "page": 4,
+      "text": "AC 20-68B 8/8/80\n\nAppendix 1\n\n4. EXAMPLE\n\na. Data. The folloYing is typical data for an airborne weather radar. Antenna Diameter 22 inches• 56 cm\n\nTransmitter Frequency 9375 + 30 MHz\n\nWave Length 3.2 cm\n\nPulse Length 1.5 microseconds (search)\n\nPulse Repetition ... 400 Hz\n\nPeak Power 40 kilowatts\n\nAverage Power 24 watts (search)\n\nAntenna Gain 1000 (30db)\n\nb. Calculations. (1). Distance (R;) to the near field/far field intersection. Ri • G >.\n\n• 1000 X 0.032\n\nSr. • 1.27 meters• 4.2 feet . . 2 (2) Distance (Rs) to 10 mw/cm safe limit. Rs .. lcp /400 11\n\n\"' llooo x 24/400\"\n\n4.37 meters = 14.3 feet The distance (Rs) is greater than (Ri), therefore, the minimum safe distance is 14.3 feet."
+    },
+    {
+      "page": 5,
+      "text": "3110!!1.:I l i:>UI\\S!O DI I UOfl)aSJijU jO JI.IN pua Jl.:1 SPlilJ 0 Cl) ..... A:>N3nOl!l.:1 NI \\l!llW Zl!llH co\n\n........\n\nco ~ • to • I I I • • I I I Ol 1 I L • • , ,.o t I I, I 1t • • I ' • I t I I Cl • .,. i» • OI ::, n ... g :::, ... ... ... .;· 0:: ' i,I' ... • !!!. - ~ :::, • ~ .,. ~ • I 5' ::, ::, • <P ~"
+    },
+    {
+      "page": 6,
+      "text": "3110!ll.:l l a:>ue1s10 uo euua1uv wua s1xy J~ JiMOd A11suao • zw:>JMWOl l!l\\11131\\\\1 !DNOd SllYMNI :0 \"' C\n\n......\n\nex:\n\n......\n\nCX)"
+    }
+  ],
+  "extractedPageCount": 6
+}

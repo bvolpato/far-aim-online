@@ -1,0 +1,427 @@
+{
+  "chapter": 6,
+  "title": "Emergency Procedures",
+  "sections": [
+    {
+      "section": "6-1-1",
+      "title": "Pilot Responsibility and Authority",
+      "content": "• The pilot-in-command of an aircraft is directly responsible for and is the final authority as to the operation of that aircraft. In an emergency requiring immediate action, the pilot-in-command may deviate from any rule in 14 CFR part 91, Subpart A, General, and Subpart B, Flight Rules, to the extent required to meet that emergency.\n\nNOTE-\n\nIn the event of a pilot incapacitation, an Emergency Autoland system or an emergency descent system may assume operation of the aircraft and deviate to meet that emergency.\n\nREFERENCE-\n\n14 CFR Section 91.3 (b).\n\n• If the emergency authority of 14 CFR section 91.3 (b) is used to deviate from the provisions of an ATC clearance, the pilot-in-command must notify ATC as soon as possible and obtain an amended clearance.\n\n• Unless deviation is necessary under the emergency authority of 14 CFR section 91.3, pilots of IFR flights experiencing two-way radio communications failure are expected to adhere to the procedures prescribed under \"IFR operations, two-way radio communications failure.\"\n\nREFERENCE-\n\n14 CFR Section 91.185.",
+      "subsections": [],
+      "figures": [],
+      "tables": []
+    },
+    {
+      "section": "6-1-2",
+      "title": "Emergency Condition- Request Assistance Immediately",
+      "content": "• An emergency can be either a *distress* or *urgency* condition as defined in the Pilot/Controller Glossary. Pilots do not hesitate to declare an emergency when they are faced with *distress* conditions such as fire, mechanical failure, or structural damage. However, some are reluctant to report an *urgency* condition when they encounter situations which may not be immediately perilous, but are potentially catastrophic. An aircraft is in at least an *urgency* condition the moment the pilot becomes doubtful about position, fuel endurance, weather, or any other condition that could adversely affect flight safety. This is the time to ask for help, not after the situation has developed into a *distress* condition.\n\n• Pilots who become apprehensive for their safety for any reason should *request assistance immediately.* Ready and willing help is available in the form of radio, radar, direction finding stations and other aircraft. Delay has caused accidents and cost lives. *Safety is not a luxury! Take action!*",
+      "subsections": [],
+      "figures": [],
+      "tables": []
+    },
+    {
+      "section": "6-2-1",
+      "title": "Radar Service for VFR Aircraft in Difficulty",
+      "content": "• Radar equipped ATC facilities can provide radar assistance and navigation service (vectors) to VFR aircraft in difficulty when the pilot can talk with the controller, and the aircraft is within radar coverage. Pilots should clearly understand that authorization to proceed in accordance with such radar navigational assistance does not constitute authorization for the pilot to violate CFRs. In effect, assistance is provided on the basis that navigational guidance information is advisory in nature, and the responsibility for flying the aircraft safely remains with the pilot.\n\n• Experience has shown that many pilots who are not qualified for instrument flight cannot maintain control of their aircraft when they encounter clouds or other reduced visibility conditions. In many cases, the controller will not know whether flight into instrument conditions will result from ATC instructions. To avoid possible hazards resulting from being vectored into IFR conditions, a pilot in difficulty should keep the controller advised of the current weather conditions being encountered and the weather along the course ahead and observe the following:\n\n• If a course of action is available which will permit flight and a safe landing in VFR weather conditions, noninstrument rated pilots should choose the VFR condition rather than requesting a vector or approach that will take them into IFR weather conditions; or\n\n• If continued flight in VFR conditions is not possible, the noninstrument rated pilot should so advise the controller and indicating the lack of an instrument rating, declare a *distress* condition; or\n\n• If the pilot is instrument rated and current, and the aircraft is instrument equipped, the pilot should so indicate by requesting an IFR flight clearance. Assistance will then be provided on the basis that the aircraft can operate safely in IFR weather conditions.",
+      "subsections": [],
+      "figures": [],
+      "tables": []
+    },
+    {
+      "section": "6-2-2",
+      "title": "Transponder Emergency Operation",
+      "content": "• When a *distress *or *urgency* condition is encountered, the pilot of an aircraft with a coded radar beacon transponder, who desires to alert a ground radar facility, should squawk Mode 3/A, Code 7700/Emergency and Mode C altitude reporting and then immediately establish communications with the ATC facility.\n\n• Radar facilities are equipped so that Code 7700 normally triggers an alarm or special indicator at all control positions. Pilots should understand that they might not be within a radar coverage area. Therefore, they should continue squawking Code 7700 and establish radio communications as soon as possible.",
+      "subsections": [],
+      "figures": [],
+      "tables": []
+    },
+    {
+      "section": "6-2-3",
+      "title": "Intercept and Escort",
+      "content": "• The concept of airborne intercept and escort is based on the Search and Rescue (SAR) aircraft establishing visual and/or electronic contact with an aircraft in difficulty, providing in-flight assistance, and escorting it to a safe landing. If bailout, crash landing or ditching becomes necessary, SAR operations can be conducted without delay. For most incidents, particularly those occurring at night and/or during instrument flight conditions, the availability of intercept and escort services will depend on the proximity of SAR units with suitable aircraft on alert for immediate dispatch. In limited circumstances, other aircraft flying in the vicinity of an aircraft in difficulty can provide these services.\n\n• If specifically requested by a pilot in difficulty or if a *distress* condition is declared, SAR coordinators *will* take steps to intercept and escort an aircraft. Steps may be initiated for intercept and escort if an *urgency* condition is declared and unusual circumstances make such action advisable.\n\n• It is the pilot's prerogative to refuse intercept and escort services. Escort services will normally be provided to the nearest adequate airport. Should the pilot receiving escort services continue onto another location after reaching a safe airport, or decide not to divert to the nearest safe airport, the escort aircraft is not obligated to continue and further escort is discretionary. The decision will depend on the circumstances of the individual incident.",
+      "subsections": [],
+      "figures": [],
+      "tables": []
+    },
+    {
+      "section": "6-2-4",
+      "title": "Emergency Locator Transmitter (ELT)",
+      "content": "• **General.**\n\n• ELTs are required for most General Aviation airplanes.\n\nREFERENCE-\n\n14 CFR SECTION 91.207.\n\n• ELTs of various types were developed as a means of locating downed aircraft. These electronic, battery operated transmitters operate on one of three frequencies. These operating frequencies are 121.5 MHz, 243.0 MHz, and the newer 406 MHz. ELTs operating on 121.5 MHz and 243.0 MHz are analog devices. The newer 406 MHz ELT is a digital transmitter that can be encoded with the owner's contact information or aircraft data. The latest 406 MHz ELT models can also be encoded with the aircraft's position data which can help SAR forces locate the aircraft much more quickly after a crash. The 406 MHz ELTs also transmits a stronger signal when activated than the older 121.5 MHz ELTs.\n\n• The Federal Communications Commission (FCC) requires 406 MHz ELTs be registered with the National Oceanic and Atmospheric Administration (NOAA) as outlined in the ELTs documentation. The FAA's 406 MHz ELT Technical Standard Order (TSO) TSO-C126 also requires that each 406 MHz ELT be registered with NOAA. The reason is NOAA maintains the owner registration database for U.S. registered 406 MHz alerting devices, which includes ELTs. NOAA also operates the United States' portion of the Cospas-Sarsat satellite distress alerting system designed to detect activated 406 MHz ELTs and other distress alerting devices.\n\n• As of 2009, the Cospas-Sarsat system terminated monitoring and reception of the 121.5 MHz and 243.0 MHz frequencies. What this means for pilots is that those aircraft with only 121.5 MHz or 243.0 MHz ELTs onboard will have to depend upon either a nearby air traffic control facility receiving the alert signal or an overflying aircraft monitoring 121.5 MHz or 243.0 MHz detecting the alert and advising ATC.\n\n• In the event that a properly registered 406 MHz ELT activates, the Cospas-Sarsat satellite system can decode the owner's information and provide that data to the appropriate search and rescue (SAR) center. In the United States, NOAA provides the alert data to the appropriate U.S. Air Force Rescue Coordination Center (RCC) or U.S. Coast Guard Rescue Coordination Center. That RCC can then telephone or contact the owner to verify the status of the aircraft. If the aircraft is safely secured in a hangar, a costly ground or airborne search is avoided. In the case of an inadvertent 406 MHz ELT activation, the owner can deactivate the 406 MHz ELT. If the 406 MHz ELT equipped aircraft is being flown, the RCC can quickly activate a search. 406 MHz ELTs permit the Cospas-Sarsat satellite system to narrow the search area to a more confined area compared to that of a 121.5 MHz or 243.0 MHz ELT. 406 MHz ELTs also include a low-power 121.5 MHz homing transmitter to aid searchers in finding the aircraft in the terminal search phase.\n\n• Each analog ELT emits a distinctive downward swept audio tone on 121.5 MHz and 243.0 MHz.\n\n• If \"armed\" and when subject to crash-generated forces, ELTs are designed to automatically activate and continuously emit their respective signals, analog or digital. The transmitters will operate continuously for at least 48 hours over a wide temperature range. A properly installed, maintained, and functioning ELT can expedite search and rescue operations and save lives if it survives the crash and is activated.\n\n• Pilots and their passengers should know how to activate the aircraft's ELT if manual activation is required. They should also be able to verify the aircraft's ELT is functioning and transmitting an alert after a crash or manual activation.\n\n• Because of the large number of 121.5 MHz ELT false alerts and the lack of a quick means of verifying the actual status of an activated 121.5 MHz or 243.0 MHz analog ELT through an owner registration database, U.S. SAR forces do not respond as quickly to initial 121.5/243.0 MHz ELT alerts as the SAR forces do to 406 MHz ELT alerts. Compared to the almost instantaneous detection of a 406 MHz ELT, SAR forces' normal practice is to wait for confirmation of an overdue aircraft or similar notification. In some cases, this confirmation process can take hours. SAR forces can initiate a response to 406 MHz alerts in minutes compared to the potential delay of hours for a 121.5/243.0 MHz ELT. Therefore, due to the obvious advantages of 406 MHz beacons and the significant disadvantages to the older 121.5/243.0 MHz beacons, and considering that the International Cospas-Sarsat Program stopped the monitoring of 121.5/243.0 MHz by satellites on February 1, 2009, all aircraft owners/operators are highly encouraged by both NOAA and the FAA to consider making the switch to a digital 406 MHz ELT beacon. Further, for non-aircraft owner pilots, check the ELT installed in the aircraft you are flying, and as appropriate, obtain a personal locator beacon transmitting on 406 MHz.\n\n• **Testing.**\n\n• ELTs should be tested in accordance with the manufacturer's instructions, preferably in a shielded or screened room or specially designed test container to prevent the broadcast of signals which could trigger a false alert.\n\n• When this cannot be done, aircraft operational testing is authorized as follows:\n\n• Analog 121.5/243 MHz ELTs should only be tested during the first 5 minutes after any hour. If operational tests must be made outside of this period, they should be coordinated with the nearest FAA Control Tower. Tests should be no longer than three audible sweeps. If the antenna is removable, a dummy load should be substituted during test procedures.\n\n• Digital 406 MHz ELTs should only be tested in accordance with the unit's manufacturer's instructions.\n\n• Airborne tests are not authorized.\n\n• **False Alarms.**\n\n• Caution should be exercised to prevent the inadvertent activation of ELTs in the air or while they are being handled on the ground. Accidental or unauthorized activation will generate an emergency signal that cannot be distinguished from the real thing, leading to expensive and frustrating searches. A false ELT signal could also interfere with genuine emergency transmissions and hinder or prevent the timely location of crash sites. Frequent false alarms could also result in complacency and decrease the vigorous reaction that must be attached to all ELT signals.\n\n• Numerous cases of inadvertent activation have occurred as a result of aerobatics, hard landings, movement by ground crews and aircraft maintenance. These false alarms can be minimized by monitoring 121.5 MHz and/or 243.0 MHz as follows:\n\n• In flight when a receiver is available.\n\n• Before engine shut down at the end of each flight.\n\n• When the ELT is handled during installation or maintenance.\n\n• When maintenance is being performed near the ELT.\n\n• When a ground crew moves the aircraft.\n\n• If an ELT signal is heard, turn off the aircraft's ELT to determine if it is transmitting. If it has been activated, maintenance might be required before the unit is returned to the \"ARMED\" position. You should contact the nearest Air Traffic facility and notify it of the inadvertent activation.\n\n• **Inflight Monitoring and Reporting.**\n\n• Pilots are encouraged to monitor 121.5 MHz and/or 243.0 MHz while inflight to assist in identifying possible emergency ELT transmissions. On receiving a signal, report the following information to the nearest air traffic facility:\n\n• Your position at the time the signal was first heard.\n\n• Your position at the time the signal was last heard.\n\n• Your position at maximum signal strength.\n\n• Your flight altitudes and frequency on which the emergency signal was heard: 121.5 MHz or 243.0 MHz. If possible, positions should be given relative to a navigation aid. If the aircraft has homing equipment, provide the bearing to the emergency signal with each reported position.",
+      "subsections": [],
+      "figures": [],
+      "tables": []
+    },
+    {
+      "section": "6-2-5",
+      "title": "FAA K-9 Explosives Detection Team Program",
+      "content": "• The FAA's Office of Civil Aviation Security Operations manages the FAA K-9 Explosives Detection Team Program which was established in 1972. Through a unique agreement with law enforcement agencies and airport authorities, the FAA has strategically placed FAA-certified K-9 teams (a team is one handler and one dog) at airports throughout the country. If a bomb threat is received while an aircraft is in flight, the aircraft can be directed to an airport with this capability. The FAA provides initial and refresher training for all handlers, provides single purpose explosive detector dogs, and requires that each team is annually evaluated in five areas for FAA certification: aircraft (widebody and narrowbody), vehicles, terminal, freight (cargo), and luggage. **If you desire this service, notify your company or an FAA air traffic control facility.**\n\n• The following list shows the locations of current FAA K-9 teams:\n\n• If due to weather or other considerations an aircraft with a suspected hidden explosive problem were to land or intended to land at an airport other than those listed in b above, it is recommended that they call the FAA's Washington Operations Center (telephone 202-267-3333, if appropriate) or have an air traffic facility with which you can communicate contact the above center requesting assistance.",
+      "subsections": [],
+      "figures": [],
+      "tables": [
+        {
+          "headers": [
+            "Airport Symbol",
+            "Location"
+          ],
+          "rows": [
+            [
+              "ATL",
+              "Atlanta, Georgia"
+            ],
+            [
+              "BHM",
+              "Birmingham, Alabama"
+            ],
+            [
+              "BOS",
+              "Boston, Massachusetts"
+            ],
+            [
+              "BUF",
+              "Buffalo, New York"
+            ],
+            [
+              "CLT",
+              "Charlotte, North Carolina"
+            ],
+            [
+              "ORD",
+              "Chicago, Illinois"
+            ],
+            [
+              "CVG",
+              "Cincinnati, Ohio"
+            ],
+            [
+              "DFW",
+              "Dallas, Texas"
+            ],
+            [
+              "DEN",
+              "Denver, Colorado"
+            ],
+            [
+              "DTW",
+              "Detroit, Michigan"
+            ],
+            [
+              "IAH",
+              "Houston, Texas"
+            ],
+            [
+              "JAX",
+              "Jacksonville, Florida"
+            ],
+            [
+              "MCI",
+              "Kansas City, Missouri"
+            ],
+            [
+              "LAX",
+              "Los Angeles, California"
+            ],
+            [
+              "MEM",
+              "Memphis, Tennessee"
+            ],
+            [
+              "MIA",
+              "Miami, Florida"
+            ],
+            [
+              "MKE",
+              "Milwaukee, Wisconsin"
+            ],
+            [
+              "MSY",
+              "New Orleans, Louisiana"
+            ],
+            [
+              "MCO",
+              "Orlando, Florida"
+            ],
+            [
+              "PHX",
+              "Phoenix, Arizona"
+            ],
+            [
+              "PIT",
+              "Pittsburgh, Pennsylvania"
+            ],
+            [
+              "PDX",
+              "Portland, Oregon"
+            ],
+            [
+              "SLC",
+              "Salt Lake City, Utah"
+            ],
+            [
+              "SFO",
+              "San Francisco, California"
+            ],
+            [
+              "SJU",
+              "San Juan, Puerto Rico"
+            ],
+            [
+              "SEA",
+              "Seattle, Washington"
+            ],
+            [
+              "STL",
+              "St. Louis, Missouri"
+            ],
+            [
+              "TUS",
+              "Tucson, Arizona"
+            ],
+            [
+              "TUL",
+              "Tulsa, Oklahoma"
+            ]
+          ],
+          "caption": "TBL 6-2-5 FAA Sponsored Explosives Detection Dog/Handler Team Locations"
+        }
+      ]
+    },
+    {
+      "section": "6-2-6",
+      "title": "Search and Rescue",
+      "content": "• **General. **SAR is a lifesaving service provided through the combined efforts of the federal agencies signatory to the National SAR Plan, and the agencies responsible for SAR within each state. Operational resources are provided by the U.S. Coast Guard, DoD components, the Civil Air Patrol, the Coast Guard Auxiliary, state, county and local law enforcement and other public safety agencies, and private volunteer organizations. Services include search for missing aircraft, survival aid, rescue, and emergency medical help for the occupants after an accident site is located.\n\n• **National Search and Rescue Plan. **By federal interagency agreement, the National Search and Rescue Plan provides for the effective use of all available facilities in all types of SAR missions. These facilities include aircraft, vessels, pararescue and ground rescue teams, and emergency radio fixing. Under the plan, the U.S. Coast Guard is responsible for the coordination of SAR in the Maritime Region, and the USAF is responsible in the Inland Region. To carry out these responsibilities, the Coast Guard and the Air Force have established Rescue Coordination Centers (RCCs) to direct SAR activities within their regions. For aircraft emergencies, distress, and urgency, information normally will be passed to the appropriate RCC through an ARTCC or FSS.\n\n• **Coast Guard Rescue Coordination Centers. **(See TBL 6-2-2 (https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap6_section_2.html#6-2-6) .)\n\n• **Air Force Rescue Coordination Centers. **(See TBL 6-2-3 (https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap6_section_2.html#6-2-6) and TBL 6-2-4 (https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap6_section_2.html#6-2-6) .)\n\n• **Joint Rescue Coordination Center. **(See TBL 6-2-5 (https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap6_section_2.html#6-2-6) .)\n\n• **Emergency and Overdue Aircraft.**\n\n• ARTCCs and FSSs will alert the SAR system when information is received from any source that an aircraft is in difficulty, overdue, or missing.\n\n• Radar facilities providing radar flight following or advisories consider the loss of radar and radios, without service termination notice, to be a possible emergency. Pilots receiving VFR services from radar facilities should be aware that SAR may be initiated under these circumstances.\n\n• A filed flight plan is the most timely and effective indicator that an aircraft is overdue.Flight plan information is invaluable to SAR forces for search planning and executing search efforts.\n\n• Prior to departure on every flight, local or otherwise, someone at the departure point should be advised of your destination and route of flight if other than direct. Search efforts are often wasted and rescue is often delayed because of pilots who thoughtlessly takeoff without telling anyone where they are going. File a flight plan for *your* safety.\n\n• According to the National Search and Rescue Plan, \"The life expectancy of an injured survivor decreases as much as 80 percent during the first 24 hours, while the chances of survival of uninjured survivors rapidly diminishes after the first 3 days.\"\n\n• An Air Force Review of 325 SAR missions conducted during a 23-month period revealed that \"Time works against people who experience a *distress* but are not on a flight plan, since 36 hours normally pass before family concern initiates an (alert).\"\n\n• **VFR Search and Rescue Protection.**\n\n• To receive this valuable protection, *file a VFR or DVFR Flight Plan* with an FAA FSS. For maximum protection, file only to the point of first intended landing, and refile for each leg to final destination. When a lengthy flight plan is filed, with several stops en route and an ETE to final destination, a mishap could occur on any leg, and unless other information is received, it is probable that no one would start looking for you until 30 minutes after your ETA at your final destination.\n\n• If you land at a location other than the intended destination, report the landing to the nearest FAA FSS and advise them of your original destination.\n\n• If you land en route and are delayed more than 30 minutes, report this information to the nearest FSS and give them your original destination.\n\n• If your ETE changes by 30 minutes or more, report a new ETA to the nearest FSS and give them your original destination. Remember that if you fail to respond within one-half hour after your ETA at final destination, a search will be started to locate you.\n\n• It is important that you *close your flight plan IMMEDIATELY AFTER ARRIVAL AT YOUR FINAL DESTINATION WITH THE FSS DESIGNATED WHEN YOUR FLIGHT PLAN WAS FILED. The **pilot is responsible** for closure of a VFR or DVFR flight plan; they are not closed automatically.* This will prevent needless search efforts.\n\n• The rapidity of rescue on land or water will depend on how accurately your position may be determined. If a flight plan has been followed and your position is on course, rescue will be expedited.\n\n• **Survival Equipment.**\n\n• For flight over uninhabited land areas, it is wise to take and know how to use survival equipment for the type of climate and terrain.\n\n• If a forced landing occurs at sea, chances for survival are governed by the degree of crew proficiency in emergency procedures and by the availability and effectiveness of water survival equipment.\n\n• **Body Signal Illustrations.**\n\n• If you are forced down and are able to attract the attention of the pilot of a rescue airplane, the body signals illustrated on these pages can be used to transmit messages to the pilot circling over your location.\n\n• Stand in the open when you make the signals.\n\n• Be sure the background, as seen from the air, is not confusing.\n\n• Go through the motions slowly and repeat each signal until you are positive that the pilot understands you.\n\n• **Observance of Downed Aircraft.**\n\n• Determine if crash is marked with a yellow cross; if so, the crash has already been reported and identified.\n\n• If possible, determine type and number of aircraft and whether there is evidence of survivors.\n\n• Fix the position of the crash as accurately as possible with reference to a navigational aid. If possible, provide geographic or physical description of the area to aid ground search parties.\n\n• Transmit the information to the nearest FAA or other appropriate radio facility.\n\n• If circumstances permit, orbit the scene to guide in other assisting units until their arrival or until you are relieved by another aircraft.\n\n• Immediately after landing, make a complete report to the nearest FAA facility, or Air Force or Coast Guard Rescue Coordination Center. The report can be made by a long distance collect telephone call.\n\nFIG 6-2-6Ground-Air Visual Code for Use by Survivors\nGround-Air Visual Code for Use by Survivors FIG 6-2-6Ground-Air Visual Code for use by Ground Search Parties\nGround-Air Visual Code for use by Ground Search Parties FIG 6-2-6Urgent Medical Assistance\nUrgent Medical Assistance FIG 6-2-6All OK\nAll OK FIG 6-2-6Short Delay\nShort Delay FIG 6-2-6Long Delay\nLong Delay FIG 6-2-6Drop Message\nDrop Message FIG 6-2-6Receiver Operates\nReceiver Operates FIG 6-2-6Do Not Land Here\nDo Not Land Here FIG 6-2-6Land Here\nLand Here FIG 6-2-6Negative (Ground)\nNegative (Ground) FIG 6-2-6Affirmative (Ground)\nAffirmative (Ground) FIG 6-2-6Pick Us Up\nPick Us Up FIG 6-2-6Affirmative (Aircraft)\nAffirmative (Aircraft) FIG 6-2-6Negative (Aircraft)\nNegative (Aircraft) FIG 6-2-6Message received and understood (Aircraft)\nMessage received and understood (Aircraft) FIG 6-2-6Message received and NOT understood (Aircraft)\nMessage received and NOT understood (Aircraft)",
+      "subsections": [],
+      "figures": [],
+      "tables": [
+        {
+          "headers": [
+            "Coast Guard Rescue Coordination Centers",
+            "Coast Guard Rescue Coordination Centers"
+          ],
+          "rows": [
+            [
+              "Alameda, CA 510-437-3701",
+              "Miami, FL 305-415-6800"
+            ],
+            [
+              "Boston, MA 617-223-8555",
+              "New Orleans, LA 504-589-6225"
+            ],
+            [
+              "Cleveland, OH 216-902-6117",
+              "Portsmouth, VA 757-398-6390"
+            ],
+            [
+              "Honolulu, HI 808-541-2500",
+              "Seattle, WA 206-220-7001"
+            ],
+            [
+              "Juneau, AK 907-463-2000",
+              "San Juan, PR 787-289-2042"
+            ]
+          ],
+          "caption": "TBL 6-2-6 Coast Guard Rescue Coordination Centers"
+        },
+        {
+          "headers": [
+            "Air Force Rescue Coordination Center",
+            "Air Force Rescue Coordination Center"
+          ],
+          "rows": [
+            [
+              "Tyndall AFB, Florida",
+              "Phone"
+            ],
+            [
+              "Commercial",
+              "850-283-5955"
+            ],
+            [
+              "WATS",
+              "800-851-3051"
+            ],
+            [
+              "DSN",
+              "523-5955"
+            ]
+          ],
+          "caption": "TBL 6-2-6 Air Force Rescue Coordination Center 48 Contiguous States"
+        },
+        {
+          "headers": [
+            "Alaskan Air Command Rescue Coordination Center",
+            "Alaskan Air Command Rescue Coordination Center"
+          ],
+          "rows": [
+            [
+              "Elmendorf AFB, Alaska",
+              "Phone"
+            ],
+            [
+              "Commercial",
+              "907-428-7230 800-420-7230 (outside Anchorage)"
+            ],
+            [
+              "DSN",
+              "317-551-7230"
+            ]
+          ],
+          "caption": "TBL 6-2-6 Air Command Rescue Coordination Center Alaska"
+        },
+        {
+          "headers": [
+            "Honolulu Joint Rescue Coordination Center",
+            "Honolulu Joint Rescue Coordination Center"
+          ],
+          "rows": [
+            [
+              "HQ 14th CG District Honolulu",
+              "Phone"
+            ],
+            [
+              "Commercial",
+              "808-541-2500"
+            ],
+            [
+              "DSN",
+              "448-0301"
+            ]
+          ],
+          "caption": "TBL 6-2-6 Joint Rescue Coordination Center Hawaii"
+        }
+      ]
+    },
+    {
+      "section": "6-3-1",
+      "title": "Distress and Urgency Communications",
+      "content": "• A pilot who encounters a *distress* or *urgency* condition can obtain assistance simply by contacting the air traffic facility or other agency in whose area of responsibility the aircraft is operating, stating the nature of the difficulty, pilot's intentions and assistance desired. *Distress* and *urgency* communications procedures are prescribed by the International Civil Aviation Organization (ICAO), however, and have decided advantages over the informal procedure described above.\n\n• *Distress* and *urgency* communications procedures discussed in the following paragraphs relate to the use of air ground voice communications.\n\n• The initial communication, and if considered necessary, any subsequent transmissions by an aircraft in *distress* should begin with the signal MAYDAY, preferably repeated three times. The signal PAN-PAN should be used in the same manner for an *urgency* condition.\n\n• *Distress* communications have absolute priority over all other communications, and the word MAYDAY commands radio silence on the frequency in use. *Urgency* communications have priority over all other communications except *distress,* and the word PAN-PAN warns other stations not to interfere with *urgency* transmissions.\n\n• Normally, the station addressed will be the air traffic facility or other agency providing air traffic services, on the frequency in use at the time. If the pilot is not communicating and receiving services, the station to be called will normally be the air traffic facility or other agency in whose area of responsibility the aircraft is operating, on the appropriate assigned frequency. If the station addressed does not respond, or if time or the situation dictates, the *distress* or *urgency* message may be broadcast, or a collect call may be used, addressing \"Any Station (Tower) (Radio)(Radar).\"\n\n• The station addressed should immediately acknowledge a *distress* or *urgency* message, provide assistance, coordinate and direct the activities of assisting facilities, and alert the appropriate search and rescue coordinator if warranted. Responsibility will be transferred to another station only if better handling will result.\n\n• All other stations, aircraft and ground, will continue to listen until it is evident that assistance is being provided. If any station becomes aware that the station being called either has not received a *distress* or *urgency* message, or cannot communicate with the aircraft in difficulty, it will attempt to contact the aircraft and provide assistance.\n\n• Although the frequency in use or other frequencies assigned by ATC are preferable, the following emergency frequencies can be used for distress or urgency communications, if necessary or desirable:\n\n121.5 MHz and 243.0 MHz. ***Both have a range generally limited to line of sight. 121.5 MHz is guarded by direction finding stations and some military and civil aircraft. 243.0 MHz is guarded by military aircraft. Both 121.5 MHz and 243.0 MHz are guarded by military towers, most civil towers, and radar facilities. Normally ARTCC emergency frequency capability does not extend to radar coverage limits. If an ARTCC does not respond when called on 121.5 MHz or 243.0 MHz, call the nearest tower.",
+      "subsections": [],
+      "figures": [],
+      "tables": []
+    },
+    {
+      "section": "6-3-2",
+      "title": "Obtaining Emergency Assistance",
+      "content": "• A pilot in any *distress* or *urgency* condition should *immediately* take the following action, not necessarily in the order listed, to obtain assistance:\n\n• Climb, if possible, for improved communications, and better radar and direction finding detection. However, it must be understood that unauthorized climb or descent under IFR conditions within controlled airspace is prohibited, except as permitted by 14 CFR section 91.3 (b).\n\n• If equipped with a radar beacon transponder (civil) or IFF/SIF (military):\n\n• Continue squawking assigned Mode A/3 discrete code/VFR code and Mode C altitude encoding when in radio contact with an air traffic facility or other agency providing air traffic services, unless instructed to do otherwise.\n\n• If unable to immediately establish communications with an air traffic facility/agency, squawk Mode A/3, Code 7700/Emergency and Mode C.\n\n• Transmit a *distress *or *urgency *message consisting of *as many* as necessary of the following elements, preferably in the order listed:\n\n• If distress, MAYDAY, MAYDAY, MAY-DAY; if *urgency*, PAN-PAN, PAN-PAN, PAN-PAN.\n\n• Name of station addressed.\n\n• Aircraft identification and type.\n\n• Nature of *distress* or *urgency*.\n\n• Weather.\n\n• Pilots intentions and request.\n\n• Present position, and heading; or if *lost*, last known position, time, and heading since that position.\n\n• Altitude or flight level.\n\n• Fuel remaining in minutes.\n\n• Number of people on board.\n\n• Any other useful information.\n\nREFERENCE-\n\nPilot/Controller Glossary Term- Fuel Remaining.\n\n• After establishing radio contact, comply with advice and instructions received. Cooperate. Do not hesitate to ask questions or clarify instructions when you do not understand or if you cannot comply with clearance. Assist the ground station to control communications on the frequency in use. Silence interfering radio stations. Do not change frequency or change to another ground station unless absolutely necessary. If you do, advise the ground station of the new frequency and station name prior to the change, transmitting in the blind if necessary. If two-way communications cannot be established on the new frequency, return immediately to the frequency or station where two-way communications last existed.\n\n• When in a distress condition with bailout, crash landing or ditching imminent, take the following additional actions to assist search and rescue units:\n\n• Time and circumstances permitting, transmit as many as necessary of the message elements in subparagraph a (https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap6_section_3.html#6-3-2) 3 (https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap6_section_3.html#6-3-2) above, and any of the following that you think might be helpful:\n\n• ELT status.\n\n• Visible landmarks.\n\n• Aircraft color.\n\n• Number of persons on board.\n\n• Emergency equipment on board.\n\n• Actuate your ELT if the installation permits.\n\n• For bailout, and for crash landing or ditching if risk of fire is not a consideration, set your radio for continuous transmission.\n\n• If it becomes necessary to ditch, make every effort to ditch near a surface vessel. If time permits, an FAA facility should be able to get the position of the nearest commercial or Coast Guard vessel from a Coast Guard Rescue Coordination Center.\n\n• After a crash landing, unless you have good reason to believe that you will not be located by search aircraft or ground teams, it is best to remain with your aircraft and prepare means for signaling search aircraft.",
+      "subsections": [],
+      "figures": [],
+      "tables": []
+    },
+    {
+      "section": "6-3-3",
+      "title": "Ditching Procedures",
+      "content": "FIG 6-3-3Single Swell (15 knot wind)\nSingle Swell (15 knot wind) FIG 6-3-3Double Swell (15 knot wind)\nDouble Swell (15 knot wind) FIG 6-3-3Double Swell (30 knot wind)\nDouble Swell (30 knot wind) FIG 6-3-3(50 knot wind)\n(50 knot wind) FIG 6-3-3Wind-Swell-Ditch Heading\nWind-Swell-Ditch Heading\n\n• A successful aircraft ditching is dependent on three primary factors. In order of importance they are:\n\n• **Sea conditions and wind.**\n\n• **Type of aircraft.**\n\n• **Skill and technique of pilot.**\n\n• **Common oceanographic terminology.**\n\n• **Sea. **The condition of the surface that is the result of both waves and swells.\n\n• **Wave **(or Chop). The condition of the surface caused by the local winds.\n\n• **Swell. **The condition of the surface which has been caused by a distance disturbance.\n\n• **Swell Face. **The side of the swell toward the observer. The backside is the side away from the observer. These definitions apply regardless of the direction of swell movement.\n\n• **Primary Swell. **The swell system having the greatest height from trough to crest.\n\n• **Secondary Swells. **Those swell systems of less height than the primary swell.\n\n• **Fetch. **The distance the waves have been driven by a wind blowing in a constant direction, without obstruction.\n\n• **Swell Period. **The time interval between the passage of two successive crests at the same spot in the water, measured in seconds.\n\n• **Swell Velocity. **The speed and direction of the swell with relation to a fixed reference point, measured in knots. There is little movement of water in the horizontal direction. Swells move primarily in a vertical motion, similar to the motion observed when shaking out a carpet.\n\n• **Swell Direction. **The direction *from* which a swell is moving. This direction is not necessarily the result of the wind present at the scene. The swell may be moving into or across the local wind. Swells, once set in motion, tend to maintain their original direction for as long as they continue in deep water, regardless of changes in wind direction.\n\n• **Swell Height. **The height between crest and trough, measured in feet. The vast majority of ocean swells are lower than 12 to 15 feet, and swells over 25 feet are not common at any spot on the oceans. Successive swells may differ considerably in height.\n\n• In order to select a good heading when ditching an aircraft, a basic evaluation of the sea is required. Selection of a good ditching heading may well minimize damage and could save your life. It can be extremely dangerous to land into the wind without regard to sea conditions; the swell system, or systems, must be taken into consideration. Remember one axiom- ***AVOID THE FACE OF A SWELL.***\n\n• In ditching parallel to the swell, it makes little difference whether touchdown is on the top of the crest or in the trough. It is preferable, however, to land on the top or back side of the swell, if possible. After determining which heading (and its reciprocal) will parallel the swell, select the heading with the most into the wind component.\n\n• If only one swell system exists, the problem is relatively simple-even with a high, fast system. Unfortunately, most cases involve two or more swell systems running in different directions. With more than one system present, the sea presents a confused appearance. One of the most difficult situations occurs when two swell systems are at right angles. For example, if one system is eight feet high, and the other three feet, plan to land parallel to the primary system, and on the down swell of the secondary system. If both systems are of equal height, a compromise may be advisable-select an intermediate heading at 45 degrees down swell to both systems. When landing down a secondary swell, attempt to touch down on the back side, not on the face of the swell.\n\n• If the swell system is formidable, it is considered advisable, in landplanes, to accept more crosswind in order to avoid landing directly into the swell.\n\n• The secondary swell system is often from the same direction as the wind. Here, the landing may be made parallel to the primary system, with the wind and secondary system at an angle. There is a choice to two directions paralleling the primary system. One direction is downwind and down the secondary swell, and the other is into the wind and into the secondary swell, the choice will depend on the velocity of the wind versus the velocity and height of the secondary swell.\n\n• The simplest method of estimating the wind direction and velocity is to examine the windstreaks on the water. These appear as long streaks up and down wind. Some persons may have difficulty determining wind direction after seeing the streaks on the water. Whitecaps fall forward with the wind but are overrun by the waves thus producing the illusion that the foam is sliding backward. Knowing this, and by observing the direction of the streaks, the wind direction is easily determined. Wind velocity can be estimated by noting the appearance of the whitecaps, foam and wind streaks.\n\n• The behavior of the aircraft on making contact with the water will vary within wide limits according to the state of the sea. If landed parallel to a single swell system, the behavior of the aircraft may approximate that to be expected on a smooth sea. If landed into a heavy swell or into a confused sea, the deceleration forces may be extremely great-resulting in breaking up of the aircraft. Within certain limits, the pilot is able to minimize these forces by proper sea evaluation and selection of ditching heading.\n\n• When on final approach the pilot should look ahead and observe the surface of the sea. There may be shadows and whitecaps-signs of large seas. Shadows and whitecaps close together indicate short and rough seas. Touchdown in these areas is to be avoided. Select and touchdown in any area (only about 500 feet is needed) where the shadows and whitecaps are not so numerous.\n\n• Touchdown should be at the l*owest* speed and rate of descent which permit safe handling and optimum nose up attitude on impact. Once first impact has been made, there is often little the pilot can do to control a landplane.\n\n• Once preditching preparations are completed, the pilot should turn to the ditching heading and commence let-down. The aircraft should be flown low over the water, and slowed down until ten knots or so above stall. At this point, additional power should be used to overcome the increased drag caused by the nose up attitude. When a smooth stretch of water appears ahead, cut power, and touchdown at the best recommended speed as fully stalled as possible. By cutting power when approaching a relatively smooth area, the pilot will prevent overshooting and will touchdown with less chance of planing off into a second uncontrolled landing. Most experienced seaplane pilots prefer to make contact with the water in a semi-stalled attitude, cutting power as the tail makes contact. This technique eliminates the chance of misjudging altitude with a resultant heavy drop in a fully stalled condition. Care must be taken not to drop the aircraft from too high altitude or to balloon due to excessive speed. The altitude above water depends on the aircraft. Over glassy smooth water, or at night without sufficient light, it is very easy, for even the most experienced pilots to misjudge altitude by 50 feet or more. Under such conditions, carry enough power to maintain nine to twelve degrees nose up attitude, and 10 to 20 percent over stalling speed until contact is made with the water. The proper use of power on the approach is of great importance. If power is available on one side only, a little power should be used to flatten the approach; however, the engine should not be used to such an extent that the aircraft cannot be turned against the good engines right down to the stall with a margin of rudder movement available. When near the stall, sudden application of excessive unbalanced power may result in loss of directional control. If power is available on one side only, a slightly higher than normal glide approach speed should be used. This will ensure good control and some margin of speed after leveling off without excessive use of power. The use of power in ditching is so important that when it is certain that the coast cannot be reached, the pilot should, if possible, ditch before fuel is exhausted. The use of power in a night or instrument ditching is far more essential than under daylight contact conditions.\n\n• If no power is available, a greater than normal approach speed should be used down to the flare-out. This speed margin will allow the glide to be broken early and more gradually, thereby giving the pilot time and distance to feel for the surface - decreasing the possibility of stalling high or flying into the water. When landing parallel to a swell system, little difference is noted between landing on top of a crest or in the trough. If the wings of aircraft are trimmed to the surface of the sea rather than the horizon, there is little need to worry about a wing hitting a swell crest. The actual slope of a swell is very gradual. If forced to land into a swell, touchdown should be made just after passage of the crest. If contact is made on the face of the swell, the aircraft may be swamped or thrown violently into the air, dropping heavily into the next swell. If control surfaces remain intact, the pilot should attempt to maintain the proper nose above the horizon attitude by rapid and positive use of the controls.\n\n• **After Touchdown. **In most cases drift, caused by crosswind can be ignored; the forces acting on the aircraft after touchdown are of such magnitude that drift will be only a secondary consideration. If the aircraft is under good control, the \"crab\" may be kicked out with rudder just prior to touchdown. This is more important with high wing aircraft, for they are laterally unstable on the water in a crosswind and may roll to the side in ditching.\n\nREFERENCE-\n\nThis information has been extracted from Appendix H of the \"National Search and Rescue Manual.\"",
+      "subsections": [],
+      "figures": [
+        {
+          "src": "chapter6/section-6-3-3-img-1.png",
+          "alt": "Single Swell (15 knot wind)",
+          "caption": "FIG 6-3-3 Single Swell (15 knot wind)",
+          "originalUrl": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/images/aim0603_Auto4.png"
+        },
+        {
+          "src": "chapter6/section-6-3-3-img-2.png",
+          "alt": "Double Swell (15 knot wind)",
+          "caption": "FIG 6-3-3 Double Swell (15 knot wind)",
+          "originalUrl": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/images/aim0603_Auto3.png"
+        }
+      ],
+      "tables": []
+    },
+    {
+      "section": "6-3-4",
+      "title": "Special Emergency (Air Piracy)",
+      "content": "• A special emergency is a condition of air piracy, or other hostile act by a person(s) aboard an aircraft, which threatens the safety of the aircraft or its passengers.\n\n• The pilot of an aircraft reporting a special emergency condition should:\n\n• If circumstances permit, apply *distress* or *urgency* radio-telephony procedures. Include the details of the special emergency.\n\nREFERENCE-\n\nAIM, Para 6-3-1 (https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap6_section_3.html#6-3-1), Distress and Urgency Communications.\n\n• If circumstances do not permit the use of prescribed *distress* or *urgency* procedures, transmit:\n\n• On the air/ground frequency in use at the time.\n\n• As many as possible of the following elements spoken distinctly and in the following order:\n\n• Name of the station addressed (time and circumstances permitting).\n\n• The identification of the aircraft and present position.\n\n• The nature of the special emergency condition and pilot intentions (circumstances permitting).\n\n• If unable to provide this information, use code words and/or transponder as follows:\n\nNOTE-\n\nCode 7500 will never be assigned by ATC without prior notification from the pilot that the aircraft is being subjected to unlawful interference. The pilot should refuse the assignment of Code 7500 in any other situation and inform the controller accordingly. Code 7500 will trigger the special emergency indicator in all radar ATC facilities.\n\n• Air traffic controllers will acknowledge and confirm receipt of transponder Code 7500 by asking the pilot to verify it. If the aircraft is not being subjected to unlawful interference, the pilot should respond to the query by broadcasting in the clear that the aircraft is not being subjected to unlawful interference. Upon receipt of this information, the controller will request the pilot to verify the code selection depicted in the code selector windows in the transponder control panel and change the code to the appropriate setting. If the pilot replies in the affirmative or does not reply, the controller will not ask further questions but will flight follow, respond to pilot requests and notify appropriate authorities.\n\n• If it is possible to do so without jeopardizing the safety of the flight, the pilot of a hijacked passenger aircraft, after departing from the cleared routing over which the aircraft was operating, will attempt to do one or more of the following things, insofar as circumstances may permit:\n\n• Maintain a true airspeed of no more than 400 knots, and preferably an altitude of between 10,000 and 25,000 feet.\n\n• Fly a course toward the destination which the hijacker has announced.\n\n• If these procedures result in either radio contact or air intercept, the pilot will attempt to comply with any instructions received which may direct the aircraft to an appropriate landing field or alter the aircraft's flight path off its current course, away from protected airspace.",
+      "subsections": [],
+      "figures": [],
+      "tables": [
+        {
+          "headers": [
+            "Spoken Words TRANSPONDER SEVEN FIVE ZERO ZERO"
+          ],
+          "rows": [
+            [
+              "Meaning I am being hijacked/forced to a new destination"
+            ],
+            [
+              "Transponder Setting Mode 3/A, Code 7500"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "section": "6-3-5",
+      "title": "Fuel Dumping",
+      "content": "• Should it become necessary to dump fuel, the pilot should immediately advise ATC. Upon receipt of information that an aircraft will dump fuel, ATC will broadcast or cause to be broadcast immediately and every 3 minutes thereafter the following on appropriate ATC and FSS radio frequencies:\n\nEXAMPLE-\n\nAttention all aircraft - fuel dumping in progress over - (location) at (altitude) by (type aircraft) (flight direction).\n\n• Upon receipt of such a broadcast, pilots of aircraft affected, which are not on IFR flight plans or special VFR clearances, should clear the area specified in the advisory. Aircraft on IFR flight plans or special VFR clearances will be provided specific separation by ATC. At the termination of the fuel dumping operation, pilots should advise ATC. Upon receipt of such information, ATC will issue, on the appropriate frequencies, the following:\n\nEXAMPLE-\n\nATTENTION ALL AIRCRAFT - FUEL DUMPING BY - (type aircraft) - TERMINATED.",
+      "subsections": [],
+      "figures": [],
+      "tables": []
+    },
+    {
+      "section": "6-4-1",
+      "title": "Two-way Radio Communications Failure",
+      "content": "• It is virtually impossible to provide regulations and procedures applicable to all possible situations associated with two-way radio communications failure. During two-way radio communications failure, when confronted by a situation not covered in the regulation, pilots are expected to exercise good judgment in whatever action they elect to take. Should the situation so dictate they should not be reluctant to use the emergency action contained in 14 CFR section 91.3 (b).\n\n• Whether two-way communications failure constitutes an emergency depends on the circumstances, and in any event, it is a determination made by the pilot. 14 CFR section 91.3 (b) authorizes a pilot to deviate from any rule in Subparts A and B to the extent required to meet an emergency.\n\n• In the event of two-way radio communications failure, ATC service will be provided on the basis that the pilot is operating in accordance with 14 CFR section 91.185. A pilot experiencing two-way communications failure should (unless emergency authority is exercised) comply with 14 CFR section 91.185 quoted below:\n\n• **General. **Unless otherwise authorized by ATC, each pilot who has two-way radio communications failure when operating under IFR must comply with the rules of this section.\n\n• **VFR conditions.** If the failure occurs in VFR conditions, or if VFR conditions are encountered after the failure, each pilot must continue the flight under VFR and land as soon as practicable.\n\nNOTE-\n\nThis procedure also applies when two-way radio failure occurs while operating in Class A airspace. The primary objective of this provision in 14 CFR section 91.185 is to preclude extended IFR operation by these aircraft within the ATC system. Pilots should recognize that operation under these conditions may unnecessarily as well as adversely affect other users of the airspace, since ATC may be required to reroute or delay other users in order to protect the failure aircraft. However, it is not intended that the requirement to \"land as soon as practicable\" be construed to mean \"as soon as possible.\" Pilots retain the prerogative of exercising their best judgment and are not required to land at an unauthorized airport, at an airport unsuitable for the type of aircraft flown, or to land only minutes short of their intended destination.\n\n• **IFR conditions.** If the failure occurs in IFR conditions, or if subparagraph 2 (https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap6_section_4.html#6-4-1) above cannot be complied with, each pilot must continue the flight according to the following:\n\n• **Route.**\n\n• By the route assigned in the last ATC clearance received;\n\n• If being radar vectored, by the direct route from the point of radio failure to the fix, route, or airway specified in the vector clearance;\n\n• In the absence of an assigned route, by the route that ATC has advised may be expected in a further clearance; or\n\n• In the absence of an assigned route or a route that ATC has advised may be expected in a further clearance by the route filed in the flight plan.\n\n• **Altitude.**At the HIGHEST of the following altitudes or flight levels FOR THE ROUTE SEGMENT BEING FLOWN:\n\n• The altitude or flight level assigned in the last ATC clearance received;\n\n• The minimum altitude (converted, if appropriate, to minimum flight level as prescribed in 14 CFR section 91.121 (c)) for IFR operations; or\n\n• The altitude or flight level ATC has advised may be expected in a further clearance.\n\nNOTE-\n\nThe intent of the rule is that a pilot who has experienced two-way radio failure should select the appropriate altitude for the particular route segment being flown and make the necessary altitude adjustments for subsequent route segments. If the pilot received an \"expect further clearance\" containing a higher altitude to expect at a specified time or fix, maintain the highest of the following altitudes until that time/fix:\n\n\t(1)  the last assigned altitude; or\n\n\t(2) the minimum altitude/flight level for IFR operations.\n\nUpon reaching the time/fix specified, the pilot should commence climbing to the altitude advised to expect. If the radio failure occurs after the time/fix specified, the altitude to be expected is not applicable and the pilot should maintain an altitude consistent with 1 or 2 above. If the pilot receives an \"expect further clearance\" containing a lower altitude, the pilot should maintain the highest of 1 or 2 above until that time/fix specified in subparagraph (c) (https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap6_section_4.html#6-4-1) Leave clearance limit, below.\n\nEXAMPLE-\n\n• A pilot experiencing two-way radio failure at an assigned altitude of 7,000 feet is cleared along a direct route which will require a climb to a minimum IFR altitude of 9,000 feet, should climb to reach 9,000 feet at the time or place where it becomes necessary (see 14 CFR section 91.177 (b)). Later while proceeding along an airway with an MEA of 5,000 feet, the pilot would descend to 7,000 feet (the last assigned altitude), because that altitude is higher than the MEA.\n\n• A pilot experiencing two-way radio failure while being progressively descended to lower altitudes to begin an approach is assigned 2,700 feet until crossing the VOR and then cleared for the approach. The MOCA along the airway is 2,700 feet and MEA is 4,000 feet. The aircraft is within 22 NM of the VOR. The pilot should remain at 2,700 feet until crossing the VOR because that altitude is the minimum IFR altitude for the route segment being flown.\n\n• The MEA between a and b: 5,000 feet. The MEA between b and c: 5,000 feet. The MEA between c and d: 11,000 feet. The MEA between d and e: 7,000 feet. A pilot had been cleared via a, b, c, d, to e. While flying between a and b the assigned altitude was 6,000 feet and the pilot was told to expect a clearance to 8,000 feet at b. Prior to receiving the higher altitude assignment, the pilot experienced two-way failure. The pilot would maintain 6,000 to b, then climb to 8,000 feet (the altitude advised to expect). The pilot would maintain 8,000 feet, then climb to 11,000 at c, or prior to c if necessary to comply with an MCA at c. (14 CFR section 91.177 (b).) Upon reaching d, the pilot would descend to 8,000 feet (even though the MEA was 7,000 feet), as 8,000 was the highest of the altitude situations stated in the rule (14 CFR section 91.185).\n\n• **Leave clearance limit.**\n\n• When the clearance limit is a fix from which an approach begins, commence descent or descent and approach as close as possible to the expect further clearance time if one has been received, or if one has not been received, as close as possible to the Estimated Time of Arrival (ETA) as calculated from the filed or amended (with ATC) Estimated Time En Route (ETE).\n\n• If the clearance limit is not a fix from which an approach begins, leave the clearance limit at the expect further clearance time if one has been received, or if none has been received, upon arrival over the clearance limit, and proceed to a fix from which an approach begins and commence descent or descent and approach as close as possible to the estimated time of arrival as calculated from the filed or amended (with ATC) estimated time en route.",
+      "subsections": [],
+      "figures": [],
+      "tables": []
+    },
+    {
+      "section": "6-4-2",
+      "title": "Transponder Operation During Two-way Communications Failure",
+      "content": "• If an aircraft with a coded radar beacon transponder experiences a loss of two-way radio capability, the pilot should adjust the transponder to reply on Mode A/3, Code 7600.\n\n• The pilot should understand that the aircraft may not be in an area of radar coverage.",
+      "subsections": [],
+      "figures": [],
+      "tables": []
+    },
+    {
+      "section": "6-4-3",
+      "title": "Reestablishing Radio Contact",
+      "content": "• In addition to monitoring the NAVAID voice feature, the pilot should attempt to reestablish communications by attempting contact:\n\n• On the previously assigned frequency; or\n\n• With an FSS or with New York Radio or San Francisco Radio.\n\n• If communications are established with an FSS or New York Radio or San Francisco Radio, the pilot should advise that radio communications on the previously assigned frequency have been lost giving the aircraft's position, altitude, last assigned frequency and then request further clearance from the controlling facility. The preceding does not preclude the use of 121.5 MHz. There is no priority on which action should be attempted first. If the capability exists, do all at the same time.\n\nNOTE-\n\nNew York Radio and San Francisco Radio are operated by Collins Aerospace, Incorporated (formerly ARINC) under contract with the FAA for communications services. These Radio facilities have the capability of relaying information to/from ATC facilities throughout the country.",
+      "subsections": [],
+      "figures": [],
+      "tables": []
+    },
+    {
+      "section": "6-5-1",
+      "title": "Discrete Emergency Frequency",
+      "content": "• Direct contact between an emergency aircraft flight crew, Aircraft Rescue and Fire Fighting Incident Commander (ARFF IC), and the Airport Traffic Control Tower (ATCT), is possible on an aeronautical radio frequency (Discrete Emergency Frequency [DEF]), designated by Air Traffic Control (ATC) from the operational frequencies assigned to that facility.\n\n• Emergency aircraft at airports without an ATCT, (or when the ATCT is closed), may contact the ARFF IC (if ARFF service is provided), on the Common Traffic Advisory Frequency ** (CTAF)** published for the airport or the civil emergency frequency **121.5 MHz.**",
+      "subsections": [],
+      "figures": [],
+      "tables": []
+    },
+    {
+      "section": "6-5-2",
+      "title": "Radio Call Signs",
+      "content": "Preferred radio call sign for the ARFF IC is \"(location/facility) **Command**\" when communicating with the flight crew and the FAA ATCT.\n\nEXAMPLE-\n\nLAX Command.\n\nWashington Command.",
+      "subsections": [],
+      "figures": [],
+      "tables": []
+    },
+    {
+      "section": "6-5-3",
+      "title": "ARFF Emergency Hand Signals",
+      "content": "In the event that electronic communications cannot be maintained between the ARFF IC and the flight crew, standard emergency hand signals as depicted in** FIG 6-5-1 (https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap6_section_5.html#6-5-3) ** through FIG 6-5-3 (https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap6_section_5.html#6-5-3) should be used. These hand signals should be known and understood by all cockpit and cabin aircrew, and all ARFF firefighters.\n\nFIG 6-5-3Recommend Evacuation\nRecommend Evacuation FIG 6-5-3Recommend Stop\nRecommend Stop FIG 6-5-3Emergency Contained\nEmergency Contained",
+      "subsections": [],
+      "figures": [
+        {
+          "src": "chapter6/section-6-5-3-img-1.png",
+          "alt": "Recommend Evacuation",
+          "caption": "FIG 6-5-3 Recommend Evacuation",
+          "originalUrl": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/images/aim0605_Auto0.png"
+        },
+        {
+          "src": "chapter6/section-6-5-3-img-2.png",
+          "alt": "Recommend Stop",
+          "caption": "FIG 6-5-3 Recommend Stop",
+          "originalUrl": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/images/aim0605_Auto0.png"
+        },
+        {
+          "src": "chapter6/section-6-5-3-img-3.png",
+          "alt": "Emergency Contained",
+          "caption": "FIG 6-5-3 Emergency Contained",
+          "originalUrl": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/images/aim0605_Auto0.png"
+        }
+      ],
+      "tables": []
+    }
+  ]
+}

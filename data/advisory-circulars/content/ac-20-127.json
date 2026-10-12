@@ -1,0 +1,25 @@
+{
+  "version": 1,
+  "id": "ac-20-127",
+  "number": "20-127",
+  "title": "Use of Society of Automotive Engineers (SAE) Class H11 Bolts",
+  "status": "parsed",
+  "fetched": "2026-07-14",
+  "documentUrl": "https://www.faa.gov/regulations_policies/advisory_circulars/index.cfm/go/document.information/documentID/22186",
+  "pdfUrl": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_20-127.pdf",
+  "sha256": "be8135eb05d1d1a0e60b77b70ede4b883ff97e97183f6e16529c89329039ef42",
+  "pageCount": 2,
+  "wordCount": 468,
+  "ocrPageCount": 0,
+  "pages": [
+    {
+      "page": 1,
+      "text": "0 Advisory US. Deportment Federal of Transportation Aviation Circular AdmlnlstraNon\n\nSubject: USE OF SOCIETY OF AUTOMOTIVE Date: 7/8/87 AC No: 20- 127\n\nENGINEERS (SAE) CLASS Hll BOLTS Initiated by: ANM-110 Chance:\n\n1.. PURPOSE. This Advisory Circular (AC) provides guidance on the use of Society of Automotive Engineers {SAE) Class Hll bolts in primary structure on all aircraft, including gliders and manned free balloons, and on aircraft engines and propellers. 2. RELATED FAR SECTIONS. This guidance is provided for showing compliance with the requirements of Sections 21.21, 23.603, 25.603, 27.603, 29.603, 33.15, and\n\n35.17 of the Federal Aviation Regulations (FAR).\n\n3. BACKGROUND. The service history of Hll bolts used in primary structure indicates a higher than nonnal failure rate. These failures are attributed to stress corrosion cracking and may become a safety problem. Hll bolts and companion nuts are more sensitive to environmental influence than bolts made from other materials. The use of Hll bolts in primary structure· is therefore discouraged and should not be considered for use on new type design aircraft. There are other fasteners available which have demonstrated satisfactory service experience. Inconel 718 and stainless steel bolts are examples of acceptable substitutes.\n\n4. GENERAL CONSIDERATIONS.\n\na. Hll bolts and nuts should be replaced with a different type of bolt and nut of equivalent strength and fatigue rating. if any of the following conditions exist: (1) The bolts are exposed to high temperature {above 250° F) and possible simultaneous exposure to hydraulic fluids. (2) The bolts are exposed to a corrosive environment such as moisture, salt air, exhaust gases, etc., at ambient temperature. (3) The bolts are used primarily in tension application with a high sustained tensile stress, in any environment continually exposed to weather. (4) The bolts are used in any application. including both tension or shear, in which a single failure could be catastrophic. (5) The bolts are used in any application which requires frequent inspections of the bolts. · (6) The bolt service history indicates a need for frequent replacement."
+    },
+    {
+      "page": 2,
+      "text": "AC 20-127 7/8/87 b. Hll bo1ts, when used, should be completely encapsulated against environmental effects. Since encapsulation is not a complete or certain solution to avoid stress corrosion cracking in Hll bolts, encapsulation should be used only with discretion based on factors such as the specific environment, the maintenance requirements in the immediate area, and the inspection requirements for the Dolts and adjacent structural members. Where complete encapsulation is not practical, a substitute material for Hll bolts should be used. ~~~~worthiness 2 Par 4 USDepomnem of TransportotlOl\"I Federal Aviation Administration =:,c ,- oeoenaence Ave S w .',as~-~;ton_ DC 20~91\n\nRETURN POSTAGE GUARANTEED\n\n:· 11 ·::::;a· Busu,ess =;,na-:, tor Private Use $300\n\nBULK MAIL\n\nPOSTAGE & FEES PAID\n\nFEDERAL AVIATION\n\nADMINISTRATION\n\nPERMIT NO G-44"
+    }
+  ],
+  "extractedPageCount": 2
+}

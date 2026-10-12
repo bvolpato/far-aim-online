@@ -1,0 +1,309 @@
+{
+  "id": "airspace-requirements",
+  "title": "Airspace Classes & Requirements",
+  "description": "Flashcards covering US airspace classifications, weather minimums, and entry requirements",
+  "category": "AIM",
+  "cardCount": 50,
+  "cards": [
+    {
+      "id": "ar-001",
+      "front": "Class A Airspace Altitude",
+      "back": "18,000 feet MSL to FL600 (60,000 feet)",
+      "reference": "AIM 3-2-2"
+    },
+    {
+      "id": "ar-002",
+      "front": "Class A Airspace Requirements",
+      "back": "• IFR flight plan required\n• ATC clearance required\n• Two-way radio communications\n• Transponder with Mode C\n• Instrument rated pilot",
+      "reference": "AIM 3-2-2"
+    },
+    {
+      "id": "ar-003",
+      "front": "Class B Airspace Typical Dimensions",
+      "back": "Surface to 10,000 feet MSL. Individually tailored to each location (often described as 'upside-down wedding cake').",
+      "reference": "AIM 3-2-3"
+    },
+    {
+      "id": "ar-004",
+      "front": "Class B Entry Requirements",
+      "back": "• ATC clearance required (not just communication)\n• Transponder with Mode C\n• Two-way radio\n• Private pilot certificate minimum (student with endorsement at some airports)",
+      "reference": "AIM 3-2-3"
+    },
+    {
+      "id": "ar-005",
+      "front": "Class BVFR Weather Minimums",
+      "back": "• Visibility: 3 statute miles\n• Cloud clearance: Clear of clouds",
+      "reference": "14 CFR 91.155"
+    },
+    {
+      "id": "ar-006",
+      "front": "Class C Airspace Typical Dimensions",
+      "back": "• Core: Surface to 4,000 ft AGL, 5 NM radius\n• Shelf: 1,200 to 4,000 ft AGL, 5-10 NM radius\n• Outer area: 10-20 NM (services available)",
+      "reference": "AIM 3-2-4"
+    },
+    {
+      "id": "ar-007",
+      "front": "Class C Entry Requirements",
+      "back": "• Two-way radio communication established (not clearance)\n• Transponder with Mode C\n• Note: Communication established when ATC responds with your callsign",
+      "reference": "AIM 3-2-4"
+    },
+    {
+      "id": "ar-008",
+      "front": "Class CVFR Weather Minimums",
+      "back": "• Visibility: 3 statute miles\n• Cloud clearance: 500 ft below, 1,000 ft above, 2,000 ft horizontal",
+      "reference": "14 CFR 91.155"
+    },
+    {
+      "id": "ar-009",
+      "front": "Class D Airspace Typical Dimensions",
+      "back": "Surface to 2,500 feet AGL, typically 4-5 NM radius (tailored for instrument procedures)",
+      "reference": "AIM 3-2-5"
+    },
+    {
+      "id": "ar-010",
+      "front": "Class D Entry Requirements",
+      "back": "• Two-way radio communication established\n• No transponder requirement (unless in Mode C veil)\n• Reverts to Class E or G when tower closed",
+      "reference": "AIM 3-2-5"
+    },
+    {
+      "id": "ar-011",
+      "front": "Class DVFR Weather Minimums",
+      "back": "• Visibility: 3 statute miles\n• Cloud clearance: 500 ft below, 1,000 ft above, 2,000 ft horizontal",
+      "reference": "14 CFR 91.155"
+    },
+    {
+      "id": "ar-012",
+      "front": "Class E Airspace Types",
+      "back": "• Surface area (dashed magenta line)\n• 700 ft AGL floor (magenta vignette)\n• 1,200 ft AGL floor (blue vignette)\n• 14,500 ft MSL floor (no vignette)\n• Federal airways (Victor airways)",
+      "reference": "AIM 3-2-6"
+    },
+    {
+      "id": "ar-013",
+      "front": "Class EVFR Weather Minimums (below 10,000 MSL)",
+      "back": "• Visibility: 3 statute miles\n• Cloud clearance: 500 ft below, 1,000 ft above, 2,000 ft horizontal",
+      "reference": "14 CFR 91.155"
+    },
+    {
+      "id": "ar-014",
+      "front": "Class EVFR Weather Minimums (at/above 10,000 MSL)",
+      "back": "• Visibility: 5 statute miles\n• Cloud clearance: 1,000 ft below, 1,000 ft above, 1 statute mile horizontal",
+      "reference": "14 CFR 91.155"
+    },
+    {
+      "id": "ar-015",
+      "front": "Class G Airspace Definition",
+      "back": "Uncontrolled airspace - that portion of airspace not designated as Class A, B, C, D, or E. No ATC services provided.",
+      "reference": "AIM 3-3-1"
+    },
+    {
+      "id": "ar-016",
+      "front": "Class GVFR Minimums (≤1,200 AGL, Day)",
+      "back": "• Visibility: 1 statute mile\n• Cloud clearance: Clear of clouds",
+      "reference": "14 CFR 91.155"
+    },
+    {
+      "id": "ar-017",
+      "front": "Class GVFR Minimums (≤1,200 AGL, Night)",
+      "back": "• Visibility: 3 statute miles\n• Cloud clearance: 500 ft below, 1,000 ft above, 2,000 ft horizontal",
+      "reference": "14 CFR 91.155"
+    },
+    {
+      "id": "ar-018",
+      "front": "Class GVFR Minimums (>1,200 AGL, <10,000 MSL, Day)",
+      "back": "• Visibility: 1 statute mile\n• Cloud clearance: 500 ft below, 1,000 ft above, 2,000 ft horizontal",
+      "reference": "14 CFR 91.155"
+    },
+    {
+      "id": "ar-019",
+      "front": "Prohibited Area (P-xxx)",
+      "back": "Flight is prohibited. Established for security or national welfare. No exceptions for civilian aircraft. Example: P-56 Washington DC.",
+      "reference": "AIM 3-4-2"
+    },
+    {
+      "id": "ar-020",
+      "front": "Restricted Area (R-xxx)",
+      "back": "Flight is subject to restrictions. Contains hazardous activities (artillery, aerial gunnery, missiles). Permission may be obtained from controlling agency when not active.",
+      "reference": "AIM 3-4-3"
+    },
+    {
+      "id": "ar-021",
+      "front": "Warning Area (W-xxx)",
+      "back": "Similar to restricted areas but over international waters (3+ NM from coast). US has no jurisdiction to restrict flight. Exercise extreme caution.",
+      "reference": "AIM 3-4-4"
+    },
+    {
+      "id": "ar-022",
+      "front": "Military Operations Area (MOA)",
+      "back": "Separates military training from IFR traffic. VFR traffic is permitted but should exercise extreme caution. IFR may be cleared through if separation can be provided.",
+      "reference": "AIM 3-4-5"
+    },
+    {
+      "id": "ar-023",
+      "front": "Alert Area (A-xxx)",
+      "back": "High volume of pilot training or unusual aerial activity. All aircraft permitted. Pilots should be alert.",
+      "reference": "AIM 3-4-6"
+    },
+    {
+      "id": "ar-024",
+      "front": "Controlled Firing Area",
+      "back": "Not charted because activities are suspended immediately when aircraft approach. Spotters, radar, or ground lookouts monitor for aircraft.",
+      "reference": "AIM 3-4-7"
+    },
+    {
+      "id": "ar-025",
+      "front": "Mode C Veil",
+      "back": "30 NM radius around Class B airports. Transponder with Mode C (altitude reporting) required for all aircraft.",
+      "reference": "14 CFR 91.215"
+    },
+    {
+      "id": "ar-026",
+      "front": "Special VFR Requirements (Day)",
+      "back": "• Request clearance from ATC\n• 1 statute mile visibility\n• Clear of clouds\n• Some airports prohibit SVFR (Part 91 Appendix D)",
+      "reference": "14 CFR 91.157"
+    },
+    {
+      "id": "ar-027",
+      "front": "Special VFR Requirements (Night)",
+      "back": "• All day SVFR requirements plus:\n• Pilot must be instrument rated\n• Aircraft must be IFR equipped",
+      "reference": "14 CFR 91.157"
+    },
+    {
+      "id": "ar-028",
+      "front": "Sectional Chart: Magenta Vignette",
+      "back": "Class E airspace with a floor of 700 feet AGL (fading magenta shading)",
+      "reference": "AIM 3-2-6"
+    },
+    {
+      "id": "ar-029",
+      "front": "Sectional Chart: Blue Vignette",
+      "back": "Class E airspace with a floor of 1,200 feet AGL (fading blue shading)",
+      "reference": "AIM 3-2-6"
+    },
+    {
+      "id": "ar-030",
+      "front": "Sectional Chart: Dashed Magenta Line",
+      "back": "Class E airspace extending to the surface (typically around airports with instrument approaches but no operating tower)",
+      "reference": "AIM 3-2-6"
+    },
+    {
+      "id": "ar-031",
+      "front": "Sectional Chart: Solid Blue Line",
+      "back": "Class B airspace boundary",
+      "reference": "AIM 3-2-3"
+    },
+    {
+      "id": "ar-032",
+      "front": "Sectional Chart: Solid Magenta Line",
+      "back": "Class C airspace boundary",
+      "reference": "AIM 3-2-4"
+    },
+    {
+      "id": "ar-033",
+      "front": "Sectional Chart: Blue Dashed Line",
+      "back": "Class D airspace boundary",
+      "reference": "AIM 3-2-5"
+    },
+    {
+      "id": "ar-034",
+      "front": "TFR (Temporary Flight Restriction)",
+      "back": "Temporarily restricts aircraft operations in a defined area. Published as NOTAMs. Common reasons: disaster relief, VIP movement, special events, hazardous conditions.",
+      "reference": "AIM 3-5-3"
+    },
+    {
+      "id": "ar-035",
+      "front": "Military Training Routes (MTR)",
+      "back": "• IR routes: IFR\n• VR routes: VFR\n• 4-digit number: below 1,500 AGL\n• 3-digit number: above 1,500 AGL\nExercise extreme caution when crossing.",
+      "reference": "AIM 3-5-2"
+    },
+    {
+      "id": "ar-036",
+      "front": "TRSA (Terminal Radar Service Area)",
+      "back": "Radar service available but participation is voluntary. VFR pilots receive sequencing, traffic advisories, and safety alerts if participating.",
+      "reference": "AIM 3-5-6"
+    },
+    {
+      "id": "ar-037",
+      "front": "Speed Limit Below 10,000 MSL",
+      "back": "250 knots indicated airspeed maximum (unless minimum safe airspeed is higher)",
+      "reference": "14 CFR 91.117"
+    },
+    {
+      "id": "ar-038",
+      "front": "Speed Limit in Class B Airspace",
+      "back": "250 knots indicated airspeed maximum",
+      "reference": "14 CFR 91.117"
+    },
+    {
+      "id": "ar-039",
+      "front": "Speed Limit: Class C/D within 4 NM at/below 2,500 AGL",
+      "back": "200 knots indicated airspeed maximum",
+      "reference": "14 CFR 91.117"
+    },
+    {
+      "id": "ar-040",
+      "front": "Speed Limit Underlying Class B Airspace",
+      "back": "200 knots indicated airspeed maximum",
+      "reference": "14 CFR 91.117"
+    },
+    {
+      "id": "ar-041",
+      "front": "Airspace Hierarchy (Most to Least Restrictive)",
+      "back": "A > B > C > D > E > G\n\nWhen airspace overlaps, the MORE restrictive rules apply.\n\nMemory aid: 'A Better Class Delivers Every Good pilot'",
+      "reference": "AIM 3-1-3"
+    },
+    {
+      "id": "ar-042",
+      "front": "VFR Cruising Altitudes (Above 3,000 AGL)",
+      "back": "Heading 0°-179° (Eastbound):\n• Odd thousands + 500 ft (3,500, 5,500, 7,500...)\n\nHeading 180°-359° (Westbound):\n• Even thousands + 500 ft (4,500, 6,500, 8,500...)\n\nApplies above 3,000 ft AGL through FL290",
+      "reference": "14 CFR 91.159"
+    },
+    {
+      "id": "ar-043",
+      "front": "Military Training Routes (MTR) Identification",
+      "back": "IR = IFR routes\nVR = VFR routes\n\nRoute numbers:\n• 4 digits (IR1234): All segments at/below 1,500 AGL\n• 3 digits (IR123): One or more segments above 1,500 AGL\n\nExercise extreme caution when crossing MTRs!",
+      "reference": "AIM 3-5-2"
+    },
+    {
+      "id": "ar-044",
+      "front": "Class B Primary Airports - Student Pilot Restrictions",
+      "back": "Students PROHIBITED from solo operations at these 12 airports:\n• Andrews AFB, Atlanta, Boston Logan\n• Chicago O'Hare, DFW, LAX\n• Miami, Newark, JFK, LaGuardia\n• Reagan National (DCA), San Francisco\n\nOther Class B airports: Student with endorsement OK",
+      "reference": "AIM 3-2-3"
+    },
+    {
+      "id": "ar-045",
+      "front": "Published VFR Routes Types",
+      "back": "VFR FLYWAY:\n• General flight path around Class B\n• NO clearance required\n• Depicted on TAC chart reverse\n\nVFR CORRIDOR:\n• 'Hole' through Class B\n• NO clearance required\n• Defined vertical/lateral limits\n\nVFR TRANSITION ROUTE:\n• Through Class B\n• ATC clearance REQUIRED",
+      "reference": "AIM 3-5-5"
+    },
+    {
+      "id": "ar-046",
+      "front": "TFR (Temporary Flight Restriction) Purposes",
+      "back": "• Protect persons/property from surface hazard\n• Safe environment for disaster relief aircraft\n• Prevent congestion of sightseeing aircraft\n• Protect declared national disasters (Hawaii)\n• Protect President/VP/public figures\n• Space agency operations\n\nPublished via NOTAM - always check before flight!",
+      "reference": "AIM 3-5-3, 14 CFR 91.137-91.145"
+    },
+    {
+      "id": "ar-047",
+      "front": "Class C Radio Communication Requirements",
+      "back": "Two-way communication ESTABLISHED when:\n• ATC responds with YOUR aircraft callsign\n\nCommunication NOT established if:\n• ATC says 'Aircraft calling, standby'\n• ATC doesn't use your callsign\n\nDon't enter Class C until communication established!",
+      "reference": "AIM 3-2-4"
+    },
+    {
+      "id": "ar-048",
+      "front": "Class D When Tower Closes",
+      "back": "Part-time Class D reverts to:\n• Class E surface area (if instrument procedures exist), OR\n• Class G airspace\n\nCheck Chart Supplement for:\n• 'Other times CLASS E'\n• 'Other times CLASS G'\n\nOverlying Class E transition area remains",
+      "reference": "AIM 3-2-5"
+    },
+    {
+      "id": "ar-049",
+      "front": "Regulatory vs Non-Regulatory Airspace",
+      "back": "REGULATORY (14 CFR Part 71/73):\n• Class A, B, C, D, E\n• Prohibited Areas (P)\n• Restricted Areas (R)\n\nNON-REGULATORY:\n• Military Operations Areas (MOA)\n• Warning Areas (W)\n• Alert Areas (A)\n• Controlled Firing Areas (CFA)\n• National Security Areas (NSA)",
+      "reference": "AIM 3-1-1"
+    },
+    {
+      "id": "ar-050",
+      "front": "Class E Surface Area (Dashed Magenta)",
+      "back": "• At airports without operating tower\n• Has instrument procedures\n• Weather observation capability required\n• Communication with surface required\n• Extends to adjacent/overlying controlled airspace\n\nChart: Dashed magenta line around airport",
+      "reference": "AIM 3-2-6"
+    }
+  ]
+}

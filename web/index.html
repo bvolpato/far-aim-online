@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=20ca3eb6" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Search FAA regulations and guidance, save references, and study with quizzes and flashcards. FAR/AIM Online is free to use, open source, and welcomes pull requests." />
+    <meta name="keywords" content="free, open source, FAR, AIM, pilot, aviation, FAA, regulations, study, flashcards, quiz" />
+    <meta name="theme-color" content="#102b40" />
+    <title>FAR/AIM Online | Free Aviation Reference &amp; Study Tools</title>
+    <link rel="preload" href="/node_modules/@fontsource-variable/inter/files/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+    <script>
+      (function() {
+        const storageKey = 'vite-ui-theme';
+        const defaultTheme = 'system';
+        let theme = defaultTheme;
+        try {
+          const saved = localStorage.getItem(storageKey);
+          if (saved === 'light' || saved === 'dark' || saved === 'system') theme = saved;
+        } catch {}
+        const root = window.document.documentElement;
+        
+        root.classList.remove('light', 'dark');
+        
+        if (theme === 'system') {
+          const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches
+            ? 'dark'
+            : 'light';
+          root.classList.add(systemTheme);
+        } else {
+          root.classList.add(theme);
+        }
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

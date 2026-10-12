@@ -1,0 +1,33 @@
+{
+  "version": 1,
+  "id": "ac-20-44",
+  "number": "20-44",
+  "title": "Glass Fiber Fabric for Aircraft Covering",
+  "status": "parsed",
+  "fetched": "2026-07-14",
+  "documentUrl": "https://www.faa.gov/regulations_policies/advisory_circulars/index.cfm/go/document.information/documentID/23002",
+  "pdfUrl": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_20-44.pdf",
+  "sha256": "f11564865dcf18efeff0fdb789756f6b0df62b2d82a7b9ff6b767d150f810e55",
+  "pageCount": 4,
+  "wordCount": 685,
+  "ocrPageCount": 0,
+  "pages": [
+    {
+      "page": 1,
+      "text": "SUBJECT : GLASS FIBER FABRIC FOR AIRCRAFT COVERING\n\nAC NO: 20-44\n\nAIRCRAFT\n\nEFFECTIVE :\n\n9/3/65 1. PURPOSE. This circular provides a means, but not the sole mea~s for acceptance of glass fiber fabric for external covering of aircraft structure. 2. REFERENCE REGUlATIONS. FAR'a, Sections 23.603, 25.603, 27.603, and 29.603. 3. BACRGROUND. There has been an increase in the use of glass fiber fabrics for covering aircraft structure over the past year,. While existing Technical Standard Orders provide a basis for the acceptance of cotton fabrics for aircraft covering, they do not provide a means for acceptance of glass fiber fabric. Past installations using glass fiber fabric have received engineering approval by means of Supplemental Type Certificates.\n\n4. ACCEPTABLE MEANS OF COMPLIANCE.\n\n(a) General. The referenced regulations require that the materials used in the structure must show suitability and durability, to be established by tests or experience, and meet approved specifications so as to ensure strength and other properties conforming to the design data. Fabrics are acceptable in showing compliance with the referenced regulations if they comply with Military Specifications Mll.-C-9084, MIL-Y-1140C, and MIL-G-1140 in the untreated condition, have the following proper-ties, and are tested in accordance with the methods listed:"
+    },
+    {
+      "page": 2,
+      "text": "Page 2 AC :20-44 9/3/65 Property (1) Weight, oz. per sq. yd., max. (2) Thread count, ends per in. min. warp and fill, respectively. (3) Brea.king strength, either direction lb. per in., min. (4) Elongation, when under iO lb. tens ion, per cent, max Nominal Width 38 in. 44 in. 50 in. 60 in. 69 in. 90 in. (5) Burst strength, mullen, points, min. (6) Sizing, Finishing, and other non-fibrous materials, percent max. 4.5 36 x 34 13.5 4.5 Test Method\n\nASTM D39-61\n\nASTM D39-61\n\nASTM D39-49 or D579-49 (Raveled strip method)\n\nASTM D39-49\n\n(Raveled strip method)\n\n(Note (a)) (Note (b)) D579-49 Section 12 (Note (c)) (b) Yarns. Commercially designated Type E continuous filament glass fiber yarns~ as listed in Table II of Military Specification Klt-Y-1140C, are acceptable. (c) ~. The weave should be plain (one up and one down). (d) Processing of Finishing. It is acceptable if the processed or fin-ished fabric is sho'Wtl by test or service experience to be compati-ble with standard aircraft grades of nitrate or acetate butyrate dope conforming to the military specifications listed in Note (d) or an equivalent specification. The finished fabric should be compatible with epoxy. polyurethane and polyester type resins con-forming to those specifications listed in Note (d). Compatibility may be demonstrated by appropriate examination of the fabric area after wetting by the impregnating agent. Par 4"
+    },
+    {
+      "page": 3,
+      "text": "AC 20-44 Page 3 9/J/65 NOTES: (a) Elongation at 70 pounds should be me.Asured from a base line on a chart to a point at which the curve intersects 70 pounds load ordinate with the base line passing through the point where the curve leaves the zero ordinate. (b) Bursting strength should be determined with a hydraulic type machine in which the fabric is firmly clamped against a rubber diaphragm, through which the pressure is applied to a circular area of approximately l square inch. The pressure required to burst the cloth should be registered on an accurate Bourdon tube-type gage, calibrated in pounds per square inch, the read-ings of which are designated as points. See Federal Specifica-tion ccc-T-19lb, Method 5122 for details of test. (c) A desizing operation may be performed, if necessary, to reduce the sizing content to the max. specified. (d) The following military specifications, or later revisions thereof, apply to aircraft dope and epoxy and polyester resins: MIL-D-5549A-l Clear Dope, cellulose - Acetate :Butyrate. MIL-D-7850 Fungicidal Dope, First Coat, Cellulose-Acetate, Butyrate. MIL-D-5550A-1 Pigmented Dope, Cellulose-Acetate, Butyrate. MIL-D-5551A•2 Pigmented Dope, Gloss, Cellulose Acetate, Butyrate. MIL-D-55S3A•2 Clear Dope, Cellulose Nitrate MlL-D-5552A-l Clear Dope, Gloss Cellulose Nitrate MIL-D-5554A-l Glass Dope, Cellulose Nitrate MIL·D-5555•1 Pigmented Dope, Cellulose Nitrate MIJ.-R-9300A Res.in, Epoxy, low pressure laminating."
+    },
+    {
+      "page": 4,
+      "text": "Page 4 AC 20-44 9/3/65 MIL-R-25042A Resin, Polyester, low pressure laminating. MIL-R-7575B Resin, Polyester, low pressure laminating. orge s. Moore irector Flight Standards Service"
+    }
+  ],
+  "extractedPageCount": 4
+}

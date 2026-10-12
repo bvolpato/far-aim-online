@@ -1,0 +1,442 @@
+name: Android Build
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+    inputs:
+      capture_screenshots:
+        description: Capture Play Store screenshots after successful build
+        required: false
+        default: false
+        type: boolean
+
+permissions:
+  contents: read
+
+env:
+  GRADLE_USER_HOME: ${{ github.workspace }}/.gradle
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: Build APK
+    runs-on: ubuntu-24.04
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@de7274f081f381c8f8158605e0321c36c376e2e6 # v6.0.1
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      - name: Set up Android SDK
+        uses: android-actions/setup-android@be39fa834029ff78f1a44aa3bb0819b8fc2bd8fd # v4.0.4
+
+      - name: Prepare Gradle runtime dirs
+        run: |
+          mkdir -p "$GRADLE_USER_HOME/caches" "$GRADLE_USER_HOME/wrapper" "$GRADLE_USER_HOME/native" "$RUNNER_TEMP/gradle-tmp"
+
+      - name: Restore Gradle cache
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: |
+            ${{ env.GRADLE_USER_HOME }}/caches
+            ${{ env.GRADLE_USER_HOME }}/wrapper
+            ~/.m2/repository/org/robolectric
+          key: ${{ runner.os }}-gradle-robolectric-v1-${{ hashFiles('mobile/android/**/*.gradle*', 'mobile/android/**/gradle-wrapper.properties') }}
+          restore-keys: |
+            ${{ runner.os }}-gradle-robolectric-v1-
+            ${{ runner.os }}-gradle-
+
+      - name: Sync shared data to assets
+        run: |
+          chmod +x scripts/sync-data.sh
+          ./scripts/sync-data.sh android
+
+      - name: Grant execute permission for gradlew
+        working-directory: ./mobile/android
+        run: chmod +x gradlew || true
+
+      - name: Run Android lint
+        working-directory: ./mobile/android
+        run: ./gradlew lintDebug --stacktrace --no-daemon
+
+      - name: Detect Android unit tests
+        id: detect-tests
+        run: |
+          if find mobile/android/app/src -type f \( -name "*Test.kt" -o -name "*Test.java" \) | grep -q .; then
+            echo "has_tests=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "has_tests=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Run Android unit tests
+        if: steps.detect-tests.outputs.has_tests == 'true'
+        working-directory: ./mobile/android
+        env:
+          JAVA_TOOL_OPTIONS: -Drobolectric.dependency.repo.url=https://maven-central.storage-download.googleapis.com/maven2
+        run: |
+          mkdir -p "$GRADLE_USER_HOME/native" "$RUNNER_TEMP/gradle-tmp"
+          export GRADLE_OPTS="-Djava.io.tmpdir=$RUNNER_TEMP/gradle-tmp ${GRADLE_OPTS:-}"
+          if [ -f "./gradlew" ]; then
+            gradle_cmd=(./gradlew testDebugUnitTest --stacktrace --no-daemon)
+          else
+            gradle_cmd=(gradle testDebugUnitTest --stacktrace --no-daemon)
+          fi
+          for attempt in 1 2 3; do
+            "${gradle_cmd[@]}" && exit 0
+            echo "Gradle test attempt ${attempt} failed" >&2
+            sleep $((attempt * 15))
+          done
+          exit 1
+
+      - name: No Android unit tests found
+        if: steps.detect-tests.outputs.has_tests != 'true'
+        run: echo "No Android unit tests found. Skipping testDebugUnitTest."
+
+      - name: Build with Gradle
+        working-directory: ./mobile/android
+        run: |
+          mkdir -p "$GRADLE_USER_HOME/native" "$RUNNER_TEMP/gradle-tmp"
+          export GRADLE_OPTS="-Djava.io.tmpdir=$RUNNER_TEMP/gradle-tmp ${GRADLE_OPTS:-}"
+          if [ -f "./gradlew" ]; then
+            gradle_cmd=(./gradlew assembleDebug bundleRelease --stacktrace --no-daemon)
+          else
+            gradle_cmd=(gradle assembleDebug bundleRelease --stacktrace --no-daemon)
+          fi
+          for attempt in 1 2 3; do
+            "${gradle_cmd[@]}" && exit 0
+            echo "Gradle build attempt ${attempt} failed" >&2
+            sleep $((attempt * 15))
+          done
+          exit 1
+
+      - name: Upload Debug APK
+        if: github.ref == 'refs/heads/main' || inputs.capture_screenshots
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: far-aim-online-android-debug
+          path: mobile/android/app/build/outputs/apk/debug/*.apk
+          retention-days: 14
+
+      - name: Build Summary
+        if: always()
+        run: |
+          {
+            echo "## Android Build Summary"
+            echo
+            echo "### Build Status: ${{ job.status }}"
+            echo
+            echo "### Artifacts"
+            echo "Artifacts upload only for main-branch or manual runs."
+          } >> "$GITHUB_STEP_SUMMARY"
+
+  screenshots-phone:
+    name: Phone Screenshots (Pixel 2)
+    runs-on: ubuntu-24.04
+    needs: build
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.capture_screenshots && needs.build.result == 'success' }}
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@de7274f081f381c8f8158605e0321c36c376e2e6 # v6.0.1
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      - name: Set up Android SDK
+        uses: android-actions/setup-android@be39fa834029ff78f1a44aa3bb0819b8fc2bd8fd # v4.0.4
+
+      - name: Download APK
+        uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        with:
+          name: far-aim-online-android-debug
+          path: ./apk
+
+      - name: Enable KVM
+        run: |
+          sudo mkdir -p /etc/udev/rules.d
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules || true
+          sudo udevadm trigger --name-match=kvm || true
+          sudo chmod 666 /dev/kvm || true
+
+      - name: Create screenshots directory
+        run: mkdir -p screenshots/phone
+
+      - name: Find APK path
+        id: find-apk
+        run: |
+          APK_FILE="$(find ./apk -name "*.apk" -type f 2>/dev/null | head -1)"
+          if [[ -z "$APK_FILE" ]]; then
+            echo "No APK artifact found in ./apk" >&2
+            exit 1
+          fi
+          echo "Found APK: $APK_FILE"
+          echo "apk_path=$APK_FILE" >> "$GITHUB_OUTPUT"
+
+      - name: Prepare shared screenshot script
+        run: chmod +x scripts/capture-android-screenshots.sh
+
+      - name: Run Phone Emulator and Capture Screenshots
+        timeout-minutes: 22
+        uses: reactivecircus/android-emulator-runner@a421e43855164a8197daf9d8d40fe71c6996bb0d # v2.38.0
+        env:
+          APK_PATH: ${{ steps.find-apk.outputs.apk_path }}
+        with:
+          api-level: 30
+          arch: x86_64
+          profile: pixel_2
+          force-avd-creation: true
+          emulator-boot-timeout: 600
+          emulator-options: -no-snapshot-save -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none -no-metrics
+          disable-animations: true
+          script: ./scripts/capture-android-screenshots.sh screenshots/phone 5 more
+
+      - name: Upload Phone Screenshots
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: android-screenshots-phone
+          path: screenshots/phone/
+          retention-days: 30
+          if-no-files-found: error
+
+  screenshots-tablet-7:
+    name: 7-inch Tablet Screenshots
+    runs-on: ubuntu-24.04
+    needs: [build, screenshots-phone]
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.capture_screenshots && needs.build.result == 'success' && needs.screenshots-phone.result == 'success' }}
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@de7274f081f381c8f8158605e0321c36c376e2e6 # v6.0.1
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      - name: Set up Android SDK
+        uses: android-actions/setup-android@be39fa834029ff78f1a44aa3bb0819b8fc2bd8fd # v4.0.4
+
+      - name: Download APK
+        uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        with:
+          name: far-aim-online-android-debug
+          path: ./apk
+
+      - name: Enable KVM
+        run: |
+          sudo mkdir -p /etc/udev/rules.d
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules || true
+          sudo udevadm trigger --name-match=kvm || true
+          sudo chmod 666 /dev/kvm || true
+
+      - name: Create screenshots directory
+        run: mkdir -p screenshots/tablet-7
+
+      - name: Find APK path
+        id: find-apk
+        run: |
+          APK_FILE="$(find ./apk -name "*.apk" -type f 2>/dev/null | head -1)"
+          if [[ -z "$APK_FILE" ]]; then
+            echo "No APK artifact found in ./apk" >&2
+            exit 1
+          fi
+          echo "apk_path=$APK_FILE" >> "$GITHUB_OUTPUT"
+
+      - name: Prepare shared screenshot script
+        run: chmod +x scripts/capture-android-screenshots.sh
+
+      - name: Run 7-inch Tablet Emulator
+        timeout-minutes: 22
+        uses: reactivecircus/android-emulator-runner@a421e43855164a8197daf9d8d40fe71c6996bb0d # v2.38.0
+        env:
+          APK_PATH: ${{ steps.find-apk.outputs.apk_path }}
+        with:
+          api-level: 30
+          arch: x86_64
+          profile: Nexus 7
+          force-avd-creation: true
+          emulator-boot-timeout: 600
+          emulator-options: -no-snapshot-save -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none -no-metrics
+          disable-animations: true
+          script: ./scripts/capture-android-screenshots.sh screenshots/tablet-7 8 glossary search
+
+      - name: Upload 7-inch Tablet Screenshots
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: android-screenshots-tablet-7
+          path: screenshots/tablet-7/
+          retention-days: 30
+          if-no-files-found: error
+
+  screenshots-tablet-10:
+    name: 10-inch Tablet Screenshots
+    runs-on: ubuntu-24.04
+    needs: [build, screenshots-tablet-7]
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.capture_screenshots && needs.build.result == 'success' && needs.screenshots-tablet-7.result == 'success' }}
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@de7274f081f381c8f8158605e0321c36c376e2e6 # v6.0.1
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      - name: Set up Android SDK
+        uses: android-actions/setup-android@be39fa834029ff78f1a44aa3bb0819b8fc2bd8fd # v4.0.4
+
+      - name: Download APK
+        uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        with:
+          name: far-aim-online-android-debug
+          path: ./apk
+
+      - name: Enable KVM
+        run: |
+          sudo mkdir -p /etc/udev/rules.d
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules || true
+          sudo udevadm trigger --name-match=kvm || true
+          sudo chmod 666 /dev/kvm || true
+
+      - name: Create screenshots directory
+        run: mkdir -p screenshots/tablet-10
+
+      - name: Find APK path
+        id: find-apk
+        run: |
+          APK_FILE="$(find ./apk -name "*.apk" -type f 2>/dev/null | head -1)"
+          if [[ -z "$APK_FILE" ]]; then
+            echo "No APK artifact found in ./apk" >&2
+            exit 1
+          fi
+          echo "apk_path=$APK_FILE" >> "$GITHUB_OUTPUT"
+
+      - name: Prepare shared screenshot script
+        run: chmod +x scripts/capture-android-screenshots.sh
+
+      - name: Run 10-inch Tablet Emulator
+        timeout-minutes: 22
+        uses: reactivecircus/android-emulator-runner@a421e43855164a8197daf9d8d40fe71c6996bb0d # v2.38.0
+        env:
+          APK_PATH: ${{ steps.find-apk.outputs.apk_path }}
+        with:
+          api-level: 30
+          arch: x86_64
+          profile: Nexus 10
+          force-avd-creation: true
+          emulator-boot-timeout: 600
+          emulator-options: -no-snapshot-save -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none -no-metrics
+          disable-animations: true
+          script: ./scripts/capture-android-screenshots.sh screenshots/tablet-10 8 glossary search
+
+      - name: Upload 10-inch Tablet Screenshots
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: android-screenshots-tablet-10
+          path: screenshots/tablet-10/
+          retention-days: 30
+          if-no-files-found: error
+
+  collect-screenshots:
+    name: Organize Play Store Screenshots
+    runs-on: ubuntu-24.04
+    needs: [screenshots-phone, screenshots-tablet-7, screenshots-tablet-10]
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.capture_screenshots && needs.screenshots-phone.result == 'success' && needs.screenshots-tablet-7.result == 'success' && needs.screenshots-tablet-10.result == 'success' }}
+
+    steps:
+      - name: Download all screenshot artifacts
+        uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        with:
+          pattern: android-screenshots-*
+          path: ./all-screenshots
+          merge-multiple: false
+
+      - name: Organize for Play Store
+        run: |
+          mkdir -p play-store-screenshots/phone
+          mkdir -p play-store-screenshots/sevenInch
+          mkdir -p play-store-screenshots/tenInch
+          
+          # Copy phone screenshots
+          if [ -d "all-screenshots/android-screenshots-phone" ]; then
+            find all-screenshots/android-screenshots-phone -maxdepth 1 -type f -name '[0-9][0-9]*.png' -exec cp {} play-store-screenshots/phone/ \;
+          fi
+          
+          # Copy 7-inch tablet screenshots
+          if [ -d "all-screenshots/android-screenshots-tablet-7" ]; then
+            find all-screenshots/android-screenshots-tablet-7 -maxdepth 1 -type f -name '[0-9][0-9]*.png' -exec cp {} play-store-screenshots/sevenInch/ \;
+          fi
+          
+          # Copy 10-inch tablet screenshots
+          if [ -d "all-screenshots/android-screenshots-tablet-10" ]; then
+            find all-screenshots/android-screenshots-tablet-10 -maxdepth 1 -type f -name '[0-9][0-9]*.png' -exec cp {} play-store-screenshots/tenInch/ \;
+          fi
+          
+          echo "Play Store screenshot structure:"
+          find play-store-screenshots -type f -name "*.png" | sort
+
+          phone_count=$(find play-store-screenshots/phone -type f -name '[0-9][0-9]*.png' | wc -l)
+          seven_count=$(find play-store-screenshots/sevenInch -type f -name '[0-9][0-9]*.png' | wc -l)
+          ten_count=$(find play-store-screenshots/tenInch -type f -name '[0-9][0-9]*.png' | wc -l)
+          if [ "$phone_count" -lt 7 ] || [ "$seven_count" -lt 8 ] || [ "$ten_count" -lt 8 ]; then
+            echo "Missing screenshots: phone=$phone_count sevenInch=$seven_count tenInch=$ten_count" >&2
+            exit 1
+          fi
+
+      - name: Upload Play Store Screenshots
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: android-play-store-screenshots
+          path: play-store-screenshots/
+          retention-days: 30
+          if-no-files-found: error
+
+      - name: Summary
+        run: |
+          {
+            echo "## Android Screenshots for Play Store"
+            echo
+            echo "### Device Types:"
+            echo "- **Phone**: Pixel 2 (1080x1920)"
+            echo "- **7-inch Tablet**: Nexus 7 (1200x1920)"
+            echo "- **10-inch Tablet**: Nexus 10 (2560x1600)"
+            echo
+            echo "### Screenshots per device:"
+            echo "1. Home"
+            echo "2. FAR (Regulations)"
+            echo "3. AIM (Manual)"
+            echo "4. Study (Quizzes & Flashcards)"
+            echo "5. Advisory Circulars"
+            echo "6. More / Glossary / Search"
+            echo "7. Data Updates"
+            echo
+            echo "Download **android-play-store-screenshots** artifact for Play Store upload."
+          } >> "$GITHUB_STEP_SUMMARY"

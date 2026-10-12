@@ -1,0 +1,8 @@
+requests>=2.33.0
+urllib3>=2.8.0
+beautifulsoup4>=4.12.0
+lxml>=6.1.0
+html2text>=2025.4.15
+pypdf>=6.19.0
+pypdfium2>=5.11.0
+tqdm>=4.66.0

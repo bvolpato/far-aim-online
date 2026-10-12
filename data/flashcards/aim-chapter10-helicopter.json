@@ -1,0 +1,100 @@
+{
+  "id": "aim-chapter10-helicopter",
+  "title": "Helicopter Operations",
+  "description": "Key concepts from AIM Chapter 10 covering helicopter IFR operations, offshore operations, and special procedures",
+  "category": "AIM",
+  "chapter": 10,
+  "cardCount": 15,
+  "cards": [
+    {
+      "id": "ch10-001",
+      "front": "Helicopter IFR Approach Speeds",
+      "back": "Copter Approaches:\n• Maximum 90 KIAS (unless charted)\n• RNAV final/missed: 70 KIAS max\n\nConventional Approaches:\n• May fly at any Cat A-E speed\n• Must slow to ≤90 KIAS at MAP for visibility reduction\n\nVisibility reduction: 1/2 Cat A (min 1/4 SM/1200 RVR)",
+      "reference": "AIM 10-1-2"
+    },
+    {
+      "id": "ch10-002",
+      "front": "Point-in-Space (PinS) Approaches",
+      "back": "Two types:\n\n1. 'PROCEED VISUALLY':\n• Aligned to landing area (≤30° turn)\n• Must see landing area at MAP\n• Visual segment evaluated for obstacles\n\n2. 'PROCEED VFR':\n• Not aligned to landing area\n• Continue VFR from MAP\n• Pilot responsible for obstacles",
+      "reference": "AIM 10-1-3"
+    },
+    {
+      "id": "ch10-003",
+      "front": "Gulf of Mexico Grid System",
+      "back": "• IFR route structure independent of ground NAVAIDs\n• 300+ waypoints, 20 min apart (lat/long)\n• 5-letter names derived from position\n• Enables IFR to offshore platforms\n\nApproach types:\n• OSAP (Offshore Standard Approach)\n• HEDA (Helicopter En Route Descent)\n• ARA (Airborne Radar Approach)",
+      "reference": "AIM 10-1-4"
+    },
+    {
+      "id": "ch10-004",
+      "front": "Helicopter Flight Control Systems",
+      "back": "For IFR certification:\n\nTrim Systems: Cyclic centering (hands-on)\nSAS: Stability augmentation (hands-on)\nATT: Attitude retention (hands-off)\nAutopilot: Heading, altitude, nav tracking\nFlight Director: Visual guidance cues\n\nDifferent helicopters require different systems for IFR",
+      "reference": "AIM 10-1-1"
+    },
+    {
+      "id": "ch10-005",
+      "front": "Landing Zone (LZ) Dimensions",
+      "back": "Recommended minimums:\n\nSmall (Bell 206, AS350): 60 x 60 ft\nMedium (Bell 412, S-76): 100 x 100 ft\nLarge (Blackhawk, Chinook): 120 x 120 ft\n\nLZ requirements:\n• Level and firm\n• Clear of debris, obstructions\n• No wires (hard to see from air)",
+      "reference": "AIM 10-2-3"
+    },
+    {
+      "id": "ch10-006",
+      "front": "LZ Safety Distances",
+      "back": "Spectators: 200 feet minimum\nEmergency vehicles: 100 feet\nFire equipment: Standing by\n\nGround personnel:\n• Wear eye protection\n• Secure helmets (chin straps)\n• Remove loose hats\n• Wet down dusty LZs\n• Clear debris before landing",
+      "reference": "AIM 10-2-3"
+    },
+    {
+      "id": "ch10-007",
+      "front": "Night VFR Lighting Conditions",
+      "back": "HIGH LIGHTING:\n• Moon ≥50% illuminated AND above horizon\n• OR extensive cultural lighting\n• OR high natural reflectivity (snow, desert)\n\nLOW LIGHTING:\n• Does not meet high lighting criteria\n• Increased risk\n• Higher minimums recommended",
+      "reference": "AIM 10-2-2"
+    },
+    {
+      "id": "ch10-008",
+      "front": "EMS Multi-Helicopter Procedures",
+      "back": "First helicopter:\n• Contact ground 10 NM out\n• Establish comm on 123.025\n• Set up altitudes/orbits for others\n• Provide LZ briefing\n\nSubsequent helicopters:\n• Contact 123.025 at 10 NM\n• Maintain 500 ft separation\n• Monitor 123.025 at all times",
+      "reference": "AIM 10-2-4"
+    },
+    {
+      "id": "ch10-009",
+      "front": "Helicopter Air-to-Air Frequency",
+      "back": "123.025 MHz\n\nUsed for:\n• EMS coordination at scenes\n• Multiple helicopter operations\n• Hospital heliport coordination\n• Offshore operations\n\nAnnounce position and intentions before LZ movement",
+      "reference": "AIM 10-2-4"
+    },
+    {
+      "id": "ch10-010",
+      "front": "Offshore Helicopter Operations",
+      "back": "Unique challenges:\n• Weather (fog, wind, sea state)\n• Platform obstacles (cranes, flares)\n• Limited landing areas\n• Coordination with oil/gas operations\n\nKey practices:\n• Passenger briefings\n• Crane coordination\n• Platform lighting requirements\n• Emergency procedures",
+      "reference": "AIM 10-2-1"
+    },
+    {
+      "id": "ch10-011",
+      "front": "Heliport Visual Aids",
+      "back": "FATO: Final Approach and Takeoff Area\nTLOF: Touchdown and Liftoff Area\nHILS: Heliport Instrument Lighting System\nHALS: Heliport Approach Lighting System\nVGSI: Visual Glideslope Indicator\n\nAt least one must be visible for 'Proceed Visually'",
+      "reference": "AIM 10-1-3"
+    },
+    {
+      "id": "ch10-012",
+      "front": "PinS Departure Procedures",
+      "back": "Visual segment departure:\n1. Establish hover at HCH (Heliport Crossing Height)\n2. Depart on published heading\n3. Climb ≥400 ft/NM (or charted)\n4. Remain clear of clouds\n5. Cross IDF at/above published altitude\n\nVFR segment: Pilot navigation to IDF",
+      "reference": "AIM 10-1-5"
+    },
+    {
+      "id": "ch10-013",
+      "front": "Crane-Helicopter Coordination",
+      "back": "Cranes near heliports:\n• Must be lowered during operations\n• Boom and load clear of approach path\n• Communication required\n• Radio contact established\n\nCatastrophic consequences possible if procedures not followed",
+      "reference": "AIM 10-2-1"
+    },
+    {
+      "id": "ch10-014",
+      "front": "Helicopter Visibility Reduction",
+      "back": "On conventional (non-Copter) approaches:\n\nHelicopters may reduce Cat A visibility by half:\n• Minimum: 1/4 SM or 1200 RVR\n• MDA/DA: NO reduction allowed\n• Must slow to ≤90 KIAS at MAP\n\nNA if charted 'Visibility Reduction by Helicopters NA'",
+      "reference": "AIM 10-1-2"
+    },
+    {
+      "id": "ch10-015",
+      "front": "Hospital Heliport Operations",
+      "back": "Before arrival:\n• Contact comm center/flight following\n• Get permission and current conditions\n• Know primary/secondary routes\n• Know orbit area if occupied\n\nMultiple helicopters:\n• First notify of departure time\n• Coordinate on 123.025\n• Follow local procedures",
+      "reference": "AIM 10-2-4"
+    }
+  ]
+}

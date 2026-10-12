@@ -1,0 +1,136 @@
+{
+  "part": 1215,
+  "title": "TRACKING AND DATA RELAY SATELLITE SYSTEM (TDRSS)",
+  "cfr": "14 CFR Part 1215",
+  "source": "eCFR",
+  "url": "https://www.ecfr.gov/current/title-14/part-1215",
+  "subchapter": "",
+  "subchapterTitle": "",
+  "effectiveDate": "2026-07-24",
+  "subparts": [
+    {
+      "subpart": "1215.1",
+      "title": "Use and Reimbursement Policy for Non-U.S. Government Users",
+      "sections": [
+        {
+          "section": "1215.100",
+          "title": "General",
+          "content": "TDRSS represents a major investment by the U.S. Government with the primary goal of providing improved tracking and data acquisition services to spacecraft in low-Earth orbit or to mobile terrestrial users such as aircraft or balloons. It is the objective of NASA to operate as efficiently as possible with TDRSS, is to the mutual benefit of all users. Such user consideration will permit NASA and non-NASA service to be delivered without compromising the mission objectives of any individual user. The reimbursement policy is designed to comply with the Office of Management and Budget Circular A-25 on User Charges, dated September 23, 1959, as updated, which requires that a reasonable charge should be made to each identifiable recipient for a measurable unit or amount of Government service or property from which a special benefit is derived.\n\n[77 FR 6952, Feb. 10, 2012]",
+          "figures": []
+        },
+        {
+          "section": "1215.101",
+          "title": "Scope",
+          "content": "This subpart sets forth the policy governing TDRSS services provided to non-U.S. Government users and the reimbursement for rendering such services. Cooperative missions are not under the purview of this subpart. The arrangements for TDRSS services for cooperative missions will be covered in an agreement, as a consequence of negotiations between NASA and the other concerned party. Any agreement which includes provision for any TDRSS service will require signatory concurrence by the Deputy Associate Administrator for SCaN prior to dedicating SCaN resources for support of a cooperative mission.\n\n[77 FR 6952, Feb. 10, 2012]",
+          "figures": []
+        },
+        {
+          "section": "1215.102",
+          "title": "Definitions",
+          "content": "(a) *User.* Any non-U.S. Government representative or entity that enters into an agreement with NASA to use TDRSS services.\n\n(b) *TDRSS.* TDRSS, including Tracking and Data Relay Satellites (TDRS), WSC, GRGT, and the necessary TDRSS operational areas, interface devices, and NASA communication circuits that unify the above into a functioning system. It specifically excludes the user ground system/TDRSS interface.\n\n(c) *Bit stream.* The electronic signals acquired by TDRSS from the user craft or the user-generated input commands for transmission to the user craft.\n\n(d) *Scheduling service period.* One scheduled contact utilizing a single TDRS, whereby the user, by requesting service, is allotted a block of time for operations between the user satellite and TDRSS.\n\n[77 FR 6952, Feb. 10, 2012]",
+          "figures": []
+        },
+        {
+          "section": "1215.103",
+          "title": "Services",
+          "content": "(a) *Standard services.* These are services which TDRSS is capable of providing to low-Earth orbital user spacecraft or other terrestrial users. Data are delivered to WSC or GRGT. A detailed description of services is provided in the GSFC Near Space Network Users' Guide, 450-NSNUG. Contact the Chief, Commercialization, Innovation, and Synergies, at the address in Section 1215.108 (d) to obtain a copy of the NSNUG.\n\n(1) Tracking service.\n\n(2) Data acquisition service.\n\n(3) Command transmission service.\n\n(b) *Required Support Services.* These are support activities that are required to obtain TDRSS services.\n\n(1) Prelaunch support planning, analysis, and documentation.\n\n(2) Compatibility testing.\n\n(3) Prelaunch support for data-flow testing and related activities.\n\n(4) User services scheduling.\n\n(c) *Mission-unique services.* Other tracking and data services desired by the user that are beyond the standard and required support services defined above. The associated charges for these services will be identified and assessed on a case-by-case basis.\n\n[77 FR 6952, Feb. 10, 2012, as amended at 86 FR 60566, Nov. 3, 2021]",
+          "figures": []
+        },
+        {
+          "section": "1215.104",
+          "title": "Apportionment and assignment of services",
+          "content": "No user may apportion, assign, or otherwise convey to any third party its TDRSS service. Each user may obtain service only through contractual agreement with the Associate Administrator for Space Operations.\n\n[56 FR 28048, June 19, 1991]",
+          "figures": []
+        },
+        {
+          "section": "1215.105",
+          "title": "Delivery of user data",
+          "content": "(a) As a standard service, NASA will provide to the user its data from TDRSS in the form of one or more digital or analog bit streams synchronized to associated clock streams at WSC or GRGT.\n\n(b) User data-handling requirements beyond WSC or GRGT interface will be provided as a standard service to the user, to the extent that the requirements do not exceed NASA's planned standard communications system. Any additional data transport or handling requirements exceeding NASA's capability will be dealt with as a mission-unique service.\n\n(c) No storage of the user data is provided in the standard service. NASA will provide short-term temporary recording of data at WSC in the event of a NASA Integrated Services Network (NISN) link outage.\n\n(d) NASA will provide TDRSS services on a \"reasonable efforts\" basis, and, accordingly, will not be liable for damages of any kind to the user or third parties for any reason, including, but not limited to, failure to provide agreed-to services. The price for TDRSS services does not include a contingency or premium for any potential damages. The user will assume any risk of damages or obtain insurance to protect against any risk.\n\n[77 FR 6952, Feb. 10, 2012]",
+          "figures": []
+        },
+        {
+          "section": "1215.106",
+          "title": "User command and tracking data",
+          "content": "(a) User command data shall enter TDRSS via the NISN interface at WSC or GRGT.\n\n(b) NASA is required to have knowledge of the user satellite orbital elements to sufficient accuracy to permit TDRSS to establish and maintain acquisition. This can be accomplished in two ways:\n\n(1) The user can provide the orbital elements in a NASA format to meet TDRSS operational requirements.\n\n(2) The user shall ensure that a sufficient quantity of tracking data is received to permit the determination of the user satellite orbital elements. The Flight Dynamics Facility (FDF) at GSFC will provide the orbit determination service to these users. The charges for this service will be negotiated between the FDF and the user and will be dependent on user requirements.\n\n[77 FR 6952, Feb. 10, 2012]",
+          "figures": []
+        },
+        {
+          "section": "1215.107",
+          "title": "User data security and frequency authorizations",
+          "content": "(a) User data security is not provided by the TDRSS. Responsibility for data security resides solely with the user. Users desiring data safeguards shall provide and operate, external to the TDRSS, the necessary equipment or systems to accomplish data security. Any such user provisions must be compatible with data flow through TDRSS and not interfere with other users.\n\n(b) All radio frequency authorizations associated with operations pursuant to this directive are the responsibility of the user. If appropriate, authority (ies) must be obtained from the Federal Communications Commission (FCC) for operations consistent with U.S. footnote 303 of the National Table of Frequency Allocations, FCC Rules and Regulations, at 47 CFR 2.106.\n\n[56 FR 28049, June 19, 1991]",
+          "figures": []
+        },
+        {
+          "section": "1215.108",
+          "title": "Defining user service requirements",
+          "content": "Potential users should become familiar with TDRSS capabilities and constraints, which are detailed in the NSNUG, as early as possible. This action allows the user to evaluate the trade-offs available among various TDRSS services, spacecraft design, operations planning, and other significant mission parameters. It is recommended that potential users contact the Near Space Network as early as possible for assistance in performing the trade studies. When these evaluations have been completed, and the user desires to use TDRSS, the user should initiate a request for TDRSS service.\n\n(a) Initial requests for TDRSS service from non-U.S. Government users shall be addressed to SCaN at NASA Headquarters, as follows: Deputy Associate Administrator: Space Communications and Navigation Division, National Aeronautics and Space Administration, Washington, DC 20546.\n\n(b) Upon review and acceptance of the service request, preliminary analyses shall be performed to determine the feasibility of meeting the proposed requirements.\n\n(c) If the request is determined to be feasible, the user and SCaN shall negotiate an agreement for provision of the requested services. Acceptance of user requests for TDRSS service is the sole prerogative of NASA.\n\n(d) Upon approval of the agreement by both parties, GSFC will be assigned to produce the detailed requirements, plans, and documentation necessary for support of the mission. Changes to user requirements shall be made as far in advance as possible and shall be submitted, in writing, to both SCaN at NASA Headquarters (see Section 108, paragraph (a) for mailing address) and GSFC, as follows: Chief: Commercialization, Innovation, and Synergies, Code 450.1, NASA Goddard Space Flight Center, M/S 450.1, 8800 Greenbelt Road Greenbelt, MD 20771.\n\n[77 FR 6953, Feb. 10, 2012, as amended at 86 FR 60566, Nov. 3, 2021]",
+          "figures": []
+        },
+        {
+          "section": "1215.109",
+          "title": "Scheduling user service",
+          "content": "(a) User service shall be scheduled only by NASA. TDRSS services will be provided in accordance with operational priorities established by the NASA Administrator or his/her designee. See Appendix A for a description of a typical user activity timeline.\n\n(b) Schedule conflict will be resolved in general by application of principles of priority to user service requirements. Services shall be provided either as normally scheduled service or as emergency service. Priorities will be different for emergency service than for normal services.\n\n(1) Normally scheduled service is service which is planned and ordered under normal operational conditions and is subject to schedule conflict resolution under normal service priorities. Requests for normally scheduled service must be received by the schedulers at the GSFC WSC Data Services Management Center (DSMC) no later than 21 days prior to the requested support time.\n\n(2) At times, emergency service requirements will override normal schedule priority. Under emergency service conditions, disruptions to scheduled service will occur.\n\n(3) The DSMC reserves the sole right to schedule, reschedule, or cancel TDRSS service.\n\n(4) NASA schedulers will exercise judgment and endeavor to see that lower-priority users are not excluded from a substantial portion of their contracted-for service due to the requirements of higher-priority users.\n\n(c) General user service requirements, which will be used for preliminary planning and mission modeling, should include all pertinent information necessary for NASA to determine if the proposed service is achievable. Contact Near Space Network to discuss usage and requirements.\n\n(d) Such user service requirements information typically includes:\n\n(1) Date of service initiation.\n\n(2) The type of TDRSS services desired (e.g., multiple access, tracking, *etc.*), and the frequency and duration of each service.\n\n(3) Orbit or trajectory parameters and tracking data requirements.\n\n(4) Spacecraft events significant to tracking, telemetry or command requirements.\n\n(5) Communications systems specifics, including location of antennas and other related information dealing with user tracking, command, and data systems.\n\n(6) Special test requirements, data flows, and simulations, *etc.*\n\n(7) Identification of terrestrial data transport requirements, interface points, and delivery locations, including latency and line loss recovery.\n\n(e) To provide for effective planning, reference Appendix A, Typical New User Activity Timeline.\n\n[77 FR 6953, Feb. 10, 2012, as amended at 86 FR 60566, Nov. 3, 2021]",
+          "figures": []
+        },
+        {
+          "section": "1215.110",
+          "title": "User cancellation of all services",
+          "content": "The user has the right to terminate its service contract with NASA at any time. A user who exercises this right after contracting for service shall pay the charge agreed upon for services previously rendered, and the cost incurred by the Government for support of pre-launch activities, services, and mission documentation not included in that charge. The user will remain responsible for the charges for any services actually provided.",
+          "figures": []
+        },
+        {
+          "section": "1215.111",
+          "title": "User postponement of service",
+          "content": "The user may postpone the initiation of contracted service (e.g., user launch date) by delivery of written notification to NASA Headquarters, Code OX. Any delay in the contracted start of service date may affect the quantity of service to be provided due to commitments to other support requirements. Therefore, the validity of previous estimates of predicted support availability may no longer be applicable.\n\n[56 FR 28049, June 19, 1991]",
+          "figures": []
+        },
+        {
+          "section": "1215.112",
+          "title": "User/NASA contractual arrangement",
+          "content": "No service shall be provided without an approved agreement.\n\n[77 FR 6953, Feb. 10, 2012]",
+          "figures": []
+        },
+        {
+          "section": "1215.113",
+          "title": "User charges",
+          "content": "(a) The user shall reimburse NASA the sum of the charges for standard and mission-unique services. Charges will be based on the service rates applicable at the time of service.\n\n(b) For standard services, the user shall be charged only for services rendered, except that if a total cancellation of service occurs, the user shall be charged in accordance with the provisions of § 1215.110.\n\n(1) Standard services which are scheduled, and then cancelled by the user less than 72 hours prior to the start of that scheduled service period, will be charged as if the scheduled service actually occurred.\n\n(2) The time scheduled by the user project shall include the slew time, set up and/or configuration time, TDRSS contact time, and all other conditions for which TDRSS services were allocated to the user.\n\n(3) Charges will be accumulated by the minute, based on the computerized schedule/configuration messages which physically set up TDRSS equipment at the start of a support period and free the equipment for other users at the end of a support period.\n\n(c) The user shall reimburse NASA for the costs of any mission-unique services provided by NASA.\n\n[77 FR 6953, Feb. 10, 2012]",
+          "figures": []
+        },
+        {
+          "section": "1215.114",
+          "title": "Service rates",
+          "content": "(a) Rates for TDRSS services will be established by the DAA for SCaN.\n\n(b) Per-minute rates will reflect TDRSS total return on investment and operational and maintenance costs.\n\n(c) The rate per minute by service and type of user is available on the following Web site: *https://www.spacecomm.nasa.gov/spacecomm/programs/Space_network.cfm.*\n\n(d) The per-minute charge for TDRSS service is computed by multiplying the charge per minute for the appropriate service by the number of minutes utilized.\n\n[77 FR 6953, Feb. 10, 2012]",
+          "figures": []
+        },
+        {
+          "section": "1215.115",
+          "title": "Payment and billing",
+          "content": "(a) The procedure for billing and payment of standard TDRSS services is as follows:\n\n(1) NASA shall be reimbursed by customers in connection with the use of Government property and services provided under an approved reimbursable agreement. Advance payment for services is required. Advance payments shall be scheduled to keep pace with the rate at which NASA anticipates incurring costs. NASA will provide a Customer Budget/Estimate (CBE) for services rendered nominally 60-90 days in advance, or as otherwise agreed, of the first anticipated property use or required service date for each mission. The full cost of the mission shall be paid by the customer not later than 30 days prior to the first anticipated property use or required service date.\n\n(2) In some cases, an advance partial payment will be required six-nine months prior to the first anticipated property use or required service date in order for advance planning work and/or travel to take place. The amount of this partial payment and its receipt shall be negotiated on an as-needed basis. Adjustments to the amounts prepaid will be made to the succeeding billings as the actual services are rendered.\n\n(3) If the customer fails to make payment by the payment due date, NASA may terminate the agreement and any subagreements for breach of agreement after notice to the customer is given of this breach and failure to cure such breach within a time period established by NASA.\n\n(b) Late payments by the user will require the user to pay a late payment charge.\n\n[77 FR 6954, Feb. 10, 2012]",
+          "figures": []
+        }
+      ]
+    }
+  ],
+  "sections": [],
+  "appendices": [
+    {
+      "appendix": "Appendix A to Part 1215",
+      "title": "Appendix A to Part 1215-Estimated Service Rates in 1997 Dollars for TDRSS Standard Services (Based on NASA Escalation Estimate)",
+      "content": "*Time:* Project conceptualization (at least two years before launch; Ref. § 1215.108 (a)).\n\n*Activity:* Submit request for access to TDRSS. Upon preliminary acceptance of the service requirements by NASA Headquarters, communications for the reimbursable development of a Space Act Agreement (SAA) will begin. Prior to finalization of the Memorandum of Agreement (MOA), an estimate for the services will be issued. After SAA signature, full funding of the effort must be received prior to NASA initiating any activities associated with the effort. (Ref. § 1215.115 (a)(1)).\n\n*Time:* 18 months before launch (Ref. § 1215.109 (c).\n\n*Activity:* After full funding has been received and distributed to the executing NASA entities, submit general user requirements to permit preliminary planning. Contact will occur to facilitate the integration process for access to TDRSS. If appropriate, initiate action with the Federal Communications Commission for license to communicate with TDRSS (Ref. § 1215.107 (b)).\n\n*Time:* 12 months before launch (earlier if possible).\n\n*Activity:* Provide detailed requirements for technical definition and development of operational and interface control documents. (Ref. § 1215.109 (d)).\n\n*Time:* 3 weeks prior to a Scheduled Support Period (SSP).\n\n*Activity:* Submit scheduling request to NASA covering a weekly period. Receive schedule from NASA based on principles of priority (Ref. § 1215.109 (b)). User confirmation of the schedule is required.\n\n*Time:* Up to 72 hours prior to an SSP.\n\n*Activity:* Can cancel an SSP without charge (Ref. § 1215.113 (b)(1)).\n\n*Time:* Up to 45 minutes prior to an SPP.\n\n*Activity:* Can schedule an SSP if a time slot is available without impacting another user.\n\n*Time:* Up to 10 minutes prior to an SSP.\n\n*Activity:* Can schedule an SSP utilizing TDRSS unused time (TUT).\n\n[77 FR 6954, Feb. 10, 2012]",
+      "figures": []
+    },
+    {
+      "appendix": "Appendix B to Part 1215",
+      "title": "Appendix B to Part 1215-Factors Affecting Standard Charges",
+      "content": "Charges for services shall be determined by multiplying the factors below by the base rates for standard services set forth in appendix A.\n\n| Flexible\n| Time or position constrained\n| Emergency service, disruptive updates\n\n| Single access service\n| .5\n| 1\n| 2\n\n| Multiple access forward (command) service\n| .67\n| 1\n| 2\n\n| Normally scheduled support\n| Emergency service, disruptive updates\n\n| Multiple access return (telemetry) service\n| 1\n| 2",
+      "figures": []
+    },
+    {
+      "appendix": "Appendix C to Part 1215",
+      "title": "Appendix C to Part 1215-Typical User Activity Timeline",
+      "content": "| Time (approximate)\n| Activity\n\n| Project conceptualization (At least 3 years before launch; Ref. § 1215.108 (a))\n| Request NASA Headquarters perform study to determine availability of TDRSS. If accepted as a user, begin contractual negotiation by submission of $25,000 non-refundable charge, and place into mission model.\n\n| 3 years before launch (Ref. § 1215.109 (c).\n| Submit general user requirements to permit preliminary planning. Begin payment for pre-mission activities (Ref. § 1215.115 (b)(5)).\n\n| 18 months before launch (earlier if interfacing is expected).\n| Provide detailed requirements for technical definition and development of operational documents and ICD's. (Ref. § 1215.109 (e)). If appropriate, initiate action with the Federal Communications Commission for license to communicate with TDRSS at least 18 months prior to launch (Ref. § 1215.107 (b)).\n\n| 3 weeks prior to a scheduled support period (SSP). 2 weeks prior to an SSP\n| Submit scheduling request to GSFC covering a weekly period. Receive schedule from GSFC based on principles of priority (Ref. § 1215.109 (b)(2)). Acknowledgement to GSFC required.\n\n| Up to 12 hours prior to an SSP.\n| Can cancel an SSP without charge (Ref. § 1215.113 (a)(1)).\n\n| Up to 45 minutes prior to an SPP.\n| Can schedule an SSP if a time slot is available without impacting another user.\n\n| Between SSP minus 45 minutes and the SSP.\n| Schedule requests will be charged at the disruptive update rate (Ref. § 1215.109 (b)(5)).\n\n| Real-Time.\n| Emergency service requests will be responded to per the priority system (Ref. § 1215.109 (b)(3)) and assessed the emergency service rate.\n\n[56 FR 28049, June 19, 1991]",
+      "figures": []
+    }
+  ],
+  "isPilotIndex": false
+}

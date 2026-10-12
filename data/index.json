@@ -1,0 +1,80 @@
+{
+  "version": "1.1.0",
+  "lastUpdated": "2024-01-21",
+  "far": {
+    "description": "Federal Aviation Regulations (14 CFR)",
+    "parts": [
+      {
+        "part": 1,
+        "title": "Definitions and Abbreviations",
+        "file": "far/part1.json"
+      },
+      {
+        "part": 61,
+        "title": "Certification: Pilots, Flight Instructors, and Ground Instructors",
+        "file": "far/part61.json"
+      },
+      {
+        "part": 91,
+        "title": "General Operating and Flight Rules",
+        "file": "far/part91.json"
+      }
+    ]
+  },
+  "aim": {
+    "description": "Aeronautical Information Manual",
+    "chapters": [
+      {
+        "chapter": 1,
+        "title": "Air Navigation",
+        "file": "aim/chapter1.json"
+      },
+      {
+        "chapter": 3,
+        "title": "Airspace",
+        "file": "aim/chapter3.json"
+      }
+    ]
+  },
+  "quizzes": {
+    "description": "Practice quizzes for pilot certification exams",
+    "available": [
+      {
+        "id": "private-pilot-far",
+        "title": "Private Pilot FAR Knowledge",
+        "file": "quizzes/private-pilot-far.json",
+        "questionCount": 50,
+        "difficulty": "intermediate"
+      },
+      {
+        "id": "airspace-quiz",
+        "title": "Airspace Knowledge Quiz",
+        "file": "quizzes/airspace-quiz.json",
+        "questionCount": 25,
+        "difficulty": "intermediate"
+      }
+    ]
+  },
+  "flashcards": {
+    "description": "Flashcard decks for studying FAR/AIM",
+    "available": [
+      {
+        "id": "far-definitions",
+        "title": "FAR Definitions",
+        "file": "flashcards/far-definitions.json",
+        "cardCount": 50
+      },
+      {
+        "id": "airspace-requirements",
+        "title": "Airspace Classes & Requirements",
+        "file": "flashcards/airspace-requirements.json",
+        "cardCount": 40
+      }
+    ]
+  },
+  "advisoryCirculars": {
+    "description": "FAA advisory circular reference pack",
+    "file": "advisory-circulars/index.json",
+    "count": 7
+  }
+}

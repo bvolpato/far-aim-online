@@ -1,0 +1,250 @@
+{
+  "id": "far-part61-certification",
+  "title": "Part 61: Pilot Certification",
+  "description": "Essential concepts for pilot certificates, ratings, privileges, limitations, and currency requirements",
+  "category": "FAR",
+  "part": 61,
+  "cardCount": 40,
+  "cards": [
+    {
+      "id": "fc61-001",
+      "front": "Private Pilot Minimum Age",
+      "back": "• Airplane/Rotorcraft: 17 years old\n• Glider/Balloon: 16 years old\n\nRemember: 'Sweet 16 for lighter-than-air, 17 for everything else'",
+      "reference": "14 CFR 61.103"
+    },
+    {
+      "id": "fc61-002",
+      "front": "Student Pilot Solo Minimum Age",
+      "back": "• Airplane/Rotorcraft: 16 years old\n• Glider/Balloon: 14 years old\n\nNote: Student pilot certificate no longer has an expiration date (as of April 2016)",
+      "reference": "14 CFR 61.87"
+    },
+    {
+      "id": "fc61-003",
+      "front": "Flight Review Requirements",
+      "back": "Required every 24 calendar months:\n• Minimum 1 hour ground training (Part 91 review)\n• Minimum 1 hour flight training\n• Instructor endorsement in logbook\n\nAlternatives that reset the clock: checkride, proficiency check, Wings program phase",
+      "reference": "14 CFR 61.56"
+    },
+    {
+      "id": "fc61-004",
+      "front": "Day Passenger Currency",
+      "back": "Within preceding 90 days:\n• 3 takeoffs\n• 3 landings\n• Same category, class, and type (if required)\n\nTailwheel: Must be to a full stop",
+      "reference": "14 CFR 61.57(a)"
+    },
+    {
+      "id": "fc61-005",
+      "front": "Night Passenger Currency",
+      "back": "Within preceding 90 days (1 hr after sunset to 1 hr before sunrise):\n• 3 takeoffs\n• 3 FULL-STOP landings\n• Same category, class, and type (if required)\n\nMemory aid: 'Night = 3 full stops'",
+      "reference": "14 CFR 61.57(b)"
+    },
+    {
+      "id": "fc61-006",
+      "front": "IFR Currency Requirements",
+      "back": "Within preceding 6 calendar months:\n• 6 instrument approaches\n• Holding procedures\n• Intercepting/tracking courses\n\nCan be done in aircraft, simulator, or ATD\nMemory aid: '6 and 6' (6 approaches in 6 months)",
+      "reference": "14 CFR 61.57(c)"
+    },
+    {
+      "id": "fc61-007",
+      "front": "IFR Currency Grace Period",
+      "back": "If IFR currency lapses:\n• 6 additional calendar months to regain by doing required tasks\n• After that: Instrument Proficiency Check (IPC) required\n\nTotal: 12 months before IPC mandatory",
+      "reference": "14 CFR 61.57(d)"
+    },
+    {
+      "id": "fc61-008",
+      "front": "Documents Required to Fly as PIC",
+      "back": "Physical possession required:\n1. Pilot Certificate\n2. Photo ID (government-issued)\n3. Medical Certificate (if required)\n\nMemory aid: 'Pilot, Picture, Physical'",
+      "reference": "14 CFR 61.3"
+    },
+    {
+      "id": "fc61-009",
+      "front": "Definition of 'Night' (Logging Time)",
+      "back": "End of evening civil twilight → Beginning of morning civil twilight\n\n• Civil twilight: Sun 6° below horizon\n• Found in Air Almanac\n• NOT the same as night currency period!",
+      "reference": "14 CFR 1.1"
+    },
+    {
+      "id": "fc61-010",
+      "front": "Night Passenger Currency TIME Period",
+      "back": "1 hour after sunset → 1 hour before sunrise\n\n⚠️ Different from 'night' for logging time!\n\nMemory aid: 'Currency needs padding-1 hour each side'",
+      "reference": "14 CFR 61.57(b)"
+    },
+    {
+      "id": "fc61-011",
+      "front": "Private Pilot Flight Time Requirements",
+      "back": "Minimum 40 hours total:\n• 20 hrs dual instruction\n• 10 hrs solo\n• 3 hrs night (1 XC >100nm)\n• 3 hrs instrument\n• 3 hrs checkride prep (within 2 months)\n• 5 hrs solo XC\n• One 150nm XC (3 points, one >50nm)",
+      "reference": "14 CFR 61.109"
+    },
+    {
+      "id": "fc61-012",
+      "front": "High-Performance Aircraft Definition & Requirements",
+      "back": "Definition: Engine > 200 horsepower\n\nRequired to act as PIC:\n• Ground training\n• Flight training\n• Logbook endorsement from authorized instructor",
+      "reference": "14 CFR 61.31(f)"
+    },
+    {
+      "id": "fc61-013",
+      "front": "Complex Aircraft Definition & Requirements",
+      "back": "Definition:\n• Retractable landing gear\n• Flaps\n• Controllable-pitch propeller (or FADEC)\n\nRequired: Ground training, flight training, endorsement\n\nNote: No longer required for commercial checkride as of 2018",
+      "reference": "14 CFR 61.31(e), 61.1"
+    },
+    {
+      "id": "fc61-014",
+      "front": "Type Rating Requirements",
+      "back": "Type rating required for:\n• Large aircraft (>12,500 lbs MTOW)\n• Turbojet-powered aircraft\n• Other aircraft specified by Administrator\n\nNote: Even a private pilot needs these type ratings",
+      "reference": "14 CFR 61.31(a)"
+    },
+    {
+      "id": "fc61-015",
+      "front": "Pressurized Aircraft Requirements",
+      "back": "To act as PIC above FL250:\n• Ground training on physiology/operations\n• Flight training (normal, abnormal, emergency)\n• Logbook endorsement\n\nIncludes: Rapid decompression, emergency descent, use of equipment",
+      "reference": "14 CFR 61.31(g)"
+    },
+    {
+      "id": "fc61-016",
+      "front": "Private Pilot Privileges & Limitations",
+      "back": "May NOT fly for compensation or hire\n\nExceptions:\n• Pro rata expense sharing (common purpose)\n• Charity/community event flights\n• Searching for missing persons\n• Demonstration for sale (must have 200+ hrs)\n• Aircraft salesman (logged 200+ hrs)",
+      "reference": "14 CFR 61.113"
+    },
+    {
+      "id": "fc61-017",
+      "front": "Expense Sharing Rules",
+      "back": "Private pilot may share operating expenses:\n• Fuel, oil, airport fees, aircraft rental\n\nConditions:\n• Must be common purpose\n• Pilot pays pro rata share (no profit)\n• Cannot 'hold out' to public",
+      "reference": "14 CFR 61.113(c)"
+    },
+    {
+      "id": "fc61-018",
+      "front": "Address Change Notification",
+      "back": "Must notify FAA within 30 days of permanent address change\n\nFailure to notify: Cannot exercise certificate privileges\n\nHow: Mail, IACRA online, or FAA forms",
+      "reference": "14 CFR 61.60"
+    },
+    {
+      "id": "fc61-019",
+      "front": "Alcohol/Drug Conviction Reporting",
+      "back": "Report to FAA within 60 days:\n• Any motor vehicle conviction involving alcohol/drugs\n• Administrative action (license suspension/revocation)\n\nTwo DUI convictions in 3 years = Certificate denial",
+      "reference": "14 CFR 61.15"
+    },
+    {
+      "id": "fc61-020",
+      "front": "Alcohol Rules (91.17)",
+      "back": "Cannot act as crewmember:\n• Within 8 hours of consuming alcohol\n• With BAC ≥ 0.04%\n• While under influence of alcohol\n• While using any drug affecting safety\n\nMemory aid: '8 hours bottle to throttle, 0.04 out the door'",
+      "reference": "14 CFR 91.17"
+    },
+    {
+      "id": "fc61-021",
+      "front": "Student Pilot Solo Endorsement Validity",
+      "back": "Local solo endorsement: 90 days\n\nCross-country: Endorsement for each specific flight OR repeated flights to specific airports (90 days)",
+      "reference": "14 CFR 61.87(p), 61.93"
+    },
+    {
+      "id": "fc61-022",
+      "front": "Temporary Pilot Certificate",
+      "back": "Valid for 120 days\n\nIssued after passing practical test\nPermanent certificate mailed to address on file",
+      "reference": "14 CFR 61.17"
+    },
+    {
+      "id": "fc61-023",
+      "front": "Certificate Revocation Wait Period",
+      "back": "After revocation: Must wait 1 year before applying for any new certificate\n\nAfter suspension: Certificate valid after suspension period ends",
+      "reference": "14 CFR 61.13"
+    },
+    {
+      "id": "fc61-024",
+      "front": "Pilot in Command (PIC) Definition",
+      "back": "The person who:\n1. Has final authority/responsibility for operation and safety\n2. Has been designated as PIC before or during flight\n3. Holds appropriate certificate and ratings\n\nOnly ONE PIC per flight",
+      "reference": "14 CFR 1.1"
+    },
+    {
+      "id": "fc61-025",
+      "front": "Second in Command (SIC) Requirements",
+      "back": "May log SIC time when:\n• Required by type certificate\n• Required by operating rules\n• More than one pilot required by regulations\n\nMust hold at least private pilot with category/class ratings",
+      "reference": "14 CFR 61.55"
+    },
+    {
+      "id": "fc61-026",
+      "front": "Logging PIC Time",
+      "back": "May log PIC when:\n• Sole manipulator of controls AND rated for aircraft\n• Acting as PIC (even if required pilot not rated)\n• Student pilot solo\n• Examiner conducting test\n\nNote: Safety pilot may log PIC if acting as PIC",
+      "reference": "14 CFR 61.51"
+    },
+    {
+      "id": "fc61-027",
+      "front": "Category vs Class vs Type",
+      "back": "Category (broad): Airplane, Rotorcraft, Glider, Lighter-than-air\n\nClass (within category): Single-engine land, Multi-engine sea, Helicopter, Gyroplane\n\nType (specific): B737, CL65, Citation\n\nRemember: Category > Class > Type",
+      "reference": "14 CFR 1.1"
+    },
+    {
+      "id": "fc61-028",
+      "front": "Tailwheel Endorsement",
+      "back": "Required to act as PIC of tailwheel aircraft:\n• Ground training\n• Flight training (normal/crosswind takeoffs & landings, wheel landings)\n• Logbook endorsement\n\nNote: Carries for life, no currency requirement beyond normal 61.57",
+      "reference": "14 CFR 61.31(i)"
+    },
+    {
+      "id": "fc61-029",
+      "front": "Commercial Pilot Minimum Requirements",
+      "back": "• Age: 18 years old\n• 250 hours total time\n• 100 hours PIC\n• 50 hours cross-country PIC\n• Medical: Second class (for commercial privileges)\n• Private pilot certificate or meet requirements",
+      "reference": "14 CFR 61.123, 61.129"
+    },
+    {
+      "id": "fc61-030",
+      "front": "ATP Certificate Requirements",
+      "back": "• Age: 23 years old (21 for restricted ATP)\n• 1,500 hours total time (various reductions available)\n• 500 hours cross-country\n• 100 hours night\n• 75 hours instrument\n• First class medical required",
+      "reference": "14 CFR 61.159"
+    },
+    {
+      "id": "fc61-031",
+      "front": "Flight Instructor Certificate Duration",
+      "back": "Valid for 24 calendar months from month of issue\n\nRenewal options:\n• Activity (train students who pass checkride)\n• FIRC (Flight Instructor Refresher Course)\n• Practical test with examiner",
+      "reference": "14 CFR 61.197"
+    },
+    {
+      "id": "fc61-032",
+      "front": "Endorsement vs Rating vs Certificate",
+      "back": "Certificate: Pilot level (Student, Sport, Private, Commercial, ATP)\n\nRating: Added to certificate (Instrument, Multi-engine, Type)\n\nEndorsement: Logbook authorization (Solo, Complex, High-performance, Tailwheel)",
+      "reference": "14 CFR 61"
+    },
+    {
+      "id": "fc61-033",
+      "front": "Knowledge Test Validity",
+      "back": "Valid for 24 calendar months\n\nMust complete practical test within this period\n\nIf expired: Retake written test",
+      "reference": "14 CFR 61.39"
+    },
+    {
+      "id": "fc61-034",
+      "front": "BasicMed Requirements",
+      "back": "Alternative to third-class medical:\n• Hold valid driver's license\n• Medical exam by state-licensed physician every 48 months\n• Complete online course every 24 months\n• No prior denial/revocation of medical\n\nLimitations: 6 passengers, <250 kts, <18,000 ft, <6,000 lbs",
+      "reference": "14 CFR 61.23, 68"
+    },
+    {
+      "id": "fc61-035",
+      "front": "Safety Pilot Requirements",
+      "back": "When acting as safety pilot:\n• At least private pilot certificate\n• Category and class rating for aircraft\n• Adequate vision forward and to sides\n• Occupy seat with flight controls\n\nMay log SIC time; may log PIC if designated PIC",
+      "reference": "14 CFR 91.109"
+    },
+    {
+      "id": "fc61-036",
+      "front": "Instrument Rating Requirements",
+      "back": "• 50 hours PIC cross-country\n• 40 hours actual or simulated instrument time\n• 15 hours instrument flight training\n• Long IFR cross-country (250nm, 3 approaches)\n• 3 hours within 2 months of checkride",
+      "reference": "14 CFR 61.65"
+    },
+    {
+      "id": "fc61-037",
+      "front": "Recent Experience vs Proficiency",
+      "back": "Recent Experience (Currency): Regulatory minimums (3 takeoffs/landings, etc.)\n\nProficiency: Actual skill level-can be current but not proficient!\n\nGood pilots exceed currency minimums",
+      "reference": "14 CFR 61.57"
+    },
+    {
+      "id": "fc61-038",
+      "front": "Practical Test Prerequisites",
+      "back": "Before practical test:\n• Pass knowledge test (within 24 months)\n• Meet experience requirements\n• Receive training endorsement (within 2 months)\n• Hold required medical/student certificate\n• IACRA application completed",
+      "reference": "14 CFR 61.39"
+    },
+    {
+      "id": "fc61-039",
+      "front": "Change of Name Procedure",
+      "back": "Submit to FAA:\n• Current certificate\n• Copy of marriage license/court order/other legal document\n• Completed application\n\nMay continue flying with old certificate until new one received",
+      "reference": "14 CFR 61.25"
+    },
+    {
+      "id": "fc61-040",
+      "front": "Foreign License Validation",
+      "back": "Foreign pilot with license from ICAO country:\n• May obtain US private pilot certificate based on foreign license\n• Limitations may apply\n• Must read, speak, write, understand English\n• FAA verification required",
+      "reference": "14 CFR 61.75"
+    }
+  ]
+}
