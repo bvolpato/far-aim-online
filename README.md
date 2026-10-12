@@ -1,5 +1,10 @@
 # FAR/AIM Online
 
+[![Web CI](https://github.com/bvolpato/far-aim-online/actions/workflows/web-ci.yml/badge.svg)](https://github.com/bvolpato/far-aim-online/actions/workflows/web-ci.yml)
+[![Android Build](https://github.com/bvolpato/far-aim-online/actions/workflows/android-build.yml/badge.svg)](https://github.com/bvolpato/far-aim-online/actions/workflows/android-build.yml)
+[![iOS CI](https://github.com/bvolpato/far-aim-online/actions/workflows/ios-ci.yml/badge.svg)](https://github.com/bvolpato/far-aim-online/actions/workflows/ios-ci.yml)
+[![Source Freshness](https://github.com/bvolpato/far-aim-online/actions/workflows/source-freshness.yml/badge.svg)](https://github.com/bvolpato/far-aim-online/actions/workflows/source-freshness.yml)
+
 **The essential reference guide and study companion for pilots learning Federal Aviation Regulations and the Aeronautical Information Manual.**
 
 Website: [faraim.online](https://faraim.online)
@@ -305,7 +310,7 @@ Android workflow when Play Store screenshots are needed.
 
 GitHub Actions workflows:
 - **Web CI** - Validate relevant PRs and every main-branch push; deploy tested main releases
-- **FAA Advisory Circular Content Update PR** - Scheduled source refreshes and reviewable content PRs
+- **Official Aviation Reference Refresh PR** - Daily AC catalog checks, weekly FAR/AIM/PCG refreshes, and monthly PDF audits with reviewable content PRs
 - **iOS CI** - Simulator XCTest and unsigned device builds on GitHub-hosted macOS
 - **Android Build** - Build APK + capture phone/tablet screenshots
 
@@ -326,6 +331,12 @@ and original study materials, to the extent the project has rights to license
 them. It does not relicense government-source content, third-party material,
 or dependencies. See [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) and
 [`data/README.md`](data/README.md) for source attribution and known exclusions.
+
+Regulation data comes from the eCFR, maintained by the Office of the Federal
+Register at the National Archives with the Government Publishing Office. AIM,
+the Pilot/Controller Glossary, and Advisory Circular publications come from the
+FAA. Government works and material credited to other rights holders retain
+their applicable legal status and notices; they are not project-owned content.
 
 ## Disclaimer
 
