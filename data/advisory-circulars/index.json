@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "updated": "2026-10-11",
+  "updated": "2026-10-13",
   "source": "Federal Aviation Administration Advisory Circulars",
   "description": "Current FAA advisory circular metadata library generated from the FAA current AC export and document list, with official FAA document pages and PDF links where published.",
   "items": [
@@ -10020,20 +10020,19 @@
       "extractedPageCount": 74
     },
     {
-      "id": "ac-39-1a",
-      "number": "39-1A",
-      "title": "JIG Fixtures; Replacement of Wing Attach Angles and Doublers on Douglas DC-3 Series Aircraft, Airworthiness Directive 66-18-2",
+      "id": "ac-39-1b",
+      "number": "39-1B",
+      "title": "Jig Fixtures; Replacement of Wing Attach Angles and Doublers on The Boeing Company DC-3 Series Aircraft, Airworthiness Directive 66-18-02",
       "status": "Active",
-      "issued": "1970-03-05",
-      "office": "AFS-340",
+      "issued": "2026-09-24",
+      "office": "AFS-300",
       "category": "Airworthiness Directives",
-      "summary": "Describes methods of determining that jig fixtures used in the replacement of the subject attached angles and doublers meet the requirements of Airworthiness Directive 66-18-2.",
+      "summary": "This AC describes methods of determining that jig fixtures used in the replacement of the subject attach angles and doublers meet the requirements of Airworthiness Directive (AD) 66-18-02 per Title 14 of the Code of Federal Regulations (14 CFR) § 39.11.",
       "relatedCfr": [],
-      "documentUrl": "https://www.faa.gov/regulations_policies/advisory_circulars/index.cfm/go/document.information/documentID/22948",
-      "pdfUrl": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_39-1A.pdf",
+      "documentUrl": "https://www.faa.gov/regulations_policies/advisory_circulars/index.cfm/go/document.information/documentID/1045718",
       "tags": [
         "39",
-        "afs-340",
+        "afs-300",
         "airworthiness directives",
         "jig",
         "fixtures",
@@ -10043,12 +10042,13 @@
         "angles",
         "doublers"
       ],
+      "pdfUrl": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_39-1B.pdf",
       "contentStatus": "parsed",
-      "contentPath": "content/ac-39-1a.json",
+      "contentPath": "content/ac-39-1b.json",
       "pageCount": 3,
-      "wordCount": 521,
-      "contentUpdated": "2026-07-14",
-      "extractedPageCount": 3
+      "extractedPageCount": 3,
+      "wordCount": 975,
+      "contentUpdated": "2026-10-13"
     },
     {
       "id": "ac-39-7d",
@@ -21885,16 +21885,16 @@
       "extractedPageCount": 20
     },
     {
-      "id": "ac-187-1u",
-      "number": "187-1U",
+      "id": "ac-187-1v",
+      "number": "187-1V",
       "title": "Flight Standards Service Schedule of Charges Outside the United States",
       "status": "Active",
-      "issued": "2025-10-01",
+      "issued": "2026-09-01",
       "office": "AFS-50",
       "category": "Certification and Inspection Fees",
       "summary": "This AC transmits an updated schedule of charges for services of Federal Aviation Administration (FAA) Flight Standards Service (FS) aviation safety inspectors (ASI) outside the United States.",
       "relatedCfr": [],
-      "documentUrl": "https://www.faa.gov/regulations_policies/advisory_circulars/index.cfm/go/document.information/documentID/1044318",
+      "documentUrl": "https://www.faa.gov/regulations_policies/advisory_circulars/index.cfm/go/document.information/documentID/1045716",
       "tags": [
         "187",
         "afs-50",
@@ -21907,13 +21907,13 @@
         "outside",
         "united"
       ],
-      "pdfUrl": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_187-1U.pdf",
+      "pdfUrl": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_187-1V.pdf",
       "contentStatus": "parsed",
-      "contentPath": "content/ac-187-1u.json",
+      "contentPath": "content/ac-187-1v.json",
       "pageCount": 8,
-      "wordCount": 1977,
-      "contentUpdated": "2026-07-14",
-      "extractedPageCount": 8
+      "extractedPageCount": 8,
+      "wordCount": 2156,
+      "contentUpdated": "2026-10-13"
     },
     {
       "id": "ac-187-2",

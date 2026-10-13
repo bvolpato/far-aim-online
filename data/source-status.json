@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-10-11",
+  "generatedAt": "2026-10-13",
   "appVersion": "1.1.0",
   "sources": [
     {
@@ -57,7 +57,7 @@
       "shortLabel": "ACs",
       "source": "Federal Aviation Administration",
       "status": "Current FAA AC archive with offline text",
-      "lastUpdated": "2026-10-11",
+      "lastUpdated": "2026-10-13",
       "itemCount": 779,
       "coverage": "779 current advisory circulars, 778 official PDFs, 725 complete text extractions and 48 partial extractions",
       "officialUrl": "https://www.faa.gov/regulations_policies/advisory_circulars",
@@ -131,8 +131,8 @@
       "link": "/aim"
     },
     {
-      "id": "ac-2026-10-11",
-      "date": "2026-10-11",
+      "id": "ac-2026-10-13",
+      "date": "2026-10-13",
       "sourceId": "ac",
       "severity": "review",
       "title": "Advisory Circular archive refreshed",

@@ -10,7 +10,7 @@ Store-console status below was last verified on 2026-09-27. It is historical, no
   11 core AIM chapters plus change notes and 5 appendices with 212 figures,
   1,555 glossary terms, and 779 current Advisory Circulars.
 - Web, Android, and iOS include 725 complete and 48 partial searchable AC text
-  extractions. Six catalog entries have no offline text, including five withheld
+  extractions. FAA lists AC 8260-32F as current but its content is unavailable. Offline text for 5 additional ACs is omitted pending third-party republication review; their official FAA links remain available.
   because of third-party rights notices. Official source links remain available.
 - Native FAR/AIM readers now include bundled figures and AIM structured tables.
 - Android phone/tablet store screenshots were refreshed from the release candidate
