@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-10-11",
+  "generatedAt": "2026-10-13",
   "appVersion": "1.1.0",
   "sources": [
     {
@@ -57,13 +57,13 @@
       "shortLabel": "ACs",
       "source": "Federal Aviation Administration",
       "status": "Current FAA AC archive with offline text",
-      "lastUpdated": "2026-10-11",
-      "itemCount": 779,
-      "coverage": "779 current advisory circulars, 778 official PDFs, 725 complete text extractions and 48 partial extractions",
+      "lastUpdated": "2026-10-13",
+      "itemCount": 778,
+      "coverage": "778 current advisory circulars, 777 official PDFs, 724 complete text extractions and 48 partial extractions",
       "officialUrl": "https://www.faa.gov/regulations_policies/advisory_circulars",
       "notes": [
         "Metadata is generated from the FAA current Advisory Circular export and document list.",
-        "Searchable text is bundled for 773 records; 725 include every PDF page and 48 are marked partial.",
+        "Searchable text is bundled for 772 records; 724 include every PDF page and 48 are marked partial.",
         "Partial records direct readers to the official PDF for omitted pages, figures and exact layout.",
         "FAA lists AC 8260-32F as current but its content is unavailable. Offline text for 5 additional ACs is omitted pending third-party republication review; their official FAA links remain available."
       ]
@@ -131,12 +131,12 @@
       "link": "/aim"
     },
     {
-      "id": "ac-2026-10-11",
-      "date": "2026-10-11",
+      "id": "ac-2026-10-13",
+      "date": "2026-10-13",
       "sourceId": "ac",
       "severity": "review",
       "title": "Advisory Circular archive refreshed",
-      "summary": "The Advisory Circular library includes 779 current FAA records, 778 direct PDF links, 725 complete text extractions, and 48 clearly marked partial extractions.",
+      "summary": "The Advisory Circular library includes 778 current FAA records, 777 direct PDF links, 724 complete text extractions, and 48 clearly marked partial extractions.",
       "affectedReferences": [
         "FAA current Advisory Circular export",
         "Aircraft certification and airworthiness ACs",

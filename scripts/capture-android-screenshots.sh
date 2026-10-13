@@ -587,11 +587,11 @@ main() {
     capture_with_retry_after_tap "04_study.png" 50000 "Study" 4 "$tab_y" "$tab_width" "Certificate Paths"
     tap_tab 5 "$tab_y" "$tab_width"
     capture_with_retry "05_${TAB5_NAME}.png" 50000 "Tools" "FAR/AIM Pro" "Version 1.1.0"
-    capture_route_with_retry "advisory_circulars" "06_advisory_circulars.png" 50000 "Advisory Circulars" "779 current FAA Advisory Circular records"
+    capture_route_with_retry "advisory_circulars" "06_advisory_circulars.png" 50000 "Advisory Circulars" "778 current FAA Advisory Circular records"
     capture_route_with_retry "updates" "07_updates.png" 50000 "Data Updates" "Source dates"
   else
     capture_route_with_retry "study" "04_study.png" 50000 "Certificate Paths"
-    capture_route_with_retry "advisory_circulars" "05_advisory_circulars.png" 50000 "Advisory Circulars" "779 current FAA Advisory Circular records"
+    capture_route_with_retry "advisory_circulars" "05_advisory_circulars.png" 50000 "Advisory Circulars" "778 current FAA Advisory Circular records"
     capture_route_with_retry "glossary" "06_${TAB5_NAME}.png" 50000 "Search glossary terms..." "Pilot/Controller Glossary"
     capture_search_route_with_retry "07_${TAB6_NAME}.png" 30000 "$width" "$height"
     capture_route_with_retry "updates" "08_updates.png" 50000 "Data Updates" "Source dates"

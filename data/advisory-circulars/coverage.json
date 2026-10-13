@@ -1,9 +1,9 @@
 {
   "version": 1,
-  "updated": "2026-10-11",
-  "total": 779,
+  "updated": "2026-10-13",
+  "total": 778,
   "counts": {
-    "parsed": 725,
+    "parsed": 724,
     "partial": 48,
     "unavailable": 6
   },
@@ -906,7 +906,6 @@
       "wordCount": 8719,
       "ocrPageCount": 0,
       "contentPath": "content/ac-120-77b.json",
-      "pdfUrl": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_120-77B.pdf",
       "sha256": "b9f7c924f98bd9edfd870341618a797684f0687ce4cff56d284e35dd177100df"
     },
     {
@@ -2840,14 +2839,15 @@
       "sha256": "d9d0a314822d884e408aa8ee75b6c1baae5797118d8684628fd68261cef113a6"
     },
     {
-      "id": "ac-187-1u",
+      "id": "ac-187-1v",
       "status": "parsed",
       "pageCount": 8,
       "extractedPageCount": 8,
-      "wordCount": 1977,
+      "wordCount": 2156,
       "ocrPageCount": 0,
-      "contentPath": "content/ac-187-1u.json",
-      "sha256": "95db321f96842812a06ec0f28c4050c3fbcf0b71673e805f1bded263a3d22b8a"
+      "contentPath": "content/ac-187-1v.json",
+      "pdfUrl": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_187-1V.pdf",
+      "sha256": "9698e42f4978c897744b389de65b6e9831ded89cc683df075b22dcc569c88b74"
     },
     {
       "id": "ac-187-2",
@@ -3542,7 +3542,6 @@
       "wordCount": 18253,
       "ocrPageCount": 0,
       "contentPath": "content/ac-20-184a.json",
-      "pdfUrl": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC-20-184A.pdf",
       "sha256": "f2402c97abdd38bf5569f097e8f24be48e024dbf4210e6fa551ada910dcc66a7"
     },
     {
@@ -5548,7 +5547,6 @@
       "wordCount": 4136,
       "ocrPageCount": 0,
       "contentPath": "content/ac-33-13.json",
-      "pdfUrl": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_33-13.pdf",
       "sha256": "2a30fe958f56c359004e80adc90c0bdf00d016a1eb2abd148f6f5e67ba77bc4f"
     },
     {
@@ -6070,16 +6068,6 @@
       "ocrPageCount": 0,
       "contentPath": "content/ac-39-10.json",
       "sha256": "2a0000df9fbd338dc6d403bd63c36659ff5542fe4b924fde3b28c02d12b3a6c1"
-    },
-    {
-      "id": "ac-39-1a",
-      "status": "parsed",
-      "pageCount": 3,
-      "extractedPageCount": 3,
-      "wordCount": 521,
-      "ocrPageCount": 0,
-      "contentPath": "content/ac-39-1a.json",
-      "sha256": "8657fa3a043110865d6bc377fa9ee2f27f4cc22ed242ee971eb290a3f5378608"
     },
     {
       "id": "ac-39-7d",
