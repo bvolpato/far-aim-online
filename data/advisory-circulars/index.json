@@ -10020,6 +10020,37 @@
       "extractedPageCount": 74
     },
     {
+      "id": "ac-39-1b",
+      "number": "39-1B",
+      "title": "Jig Fixtures; Replacement of Wing Attach Angles and Doublers on The Boeing Company DC-3 Series Aircraft, Airworthiness Directive 66-18-02",
+      "status": "Active",
+      "issued": "2026-09-24",
+      "office": "AFS-300",
+      "category": "Airworthiness Directives",
+      "summary": "This AC describes methods of determining that jig fixtures used in the replacement of the subject attach angles and doublers meet the requirements of Airworthiness Directive (AD) 66-18-02 per Title 14 of the Code of Federal Regulations (14 CFR) § 39.11.",
+      "relatedCfr": [],
+      "documentUrl": "https://www.faa.gov/regulations_policies/advisory_circulars/index.cfm/go/document.information/documentID/1045718",
+      "tags": [
+        "39",
+        "afs-300",
+        "airworthiness directives",
+        "jig",
+        "fixtures",
+        "replacement",
+        "wing",
+        "attach",
+        "angles",
+        "doublers"
+      ],
+      "pdfUrl": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_39-1B.pdf",
+      "contentStatus": "parsed",
+      "contentPath": "content/ac-39-1b.json",
+      "pageCount": 3,
+      "extractedPageCount": 3,
+      "wordCount": 975,
+      "contentUpdated": "2026-10-13"
+    },
+    {
       "id": "ac-39-7d",
       "number": "39-7D",
       "title": "Airworthiness Directives",

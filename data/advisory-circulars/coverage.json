@@ -1,9 +1,9 @@
 {
   "version": 1,
   "updated": "2026-10-13",
-  "total": 778,
+  "total": 779,
   "counts": {
-    "parsed": 724,
+    "parsed": 725,
     "partial": 48,
     "unavailable": 6
   },
@@ -2846,7 +2846,6 @@
       "wordCount": 2156,
       "ocrPageCount": 0,
       "contentPath": "content/ac-187-1v.json",
-      "pdfUrl": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_187-1V.pdf",
       "sha256": "9698e42f4978c897744b389de65b6e9831ded89cc683df075b22dcc569c88b74"
     },
     {
@@ -6068,6 +6067,17 @@
       "ocrPageCount": 0,
       "contentPath": "content/ac-39-10.json",
       "sha256": "2a0000df9fbd338dc6d403bd63c36659ff5542fe4b924fde3b28c02d12b3a6c1"
+    },
+    {
+      "id": "ac-39-1b",
+      "status": "parsed",
+      "pageCount": 3,
+      "extractedPageCount": 3,
+      "wordCount": 975,
+      "ocrPageCount": 0,
+      "contentPath": "content/ac-39-1b.json",
+      "pdfUrl": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_39-1B.pdf",
+      "sha256": "48667e89622c80a1726fd15bb84243d9b5f74894419522f62385998860a0bbd6"
     },
     {
       "id": "ac-39-7d",
