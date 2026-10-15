@@ -1,5 +1,5 @@
 import { useParams, Link } from 'react-router-dom';
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useMemo, useCallback } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { ChevronRight, Check, X, RotateCcw, Trophy, BookOpen, ExternalLink } from 'lucide-react';
 import { getQuizMetadata } from '../data/catalog';
@@ -98,6 +98,111 @@ export function QuizPage() {
     };
   }, [quizId]);
 
+  const currentQuestion = shuffledQuestions[currentIndex];
+  const score = answers.filter((a) => a.isCorrect).length;
+  const percentage = Math.round((score / Math.max(shuffledQuestions.length, 1)) * 100);
+  const passed = quizMeta ? percentage >= quizMeta.passingScore : false;
+
+  const handleSelectAnswer = useCallback((answerIndex: number) => {
+    if (showExplanation || !currentQuestion) return;
+    setSelectedAnswer(answerIndex);
+    const isCorrect = answerIndex === currentQuestion.correctAnswer;
+    setAnswers((prev) => [
+      ...prev,
+      { questionId: currentQuestion.id, selectedAnswer: answerIndex, isCorrect },
+    ]);
+    setShowExplanation(true);
+  }, [showExplanation, currentQuestion]);
+
+  const handleNextQuestion = useCallback(() => {
+    if (currentIndex < shuffledQuestions.length - 1) {
+      setCurrentIndex((prev) => prev + 1);
+      setSelectedAnswer(null);
+      setShowExplanation(false);
+    } else {
+      setState('results');
+    }
+  }, [currentIndex, shuffledQuestions.length]);
+
+  const handleRestart = useCallback(() => {
+    if (!quiz) return;
+    setCurrentIndex(0);
+    setAnswers([]);
+    setSelectedAnswer(null);
+    setShowExplanation(false);
+    const shuffled = [...quiz.questions].sort(() => Math.random() - 0.5);
+    setShuffledQuestions(shuffled);
+    setState('intro');
+  }, [quiz]);
+
+  const missedQuestions = useMemo(() => {
+    const incorrectIds = new Set(answers.filter((a) => !a.isCorrect).map((a) => a.questionId));
+    return shuffledQuestions.filter((q) => incorrectIds.has(q.id));
+  }, [answers, shuffledQuestions]);
+
+  const handleRetryMissed = useCallback(() => {
+    if (missedQuestions.length === 0) return;
+    setShuffledQuestions([...missedQuestions].sort(() => Math.random() - 0.5));
+    setCurrentIndex(0);
+    setAnswers([]);
+    setSelectedAnswer(null);
+    setShowExplanation(false);
+    setState('question');
+  }, [missedQuestions]);
+
+  // Global keyboard shortcuts for taking quizzes
+  useEffect(() => {
+    const handleKeyDown = (e: globalThis.KeyboardEvent) => {
+      const activeTag = (document.activeElement?.tagName || '').toLowerCase();
+      if (activeTag === 'input' || activeTag === 'textarea') return;
+
+      if (state === 'question') {
+        if (!showExplanation) {
+          if (['1', '2', '3', '4'].includes(e.key)) {
+            const index = parseInt(e.key, 10) - 1;
+            if (currentQuestion && index < currentQuestion.options.length) {
+              e.preventDefault();
+              handleSelectAnswer(index);
+            }
+          }
+          const lowerKey = e.key.toLowerCase();
+          if (['a', 'b', 'c', 'd'].includes(lowerKey)) {
+            const index = lowerKey.charCodeAt(0) - 97;
+            if (currentQuestion && index < currentQuestion.options.length) {
+              e.preventDefault();
+              handleSelectAnswer(index);
+            }
+          }
+        } else {
+          if (e.key === 'Enter' || e.key === ' ' || e.key === 'ArrowRight') {
+            e.preventDefault();
+            handleNextQuestion();
+          }
+        }
+      } else if (state === 'results') {
+        if (e.key === 'r' || e.key === 'R') {
+          e.preventDefault();
+          handleRestart();
+        } else if ((e.key === 'm' || e.key === 'M') && missedQuestions.length > 0) {
+          e.preventDefault();
+          handleRetryMissed();
+        }
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [
+    state,
+    showExplanation,
+    currentQuestion,
+    missedQuestions.length,
+    handleSelectAnswer,
+    handleNextQuestion,
+    handleRestart,
+    handleRetryMissed,
+  ]);
+
   if (!quizMeta) {
     return (
       <div className="max-w-4xl mx-auto px-4 py-8 text-center">
@@ -108,43 +213,6 @@ export function QuizPage() {
       </div>
     );
   }
-
-  const currentQuestion = shuffledQuestions[currentIndex];
-  const score = answers.filter((a) => a.isCorrect).length;
-  const percentage = Math.round((score / Math.max(shuffledQuestions.length, 1)) * 100);
-  const passed = percentage >= quizMeta.passingScore;
-
-  const handleSelectAnswer = (answerIndex: number) => {
-    if (showExplanation) return;
-    setSelectedAnswer(answerIndex);
-    const isCorrect = answerIndex === currentQuestion.correctAnswer;
-    setAnswers([
-      ...answers,
-      { questionId: currentQuestion.id, selectedAnswer: answerIndex, isCorrect },
-    ]);
-    setShowExplanation(true);
-  };
-
-  const handleNextQuestion = () => {
-    if (currentIndex < shuffledQuestions.length - 1) {
-      setCurrentIndex(currentIndex + 1);
-      setSelectedAnswer(null);
-      setShowExplanation(false);
-    } else {
-      setState('results');
-    }
-  };
-
-  const handleRestart = () => {
-    if (!quiz) return;
-    setCurrentIndex(0);
-    setAnswers([]);
-    setSelectedAnswer(null);
-    setShowExplanation(false);
-    const shuffled = [...quiz.questions].sort(() => Math.random() - 0.5);
-    setShuffledQuestions(shuffled);
-    setState('intro');
-  };
 
   const startQuiz = (loadedQuiz: Quiz) => {
     setQuiz(loadedQuiz);
@@ -290,7 +358,7 @@ export function QuizPage() {
                 </div>
               )}
 
-              <div className="flex gap-4">
+              <div className="flex flex-col sm:flex-row gap-3">
                 <Button
                   variant="secondary"
                   onClick={() => setState('review')}
@@ -298,6 +366,15 @@ export function QuizPage() {
                 >
                   Review Answers
                 </Button>
+                {missedQuestions.length > 0 && (
+                  <Button
+                    onClick={handleRetryMissed}
+                    className="flex-1 py-6 rounded-xl bg-amber-600 hover:bg-amber-700 text-white shadow-lg shadow-amber-600/20"
+                  >
+                    <RotateCcw className="w-4 h-4 mr-2" />
+                    Drill Missed ({missedQuestions.length})
+                  </Button>
+                )}
                 <Button
                   onClick={handleRestart}
                   className={`flex-1 py-6 rounded-xl ${passed ? 'bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700 shadow-emerald-500/25 hover:shadow-emerald-500/40' : 'bg-gradient-to-r from-purple-500 to-purple-600 hover:from-purple-600 hover:to-purple-700 shadow-purple-500/25 hover:shadow-purple-500/40'} shadow-lg`}
@@ -321,11 +398,24 @@ export function QuizPage() {
           <title>{`Review — ${quizMeta.title} | FAR/AIM Online`}</title>
         </Helmet>
 
-        <div className="flex items-center justify-between mb-6">
+        <div className="flex items-center justify-between mb-6 flex-wrap gap-3">
           <h1 className="text-2xl font-bold text-foreground">Review Answers</h1>
-          <Button variant="link" onClick={() => setState('results')}>
-            Back to Results
-          </Button>
+          <div className="flex items-center gap-2">
+            {missedQuestions.length > 0 && (
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={handleRetryMissed}
+                className="text-amber-600 dark:text-amber-400 border-amber-300 dark:border-amber-700 hover:bg-amber-50 dark:hover:bg-amber-950/40"
+              >
+                <RotateCcw className="w-3.5 h-3.5 mr-1.5" />
+                Drill Missed ({missedQuestions.length})
+              </Button>
+            )}
+            <Button variant="link" onClick={() => setState('results')}>
+              Back to Results
+            </Button>
+          </div>
         </div>
 
         <div className="space-y-6">
@@ -396,7 +486,16 @@ export function QuizPage() {
           })}
         </div>
 
-        <div className="mt-8 flex justify-center">
+        <div className="mt-8 flex justify-center gap-3">
+          {missedQuestions.length > 0 && (
+            <Button
+              onClick={handleRetryMissed}
+              className="py-6 px-8 rounded-xl bg-amber-600 hover:bg-amber-700 text-white shadow-lg shadow-amber-600/20"
+            >
+              <RotateCcw className="w-4 h-4 mr-2" />
+              Drill Missed ({missedQuestions.length})
+            </Button>
+          )}
           <Button
             onClick={handleRestart}
             className="py-6 px-8 rounded-xl bg-gradient-to-r from-purple-500 to-purple-600 hover:from-purple-600 hover:to-purple-700 shadow-lg hover:shadow-purple-500/40"
@@ -518,6 +617,15 @@ export function QuizPage() {
               )}
             </Button>
           )}
+
+          {/* Keyboard shortcut hint */}
+          <div className="text-center text-xs text-muted-foreground pt-3 border-t border-border/40 mt-4">
+            {!showExplanation ? (
+              <span>Keys: press <kbd className="px-1.5 py-0.5 rounded bg-muted font-mono text-[11px]">1</kbd>–<kbd className="px-1.5 py-0.5 rounded bg-muted font-mono text-[11px]">4</kbd> or <kbd className="px-1.5 py-0.5 rounded bg-muted font-mono text-[11px]">A</kbd>–<kbd className="px-1.5 py-0.5 rounded bg-muted font-mono text-[11px]">D</kbd> to answer</span>
+            ) : (
+              <span>Press <kbd className="px-1.5 py-0.5 rounded bg-muted font-mono text-[11px]">Enter</kbd> or <kbd className="px-1.5 py-0.5 rounded bg-muted font-mono text-[11px]">Space</kbd> to continue</span>
+            )}
+          </div>
         </CardContent>
       </Card>
     </div>

@@ -1,4 +1,4 @@
-import { useRef, useState, type ChangeEvent } from 'react';
+import { useRef, useState, useEffect, type ChangeEvent } from 'react';
 import { Link } from 'react-router-dom';
 import {
     GraduationCap,
@@ -71,6 +71,15 @@ export function StudyPage() {
         ...quizzes.filter((quiz) => !QUICK_START_QUIZ_IDS.includes(quiz.id)),
     ].slice(0, 3);
     const reviewQueue = marks.filter((mark) => mark.saved || mark.highlighted || mark.note || mark.reviewedAt);
+
+    useEffect(() => {
+        if (window.location.hash === '#saved-study-marks') {
+            const timeout = setTimeout(() => {
+                document.getElementById('saved-study-marks')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }, 100);
+            return () => clearTimeout(timeout);
+        }
+    }, []);
 
     const handleStudyPackExport = () => {
         const pack = downloadStudyPack();
@@ -244,7 +253,7 @@ export function StudyPage() {
                     <Separator />
 
                     {/* Saved Study Queue */}
-                    <section>
+                    <section id="saved-study-marks" className="scroll-mt-24">
                         <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between mb-6">
                             <div className="flex items-center gap-2">
                                 <Bookmark className="w-5 h-5 text-primary" />

@@ -1,4 +1,4 @@
-import { ReactNode, useState } from 'react';
+import { ReactNode, useState, useEffect, useRef } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import {
   Home,
@@ -11,11 +11,13 @@ import {
   GraduationCap,
   ClipboardList,
   ChevronDown,
+  Bookmark,
 } from 'lucide-react';
 import { ThemeToggle } from './ThemeToggle';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { cn } from '@/lib/utils';
+import { useStudyMarks } from '@/hooks/useStudyMarks';
 
 interface LayoutProps {
   children: ReactNode;
@@ -34,9 +36,47 @@ export function Layout({ children }: LayoutProps) {
   const location = useLocation();
   const pathname = location.pathname.replace(/\/+$/, '') || '/';
   const navigate = useNavigate();
+  const { stats } = useStudyMarks();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [tabletNavigationOpen, setTabletNavigationOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
+  const searchInputRef = useRef<HTMLInputElement>(null);
+
+  // Global search shortcut (⌘K or /)
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      const target = e.target as HTMLElement | null;
+      const tagName = target?.tagName.toLowerCase();
+      const isEditing = tagName === 'input' || tagName === 'textarea' || target?.isContentEditable;
+
+      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+        e.preventDefault();
+        if (pathname === '/search') {
+          const pageInput = document.querySelector('input[type="search"], input[name="q"]') as HTMLInputElement | null;
+          pageInput?.focus();
+        } else if (searchInputRef.current) {
+          searchInputRef.current.focus();
+          searchInputRef.current.select();
+        } else {
+          navigate('/search');
+        }
+      } else if (e.key === '/' && !isEditing) {
+        e.preventDefault();
+        if (pathname === '/search') {
+          const pageInput = document.querySelector('input[type="search"], input[name="q"]') as HTMLInputElement | null;
+          pageInput?.focus();
+        } else if (searchInputRef.current) {
+          searchInputRef.current.focus();
+          searchInputRef.current.select();
+        } else {
+          navigate('/search');
+        }
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [pathname, navigate]);
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
@@ -76,16 +116,22 @@ export function Layout({ children }: LayoutProps) {
             {pathname !== '/search' && (
               <div className="hidden md:flex flex-1 max-w-md mx-4">
                 <form action="/search" method="get" onSubmit={handleSearch} className="w-full relative group">
-                  <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground group-focus-within:text-primary transition-colors" />
+                  <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground group-focus-within:text-primary transition-colors pointer-events-none" />
                   <Input
+                    ref={searchInputRef}
                     type="text"
                     aria-label="Search regulations and terms"
                     name="q"
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                     placeholder="Search regulations, terms..."
-                    className="pl-10 rounded-xl border-none bg-secondary"
+                    className="pl-10 pr-12 rounded-xl border-none bg-secondary"
                   />
+                  <div className="absolute right-3 top-1/2 -translate-y-1/2 hidden lg:flex items-center gap-1 pointer-events-none">
+                    <kbd className="px-1.5 py-0.5 text-[10px] font-mono font-medium text-muted-foreground bg-muted/70 rounded border border-border">
+                      ⌘K
+                    </kbd>
+                  </div>
                 </form>
               </div>
             )}
@@ -166,6 +212,21 @@ export function Layout({ children }: LayoutProps) {
                 )}
               </div>
 
+              {/* Saved References quick access */}
+              <Link
+                to="/study#saved-study-marks"
+                title={stats.saved > 0 ? `${stats.saved} saved reference${stats.saved !== 1 ? 's' : ''}` : 'Saved references'}
+                aria-label={stats.saved > 0 ? `${stats.saved} saved references` : 'Saved references'}
+                className="relative flex items-center justify-center h-9 w-9 rounded-lg text-muted-foreground hover:text-foreground hover:bg-accent transition-colors"
+              >
+                <Bookmark className={cn('h-4 w-4', stats.saved > 0 && 'text-primary fill-primary/20')} />
+                {stats.saved > 0 && (
+                  <span className="absolute -top-1 -right-1 flex h-4 min-w-[16px] px-1 items-center justify-center rounded-full bg-primary text-[10px] font-bold text-primary-foreground">
+                    {stats.saved}
+                  </span>
+                )}
+              </Link>
+
               <ThemeToggle />
 
               {/* Mobile menu button */}
@@ -201,6 +262,21 @@ export function Layout({ children }: LayoutProps) {
               </form>
             </div>
             <nav aria-label="Mobile navigation" className="px-4 py-3 space-y-1">
+              {stats.saved > 0 && (
+                <Link
+                  to="/study#saved-study-marks"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="flex items-center justify-between px-4 py-3 rounded-lg text-sm font-medium text-foreground bg-primary/5 border border-primary/20 mb-2"
+                >
+                  <span className="flex items-center gap-3">
+                    <Bookmark className="w-5 h-5 text-primary fill-primary/20" />
+                    <span>Saved References</span>
+                  </span>
+                  <span className="px-2 py-0.5 text-xs rounded-full bg-primary text-primary-foreground font-semibold">
+                    {stats.saved}
+                  </span>
+                </Link>
+              )}
               {navItems.map((item) => {
                 const active = isActive(item);
                 const Icon = item.icon;

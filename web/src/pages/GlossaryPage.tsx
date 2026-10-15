@@ -9,6 +9,7 @@ import { Card, CardContent } from '../components/ui/card';
 import { Button } from '../components/ui/button';
 import { highlightMatch } from '../lib/highlight';
 import { findGlossaryTerm, searchGlossaryTerms } from '../lib/glossary';
+import { cn } from '@/lib/utils';
 
 function scrollToGlossaryTerm(target: HTMLElement) {
   target.scrollIntoView({ behavior: 'auto', block: 'start' });
@@ -61,6 +62,27 @@ export function GlossaryPage() {
   const terms = useMemo(() => {
     return searchGlossaryTerms(allTerms, query);
   }, [allTerms, query]);
+
+  const availableLetters = useMemo(() => {
+    const letters = new Set<string>();
+    for (const term of terms) {
+      const firstChar = term.term.trim().charAt(0).toUpperCase();
+      if (firstChar >= 'A' && firstChar <= 'Z') {
+        letters.add(firstChar);
+      }
+    }
+    return letters;
+  }, [terms]);
+
+  const jumpToLetter = (letter: string) => {
+    const targetTerm = terms.find((t) => t.term.trim().toUpperCase().startsWith(letter));
+    if (targetTerm) {
+      const el = document.getElementById(targetTerm.term);
+      if (el) {
+        scrollToGlossaryTerm(el);
+      }
+    }
+  };
 
   useEffect(() => {
     if (!pendingScrollTarget.current) return;
@@ -192,9 +214,35 @@ export function GlossaryPage() {
             </Button>
           )}
         </div>
-        <div className="mt-2 text-sm text-muted-foreground px-1">
-          {loading ? 'Loading glossary...' : `Showing ${terms.length} term${terms.length !== 1 ? 's' : ''}`}
+        <div className="mt-2 flex items-center justify-between text-sm text-muted-foreground px-1">
+          <span>{loading ? 'Loading glossary...' : `Showing ${terms.length} term${terms.length !== 1 ? 's' : ''}`}</span>
         </div>
+
+        {/* Alphabet quick jump */}
+        {!loading && (
+          <nav aria-label="Alphabet quick jump" className="mt-2.5 flex items-center gap-1 overflow-x-auto pb-1 text-xs no-scrollbar">
+            {'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('').map((letter) => {
+              const hasTerms = availableLetters.has(letter);
+              return (
+                <button
+                  key={letter}
+                  type="button"
+                  onClick={() => jumpToLetter(letter)}
+                  disabled={!hasTerms}
+                  aria-label={`Jump to terms starting with ${letter}`}
+                  className={cn(
+                    'flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-lg font-semibold transition-colors',
+                    hasTerms
+                      ? 'text-foreground hover:bg-primary/10 hover:text-primary active:bg-primary/20'
+                      : 'text-muted-foreground/30 cursor-not-allowed'
+                  )}
+                >
+                  {letter}
+                </button>
+              );
+            })}
+          </nav>
+        )}
       </div>
 
       {/* Terms List */}

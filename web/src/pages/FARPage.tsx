@@ -1,6 +1,6 @@
 import { useParams, Link, useLocation, useSearchParams } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
-import { ChevronRight, ChevronLeft, BookOpen, ExternalLink, Filter, Star, Search, Brain, Layers, History, Loader2, FileText, List } from 'lucide-react';
+import { ChevronRight, ChevronLeft, BookOpen, ExternalLink, Filter, Star, Search, Brain, Layers, History, Loader2, FileText, List, Link2, Check } from 'lucide-react';
 import { useMemo, useState, useEffect, type CSSProperties } from 'react';
 import { getAllFARParts, getFARPart, FARAppendix, FARPart, FARPartMeta, FARSection, farIndex, getAllQuizzes, getAllFlashcardDecks } from '../data';
 import type { SearchResult } from '../data/search';
@@ -13,6 +13,7 @@ import { ReaderControls } from '../components/ReaderControls';
 import { useReaderPreferences } from '../hooks/useReaderPreferences';
 import { ReferenceFigures } from '../components/ReferenceFigures';
 import { useRouteData } from '../context/route-data';
+import { MobileTableOfContents } from '../components/MobileTableOfContents';
 
 type IndexFilter = 'all' | 'pilot';
 
@@ -455,6 +456,57 @@ function FARPartView({
   ], [part.sections, part.subparts]);
   const appendices = useMemo<FARAppendix[]>(() => part.appendices || [], [part.appendices]);
 
+  const [activeSectionId, setActiveSectionId] = useState<string>('');
+
+  const tocItems = useMemo(() => [
+    ...allSections.map((s) => ({
+      id: s.section,
+      label: `§ ${s.section}`,
+      title: s.title,
+    })),
+    ...appendices.map((a) => ({
+      id: a.appendix,
+      label: a.appendix,
+      title: a.title,
+      isAppendix: true,
+    })),
+  ], [allSections, appendices]);
+
+  useEffect(() => {
+    if (typeof window === 'undefined' || !('IntersectionObserver' in window)) return;
+
+    const ids = [
+      ...allSections.map((s) => s.section),
+      ...appendices.map((a) => a.appendix),
+    ];
+    if (ids.length === 0) return;
+
+    const elements = ids
+      .map((id) => document.getElementById(id))
+      .filter((el): el is HTMLElement => el !== null);
+
+    if (elements.length === 0) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries.filter((e) => e.isIntersecting);
+        if (visible.length > 0) {
+          const sorted = visible.sort(
+            (a, b) => Math.abs(a.boundingClientRect.top - 100) - Math.abs(b.boundingClientRect.top - 100)
+          );
+          setActiveSectionId(sorted[0].target.id);
+        }
+      },
+      {
+        rootMargin: '-80px 0px -60% 0px',
+        threshold: [0, 0.25],
+      }
+    );
+
+    elements.forEach((el) => observer.observe(el));
+    return () => observer.disconnect();
+  }, [allSections, appendices]);
+
   useEffect(() => {
     if (!location.hash) return;
     let targetId: string;
@@ -552,30 +604,44 @@ function FARPartView({
               References ({allSections.length + appendices.length})
             </h2>
             <nav className="space-y-1.5">
-              {allSections.map((section) => (
-                <a
-                  key={section.section}
-                  href={`#${section.section}`}
-                  className="block text-xs text-muted-foreground hover:text-primary hover:bg-accent/50 px-2.5 py-2 rounded-lg transition-colors truncate"
-                  title={`§ ${section.section} - ${section.title}`}
-                >
-                  <span className="font-semibold text-foreground/80 mr-1">§ {section.section}</span>
-                  {section.title}
-                </a>
-              ))}
+              {allSections.map((section) => {
+                const isActive = activeSectionId === section.section;
+                return (
+                  <a
+                    key={section.section}
+                    href={`#${section.section}`}
+                    className={`block text-xs px-2.5 py-2 rounded-lg transition-colors truncate ${
+                      isActive
+                        ? 'bg-primary/10 text-primary font-semibold border-l-2 border-primary'
+                        : 'text-muted-foreground hover:text-primary hover:bg-accent/50'
+                    }`}
+                    title={`§ ${section.section} - ${section.title}`}
+                  >
+                    <span className="font-semibold text-foreground/80 mr-1">§ {section.section}</span>
+                    {section.title}
+                  </a>
+                );
+              })}
               {appendices.length > 0 && (
                 <p className="px-2.5 pt-3 text-xs font-semibold uppercase text-muted-foreground">Appendices</p>
               )}
-              {appendices.map((appendix) => (
-                <a
-                  key={appendix.appendix}
-                  href={`#${encodeURIComponent(appendix.appendix)}`}
-                  className="block truncate rounded-lg px-2.5 py-2 text-xs text-muted-foreground transition-colors hover:bg-accent/50 hover:text-primary"
-                  title={appendix.title}
-                >
-                  {appendix.title}
-                </a>
-              ))}
+              {appendices.map((appendix) => {
+                const isActive = activeSectionId === appendix.appendix;
+                return (
+                  <a
+                    key={appendix.appendix}
+                    href={`#${encodeURIComponent(appendix.appendix)}`}
+                    className={`block truncate rounded-lg px-2.5 py-2 text-xs transition-colors hover:text-primary ${
+                      isActive
+                        ? 'bg-primary/10 text-primary font-semibold border-l-2 border-primary'
+                        : 'text-muted-foreground hover:bg-accent/50'
+                    }`}
+                    title={appendix.title}
+                  >
+                    {appendix.title}
+                  </a>
+                );
+              })}
             </nav>
           </aside>
         )}
@@ -612,37 +678,13 @@ function FARPartView({
             )}
           </div>
 
-          {/* Mobile Collapsible Table of Contents Accordion */}
+          {/* Mobile Table of Contents Drawer */}
           {(allSections.length > 0 || appendices.length > 0) && (
-            <details className="group bg-card rounded-xl p-4 border border-border mb-6 lg:hidden cursor-pointer">
-              <summary className="flex items-center justify-between text-sm font-semibold text-foreground select-none">
-                <span className="flex items-center gap-2">
-                  <List className="w-4 h-4 text-primary" />
-                  Table of Contents ({allSections.length} sections, {appendices.length} appendices)
-                </span>
-                <ChevronRight className="w-4 h-4 transition-transform group-open:rotate-90" />
-              </summary>
-              <nav className="mt-4 space-y-1 max-h-60 overflow-y-auto border-t pt-3">
-                {allSections.map((section) => (
-                  <a
-                    key={section.section}
-                    href={`#${section.section}`}
-                    className="block text-sm text-muted-foreground hover:text-primary py-1.5 border-b border-border/50 last:border-0"
-                  >
-                    § {section.section} - {section.title || 'Untitled'}
-                  </a>
-                ))}
-                {appendices.map((appendix) => (
-                  <a
-                    key={appendix.appendix}
-                    href={`#${encodeURIComponent(appendix.appendix)}`}
-                    className="block border-b border-border/50 py-1.5 text-sm text-muted-foreground last:border-0 hover:text-primary"
-                  >
-                    {appendix.title}
-                  </a>
-                ))}
-              </nav>
-            </details>
+            <MobileTableOfContents
+              title={`Part ${part.part} Contents`}
+              items={tocItems}
+              activeId={activeSectionId}
+            />
           )}
 
           {/* Direct Sections (no subparts) */}
@@ -821,6 +863,7 @@ function AppendixView({
   highlightTerm: string;
   contentStyle: CSSProperties;
 }) {
+  const [copied, setCopied] = useState(false);
   const query = searchQuery.toLowerCase();
   const figureText = (appendix.figures || []).flatMap((figure) => [figure.alt, figure.caption]).join(' ');
   if (query && !`${appendix.appendix} ${appendix.title} ${appendix.content} ${figureText}`.toLowerCase().includes(query)) {
@@ -828,11 +871,40 @@ function AppendixView({
   }
 
   const effectiveQuery = searchQuery || highlightTerm;
+
+  const handleCopyLink = async () => {
+    const url = `${window.location.origin}/far/${partId}#${encodeURIComponent(appendix.appendix)}`;
+    try {
+      await navigator.clipboard.writeText(url);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch {
+      // ignore clipboard error
+    }
+  };
+
   return (
     <article id={appendix.appendix} className="bg-card rounded-xl p-6 shadow-sm border border-border scroll-mt-24">
-      <h3 className="text-lg font-semibold text-foreground mb-3">
-        <HighlightText text={appendix.title} query={effectiveQuery} />
-      </h3>
+      <div className="flex items-start justify-between gap-2 mb-3">
+        <h3 className="text-lg font-semibold text-foreground">
+          <HighlightText text={appendix.title} query={effectiveQuery} />
+        </h3>
+        <button
+          type="button"
+          onClick={handleCopyLink}
+          title="Copy link to this appendix"
+          aria-label={`Copy link to ${appendix.title}`}
+          className="text-muted-foreground hover:text-primary p-1.5 rounded-lg hover:bg-accent transition-colors flex-shrink-0"
+        >
+          {copied ? (
+            <span className="text-xs text-primary font-medium flex items-center gap-1">
+              <Check className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" /> Copied
+            </span>
+          ) : (
+            <Link2 className="w-4 h-4" />
+          )}
+        </button>
+      </div>
       <div className="mb-4">
         <StudyMarkTools
           type="far"
@@ -906,6 +978,7 @@ function SectionView({
 
   // Flash highlight effect when scrolled to via hash or when highlighted from search
   const [isFlashed, setIsFlashed] = useState(false);
+  const [copied, setCopied] = useState(false);
   const { hash } = useLocation();
 
   useEffect(() => {
@@ -929,15 +1002,44 @@ function SectionView({
 
   const effectiveQuery = searchQuery || highlightTerm || '';
 
+  const handleCopyLink = async () => {
+    const url = `${window.location.origin}/far/${partId}#${section.section}`;
+    try {
+      await navigator.clipboard.writeText(url);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch {
+      // ignore clipboard error
+    }
+  };
+
   return (
     <div
       id={section.section}
       className={`bg-card rounded-xl p-6 shadow-sm border border-border transition-colors duration-500 ${isFlashed ? 'ring-2 ring-primary bg-primary/5' : ''
         }`}
     >
-      <h3 className="text-lg font-semibold text-foreground mb-3">
-        § <HighlightText text={section.section} query={effectiveQuery} /> <HighlightText text={section.title || ''} query={effectiveQuery} />
-      </h3>
+      <div className="flex items-start justify-between gap-2 mb-3">
+        <h3 className="text-lg font-semibold text-foreground flex items-center gap-2 flex-wrap">
+          <span>§ <HighlightText text={section.section} query={effectiveQuery} /></span>
+          <HighlightText text={section.title || ''} query={effectiveQuery} />
+        </h3>
+        <button
+          type="button"
+          onClick={handleCopyLink}
+          title="Copy link to this section"
+          aria-label={`Copy link to section ${section.section}`}
+          className="text-muted-foreground hover:text-primary p-1.5 rounded-lg hover:bg-accent transition-colors flex-shrink-0"
+        >
+          {copied ? (
+            <span className="text-xs text-primary font-medium flex items-center gap-1">
+              <Check className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" /> Copied
+            </span>
+          ) : (
+            <Link2 className="w-4 h-4" />
+          )}
+        </button>
+      </div>
 
       <div className="mb-4">
         <StudyMarkTools

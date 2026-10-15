@@ -35,6 +35,14 @@ async function start() {
 
   if (hasStaticPage) ReactDOM.hydrateRoot(root, app);
   else ReactDOM.createRoot(root).render(app);
+
+  if ('serviceWorker' in navigator && import.meta.env.PROD) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('/sw.js').catch((err) => {
+        console.warn('ServiceWorker registration failed:', err);
+      });
+    });
+  }
 }
 
 void start().catch((error: unknown) => {

@@ -1,6 +1,6 @@
 import { useParams, Link, useSearchParams, useLocation } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
-import { ChevronRight, ChevronLeft, BookOpen, ChevronDown, ChevronUp, Image as ImageIcon, Search, Brain, Layers, History, Loader2, FileText, List } from 'lucide-react';
+import { ChevronRight, ChevronLeft, BookOpen, ChevronDown, ChevronUp, Image as ImageIcon, Search, Brain, Layers, History, Loader2, FileText, List, Link2, Check } from 'lucide-react';
 import { useState, useMemo, useEffect, type CSSProperties } from 'react';
 import { getAllAIMChapters, getAIMChapter, AIMChapter, AIMChapterMeta, AIMSection, AIMSubsection, getQuizForAIMChapter, getFlashcardsForAIMChapter } from '../data';
 import type { SearchResult } from '../data/search';
@@ -14,6 +14,7 @@ import { useReaderPreferences } from '../hooks/useReaderPreferences';
 import { ReferenceFigures } from '../components/ReferenceFigures';
 import { formatAIMChapterBadge, formatAIMChapterLabel } from '../lib/aim';
 import { useRouteData } from '../context/route-data';
+import { MobileTableOfContents } from '../components/MobileTableOfContents';
 
 // Content search result for chapter listing
 interface ChapterSearchMatch {
@@ -397,6 +398,48 @@ function AIMChapterView({
   // Memoize sections to avoid lint warning
   const sections = useMemo(() => chapter.sections || [], [chapter.sections]);
 
+  const [activeSectionId, setActiveSectionId] = useState<string>('');
+
+  const tocItems = useMemo(
+    () =>
+      sections.map((s) => ({
+        id: s.section,
+        label: `§ ${s.section}`,
+        title: s.title,
+      })),
+    [sections]
+  );
+
+  useEffect(() => {
+    if (typeof window === 'undefined' || !('IntersectionObserver' in window)) return;
+    if (sections.length === 0) return;
+
+    const elements = sections
+      .map((s) => document.getElementById(s.section))
+      .filter((el): el is HTMLElement => el !== null);
+
+    if (elements.length === 0) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries.filter((e) => e.isIntersecting);
+        if (visible.length > 0) {
+          const sorted = visible.sort(
+            (a, b) => Math.abs(a.boundingClientRect.top - 100) - Math.abs(b.boundingClientRect.top - 100)
+          );
+          setActiveSectionId(sorted[0].target.id);
+        }
+      },
+      {
+        rootMargin: '-80px 0px -60% 0px',
+        threshold: [0, 0.25],
+      }
+    );
+
+    elements.forEach((el) => observer.observe(el));
+    return () => observer.disconnect();
+  }, [sections]);
+
   // Filter sections if search is active
   const filteredSections = useMemo(() => {
     if (!searchQuery) return sections;
@@ -506,17 +549,24 @@ function AIMChapterView({
               Sections ({sections.length})
             </h2>
             <nav className="space-y-1.5">
-              {sections.map((section) => (
-                <a
-                  key={section.section}
-                  href={`#${section.section}`}
-                  className="block text-xs text-muted-foreground hover:text-primary hover:bg-accent/50 px-2.5 py-2 rounded-lg transition-colors truncate"
-                  title={`§ ${section.section} - ${section.title}`}
-                >
-                  <span className="font-semibold text-foreground/80 mr-1">{section.section}</span>
-                  {section.title}
-                </a>
-              ))}
+              {sections.map((section) => {
+                const isActive = activeSectionId === section.section;
+                return (
+                  <a
+                    key={section.section}
+                    href={`#${section.section}`}
+                    className={`block text-xs px-2.5 py-2 rounded-lg transition-colors truncate ${
+                      isActive
+                        ? 'bg-primary/10 text-primary font-semibold border-l-2 border-primary'
+                        : 'text-muted-foreground hover:text-primary hover:bg-accent/50'
+                    }`}
+                    title={`§ ${section.section} - ${section.title}`}
+                  >
+                    <span className="font-semibold text-foreground/80 mr-1">{section.section}</span>
+                    {section.title}
+                  </a>
+                );
+              })}
             </nav>
           </aside>
         )}
@@ -540,28 +590,13 @@ function AIMChapterView({
             </div>
           </div>
 
-          {/* Mobile Collapsible Table of Contents Accordion */}
+          {/* Mobile Table of Contents Drawer */}
           {!searchQuery && sections.length > 0 && (
-            <details className="group bg-card rounded-xl p-4 border border-border mb-6 lg:hidden cursor-pointer">
-              <summary className="flex items-center justify-between text-sm font-semibold text-foreground select-none">
-                <span className="flex items-center gap-2">
-                  <List className="w-4 h-4 text-primary" />
-                  Table of Contents ({sections.length} sections)
-                </span>
-                <ChevronRight className="w-4 h-4 transition-transform group-open:rotate-90" />
-              </summary>
-              <nav className="mt-4 space-y-2 max-h-60 overflow-y-auto border-t pt-3">
-                {sections.map((section) => (
-                  <a
-                    key={section.section}
-                    href={`#${section.section}`}
-                    className="block text-sm text-muted-foreground hover:text-primary py-1.5 border-b border-border/50 last:border-0"
-                  >
-                    {section.section}. {section.title || 'Untitled'}
-                  </a>
-                ))}
-              </nav>
-            </details>
+            <MobileTableOfContents
+              title={`AIM ${formatAIMChapterLabel(chapter.chapter)} Contents`}
+              items={tocItems}
+              activeId={activeSectionId}
+            />
           )}
 
           {/* Sections */}
@@ -723,7 +758,19 @@ function SectionView({
   }, [isHighlighted]);
   
   const effectiveQuery = searchQuery || highlightTerm || '';
-  
+  const [copied, setCopied] = useState(false);
+
+  const handleCopyLink = async () => {
+    const url = `${window.location.origin}/aim/${chapterId}#${section.section}`;
+    try {
+      await navigator.clipboard.writeText(url);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch {
+      // ignore
+    }
+  };
+
   return (
     <div
       id={section.section}
@@ -731,15 +778,15 @@ function SectionView({
         isFlashed ? 'ring-2 ring-primary bg-primary/5' : ''
       }`}
     >
-      <button
-        onClick={onToggle}
-        aria-expanded={isExpanded}
-        aria-controls={`section-${section.section}-content`}
-        aria-label={`${isExpanded ? 'Collapse' : 'Expand'} AIM ${section.section}`}
-        className="w-full flex items-center justify-between p-6 text-left"
-      >
-        <div className="flex items-center gap-3 pr-4">
-          <h2 className="text-lg font-semibold text-foreground">
+      <div className="w-full flex items-center justify-between p-6">
+        <button
+          onClick={onToggle}
+          aria-expanded={isExpanded}
+          aria-controls={`section-${section.section}-content`}
+          aria-label={`${isExpanded ? 'Collapse' : 'Expand'} AIM ${section.section}`}
+          className="flex-1 flex items-center gap-3 pr-4 text-left group"
+        >
+          <h2 className="text-lg font-semibold text-foreground group-hover:text-primary transition-colors">
             <HighlightText text={section.section} query={effectiveQuery} />. <HighlightText text={section.title || ''} query={effectiveQuery} />
           </h2>
           {hasFigures && (
@@ -748,13 +795,39 @@ function SectionView({
               {section.figures!.length}
             </span>
           )}
+        </button>
+        <div className="flex items-center gap-1.5 flex-shrink-0">
+          <button
+            type="button"
+            onClick={handleCopyLink}
+            title="Copy link to this section"
+            aria-label={`Copy link to section ${section.section}`}
+            className="text-muted-foreground hover:text-primary p-2 rounded-lg hover:bg-accent transition-colors"
+          >
+            {copied ? (
+              <span className="text-xs text-primary font-medium flex items-center gap-1">
+                <Check className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" /> Copied
+              </span>
+            ) : (
+              <Link2 className="w-4 h-4" />
+            )}
+          </button>
+          <button
+            type="button"
+            onClick={onToggle}
+            aria-expanded={isExpanded}
+            aria-controls={`section-${section.section}-content`}
+            aria-label={`${isExpanded ? 'Collapse' : 'Expand'} AIM ${section.section}`}
+            className="text-muted-foreground hover:text-primary p-2 rounded-lg hover:bg-accent transition-colors"
+          >
+            {isExpanded ? (
+              <ChevronUp className="w-5 h-5 flex-shrink-0" />
+            ) : (
+              <ChevronDown className="w-5 h-5 flex-shrink-0" />
+            )}
+          </button>
         </div>
-        {isExpanded ? (
-          <ChevronUp className="w-5 h-5 text-muted-foreground flex-shrink-0" />
-        ) : (
-          <ChevronDown className="w-5 h-5 text-muted-foreground flex-shrink-0" />
-        )}
-      </button>
+      </div>
 
       {isExpanded && (
         <div id={`section-${section.section}-content`} className="px-6 pb-6 space-y-6 border-t border-border pt-4">

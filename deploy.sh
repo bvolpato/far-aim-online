@@ -258,6 +258,8 @@ NODE
             --recursive --exclude='(?:assets/|search/(?!.*\.html$)|(?:index|spa|404)\.html$|sitemap\.xml$)' \
             "$ROOT_DIR/web/dist" "$GCS_BUCKET"
         set_cache_control_if_needed "public,max-age=0,must-revalidate" "$GCS_BUCKET/robots.txt"
+        set_cache_control_if_needed "public,max-age=0,must-revalidate" "$GCS_BUCKET/sw.js"
+        set_cache_control_if_needed "public,max-age=0,must-revalidate" "$GCS_BUCKET/manifest.webmanifest"
 
         HTML_OBJECTS=("$GCS_BUCKET/index.html")
         if [ -s "$ROUTE_LIST" ]; then
