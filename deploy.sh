@@ -12,7 +12,16 @@ SKIP_TESTS=false
 SKIP_BUILD=false
 DEPLOY_TARGET="web"
 GCS_BUCKET="${GCS_BUCKET:-gs://faraim.online}"
-GCLOUD_ACCOUNT="${GCLOUD_ACCOUNT:-${CLOUDSDK_CORE_ACCOUNT:-}}"
+if [ -z "${GITHUB_ACTIONS:-}" ]; then
+    DEFAULT_GCLOUD_ACCOUNT="brunocvcunha@gmail.com"
+    DEFAULT_GCLOUD_PROJECT="lightning-202103"
+else
+    DEFAULT_GCLOUD_ACCOUNT=""
+    DEFAULT_GCLOUD_PROJECT=""
+fi
+
+GCLOUD_ACCOUNT="${GCLOUD_ACCOUNT:-${CLOUDSDK_CORE_ACCOUNT:-$DEFAULT_GCLOUD_ACCOUNT}}"
+GCLOUD_PROJECT="${GCLOUD_PROJECT:-${CLOUDSDK_CORE_PROJECT:-$DEFAULT_GCLOUD_PROJECT}}"
 GCLOUD_CONFIG="${GCLOUD_CONFIG:-${CLOUDSDK_ACTIVE_CONFIG_NAME:-}}"
 
 usage() {
@@ -26,22 +35,24 @@ Usage:
   ./deploy.sh [options]
 
 Options:
-  --account=EMAIL Specify gcloud account for deploy without changing default.
-  --config=NAME   Specify gcloud configuration name for deploy.
-  --skip-tests    Skip ./test.sh before deploying.
-  --skip-build    Deploy existing web/dist without rebuilding (use with --skip-tests).
-  --ios           Select iOS target.
-  --android       Select Android target.
-  -h, --help      Show this help.
+  --account=EMAIL   Specify gcloud account for deploy without changing default.
+  --project=PROJECT Specify gcloud project for deploy without changing default.
+  --config=NAME     Specify gcloud configuration name for deploy.
+  --skip-tests      Skip ./test.sh before deploying.
+  --skip-build      Deploy existing web/dist without rebuilding (use with --skip-tests).
+  --ios             Select iOS target.
+  --android         Select Android target.
+  -h, --help        Show this help.
 
 Environment:
-  GCS_BUCKET      Web deploy bucket. Default: gs://faraim.online.
-  GCLOUD_ACCOUNT  Web deploy gcloud account.
-  GCLOUD_CONFIG   Web deploy gcloud configuration name.
+  GCS_BUCKET        Web deploy bucket. Default: gs://faraim.online.
+  GCLOUD_ACCOUNT    Web deploy gcloud account. Default: brunocvcunha@gmail.com (local).
+  GCLOUD_PROJECT    Web deploy gcloud project. Default: lightning-202103 (local).
+  GCLOUD_CONFIG     Web deploy gcloud configuration name.
 
 Available sessions:
-  ./deploy.sh     Test and deploy web/mobile target.
-  ./test.sh       Run Python, lint, unit, type, build, Playwright install, and E2E checks.
+  ./deploy.sh       Test and deploy web/mobile target.
+  ./test.sh         Run Python, lint, unit, type, build, Playwright install, and E2E checks.
 EOF
 }
 
@@ -49,6 +60,9 @@ for arg in "$@"; do
     case "$arg" in
         --account=*)
             GCLOUD_ACCOUNT="${arg#*=}"
+            ;;
+        --project=*)
+            GCLOUD_PROJECT="${arg#*=}"
             ;;
         --config=*)
             GCLOUD_CONFIG="${arg#*=}"
@@ -85,6 +99,9 @@ fi
 if [ -n "$GCLOUD_ACCOUNT" ]; then
     export CLOUDSDK_CORE_ACCOUNT="$GCLOUD_ACCOUNT"
 fi
+if [ -n "$GCLOUD_PROJECT" ]; then
+    export CLOUDSDK_CORE_PROJECT="$GCLOUD_PROJECT"
+fi
 if [ -n "$GCLOUD_CONFIG" ]; then
     export CLOUDSDK_ACTIVE_CONFIG_NAME="$GCLOUD_CONFIG"
 fi
@@ -94,6 +111,9 @@ echo "=================="
 echo "Target: $DEPLOY_TARGET"
 if [ -n "$GCLOUD_ACCOUNT" ]; then
     echo "Account: $GCLOUD_ACCOUNT"
+fi
+if [ -n "$GCLOUD_PROJECT" ]; then
+    echo "Project: $GCLOUD_PROJECT"
 fi
 if [ -n "$GCLOUD_CONFIG" ]; then
     echo "Configuration: $GCLOUD_CONFIG"
