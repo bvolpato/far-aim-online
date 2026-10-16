@@ -15,12 +15,14 @@ interface MobileTableOfContentsProps {
   title: string;
   items: TocItem[];
   activeId?: string;
+  onSelect?: (id: string) => void;
 }
 
 export function MobileTableOfContents({
   title,
   items,
   activeId,
+  onSelect,
 }: MobileTableOfContentsProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [filter, setFilter] = useState('');
@@ -68,6 +70,7 @@ export function MobileTableOfContents({
 
   const handleSelect = (id: string) => {
     setIsOpen(false);
+    onSelect?.(id);
     const element = document.getElementById(id);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth', block: 'start' });

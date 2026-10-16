@@ -16,14 +16,14 @@ test.describe('AIM reader', () => {
     await expect(page.getByRole('link', { name: /Chapter 3/ }).first()).toBeVisible();
   });
 
-  test('opens an AIM chapter with expanded sections and figures', async ({ page }) => {
+  test('opens an AIM chapter outline and expands figures', async ({ page }) => {
     await page.goto('/aim/1');
 
     await expect(page).toHaveTitle(/AIM Chapter 1/);
     await expect(page.getByRole('heading', { name: 'Air Navigation', exact: true })).toBeVisible();
     await expect(page.getByRole('heading', { name: /Sections \(24\)/ })).toBeVisible();
-    await expect(page.getByRole('button', { name: 'Collapse AIM 1-1-1', exact: true })).toBeVisible();
-    await page.getByRole('button', { name: 'Collapse AIM 1-1-8', exact: true }).scrollIntoViewIfNeeded();
+    await expect(page.getByRole('button', { name: 'Expand AIM 1-1-1', exact: true })).toBeVisible();
+    await page.getByRole('button', { name: 'Expand AIM 1-1-8', exact: true }).click();
     const figure = page.locator('#section-1-1-8-content button[aria-label^="Open"] img[src*="section-1-1-8"]').first();
     await expect(figure).toBeVisible();
     await figure.click();

@@ -355,7 +355,8 @@ function AIMChapterView({
   nextChapter: AIMChapterMeta | null;
 }) {
   const [searchParams] = useSearchParams();
-  // Start with all sections expanded for easier navigation
+  const { hash } = useLocation();
+  // Keep reference content readable before JavaScript and during hydration.
   const [expandedSections, setExpandedSections] = useState<Set<string>>(() => {
     return new Set(chapter.sections?.map(s => s.section) || []);
   });
@@ -380,9 +381,9 @@ function AIMChapterView({
     });
   }, [chapter.chapter, chapter.title, addToHistory]);
 
-  // Reset expanded sections when chapter changes (expand all by default)
   useEffect(() => {
-    setExpandedSections(new Set(chapter.sections?.map(s => s.section) || []));
+    setExpandedSections(new Set());
+    setSearchQuery('');
   }, [chapter.chapter, chapter.sections]);
 
   const toggleSection = (sectionId: string) => {
@@ -440,6 +441,16 @@ function AIMChapterView({
     return () => observer.disconnect();
   }, [sections]);
 
+  useEffect(() => {
+    const sectionId = hash.slice(1);
+    if (!sections.some(section => section.section === sectionId)) return;
+    setExpandedSections(previous => new Set([...previous, sectionId]));
+    const timer = setTimeout(() => {
+      document.getElementById(sectionId)?.scrollIntoView({ block: 'start' });
+    }, 100);
+    return () => clearTimeout(timer);
+  }, [hash, sections]);
+
   // Filter sections if search is active
   const filteredSections = useMemo(() => {
     if (!searchQuery) return sections;
@@ -463,7 +474,7 @@ function AIMChapterView({
 
   // Auto-expand sections that match search
   useEffect(() => {
-    if (searchQuery && filteredSections.length < sections.length) {
+    if (searchQuery) {
       const newExpanded = new Set<string>();
       filteredSections.forEach(s => newExpanded.add(s.section));
       setExpandedSections(newExpanded);
@@ -472,7 +483,7 @@ function AIMChapterView({
 
   // When there's a highlight term (from search), find and scroll to the first matching section
   useEffect(() => {
-    if (highlightTerm && sections.length > 0) {
+    if (highlightTerm && sections.length > 0 && !sections.some(section => hash === `#${section.section}`)) {
       const query = highlightTerm.toLowerCase();
       
       // Find the first section that contains the highlight term
@@ -508,7 +519,7 @@ function AIMChapterView({
         }, 3000);
       }
     }
-  }, [highlightTerm, sections]);
+  }, [highlightTerm, hash, sections]);
 
 
   return (
@@ -555,6 +566,7 @@ function AIMChapterView({
                   <a
                     key={section.section}
                     href={`#${section.section}`}
+                    onClick={() => setExpandedSections(previous => new Set([...previous, section.section]))}
                     className={`block text-xs px-2.5 py-2 rounded-lg transition-colors truncate ${
                       isActive
                         ? 'bg-primary/10 text-primary font-semibold border-l-2 border-primary'
@@ -596,10 +608,27 @@ function AIMChapterView({
               title={`AIM ${formatAIMChapterLabel(chapter.chapter)} Contents`}
               items={tocItems}
               activeId={activeSectionId}
+              onSelect={sectionId => setExpandedSections(previous => new Set([...previous, sectionId]))}
             />
           )}
 
           {/* Sections */}
+          <div className="mb-4 flex flex-wrap gap-2">
+            <button
+              type="button"
+              onClick={() => setExpandedSections(new Set(filteredSections.map(section => section.section)))}
+              className="min-h-11 rounded-lg border border-border bg-card px-4 text-sm font-medium hover:bg-accent"
+            >
+              Expand all
+            </button>
+            <button
+              type="button"
+              onClick={() => setExpandedSections(new Set())}
+              className="min-h-11 rounded-lg border border-border bg-card px-4 text-sm font-medium hover:bg-accent"
+            >
+              Collapse all
+            </button>
+          </div>
           <div className="space-y-6">
             {filteredSections.map((section) => (
               <SectionView

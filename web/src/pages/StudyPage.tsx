@@ -152,7 +152,7 @@ export function StudyPage() {
                             <Play className="w-5 h-5 text-primary" />
                             <h2 className="text-xl font-semibold text-foreground">Quick Start</h2>
                         </div>
-                        <div className="grid sm:grid-cols-3 gap-3">
+                        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                             {quickStartQuizzes.map((quiz) => (
                                 <Link
                                     key={quiz.id}
@@ -180,7 +180,7 @@ export function StudyPage() {
 
                     {/* Certificate Study Paths */}
                     <section>
-                        <div className="flex items-center justify-between mb-6">
+                        <div className="mb-6 flex flex-wrap items-center justify-between gap-3">
                             <div className="flex items-center gap-2">
                                 <Route className="w-5 h-5 text-cyan-600 dark:text-cyan-400" />
                                 <h2 className="text-xl font-semibold text-foreground">Certificate Paths</h2>
@@ -401,7 +401,7 @@ export function StudyPage() {
 
                     {/* Quizzes Section */}
                     <section>
-                        <div className="flex items-center justify-between mb-6">
+                        <div className="mb-6 flex flex-wrap items-center justify-between gap-3">
                             <div className="flex items-center gap-2">
                                 <Brain className="w-5 h-5 text-indigo-600 dark:text-indigo-400" />
                                 <h2 className="text-xl font-semibold text-foreground">Practice Quizzes</h2>
@@ -412,9 +412,9 @@ export function StudyPage() {
                             </Button>
                         </div>
 
-                        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                        <div className="grid min-w-0 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                             {/* FAR Quizzes */}
-                            <Card>
+                            <Card className="min-w-0">
                                 <CardHeader className="pb-3">
                                     <div className="flex items-center gap-2">
                                         <FileText className="w-4 h-4 text-blue-600" />
@@ -427,9 +427,9 @@ export function StudyPage() {
                                         <Link
                                             key={q.id}
                                             to={`/quizzes/${q.id}`}
-                                            className="flex items-center justify-between text-sm hover:text-primary transition-colors py-1"
+                                            className="flex min-h-11 min-w-0 items-center justify-between gap-2 py-2 text-sm transition-colors hover:text-primary"
                                         >
-                                            <span className="truncate">{q.title}</span>
+                                            <span className="min-w-0 flex-1 break-words">{q.title}</span>
                                             <Badge variant="secondary" className="shrink-0 ml-2">
                                                 {q.questionCount}q
                                             </Badge>
@@ -447,7 +447,7 @@ export function StudyPage() {
                             </Card>
 
                             {/* AIM Quizzes */}
-                            <Card>
+                            <Card className="min-w-0">
                                 <CardHeader className="pb-3">
                                     <div className="flex items-center gap-2">
                                         <BookOpen className="w-4 h-4 text-emerald-600" />
@@ -460,9 +460,9 @@ export function StudyPage() {
                                         <Link
                                             key={q.id}
                                             to={`/quizzes/${q.id}`}
-                                            className="flex items-center justify-between text-sm hover:text-primary transition-colors py-1"
+                                            className="flex min-h-11 min-w-0 items-center justify-between gap-2 py-2 text-sm transition-colors hover:text-primary"
                                         >
-                                            <span className="truncate">{q.title}</span>
+                                            <span className="min-w-0 flex-1 break-words">{q.title}</span>
                                             <Badge variant="secondary" className="shrink-0 ml-2">
                                                 {q.questionCount}q
                                             </Badge>
@@ -480,7 +480,7 @@ export function StudyPage() {
                             </Card>
 
                             {/* Misc Quizzes */}
-                            <Card>
+                            <Card className="min-w-0">
                                 <CardHeader className="pb-3">
                                     <div className="flex items-center gap-2">
                                         <Target className="w-4 h-4 text-rose-600" />
@@ -493,9 +493,9 @@ export function StudyPage() {
                                         <Link
                                             key={q.id}
                                             to={`/quizzes/${q.id}`}
-                                            className="flex items-center justify-between text-sm hover:text-primary transition-colors py-1"
+                                            className="flex min-h-11 min-w-0 items-center justify-between gap-2 py-2 text-sm transition-colors hover:text-primary"
                                         >
-                                            <span className="truncate">{q.title}</span>
+                                            <span className="min-w-0 flex-1 break-words">{q.title}</span>
                                             <Badge variant="secondary" className="shrink-0 ml-2">
                                                 {q.questionCount}q
                                             </Badge>
@@ -521,9 +521,9 @@ export function StudyPage() {
                             </Button>
                         </div>
 
-                        <div className="grid sm:grid-cols-2 gap-4">
+                        <div className="grid min-w-0 sm:grid-cols-2 gap-4">
                             {/* FAR Flashcards */}
-                            <Card>
+                            <Card className="min-w-0">
                                 <CardHeader className="pb-3">
                                     <div className="flex items-center gap-2">
                                         <FileText className="w-4 h-4 text-blue-600" />
@@ -536,9 +536,9 @@ export function StudyPage() {
                                         <Link
                                             key={d.id}
                                             to={`/flashcards/${d.id}`}
-                                            className="flex items-center justify-between text-sm hover:text-primary transition-colors py-1"
+                                            className="flex min-h-11 min-w-0 items-center justify-between gap-2 py-2 text-sm transition-colors hover:text-primary"
                                         >
-                                            <span className="truncate">{d.title}</span>
+                                            <span className="min-w-0 flex-1 break-words">{d.title}</span>
                                             <Badge variant="secondary" className="shrink-0 ml-2">
                                                 {d.cardCount} cards
                                             </Badge>
@@ -548,7 +548,7 @@ export function StudyPage() {
                             </Card>
 
                             {/* AIM Flashcards */}
-                            <Card>
+                            <Card className="min-w-0">
                                 <CardHeader className="pb-3">
                                     <div className="flex items-center gap-2">
                                         <BookOpen className="w-4 h-4 text-emerald-600" />
@@ -561,9 +561,9 @@ export function StudyPage() {
                                         <Link
                                             key={d.id}
                                             to={`/flashcards/${d.id}`}
-                                            className="flex items-center justify-between text-sm hover:text-primary transition-colors py-1"
+                                            className="flex min-h-11 min-w-0 items-center justify-between gap-2 py-2 text-sm transition-colors hover:text-primary"
                                         >
-                                            <span className="truncate">{d.title}</span>
+                                            <span className="min-w-0 flex-1 break-words">{d.title}</span>
                                             <Badge variant="secondary" className="shrink-0 ml-2">
                                                 {d.cardCount} cards
                                             </Badge>

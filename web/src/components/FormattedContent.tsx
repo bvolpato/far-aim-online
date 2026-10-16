@@ -32,7 +32,7 @@ export function FormattedContent({
   const elements = parseContent(displayText, highlight, tableCaption);
   
   return (
-    <div className={`whitespace-pre-line ${className}`} style={style}>
+    <div className={`whitespace-pre-line [overflow-wrap:anywhere] ${className}`} style={style}>
       {elements}
     </div>
   );
