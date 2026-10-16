@@ -784,49 +784,42 @@ function SectionView({
           aria-expanded={isExpanded}
           aria-controls={`section-${section.section}-content`}
           aria-label={`${isExpanded ? 'Collapse' : 'Expand'} AIM ${section.section}`}
-          className="flex-1 flex items-center gap-3 pr-4 text-left group"
+          className="flex-1 flex items-center justify-between gap-3 pr-4 text-left group"
         >
-          <h2 className="text-lg font-semibold text-foreground group-hover:text-primary transition-colors">
-            <HighlightText text={section.section} query={effectiveQuery} />. <HighlightText text={section.title || ''} query={effectiveQuery} />
-          </h2>
-          {hasFigures && (
-            <span className="inline-flex items-center gap-1 px-2 py-0.5 bg-emerald-100 dark:bg-emerald-900/50 text-emerald-700 dark:text-emerald-300 text-xs rounded-full">
-              <ImageIcon className="w-3 h-3" />
-              {section.figures!.length}
-            </span>
-          )}
-        </button>
-        <div className="flex items-center gap-1.5 flex-shrink-0">
-          <button
-            type="button"
-            onClick={handleCopyLink}
-            title="Copy link to this section"
-            aria-label={`Copy link to section ${section.section}`}
-            className="text-muted-foreground hover:text-primary p-2 rounded-lg hover:bg-accent transition-colors"
-          >
-            {copied ? (
-              <span className="text-xs text-primary font-medium flex items-center gap-1">
-                <Check className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" /> Copied
+          <div className="flex items-center gap-3">
+            <h2 className="text-lg font-semibold text-foreground group-hover:text-primary transition-colors">
+              <HighlightText text={section.section} query={effectiveQuery} />. <HighlightText text={section.title || ''} query={effectiveQuery} />
+            </h2>
+            {hasFigures && (
+              <span className="inline-flex items-center gap-1 px-2 py-0.5 bg-emerald-100 dark:bg-emerald-900/50 text-emerald-700 dark:text-emerald-300 text-xs rounded-full">
+                <ImageIcon className="w-3 h-3" />
+                {section.figures!.length}
               </span>
-            ) : (
-              <Link2 className="w-4 h-4" />
             )}
-          </button>
-          <button
-            type="button"
-            onClick={onToggle}
-            aria-expanded={isExpanded}
-            aria-controls={`section-${section.section}-content`}
-            aria-label={`${isExpanded ? 'Collapse' : 'Expand'} AIM ${section.section}`}
-            className="text-muted-foreground hover:text-primary p-2 rounded-lg hover:bg-accent transition-colors"
-          >
+          </div>
+          <span className="text-muted-foreground group-hover:text-primary transition-colors">
             {isExpanded ? (
               <ChevronUp className="w-5 h-5 flex-shrink-0" />
             ) : (
               <ChevronDown className="w-5 h-5 flex-shrink-0" />
             )}
-          </button>
-        </div>
+          </span>
+        </button>
+        <button
+          type="button"
+          onClick={handleCopyLink}
+          title="Copy link to this section"
+          aria-label={`Copy link to section ${section.section}`}
+          className="text-muted-foreground hover:text-primary p-2 rounded-lg hover:bg-accent transition-colors flex-shrink-0"
+        >
+          {copied ? (
+            <span className="text-xs text-primary font-medium flex items-center gap-1">
+              <Check className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" /> Copied
+            </span>
+          ) : (
+            <Link2 className="w-4 h-4" />
+          )}
+        </button>
       </div>
 
       {isExpanded && (

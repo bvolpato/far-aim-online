@@ -217,7 +217,7 @@ export function Layout({ children }: LayoutProps) {
                 to="/study#saved-study-marks"
                 title={stats.saved > 0 ? `${stats.saved} saved reference${stats.saved !== 1 ? 's' : ''}` : 'Saved references'}
                 aria-label={stats.saved > 0 ? `${stats.saved} saved references` : 'Saved references'}
-                className="relative flex items-center justify-center h-9 w-9 rounded-lg text-muted-foreground hover:text-foreground hover:bg-accent transition-colors"
+                className="relative hidden sm:flex items-center justify-center h-9 w-9 rounded-lg text-muted-foreground hover:text-foreground hover:bg-accent transition-colors"
               >
                 <Bookmark className={cn('h-4 w-4', stats.saved > 0 && 'text-primary fill-primary/20')} />
                 {stats.saved > 0 && (
