@@ -3,6 +3,9 @@ const CACHE_NAME = 'far-aim-online-v1';
 const STATIC_PRECACHE = [
   '/',
   '/manifest.webmanifest',
+  '/apple-touch-icon.png',
+  '/app-icon-192.png',
+  '/app-icon-512.png',
   '/app-icon.svg',
   '/favicon.svg',
 ];

@@ -30,23 +30,13 @@ struct AircraftMark: View {
     var foregroundColor: Color = .white
 
     var body: some View {
-        ZStack {
-            RoundedRectangle(cornerRadius: size * 0.3, style: .continuous)
-                .fill(
-                    LinearGradient(
-                        colors: [AviationTheme.accent, AviationTheme.sky],
-                        startPoint: .bottomLeading,
-                        endPoint: .topTrailing
-                    )
-                )
-
-            Image(systemName: "airplane")
-                .font(.system(size: size * 0.46, weight: .semibold))
-                .foregroundStyle(foregroundColor)
-                .rotationEffect(.degrees(-45))
-        }
-        .frame(width: size, height: size)
-        .accessibilityHidden(true)
+        Image("AppLogo")
+            .resizable()
+            .aspectRatio(contentMode: .fit)
+            .frame(width: size, height: size)
+            .clipShape(RoundedRectangle(cornerRadius: size * 0.22, style: .continuous))
+            .shadow(color: Color.black.opacity(0.18), radius: 4, x: 0, y: 2)
+            .accessibilityHidden(true)
     }
 }
 
