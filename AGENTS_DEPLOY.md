@@ -30,10 +30,16 @@ Hashed assets and legacy search indexes remain available for older open tabs.
 The deploy removes gzip upload's `no-transform` directive so Cloudflare can
 negotiate Brotli or gzip. It syncs to `gs://faraim.online` with `gcloud storage` and
 configures the bucket website main page to `index.html` and error page to
-`404.html`. Override the bucket with:
+`404.html`.
+
+Local deploys automatically scope `gcloud` to account `brunocvcunha@gmail.com`
+and project `lightning-202103` using environment variables without altering the
+system's active `gcloud` configuration or default account. Override with:
 
 ```bash
-GCS_BUCKET=gs://bucket-name ./deploy.sh --skip-tests
+./deploy.sh --account=user@example.com --project=project-id
+# or via environment
+GCS_BUCKET=gs://bucket-name GCLOUD_ACCOUNT=user@example.com ./deploy.sh --skip-tests
 ```
 
 Cloudflare must explicitly cache HTML and JSON, which are not cached by default.
