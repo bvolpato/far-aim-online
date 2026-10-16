@@ -12,6 +12,8 @@ SKIP_TESTS=false
 SKIP_BUILD=false
 DEPLOY_TARGET="web"
 GCS_BUCKET="${GCS_BUCKET:-gs://faraim.online}"
+GCLOUD_ACCOUNT="${GCLOUD_ACCOUNT:-${CLOUDSDK_CORE_ACCOUNT:-}}"
+GCLOUD_CONFIG="${GCLOUD_CONFIG:-${CLOUDSDK_ACTIVE_CONFIG_NAME:-}}"
 
 usage() {
     cat <<'EOF'
@@ -24,6 +26,8 @@ Usage:
   ./deploy.sh [options]
 
 Options:
+  --account=EMAIL Specify gcloud account for deploy without changing default.
+  --config=NAME   Specify gcloud configuration name for deploy.
   --skip-tests    Skip ./test.sh before deploying.
   --skip-build    Deploy existing web/dist without rebuilding (use with --skip-tests).
   --ios           Select iOS target.
@@ -32,6 +36,8 @@ Options:
 
 Environment:
   GCS_BUCKET      Web deploy bucket. Default: gs://faraim.online.
+  GCLOUD_ACCOUNT  Web deploy gcloud account.
+  GCLOUD_CONFIG   Web deploy gcloud configuration name.
 
 Available sessions:
   ./deploy.sh     Test and deploy web/mobile target.
@@ -41,6 +47,12 @@ EOF
 
 for arg in "$@"; do
     case "$arg" in
+        --account=*)
+            GCLOUD_ACCOUNT="${arg#*=}"
+            ;;
+        --config=*)
+            GCLOUD_CONFIG="${arg#*=}"
+            ;;
         --skip-tests)
             SKIP_TESTS=true
             ;;
@@ -70,9 +82,22 @@ if [ "$SKIP_BUILD" = true ] && { [ "$DEPLOY_TARGET" != web ] || [ "$SKIP_TESTS" 
     exit 2
 fi
 
+if [ -n "$GCLOUD_ACCOUNT" ]; then
+    export CLOUDSDK_CORE_ACCOUNT="$GCLOUD_ACCOUNT"
+fi
+if [ -n "$GCLOUD_CONFIG" ]; then
+    export CLOUDSDK_ACTIVE_CONFIG_NAME="$GCLOUD_CONFIG"
+fi
+
 echo "FAR/AIM Pro deploy"
 echo "=================="
 echo "Target: $DEPLOY_TARGET"
+if [ -n "$GCLOUD_ACCOUNT" ]; then
+    echo "Account: $GCLOUD_ACCOUNT"
+fi
+if [ -n "$GCLOUD_CONFIG" ]; then
+    echo "Configuration: $GCLOUD_CONFIG"
+fi
 
 if [ "$SKIP_TESTS" = false ]; then
     "$ROOT_DIR/test.sh"
