@@ -23,12 +23,6 @@
           "originalUrl": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/images/aim0201_AutoA.png"
         },
         {
-          "src": "chapter2/section-2-1-2-img-2.png",
-          "alt": "2-Bar VASI",
-          "caption": "FIG 2-1-2 2-Bar VASI",
-          "originalUrl": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/images/aim0201_Auto9.png"
-        },
-        {
           "src": "chapter2/section-2-1-2-img-7.png",
           "alt": "Pulsating Visual Approach Slope Indicator",
           "caption": "FIG 2-1-2 Pulsating Visual Approach Slope Indicator",
@@ -372,12 +366,6 @@
           "originalUrl": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/images/aim0203_Auto24.png"
         },
         {
-          "src": "chapter2/section-2-3-3-img-2.png",
-          "alt": "Nonprecision Instrument Runway and Visual Runway Markings",
-          "caption": "FIG 2-3-3 Nonprecision Instrument Runway and Visual Runway Markings",
-          "originalUrl": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/images/aim0203_Auto23.png"
-        },
-        {
           "src": "chapter2/section-2-3-3-img-3.png",
           "alt": "Relocation of a Threshold with Markings for Taxiway Aligned with Runway",
           "caption": "FIG 2-3-3 Relocation of a Threshold with Markings for Taxiway Aligned with Runway",
@@ -506,12 +494,6 @@
           "originalUrl": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/images/aim0203_Auto1D.png"
         },
         {
-          "src": "chapter2/section-2-3-4-img-4.png",
-          "alt": "Dashed Markings",
-          "caption": "FIG 2-3-4 Dashed Markings",
-          "originalUrl": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/images/aim0203_Auto1C.png"
-        },
-        {
           "src": "chapter2/section-2-3-4-img-6.png",
           "alt": "Surface Painted Signs",
           "caption": "FIG 2-3-4 Surface Painted Signs",
@@ -531,12 +513,6 @@
           "alt": "Geographic Position Markings",
           "caption": "FIG 2-3-5 Geographic Position Markings",
           "originalUrl": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/images/aim0203_Auto19.png"
-        },
-        {
-          "src": "chapter2/section-2-3-5-img-2.png",
-          "alt": "Runway Holding Position Markings on Taxiway",
-          "caption": "FIG 2-3-5 Runway Holding Position Markings on Taxiway",
-          "originalUrl": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/images/aim0203_Auto18.png"
         },
         {
           "src": "chapter2/section-2-3-5-img-3.png",
@@ -566,22 +542,10 @@
       "subsections": [],
       "figures": [
         {
-          "src": "chapter2/section-2-3-6-img-1.png",
-          "alt": "Holding Position Markings: Taxiway/Taxiway Intersections",
-          "caption": "FIG 2-3-6 Holding Position Markings: Taxiway/Taxiway Intersections",
-          "originalUrl": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/images/aim0203_Auto15.png"
-        },
-        {
           "src": "chapter2/section-2-3-6-img-2.png",
           "alt": "Vehicle Roadway Markings",
           "caption": "FIG 2-3-6 Vehicle Roadway Markings",
           "originalUrl": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/images/aim0203_Auto14.png"
-        },
-        {
-          "src": "chapter2/section-2-3-6-img-3.png",
-          "alt": "Roadway Edge Stripes, White, Zipper Style",
-          "caption": "FIG 2-3-6 Roadway Edge Stripes, White, Zipper Style",
-          "originalUrl": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/images/aim0203_Auto13.png"
         },
         {
           "src": "chapter2/section-2-3-6-img-7.png",
@@ -752,14 +716,7 @@
       "title": "Runway Distance Remaining Signs",
       "content": "Runway distance remaining signs have a black background with a white numeral inscription and may be installed along one or both side(s) of the runway. The number on the signs indicates the distance (in thousands of feet) of landing runway remaining. The last sign (i.e., the sign with the numeral \"1\") will be located at least 950 feet from the runway end. FIG 2-3-41 (https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap2_section_3.html#2-3-13) shows an example of a runway distance remaining sign.\n\nFIG 2-3-13Runway Distance Remaining Sign Indicating 3,000 feet of Runway Remaining\nRunway Distance Remaining Sign Indicating 3,000 feet of Runway Remaining",
       "subsections": [],
-      "figures": [
-        {
-          "src": "chapter2/section-2-3-13-img-1.png",
-          "alt": "Runway Distance Remaining Sign Indicating 3,000 feet of Runway Remaining",
-          "caption": "FIG 2-3-13 Runway Distance Remaining Sign Indicating 3,000 feet of Runway Remaining",
-          "originalUrl": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/images/aim0203_Auto1.png"
-        }
-      ],
+      "figures": [],
       "tables": []
     },
     {

@@ -2350,12 +2350,6 @@
           "originalUrl": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/images/aim0503_Auto4.png"
         },
         {
-          "src": "chapter5/section-5-3-8-img-2.png",
-          "alt": "Holding Pattern Descriptive Terms",
-          "caption": "FIG 5-3-8 Holding Pattern Descriptive Terms",
-          "originalUrl": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/images/aim0503_Auto3.png"
-        },
-        {
           "src": "chapter5/section-5-3-8-img-3.png",
           "alt": "Holding Pattern Entry Procedures",
           "caption": "FIG 5-3-8 Holding Pattern Entry Procedures",
@@ -2512,12 +2506,6 @@
           "alt": "Examples of a TAA with Feeders from an Airway",
           "caption": "FIG 5-4-5 Examples of a TAA with Feeders from an Airway",
           "originalUrl": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/images/aim0504_Auto11.png"
-        },
-        {
-          "src": "chapter5/section-5-4-5-img-11.png",
-          "alt": "Minimum Vectoring Altitude Charts",
-          "caption": "FIG 5-4-5 Minimum Vectoring Altitude Charts",
-          "originalUrl": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/images/aim0504_Auto10.png"
         },
         {
           "src": "chapter5/section-5-4-5-img-12.png",
@@ -3282,14 +3270,7 @@
       "title": "ADIZ Boundaries and Designated Mountainous Areas",
       "content": "FIG 5-6-15Air Defense Identification Zone Boundaries Designated Mountainous Areas\nAir Defense Identification Zone Boundaries Designated Mountainous Areas",
       "subsections": [],
-      "figures": [
-        {
-          "src": "chapter5/section-5-6-15-img-1.png",
-          "alt": "Air Defense Identification Zone Boundaries Designated Mountainous Areas",
-          "caption": "FIG 5-6-15 Air Defense Identification Zone Boundaries Designated Mountainous Areas",
-          "originalUrl": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/images/aim0506_Auto0.png"
-        }
-      ],
+      "figures": [],
       "tables": []
     },
     {
