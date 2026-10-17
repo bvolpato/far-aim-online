@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-10-13",
+  "generatedAt": "2026-10-17",
   "appVersion": "1.1.0",
   "sources": [
     {
@@ -9,7 +9,7 @@
       "shortLabel": "FAR",
       "source": "eCFR Titles 14 and 49",
       "status": "Current snapshot",
-      "lastUpdated": "2026-08-13",
+      "lastUpdated": "2026-10-17",
       "itemCount": 213,
       "sectionCount": 6531,
       "coverage": "213 indexed parts, 200 content parts, 6,531 sections, 181 appendices and 591 figures",
@@ -29,7 +29,7 @@
       "lastUpdated": "2026-07-09",
       "itemCount": 12,
       "sectionCount": 438,
-      "coverage": "11 core chapters, change notes, 5 appendices, 438 sections and 212 figures",
+      "coverage": "12 indexed chapters, 438 sections and 193 figures",
       "officialUrl": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/",
       "notes": [
         "AIM chapters, change notes, appendices, figures and structured tables are bundled for offline reading.",
