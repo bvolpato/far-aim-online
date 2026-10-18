@@ -71,7 +71,7 @@ export function ReaderControls({
       {/* Popover Settings Panel */}
       {isOpen && (
         <div
-          className="absolute bottom-24 right-0 w-72 sm:w-80 rounded-2xl border border-border bg-card/95 p-4 shadow-xl backdrop-blur-md animate-fade-in flex flex-col gap-4 text-foreground"
+          className="absolute bottom-24 right-0 max-h-[calc(100dvh_-_11.5rem)] w-72 overflow-y-auto overscroll-contain rounded-2xl border border-border bg-card/95 p-4 shadow-xl backdrop-blur-md animate-fade-in flex flex-col gap-4 text-foreground sm:w-80"
           role="dialog"
           aria-label="Reader settings"
         >
