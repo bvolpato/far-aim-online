@@ -94,6 +94,32 @@ describe('FormattedContent', () => {
     expect(html).toContain('Row');
   });
 
+  it('keeps small tables intact and bounds large tables while retaining every source row', () => {
+    const makeTable = (rowCount: number) => [
+      '[TABLE]',
+      '| Hazard | Detail |',
+      ...Array.from({ length: rowCount }, (_, index) => `\n| Row ${index + 1} | Value ${index + 1} |`),
+      '[/TABLE]',
+    ].join('\n');
+    const smallTable = render(makeTable(50));
+    const largeTable = render(makeTable(51));
+    const renderedRows = (html: string) => {
+      const body = html.match(/<tbody[^>]*>([\s\S]*?)<\/tbody>/)?.[1] ?? '';
+      return [...body.matchAll(/<tr\b/g)].length;
+    };
+
+    expect(renderedRows(smallTable)).toBe(50);
+    expect(smallTable).not.toContain('Table pagination');
+    expect(renderedRows(largeTable)).toBe(25);
+    expect(largeTable).toContain('Rows 1–25 of 51');
+    expect(largeTable).toContain('aria-rowcount="52"');
+    expect(largeTable).toContain('aria-rowindex="26"');
+    expect(largeTable).toContain('<noscript>');
+    expect(largeTable).toContain('Read all table rows as plain text');
+    expect(largeTable).toContain('Row 51');
+    expect(largeTable).toMatch(/<button\b[^>]*disabled[^>]*>Next page<\/button>/);
+  });
+
   it('adds an accessible caption to raw crawler tables', () => {
     const html = render('[TABLE]\n| Heading |\n\n| Value |\n[/TABLE]');
 

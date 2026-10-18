@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { HighlightText } from './HighlightText';
 
@@ -29,7 +29,10 @@ export function FormattedContent({
   const displayText = stripTableBlocks
     ? text.replace(/\n*\[TABLE\][\s\S]*?\[\/TABLE\]\n*/g, '\n\n').trim()
     : text;
-  const elements = parseContent(displayText, highlight, tableCaption);
+  const elements = useMemo(
+    () => parseContent(displayText, highlight, tableCaption),
+    [displayText, highlight, tableCaption],
+  );
   
   return (
     <div className={`whitespace-pre-line [overflow-wrap:anywhere] ${className}`} style={style}>
@@ -85,6 +88,10 @@ interface RawTable {
   headers: string[];
   rows: string[][];
 }
+
+const PAGINATED_TABLE_ROW_LIMIT = 50;
+const TABLE_PAGE_SIZE = 25;
+const EMPTY_TABLE_HEADERS: string[] = [];
 
 function parseTableBlock(block: string): RawTable {
   const body = block.replace(/^\[TABLE\]\s*/, '').replace(/\s*\[\/TABLE\]$/, '');
@@ -146,40 +153,208 @@ function parseTableCells(group: string): string[] {
 }
 
 function RawTable({ table, highlight, caption }: { table: RawTable; highlight: string; caption: string }) {
-  const rows = table.rows.length > 0 ? table.rows : [table.headers];
-  const headers = table.rows.length > 0 ? table.headers : [];
+  const rows = useMemo(() => table.rows.length > 0 ? table.rows : [table.headers], [table]);
+  const headers = table.rows.length > 0 ? table.headers : EMPTY_TABLE_HEADERS;
+  const paginated = rows.length > PAGINATED_TABLE_ROW_LIMIT;
+  const normalizedHighlight = highlight.trim().toLowerCase();
+  const matchingRowIndexes = useMemo(() => {
+    if (!normalizedHighlight) return [];
+
+    const queryTokens = normalizedHighlight.includes(' ')
+      ? normalizedHighlight.split(/\s+/).filter((token) => token.length > 1)
+      : [];
+    const exactMatches: number[] = [];
+    const tokenMatches: number[] = [];
+
+    rows.forEach((row, index) => {
+      const cells = row.map((cell) => cell.toLowerCase());
+      if (cells.some((cell) => cell.includes(normalizedHighlight))) {
+        exactMatches.push(index);
+      } else if (queryTokens.length > 0 && cells.some((cell) => queryTokens.some((token) => cell.includes(token)))) {
+        tokenMatches.push(index);
+      }
+    });
+
+    return [...exactMatches, ...tokenMatches];
+  }, [normalizedHighlight, rows]);
+  const [pageIndex, setPageIndex] = useState(0);
+  const [activeMatchIndex, setActiveMatchIndex] = useState<number | null>(null);
+  const [isInteractive, setIsInteractive] = useState(false);
+  const pageCount = Math.ceil(rows.length / TABLE_PAGE_SIZE);
+  const visiblePageIndex = Math.max(0, Math.min(pageIndex, pageCount - 1));
+
+  useEffect(() => {
+    setIsInteractive(true);
+  }, []);
+
+  useEffect(() => {
+    if (!paginated) {
+      setPageIndex(0);
+      setActiveMatchIndex(null);
+      return;
+    }
+
+    const firstMatch = matchingRowIndexes[0];
+    setPageIndex(firstMatch === undefined ? 0 : Math.floor(firstMatch / TABLE_PAGE_SIZE));
+    setActiveMatchIndex(firstMatch === undefined ? null : 0);
+  }, [matchingRowIndexes, paginated, table]);
+
+  const pageStart = paginated ? visiblePageIndex * TABLE_PAGE_SIZE : 0;
+  const pageEnd = paginated ? Math.min(pageStart + TABLE_PAGE_SIZE, rows.length) : rows.length;
+  const visibleRows = rows.slice(pageStart, pageEnd);
+
+  const goToPage = (nextPage: number) => {
+    const boundedPage = Math.max(0, Math.min(nextPage, pageCount - 1));
+    const nextStart = boundedPage * TABLE_PAGE_SIZE;
+    const nextEnd = Math.min(nextStart + TABLE_PAGE_SIZE, rows.length);
+    const matchOnPage = matchingRowIndexes.findIndex((rowIndex) => rowIndex >= nextStart && rowIndex < nextEnd);
+
+    setPageIndex(boundedPage);
+    setActiveMatchIndex(matchOnPage < 0 ? null : matchOnPage);
+  };
+
+  const goToMatch = (matchIndex: number) => {
+    const boundedIndex = Math.max(0, Math.min(matchIndex, matchingRowIndexes.length - 1));
+    const rowIndex = matchingRowIndexes[boundedIndex];
+    if (rowIndex === undefined) return;
+
+    setActiveMatchIndex(boundedIndex);
+    setPageIndex(Math.floor(rowIndex / TABLE_PAGE_SIZE));
+  };
+
+  const fullTableText = useMemo(() => {
+    const sourceRows = headers.length > 0 ? [headers, ...rows] : rows;
+    return sourceRows
+      .map((row) => `| ${row.map((cell) => cell.replace(/\\/g, '\\\\').replace(/\|/g, '\\|')).join(' | ')} |`)
+      .join('\n');
+  }, [headers, rows]);
 
   return (
-    <div className="my-4 overflow-x-auto rounded-lg border border-border">
-      <table className="min-w-full divide-y divide-border">
-        <caption className="sr-only">{caption}</caption>
-        {headers.length > 0 && (
-          <thead className="bg-muted/60">
-            <tr>
-              {headers.map((header, index) => (
-                <th
-                  key={index}
-                  scope="col"
-                  className="px-3 py-2 text-left font-semibold text-foreground"
-                >
-                  <HighlightText text={header} query={highlight} />
-                </th>
-              ))}
-            </tr>
-          </thead>
-        )}
-        <tbody className="divide-y divide-border bg-card">
-          {rows.map((row, rowIndex) => (
-            <tr key={rowIndex}>
-              {row.map((cell, cellIndex) => (
-                <td key={cellIndex} className="px-3 py-2 align-top text-muted-foreground">
-                  <HighlightText text={cell} query={highlight} />
-                </td>
-              ))}
-            </tr>
-          ))}
-        </tbody>
-      </table>
+    <div className="my-4 rounded-lg border border-border">
+      <div className="overflow-x-auto rounded-t-lg">
+        <table
+          className="min-w-full divide-y divide-border"
+          aria-rowcount={rows.length + (headers.length > 0 ? 1 : 0)}
+        >
+          <caption className="sr-only">{caption}</caption>
+          {headers.length > 0 && (
+            <thead className="bg-muted/60">
+              <tr aria-rowindex={1}>
+                {headers.map((header, index) => (
+                  <th
+                    key={index}
+                    scope="col"
+                    className={`px-3 py-2 text-left font-semibold text-foreground ${paginated ? 'min-w-32' : ''}`}
+                  >
+                    <HighlightText text={header} query={highlight} />
+                  </th>
+                ))}
+              </tr>
+            </thead>
+          )}
+          <tbody className="divide-y divide-border bg-card">
+            {visibleRows.map((row, pageRowIndex) => {
+              const rowIndex = pageStart + pageRowIndex;
+              return (
+                <tr key={rowIndex} aria-rowindex={rowIndex + (headers.length > 0 ? 2 : 1)}>
+                  {row.map((cell, cellIndex) => (
+                    <td key={cellIndex} className={`px-3 py-2 align-top text-muted-foreground ${paginated ? 'min-w-32' : ''}`}>
+                      <HighlightText text={cell} query={highlight} />
+                    </td>
+                  ))}
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
+      {paginated && (
+        <div className="space-y-2 border-t border-border p-2 sm:p-3">
+          <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+            <p className="text-sm text-muted-foreground" aria-live="polite">
+              Rows {pageStart + 1}–{pageEnd} of {rows.length}
+            </p>
+            <div role="group" aria-label="Table pagination" className="table-pagination-controls flex flex-wrap gap-2">
+              <button
+                type="button"
+                onClick={() => goToPage(0)}
+                disabled={!isInteractive || visiblePageIndex === 0}
+                className="min-h-11 rounded-md border border-border px-3 text-sm font-medium text-foreground disabled:cursor-not-allowed disabled:opacity-50"
+              >
+                First page
+              </button>
+              <button
+                type="button"
+                onClick={() => goToPage(visiblePageIndex - 1)}
+                disabled={!isInteractive || visiblePageIndex === 0}
+                className="min-h-11 rounded-md border border-border px-3 text-sm font-medium text-foreground disabled:cursor-not-allowed disabled:opacity-50"
+              >
+                Previous page
+              </button>
+              <button
+                type="button"
+                onClick={() => goToPage(visiblePageIndex + 1)}
+                disabled={!isInteractive || visiblePageIndex >= pageCount - 1}
+                className="min-h-11 rounded-md border border-border px-3 text-sm font-medium text-foreground disabled:cursor-not-allowed disabled:opacity-50"
+              >
+                Next page
+              </button>
+              <button
+                type="button"
+                onClick={() => goToPage(pageCount - 1)}
+                disabled={!isInteractive || visiblePageIndex >= pageCount - 1}
+                className="min-h-11 rounded-md border border-border px-3 text-sm font-medium text-foreground disabled:cursor-not-allowed disabled:opacity-50"
+              >
+                Last page
+              </button>
+            </div>
+          </div>
+          {normalizedHighlight && (
+            <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+              <p className="text-sm text-muted-foreground" aria-live="polite">
+                {matchingRowIndexes.length === 0
+                  ? 'No matching rows in this table.'
+                  : `${matchingRowIndexes.length} highlighted row${matchingRowIndexes.length === 1 ? '' : 's'}; match ${activeMatchIndex === null ? 'not selected' : `${activeMatchIndex + 1} of ${matchingRowIndexes.length}, row ${matchingRowIndexes[activeMatchIndex] + 1}`}`}
+              </p>
+              {matchingRowIndexes.length > 0 && (
+                <div role="group" aria-label="Search matches in table" className="table-pagination-controls flex flex-wrap gap-2">
+                  <button
+                    type="button"
+                    onClick={() => goToMatch((activeMatchIndex ?? 0) - 1)}
+                    disabled={!isInteractive || activeMatchIndex === 0}
+                    aria-label="Previous matching row"
+                    className="min-h-11 rounded-md border border-border px-3 text-sm font-medium text-foreground disabled:cursor-not-allowed disabled:opacity-50"
+                  >
+                    Previous match
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => goToMatch((activeMatchIndex ?? -1) + 1)}
+                    disabled={!isInteractive || activeMatchIndex === matchingRowIndexes.length - 1}
+                    aria-label="Next matching row"
+                    className="min-h-11 rounded-md border border-border px-3 text-sm font-medium text-foreground disabled:cursor-not-allowed disabled:opacity-50"
+                  >
+                    Next match
+                  </button>
+                </div>
+              )}
+            </div>
+          )}
+        </div>
+      )}
+      {paginated && (
+        <noscript>
+          <style>{'.table-pagination-controls { display: none; }'}</style>
+          <details className="border-t border-border p-3">
+            <summary className="min-h-11 cursor-pointer py-2 font-medium text-foreground">
+              Read all table rows as plain text
+            </summary>
+            <pre className="max-h-96 overflow-auto whitespace-pre-wrap break-words text-sm text-muted-foreground">
+              {fullTableText}
+            </pre>
+          </details>
+        </noscript>
+      )}
     </div>
   );
 }
