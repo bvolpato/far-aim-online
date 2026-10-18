@@ -45,6 +45,36 @@ test.describe('FAR reader', () => {
     await expect(page.getByRole('button', { name: 'Comfort' })).toHaveAttribute('aria-pressed', 'true');
   });
 
+  test('keeps reader preferences reachable in short and standard mobile viewports', async ({ page }) => {
+    await page.goto('/far/61');
+
+    for (const viewport of [
+      { width: 320, height: 844 },
+      { width: 390, height: 844 },
+      { width: 667, height: 375 },
+    ]) {
+      await page.setViewportSize(viewport);
+      const toggle = page.getByRole('button', { name: 'Reader preferences' });
+      await toggle.click();
+
+      const dialog = page.getByRole('dialog', { name: 'Reader settings' });
+      const dialogBox = await dialog.boundingBox();
+      if (!dialogBox) throw new Error('Reader settings dialog has no visible box');
+      expect(dialogBox.y).toBeGreaterThanOrEqual(0);
+      expect(dialogBox.y + dialogBox.height).toBeLessThanOrEqual(viewport.height);
+
+      const reset = dialog.getByRole('button', { name: 'Reset reader controls' });
+      const resetBox = await reset.boundingBox();
+      if (!resetBox) throw new Error('Reader controls reset button has no visible box');
+      expect(resetBox.y).toBeGreaterThanOrEqual(0);
+      expect(resetBox.y + resetBox.height).toBeLessThanOrEqual(viewport.height);
+      await expect(dialog.getByText('Reader Settings')).toBeInViewport();
+
+      await reset.click();
+      await toggle.click();
+    }
+  });
+
   test('supports direct deep links to FAR sections', async ({ page }) => {
     await page.goto('/far/91#91.3');
 

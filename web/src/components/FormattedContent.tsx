@@ -113,9 +113,30 @@ function parseTableCells(group: string): string[] {
   if (trimmed.includes('|')) {
     return trimmed
       .split('\n')
-      .flatMap(line => line.split('|'))
-      .map(cell => cell.trim())
-      .filter(Boolean);
+      .flatMap(line => {
+        const cells: string[] = [];
+        let cell = '';
+
+        for (let index = 0; index < line.length; index += 1) {
+          const character = line[index];
+          const nextCharacter = line[index + 1];
+
+          if (character === '\\' && (nextCharacter === '|' || nextCharacter === '\\')) {
+            cell += nextCharacter;
+            index += 1;
+          } else if (character === '|') {
+            cells.push(cell);
+            cell = '';
+          } else {
+            cell += character;
+          }
+        }
+
+        cells.push(cell);
+        if (cells[0]?.trim() === '') cells.shift();
+        if (cells[cells.length - 1]?.trim() === '') cells.pop();
+        return cells.map(value => value.trim());
+      });
   }
 
   return trimmed

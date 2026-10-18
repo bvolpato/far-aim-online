@@ -169,7 +169,7 @@ export function GlossaryPage() {
   };
 
   return (
-    <div className="max-w-4xl mx-auto px-4 py-8 animate-fade-in">
+    <div className="max-w-4xl mx-auto px-4 py-6 sm:py-8 animate-fade-in">
       <Helmet>
         <title>Pilot/Controller Glossary | FAR/AIM Online</title>
         <meta name="description" content="Official FAA Pilot/Controller Glossary (PCG). Definitions of aeronautical terms used in the Air Traffic Control system." />
@@ -178,10 +178,10 @@ export function GlossaryPage() {
 
       <div className="mb-8">
         <div className="flex items-center gap-3 mb-2">
-          <div className="p-2 bg-purple-100 dark:bg-purple-900/50 rounded-lg text-purple-700 dark:text-purple-300">
+          <div className="shrink-0 p-2 bg-purple-100 dark:bg-purple-900/50 rounded-lg text-purple-700 dark:text-purple-300">
             <Book className="w-6 h-6" />
           </div>
-          <h1 className="text-3xl font-bold text-foreground">
+          <h1 className="min-w-0 text-2xl font-bold leading-tight text-foreground sm:text-3xl">
             Pilot/Controller Glossary
           </h1>
         </div>
@@ -231,7 +231,7 @@ export function GlossaryPage() {
                   disabled={!hasTerms}
                   aria-label={`Jump to terms starting with ${letter}`}
                   className={cn(
-                    'flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-lg font-semibold transition-colors',
+                    'flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-lg font-semibold transition-colors',
                     hasTerms
                       ? 'text-foreground hover:bg-primary/10 hover:text-primary active:bg-primary/20'
                       : 'text-muted-foreground/30 cursor-not-allowed'
@@ -262,12 +262,12 @@ export function GlossaryPage() {
               id={item.term}
               className="rounded-xl scroll-mt-24 transition-colors duration-500"
             >
-              <CardContent className="p-6">
+              <CardContent className="p-4 sm:p-6">
                 <h3 className="text-lg font-bold text-foreground mb-2">
                   {highlightMatch(item.term, query)}
                 </h3>
                 <div className="prose dark:prose-invert max-w-none text-muted-foreground">
-                  <p className="whitespace-pre-line">{renderDefinition(item.definition)}</p>
+                  <p className="whitespace-pre-line [overflow-wrap:anywhere]">{renderDefinition(item.definition)}</p>
                 </div>
               </CardContent>
             </Card>

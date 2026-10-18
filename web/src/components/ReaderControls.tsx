@@ -60,7 +60,7 @@ export function ReaderControls({
         size="icon"
         onClick={scrollToTop}
         className={cn(
-          'h-10 w-10 rounded-full border border-border shadow-md transition-all duration-300 bg-card hover:bg-accent text-foreground hover:scale-105 active:scale-95',
+          'h-11 w-11 rounded-full border border-border shadow-md transition-all duration-300 bg-card hover:bg-accent text-foreground hover:scale-105 active:scale-95',
           showScrollTop ? 'translate-y-0 opacity-100 scale-100' : 'translate-y-4 opacity-0 scale-75 pointer-events-none'
         )}
         aria-label="Scroll to top"
@@ -71,7 +71,7 @@ export function ReaderControls({
       {/* Popover Settings Panel */}
       {isOpen && (
         <div
-          className="absolute bottom-24 right-0 w-72 sm:w-80 rounded-2xl border border-border bg-card/95 p-4 shadow-xl backdrop-blur-md animate-fade-in flex flex-col gap-4 text-foreground"
+          className="absolute bottom-24 right-0 max-h-[calc(100dvh_-_11.5rem)] w-72 overflow-y-auto overscroll-contain rounded-2xl border border-border bg-card/95 p-4 shadow-xl backdrop-blur-md animate-fade-in flex flex-col gap-4 text-foreground sm:w-80"
           role="dialog"
           aria-label="Reader settings"
         >
@@ -85,7 +85,7 @@ export function ReaderControls({
               type="button"
               variant="ghost"
               size="icon"
-              className="h-7 w-7 text-muted-foreground hover:text-foreground"
+              className="h-11 w-11 text-muted-foreground hover:text-foreground"
               onClick={state.reset}
               aria-label="Reset reader controls"
             >
@@ -101,7 +101,7 @@ export function ReaderControls({
                 type="button"
                 variant="ghost"
                 size="icon"
-                className="h-8 w-8"
+                className="h-11 w-11"
                 onClick={state.decreaseFont}
                 disabled={!state.canDecreaseFont}
                 aria-label="Decrease reader text size"
@@ -115,7 +115,7 @@ export function ReaderControls({
                 type="button"
                 variant="ghost"
                 size="icon"
-                className="h-8 w-8"
+                className="h-11 w-11"
                 onClick={state.increaseFont}
                 disabled={!state.canIncreaseFont}
                 aria-label="Increase reader text size"
@@ -138,7 +138,7 @@ export function ReaderControls({
                     variant={state.preferences.density === option.value ? 'secondary' : 'ghost'}
                     size="sm"
                     className={cn(
-                      'h-7 text-xs px-1',
+                      'h-11 text-xs px-1',
                       state.preferences.density === option.value && 'bg-accent font-semibold text-foreground'
                     )}
                     onClick={() => state.setDensity(option.value)}

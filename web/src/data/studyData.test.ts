@@ -85,13 +85,14 @@ describe('lazy study data', () => {
     expect(fetch).toHaveBeenCalledTimes(1);
   });
 
-  it('reuses successfully fetched reference content across navigation', async () => {
+  it('reuses successfully fetched JSON assets across navigation', async () => {
     const chapter = { chapter: 1, title: 'Introduction', sections: [] };
     vi.mocked(fetch).mockResolvedValue(new Response(JSON.stringify(chapter), { status: 200 }));
-    const data = await import('./index');
+    const { fetchJsonAsset } = await import('./jsonAssets');
+    const loaders = { 'chapter1.json': '/assets/chapter1.json' };
 
-    await expect(data.getAIMChapter(1)).resolves.toMatchObject(chapter);
-    await expect(data.getAIMChapter(1)).resolves.toMatchObject(chapter);
+    await expect(fetchJsonAsset<typeof chapter>(loaders, 'chapter1.json')).resolves.toMatchObject(chapter);
+    await expect(fetchJsonAsset<typeof chapter>(loaders, 'chapter1.json')).resolves.toMatchObject(chapter);
     expect(fetch).toHaveBeenCalledTimes(1);
   });
 

@@ -697,39 +697,39 @@ function AIMChapterView({
 
           {/* Previous/Next Navigation */}
           <div className="mt-8 pt-8 border-t border-border">
-            <div className="flex items-center justify-between gap-4">
+            <div className="flex flex-col gap-3 sm:flex-row sm:items-stretch sm:justify-between sm:gap-4">
               {prevChapter ? (
                 <Link
                   to={`/aim/${prevChapter.chapter}`}
-                  className="flex-1 group flex items-center gap-3 p-4 bg-card rounded-xl border border-border hover:border-primary/30 hover:shadow-md transition-all"
+                  className="w-full min-w-0 group flex items-center gap-3 p-4 bg-card rounded-xl border border-border hover:border-primary/30 hover:shadow-md transition-all sm:flex-1"
                 >
-                  <ChevronLeft className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors" />
-                  <div className="text-left">
+                  <ChevronLeft className="w-5 h-5 shrink-0 text-muted-foreground group-hover:text-primary transition-colors" />
+                  <div className="text-left min-w-0">
                     <p className="text-xs text-muted-foreground uppercase tracking-wide">Previous</p>
-                    <p className="font-semibold text-foreground group-hover:text-primary transition-colors">
+                    <p className="font-semibold text-foreground group-hover:text-primary transition-colors truncate">
                       Ch. {prevChapter.chapter}: {prevChapter.title}
                     </p>
                   </div>
                 </Link>
               ) : (
-                <div className="flex-1" />
+                <div className="hidden sm:block sm:flex-1" />
               )}
               
               {nextChapter ? (
                 <Link
                   to={`/aim/${nextChapter.chapter}`}
-                  className="flex-1 group flex items-center justify-end gap-3 p-4 bg-card rounded-xl border border-border hover:border-primary/30 hover:shadow-md transition-all"
+                  className="w-full min-w-0 group flex items-center justify-end gap-3 p-4 bg-card rounded-xl border border-border hover:border-primary/30 hover:shadow-md transition-all sm:flex-1"
                 >
-                  <div className="text-right">
+                  <div className="text-right min-w-0">
                     <p className="text-xs text-muted-foreground uppercase tracking-wide">Next</p>
-                    <p className="font-semibold text-foreground group-hover:text-primary transition-colors">
+                    <p className="font-semibold text-foreground group-hover:text-primary transition-colors truncate">
                       Ch. {nextChapter.chapter}: {nextChapter.title}
                     </p>
                   </div>
-                  <ChevronRight className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors" />
+                  <ChevronRight className="w-5 h-5 shrink-0 text-muted-foreground group-hover:text-primary transition-colors" />
                 </Link>
               ) : (
-                <div className="flex-1" />
+                <div className="hidden sm:block sm:flex-1" />
               )}
             </div>
           </div>
@@ -807,16 +807,16 @@ function SectionView({
         isFlashed ? 'ring-2 ring-primary bg-primary/5' : ''
       }`}
     >
-      <div className="w-full flex items-center justify-between p-6">
+      <div className="flex w-full min-w-0 items-center justify-between p-4 sm:p-6">
         <button
           onClick={onToggle}
           aria-expanded={isExpanded}
           aria-controls={`section-${section.section}-content`}
           aria-label={`${isExpanded ? 'Collapse' : 'Expand'} AIM ${section.section}`}
-          className="flex-1 flex items-center justify-between gap-3 pr-4 text-left group"
+          className="flex min-w-0 flex-1 items-center justify-between gap-3 pr-3 text-left group sm:pr-4"
         >
-          <div className="flex items-center gap-3">
-            <h2 className="text-lg font-semibold text-foreground group-hover:text-primary transition-colors">
+          <div className="flex min-w-0 items-center gap-3">
+            <h2 className="min-w-0 break-words text-lg font-semibold text-foreground group-hover:text-primary transition-colors">
               <HighlightText text={section.section} query={effectiveQuery} />. <HighlightText text={section.title || ''} query={effectiveQuery} />
             </h2>
             {hasFigures && (
@@ -839,7 +839,7 @@ function SectionView({
           onClick={handleCopyLink}
           title="Copy link to this section"
           aria-label={`Copy link to section ${section.section}`}
-          className="text-muted-foreground hover:text-primary p-2 rounded-lg hover:bg-accent transition-colors flex-shrink-0"
+          className="flex min-h-11 min-w-11 flex-shrink-0 items-center justify-center rounded-lg p-2 text-muted-foreground transition-colors hover:bg-accent hover:text-primary"
         >
           {copied ? (
             <span className="text-xs text-primary font-medium flex items-center gap-1">
