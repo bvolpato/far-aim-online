@@ -4,13 +4,14 @@
   "number": "150/5340-26C",
   "title": "Maintenance of Airport Visual Aid Facilities",
   "status": "partial",
-  "fetched": "2026-07-14",
+  "fetched": "2026-10-17",
   "documentUrl": "https://www.faa.gov/regulations_policies/advisory_circulars/index.cfm/go/document.information/documentID/1024806",
   "pdfUrl": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/150-5340-26c.pdf",
   "sha256": "10b186b96742c8c7060b588eaf72ac288ef58ec7cc607f88111bacd830a1520f",
   "pageCount": 144,
-  "wordCount": 45760,
-  "ocrPageCount": 0,
+  "extractedPageCount": 143,
+  "wordCount": 45846,
+  "ocrPageCount": 1,
   "pages": [
     {
       "page": 1,
@@ -22,7 +23,7 @@
     },
     {
       "page": 3,
-      "text": "6/20/2014 AC 150/5340-26C\nTable of Contents Chapter 1. Introduction.  1\n1.0 General.  1\n1.1 Scope.  1\n1.2 Applicable Documents.  2\nChapter 2. Safety.  5\n2.0 General.  5\n2.1 Common Causes of Accidents.  5\n2.2 Safety Requirements.  6\n2.3 Safety Procedures and Guidelines.  8\n2.4 Electrical Hazards of Series Lighting Circuits.  8\n2.5 Safety Practices.  10\n2.6 Safety Boards.  13\n2.7 Safety Checklist.  14\n2.8 Safety Equipment in Vehicles.  14\n2.9 Electric Shock.  14\n2.10 Safety Training  15\n2.11 Safety Warning Signs/Danger Tags.  15\n2.12 Grounding and Bonding.  17\n2.13 Confined Spaces  17\n2.14 Lightning.  17\n2.15 Toxic Agents.  18\n2.16 Fire Extinguishers.  18\n2.17 First Aid.  21\nChapter 3. Maintenance Management.  23\n3.0 Maintenance Philosophy.  23\n3.1 Maintenance Schedule.  23\n3.2 Maintenance Records.  24\n3.3 Preventive Maintenance Program.  24\n3.4 Record Retention.  26\n3.5 Reference Library.  26\n3.6 Spare Part Provisioning  27\n3.7 When Lighted Navigational Aids are Identified as Suspect in an Aircraft Accident. .29\nChapter 4. Test Equipment.  31\n4.0 Introduction.  31\n4.1 Types of Equipment and Usage.  31\nChapter 5. Preventive Maintenance.  39\n5.0 General.  39\n5.1 Airport Lighting Vault.  39\n5.2 Constant Current Regulators (CCRs)  47\n5.3 Light Fixture and Base Maintenance.  51\n5.4 Illuminated Runway and Taxiway Guidance Signs.  68"
+      "text": "6/20/2014 AC 150/5340-26C\nTable of Contents\nChapter 1. Introduction.  1\n1.0 General.  1\n1.1 Scope.  1\n1.2 Applicable Documents.  2\nChapter 2. Safety.  5\n2.0 General.  5\n2.1 Common Causes of Accidents.  5\n2.2 Safety Requirements.  6\n2.3 Safety Procedures and Guidelines.  8\n2.4 Electrical Hazards of Series Lighting Circuits.  8\n2.5 Safety Practices.  10\n2.6 Safety Boards.  13\n2.7 Safety Checklist.  14\n2.8 Safety Equipment in Vehicles.  14\n2.9 Electric Shock.  14\n2.10 Safety Training  15\n2.11 Safety Warning Signs/Danger Tags.  15\n2.12 Grounding and Bonding.  17\n2.13 Confined Spaces  17\n2.14 Lightning.  17\n2.15 Toxic Agents.  18\n2.16 Fire Extinguishers.  18\n2.17 First Aid.  21\nChapter 3. Maintenance Management.  23\n3.0 Maintenance Philosophy.  23\n3.1 Maintenance Schedule.  23\n3.2 Maintenance Records.  24\n3.3 Preventive Maintenance Program.  24\n3.4 Record Retention.  26\n3.5 Reference Library.  26\n3.6 Spare Part Provisioning  27\n3.7 When Lighted Navigational Aids are Identified as Suspect in an Aircraft Accident. .29\nChapter 4. Test Equipment.  31\n4.0 Introduction.  31\n4.1 Types of Equipment and Usage.  31\nChapter 5. Preventive Maintenance.  39\n5.0 General.  39\n5.1 Airport Lighting Vault.  39\n5.2 Constant Current Regulators (CCRs)  47\n5.3 Light Fixture and Base Maintenance.  51\n5.4 Illuminated Runway and Taxiway Guidance Signs.  68"
     },
     {
       "page": 4,
@@ -30,7 +31,7 @@
     },
     {
       "page": 5,
-      "text": "6/20/2014 AC 150/5340-26C\nFigure 6-7. Two Load-to-Load Shorts  122\nFigure 6-8. Intentional Ground Test  123\nFigure 6-9. Intentional Ground Preventive Maintenance Tool  124\nFigure 6-10. Grounded Output Test  125\nFigure 6-11. Dangerous Isolation Transformer/Circuit Ground Faults  126\nList of Tables\nTable 5-1. Preventive Maintenance Inspection Schedule for Airport Lighting Vaults  47\nTable 5-2. 3-Step CCR Output Tolerances  50\nTable 5-3. 5-Step CCR Output Tolerances  51\nTable 5-4. Preventive Maintenance Inspection Schedule for Constant Current Regulators  51\nTable 5-5. Preventive Maintenance Inspection Schedule for Runway and Taxiway Elevated Edge Lights  59\nTable 5-6. Preventive Maintenance Schedule for In-pavement Runway and Taxiway Lighting 65 Table 5-7. Preventive Maintenance Schedule for Rotating Beacons  72\nTable 5-8. Preventive Maintenance Schedule for Lighted Wind Cones  74\nTable 5-9. Preventive Maintenance Schedule for PAPI (Precision Approach Path Indicator) ... 77\nTable 5-10. Preventive Maintenance Schedule for VASI (Visual Approach Slope Indicator) ... 81 Table 5-11. Preventive Maintenance Schedule for REIL (Runway End Identifier Lights)  85\nTable 5-12. Preventive Maintenance Schedule for MALSR (Medium Intensity Approach Light System with Runway Alignment Lights)  87\nTable 5-13. Preventive Maintenance Inspection Schedule for Hazard Beacons and Obstruction Lights  91\nTable 5-14. Quarterly and Annual Preventive Maintenance Checklist for Standby Generator Sets  101\nTable 5-15. Preventive Maintenance Schedule for ODALS (Omni directional Approach Light System)  106"
+      "text": "6/20/2014 AC 150/5340-26C\nFigure 6-7. Two Load-to-Load Shorts  122\nFigure 6-8. Intentional Ground Test  123\nFigure 6-9. Intentional Ground Preventive Maintenance Tool  124\nFigure 6-10. Grounded Output Test  125\nFigure 6-11. Dangerous Isolation Transformer/Circuit Ground Faults  126\nList of Tables\nTable 5-1. Preventive Maintenance Inspection Schedule for Airport Lighting Vaults  47\nTable 5-2. 3-Step CCR Output Tolerances  50\nTable 5-3. 5-Step CCR Output Tolerances  51\nTable 5-4. Preventive Maintenance Inspection Schedule for Constant Current Regulators  51\nTable 5-5. Preventive Maintenance Inspection Schedule for Runway and Taxiway Elevated Edge Lights  59\nTable 5-6. Preventive Maintenance Schedule for In-pavement Runway and Taxiway Lighting 65\nTable 5-7. Preventive Maintenance Schedule for Rotating Beacons  72\nTable 5-8. Preventive Maintenance Schedule for Lighted Wind Cones  74\nTable 5-9. Preventive Maintenance Schedule for PAPI (Precision Approach Path Indicator)  77\nTable 5-10. Preventive Maintenance Schedule for VASI (Visual Approach Slope Indicator)  81\nTable 5-11. Preventive Maintenance Schedule for REIL (Runway End Identifier Lights)  85\nTable 5-12. Preventive Maintenance Schedule for MALSR (Medium Intensity Approach Light System with Runway Alignment Lights)  87\nTable 5-13. Preventive Maintenance Inspection Schedule for Hazard Beacons and Obstruction Lights  91\nTable 5-14. Quarterly and Annual Preventive Maintenance Checklist for Standby Generator Sets 101\nTable 5-15. Preventive Maintenance Schedule for ODALS (Omni directional Approach Light System)  106"
     },
     {
       "page": 6,
@@ -334,7 +335,7 @@
     },
     {
       "page": 82,
-      "text": "AC 150/5340-26C 6/20/2014\nFigure 5-3. PAPI Configuration"
+      "text": "AC 150/5340-26C\n\n6/20/2014\n\nA. TOO LOW\n\nB. SLIGHTLY LOW\n\nRED\n\nC. CORRECT\n\nO WHITE\n\nAPPROACH\n\nD. SLIGHTLY HIGH\n\nANGLE\n\nE. TOO HIGH\n\nPAPI PATTERNS AS SEEN FROM THE APPROACH ZONE\n\n15M +3M 9M+ 0.6M -0M\n\n(30FT + 2FT)\n\n50FT +10FT\n\nTYPICAL\n\n-0FT\n\nPAPI WING BAR\n\n日 日 日 日 A B C D\n\nRUNWAY\n\nL\n\nL = DISTANCE OF PAPI WING BAR FROM RUNWAY\n\nTHRESHOLD\n\n285M (950FT) FOR IDEAL 3 DEGREE APPROACH\n\nSLOPE ANGLE (954 FEET GIVES A 50 FOOT\n\nEYE-TO-THRESHOLD HEIGHT - 19/1 RATIO)\n\nPAPI LIGHT SOURCE UNIT\n\nTHRESHOLD\n\nFigure 5-3. PAPI Configuration"
     },
     {
       "page": 83,
@@ -584,6 +585,5 @@
       "page": 144,
       "text": "AC 150/5340-26C 6/20/2014\n\nAppendix B\n\nExample Maintenance Log. This log and the content below is intended as an example only\n\nAIRPORT\n\nANYSTATE, US\n\nFACILITY MAINTENANCE LOG SUBJECT OF LOG\n\nPAPI\n\nMONTH AND YEAR\n\nJANUARY 2014\n\nDATE TIME CODE REMARKS INIT-IALS\n\nJanuary 2014 02 1800 Arrived site. (for scheduled maintenance, unscheduled outage) SM 1801 Found PAPI lights out on second in board box. SM 1805 Notified OCC (XY, initials of person contacted). EUG NOTAM # 14/01 issued. Began maintenance. SM 2240 Completed repair of PAPI system. SM 2350 Completed Quarterly Maintenance IAW AC 150/5340-26 and manufacturers handbook SM 03 0005 Notified OCC (AC, initials of person contacted). EUG PAPI ready to RTS. SM 0015 Departed Site SM"
     }
-  ],
-  "extractedPageCount": 143
+  ]
 }

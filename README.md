@@ -19,8 +19,8 @@ for source and attribution requirements.
 
 ## Features
 
-- **FAR Browser** - Browse eCFR sections, appendices, and 591 official figures
-- **AIM Reader** - Study 11 core chapters, appendices, tables, and 212 figures
+- **FAR Browser** - Browse eCFR sections, appendices, and 592 official figures
+- **AIM Reader** - Study 11 core chapters, appendices, tables, and 283 figures
 - **Pilot/Controller Glossary** - Complete FAA terminology with cross-reference links
 - **Practice Quizzes** - Test your knowledge with chapter/part-specific quizzes
 - **Flashcards** - Learn definitions and concepts with interactive flashcards
@@ -40,7 +40,7 @@ for source and attribution requirements.
 All platforms support:
 - Continue Reading banners (remembers where you left off)
 - Grouped quizzes/flashcards by AIM chapters and FAR parts
-- Sections expanded by default for easier navigation
+- Section-level reading positions and deep links
 - Reference links in quiz explanations (e.g., "AIM 10-2-4" links to the right section)
 
 ## Project Structure
@@ -90,8 +90,9 @@ far-aim-online/
 ## Content Included
 
 ### FAR Parts
-All 213 indexed Title 14 parts plus key Title 49 references, with 6,531 sections,
-181 appendices, and 591 official eCFR figures. Pilot-focused references include:
+The bundled CFR reference covers 213 parts across Title 14 and selected Title 49
+sources, with 6,546 sections, 185 appendices, and 592 official eCFR figures.
+Pilot-focused references include:
 - **Part 1** - Definitions and Abbreviations
 - **Part 43** - Maintenance, Preventive Maintenance, Rebuilding, and Alteration
 - **Part 61** - Certification: Pilots, Flight Instructors, and Ground Instructors
@@ -186,13 +187,20 @@ uv run python crawl_aim.py 2>&1 | tee aim-crawl.log
 # Run Glossary crawler
 uv run python crawl_pcg.py 2>&1 | tee pcg-crawl.log
 
+# Reconcile source dates and coverage after refreshing FAR/AIM/PCG
+uv run python finalize_reference_refresh.py
+uv run python check_source_freshness.py --json
+
 # Refresh current AC metadata and extract searchable PDF text
 uv run python update_advisory_circulars.py
 uv run python crawl_advisory_circulars.py
 
-# Install optional OCR support for scanned legacy ACs
+# Refresh one AC with OCR for scanned or sparse pages
 uv sync --extra ocr
-uv run python crawl_advisory_circulars.py --ocr --refresh
+uv run --extra ocr python crawl_advisory_circulars.py --id <ac-id> --ocr --refresh --resolve-pdf-url
+
+# Audit every cached AC without network access or writes
+uv run python crawl_advisory_circulars.py --check
 
 # Clean and fix data
 uv run python clean_data.py
@@ -204,19 +212,22 @@ uv run python generate_study_materials.py
 node build_inverted_index.js
 ```
 
-The `FAA Advisory Circular Content Update PR` workflow checks the FAA catalog
-Wednesdays at 14:31 UTC, audits every current document page for replaced PDF URLs
-on the first of each month at 15:47 UTC, and
-can be run manually. It opens or updates
-`automation/faa-ac-content-refresh` only when source-backed data changes.
+The `Official Aviation Reference Refresh PR` workflow checks the FAA catalog daily
+at 14:31 UTC, refreshes FAR/AIM/PCG Saturdays at 15:31 UTC, and audits current PDF
+URLs on the first of each month at 15:47 UTC. Manual runs refresh all reference
+sources by default; disable `refresh_reference_sources` for an AC-only run.
+It opens or updates `automation/official-content-refresh` only when source-backed
+data changes.
 Generated commits and PR bodies identify workflow file, generator revision, run
 URL, trigger, and actor. Review generated PRs before merge; workflow never
 auto-merges them. It dispatches web, scripts, Android, security, and
 source-freshness validation, waits for every run, and publishes linked results
-as native `Generated AC validation` check on each generated commit. Generated
+as native `Generated Content Refresh Validation` check on each generated commit. Generated
 Android validation skips Play Store screenshots. New or changed records
 re-resolve their official PDF URLs and refresh extracted text. Monthly audits
 also hash a rotating, bounded PDF shard to detect same-URL replacements.
+Changed PDFs use OCR for sparse pages. Every run audits all cached AC payloads,
+and changed snapshots must pass live source-freshness checks before publication.
 Catalog requests retry transient timeouts, connection errors, and retryable HTTP
 responses up to four attempts, with a 15-second connect timeout, a 120-second
 read timeout, and capped backoff. Permanent errors and mismatched export/list

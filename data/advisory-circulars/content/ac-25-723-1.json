@@ -4,11 +4,12 @@
   "number": "25.723-1",
   "title": "Shock Absorption Tests",
   "status": "partial",
-  "fetched": "2026-07-14",
+  "fetched": "2026-10-17",
   "documentUrl": "https://www.faa.gov/regulations_policies/advisory_circulars/index.cfm/go/document.information/documentID/22663",
   "pdfUrl": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_25_723-1.pdf",
   "sha256": "cd6f0dffa6d68168ebde39007264bcbcc611467884b2a1a8103fe592b64ffdeb",
   "pageCount": 6,
+  "extractedPageCount": 5,
   "wordCount": 1442,
   "ocrPageCount": 0,
   "pages": [
@@ -32,6 +33,5 @@
       "page": 6,
       "text": "6. RESERVE ENERGY FREE DROP TESTS.\n\na. Compliance with the reserve energy absorption condition specified in § 25.723(b) may be shown by free drop tests provided the drop height is not less than 27 inches. b. If airplane lift is simulated by air cylinders or by other mechanical means, the weight used for the drop must be equal to W. If the effect of airplane lift is represented in free drop tests by an equivalent reduced weight, the landing gear must be dropped with an effective weight, Wh W e = h + d where the symbols and other details are the same as in paragraph 5. of this AC. /s/\n\nDONALD L. RIGGIN\n\nActing Manager, Transport Airplane Directorate Aircraft Certification Service, ANM-100"
     }
-  ],
-  "extractedPageCount": 5
+  ]
 }

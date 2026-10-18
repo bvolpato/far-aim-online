@@ -4,11 +4,12 @@
   "number": "120-82",
   "title": "Flight Operational Quality Assurance",
   "status": "partial",
-  "fetched": "2026-07-14",
+  "fetched": "2026-10-17",
   "documentUrl": "https://www.faa.gov/regulations_policies/advisory_circulars/index.cfm/go/document.information/documentID/23227",
   "pdfUrl": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_120-82.pdf",
   "sha256": "957b5b6c5149c76f9d9962b2a79c9930f9f67f610b5bce9231bb722010eb7e79",
   "pageCount": 78,
+  "extractedPageCount": 76,
   "wordCount": 25381,
   "ocrPageCount": 0,
   "pages": [
@@ -316,6 +317,5 @@
       "page": 78,
       "text": "AC 120-82 4/12/04\n\nAppendix B\n\nI&O Plan Checklist Response Reference Comment 30. Are guidelines for crewmember contact and follow-up described?  Yes  No  NA 31. Is a description included of how FOQA system procedures will be documented?  Yes  No  NA 32. Does the plan describe the process for joint FAA/air carrier periodic reviews of the FOQA program and associated aggregate data?  Yes  No  NA"
     }
-  ],
-  "extractedPageCount": 76
+  ]
 }

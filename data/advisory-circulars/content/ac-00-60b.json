@@ -4,13 +4,14 @@
   "number": "00-60B",
   "title": "North American Free Trade Agreement and Specialty Air Services Operations",
   "status": "partial",
-  "fetched": "2026-07-14",
+  "fetched": "2026-10-17",
   "documentUrl": "https://www.faa.gov/regulations_policies/advisory_circulars/index.cfm/go/document.information/documentID/1023506",
   "pdfUrl": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_00-60B.pdf",
   "sha256": "843f61e8e5a516ec2f5e199eca53fc2a3e83bcd2c0c640cc0eb9da6499227131",
   "pageCount": 23,
-  "wordCount": 5495,
-  "ocrPageCount": 0,
+  "extractedPageCount": 22,
+  "wordCount": 5799,
+  "ocrPageCount": 2,
   "pages": [
     {
       "page": 1,
@@ -58,7 +59,7 @@
     },
     {
       "page": 12,
-      "text": "AC 00-60B 2/12/14\n\nAppendix 1\n\nTRANSPORT CANADA CIVIL AVIATION FORM 26-0592 (Continued)"
+      "text": "AC 00-60B\n\n2/12/14\n\nAppendix 1\n\nTRANSPORT CANADA CIVIL AVIATION FORM 26-0592 (Continued) Aircraft types - Types d'aéronefs Registration - Immatriculation Complete (full) names of pilots - Noms entiers (complets) des pilotes Licences\n\nNOTICE\n\nTransport Canada Civil Aviation will not undertake a quality assurance role with regard to any form or document submitted in application for a service. qualité de tout formulaire ou de tout document soumis avec une demande Documentation that contains errors or does not meet regulatory de service. La documentation erronée ou ne répondant pas aux exigences requirements will be returned for correction. réglementaires sera retournée pour que les corrections nécessaires soient apportées. Delays thus incurred are the sole responsibility of the applicant. Tout retard occasionné par une telle démarche incombera au demandeur."
     },
     {
       "page": 13,
@@ -66,7 +67,7 @@
     },
     {
       "page": 14,
-      "text": "AC 00-60B 2/12/14\n\nAppendix 1\n\nFAA FORM 7711-2. APPLICATION FOR CERTIFICATE OF WAIVER OR\n\nAUTHORIZATION (Continued)"
+      "text": "AC 00-60B\n\n2/12/14\n\nAppendix 1\n\nFAA FORM 7711-2. APPLICATION FOR CERTIFICATE OF WAIVER OR\n\nAUTHORIZATION (Continued)\n\nITEMS 11 THROUGH 16 TO BE FILLED OUT FOR AIR SHOWIAIR RACE WAIVER REQUESTS ONLY.\n\n11. The alr event wll be sponsored by: 12. Permanent malling Houue ee ue e ber Clty State and ZIP code Telephone No. addrešs 13 a g ond oe op g e sd gl nd nt) ( e o a e e e e ntl □Physician □Fire truck Other-Specify Ambulance Crash wagon 15. Alr Traffic control (Describe method of controlling traffic, Including provision for arrtval and departure of scheduled alrcraft.) (bd ae oe e se o e e s o ae e e tl s o aes n Hour Date Event (3) (b) (c) If sufficlent space Is not avallable, the entire schedule of events may be submitted on separate sheets, In the order and manner Indicated above. The undersigned applicant accepts full responsibility for the strict observance of the terms of the Certificate Please Read of Waiver or Authorization, and understands that the authorization contained in such certificate will be strictly limited to the above described operation. 17. Certification -I CERTIFY that the foregoing statements are true. Date Sgepy o ecant Remarks FAA Form 7711-2 (8-08) Supersedes Prevlous Edtion"
     },
     {
       "page": 15,
@@ -100,6 +101,5 @@
       "page": 23,
       "text": "Appendix 5\n\nPage 1 (and 2)\n\nAPPENDIX 5. SURVIVAL EQUIPMENT\n\n1. OPERATIONS IN CANADA. Survival equipment must be carried to satisfy CAR 602.61 (http://www.tc.gc.ca/eng/civilaviation/regserv/cars/part6-602-2436.htm) requirements, which include provisions for shelter, water, fire, and signaling. This section does not apply where the aircraft is being operated in an area and at a time of year such that survivability is not jeopardized. Specific information on the geographic location requirements is included in TC AIM. AIM information can be obtained by visiting: http://www.tc.gc.ca/eng/civilaviation/publications/tp14371-gen-menu-2565.htm. 2. OPERATIONS IN MEXICO. Survival equipment must be carried to satisfy Articles 191, 193, 194, and 195 of the Reglamento de la Ley de Aviación Civil: (http://aicm.com.mx/Dependencias/DGAC/). These requirements include provisions for a first-aid kit, shelter, flotation devices for over water operations, a fire extinguisher, an emergency locator transmitter, emergency rations and clothing, and signaling. Emergency rations and clothing are required for remote locations only, appropriate to the area being over flown. This information can be obtained by contacting the DGAC directly."
     }
-  ],
-  "extractedPageCount": 22
+  ]
 }

@@ -238,7 +238,7 @@ def test_ac_subset_refresh_applies_policy_to_unselected_publications(tmp_path, m
         for item_id in ("ac-allowed", "ac-restricted")
     ]
     for item in items:
-        (tmp_path / item["contentPath"]).write_text(json.dumps({**item, "status": "parsed", "pages": [{"page": 1, "text": "Cached text"}]}))
+        (tmp_path / item["contentPath"]).write_text(json.dumps({**item, "status": "parsed", "sha256": "a" * 64, "pageCount": 1, "wordCount": 100, "ocrPageCount": 0, "pages": [{"page": 1, "text": "word " * 100}]}))
     (tmp_path / "index.json").write_text(json.dumps({"items": items}))
 
     assert crawl_advisory_circulars.main(["--id", "ac-allowed"]) == 0

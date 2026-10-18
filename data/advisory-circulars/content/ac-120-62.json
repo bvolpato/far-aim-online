@@ -4,11 +4,12 @@
   "number": "120-62",
   "title": "Takeoff Safety Training Aid",
   "status": "partial",
-  "fetched": "2026-07-14",
+  "fetched": "2026-10-17",
   "documentUrl": "https://www.faa.gov/regulations_policies/advisory_circulars/index.cfm/go/document.information/documentID/23202",
   "pdfUrl": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC%20120-62.pdf",
   "sha256": "d66e247ccbf97a4c42a7f71ccd47722f75da1540b76f0cc2b5799b08ea6ca31a",
   "pageCount": 12,
+  "extractedPageCount": 11,
   "wordCount": 2854,
   "ocrPageCount": 0,
   "pages": [
@@ -56,6 +57,5 @@
       "page": 12,
       "text": "800 Independence Ave., S.W. Washington, D.C. 20591 FORWARDINQ AND RmURN\n\nPOSTAGE QUARANTEED\n\nBULK MAIL\n\nPOSTAGE 81 FEES PAID\n\nFEDEFIAL AVIATION\n\nADMINISTRATION\n\nPERMIT NO. G-44\n\nOfficial 6usiness Penalty for Private Use $300"
     }
-  ],
-  "extractedPageCount": 11
+  ]
 }

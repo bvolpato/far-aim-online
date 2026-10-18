@@ -4,11 +4,12 @@
   "number": "120-100",
   "title": "Basics of Aviation Fatigue",
   "status": "partial",
-  "fetched": "2026-07-14",
+  "fetched": "2026-10-17",
   "documentUrl": "https://www.faa.gov/regulations_policies/advisory_circulars/index.cfm/go/document.information/documentID/244560",
   "pdfUrl": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC%20120-100.pdf",
   "sha256": "53d5e144521a58c1bdff6387ea76bee2be1428352050e7f08f2c7b74e7b5b6fd",
   "pageCount": 30,
+  "extractedPageCount": 29,
   "wordCount": 12919,
   "ocrPageCount": 0,
   "pages": [
@@ -128,6 +129,5 @@
       "page": 30,
       "text": "AC 120-100 06/07/10\n\nAppendix 1\n\n(93) Wesensten, N. J.; Killgore, W. D. S.; Balkin, T. J. Performance and alertness effects of caffeine, dextroamphetamine, and modafinil during sleep deprivation. Journal of Sleep Research, 2005, 14: 255-266. (94) Wright, N.; McGown, A. Vigilance on the civil flight deck: incidence of sleepiness and sleep during long-haul flights and associated changes in physiological parameters. Ergonomics, 2001; 44: 82-106. (95) Wylie, C. D.; Shultz, T.; Miller, J. C.; Mitler, M. M.; Mackie, R. R. Commercial Motor Vehicle Driver Fatigue and Alertness Study: Project Report (Report No.: FHWA-MC-97-002). Washington: U.S. Department of Transportation; 1996."
     }
-  ],
-  "extractedPageCount": 29
+  ]
 }

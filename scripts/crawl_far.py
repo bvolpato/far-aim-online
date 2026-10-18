@@ -8,7 +8,6 @@ import json
 import re
 import time
 import zipfile
-from datetime import date
 from functools import cache
 from hashlib import sha256
 from io import BytesIO
@@ -17,10 +16,12 @@ from urllib.parse import unquote, urljoin, urlsplit, urlunsplit
 
 import requests
 from bs4 import BeautifulSoup, NavigableString, Tag
+from lxml import etree
 from PIL import Image, UnidentifiedImageError
 from tqdm import tqdm
 
 from clean_data import clean_text
+from ecfr import ECFR_VERSIONS_URL, TITLE_49_PARTS, latest_ecfr_issue_date
 
 # Base URLs
 ECFR_BASE = "https://www.ecfr.gov"
@@ -132,6 +133,66 @@ def clean_html_content(elem: Tag, base_url: str = "") -> str:
     for tag in elem.find_all(["script", "style", "noscript", "iframe"]):
         tag.decompose()
 
+    def format_table(table: Tag) -> str:
+        source_rows = [
+            row
+            for row in table.find_all(lambda tag: tag.name and tag.name.lower() == "tr")
+            if row.find_parent(lambda tag: tag.name and tag.name.lower() == "table") is table
+        ]
+        grid: list[dict[int, str]] = []
+        spans: dict[int, tuple[int, str]] = {}
+        header_count = 0
+        for row_index, row in enumerate(source_rows):
+            values = {column: value for column, (end, value) in spans.items() if end > row_index}
+            cells = row.find_all(
+                lambda tag: tag.name and tag.name.lower() in {"td", "th"}, recursive=False
+            )
+            if row.find_parent(lambda tag: tag.name and tag.name.lower() == "thead"):
+                header_count += 1
+            column = 0
+            for cell in cells:
+                while column in values:
+                    column += 1
+                text = "".join(process_node(child) for child in cell.children)
+                text = re.sub(r"-\s*\n\s*(?=\w)", "-", text)
+                text = " ".join(text.split()).replace("|", r"\|")
+                colspan = max(1, int(cell.get("colspan", "1")))
+                rowspan = int(cell.get("rowspan", "1")) or len(source_rows) - row_index
+                for offset in range(colspan):
+                    values[column + offset] = text
+                    if rowspan > 1:
+                        spans[column + offset] = (row_index + rowspan, text)
+                column += colspan
+            if values:
+                grid.append(values)
+
+        if not grid:
+            return "".join(process_node(child) for child in table.children)
+        width = max(max(row) for row in grid) + 1
+        # Combine stacked/spanned headings so every serialized column keeps its
+        # full label, including in segregation matrices with empty data cells.
+        header_count = max(1, header_count)
+        headers = [
+            " / ".join(
+                dict.fromkeys(row.get(column, "") for row in grid[:header_count] if row.get(column))
+            )
+            for column in range(width)
+        ]
+        rows = [headers] + [
+            [row.get(column, "") for column in range(width)] for row in grid[header_count:]
+        ]
+        body = "\n\n".join(f"| {' | '.join(row)} |" for row in rows)
+        caption = table.find(
+            lambda tag: tag.name and tag.name.lower() == "caption", recursive=False
+        )
+        caption_text = (
+            " ".join("".join(process_node(child) for child in caption.children).split())
+            if caption
+            else ""
+        )
+        prefix = f"{caption_text}\n\n" if caption_text else ""
+        return f"\n\n{prefix}[TABLE]\n{body}\n[/TABLE]\n\n"
+
     def process_node(node, depth=0) -> str:
         if isinstance(node, NavigableString):
             text = str(node)
@@ -145,6 +206,9 @@ def clean_html_content(elem: Tag, base_url: str = "") -> str:
         # Skip certain tags entirely
         if tag_name in ["script", "style", "noscript", "head", "meta", "link"]:
             return ""
+
+        if tag_name == "table":
+            return format_table(node)
 
         # Process children first
         children_text = ""
@@ -223,8 +287,8 @@ def clean_html_content(elem: Tag, base_url: str = "") -> str:
         elif tag_name == "span":
             return children_text
 
-        elif tag_name == "table":
-            return f"\n\n{children_text}\n\n"
+        elif tag_name == "cita":
+            return f"\n\n{' '.join(children_text.split())}\n\n"
 
         elif tag_name == "tr":
             return f"{children_text}\n"
@@ -267,64 +331,68 @@ def get_ecfr_toc(title: int = 14) -> list[dict]:
     # Use the structure endpoint
     url = f"{ECFR_BASE}/api/versioner/v1/structure/current/title-{title}.json"
 
-    try:
-        time.sleep(REQUEST_DELAY)
-        response = requests.get(url, headers=HEADERS, timeout=60)
-        response.raise_for_status()
-        data = response.json()
+    time.sleep(REQUEST_DELAY)
+    response = requests.get(url, headers=HEADERS, timeout=60)
+    response.raise_for_status()
+    data = response.json()
 
-        parts = []
+    parts = []
 
-        def extract_parts(node, subchapter="", subchapter_title=""):
-            if node.get("type") == "subchapter":
-                subchapter = node.get("identifier", "")
-                subchapter_title = (
-                    node.get("label", "").replace(f"Subchapter {subchapter}", "").strip(" -–—:")
+    def extract_parts(node, subchapter="", subchapter_title=""):
+        if node.get("type") == "subchapter":
+            subchapter = node.get("identifier", "")
+            subchapter_title = (
+                node.get("label", "").replace(f"Subchapter {subchapter}", "").strip(" -–—:")
+            )
+
+        if node.get("type") == "part":
+            part_num = node.get("identifier", "")
+            if part_num.isdigit():
+                parts.append(
+                    {
+                        "part": int(part_num),
+                        "title": node.get("label", "")
+                        .replace(f"Part {part_num}", "")
+                        .strip(" -–—:"),
+                        "subchapter": subchapter,
+                        "subchapterTitle": subchapter_title,
+                        "cfr_title": str(title),
+                    }
                 )
 
-            if node.get("type") == "part":
-                part_num = node.get("identifier", "")
-                if part_num.isdigit():
-                    parts.append(
-                        {
-                            "part": int(part_num),
-                            "title": node.get("label", "")
-                            .replace(f"Part {part_num}", "")
-                            .strip(" -–—:"),
-                            "subchapter": subchapter,
-                            "subchapterTitle": subchapter_title,
-                            "cfr_title": str(title),
-                        }
-                    )
+        for child in node.get("children", []):
+            extract_parts(child, subchapter, subchapter_title)
 
-            for child in node.get("children", []):
-                extract_parts(child, subchapter, subchapter_title)
-
-        extract_parts(data)
-        return parts
-
-    except Exception as e:
-        print(f"Error fetching TOC: {e}")
-        return []
+    extract_parts(data)
+    if not parts:
+        raise ValueError(f"eCFR table of contents has no parts for Title {title}")
+    return parts
 
 
 def get_latest_ecfr_date(title: int) -> str:
     """Return latest published eCFR content date for a title."""
-    url = f"{ECFR_BASE}/api/versioner/v1/versions/title-{title}.json"
+    url = ECFR_VERSIONS_URL.format(title=title)
     time.sleep(REQUEST_DELAY)
     response = requests.get(url, headers=HEADERS, timeout=60)
     response.raise_for_status()
-    versions = response.json().get("content_versions", [])
-    today = date.today().isoformat()
-    published_dates = [item["date"] for item in versions if item.get("date", today) <= today]
-    if not published_dates:
-        raise RuntimeError(f"No published eCFR content version found for Title {title}")
-    return max(published_dates)
+    return latest_ecfr_issue_date(response.json())
+
+
+def parse_ecfr_xml(xml_content: str) -> BeautifulSoup:
+    """Reject malformed or truncated source XML before the tolerant HTML parser runs."""
+    try:
+        etree.fromstring(
+            xml_content.encode("utf-8"),
+            parser=etree.XMLParser(resolve_entities=False, no_network=True, huge_tree=True),
+        )
+    except etree.XMLSyntaxError as error:
+        raise ValueError(f"Invalid eCFR XML: {error}") from error
+    return BeautifulSoup(xml_content, "xml")
 
 
 def split_ecfr_title_xml(xml_content: str, part_numbers: set[int]) -> dict[int, str]:
     """Extract requested PART nodes from one official title XML response."""
-    soup = BeautifulSoup(xml_content, "xml")
+    soup = parse_ecfr_xml(xml_content)
     parts = {}
     for root in soup.find_all(attrs={"TYPE": "PART"}):
         identifier = root.get("N", "").strip()
@@ -369,8 +437,7 @@ def _federal_register_image_url(url: str) -> str | None:
     if len(path.parts) < 3 or path.parts[1].lower() != "graphics" or not path.suffix:
         return None
     return (
-        f"https://images.federalregister.gov/{path.stem.upper()}"
-        f"/original{path.suffix.lower()}"
+        f"https://images.federalregister.gov/{path.stem.upper()}" f"/original{path.suffix.lower()}"
     )
 
 
@@ -536,8 +603,7 @@ def _xml_image_caption(image: Tag, owner: Tag) -> str:
     figure = image.find_parent(lambda tag: tag.name and tag.name.lower() == "figure")
     if isinstance(figure, Tag):
         caption = figure.find(
-            lambda tag: tag.name
-            and tag.name.lower() in {"caption", "figcaption", "figcap", "tcap"}
+            lambda tag: tag.name and tag.name.lower() in {"caption", "figcaption", "figcap", "tcap"}
         )
         if isinstance(caption, Tag):
             text = clean_text(caption.get_text(" ", strip=True))
@@ -625,7 +691,11 @@ def _parse_xml_section(element: Tag, image_paths: dict[str, str]) -> dict:
 def _owned_xml_elements(container: Tag, element_type: str) -> list[Tag]:
     """Return descendants whose nearest structural owner is container."""
     owned = []
-    structural_types = {"PART", "SUBPART", "APPENDIX"}
+    # The data model keeps every appendix at part level, including appendices
+    # attached to a subpart. Their original identifier preserves that scope.
+    structural_types = {"PART", "APPENDIX"}
+    if element_type != "APPENDIX":
+        structural_types.add("SUBPART")
     for element in container.find_all(attrs={"TYPE": element_type}):
         owner = next(
             (
@@ -648,7 +718,7 @@ def parse_ecfr_part_xml(
     part_info: dict | None = None,
 ) -> dict:
     """Parse official eCFR versioner XML without dropping appendices or suffixed sections."""
-    soup = BeautifulSoup(xml_content, "xml")
+    soup = parse_ecfr_xml(xml_content)
     root = soup.find(attrs={"TYPE": "PART"})
     if not isinstance(root, Tag) or root.get("N") != str(part_num):
         raise ValueError(f"eCFR XML did not contain Title {cfr_title} Part {part_num}")
@@ -714,6 +784,19 @@ def parse_ecfr_part_xml(
     ]
     if len(identifiers) != len(set(identifiers)):
         raise ValueError(f"Duplicate section identifiers in Title {cfr_title} Part {part_num}")
+    source_sections = {
+        section.get("N", "").strip() for section in root.find_all(attrs={"TYPE": "SECTION"})
+    }
+    source_appendices = {
+        appendix.get("N", "").strip() for appendix in root.find_all(attrs={"TYPE": "APPENDIX"})
+    }
+    parsed_appendices = {appendix["appendix"] for appendix in part_data["appendices"]}
+    if set(identifiers) != source_sections or parsed_appendices != source_appendices:
+        raise ValueError(
+            f"Incomplete eCFR structure in Title {cfr_title} Part {part_num}; "
+            f"missing sections {sorted(source_sections - set(identifiers))}; "
+            f"missing appendices {sorted(source_appendices - parsed_appendices)}"
+        )
     all_content = [
         section["content"]
         for section in part_data["sections"]
@@ -739,9 +822,7 @@ def crawl_ecfr_part(
         xml_content = fetch_page(api_url)
     if not xml_content:
         return None
-    part_data = parse_ecfr_part_xml(
-        xml_content, part_num, cfr_title, effective_date, part_info
-    )
+    part_data = parse_ecfr_part_xml(xml_content, part_num, cfr_title, effective_date, part_info)
     figures = [
         figure
         for section in part_data["sections"]
@@ -879,7 +960,7 @@ PILOT_INDEX_PARTS = {
         193,
         198,
     ],
-    49: [172, 175, 830, 1544, 1552],  # Hazmat, NTSB, TSA security, flight schools
+    49: list(TITLE_49_PARTS),  # Hazmat, NTSB, TSA security, flight schools
 }
 
 
@@ -900,6 +981,11 @@ def main():
     print("\nFetching Title 49 CFR table of contents...")
     title49_parts = get_ecfr_toc(49)
     print(f"  Found {len(title49_parts)} parts in Title 49")
+    missing_title49 = set(TITLE_49_PARTS) - {part["part"] for part in title49_parts}
+    if not title14_parts or missing_title49:
+        raise RuntimeError(
+            f"Incomplete eCFR table of contents; missing Title 49 parts: {sorted(missing_title49)}"
+        )
 
     # Combine and mark pilot index parts
     all_parts = []
@@ -909,6 +995,11 @@ def main():
         all_parts.append(part)
 
     title14_part_numbers = {part["part"] for part in title14_parts}
+    collisions = title14_part_numbers & set(TITLE_49_PARTS)
+    if collisions:
+        raise RuntimeError(
+            f"CFR titles require conflicting output paths for parts: {sorted(collisions)}"
+        )
 
     for part in title49_parts:
         # Only include relevant Title 49 parts
@@ -925,7 +1016,7 @@ def main():
 
     # Crawl each part
     crawled_parts = []
-    failed_parts = []
+    part_snapshots = {}
     referenced_images: set[str] = set()
     effective_dates = {
         title: get_latest_ecfr_date(title)
@@ -959,19 +1050,12 @@ def main():
             referenced_images.update(
                 figure["src"]
                 for section in part_data["sections"]
-                + [
-                    item
-                    for subpart in part_data["subparts"]
-                    for item in subpart["sections"]
-                ]
+                + [item for subpart in part_data["subparts"] for item in subpart["sections"]]
                 + part_data["appendices"]
                 for figure in section["figures"]
             )
 
-            # Save individual part file
-            part_file = DATA_DIR / f"part{part_num}.json"
-            with open(part_file, "w", encoding="utf-8") as f:
-                json.dump(part_data, f, indent=2, ensure_ascii=False)
+            part_snapshots[part_num] = part_data
 
             # Count sections
             section_count = len(part_data.get("sections", []))
@@ -982,11 +1066,7 @@ def main():
             figure_count = sum(
                 len(reference["figures"])
                 for reference in part_data["sections"]
-                + [
-                    item
-                    for subpart in part_data["subparts"]
-                    for item in subpart["sections"]
-                ]
+                + [item for subpart in part_data["subparts"] for item in subpart["sections"]]
                 + part_data["appendices"]
             )
 
@@ -1005,10 +1085,17 @@ def main():
                 }
             )
         else:
-            failed_parts.append(part_num)
+            raise RuntimeError(
+                f"Could not fetch Title {cfr_title} Part {part_num}; snapshot unchanged"
+            )
 
     # Sort by part number
     crawled_parts.sort(key=lambda x: x["part"])
+
+    # Publish JSON only after every source part and referenced figure succeeded.
+    for part_num, part_data in part_snapshots.items():
+        with open(DATA_DIR / f"part{part_num}.json", "w", encoding="utf-8") as f:
+            json.dump(part_data, f, indent=2, ensure_ascii=False)
 
     # Create index files
 
@@ -1016,7 +1103,9 @@ def main():
     full_index = {
         "title": "Federal Aviation Regulations (14 CFR) - Full Index",
         "description": "Complete Title 14 Code of Federal Regulations from eCFR",
-        "lastUpdated": time.strftime("%Y-%m-%d"),
+        "lastUpdated": max(effective_dates.values()),
+        "fetchedAt": time.strftime("%Y-%m-%d"),
+        "effectiveDates": {str(title): value for title, value in sorted(effective_dates.items())},
         "source": "eCFR (ecfr.gov)",
         "indexType": "full",
         "totalFigures": len(referenced_images),
@@ -1031,7 +1120,9 @@ def main():
     pilot_index = {
         "title": "Federal Aviation Regulations - Pilot Index",
         "description": "CFR parts commonly found in pilot reference manuals (ASA FAR/AIM)",
-        "lastUpdated": time.strftime("%Y-%m-%d"),
+        "lastUpdated": max(effective_dates.values()),
+        "fetchedAt": time.strftime("%Y-%m-%d"),
+        "effectiveDates": {str(title): value for title, value in sorted(effective_dates.items())},
         "source": "eCFR (ecfr.gov)",
         "indexType": "pilot",
         "parts": pilot_index_parts,
@@ -1040,25 +1131,14 @@ def main():
     with open(DATA_DIR / "pilot-index.json", "w", encoding="utf-8") as f:
         json.dump(pilot_index, f, indent=2, ensure_ascii=False)
 
-    full_crawl_succeeded = (
-        bool(title14_parts)
-        and bool(title49_parts)
-        and not failed_parts
-        and len(crawled_parts) == len(all_parts)
-    )
-    if full_crawl_succeeded:
-        remove_unused_far_images(referenced_images)
-    else:
-        print("  Skipping stale FAR image cleanup because full crawl did not succeed")
+    remove_unused_far_images(referenced_images)
 
     print(f"\n{'=' * 70}")
     print("Crawl complete!")
     print(f"  Total parts crawled: {len(crawled_parts)}")
     print(f"  Pilot index parts: {len(pilot_index_parts)}")
-    print(f"  Failed parts: {len(failed_parts)}")
+    print("  Failed parts: 0")
     print(f"  FAR figures: {len(referenced_images)}")
-    if failed_parts:
-        print(f"  Failed: {failed_parts[:20]}{'...' if len(failed_parts) > 20 else ''}")
     print(f"\nData saved to {DATA_DIR}")
     print("  - index.json (Full Index)")
     print("  - pilot-index.json (Pilot Index)")

@@ -9,10 +9,10 @@
       "shortLabel": "FAR",
       "source": "eCFR Titles 14 and 49",
       "status": "Current snapshot",
-      "lastUpdated": "2026-10-17",
+      "lastUpdated": "2026-10-15",
       "itemCount": 213,
-      "sectionCount": 6531,
-      "coverage": "213 indexed parts, 200 content parts, 6,531 sections, 181 appendices and 591 figures",
+      "sectionCount": 6546,
+      "coverage": "213 indexed parts, 200 content parts, 6,546 sections, 185 appendices and 592 figures",
       "officialUrl": "https://www.ecfr.gov/current/title-14",
       "notes": [
         "Pilot index includes 83 FAR parts most relevant to pilot study.",
@@ -29,7 +29,7 @@
       "lastUpdated": "2026-07-09",
       "itemCount": 12,
       "sectionCount": 438,
-      "coverage": "12 indexed chapters, 438 sections and 193 figures",
+      "coverage": "11 core chapters, change notes, 5 appendices, 438 sections and 283 figures",
       "officialUrl": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/",
       "notes": [
         "AIM chapters, change notes, appendices, figures and structured tables are bundled for offline reading.",
@@ -43,8 +43,8 @@
       "source": "Federal Aviation Administration",
       "status": "Current app snapshot",
       "lastUpdated": "2026-07-09",
-      "itemCount": 1555,
-      "coverage": "1,555 terms",
+      "itemCount": 1557,
+      "coverage": "1,557 terms",
       "officialUrl": "https://www.faa.gov/air_traffic/publications/atpubs/pcg_html/",
       "notes": [
         "Glossary terms are included in global search.",
@@ -57,13 +57,13 @@
       "shortLabel": "ACs",
       "source": "Federal Aviation Administration",
       "status": "Current FAA AC archive with offline text",
-      "lastUpdated": "2026-10-13",
+      "lastUpdated": "2026-10-17",
       "itemCount": 779,
-      "coverage": "779 current advisory circulars, 778 official PDFs, 725 complete text extractions and 48 partial extractions",
+      "coverage": "779 current advisory circulars, 778 official PDFs, 731 text extractions covering every page and 42 partial extractions",
       "officialUrl": "https://www.faa.gov/regulations_policies/advisory_circulars",
       "notes": [
         "Metadata is generated from the FAA current Advisory Circular export and document list.",
-        "Searchable text is bundled for 773 records; 725 include every PDF page and 48 are marked partial.",
+        "Searchable text is bundled for 773 records; 731 have text on every PDF page and 42 are marked partial. Page coverage does not preserve all figures or layout.",
         "Partial records direct readers to the official PDF for omitted pages, figures and exact layout.",
         "FAA lists AC 8260-32F as current but its content is unavailable. Offline text for 5 additional ACs is omitted pending third-party republication review; their official FAA links remain available."
       ]
@@ -88,8 +88,8 @@
   ],
   "changeWatch": [
     {
-      "id": "far-2026-08-13",
-      "date": "2026-08-13",
+      "id": "far-2026-10-15",
+      "date": "2026-10-15",
       "sourceId": "far",
       "severity": "review",
       "title": "FAR/eCFR snapshot refreshed",
@@ -98,7 +98,7 @@
         "14 CFR Part 61",
         "14 CFR Part 91",
         "14 CFR Part 107",
-        "14 CFR Part 830",
+        "49 CFR Part 830",
         "Part appendices and SFARs",
         "Pilot FAR index"
       ],
@@ -131,12 +131,12 @@
       "link": "/aim"
     },
     {
-      "id": "ac-2026-10-13",
-      "date": "2026-10-13",
+      "id": "ac-2026-10-17",
+      "date": "2026-10-17",
       "sourceId": "ac",
       "severity": "review",
       "title": "Advisory Circular archive refreshed",
-      "summary": "The Advisory Circular library includes 779 current FAA records, 778 direct PDF links, 725 complete text extractions, and 48 clearly marked partial extractions.",
+      "summary": "The Advisory Circular library includes 779 current FAA records, 778 direct PDF links, 731 text extractions covering every page, and 42 clearly marked partial extractions.",
       "affectedReferences": [
         "FAA current Advisory Circular export",
         "Aircraft certification and airworthiness ACs",

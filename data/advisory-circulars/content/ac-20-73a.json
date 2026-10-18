@@ -4,11 +4,12 @@
   "number": "20-73A",
   "title": "Aircraft Ice Protection",
   "status": "partial",
-  "fetched": "2026-07-14",
+  "fetched": "2026-10-17",
   "documentUrl": "https://www.faa.gov/regulations_policies/advisory_circulars/index.cfm/go/document.information/documentID/22031",
   "pdfUrl": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_20-73A.pdf",
   "sha256": "ee71b45222bd05e13c3de8d3315bd5f41052800f4acccd130f706bb3b2fa95a9",
   "pageCount": 233,
+  "extractedPageCount": 217,
   "wordCount": 71918,
   "ocrPageCount": 0,
   "pages": [
@@ -880,6 +881,5 @@
       "page": 233,
       "text": "APPENDIX V. AIRCRAFT FROST AND CLEAR ICE CONSIDERATIONS\n\n(CONTINUED)\n\nThe AFM should contain the following CAUTION: Ice shedding from the wing upper surface during takeoff can cause severe damage to engines, leading to surge, vibration, or complete thrust loss. Ice can also degrade stall margins, stall characteristics, and airplane performance. Ice can form on wing surfaces during exposure of the airplane to normal icing conditions. Clear ice can also form on the wing upper surfaces when the fuel in the wing fuel tanks is cold-soaked, and the airplane is exposed to conditions of high humidity, rain, drizzle, or fog at atmospheric temperatures well above freezing. Often, the ice is clear and difficult to see. Often the ice forms on the top of the main wing tanks. The Ground Ice Detection System detects the ice or frost only in this area. The Ground Ice Detection System does not detect ice, frost, or snow on other parts of the wing or airplane. The Ground Ice Detection System does not relieve the operator from the requirement to show compliance with 14 CFR §§ 91.527, 121.629, 125.221, and 135.227, which require that the aircraft surfaces be free of adhering frost, snow, and ice before takeoff.\n\nV.2 REFERENCES.\n\nV1. “Performance Standards for Airplane Ground Ice Detection Systems,” SAEAS5116."
     }
-  ],
-  "extractedPageCount": 217
+  ]
 }

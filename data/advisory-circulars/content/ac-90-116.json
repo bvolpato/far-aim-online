@@ -4,13 +4,14 @@
   "number": "90-116",
   "title": "Additional Pilot Program for Phase I Flight Test",
   "status": "partial",
-  "fetched": "2026-07-14",
+  "fetched": "2026-10-17",
   "documentUrl": "https://www.faa.gov/regulations_policies/advisory_circulars/index.cfm/go/document.information/documentID/1025667",
   "pdfUrl": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_90-116.pdf",
   "sha256": "f0d4d66e8677c59e079ae3ab90e9b5957ff15a7e4b4629b4ed5039eca68fdc7d",
   "pageCount": 25,
-  "wordCount": 6718,
-  "ocrPageCount": 0,
+  "extractedPageCount": 24,
+  "wordCount": 6898,
+  "ocrPageCount": 1,
   "pages": [
     {
       "page": 1,
@@ -66,7 +67,7 @@
     },
     {
       "page": 14,
-      "text": "FIGURE 8. EXPERIENCE QUALIFICATIONS SCORING MATRIX\nPar 11 Page 14"
+      "text": "9/23/14\nAC 90-116\nFIGURE 8. EXPERIENCE QUALIFICATIONS SCORING MATRIX\nScoring System for Qualified 2nd Pilot\nValue\nYour Score\nTotal Time in Same Category and Class\n0-9\n-50\n10-99\n100-249\n250-499\n500-999\n1000+\nTime in Model Family\n1-9\n-10\n10-24\n25-49\n50-99\n100-249\n250+\nIs any of the Time in Type in the exact same model?\nYes\nNo\nPhase I experience?\nYes, to include a maiden flight\nYes\nNo\n-75\nMore than 20 different make/models flown as PIC?\nYes\nNo\nSubject Aircraft Configuration (select all applicable)\nComplex\n-5\nCanard Airframe Configuration\n-5\nHigh Performance (over 200 HP)\n-5\nPressurized\n-15\nCrew Environment or Flight Instructor Experience?\n(Crew Environment= Type rating in aircraft requiring crew of 2 or more)\nYes\nNo\nTest Pilot Graduate of Test Pilot School?\n(Category (Airplane, Rotorcraft, etc.) equivalent to test aircraft)\nQualifying Schools:\n(USNTPS)US Naval Test Pilot School\n(USAFTPS)US Air Force Test Pilot School\n(ETPS)British Empire Test Pilots' School\n(EPNER)French Test Pilot School\n(NTPS) National Test Pilot School\nYes\nNo\nHighest Certificate/Rating Achieved\nSport/Recreational Pilot\nPrivate/ SPCFI\nCommercial\nCFI\n90 is the\nminimum\nScore:\nqualifying\nscore\nPar 11"
     },
     {
       "page": 15,
@@ -108,6 +109,5 @@
       "page": 25,
       "text": "Appendix 1\n\nObserver Pilot Worksheet Instructions: In order to qualify as an OP, this worksheet must be used prior to the OP’s initial flight in the test aircraft to ensure eligibility. Complete, sign, and attach this worksheet to the airframe logbook prior to the initial flight as the OP in each test aircraft. When acting as the OP for further flights in the test aircraft, you must meet the OP criteria prior to each flight, but further worksheets need not be attached to the logbook. Observer Pilot Qualifications Must meet ALL of the following: ☐Have at least a recreational pilot certificate with the appropriate category and class ratings for the test aircraft, and have received all necessary endorsements, as required per 14 CFR part 61, § 61.31, appropriate to the test aircraft. For light-sport aircraft, have at least a sport pilot certificate and the appropriate logbook endorsements for the category and class of the aircraft to be flown, as required by § 61.317. ☐Meet the requirements of § 61.56, Flight review. ☐Meet the requirements of § 61.57(a), Recent flight experience: Pilot in command, in the same category and class as the test aircraft. ☐Have adequate vision forward and to each side of the aircraft. ☐Complete this worksheet prior to the initial flight as the OP in each test aircraft and attach it to the airframe logbook. When acting as the OP for further flights in the test aircraft, prior to each flight you must meet the OP criteria, but the checklist need not be attached to the logbook. Qualification Statement I attest that I meet all of the Observer Pilot Qualifications thus qualifying as an Observer Pilot (OP) for the Additional Pilot Program (APP) for this aircraft: Aircraft Make, Model: Aircraft N-number: OP Applicant’s Name: OP Signature: Date: Page 5 (and 6)"
     }
-  ],
-  "extractedPageCount": 24
+  ]
 }

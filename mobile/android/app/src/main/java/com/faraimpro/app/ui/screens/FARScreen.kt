@@ -39,6 +39,7 @@ import com.faraimpro.app.data.Subpart
 import com.faraimpro.app.ui.components.HighlightText
 import com.faraimpro.app.ui.components.ErrorState
 import com.faraimpro.app.ui.components.FARFigures
+import com.faraimpro.app.ui.components.FARContent
 import com.faraimpro.app.ui.components.LoadState
 import com.faraimpro.app.ui.components.asLoadState
 import com.faraimpro.app.ui.components.ReaderControls
@@ -752,9 +753,9 @@ fun SectionItem(
                     Spacer(modifier = Modifier.height(12.dp))
                 }
 
-                HighlightText(
-                    text = section.content,
-                    query = searchQuery,
+                FARContent(
+                    content = section.content,
+                    searchQuery = searchQuery,
                     style = bodyStyle,
                     color = MaterialTheme.colorScheme.onSurface
                 )

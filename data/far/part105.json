@@ -6,7 +6,7 @@
   "url": "https://www.ecfr.gov/current/title-14/part-105",
   "subchapter": "F",
   "subchapterTitle": "Air Traffic and General Operating Rules",
-  "effectiveDate": "2026-07-24",
+  "effectiveDate": "2026-10-15",
   "subparts": [
     {
       "subpart": "B",
@@ -27,7 +27,7 @@
         {
           "section": "105.17",
           "title": "Flight visibility and clearance from cloud requirements",
-          "content": "No person may conduct a parachute operation, and no pilot in command of an aircraft may allow a parachute operation to be conducted from that aircraft-\n\n(a) Into or through a cloud, or\n\n(b) When the flight visibility or the distance from any cloud is less than that prescribed in the following table:\n\n| Altitude\n| Flight visibility\n(statute miles)\n| Distance from clouds\n\n| 1,200 feet or less above the surface regardless of the MSL altitude\n| 3\n| 500 feet below, 1,000 feet above, 2,000 feet horizontal.\n\n| More than 1,200 feet above the surface but less than 10,000 feet MSL\n| 3\n| 500 feet below, 1,000 feet above, 2,000 feet horizontal.\n\n| More than 1,200 feet above the surface and at or above 10,000 feet MSL\n| 5\n| 1,000 feet below, 1,000 feet above, 1 mile horizontal.",
+          "content": "No person may conduct a parachute operation, and no pilot in command of an aircraft may allow a parachute operation to be conducted from that aircraft-\n\n(a) Into or through a cloud, or\n\n(b) When the flight visibility or the distance from any cloud is less than that prescribed in the following table:\n\n[TABLE]\n| Altitude | Flight visibility (statute miles) | Distance from clouds |\n\n| 1,200 feet or less above the surface regardless of the MSL altitude | 3 | 500 feet below, 1,000 feet above, 2,000 feet horizontal. |\n\n| More than 1,200 feet above the surface but less than 10,000 feet MSL | 3 | 500 feet below, 1,000 feet above, 2,000 feet horizontal. |\n\n| More than 1,200 feet above the surface and at or above 10,000 feet MSL | 5 | 1,000 feet below, 1,000 feet above, 1 mile horizontal. |\n[/TABLE]",
           "figures": []
         },
         {

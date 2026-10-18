@@ -25,6 +25,33 @@ instructs FAA authors to obtain written permission before using copyrighted
 non-government material in an AC; that instruction does not itself give this
 project permission to redistribute the material.
 
+## Refresh integrity
+
+Run the FAR, AIM, and glossary crawlers from `scripts/`, then run
+`uv run python finalize_reference_refresh.py` to reconcile the source dates and
+coverage in `source-status.json`. Rebuild search indexes and sync mobile bundles
+after changing the shared data.
+
+FAR `effectiveDate` values identify the eCFR snapshot actually downloaded. The
+indexes record those dates separately from `fetchedAt`; a recent crawl date is
+not proof that the downloaded regulations are current. Freshness checks use the
+complete eCFR issue metadata, including the selected Title 49 parts.
+
+AIM SVG and WebP figures are normalized to PNG for the offline mobile readers.
+Publication figures must decode successfully; FAA export layout placeholders
+and tracking pixels are not content. Missing sections or expected figures stop
+the refresh before chapter JSON is published.
+
+Numbered AIM figure captions are reconciled against the current dated FAA PDF.
+The index records its source URL, effective date, and SHA-256 checksum. Repairs
+that use an older FAA HTML mirror require that exact verified PDF checksum;
+a future edition stops the refresh until those replacements are revalidated.
+
+`uv run python crawl_advisory_circulars.py --check` audits every cached AC payload
+without downloading or writing files. OCR can recover text from scanned pages,
+but a complete text extraction does not reproduce every figure or PDF layout.
+Records with omitted text pages remain marked partial, with official PDF links.
+
 ## Advisory Circulars with text withheld
 
 These active FAA catalog records retain their metadata and official FAA links,

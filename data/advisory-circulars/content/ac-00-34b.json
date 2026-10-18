@@ -3,14 +3,15 @@
   "id": "ac-00-34b",
   "number": "00-34B",
   "title": "Aircraft Ground Handling, Servicing, and Marshalling",
-  "status": "partial",
-  "fetched": "2026-07-14",
+  "status": "parsed",
+  "fetched": "2026-10-17",
   "documentUrl": "https://www.faa.gov/regulations_policies/advisory_circulars/index.cfm/go/document.information/documentID/1042894",
   "pdfUrl": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_00-34B.pdf",
   "sha256": "6b1a4a7313b39c4b54436cc68459bba97fe589ce78b682f1d8f8303e35bba3c8",
   "pageCount": 19,
-  "wordCount": 5363,
-  "ocrPageCount": 0,
+  "extractedPageCount": 19,
+  "wordCount": 5467,
+  "ocrPageCount": 3,
   "pages": [
     {
       "page": 1,
@@ -62,7 +63,15 @@
     },
     {
       "page": 13,
-      "text": "Table 1. Unique ICAO Hand Signal for Marshalling Aircraft"
+      "text": "7/17/24\nAC 00-34B\nTable 1. Unique ICAO Hand Signal for Marshalling Aircraft\nICAO HAND SIGNAL FOR MARSHALLING AIRCRAFT\nWingwalker Guide\nEstablish Communication via\nOpen/Close Stairs\nInterphone\nFire\nIdentify Gate\nNegative\nDisconnect to Ground Power\nConnect to Ground Power\nNormal Stop"
+    },
+    {
+      "page": 14,
+      "text": "7/17/24\n\nAC 00-34B\n\nDo Not Touch Controls Dispatch Aircraft Hold Position/Standby Straight Ahead Turn While Backing Turn While Backing (For Tail to Port) (For Tail to Starboard) Move Back Set Brakes Cut Engines Turn Right Turn Left Release Brakes"
+    },
+    {
+      "page": 15,
+      "text": "7/17/24\n\nAC 00-34B\n\nSlow Down Engine(s) Slow Down Engine(s) Chocks Removed (On Indicated Side) Chocks Inserted Proceed to Next Signalman Emergency Stop All Clear"
     },
     {
       "page": 16,
@@ -80,6 +89,5 @@
       "page": 19,
       "text": "Advisory Circular Feedback Form If you find an error in this AC, have recommendations for improving it, or have suggestions for new items/subjects to be added, you may let us know by contacting the Flight Standards Directives Management Officer at 9-AWA-AFB-120-Directives@faa.gov.\n\nSubject: AC 00-34B, Aircraft Ground Handling, Servicing, and Marshalling Date: _____________________ Please check all appropriate line items: An error (procedural or typographical) has been noted in paragraph ____________ on page _______. Recommend paragraph _____________ on page __________ be changed as follows: ______________________________________________________________________ ______________________________________________________________________ In a future change to this AC, please cover the following subject: (Briefly describe what you want added.) ______________________________________________________________________ ______________________________________________________________________ Other comments: ______________________________________________________________________ ______________________________________________________________________ I would like to discuss the above. Please contact me. Submitted by: Date: ______________________"
     }
-  ],
-  "extractedPageCount": 17
+  ]
 }

@@ -8,6 +8,11 @@ on:
     - cron: '31 15 * * 6'
     - cron: '47 15 1 * *'
   workflow_dispatch:
+    inputs:
+      refresh_reference_sources:
+        description: Refresh FAR, AIM, and PCG as well as the AC catalog
+        type: boolean
+        default: true
 
 permissions:
   actions: write
@@ -54,7 +59,7 @@ jobs:
 
       - name: Sync Python dependencies
         working-directory: scripts
-        run: uv sync --frozen --python 3.12
+        run: uv sync --frozen --python 3.12 --extra ocr
 
       - name: Snapshot current AC index
         run: cp data/advisory-circulars/index.json "$RUNNER_TEMP/ac-index-before.json"
@@ -80,7 +85,7 @@ jobs:
           uv run python update_advisory_circulars.py "${args[@]}"
 
       - name: Refresh FAR, AIM, and PCG sources
-        if: github.event.schedule == env.FAR_AIM_REFRESH_SCHEDULE
+        if: github.event.schedule == env.FAR_AIM_REFRESH_SCHEDULE || (github.event_name == 'workflow_dispatch' && inputs.refresh_reference_sources)
         working-directory: scripts
         shell: bash
         run: |
@@ -91,70 +96,9 @@ jobs:
           uv run python crawl_pcg.py
 
       - name: Update FAR, AIM, and PCG source metadata
-        if: github.event.schedule == env.FAR_AIM_REFRESH_SCHEDULE
-        working-directory: ${{ github.workspace }}
-        shell: bash
-        run: |
-          node --input-type=module <<'NODE'
-          import fs from 'node:fs';
-
-          const read = (path) => JSON.parse(fs.readFileSync(path, 'utf8'));
-          const write = (path, data) => fs.writeFileSync(path, `${JSON.stringify(data, null, 2)}\n`);
-          const statusPath = 'data/source-status.json';
-          const status = read(statusPath);
-          const originalSources = JSON.stringify(status.sources);
-          const source = (id) => {
-            const entry = status.sources.find((item) => item.id === id);
-            if (!entry) throw new Error(`Missing source-status entry: ${id}`);
-            return entry;
-          };
-          const farIndex = read('data/far/index.json');
-          const farParts = farIndex.parts.map((item) => read(`data/far/part${item.part}.json`));
-          const farSections = (part) => [
-            ...(part.sections ?? []),
-            ...(part.subparts ?? []).flatMap((subpart) => subpart.sections ?? []),
-          ];
-          const farFigures = (part) => [...farSections(part), ...(part.appendices ?? [])]
-            .flatMap((section) => section.figures ?? []);
-          const farSectionCount = farParts.reduce((total, part) => total + farSections(part).length, 0);
-          const farAppendixCount = farParts.reduce((total, part) => total + (part.appendices ?? []).length, 0);
-          const farFigureCount = farParts.reduce((total, part) => total + farFigures(part).length, 0);
-          if (farParts.length < 180 || farSectionCount < 5000) {
-            throw new Error(`Incomplete FAR crawl: ${farParts.length} parts, ${farSectionCount} sections`);
-          }
-          const far = source('far');
-          far.lastUpdated = farIndex.lastUpdated;
-          far.itemCount = farParts.length;
-          far.sectionCount = farSectionCount;
-          const contentParts = farParts.filter((part) => farSections(part).length || (part.appendices ?? []).length).length;
-          far.coverage = `${farParts.length.toLocaleString('en-US')} indexed parts, ${contentParts.toLocaleString('en-US')} content parts, ${farSectionCount.toLocaleString('en-US')} sections, ${farAppendixCount.toLocaleString('en-US')} appendices and ${farFigureCount.toLocaleString('en-US')} figures`;
-
-          const aimIndex = read('data/aim/index.json');
-          const aimChapters = aimIndex.chapters.map((item) => read(`data/aim/chapter${item.chapter}.json`));
-          const aimSectionCount = aimChapters.reduce((total, chapter) => total + chapter.sections.length, 0);
-          if (aimChapters.length !== 12 || aimSectionCount < 300) {
-            throw new Error(`Incomplete AIM crawl: ${aimChapters.length} chapters, ${aimSectionCount} sections`);
-          }
-          const aim = source('aim');
-          aim.lastUpdated = aimIndex.lastUpdated;
-          aim.itemCount = aimChapters.length;
-          aim.sectionCount = aimSectionCount;
-          aim.coverage = `${aimChapters.length} indexed chapters, ${aimSectionCount.toLocaleString('en-US')} sections and ${aimIndex.totalImages.toLocaleString('en-US')} figures`;
-
-          const pcgData = read('data/aim/pcg.json');
-          if (pcgData.terms.length < 1000) {
-            throw new Error(`Incomplete PCG crawl: ${pcgData.terms.length} terms`);
-          }
-          const pcg = source('pcg');
-          pcg.lastUpdated = pcgData.lastUpdated;
-          pcg.itemCount = pcgData.terms.length;
-          pcg.coverage = `${pcgData.terms.length.toLocaleString('en-US')} terms`;
-
-          if (JSON.stringify(status.sources) !== originalSources) {
-            status.generatedAt = new Date().toISOString().slice(0, 10);
-          }
-          write(statusPath, status);
-          NODE
+        if: github.event.schedule == env.FAR_AIM_REFRESH_SCHEDULE || (github.event_name == 'workflow_dispatch' && inputs.refresh_reference_sources)
+        working-directory: scripts
+        run: uv run python finalize_reference_refresh.py
 
       - name: Detect refreshed source changes
         id: changes
@@ -166,7 +110,8 @@ jobs:
             || [[ -s "$RUNNER_TEMP/ac-changed-ids.txt" ]]; then
             ac_changed=true
           fi
-          if ! git diff --quiet -- data/far data/aim data/source-status.json; then
+          if [[ -n "$(git status --porcelain -- data/far data/aim data/source-status.json \
+            web/public/far/images web/public/aim/images)" ]]; then
             source_changed=true
           fi
           if [[ "$ac_changed" == false && "$source_changed" == false ]]; then
@@ -191,7 +136,7 @@ jobs:
             done
             args+=(--refresh --resolve-pdf-url)
           fi
-          uv run python crawl_advisory_circulars.py "${args[@]}"
+          uv run --extra ocr python crawl_advisory_circulars.py --ocr "${args[@]}"
 
       - name: Finalize source metadata and claims
         if: steps.changes.outputs.ac_changed == 'true'
@@ -203,7 +148,7 @@ jobs:
           --summary-markdown "$RUNNER_TEMP/ac-refresh-summary.md"
 
       - name: Summarize FAR, AIM, and PCG refresh
-        if: github.event.schedule == env.FAR_AIM_REFRESH_SCHEDULE
+        if: github.event.schedule == env.FAR_AIM_REFRESH_SCHEDULE || (github.event_name == 'workflow_dispatch' && inputs.refresh_reference_sources)
         shell: bash
         run: |
           {
@@ -211,6 +156,10 @@ jobs:
             echo
             echo 'The weekly refresh downloaded eCFR FAR content and FAA AIM and Pilot/Controller Glossary publications. Crawler completeness checks passed.'
           } >> "$RUNNER_TEMP/ac-refresh-summary.md"
+
+      - name: Audit all bundled AC text
+        working-directory: scripts
+        run: uv run python crawl_advisory_circulars.py --check
 
       - name: Rebuild search and route artifacts
         if: steps.changes.outputs.changed == 'true'
@@ -225,6 +174,7 @@ jobs:
           cd scripts
           uv run ruff check .
           uv run pytest -q
+          uv run python check_source_freshness.py --json
           cd ..
           node scripts/build_inverted_index.js --check
           git diff --check

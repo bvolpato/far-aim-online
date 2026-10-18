@@ -4,13 +4,14 @@
   "number": "90-101A",
   "title": "Approval Guidance for Required Navigation Performance (RNP) Procedures with Authorization Required (AR) Including Change 1",
   "status": "partial",
-  "fetched": "2026-07-14",
+  "fetched": "2026-10-17",
   "documentUrl": "https://www.faa.gov/regulations_policies/advisory_circulars/index.cfm/go/document.information/documentID/903610",
   "pdfUrl": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_90-101A_CHG_1.pdf",
   "sha256": "939987d6d02c259b78741b462082c2f5e160d2265b2a5593185ff225cfef458b",
   "pageCount": 51,
-  "wordCount": 15792,
-  "ocrPageCount": 0,
+  "extractedPageCount": 46,
+  "wordCount": 16213,
+  "ocrPageCount": 3,
   "pages": [
     {
       "page": 1,
@@ -50,7 +51,7 @@
     },
     {
       "page": 11,
-      "text": "2/23/11 AC 90-101A\n\nAppendix 1\nFIGURE 1. EXAMPLE OF RNP AR APPROACH PROCEDURES WITH A RADIUS TO\nA FIX LEG SEGMENT"
+      "text": "2/23/11\nAC 90-101A\nAppendix 1\nX R E O\nA FIX LEG SEGMENT\nANYTOWN, USA\nAL-330 (FAA)\nAPP CRS\n281°\nApt Elev\nRwy Idg\nTHRE\nRNAV (RNP) Y RWY 28R\nANYTOWN (ANY)\nA\nProcedure NA for aircraft with wingspan greater than 136 feet.\nGPS required.\nFor uncompensated Baro-VNAV systems, Procedure NA below\nMALSR\nMISSED APPROACH: Climb on track\n281° to FIKOG and hold.\n-5°℃ (23°F) or above 40℃ (104°F).\nARR 128,35 269,9\nDEP 120.625 239.25\nATIS\nANYTOWN APP CON\n124.35 299.2\n118,7 257,8\nRwy 10L-28R\nANYTOWN TOWER\n123,775 251,125\nRwys 3-21, 10R-28L\n121.9 348.6\nGND CON\n120.125318.1\nCLNC DEL\nD\n(IAF)\n(RF REQD)\nRNP 0.15]\nKRATR\nPROTOTYPE NOT\nDEMGE\nFORNAVIGATION\n(IAF)\n(RF REQD)\nD\n(RNP 0.15)\n103°\n4NM\nBATTLEGROUND\nBTG\n(4.3)\nLARIE\n103°\n(.8)\nFIKOG\nSKYKO\n(10.2)\n(8.5)\n251°\n(2.3)\nROVRE\nayi\nELEV\nRwy 3 ldg 6321'\nRW28R\nFATIG\n200 KIAS. 1000\nRwy 21 Idg 6321'\nDMIVZ DIKKE\nCATMI\n(IF)\n(5.6)\n257°\n261°\n281°\nCATMI\nA\nDMIVZ\nDIKKE\nTHRE\nFIKOG\n251°\n-251°.\n96±\nRW2BR\n281°\nA96±\nGP 3.00°\n130±\nTCH 65\nRW28R\n281° to\nCATEGORY\nA\n5.2 NM\nB\n2.3 NM\nC\n2.3 NM\nD\nRNP 0.15\n276/40 250 (300-34)\nRNP 0.3\n346-1 320 (400-1)\nREIL Rwys 3 and 21\nAUTHORIZATION REQUIRED\nTDZ/CL Rwy 10R\nMIRL Rwy 3-21\nHIRL Rwys 10L-28R and 10R-28L\nANYTOWN, USA\nANYTOWN (ANY)\n45°35'N-122°36'W\nRNAV (RNP) Y RWY 28R"
     },
     {
       "page": 12,
@@ -106,7 +107,7 @@
     },
     {
       "page": 25,
-      "text": "2/23/11 AC 90-101A\n\nAppendix 2\n\nFIGURE 1. MINIMUM STRAIGHT PATH BEFORE DECISION ALTITUDE\nPage 13 (and 14)"
+      "text": "2/23/11\nAC 90-101A\nAppendix 2\nFIGURE 1. MINIMUM STRAIGHT PATH BEFORE DECISION ALTITUDE\nPublic Required Navigation Performance (RNP)\nAuthorization Required (AR) Procedures\nMinimum Straight Segments Between Turns\nand Decision Altitude (DA)\nRF\nin final\nDirection of Flight\nMin Time = 50s\nDA\nMin Time = 10s\nLTP\nRunway\nRF\nin miss\nDER\nIf there is a turn before or after the DA,\ndistance before or after DA computed from\nDistance(NM) = GS(KT) * T(SEC)/3600\nwhere\nGS = Category Speed + 15 kt\nLTP – Landing Threshold Point\nDER – Departure End of Runway\nPage 13 (and 14)"
     },
     {
       "page": 27,
@@ -186,16 +187,15 @@
     },
     {
       "page": 48,
-      "text": "AC 90-101A 2/23/11\n\nAppendix 7\nFIGURE 1. RNP AR APPROVAL CHECKLIST (OPTIONAL)\n1. Name of Operator: ___________________________________\n2. Point of Contact: ____________________________________\n3. Type of Aircraft: ____________________________________\n4. FMS Model and Software Version: ______________________\n5. Date Application Submitted: ___________________________\na. Aircraft Qualification/Equipment List\nb. Navigation Data Validation Program\nc. Maintenance Procedures\nd. Training (e.g., Flightcrew/Dispatch)\ne. MEL Revision (as required)\nf. Operating Procedures and Practices\ng. RNP AR Monitoring Program\nh. Conditions or Limitations for Approval\ni. Dispatch/Flight Following Procedures\nj. Validation Successfully Completed (as required)\n6. POI Action:\na. Complete review of application and provide recommendation for operational approval to\nheadquarters, via the regional AWOPM, in accordance with Figure 2\nDate:_____________\nb. Interim RNP AR Approval (Issue LOA or OpSpecs/MSpecs)\n\nDate:_____________\n\nc. Final RNP AR Approval (Issue LOA or OpSpecs/MSpecs)\n\nDate:_____________\n\nd. Comments:"
+      "text": "AC 90-101A 2/23/11\n\nAppendix 7\nFIGURE 1. RNP AR APPROVAL CHECKLIST (OPTIONAL)\n1. Name of Operator: ___________________________________\n2. Point of Contact: ____________________________________\n3. Type of Aircraft: ____________________________________\n4. FMS Model and Software Version: ______________________\n5. Date Application Submitted: ___________________________\na. Aircraft Qualification/Equipment List\nb. Navigation Data Validation Program\nc. Maintenance Procedures\nd. Training (e.g., Flightcrew/Dispatch)\ne. MEL Revision (as required)\nf. Operating Procedures and Practices\ng. RNP AR Monitoring Program\nh. Conditions or Limitations for Approval\ni. Dispatch/Flight Following Procedures\nj. Validation Successfully Completed (as required)\n6. POI Action:\na. Complete review of application and provide recommendation for operational approval to\nheadquarters, via the regional AWOPM, in accordance with Figure 2\nDate: _____________\nb. Interim RNP AR Approval (Issue LOA or OpSpecs/MSpecs)\n\nDate: _____________\n\nc. Final RNP AR Approval (Issue LOA or OpSpecs/MSpecs)\n\nDate: _____________\n\nd. Comments:"
     },
     {
       "page": 49,
-      "text": "2/23/11 AC 90-101A\n\nAppendix 7\n\nFIGURE 2. RNP AR APPLICATION FLOW\nPage 5 (and 6)"
+      "text": "2/23/11\nAC 90-101A\nAppendix 7\nFIGURE 2. RNP AR APPLICATION FLOW\noperaetor\nApplications for foreign approaches must\napplication\ninclude a request letter, AlP written in\npackage *\nEnglish and the charted procedure.\nNO\nPOI\n(CHDO/FSDO/\nCMO) concurs\nYES\nNO\nAWOPM concurs\nYES\nAFS-400\nNO\n& appropriate policy\ndivision (AFS-200, 800\nor 50) concurs\nYES\n1. AFS-460 performs procedure design review\nYES\n2. AFS-460 confirms obstruction flight\nForeign\nvalidation or obstruction ground validation\napproach?\n3. AFS-460 evaluates flyability in the\nAFS-400 simulator(s)\n4. AFS-460 forwards results to AFS-470\nNO\nAWOPM\nNO\nAFS-470\nApproves?\nYES\nInternational\nReview Board\nPOI\nNO\nTnternational\nReview Board\napproves?\nOperator\nYES\nAFS-470 coordinates with AFS-260 to\nadd the foreign approach to the\nOpSpec\nAFS-470 writes a\nconcurrence\nmemo\nPage 5 (and 6)"
     },
     {
       "page": 51,
       "text": "Advisory Circular Feedback Form If you find an error in this AC, have recommendations for improving it, or have suggestions for new items/subjects to be added, you may let us know by contacting the Flight Technologies and Procedures Division (AFS-400) or the Flight Standards Directives Management Officer.\n\nSubject: AC 90-101A CHG 1, Approval Guidance for RNP Procedures with AR Date: _____________________ Please check all appropriate line items: An error (procedural or typographical) has been noted in paragraph ____________ on page _______. Recommend paragraph _____________ on page __________ be changed as follows: ______________________________________________________________________ ______________________________________________________________________ In a future change to this AC, please cover the following subject: (Briefly describe what you want added.) ______________________________________________________________________ ______________________________________________________________________ Other comments: ______________________________________________________________________ ______________________________________________________________________ I would like to discuss the above. Please contact me. Submitted by: Date: ______________________"
     }
-  ],
-  "extractedPageCount": 46
+  ]
 }

@@ -4,11 +4,12 @@
   "number": "25-26",
   "title": "Development of standard wiring practices documentation",
   "status": "partial",
-  "fetched": "2026-07-14",
+  "fetched": "2026-10-17",
   "documentUrl": "https://www.faa.gov/regulations_policies/advisory_circulars/index.cfm/go/document.information/documentID/74383",
   "pdfUrl": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_25-26.pdf",
   "sha256": "fc5b438f38718d46f60ec1690807025ce3e7cf1b5aaea56d486d61981c66ac4a",
   "pageCount": 18,
+  "extractedPageCount": 16,
   "wordCount": 3847,
   "ocrPageCount": 0,
   "pages": [
@@ -76,6 +77,5 @@
       "page": 18,
       "text": "Appendix C\n\na standard format. This information would be used by maintenance personnel for wiring maintenance and repairs. The requirement is necessary because information about cautionary tasks during maintenance that can prevent situations that could compromise safety need to be available to maintenance personnel. Standard wiring practices manuals, in which this information is presented, often differ from manufacturer to manufacturer and so are difficult for maintenance personnel to find specific information in. The requirement for a standard format is meant to correct this. Because of this proposal, manufacturers would change their Standard Wiring Practices Manuals (SWPM)."
     }
-  ],
-  "extractedPageCount": 16
+  ]
 }

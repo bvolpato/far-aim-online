@@ -4,11 +4,12 @@
   "number": "61-67C",
   "title": "Stall and Spin Awareness Training with Change 1 & 2",
   "status": "partial",
-  "fetched": "2026-07-14",
+  "fetched": "2026-10-17",
   "documentUrl": "https://www.faa.gov/regulations_policies/advisory_circulars/index.cfm/go/document.information/documentID/1028760",
   "pdfUrl": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_61-67C_Chg_2.pdf",
   "sha256": "ffc33e3b2e957c7296eab5b3ce750ab68701e1d54eee49c09b48f6d611102e49",
   "pageCount": 23,
+  "extractedPageCount": 21,
   "wordCount": 8294,
   "ocrPageCount": 0,
   "pages": [
@@ -96,6 +97,5 @@
       "page": 23,
       "text": "Advisory Circular Feedback Form If you find an error in this AC, have recommendations for improving it, or have suggestions for new items/subjects to be added, you may let us know by contacting General Aviation and Commercial Division (AFS-800) at 9-AFS-800-Correspondence-Mail@faa.gov or the Flight Standards Directives Management Officer.\n\nSubject: AC 61-67C CHG 2, Stall and Spin Awareness Training Date: _____________________ Please check all appropriate line items: An error (procedural or typographical) has been noted in paragraph ____________ on page _______. Recommend paragraph _____________ on page __________ be changed as follows: ______________________________________________________________________ ______________________________________________________________________ In a future change to this AC, please cover the following subject: (Briefly describe what you want added.) ______________________________________________________________________ ______________________________________________________________________ Other comments: ______________________________________________________________________ ______________________________________________________________________ I would like to discuss the above. Please contact me. Submitted by: Date: ______________________"
     }
-  ],
-  "extractedPageCount": 21
+  ]
 }

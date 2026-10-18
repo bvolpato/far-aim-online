@@ -3,14 +3,15 @@
   "id": "ac-135-16",
   "number": "135-16",
   "title": "Ground Deicing & Anti-icing Training & Checking",
-  "status": "partial",
-  "fetched": "2026-07-14",
+  "status": "parsed",
+  "fetched": "2026-10-17",
   "documentUrl": "https://www.faa.gov/regulations_policies/advisory_circulars/index.cfm/go/document.information/documentID/22542",
   "pdfUrl": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/ac135-16.pdf",
   "sha256": "7ebe96312266ae1889fc4eb51a70d81c479b05fcd7be67816ff7072a951b2203",
   "pageCount": 19,
-  "wordCount": 4840,
-  "ocrPageCount": 0,
+  "extractedPageCount": 19,
+  "wordCount": 5186,
+  "ocrPageCount": 2,
   "pages": [
     {
       "page": 1,
@@ -70,11 +71,15 @@
     },
     {
       "page": 15,
-      "text": "r-u"
+      "text": "Par 15 field length. attitude. takeoff. length. the use of the different deicing/anti-icing fluids. manufacturer may also provide performance information regarding following handling/performance factors. The aircraft flows off the wing during takeoff determines the effects of the Implications. fluid to progressively flow off the wing during takeoff. gel-like consistency) on wing.. of Type I fluids. 12/12/94 C. (3) (2) Type II Fluids: (1) Fluid Characteristics. (iii)Increased stall speeds/reduced stall margins. (iii) Application results in a thick liquid film (a (iii) When applied, forms thin liquid film on wing. (vi) Increased drag during climb. (v) Increased drag during acceleration/increased (iv) Lift loss at climbout/increased pitch rod (nr) r ro(oo) (i) Increased rotation speeds/increased field The type fluid used and how completely the fluid Deicing/Anti-Icing Fluids Handling/Performance (iv) Windflow over the wing (shear) causes the (ii) Longer holdover times in comparison to those (i) Thickened. (ii) Limited holdover time. (i) Unthickened. Type I Fluids. AC 135-16"
     },
     {
       "page": 16,
       "text": "AC 135-16 12/12/94 16 l COLD WEATHER PREFLIGHT INSPECTION PROCEDURES. a. Pilot Preflight Inspection/Cold Weather Preflight Inspection Procedures. This is the normal walk-around preflight inspection conducted by a pilot. This inspection should be used to note any aircraft surface contamination and initiate any required deicing/anti-icing operations. b A thorough preflight inspection is more important in temperature extremes because those temperature extremes may . affect the aircraft or its performance. At extremely low temperatures; the urge to hurry the preflight of the aircraft is natural, particularly when the aircraft is outside and adverse weather conditions exist, which make the preflight physically uncomfortable for the pilots. This is the very time to perform the most thorough preflight inspection. c. Aircraft areas that require special attention during a preflight inspection during cold weather operations depend on the aircraft design and should be identified in the certificate holder's training program. The preflight should include all items recommended by the aircraft manufacturer. A preflight should include items appropriate to the specific aircraft type. Generally, those items may include: (1) Wing leading edges, upper and lower surfaces. . (2) Vertical and horizontal stabilizing devices, leading edges, upper surfaces, lower surfaces, and side panels l (3) Lift\\drag devices such as trailing edge flaps, (4) Spoilers and speed brakes. (5) All control surfaces and control balance bays, (6) Propellers. pressure (7) Engine probes. inlets, particle separators, screens, and visibility. (8) Windshields and other windows necessary for (9) Antennas l (10) Fuselage. -1 6 Par 16"
+    },
+    {
+      "page": 17,
+      "text": "Par 16 include: deicing/anti-icing fluid or contamination on aircraft surfaces indications of loss of effectiveness of fluids. applicable) to recognize contamination on aircraft surfaces and techniques for the use of their pilots (and other personnel, if\n\n17. TECHNIQUES FOR RECOGNIZING CONTAMINATION ON THE AIRPLANE.\n\nice before flight: operations. The following openings should be free of snow and aircraft where snow can enter, freeze, and obstruct normal snow, special attention should be given to openings in the intakes, and exhausts. ports. angle-of-attack vanes, pitot-static pressure probes, and static 12/12/94 b. a. d. (2) Random snow accumulation. (1) Progressive surface freezing or snow accumulation. Some indications for loss of effectiveness of Certificate holders should have aircraft-specific (6) (5) Elevator and rudder controls. (4) (3) Heater intakes. (2) (1) Pitot tubes and static system sensing ports. Blowing Snow. If an aircraft is exposed to blowing (14) Landing gear. (13) Cooling and auxiliary power unit (APU) air (12) Fuel tank and fuel cap vents. (11) Exposed instrumentation devices such as Engine air intakes and carburetor intakes. Fuel vents. Wheel wells. AC 135-16"
     },
     {
       "page": 18,
@@ -84,6 +89,5 @@
       "page": 19,
       "text": "o()E$ asn aleA!Jd JOJ Alleuad ssaqsng lepgjo 16SOZ ‘Xl ‘W6U!WM ‘M’S “0AV CIW@fXJad~pll~ 008 W-9 ‘ON llW3d NOllVtllSINIYYOV NOUVIAV lVkUCl33 CllVd S333 f 39VlSOd iniwu ma"
     }
-  ],
-  "extractedPageCount": 18
+  ]
 }

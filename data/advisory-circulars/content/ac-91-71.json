@@ -4,11 +4,12 @@
   "number": "91-71",
   "title": "Operation of Hot Air Balloons with Airborne Heaters",
   "status": "partial",
-  "fetched": "2026-07-14",
+  "fetched": "2026-10-17",
   "documentUrl": "https://www.faa.gov/regulations_policies/advisory_circulars/index.cfm/go/document.information/documentID/22439",
   "pdfUrl": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/ac91-71.pdf",
   "sha256": "33a767797e421d232aac1f756f4c0c9cc7c2b05897ddf0fef6b08a721cb0e0ef",
   "pageCount": 16,
+  "extractedPageCount": 15,
   "wordCount": 3407,
   "ocrPageCount": 0,
   "pages": [
@@ -72,6 +73,5 @@
       "page": 16,
       "text": "U.S. Department of Transportation Federal Aviation Administration 800 Independence Ave., Washington, D.C. 20591 S.W. Official Business Penalty for Private Use $300"
     }
-  ],
-  "extractedPageCount": 15
+  ]
 }

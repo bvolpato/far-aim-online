@@ -3,15 +3,15 @@
   "id": "ac-43-9-1g",
   "number": "43.9-1G",
   "title": "Instructions for Completion of FAA Form 337",
-  "status": "partial",
-  "fetched": "2026-09-01",
+  "status": "parsed",
+  "fetched": "2026-10-17",
   "documentUrl": "https://www.faa.gov/regulations_policies/advisory_circulars/index.cfm/go/document.information/documentID/1036848",
   "pdfUrl": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_43.9-1G_Ed_Upd_(12-19-25).pdf",
   "sha256": "ca5a369b6edf3536d16317417403b5d9c915c94c8dc14a0a33750d0776702730",
   "pageCount": 11,
-  "extractedPageCount": 10,
-  "wordCount": 3975,
-  "ocrPageCount": 0,
+  "extractedPageCount": 11,
+  "wordCount": 4052,
+  "ocrPageCount": 1,
   "pages": [
     {
       "page": 1,
@@ -48,6 +48,10 @@
     {
       "page": 9,
       "text": "APPENDIX A. FAA FORM 337\n\nPaperwork Reduction Act Statement: A federal agency may not conduct or sponsor, and a person is not required to respond to, nor shall a person be subject to a penalty for failure to comply with a collection of information subject to the requirements of the Paperwork Reduction Act unless that collection of information displays a currently valid OMB Control Number. The OMB Control Number for this information collection is 2120-0020. Public reporting for this collection of information is estimated to be approximately 15 minutes per response, including the time for reviewing instructions, searching existing data sources, gathering and maintaining the data needed, completing and reviewing the collection of information. All responses to this collection of information are mandatory under CFR 14 Part 43. Send comments regarding this burden estimate or any other aspect of this collection of information, including suggestions for reducing this burden to: Information Collection Clearance Officer, Federal Aviation Administration, 10101 Hillwood Parkway, Fort Worth, TX 76177-1524."
+    },
+    {
+      "page": 10,
+      "text": "11/1/19\n\nAC 43.9-1G\n\nNOTICE\n\nWeight and balance or operating limitation changes shall be entered in the appropriate aircraft record. An alteration must be compatible with all previous alterations to assure continued conformity with the applicable airworthiness requirements. 8. Description of Work Accomplished (If more space is required, attach additional sheets. Identify with aircraft nationality and registration mark and date work completed.) Nationality and Registration Mark Date Additional Sheets Are Attached FAA Form 337 (10-06)"
     },
     {
       "page": 11,

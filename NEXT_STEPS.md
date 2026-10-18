@@ -1,18 +1,17 @@
 # FAR/AIM Pro Next Steps
 
-Store-console status below was last verified on 2026-09-27. It is historical, not a current store-health check. Release tooling and content notes were updated on 2026-10-12:
+Store-console status below was last verified on 2026-09-27. It is historical, not a current store-health check. Release tooling and content notes were updated on 2026-10-17:
 
 - Web deployed: `https://faraim.online`
 - Legal pages live: `https://faraim.online/privacy`, `https://faraim.online/terms`
 - Store metadata tracked in `store/android/metadata/` and `store/ios/metadata/`
 - Store screenshots tracked in `store/android/screenshots/` and `store/ios/screenshots/`
-- Current content includes 213 FAR parts with 6,531 sections, 181 appendices and 591 figures,
-  11 core AIM chapters plus change notes and 5 appendices with 212 figures,
-  1,555 glossary terms, and 779 current Advisory Circulars.
-- Web, Android, and iOS include 725 complete and 48 partial searchable AC text
+- Current content includes 213 FAR parts with 6,546 sections, 185 appendices and 592 figures,
+  11 core AIM chapters plus change notes and 5 appendices with 283 figures,
+  1,557 glossary terms, and 779 current Advisory Circulars.
+- Web, Android, and iOS include 731 complete and 42 partial searchable AC text
   extractions. FAA lists AC 8260-32F as current but its content is unavailable. Offline text for 5 additional ACs is omitted pending third-party republication review; their official FAA links remain available.
-  because of third-party rights notices. Official source links remain available.
-- Native FAR/AIM readers now include bundled figures and AIM structured tables.
+- Native FAR/AIM readers include bundled figures and structured tables.
 - Android phone/tablet store screenshots were refreshed from the release candidate
   by Android Build action run `34438382172` on 2026-09-10. The iOS phone/tablet
   baseline is from 2026-07-09 and still needs a release-candidate refresh.

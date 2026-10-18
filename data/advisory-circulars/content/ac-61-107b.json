@@ -4,11 +4,12 @@
   "number": "61-107B",
   "title": "Aircraft Operations at Altitudes Above 25, 000 Feet Mean Sea Level or Mach Numbers Greater Than .75/ with Change 1",
   "status": "partial",
-  "fetched": "2026-07-14",
+  "fetched": "2026-10-17",
   "documentUrl": "https://www.faa.gov/regulations_policies/advisory_circulars/index.cfm/go/document.information/documentID/1020859",
   "pdfUrl": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_61-107B_CHG_1_FAA.pdf",
   "sha256": "f72288cc92448ddee1c35c03cee0db0164ecd2ee7df0343fe542e3cc1005bbbf",
   "pageCount": 52,
+  "extractedPageCount": 50,
   "wordCount": 20459,
   "ocrPageCount": 0,
   "pages": [
@@ -212,6 +213,5 @@
       "page": 52,
       "text": "Advisory Circular Feedback Form If you find an error in this AC, have recommendations for improving it, or have suggestions for new items/subjects to be added, you may let us know by contacting the General Aviation and Commercial Division (AFS-800) at 9-AFS-800-Correspondence-Mail@faa.gov or the Flight Standards Directives Management Officer.\n\nSubject: AC 61-107B CHG 1, Aircraft Operations at Altitudes Above 25,000 Feet Mean Sea Level or Mach Numbers Greater Than .75. Date: _____________________ Please check all appropriate line items: An error (procedural or typographical) has been noted in paragraph ____________ on page _______. Recommend paragraph _____________ on page __________ be changed as follows: ______________________________________________________________________ ______________________________________________________________________ In a future change to this AC, please cover the following subject: (Briefly describe what you want added.) ______________________________________________________________________ ______________________________________________________________________ Other comments: ______________________________________________________________________ ______________________________________________________________________ I would like to discuss the above. Please contact me. Submitted by: Date: ______________________"
     }
-  ],
-  "extractedPageCount": 50
+  ]
 }

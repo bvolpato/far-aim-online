@@ -4,17 +4,18 @@
   "number": "150/5020-1",
   "title": "Noise Control and Compatibility Planning for Airports",
   "status": "partial",
-  "fetched": "2026-07-14",
+  "fetched": "2026-10-17",
   "documentUrl": "https://www.faa.gov/regulations_policies/advisory_circulars/index.cfm/go/document.information/documentID/22771",
   "pdfUrl": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_150_5020-1.pdf",
   "sha256": "bb5f7d63c85378fc708a43d2551d3ac02033547453eb100555178f9e63dca2f5",
   "pageCount": 72,
-  "wordCount": 23156,
-  "ocrPageCount": 0,
+  "extractedPageCount": 66,
+  "wordCount": 23159,
+  "ocrPageCount": 1,
   "pages": [
     {
       "page": 1,
-      "text": "Advisory U.S.Department of Tlunsponation Federal Aviation Circular Adminirtrcrtiocr\n\nNOISE CONTROL AND\n\nCOMPATIBILITY PLANNING\n\nFOR AIRPORTS\n\nAUGUST 5, 1933"
+      "text": "Advisory U.S. Department Circular of Transportation Federal Aviation Administration AC 150/5020-1\n\nNOISE CONTROL AND\n\nCOMPATIBILITY PLANNING\n\nFOR AIRPORTS\n\nAUGUST 5, 1983"
     },
     {
       "page": 3,
@@ -276,6 +277,5 @@
       "page": 71,
       "text": "AC 150/5020-1\n\nAppendix 4\n\nClose, Paul D. Sound Control and Thermal Insulation of Buildings. Van Nostrdad Reinhold Co., 1966. Harris, Cyril M. Handbook of Noise Control. McGraw Hill, 1979. Magrab, Edward B. Environmental Noise Control. Wiley-Interscience, 1975. . Moore, J. E. Design for Good Acoustics and Noise Control. Scholium Intl., 1979. Ransey, C. G. and H. R. Sleeper. Architectural Graphic Standards. Wiley-Interscience, 7th Edition, 1980. U.S. Department of Commerce, National Bureau of Standards. Design Guide for Reducing Transportation Noise In and Around Buildings. NBS Building Science Series 84. U.S. Government Printing Office, April 1978. U.S. Department of Commerce, National Bureau of Standards. Highway Noise Criteria Study: OutdoorlIndoor Noise Isolation. NBS Technical Note 1113-2. U.S. Government Printing Office, August 1980. U.S. Department of Transportation, Federal Highway Administration. - The Audible Landscape: A Manual for Highway Noise and Land Use. November 1974, Reprinted August 1976. U.S. Department of Transportation, Federal Highway Administration. Insulation of Buildings Against Highway Noise. FHWA-TS-77-202."
     }
-  ],
-  "extractedPageCount": 66
+  ]
 }

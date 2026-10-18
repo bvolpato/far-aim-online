@@ -3,14 +3,15 @@
   "id": "ac-25-17a",
   "number": "25-17A",
   "title": "Transport Airplane Cabin Interiors Crashworthiness Handbook",
-  "status": "partial",
-  "fetched": "2026-07-14",
+  "status": "parsed",
+  "fetched": "2026-10-17",
   "documentUrl": "https://www.faa.gov/regulations_policies/advisory_circulars/index.cfm/go/document.information/documentID/74596",
   "pdfUrl": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_25-17A_CHG-1.pdf",
   "sha256": "1059d52a8ea878f0722f1cb1f420cbbe0cba596d91c106e361a03de6eb8ee793",
   "pageCount": 893,
-  "wordCount": 304046,
-  "ocrPageCount": 0,
+  "extractedPageCount": 893,
+  "wordCount": 307711,
+  "ocrPageCount": 67,
   "pages": [
     {
       "page": 1,
@@ -62,7 +63,7 @@
     },
     {
       "page": 13,
-      "text": "SECTION 25.1423 PUBLIC ADDRESS SYSTEMS\n901. Section 25.1423 Did Not Exist Prior to Amendment 25-70. 629\n902. Amendment 25-70, Effective November 27, 1989. 629\n903. Amendment 25-79, Effective September 27, 1993. 629\n904 – 920. [RESERVED]\nSECTION 25.1439(a) PROTECTIVE BREATHING\nEQUIPMENT\n921. Regulation in Effect at Adoption of Part 25. 631\n922. Amendment 25-38, Effective February 1, 1977.. 631\n923 - 970. [RESERVED]\nSECTION 25.1447 EQUIPMENT STANDARDS FOR OXYGEN\nDISPENSING UNITS\n971. Regulation in Effect at Adoption of Part 25. 633\n972. Amendment 25-41, Effective September 1, 1977. 635\n973. Amendment 25-87, Effective July 5, 1996. 637\n974 - 1010. [RESERVED]\nSECTION 25.1451 FIRE PROTECTION FOR OXYGEN\nEQUIPMENT\n1011. Regulation in Effect at Adoption of Part 25. 641\n1012. Removed at Amendment 25-72, Effective August 20, 1990. 641\n1013 - 1040. [RESERVED]\nSECTION 25.1541 MARKINGS AND PLACARDS—GENERAL\n1041. Regulation in Effect at Adoption of Part 25. 643\n1042 - 1060. [RESERVED]\nSECTION 25.1557(a), (c), and (d) MISCELLANEOUS\nMARKINGS AND PLACARDS\n1061. Regulation in Effect at Adoption of Part 25. 645\n1062. Amendment 25-32, Effective May 1, 1972. 645\n1063. Amendment 25-38, Effective February 1, 1977. 646\n1064. Amendment 25-72, Effective August 20, 1990. 646\n1065 - 1100. [RESERVED]"
+      "text": "SECTION 25.1423 PUBLIC ADDRESS SYSTEMS\n901. Section 25.1423 Did Not Exist Prior to Amendment 25-70. 629\n902. Amendment 25-70, Effective November 27, 1989. 629\n903. Amendment 25-79, Effective September 27, 1993. 629\n904 – 920. [RESERVED]\nSECTION 25.1439(a) PROTECTIVE BREATHING\nEQUIPMENT\n921. Regulation in Effect at Adoption of Part 25. 631\n922. Amendment 25-38, Effective February 1, 1977  631\n923 - 970. [RESERVED]\nSECTION 25.1447 EQUIPMENT STANDARDS FOR OXYGEN\nDISPENSING UNITS\n971. Regulation in Effect at Adoption of Part 25. 633\n972. Amendment 25-41, Effective September 1, 1977. 635\n973. Amendment 25-87, Effective July 5, 1996. 637\n974 - 1010. [RESERVED]\nSECTION 25.1451 FIRE PROTECTION FOR OXYGEN\nEQUIPMENT\n1011. Regulation in Effect at Adoption of Part 25. 641\n1012. Removed at Amendment 25-72, Effective August 20, 1990. 641\n1013 - 1040. [RESERVED]\nSECTION 25.1541 MARKINGS AND PLACARDS—GENERAL\n1041. Regulation in Effect at Adoption of Part 25. 643\n1042 - 1060. [RESERVED]\nSECTION 25.1557(a), (c), and (d) MISCELLANEOUS\nMARKINGS AND PLACARDS\n1061. Regulation in Effect at Adoption of Part 25. 645\n1062. Amendment 25-32, Effective May 1, 1972. 645\n1063. Amendment 25-38, Effective February 1, 1977. 646\n1064. Amendment 25-72, Effective August 20, 1990. 646\n1065 - 1100. [RESERVED]"
     },
     {
       "page": 14,
@@ -118,7 +119,7 @@
     },
     {
       "page": 27,
-      "text": "FIGURE 22-1 SURROGATE PART INSTALLED ON SEATBACK\n\n23 – 40. [RESERVED]"
+      "text": "5/18/2009\n\nAC 25-17A\n\nFIGURE 22-1 SURROGATE PART INSTALLED ON SEATBACK\n\nX Z Surrogate part installed y on the back side of the seatback in lieu of the actual accessory. The x and y axes are in the plane of the backside of the seatback\n\n23 – 40. [RESERVED]"
     },
     {
       "page": 28,
@@ -254,7 +255,7 @@
     },
     {
       "page": 61,
-      "text": "FIGURE 81-1 SURROGATE PART INSTALLED ON SEATBACK"
+      "text": "5/18/2009\n\nAC 25-17A\n\nFIGURE 81-1 SURROGATE PART INSTALLED ON SEATBACK\n\nX Z Surrogate part installed y on the back side of the seatback in lieu of the actual accessory. The x and y axes are in the plane of the backside of the seatback"
     },
     {
       "page": 62,
@@ -262,7 +263,7 @@
     },
     {
       "page": 63,
-      "text": "05/24/16 AC 25-17A Change 1\n\nFIGURE 81-2 HEAD STRIKE ZONE FOR § 25.785"
+      "text": "05/24/16 AC 25-17A Change 1\n\nFIGURE 81-2 HEAD STRIKE ZONE FOR § 25.785\n\nHead Strike Zone 下 20.5 inch 35 inch arc arc 个\n\nCRP\n\ninches\n\n|CRP\n\nCenterline 35 inch arc of Armrest Seat Axis Airplane Longitudinal Axis Centerline of Armrest Seat Axis\n\nCRP\n\nAirplane Centerline Longitudinal Axis of Armrest 35 inch arc Centerline of Armrest"
     },
     {
       "page": 64,
@@ -278,7 +279,7 @@
     },
     {
       "page": 67,
-      "text": "FIGURE 81-3 ARMREST OFFSET\n\nFIGURE 81-4 NON-EXPOSED AND EXPOSED ARMREST"
+      "text": "5/18/2009\n\nAC 25-17A\n\nFIGURE 81-3 ARMREST OFFSET\n\nBounded Armrests Aisle Unbounded Non-Exposed Armrest\n\nFWD\n\nFIGURE 81-4 NON-EXPOSED AND EXPOSED ARMREST\n\nAisle Unbounded Unbounded Exposed Non-Exposed Armrest Armrests A\n\nFWD"
     },
     {
       "page": 68,
@@ -306,7 +307,7 @@
     },
     {
       "page": 74,
-      "text": "FIGURE 82-1 SURROGATE PART INSTALLED ON SEATBACK"
+      "text": "5/18/2009\n\nAC 25-17A\n\nFIGURE 82-1 SURROGATE PART INSTALLED ON SEATBACK\n\nX Z V Surrogate part installed y on the back side of the seatback in lieu of the actual accessory. The x and y axes are in the plane of the backside of the seatback"
     },
     {
       "page": 75,
@@ -314,7 +315,7 @@
     },
     {
       "page": 76,
-      "text": "05/24/16 AC 25-17A Change 1\n\nFIGURE 82-2 HEAD STRIKE ZONE FOR § 25.785"
+      "text": "05/24/16 AC 25-17A Change 1\n\nFIGURE 82-2 HEAD STRIKE ZONE FOR § 25.785\n\nHead Strike Zone 下 20.5 inch 35 inch arc arc\n\nCRP\n\ninches\n\n|CRP\n\nCenterline 35 inch arc of Armrest Seat Axis Airplane Longitudinal Axis Centerline of Armrest Seat Axis\n\nCRP\n\nAirplane Centerline Longitudinal Axis of Armrest 35 inch arc Centerline of Armrest"
     },
     {
       "page": 77,
@@ -330,7 +331,7 @@
     },
     {
       "page": 80,
-      "text": "FIGURE 82-3 ARMREST OFFSET\n\nFIGURE 82-4 NON-EXPOSED AND EXPOSED ARMREST"
+      "text": "5/18/2009\n\nAC 25-17A\n\nFIGURE 82-3 ARMREST OFFSET\n\nBounded Armrests Aisle Unbounded Non-Exposed Armrest\n\nFWD\n\nFIGURE 82-4 NON-EXPOSED AND EXPOSED ARMREST\n\nAisle Unbounded Unbounded Exposed Non-Exposed Armrest Armrests A\n\nFWD"
     },
     {
       "page": 81,
@@ -358,7 +359,7 @@
     },
     {
       "page": 87,
-      "text": "FIGURE 83-1 SURROGATE PART INSTALLED ON SEATBACK"
+      "text": "5/18/2009\n\nAC 25-17A\n\nFIGURE 83-1 SURROGATE PART INSTALLED ON SEATBACK\n\nX Z Surrogate part installed y on the back side of the seatback in lieu of the actual accessory. The x and y axes are in the plane of the backside of the seatback"
     },
     {
       "page": 88,
@@ -366,7 +367,7 @@
     },
     {
       "page": 89,
-      "text": "05/24/16 AC 25-17A Change 1\n\nFIGURE 83-2 HEAD STRIKE ZONE FOR § 25.785"
+      "text": "05/24/16 AC 25-17A Change 1\n\nFIGURE 83-2 HEAD STRIKE ZONE FOR § 25.785\n\nHead Strike Zone 下 20.5 inch 35 inch arc arc\n\nCRP\n\ninches\n\n|CRP\n\nCenterline 35 inch arc of Armrest Seat Axis Airplane Longitudinal Axis Centerline of Armrest Seat Axis\n\nCRP\n\nAirplane Centerline Longitudinal Axis of Armrest 35 inch arc Centerline of Armrest"
     },
     {
       "page": 90,
@@ -382,7 +383,7 @@
     },
     {
       "page": 93,
-      "text": "FIGURE 83-3 ARMREST OFFSET\n\nFIGURE 83-4 NON-EXPOSED AND EXPOSED ARMREST"
+      "text": "5/18/2009\n\nAC 25-17A\n\nFIGURE 83-3 ARMREST OFFSET\n\nBounded Armrests Aisle Unbounded Non-Exposed Armrest\n\nFWD\n\nFIGURE 83-4 NON-EXPOSED AND EXPOSED ARMREST\n\nAisle Unbounded Unbounded Exposed Non-Exposed Armrest Armrests A\n\nFWD"
     },
     {
       "page": 94,
@@ -410,7 +411,7 @@
     },
     {
       "page": 100,
-      "text": "FIGURE 84-1 SURROGATE PART INSTALLED ON SEATBACK"
+      "text": "5/18/2009\n\nAC 25-17A\n\nFIGURE 84-1 SURROGATE PART INSTALLED ON SEATBACK\n\nX Z Surrogate part installed y on the back side of the seatback in lieu of the actual accessory. The x and y axes are in the plane of the backside of the seatback"
     },
     {
       "page": 101,
@@ -418,7 +419,7 @@
     },
     {
       "page": 102,
-      "text": "05/24/16 AC 25-17A Change 1\n\nFIGURE 84-2 HEAD STRIKE ZONE FOR § 25.785"
+      "text": "05/24/16 AC 25-17A Change 1\n\nFIGURE 84-2 HEAD STRIKE ZONE FOR § 25.785\n\nHead Strike Zone 下 20.5 inch 35 inch arc arc\n\nCRP\n\ninches\n\n|CRP\n\nCenterline 35 inch arc of Armrest Seat Axis Airplane Longitudinal Axis Centerline of Armrest Seat Axis\n\nCRP\n\nAirplane Centerline Longitudinal Axis of Armrest 35 inch arc Centerline of Armrest"
     },
     {
       "page": 103,
@@ -434,7 +435,7 @@
     },
     {
       "page": 106,
-      "text": "FIGURE 84-3 ARMREST OFFSET\n\nFIGURE 84-4 NON-EXPOSED AND EXPOSED ARMREST"
+      "text": "5/18/2009\n\nAC 25-17A\n\nFIGURE 84-3 ARMREST OFFSET\n\nBounded Armrests Aisle Unbounded Non-Exposed Armrest\n\nFWD\n\nFIGURE 84-4 NON-EXPOSED AND EXPOSED ARMREST\n\nAisle Unbounded Unbounded Exposed Non-Exposed Armrest Armrests A\n\nFWD"
     },
     {
       "page": 107,
@@ -462,7 +463,7 @@
     },
     {
       "page": 113,
-      "text": "FIGURE 85-1 SURROGATE PART INSTALLED ON SEATBACK"
+      "text": "5/18/2009\n\nAC 25-17A\n\nFIGURE 85-1 SURROGATE PART INSTALLED ON SEATBACK\n\nX Z Surrogate part installed y on the back side of the seatback in lieu of the actual accessory. The x and y axes are in the plane of the backside of the seatback"
     },
     {
       "page": 114,
@@ -470,7 +471,7 @@
     },
     {
       "page": 115,
-      "text": "05/24/16 AC 25-17A Change 1\n\nFIGURE 85-2 HEAD STRIKE ZONE FOR § 25.785"
+      "text": "05/24/16 AC 25-17A Change 1\n\nFIGURE 85-2 HEAD STRIKE ZONE FOR § 25.785\n\nHead Strike Zone 下 20.5 inch 35 inch arc arc\n\nCRP\n\ninches\n\n|CRP\n\nCenterline 35 inch arc of Armrest Seat Axis Airplane Longitudinal Axis Centerline of Armrest Seat Axis\n\nCRP\n\nAirplane Centerline Longitudinal Axis of Armrest 35 inch arc Centerline of Armrest"
     },
     {
       "page": 116,
@@ -486,7 +487,7 @@
     },
     {
       "page": 119,
-      "text": "FIGURE 85-3 ARMREST OFFSET\n\nFIGURE 85-4 NON-EXPOSED AND EXPOSED ARMREST"
+      "text": "5/18/2009\n\nAC 25-17A\n\nFIGURE 85-3 ARMREST OFFSET\n\nBounded Armrests Aisle Unbounded Non-Exposed Armrest\n\nFWD\n\nFI D ST\n\nAisle Unbounded Unbounded Exposed Non-Exposed Armrest Armrests A\n\nFWD"
     },
     {
       "page": 120,
@@ -518,7 +519,7 @@
     },
     {
       "page": 127,
-      "text": "FIGURE 86-1 SURROGATE PART INSTALLED ON SEATBACK"
+      "text": "5/18/2009\n\nAC 25-17A\n\nFIGURE 86-1 SURROGATE PART INSTALLED ON SEATBACK\n\nX Z Surrogate part installed y on the back side of the seatback in lieu of the actual accessory. The x and y axes are in the plane of the backside of the seatback"
     },
     {
       "page": 128,
@@ -542,7 +543,7 @@
     },
     {
       "page": 133,
-      "text": "FIGURE 86-3 ARMREST OFFSET\n\nFIGURE 86-4 NON-EXPOSED AND EXPOSED ARMREST"
+      "text": "5/18/2009\n\nAC 25-17A\n\nFIGURE 86-3 ARMREST OFFSET\n\nBounded Armrests Aisle Unbounded Non-Exposed Armrest\n\nFWD\n\nFI D ST\n\nAisle Unbounded Unbounded Exposed Non-Exposed Armrest Armrests A\n\nFWD"
     },
     {
       "page": 134,
@@ -574,7 +575,7 @@
     },
     {
       "page": 141,
-      "text": "FIGURE 87-1 SURROGATE PART INSTALLED ON SEATBACK"
+      "text": "5/18/2009\n\nAC 25-17A\n\nFIGURE 87-1 SURROGATE PART INSTALLED ON SEATBACK\n\nX Z Surrogate part installed y on the back side of the seatback in lieu of the actual accessory. The x and y axes are in the plane of the backside of the seatback"
     },
     {
       "page": 142,
@@ -598,7 +599,7 @@
     },
     {
       "page": 147,
-      "text": "FIGURE 87-3 ARMREST OFFSET\n\nFIGURE 87-4 NON-EXPOSED AND EXPOSED ARMREST"
+      "text": "5/18/2009\n\nAC 25-17A\n\nFIGURE 87-3 ARMREST OFFSET\n\nBounded Armrests Aisle Unbounded Non-Exposed Armrest\n\nFWD\n\nFID ST\n\nAisle Unbounded Unbounded Exposed Non-Exposed Armrest Armrests A\n\nFWD"
     },
     {
       "page": 148,
@@ -630,7 +631,7 @@
     },
     {
       "page": 155,
-      "text": "FIGURE 88-1 SURROGATE PART INSTALLED ON SEATBACK"
+      "text": "5/18/2009\n\nAC 25-17A\n\nFIGURE 88-1 SURROGATE PART INSTALLED ON SEATBACK\n\nX Z Surrogate part installed y on the back side of the seatback in lieu of the actual accessory. The x and y axes are in the plane of the backside of the seatback"
     },
     {
       "page": 156,
@@ -654,7 +655,7 @@
     },
     {
       "page": 161,
-      "text": "FIGURE 88-3 ARMREST OFFSET\n\nFIGURE 88-4 NON-EXPOSED AND EXPOSED ARMREST"
+      "text": "5/18/2009\n\nAC 25-17A\n\nFIGURE 88-3 ARMREST OFFSET\n\nBounded Armrests Aisle Unbounded Non-Exposed Armrest\n\nFWD\n\nF D ST\n\nAisle Unbounded Unbounded Exposed Non-Exposed Armrest Armrests A\n\nFWD"
     },
     {
       "page": 162,
@@ -1678,7 +1679,7 @@
     },
     {
       "page": 417,
-      "text": "FIGURE 411-1 CORDED DEVICES"
+      "text": "5/18/2009\n\nAC 25-17A\n\nFIGURE 411-1 CORDED DEVICES\n\nCorded Device Yes No intended for use during TT&L Located in an Constant No No Exit Row or Tension Aisle* or Cord Cross Aisle Yes Yes Redesign Cord Creates Loop Impeding Evac Yes No Redesign Cord Length Creates a Barrier to Evac Yes No Redesign No Head Strike Yes Located in the Found Acceptable Head Strike Zone Yes No Corded Device meets Cabin Safety Requirements for * Aisle location - mounted on either the seatback or the armrest Installation** ** This process only covers compliance for Cabin Safety regulations, all other applicable regulations still apply."
     },
     {
       "page": 418,
@@ -1702,7 +1703,7 @@
     },
     {
       "page": 423,
-      "text": "FIGURE 412-1 CORDED DEVICES"
+      "text": "5/18/2009\n\nAC 25-17A\n\nFIGURE 412-1 CORDED DEVICES\n\nCorded Device Yes No intended for use during TT&L Located in an Constant No No Exit Row or Tension Aisle* or Cord Cross Aisle Yes Yes Redesign Cord Creates Loop Impeding Evac Yes No Redesign Cord Length Creates a Barrier to Evac Yes No Redesign No Head Strike Yes Located in the Found Acceptable Head Strike Zone Yes No Corded Device meets Cabin Safety Requirements for * Aisle location - mounted on either the seatback or the armrest Installation** ** This process only covers compliance for Cabin Safety regulations, all other applicable regulations still apply."
     },
     {
       "page": 424,
@@ -1730,7 +1731,7 @@
     },
     {
       "page": 430,
-      "text": "FIGURE 413-1 CORDED DEVICES"
+      "text": "5/18/2009\n\nAC 25-17A\n\nFIGURE 413-1 CORDED DEVICES\n\nCorded Device Yes No intended for use during TT&L Located in an Constant No No Exit Row or Tension Aisle* or Cord Cross Aisle Yes Yes Redesign Cord Creates Loop Impeding Evac Yes No Redesign Cord Length Creates a Barrier to Evac Yes No Redesign No Head Strike Yes Located in the Found Acceptable Head Strike Zone Yes No Corded Device meets Cabin Safety Requirements for * Aisle location - mounted on either the seatback or the armrest Installation** ** This process only covers compliance for Cabin Safety regulations, all other applicable regulations still apply."
     },
     {
       "page": 431,
@@ -1758,7 +1759,7 @@
     },
     {
       "page": 437,
-      "text": "FIGURE 414-1 CORDED DEVICES"
+      "text": "5/18/2009\n\nAC 25-17A\n\nFIGURE 414-1 CORDED DEVICES\n\nCorded Device Yes No intended for use during TT&L Located in an Constant No No Exit Row or Tension Aisle* or Cord Cross Aisle Yes Yes Redesign Cord Creates Loop Impeding Evac Yes No Redesign Cord Length Creates a Barrier to Evac Yes No Redesign No Head Strike Yes Located in the Found Acceptable Head Strike Zone Yes No Corded Device meets Cabin Safety Requirements for * Aisle location - mounted on either the seatback or the armrest Installation** ** This process only covers compliance for Cabin Safety regulations, all other applicable regulations still apply."
     },
     {
       "page": 438,
@@ -1786,7 +1787,7 @@
     },
     {
       "page": 444,
-      "text": "FIGURE 415-1 CORDED DEVICES"
+      "text": "5/18/2009\n\nAC 25-17A\n\nFIGURE 415-1 CORDED DEVICES\n\nCorded Device Yes No intended for use during TT&L Located in an Constant No No Exit Row or Tension Aisle* or Cord Cross Aisle Yes Yes Redesign Cord Creates Loop Impeding Evac Yes No Redesign Cord Length Creates a Barrier to Evac Yes No Redesign No Head Strike Yes Located in the Found Acceptable Head Strike Zone Yes No Corded Device meets Cabin Safety Requirements for * Aisle location - mounted on either the seatback or the armrest Installation** ** This process only covers compliance for Cabin Safety regulations, all other applicable regulations still apply."
     },
     {
       "page": 445,
@@ -1818,7 +1819,7 @@
     },
     {
       "page": 452,
-      "text": "FIGURE 416-1 CORDED DEVICES"
+      "text": "5/18/2009\n\nAC 25-17A\n\nFIGURE 416-1 CORDED DEVICES\n\nCorded Device Yes No intended for use during TT&L Located in an Constant No No Exit Row or Tension Aisle* or Cord Cross Aisle Yes Yes Redesign Cord Creates Loop Impeding Evac Yes No Redesign Cord Length Creates a Barrier to Evac Yes No Redesign No Head Strike Yes Located in the Found Acceptable Head Strike Zone Yes No Corded Device meets Cabin Safety Requirements for * Aisle location - mounted on either the seatback or the armrest Installation** ** This process only covers compliance for Cabin Safety regulations, all other applicable regulations still apply."
     },
     {
       "page": 453,
@@ -1858,7 +1859,7 @@
     },
     {
       "page": 462,
-      "text": "FIGURE 417-1 CORDED DEVICES"
+      "text": "5/18/2009\n\nAC 25-17A\n\nFIGURE 417-1 CORDED DEVICES\n\nCorded Device Yes No intended for use during TT&L Located in an Constant No No Exit Row or Tension Aisle* or Cord Cross Aisle Yes Yes Redesign Cord Creates Loop Impeding Evac Yes No Redesign Cord Length Creates a Barrier to Evac Yes No Redesign No Head Strike Yes Located in the Found Acceptable Head Strike Zone Yes No Corded Device meets Cabin Safety Requirements for * Aisle location - mounted on either the seatback or the armrest Installation** ** This process only covers compliance for Cabin Safety regulations, all other applicable regulations still apply."
     },
     {
       "page": 463,
@@ -1902,7 +1903,7 @@
     },
     {
       "page": 473,
-      "text": "FIGURE 418-1 CORDED DEVICES"
+      "text": "5/18/2009\n\nAC 25-17A\n\nFIGURE 418-1 CORDED DEVICES\n\nCorded Device Yes No intended for use during TT&L Located in an Constant No No Exit Row or Tension Aisle* or Cord Cross Aisle Yes Yes Redesign Cord Creates Loop Impeding Evac Yes No Redesign Cord Length Creates a Barrier to Evac Yes No Redesign No Head Strike Yes Located in the Found Acceptable Head Strike Zone Yes No Corded Device meets Cabin Safety Requirements for * Aisle location - mounted on either the seatback or the armrest Installation** ** This process only covers compliance for Cabin Safety regulations, all other applicable regulations still apply."
     },
     {
       "page": 474,
@@ -1946,7 +1947,7 @@
     },
     {
       "page": 484,
-      "text": "FIGURE 419-1 CORDED DEVICES"
+      "text": "5/18/2009\n\nAC 25-17A\n\nFIGURE 419-1 CORDED DEVICES\n\nCorded Device Yes No intended for use during TT&L Located in an Constant No No Exit Row or Tension Aisle* or Cord Cross Aisle Yes Yes Redesign Cord Creates Loop Impeding Evac Yes No Redesign Cord Length Creates a Barrier to Evac Yes No Redesign No Head Strike Yes Located in the Found Acceptable Head Strike Zone Yes No Corded Device meets Cabin Safety Requirements for * Aisle location - mounted on either the seatback or the armrest Installation** ** This process only covers compliance for Cabin Safety regulations, all other applicable regulations still apply."
     },
     {
       "page": 485,
@@ -2761,6 +2762,26 @@
       "text": "(2) The number of specimen sets tested. (3) The initial weight and residual weight of each set, the calculated percentage weight loss of each set, and the calculated average percentage weight loss for the total number of sets tested. (4) The burn length for each set tested."
     },
     {
+      "page": 688,
+      "text": "5/18/2009\n\nAC 25-17A\n\n33\"±1/8\" [838mm±3mm] 12\"±1/8\" [305mm±3mm]\n\nFRONT VIEW\n\nSIDE VIEW\n\n81\"±1/8\" [460mm±3mm]\n\nNOTE:\n\nALL JOINTS WELDED\n\nFLAT STOCK BUTT WELDED\n\nALL MEASUREMENTS INSIDE\n\n[562mm±3mm]\n\nFIGURE 1\n\nTOP VIEW"
+    },
+    {
+      "page": 689,
+      "text": "5/18/2009\n\nAC 25-17A\n\n22\"±1/8\" [559mm±3mm]\n\nSEAT\n\n20\"±1/8\"\n\nBACK\n\n[508mm±3mm]\n\nCUSHION\n\n25\"±1/8\"\n\nSIDE VIEW\n\n[635mm±3mm]\n\nSEAT BOTTOM\n\n10\"±1/8\"\n\nCUSHION\n\n[254mm±3mm] 4\"±1/8\" [102mm±3mm] 2\"±1/8\" 2\"±1/8\" [51mm±3mm] [51mm±3mm] 10\"±1/8\" [254mm43m]\n\nSEAT CUSHION\n\n[457mm±3mm] 18\"±1/8\"\n\nMOUNTING\n\nTOP VIEW\n\nFIGURE 2\n\nBURNER\n\nCONE"
+    },
+    {
+      "page": 690,
+      "text": "5/18/2009\n\nAC 25-17A\n\n5\"\n\nSPACES\n\n12\"\n\nOVERLAP FOR SPOT\n\n125\"\n\nSPACES\n\nSPACES\n\nDRAFT TUBE\n\n12\"\n\nEXTENTION FOR\n\nFAA HOSE TEST\n\nBURNER\n\nTO DRAFT TUBE.\n\n2 SECTION OF\n\nCONNECTING\n\n11\"\n\nFLANGE\n\n6\"\n\nBOLT HOLES\n\nMATERIAL:\n\nA\n\n0.050 STAINLESS STEEL\n\n3#\n\nNOTE:\n\nONE HALF(1/2) OF TUBE\n\nEXTENTION SHOWN.\n\nSECOND HALF MATES\n\nAT SPOTWELD\n\nFIGURE 3\n\nOVERLAPS."
+    },
+    {
+      "page": 691,
+      "text": "5/18/2009\n\nAC 25-17A\n\n(25mm) 10\"±1/8\"\n\n1\" DIAMETER HOLE FOR\n\n[254mm±3mm]\n\nCALORIMETER MOUNTING\n\n(152x305x19mm) 6\"x1 2\"x 34\"\n\nMARINITE BLOCK\n\n6\"±1/8\" [152mm±3mm] 3\"±1/8\" [76mm±3mm] 12\"±1/8\" [305mm±3mm] 211±1/8\" [546mm±3mm]\n\nSIDE VIEW\n\n±18 [19mm±3mm]\n\nBURNER CONE\n\n4\"±1/8\" (25mm) 1\" DIAMETER [102mm±3mm] 12\"±1/8\"\n\nSTEEL ANGLE\n\n[305mm±3mm] 1x1x 4\n\n-WATER-COOLED\n\n(25x25x3mm)\n\nCALORIMETER\n\nRACK FITS INSIDE\n\nSEAT FRAME\n\nTOP VIEW\n\nCALORIMETER BRACKET\n\nFIGURE 4"
+    },
+    {
+      "page": 692,
+      "text": "5/18/2009\n\nAC 25-17A\n\n1\"±1/8* 10\"±1/8\" [25mm±3mm] [254mm±3mm] 1\"±1/8\" [25mm±3mm] C 3\"±1/8\" [76mm±3mm]\n\nSIDE VIEW\n\n7 THERMOCOUPLE\n\nWIRES\n\n21\"±1/8\" [546mm±3mm]\n\nSTEEL ANGLE\n\nBURNER CONE\n\n4\"±1/8* 1\"x1\"x\" [102mm±3mm] (25x25x3mm) 1\"±1/8\" [25mm±3mm] 12\"±1/8\" [305mm±3mm]\n\nRACK FITS\n\nINSIDE SEAT\n\nFRAME\n\nTOP VIEW\n\nTHERMALCOUPLE RAKE BRACKET\n\nFIGURE 5"
+    },
+    {
       "page": 693,
       "text": "1164. APPENDIX F, AMENDMENT 25-72, Effective August 20, 1990. Part II-FLAMMABILITY OF SEAT CUSHIONS. (a) Criteria for Acceptance. Each seat cushion must meet the following criteria: (1) At least three sets of seat bottom and seat back cushion specimens must be tested. (2) If the cushion is constructed with a fire blocking material, the fire blocking material must completely enclose the cushion foam core material. (3) Each specimen tested must be fabricated using the principal components (i.e., foam core, flotation material, fire blocking material, if used, and dress covering) and assembly processes (representative seams and closures) intended for use in the production articles. If a different material combination is used for the back cushion than for the bottom cushion, both material combinations must be tested as complete specimen sets, each set consisting of a back cushion specimen and a bottom cushion specimen. If a cushion, including outer dress covering, is demonstrated to meet the requirements, of this Appendix using the oil burner test, the dress covering of that cushion may be replaced with a similar dress covering provided the burn length of the replacement covering, as determined by the test specified in § 25.853(b), does not exceed the corresponding burn length of the dress covering used on the cushion subjected to the oil burner test. (4) For at least two-thirds of the total number of specimen sets tested, the burn length from the burner must not reach the side of the cushion opposite the burner. The burn length must not exceed 17-inches. Burn length is the perpendicular distance from the inside edge of the seat frame closest to the burner to the farthest evidence of damage to the test specimen due to flame impingement, including areas of partial or complete consumption, charring, or embrittlement, but not including areas sooted, stained, warped, or discolored, or areas where material has shrunk or melted away from the heat source. (5) The average percentage weight loss must not exceed 10 percent. Also, at least two-thirds of the total number of specimen sets tested must not exceed 10 percent weight loss. All droppings falling from the cushions and mounting stand are to be discarded before the after-test weight is determined. The percentage weight loss for a specimen set is the weight of the specimen set before testing less the weight of the specimen set after testing expressed as the percentage of the weight before testing. (b) Test Conditions. Vertical air velocity should average 25 fpm ± 10 fpm at the top of the back seat cushion. Horizontal air velocity should be below 10 fpm just above the bottom seat cushion. Air velocities should be measured with the ventilation hood operating and the burner motor off."
     },
@@ -2771,6 +2792,26 @@
     {
       "page": 695,
       "text": "(3) Calorimeter.\n(i) The calorimeter to be used in testing must be a (0-15.0 BTU/ft2\n-sec. 0-17.0 W/cm2\n)\ncalorimeter, accurate ±3%, mounted in a 6-inch by 12-inch (152 by 305 mm) by 3/4-inch (19\nmm) thick calcium silicate insulating board which is attached to a steel angle bracket for\nplacement in the test stand during burner calibration, as shown in figure 4.\n(ii) Because crumbling of the insulating board with service can result in misalignment of the\ncalorimeter, the calorimeter must be monitored and the mounting shimmed, as necessary, to\nensure that the calorimeter face is flush with the exposed plane of the insulating board in a plane\nparallel to the exit of the test burner cone.\n(4) Thermocouples. The seven thermocouples to be used for testing must be 1/16 to 1/8-inch\nmetal sheathed, ceramic packed, type K, grounded thermocouples with a nominal 22 to 30\nAmerican wire gage (AWG)-size conductor. The seven thermocouples must be attached to a\nsteel angle bracket to form a thermocouple rake for placement in the test stand during burner\ncalibration, as shown in Figure 5.\n(5) Apparatus Arrangement. The test burner must be mounted on a suitable stand to position\nthe exit of the burner cone a distance of 4±1/8-inches (102 ±3 mm) from one side of the specimen\nmounting stand. The burner stand should have the capability of allowing the burner to be swung\naway from the specimen mounting stand during warmup periods.\n(6) Data Recording. A recording potentiometer or other suitable calibrated instrument with an\nappropriate range must be used to measure and record the outputs of the calorimeter and the\nthermocouples.\n(7) Weight Scale. Weighing Device-A device must be used that with proper procedures may\ndetermine the before and after test weights of each set of seat cushion specimens within 0.02\npound (9 grams). A continuous weighing system is preferred.\n(8) Timing Device. A stopwatch or other device (calibrated to ± 1 second) must be used to\nmeasure the time of application of the burner flame and self-extinguishing time or test duration."
+    },
+    {
+      "page": 696,
+      "text": "5/18/2009\n\nAC 25-17A\n\n33\"±1/8\" [838mm±3mm] 12\"±1/8\" [305mm±3mm]\n\nFRONT VIEW\n\nSIDE VIEW\n\n81\"±1/8\" [460mm±3mm]\n\nNOTE:\n\nALL JOINTS WELDED\n\nFLAT STOCK BUTT WELDED\n\nALL MEASUREMENTS INSIDE\n\n[562mm±3mm]\n\nFIGURE 1\n\nTOP VIEW"
+    },
+    {
+      "page": 697,
+      "text": "5/18/2009\n\nAC 25-17A\n\n22\"±1/8\" [559mm±3mm]\n\nSEAT\n\n20\"±1/8\"\n\nBACK\n\n[508mm±3mm]\n\nCUSHION\n\n25\"±1/8\"\n\nSIDE VIEW\n\n[635mm±3mm]\n\nSEAT BOTTOM\n\n10\"±1/8\"\n\nCUSHION\n\n[254mm±3mm] 4\"±1/8\" [102mm±3mm] 2\"±1/8\" 2\"±1/8\" [51mm±3mm] [51mm±3mm] 10\"±1/8\" [254mm43m]\n\nSEAT CUSHION\n\n[457mm±3mm] 18\"±1/8\"\n\nMOUNTING\n\nTOP VIEW\n\nFIGURE 2\n\nBURNER\n\nCONE"
+    },
+    {
+      "page": 698,
+      "text": "5/18/2009\n\nAC 25-17A\n\n5\"\n\nSPACES\n\n12\"\n\nOVERLAP FOR SPOT\n\n125\"\n\nSPACES\n\nSPACES\n\nDRAFT TUBE\n\n12\"\n\nEXTENTION FOR\n\nFAA HOSE TEST\n\nBURNER\n\nTO DRAFT TUBE.\n\n2 SECTION OF\n\nCONNECTING\n\n11\"\n\nFLANGE\n\n6\"\n\nBOLT HOLES\n\nMATERIAL:\n\nA\n\n0.050 STAINLESS STEEL\n\n3#\n\nNOTE:\n\nONE HALF(1/2) OF TUBE\n\nEXTENTION SHOWN.\n\nSECOND HALF MATES\n\nAT SPOTWELD\n\nFIGURE 3\n\nOVERLAPS."
+    },
+    {
+      "page": 699,
+      "text": "5/18/2009\n\nAC 25-17A\n\n(25mm) 10\"±1/8\"\n\n1\" DIAMETER HOLE FOR\n\n[254mm±3mm]\n\nCALORIMETER MOUNTING\n\n(152x305x19mm) 6\"x1 2\"x 34\"\n\nMARINITE BLOCK\n\n6\"±1/8\" [152mm±3mm] 3\"±1/8\" [76mm±3mm] 12\"±1/8\" [305mm±3mm] 211±1/8\" [546mm±3mm]\n\nSIDE VIEW\n\n±18 [19mm±3mm]\n\nBURNER CONE\n\n4\"±1/8\" (25mm) 1\" DIAMETER [102mm±3mm] 12\"±1/8\"\n\nSTEEL ANGLE\n\n[305mm±3mm] 1x1x 4\n\n-WATER-COOLED\n\n(25x25x3mm)\n\nCALORIMETER\n\nRACK FITS INSIDE\n\nSEAT FRAME\n\nTOP VIEW\n\nCALORIMETER BRACKET\n\nFIGURE 4"
+    },
+    {
+      "page": 700,
+      "text": "5/18/2009\n\nAC 25-17A\n\n1\"±1/8* 10\"±1/8\" [25mm±3mm] [254mm±3mm] 1\"±1/8\" [25mm±3mm] C 3\"±1/8\" [76mm±3mm]\n\nSIDE VIEW\n\n7 THERMOCOUPLE\n\nWIRES\n\n21\"±1/8\" [546mm±3mm]\n\nSTEEL ANGLE\n\nBURNER CONE\n\n4\"±1/8* 1\"x1\"x\" [102mm±3mm] (25x25x3mm) 1\"±1/8\" [25mm±3mm] 12\"±1/8\" [305mm±3mm]\n\nRACK FITS\n\nINSIDE SEAT\n\nFRAME\n\nTOP VIEW\n\nTHERMALCOUPLE RAKE BRACKET\n\nFIGURE 5"
     },
     {
       "page": 701,
@@ -2785,8 +2826,24 @@
       "text": "(3) Calorimeter.\n(i) The calorimeter to be used in testing must be a (0-15.0 BTU/ft2\n-sec. 0-17.0 W/cm2\n)\ncalorimeter, accurate ±3%, mounted in a 6-inch by 12-inch (152 by 305 mm) by 3/4-inch (19\nmm) thick calcium silicate insulating board which is attached to a steel angle bracket for\nplacement in the test stand during burner calibration, as shown in figure 4.\n(ii) Because crumbling of the insulating board with service can result in misalignment of the\ncalorimeter, the calorimeter must be monitored and the mounting shimmed, as necessary, to\nensure that the calorimeter face is flush with the exposed plane of the insulating board in a plane\nparallel to the exit of the test burner cone.\n(4) Thermocouples. The seven thermocouples to be used for testing must be 1/16 to 1/8-inch\nmetal sheathed, ceramic packed, type K, grounded thermocouples with a nominal 22 to 30\nAmerican wire gage (AWG)-size conductor. The seven thermocouples must be attached to a\nsteel angle bracket to form a thermocouple rake for placement in the test stand during burner\ncalibration, as shown in Figure 5.\n(5) Apparatus Arrangement. The test burner must be mounted on a suitable stand to position\nthe exit of the burner cone a distance of 4±1/8-inches (102 ±3 mm) from one side of the specimen\nmounting stand. The burner stand should have the capability of allowing the burner to be swung\naway from the specimen mounting stand during warmup periods.\n(6) Data Recording. A recording potentiometer or other suitable calibrated instrument with an\nappropriate range must be used to measure and record the outputs of the calorimeter and the\nthermocouples.\n(7) Weight Scale. Weighing Device-A device must be used that with proper procedures may\ndetermine the before and after test weights of each set of seat cushion specimens within 0.02\npound (9 grams). A continuous weighing system is preferred.\n(8) Timing Device. A stopwatch or other device (calibrated to ± 1 second) must be used to\nmeasure the time of application of the burner flame and self-extinguishing time or test duration."
     },
     {
+      "page": 704,
+      "text": "5/18/2009\n\nAC 25-17A\n\n33\"±1/8\" [838mm±3mm] 12\"±1/8\" [305mm±3mm]\n\nFRONT VIEW\n\nSIDE VIEW\n\n81\"±1/8\" [460mm±3mm]\n\nNOTE:\n\nALL JOINTS WELDED\n\nFLAT STOCK BUTT WELDED\n\nALL MEASUREMENTS INSIDE\n\n[562mm±3mm]\n\nFIGURE 1\n\nTOP VIEW"
+    },
+    {
+      "page": 705,
+      "text": "5/18/2009\n\nAC 25-17A\n\n22\"±1/8\" [559mm±3mm]\n\nSEAT\n\n20\"±1/8\"\n\nBACK\n\n[508mm±3mm]\n\nCUSHION\n\n25\"±1/8\"\n\nSIDE VIEW\n\n[635mm±3mm]\n\nSEAT BOTTOM\n\n10\"±1/8\"\n\nCUSHION\n\n[254mm±3mm] 4\"±1/8\" [102mm±3mm] 2\"±1/8\" 2\"±1/8\" [51mm±3mm] [51mm±3mm] 10\"±1/8\" [254mm43m]\n\nSEAT CUSHION\n\n[457mm±3mm] 18\"±1/8\"\n\nMOUNTING\n\nTOP VIEW\n\nFIGURE 2\n\nBURNER\n\nCONE"
+    },
+    {
+      "page": 706,
+      "text": "5/18/2009\n\nAC 25-17A\n\n5\"\n\nSPACES\n\n12\"\n\nOVERLAP FOR SPOT\n\n125\"\n\nSPACES\n\nSPACES\n\nDRAFT TUBE\n\n12\"\n\nEXTENTION FOR\n\nFAA HOSE TEST\n\nBURNER\n\nTO DRAFT TUBE.\n\n2 SECTION OF\n\nCONNECTING\n\n11\"\n\nFLANGE\n\n6\"\n\nBOLT HOLES\n\nMATERIAL:\n\nA\n\n0.050 STAINLESS STEEL\n\n3#\n\nNOTE:\n\nONE HALF(1/2) OF TUBE\n\nEXTENTION SHOWN.\n\nSECOND HALF MATES\n\nAT SPOTWELD\n\nFIGURE 3\n\nOVERLAPS."
+    },
+    {
+      "page": 707,
+      "text": "5/18/2009\n\nAC 25-17A\n\n(25mm) 10\"±1/8\"\n\n1\" DIAMETER HOLE FOR\n\n[254mm±3mm]\n\nCALORIMETER MOUNTING\n\n(152x305x19mm) 6\"x1 2\"x 34\"\n\nMARINITE BLOCK\n\n6\"±1/8\" [152mm±3mm] 3\"±1/8\" [76mm±3mm] 12\"±1/8\" [305mm±3mm] 211±1/8\" [546mm±3mm]\n\nSIDE VIEW\n\n±18 [19mm±3mm]\n\nBURNER CONE\n\n4\"±1/8\" (25mm) 1\" DIAMETER [102mm±3mm] 12\"±1/8\"\n\nSTEEL ANGLE\n\n[305mm±3mm] 1x1x 4\n\n-WATER-COOLED\n\n(25x25x3mm)\n\nCALORIMETER\n\nRACK FITS INSIDE\n\nSEAT FRAME\n\nTOP VIEW\n\nCALORIMETER BRACKET\n\nFIGURE 4"
+    },
+    {
       "page": 708,
-      "text": "1166 – 1170. [RESERVED]"
+      "text": "5/18/2009\n\nAC 25-17A\n\n1\"±1/8* 10\"±1/8\" [25mm±3mm] [254mm±3mm] 1\"±1/8\" [25mm±3mm] C 3\"±1/8\" [76mm±3mm]\n\nSIDE VIEW\n\n7 THERMOCOUPLE\n\nWIRES\n\n21\"±1/8\" [546mm±3mm]\n\nSTEEL ANGLE\n\nBURNER CONE\n\n4\"±1/8* 1\"x1\"x\" [102mm±3mm] (25x25x3mm) 1\"±1/8\" [25mm±3mm] 12\"±1/8\" [305mm±3mm]\n\nRACK FITS\n\nINSIDE SEAT\n\nFRAME\n\nTOP VIEW\n\nTHERMALCOUPLE RAKE BRACKET\n\nFIGURE 5\n\n1166 – 1170. [RESERVED]"
     },
     {
       "page": 709,
@@ -2803,6 +2860,18 @@
     {
       "page": 712,
       "text": "(4) Expose the test specimen to the flame for 5 minutes and then turn off the burner. The test may be terminated earlier if flame penetrations observed. (5) When testing ceiling liner panels, record the peak temperature measured 4-inches above the sample. (6) Record the time at which flame penetration occurs if applicable. (h) Test Report. The test report must include the following: (1) A complete description of the materials tested including type, manufacturer, thickness, and other appropriate data. (2) Observations of the behavior of the test specimens during flame exposure such as delamination, resin ignition, smoke, etc., including the time of such occurrence. (3) The time at which flame penetration occurs, if applicable, for each of the three specimens tested. (4) Panel orientation (ceiling or sidewall)."
+    },
+    {
+      "page": 713,
+      "text": "5/18/2009\n\nAC 25-17A\n\nHORIZONTIAL\n\nPOSITION\n\nHORIZONTIAL AND VERTICAL SPECIMENS ARE\n\nCLAMPED IN PLACE ON ALL EDGES BETWEEN\n\nANGLES AS SHOWNIN VIEW A- A\n\nTEST STAND FRAME\n\nHORIZONTIAL SPEC.\n\nVERTICAL SPEC.\n\nSUPPORT ANGLE\n\nTOP VIEW\n\n一 VIEW A-A (Typical) 24\" 16\" A\n\nVERTICAL SPEC.POSITION\n\n2\" 8\" 16\"\n\nBURNER CONE\n\n48\"\n\nBURNER ASSEMBLY\n\nBURNER SHIELD\n\n中\n\nSUPPORT BRACE\n\n1\"X3\"×1/8\"\n\nSTEEL \"U\" CHANNEL\n\nSIDE VIEW\n\nFRONT VIEW"
+    },
+    {
+      "page": 714,
+      "text": "5/18/2009\n\nAC 25-17A\n\ncL\n\n1\" DIAMETER HOLE FOR\n\nCALORIMETER MOUNTING\n\n12 1/2\"\n\nMARINITE BLOCK\n\n6\" X 12\" X 3/4\" 6 1/4\" CL 11\" 25\"\n\nTOP VIEW\n\nNOTE: BRAKET IS CLAMPED TO TEST\n\nSTAND WITH CALORIMETER\n\nWATER-COOLED\n\nCENTERED OVER BURNER CONE\n\nCALORIMETER\n\n1\"DIA\n\n3/4\" 8+-1/8\n\nSTEEL ANGLE\n\n1\"X1\"X1/8\"\n\nBURNER CONE\n\nSIDE VIEW\n\nFIGURE 2. CALORIMETER BRACKET"
+    },
+    {
+      "page": 715,
+      "text": "5/18/2009\n\nAC 25-17A\n\nSEVENTHERMOCOUPLEWIRES\n\n24\" C 1\" 1\" 12 1/2\"\n\nTOP VIEW\n\n1\"\n\nSTEEL ANGLE\n\n1\"X1\"X1/8\" 8\"\n\nBURNER CONE\n\nC L\n\nSIDE VIEW\n\nFIGURE 3. THERMOCOUPLE RAKE BRACKET"
     },
     {
       "page": 716,
@@ -2833,6 +2902,38 @@
       "text": "(2) Heat release rates may be calculated from the reading of the thermopile output voltage at any instant of time as: HRR = Heat release Rate kw/m2 Vm = measured thermopile voltage (mv) Vb = \"Blank\" thermopile voltage Kh = Calibration Factor (Kw/mv) Vb is the \"blank\" test obtained by a run conducted with an empty sample holder assembly. Refer to paragraph (7) above. (3) The integral of the heat release rate is the total heat release as a function of time and is calculated by multiplying the rate by the data sampling frequency in minutes and summing the time from zero to two minutes. (g) Criteria. The total positive heat release over the first two minutes of exposure for each of the three or more samples tested must be averaged, and the peak heat release rate for each of the samples must be averaged. The average total heat release must not exceed 65 kilowatt-minutes per square meter, and the average peak heat release rate must not exceed 65 kilowatts per square meter. (h) Report. The test report must include the following for each specimen tested: (1) Description of the specimen. (2) Radiant heat flux to the specimen, expressed in W/cm . (3) Data giving release rates of heat (in kW/m2 ) as a function of time, either graphically or tabulated at intervals no greater than 10 seconds. The calibration factor (kh) must be recorded. (4) If melting, sagging, delaminating, or other behavior that affects the exposed surface area or the mode of burning occurs, these behaviors must be reported, together with the time at which such behaviors were observed. (5) The peak heat release and the 2-minute integrated heat release rate must be reported.\n\nHRR V V\n\nm K m b = h − × ( ) .02323 2"
     },
     {
+      "page": 723,
+      "text": "5/18/2009\n\nAC 25-17A\n\nSmoke Monitor Chimney Baffle 0.368m 0.31m Radiation Shield Reflector \"Globars\" -0.33m 0.79m Mask Radiation Door in closed position Mechanical Devise to Maintain Sample Pilot Position Flame 0.41m ←0.10m+ Sample Holder Air Distributor Plates -0.41m 0.20m→ Air Inlet [Figure 1. Release Rate Apparatus]"
+    },
+    {
+      "page": 724,
+      "text": "5/18/2009\n\nAC 25-17A\n\nA T 24g Chromel-Alumel Glass insulated Duplex T.G. Wire Weld or Silver Solder 20 mm Bend Wire Bock Against Metal Surface\n\n0.55 (22mil)\n\n3.2 (5/32 in.) Drill Staiss Sseluel (Unless denoted otherwise, all dimensions are in milmeters) Figure 2. Compensator Tab"
+    },
+    {
+      "page": 725,
+      "text": "5/18/2009\nAC 25-17A\nExhaust Stack\nFigure 3. Compensator Tab Mount\n1KΩ\n+\nR1\nThermopile\nR\n5KΩ\nTo Recorder\nCompensator\nx\nT.C.\nFigure 4. Wiring Diagram"
+    },
+    {
+      "page": 726,
+      "text": "5/18/2009\nAC 25-17A\nEMF →\nEMF\nTime\nTime\nA\nB\nFigure 5. Square Wave Response"
+    },
+    {
+      "page": 727,
+      "text": "5/18/2009\nAC 25-17A\nTop\nMask\n(Unless denoted otherwise, all dimensions are in millimeters.)\nFigure 6A. \"Globar\" Radiant Panel"
+    },
+    {
+      "page": 728,
+      "text": "5/18/2009\n\nAC 25-17A\n\nTop -25 Reflector, adjust slope, top and bottom, for uniform heat flux on sample. Mask -1/4\" - 20 Machine Screw 75 lg (Unless denoted otherwise all dimensions are In milimeters.) [Figure 6B. \"Globar\" Radiant Panel]"
+    },
+    {
+      "page": 729,
+      "text": "5/18/2009\n\nAC 25-17A\n\nSPRING\n\n2 Radlus Flange, 1* Long Spot Weld Frame 3/8\n\nANGLE IRON\n\nRETAINER FRAME\n\n24 ga Steel\n\nSAMPLE HOLDER\n\nWasher 50mm OD 13mm ID (Unless denoted otherwise, Weld Washer 50mm OD all dimensions are in millimeters.) 13mm ID 10-32 Machine Screw Drlll& Tap for 1/2- 13 nut to Washer Weld 1/2° Nut 10-32 Machlne Screw 2 Radlus, 5 Flange\n\nMOUNTING BRACKET\n\nFigure 7"
+    },
+    {
+      "page": 730,
+      "text": "5/18/2009\n\nAC 25-17A\n\n125mm No.32 Drill Hole\n\n9.5 O.D.\n\n9.5 Tubing Leak-Free Seal on 6.35 Pilot Tubing (Unless denoted otherwise, all dimensions are in millimeters.)\n\nFIGURE 8"
+    },
+    {
       "page": 731,
       "text": "1180. APPENDIX F, AMENDMENT 25-66, Effective September 26, 1988. This amendment\nrevised Part IV and added Part V.\nPART IV - TEST METHOD TO DETERMINE THE HEAT RELEASE RATE FROM CABIN\nMATERIALS EXPOSED TO RADIANT HEAT.\nAppendix F-Part IV-Test Method to Determine the Heat Release Rate From Cabin Materials\nExposed to Radiant Heat\n(a) Summary of Method.\n(1) The specimen to be tested is injected into an environmental chamber through which a\nconstant flow of air passes. The specimen's exposure is determined by a radiant heat source\nadjusted to produce the desired total heat flux on the specimen of 3.5 W/cm\n, using a calibrated\ncalorimeter. The specimen is tested so that the exposed surface is vertical. Combustion is\ninitiated by piloted ignition. The combustion products leaving the chamber are monitored in\norder to calculate the release rate of heat.\n(b) Apparatus. The Ohio State University (OSU) rate of heat release apparatus as described\nbelow, is used. This is a modified version of the rate of heat release apparatus standardized by\nthe American Society of Testing and Materials (ASTM), ASTM E-906.\n(1) This apparatus is shown in Figures 1A. All exterior surfaces of the apparatus, except the\nholding chamber, must be insulated with 25 mm thick, low density, high temperature, fiberglass\nboard insulation. A gasketed door through which the sample injection rod slides forms an\nairtight closure on the specimen hold chamber.\n(2) Thermopile. [The temperature difference between the air entering the environmental\nchamber and that leaving is monitored by a thermopile having five hot and five cold, 24 gauge\nChromel-Alumel junctions. The hot junctions are spaced across the top of the exhaust stack,\n10mm below the tope of the chimney. One thermocouple is located in the geometric center, with\nthe other four located 30mm from the center along the diagonal toward each of the corners\n(Figure 5). The cold junctions are located in the pan below the lower air distribution plate\n(Refer to paragraph (b)(4)). Thermopile hot junctions must be cleared of soot deposits as\nneeded to maintain the calibrated sensitivity.]\n(i) Thermal Inertia Compensator. A compensator tab is made from 0.55mm stainless steel sheet,\n10 by 20mm. An 800 length of 24 gauge Chromel-Alumel, glass insulated, duplex thermocouple\nwire is welded or silver soldered to the tab as shown in Figure 2, and the wire bent back so that\nit is flush against the metal surface.\n(ii) The compensator tab must be mounted on the exhaust stack as shown in Figure 3 using a 632 round head machine screw, 23mm long. Add small (approximately 4.5mm O.D., 9mm O.D.)\nwashers between the head of the machine screw and the compensator tab to give the best\nresponse to a square wave input. (One or two washers should be adequate.) The \"sharpness\" of\nthe square wave can be increased by changing the ratio of the output from the thermopile and\ncompensator thermocouple which is fed to the recorder. The ratio is changed by adjusting the 1-"
     },
@@ -2857,8 +2958,28 @@
       "text": "(g) Criteria. The total positive heat release over the first two minutes of exposure for each of the three or more samples tested must be averaged, and the peak heat release rate for each of the samples must be averaged, and the peak heat release rate for each of the samples tested must be averaged, and the peak heat release rate for each of the samples must be averaged. The average total heat release must not exceed 65 kilowatt-minutes per square meter, and the average peak heat release rate must not exceed 75 kilowatts per square meter. (h) Report. The test report must include the following for each specimen tested: (1) Description of the specimen. (2) Radiant heat flux to the specimen, expressed in W/cm2 . (3) Data giving release rates of heat (in kW/m2 ) as a function of time, either graphically or tabulated at intervals no greater than 10 seconds. The calibration factor (kn) must be recorded. (4) If melting, sagging, delaminating, or other behavior that affects the exposed surface area or the mode of burning occurs, these behaviors must be reported, together with the time at which such behaviors were observed. (5) The peak heat release and the 2-minute integrated heat release rate must be reported."
     },
     {
+      "page": 737,
+      "text": "5/18/2009\n\nAC 25-17A\n\nSmoke Monitor Chimney Baffle 0.368m Radiation Shield Reflector \"Globars\" -0.33m 0.79m Mask Radiation Door in closed position Mechanical Devise to Maintain Sample Pilot Position Flame 0.41m 0.10m Sample Holder Air Distributor Plates -0.41m 0.20m→ Air Inlet [Figure 1. Release Rate Apparatus]"
+    },
+    {
+      "page": 738,
+      "text": "5/18/2009\n\nAC 25-17A\n\nTop Mask (Unless denoted otherwise, all dimensions are in millimeters.) [Figure 2A. \"Globar\" Radiant Panel]"
+    },
+    {
+      "page": 739,
+      "text": "5/18/2009\n\nAC 25-17A\n\nTop -25 Reflector, adjust slope, top and bottom, for uniform heat flux on sample. Mask -1/4\" - 20 Machine Screw 75 lg (Unless denoted otherwise all dimensions are In milimeters.) [Figure 2B. \"Globar\" Radiant Panel]"
+    },
+    {
+      "page": 740,
+      "text": "5/18/2009\n\nAC 25-17A\n\nSPRING\n\n2 Radlus Flange, 1* Long MM Spot Weld Frame 3/8 .020\n\nANGLE IRON\n\nStainless\n\nRETAINER FRAME\n\nWire Steel 24 ga Steel\n\nSAMPLE HOLDER\n\nWasher 50mm OD 13mm ID Weld Washer 50mm OD 13mm ID 10-32 Machine Screw Drlll& Tap for 1/2- 13 nut to Washer Weld 1/2° Nut 10-32 Machine Screw 2 Radlus, 5 Flange\n\nMOUNTING BRACKET\n\n(Unless denoted otherwise, all dimensions are in millimeters.) [Figure 3.]"
+    },
+    {
+      "page": 741,
+      "text": "5/18/2009\n\nAC 25-17A\n\n125mm No.32 Drill Hole\n\n9.5 O.D.\n\n9.5 Tubing Leak-Free Seal on 6.35 Pilot Tubing (Unless denoted otherwise, all dimensions are in millimeters.) [Figure 4.]"
+    },
+    {
       "page": 742,
-      "text": "1181 – 1185. [RESERVED]"
+      "text": "5/18/2009\n\nAC 25-17A\n\nMM 10 MM [Figure 5. Thermocouple Position]\n\n1181 – 1185. [RESERVED]"
     },
     {
       "page": 743,
@@ -2917,6 +3038,10 @@
       "text": "(3) Place the retaining/securing frame over the test specimen. It may be necessary (due to\ncompression) to adjust the sample (up or down) in order to maintain the distance from the\nsample to the radiant panel (7-1/2 -inches ± 1/8 -inch (191 mm± 3) at \"zero\" position). With\nfilm/fiberglass assemblies, it is critical to make a slit in the film cover to purge any air inside.\nThis allows the operator to maintain the proper test specimen position (level with the top of the\nplatform) and to allow ventilation of gases during testing. A longitudinal slit, approximately 2inches (51mm) in length, must be centered 3-inches ± 1/2 -inch (76mm±13mm) from the left\nflange of the securing frame. A utility knife is acceptable for slitting the film cover.\n(4) Immediately push the sliding platform into the chamber and close the bottom door.\n(5) Bring the pilot burner flame into contact with the center of the specimen at the \"zero\" point\nand simultaneously start the timer. The pilot burner must be at a 27 degree angle with the\nsample and be approximately 1/2-inch (12 mm) above the sample. See figure 7. A stop, as shown\nin figure 8, allows the operator to position the burner correctly each time."
     },
     {
+      "page": 757,
+      "text": "5/18/2009\n\nAC 25-17A\n\nFigure 8 - Propane Burner Stop"
+    },
+    {
       "page": 758,
       "text": "(6) Leave the burner in position for 15 seconds and then remove to a position at least 2-inches (51 mm) above the specimen. (g) Report. (1) Identify and describe the test specimen. (2) Report any shrinkage or melting of the test specimen. (3) Report the flame propagation distance. If this distance is less than 2-inches, report this as a pass (no measurement required). (4) Report the after-flame time. (h) Requirements. (1) There must be no flame propagation beyond 2-inches (51 mm) to the left of the centerline of the pilot flame application. (2) The flame time after removal of the pilot burner may not exceed 3 seconds on any specimen.]\n\n1195 – 1200. [RESERVED]"
     },
@@ -2938,7 +3063,7 @@
     },
     {
       "page": 763,
-      "text": "Figure 3 - Burner Draft Tube Extension Cone Diagram"
+      "text": "5/18/2009\n\nAC 25-17A\n\n(394 mm) 50* (127 mm) (102 mm) 1932° (15 mm) Spaces 10 Degree bends an Broken Line (305 mm) (318 mm) 27/64\" (11 mm) Spaces 0.50\" (13mm)\n\n0.50 (13 mm) Bolts LO (25 mm) Connection flange (311 mm) 1L0 (279 mtn) 6.0 (152 mm) (108 mm) (95 mm) Note: One-half of tube Material: 0050\" (13 nuni) stainless steel extension shown. Second half mates at spotweld overlaps (191 mm) Figure 3 - Burner Draft Tube Extension Cone Diagram"
     },
     {
       "page": 764,
@@ -2946,7 +3071,7 @@
     },
     {
       "page": 765,
-      "text": "Figure 4 - Calorimeter Position Relative to Burner Cone"
+      "text": "5/18/2009\nAC 25-17A\n6 in x 12 in x 3/4 in\n1-in (25 mm)\n(152 x 305 x 19 mm)\ndia hole for\nMarinite block\ncalorimeter mounting\n1 in\n(25 mm)\n6 ± 1/8 in\n(152 ± 3 mm)\n3 ± 1/8 in\n-C\n(76±3 mm)\n12 ± 1/8 in\n(305 ± 3 mm)\nSide View\n3/4 in\nBurnerCone\n(19 mm)\n1 in (25 mm) dia\n二\n4± 1/8 in (102 ± 3 mm)\nWater-cooled\ncalorimeter\nSteel angle\n1x1x18in\nRack mounts to\n(25x25x3mm)\ntest frame\nTop View\nFigure 4 - Calorimeter Position Relative to Burner Cone"
     },
     {
       "page": 766,
@@ -3361,6 +3486,10 @@
       "text": "proposal that meets this policy should not be approved, the office must coordinate its response with the policy issuing office. Applicants should expect that the certificating officials will consider this information when making findings of compliance relevant to new certificate actions. Also, as with all advisory material, this policy statement identifies one means, but not the only means, of compliance. Implementation The compliance method discussed in this policy should be applied to type, amended supplemental, and amended supplemental type certification programs whose application date is on or after the date the policy is finalized. For existing certification programs whose application precedes the date this policy is effective and the methods of compliance have already been coordinated with and approved by the FAA or their designee, the applicant may continue to follow the previously acceptable methods of compliance or choose to follow the guidance contained in this policy. /s/ Ali Bahrami Attachments Attachment 1 Attachment 2 Attachment 3 Attachment 4 Disposition of Comments"
     },
     {
+      "page": 869,
+      "text": "5/18/2009\n\nAC 25-17A\n\nAttachment 1 Process Flowchart Start Does the aircraft NO any potentially injurious Are there\n\nYES\n\nIs the combined weight of\n\nYES\n\ncertification basis include features located within the 35\" all seatback mounted accessories § 25.562(c)(5)? headstrike arc? less than 3 lbs?\n\nYES\n\nNO NO Critical case blunt trauma testing must be Blunt trauma and Test for blunt accomplished in accordance with § 25.562(c)(5) sharp or injurious trauma and sharp Is the requirements. A post-test assessment for edges or features or injurious seatback a \"standard\" unacceptable sharp or injurious edges or features is impact testing is edges or features NO design, i.e., able to accommodate required. For features not contacted as a result of not required to using one of the 1\" permanent deformation critical case HIC testing, assess each potentially demonstrate impact tests as a result of occupant injurious item for the creation of sharp or injurious compliance with described within impact? edges or features using one of the impact test §§ 25.785(b),(d). this policy methods described within this policy memo. memorandum.\n\nYES\n\nTest for sharp or injurious edges or features using one of the impact tests described within this policy memorandum"
+    },
+    {
       "page": 870,
       "text": "5/18/2009 Attachment 2 Bowling Ball Test Device Bowling ball tests should be conducted with a bowling ball weighing a minimum of 13.0 lbs., and instrumented with a triaxial accelerometer that records the accelerations associated with impact. As such, this test device can be used to assess blunt trauma injuries, and investigate the propensity for components to create sharp and injurious edges. The following criteria describe the test requirements: • Each potentially injurious seatback mounted feature within the 35” headstrike arc must be assessed. To the extent practicable, the test articles should be positioned in order for the dropped bowling ball to strike the center of each item, with a direction of motion that is perpendicular to the seatback/seatback mounted accessory. If the seat pitch is such that an item is located outside of the 35” headstrike arc, it need not be assessed. • Each potentially injurious item should be mounted in a seat back that is connected to a rigid mounting fixture that shares the appropriate mounting points of the seat back (i.e., pivot and 18 feet (5.5 m) Triaxial Accelerometer Bowling Ball (13 lb.) Target Seatback Data Acquisition Recline Mechanism Rigid Fixture"
     },
@@ -3456,6 +3585,5 @@
       "page": 893,
       "text": "Advisory Circular Feedback If you find an error in this AC, have recommendations for improving it, or have suggestions for new items/subjects to be added, you may let us know by (1) emailing this form to 9-AWA-AVS-AIR500-Coord@faa.gov or (2) faxing it to the attention of the Aircraft Certification Service Directives Management Officer at (202) 267-3983.\n\nSubject: Date: Please check all appropriate line items: An error (procedural or typographical) has been noted in paragraph on page . Recommend paragraph on page be changed as follows: In a future change to this AC, please cover the following subject: (Briefly describe what you want added.) Other comments: I would like to discuss the above. Please contact me. Submitted by: Date:"
     }
-  ],
-  "extractedPageCount": 861
+  ]
 }

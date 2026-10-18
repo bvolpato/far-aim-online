@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import argparse
 import hashlib
+import importlib.util
 import json
 import re
 import sys
@@ -15,6 +16,7 @@ from concurrent.futures import ProcessPoolExecutor, as_completed
 from datetime import datetime
 from io import BytesIO
 from pathlib import Path
+from tempfile import TemporaryDirectory
 from typing import Any
 from zoneinfo import ZoneInfo
 
@@ -22,7 +24,7 @@ import pypdfium2 as pdfium
 import requests
 from pypdf import PdfReader
 
-from update_advisory_circulars import HEADERS, extract_pdf_url
+from update_advisory_circulars import HEADERS, extract_pdf_url, fetch_text
 
 ROOT_DIR = Path(__file__).resolve().parents[1]
 AC_DIR = ROOT_DIR / "data" / "advisory-circulars"
@@ -253,6 +255,8 @@ def supplement_sparse_pages_with_pypdf(pdf_bytes: bytes, extracted: list[str]) -
 
 
 def ocr_sparse_pages(pdf_bytes: bytes, extracted: list[str]) -> tuple[list[str], int]:
+    if not any(len(re.findall(r"\b\w+\b", text)) < 25 for text in extracted):
+        return extracted, 0
     try:
         from rapidocr import RapidOCR
     except ImportError as error:
@@ -260,7 +264,12 @@ def ocr_sparse_pages(pdf_bytes: bytes, extracted: list[str]) -> tuple[list[str],
 
     global _OCR_ENGINE
     if _OCR_ENGINE is None:
-        _OCR_ENGINE = RapidOCR()
+        _OCR_ENGINE = RapidOCR(
+            params={
+                "EngineConfig.onnxruntime.intra_op_num_threads": 2,
+                "EngineConfig.onnxruntime.inter_op_num_threads": 1,
+            }
+        )
 
     document = pdfium.PdfDocument(pdf_bytes)
     ocr_page_count = 0
@@ -295,7 +304,7 @@ def ocr_sparse_pages(pdf_bytes: bytes, extracted: list[str]) -> tuple[list[str],
 
 def extract_pdf_content(
     pdf_bytes: bytes,
-    use_ocr: bool = False,
+    use_ocr: bool | None = None,
 ) -> tuple[list[dict[str, Any]], int, int]:
     document = pdfium.PdfDocument(pdf_bytes)
     page_count = len(document)
@@ -317,7 +326,7 @@ def extract_pdf_content(
     extracted = supplement_sparse_pages_with_pypdf(pdf_bytes, extracted)
 
     ocr_page_count = 0
-    if use_ocr:
+    if use_ocr or (use_ocr is None and ocr_available()):
         extracted, ocr_page_count = ocr_sparse_pages(pdf_bytes, extracted)
 
     cleaned_pages = [reflow_page_text(text) for text in strip_repeated_margins(extracted)]
@@ -334,11 +343,15 @@ def word_count(pages: list[dict[str, Any]]) -> int:
 
 
 def extraction_status(pages: list[dict[str, Any]], page_count: int) -> str:
-    """Only call extraction complete when every PDF page yielded searchable text."""
+    """Parsed means text on every page, not preservation of figures or PDF layout."""
     words = word_count(pages)
     extracted_pages = {page["page"] for page in pages if page["text"].strip()}
     expected_pages = set(range(1, page_count + 1))
     return "parsed" if words >= 100 and extracted_pages == expected_pages else "partial"
+
+
+def ocr_available() -> bool:
+    return importlib.util.find_spec("rapidocr") is not None
 
 
 def load_json(path: Path) -> dict[str, Any]:
@@ -361,6 +374,41 @@ def publication_exclusion(item: dict[str, Any]) -> dict[str, Any] | None:
     return None
 
 
+def validate_cached_content(item: dict[str, Any], content: dict[str, Any]) -> None:
+    if not isinstance(content, dict):
+        raise ValueError("Content must be a JSON object")
+    for key in ("id", "number", "title", "documentUrl", "pdfUrl"):
+        if content.get(key) != item.get(key):
+            raise ValueError(f"Content {key} differs from index")
+    if not re.fullmatch(r"[0-9a-f]{64}", content.get("sha256", "")):
+        raise ValueError("Missing or invalid source PDF SHA-256")
+    page_count = content.get("pageCount")
+    if type(page_count) is not int or page_count < 1:
+        raise ValueError("PDF pageCount must be a positive integer")
+    pages = content.get("pages")
+    if not isinstance(pages, list):
+        raise ValueError("Content pages must be a list")
+    previous_page = 0
+    for page in pages:
+        if not isinstance(page, dict):
+            raise ValueError("Page must be an object")
+        number = page.get("page")
+        if type(number) is not int or not previous_page < number <= page_count:
+            raise ValueError("Page numbers must be unique, ordered, and within pageCount")
+        if not isinstance(page.get("text"), str) or not page["text"].strip():
+            raise ValueError("Extracted pages must have nonempty text")
+        previous_page = number
+    if content.get("extractedPageCount", len(pages)) != len(pages):
+        raise ValueError("extractedPageCount differs from page payload")
+    if content.get("wordCount") != word_count(pages):
+        raise ValueError("wordCount differs from page payload")
+    if content.get("status") != extraction_status(pages, page_count):
+        raise ValueError("Content status differs from page text coverage")
+    ocr_pages = content.get("ocrPageCount", 0)
+    if type(ocr_pages) is not int or not 0 <= ocr_pages <= len(pages):
+        raise ValueError("ocrPageCount exceeds extracted pages")
+
+
 def existing_result(item: dict[str, Any]) -> dict[str, Any] | None:
     excluded = publication_exclusion(item)
     if excluded:
@@ -369,15 +417,12 @@ def existing_result(item: dict[str, Any]) -> dict[str, Any] | None:
     path = AC_DIR / content_path
     if not path.exists():
         return None
-    content = load_json(path)
-    if content.get("pdfUrl") != item.get("pdfUrl"):
-        return None
-    if any(content.get(key) != item.get(key) for key in ("id", "number", "title", "documentUrl")):
+    try:
+        content = load_json(path)
+        validate_cached_content(item, content)
+    except (OSError, ValueError, TypeError):
         return None
     extracted_page_count = len(content.get("pages", []))
-    if content.get("extractedPageCount") != extracted_page_count:
-        content["extractedPageCount"] = extracted_page_count
-        write_json(path, content)
     return {
         "id": item["id"],
         "status": content.get("status", "partial"),
@@ -393,14 +438,19 @@ def existing_result(item: dict[str, Any]) -> dict[str, Any] | None:
 def download_pdf(pdf_url: str, timeout: int, max_pdf_mib: int, attempts: int = 4) -> bytes:
     for attempt in range(attempts):
         try:
-            response = requests.get(pdf_url, headers=HEADERS, timeout=timeout)
-            response.raise_for_status()
-            pdf_bytes = response.content
-            if len(pdf_bytes) > max_pdf_mib * 1024 * 1024:
-                raise ValueError(f"PDF exceeds {max_pdf_mib} MiB limit")
-            if not pdf_bytes.startswith(b"%PDF"):
-                raise ValueError("FAA asset is not a PDF")
-            return pdf_bytes
+            with requests.get(pdf_url, headers=HEADERS, timeout=timeout, stream=True) as response:
+                response.raise_for_status()
+                chunks: list[bytes] = []
+                size = 0
+                for chunk in response.iter_content(chunk_size=64 * 1024):
+                    size += len(chunk)
+                    if size > max_pdf_mib * 1024 * 1024:
+                        raise ValueError(f"PDF exceeds {max_pdf_mib} MiB limit")
+                    chunks.append(chunk)
+                pdf_bytes = b"".join(chunks)
+                if not pdf_bytes.startswith(b"%PDF"):
+                    raise ValueError("FAA asset is not a PDF")
+                return pdf_bytes
         except requests.RequestException as error:
             status_code = error.response.status_code if error.response is not None else None
             retryable = status_code is None or status_code == 429 or status_code >= 500
@@ -412,17 +462,17 @@ def download_pdf(pdf_url: str, timeout: int, max_pdf_mib: int, attempts: int = 4
 
 
 def current_pdf_url(document_url: str, timeout: int) -> str | None:
-    response = requests.get(document_url, headers=HEADERS, timeout=timeout)
-    response.raise_for_status()
-    return extract_pdf_url(response.text)
+    with requests.Session() as session:
+        return extract_pdf_url(fetch_text(session, document_url, timeout=timeout))
 
 
 def crawl_item(
     item: dict[str, Any],
     timeout: int,
     max_pdf_mib: int,
-    use_ocr: bool,
+    use_ocr: bool | None,
     resolve_pdf_url: bool = False,
+    output_dir: Path | None = None,
 ) -> dict[str, Any]:
     excluded = publication_exclusion(item)
     if excluded:
@@ -443,8 +493,8 @@ def crawl_item(
     elif not pdf_url:
         try:
             pdf_url = current_pdf_url(item["documentUrl"], timeout)
-        except requests.RequestException:
-            pdf_url = None
+        except requests.RequestException as error:
+            return {"id": item["id"], "status": "failed", "error": str(error)}
         if not pdf_url:
             return {
                 "id": item["id"],
@@ -474,7 +524,7 @@ def crawl_item(
         digest = hashlib.sha256(pdf_bytes).hexdigest()
         content_path = f"content/{item['id']}.json"
         write_json(
-            AC_DIR / content_path,
+            output_dir / f"{item['id']}.json" if output_dir is not None else AC_DIR / content_path,
             {
                 "version": 1,
                 "id": item["id"],
@@ -556,6 +606,70 @@ def remove_unreferenced_content(items: list[dict[str, Any]]) -> None:
             path.unlink()
 
 
+def check_cache() -> list[str]:
+    """Audit every local payload and its indexes without requests or file writes."""
+    errors: list[str] = []
+    index = load_json(INDEX_PATH)
+    coverage = load_json(COVERAGE_PATH)
+    items = index.get("items", [])
+    results = coverage.get("items", [])
+    item_ids = [item["id"] for item in items]
+    result_ids = [result["id"] for result in results]
+    if len(set(item_ids)) != len(item_ids) or len(set(result_ids)) != len(result_ids):
+        errors.append("Duplicate AC IDs in index or coverage")
+    if set(item_ids) != set(result_ids):
+        errors.append("Coverage IDs differ from index")
+    counts = dict(sorted(Counter(result.get("status") for result in results).items()))
+    if coverage.get("counts") != counts or coverage.get("total") != len(items):
+        errors.append("Coverage totals or counts differ from items")
+    result_by_id = {result["id"]: result for result in results}
+    referenced: set[str] = set()
+    for item in items:
+        item_id = item["id"]
+        result = result_by_id.get(item_id, {})
+        excluded = publication_exclusion(item)
+        if excluded:
+            if item.get("contentStatus") != "unavailable" or item.get("contentPath"):
+                errors.append(f"{item_id}: publication exclusion has bundled text")
+            if item.get("contentError") != excluded["error"]:
+                errors.append(f"{item_id}: publication exclusion reason differs from policy")
+            expected = excluded
+        elif item.get("contentStatus") == "unavailable":
+            if item.get("pdfUrl") or item.get("contentPath"):
+                errors.append(f"{item_id}: unavailable item has a PDF or cached payload")
+            expected = {"id": item_id, "status": "unavailable"}
+        else:
+            content_path = item.get("contentPath")
+            if content_path != f"content/{item_id}.json":
+                errors.append(f"{item_id}: missing or unexpected contentPath")
+                continue
+            referenced.add(content_path)
+            try:
+                content = load_json(AC_DIR / content_path)
+                validate_cached_content(item, content)
+            except (OSError, ValueError, TypeError) as error:
+                errors.append(f"{item_id}: {error}")
+                continue
+            expected = existing_result(item)
+            assert expected is not None
+            for key in ("pageCount", "extractedPageCount", "wordCount"):
+                if item.get(key) != expected[key]:
+                    errors.append(f"{item_id}: index {key} differs from payload")
+            if item.get("contentStatus") != expected["status"]:
+                errors.append(f"{item_id}: index status differs from page text coverage")
+        for key, value in expected.items():
+            if result.get(key) != value:
+                errors.append(f"{item_id}: coverage {key} differs from payload")
+        if expected["status"] == "unavailable" and result.get("contentPath"):
+            errors.append(f"{item_id}: unavailable coverage references cached text")
+        if result.get("refreshError"):
+            errors.append(f"{item_id}: unresolved refresh failure: {result['refreshError']}")
+    for path in CONTENT_DIR.glob("*.json"):
+        if path.relative_to(AC_DIR).as_posix() not in referenced:
+            errors.append(f"{path.name}: unreferenced content payload")
+    return errors
+
+
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument(
@@ -564,9 +678,13 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--limit", type=int, help="Limit selected ACs for parser validation.")
     parser.add_argument("--refresh", action="store_true", help="Re-download existing content.")
     parser.add_argument(
+        "--check", action="store_true", help="Audit all cached content without network or writes."
+    )
+    parser.add_argument(
         "--ocr",
         action="store_true",
-        help="OCR pages without embedded text; requires `uv sync --extra ocr`.",
+        default=None,
+        help="Require OCR on sparse pages. OCR is automatic when optional dependencies are installed.",
     )
     parser.add_argument(
         "--resolve-pdf-url",
@@ -577,11 +695,26 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--timeout", type=int, default=120)
     parser.add_argument("--max-pdf-mib", type=int, default=150)
     args = parser.parse_args(argv)
+    if args.check:
+        try:
+            errors = check_cache()
+        except (OSError, ValueError, KeyError, TypeError) as error:
+            errors = [str(error)]
+        for error in errors:
+            print(f"AC cache audit failed: {error}", file=sys.stderr)
+        if not errors:
+            print("AC cache audit passed: every payload matches index and coverage text counts.")
+        return int(bool(errors))
     if args.resolve_pdf_url and not args.refresh:
         parser.error("--resolve-pdf-url requires --refresh")
+    if min(args.max_workers, args.timeout, args.max_pdf_mib) < 1:
+        parser.error("--max-workers, --timeout, and --max-pdf-mib must be positive")
+    if args.ocr and not ocr_available():
+        parser.error("OCR dependencies missing; run with `uv sync --extra ocr`")
 
     index = load_json(INDEX_PATH)
     items = index.get("items", [])
+    original_items = json.dumps(items, sort_keys=True)
     previous_results = {}
     if COVERAGE_PATH.exists():
         previous_results = {
@@ -603,59 +736,81 @@ def main(argv: list[str] | None = None) -> int:
         else:
             pending.append(item)
 
-    refresh_failures = 0
-    worker_count = 1 if args.ocr else args.max_workers
-    with ProcessPoolExecutor(max_workers=worker_count) as executor:
-        future_by_item = {
-            executor.submit(
-                crawl_item,
-                item,
-                args.timeout,
-                args.max_pdf_mib,
-                args.ocr,
-                args.resolve_pdf_url,
-            ): item
-            for item in pending
-        }
-        for completed, future in enumerate(as_completed(future_by_item), start=1):
-            result = future.result()
-            if result["status"] == "failed" and result["id"] in fallback_by_id:
-                refresh_failures += 1
-                result = {
-                    **fallback_by_id[result["id"]],
-                    "refreshError": result["error"],
-                }
-            results.append(result)
-            if completed % 25 == 0 or completed == len(future_by_item):
-                print(f"Processed {completed}/{len(future_by_item)} AC PDFs", flush=True)
-
     selected_ids = {item["id"] for item in selected}
     pending_ids = {item["id"] for item in pending}
     for item in items:
         if item["id"] not in selected_ids:
             results.append(
                 existing_result(item)
-                or previous_results.get(item["id"])
+                or (
+                    previous_results.get(item["id"])
+                    if item.get("contentStatus") == "unavailable"
+                    and not item.get("pdfUrl")
+                    and previous_results.get(item["id"], {}).get("status") == "unavailable"
+                    else None
+                )
                 or {
                     "id": item["id"],
-                    "status": item.get("contentStatus", "unavailable"),
-                    "error": "Not selected",
+                    "status": "failed",
+                    "error": "Nonselected AC has missing, invalid, or stale cached content",
                 }
             )
 
+    refresh_failures = 0
+    worker_count = 1 if args.ocr or ocr_available() else args.max_workers
+    with TemporaryDirectory(prefix=".ac-refresh-", dir=AC_DIR) as temporary_dir:
+        staging_dir = Path(temporary_dir)
+        with ProcessPoolExecutor(max_workers=worker_count) as executor:
+            future_by_item = {
+                executor.submit(
+                    crawl_item,
+                    item,
+                    args.timeout,
+                    args.max_pdf_mib,
+                    args.ocr,
+                    args.resolve_pdf_url,
+                    staging_dir,
+                ): item
+                for item in pending
+            }
+            for completed, future in enumerate(as_completed(future_by_item), start=1):
+                result = future.result()
+                if result["status"] == "failed" and result["id"] in fallback_by_id:
+                    refresh_failures += 1
+                    result = {
+                        **fallback_by_id[result["id"]],
+                        "refreshError": result["error"],
+                    }
+                results.append(result)
+                if completed % 25 == 0 or completed == len(future_by_item):
+                    print(f"Processed {completed}/{len(future_by_item)} AC PDFs", flush=True)
+
+        counts = Counter(result["status"] for result in results)
+        if counts.get("failed", 0) or refresh_failures:
+            for result in results:
+                if result.get("status") == "failed" or result.get("refreshError"):
+                    print(
+                        f"AC refresh failed: {result['id']}: {result.get('error') or result.get('refreshError')}",
+                        file=sys.stderr,
+                    )
+            return 1
+        CONTENT_DIR.mkdir(parents=True, exist_ok=True)
+        for path in staging_dir.glob("*.json"):
+            path.replace(CONTENT_DIR / path.name)
     selected_ids.update(item["id"] for item in items if publication_exclusion(item))
     results.sort(key=lambda result: result["id"])
     today = datetime.now(ZoneInfo("America/New_York")).date().isoformat()
     update_index(items, results, selected_ids, today, pending_ids)
+    if json.dumps(items, sort_keys=True) != original_items:
+        index["updated"] = today
     remove_unreferenced_content(items)
     write_json(INDEX_PATH, index)
 
-    counts = Counter(result["status"] for result in results)
     write_json(
         COVERAGE_PATH,
         {
             "version": 1,
-            "updated": today,
+            "updated": index.get("updated", today),
             "total": len(items),
             "counts": dict(sorted(counts.items())),
             "items": results,

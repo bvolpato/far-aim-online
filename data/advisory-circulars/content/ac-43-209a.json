@@ -4,11 +4,12 @@
   "number": "43-209A",
   "title": "Recommended Inspection Procedures for Former Military Aircraft",
   "status": "partial",
-  "fetched": "2026-07-14",
+  "fetched": "2026-10-17",
   "documentUrl": "https://www.faa.gov/regulations_policies/advisory_circulars/index.cfm/go/document.information/documentID/1020928",
   "pdfUrl": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_43-209A.pdf",
   "sha256": "015456820c56a45eb6e4b9f55b24ac0c1fa2c7ebe7633d38e977195388242079",
   "pageCount": 12,
+  "extractedPageCount": 11,
   "wordCount": 3605,
   "ocrPageCount": 0,
   "pages": [
@@ -56,6 +57,5 @@
       "page": 12,
       "text": "AC 43-209A 4/12/13\n\nAppendix 1\n\na. Completed inspection and the aircraft is determined to be in a condition for safe operation: “I certify that this aircraft has been inspected on [insert date] in accordance with the scope and detail of part 43 appendix D (or if appropriate, the FAA-approved inspection program for this aircraft dated ____________ for serial number __________), and found to be in a condition for safe operation.” Aircraft Total Time: __________ Inspection Type: __________ Signature and A&P Certificate #: ___________________ Date: ________________ b. Enter the following statement in the appropriate aircraft and/or engine logbook if the aircraft was inspected and found not safe for flight: “I certify that this aircraft has been inspected on [insert date] in accordance with the scope and detail of part 43 appendix D (or if appropriate, the FAA-approved inspection program for this aircraft dated ____________ for serial number __________), and found NOT TO BE IN\n\nA CONDITION FOR SAFE OPERATION.”\n\nAircraft Total Time: __________ Inspection Type: __________ Signature and A&P Certificate #: ___________________ Date: ______"
     }
-  ],
-  "extractedPageCount": 11
+  ]
 }

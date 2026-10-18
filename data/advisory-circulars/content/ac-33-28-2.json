@@ -4,11 +4,12 @@
   "number": "33.28-2",
   "title": "Guidance Material for 14 CFR 33.28, Reciprocating Engine, Electrical and Electronic Engine Control Systems",
   "status": "partial",
-  "fetched": "2026-07-14",
+  "fetched": "2026-10-17",
   "documentUrl": "https://www.faa.gov/regulations_policies/advisory_circulars/index.cfm/go/document.information/documentID/22926",
   "pdfUrl": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_33_28-2.pdf",
   "sha256": "fd6eedfe69e79987890ad94995b0db17e1216329076659502dea6ce4392706f4",
   "pageCount": 52,
+  "extractedPageCount": 49,
   "wordCount": 15930,
   "ocrPageCount": 0,
   "pages": [
@@ -208,6 +209,5 @@
       "page": 52,
       "text": "AC 33.28-2 8/13/03\n\nAppendix 1\n\nSubmitted Document Major Sections AC\n\nChapter\n\nReference\n\n14 CFR §\n\nComponent/System Environmental Test Plans and Test Reports (Physical) • High/Low/Room Temperature Demonstrations • Contaminated Fluids Vibration • Impact • Sustained Acceleration • Sand and Dust • Fluid Susceptibility • Salt Spray • Induction Icing • Fungus • Temperature and Altitude • Thermal Cycle • Explosion Proofness • Humidity • Waterproofness • Power Input 6 33.53 33.28(d) Plan for Software Aspects of Certification (ref. RTCA DO-178B) 7 33.28(e) Software Configuration Index (ref. RTCA DO-178B) 7 33.28(e) Software Accomplishment Summary (ref. RTCA DO-178B) 7 33.28(e) NOTE: Applicants should prepare all remaining Software Design Assurance documents in accordance with RTCA DO-178B and have them on file and available for FAA audit. EEC System Integration Certification Plan (SICP) (if applicable) • Distribution of Compliance Tasks • Interface Definition & Other Data • Design Change Control 8 33.28"
     }
-  ],
-  "extractedPageCount": 49
+  ]
 }

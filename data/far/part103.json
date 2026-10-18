@@ -6,7 +6,7 @@
   "url": "https://www.ecfr.gov/current/title-14/part-103",
   "subchapter": "F",
   "subchapterTitle": "Air Traffic and General Operating Rules",
-  "effectiveDate": "2026-07-24",
+  "effectiveDate": "2026-10-15",
   "subparts": [
     {
       "subpart": "A",
@@ -93,7 +93,7 @@
         {
           "section": "103.23",
           "title": "Flight visibility and cloud clearance requirements",
-          "content": "No person may operate an ultralight vehicle when the flight visibility or distance from clouds is less than that in the table found below. All operations in Class A, Class B, Class C, and Class D airspace or Class E airspace designated for an airport must receive prior ATC authorization as required in § 103.17 of this part.\n\n| Airspace\n| Flight visibility\n| Distance from clouds\n\n| Class A\n| Not applicable\n| Not Applicable.\n\n| Class B\n| 3 statute miles\n| Clear of Clouds.\n\n| Class C\n| 3 statute miles\n| 500 feet below.\n1,000 feet above.\n2,000 feet horizontal.\n\n| Class D\n| 3 statute miles\n| 500 feet below.\n1,000 feet above.\n2,000 feet horizontal.\n\n| Class E:\n\n| Less than 10,000 feet MSL\n| 3 statute miles\n| 500 feet below.\n1,000 feet above.\n2,000 feet horizontal.\n\n| At or above 10,000 feet MSL\n| 5 statute miles\n| 1,000 feet below.\n1,000 feet above.\n1 statute mile horizontal.\n\n| Class G:\n\n| 1,200 feet or less above the surface (regardless of MSL altitude)\n| 1 statute mile\n| Clear of clouds.\n\n| More than 1,200 feet above the surface but less than 10,000 feet MSL\n| 1 statute mile\n| 500 feet below.\n1,000 feet above.\n2,000 feet horizontal.\n\n| More than 1,200 feet above the surface and at or above 10,000 feet MSL\n| 5 statute miles\n| 1,000 feet below.\n1,000 feet above.\n1 statute mile horizontal.\n\n[Amdt. 103-17, 56 FR 65662, Dec. 17, 1991]",
+          "content": "No person may operate an ultralight vehicle when the flight visibility or distance from clouds is less than that in the table found below. All operations in Class A, Class B, Class C, and Class D airspace or Class E airspace designated for an airport must receive prior ATC authorization as required in § 103.17 of this part.\n\n[TABLE]\n| Airspace | Flight visibility | Distance from clouds |\n\n| Class A | Not applicable | Not Applicable. |\n\n| Class B | 3 statute miles | Clear of Clouds. |\n\n| Class C | 3 statute miles | 500 feet below. 1,000 feet above. 2,000 feet horizontal. |\n\n| Class D | 3 statute miles | 500 feet below. 1,000 feet above. 2,000 feet horizontal. |\n\n| Class E: | | |\n\n| Less than 10,000 feet MSL | 3 statute miles | 500 feet below. 1,000 feet above. 2,000 feet horizontal. |\n\n| At or above 10,000 feet MSL | 5 statute miles | 1,000 feet below. 1,000 feet above. 1 statute mile horizontal. |\n\n| Class G: | | |\n\n| 1,200 feet or less above the surface (regardless of MSL altitude) | 1 statute mile | Clear of clouds. |\n\n| More than 1,200 feet above the surface but less than 10,000 feet MSL | 1 statute mile | 500 feet below. 1,000 feet above. 2,000 feet horizontal. |\n\n| More than 1,200 feet above the surface and at or above 10,000 feet MSL | 5 statute miles | 1,000 feet below. 1,000 feet above. 1 statute mile horizontal. |\n[/TABLE]\n\n[Amdt. 103-17, 56 FR 65662, Dec. 17, 1991]",
           "figures": []
         }
       ]

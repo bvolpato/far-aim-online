@@ -32,27 +32,27 @@ function DifficultyBadge({ level }: { level: string }) {
 
 function QuizCard({ quiz }: { quiz: QuizMeta }) {
   return (
-    <Link to={`/quizzes/${quiz.id}`} className="group">
-      <Card className="rounded-2xl hover:shadow-xl transition-all card-hover h-full">
-        <CardContent className="p-6">
+    <Link to={`/quizzes/${quiz.id}`} className="group block min-w-0">
+      <Card className="h-full min-w-0 rounded-2xl transition-all hover:shadow-xl card-hover">
+        <CardContent className="p-4 sm:p-6">
           <div className="flex items-start gap-4">
             <div className="w-14 h-14 bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl flex items-center justify-center flex-shrink-0">
               <Brain className="w-7 h-7 text-white" />
             </div>
-            <div className="flex-1">
+            <div className="min-w-0 flex-1">
               <div className="flex items-center gap-2 mb-2 flex-wrap">
                 {quiz.chapter && (
                   <Badge variant="aim">Chapter {quiz.chapter}</Badge>
                 )}
                 <DifficultyBadge level={quiz.difficulty} />
               </div>
-              <h2 className="text-xl font-semibold text-foreground group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors mb-2">
+              <h2 className="mb-2 break-words text-xl font-semibold text-foreground transition-colors group-hover:text-purple-600 dark:group-hover:text-purple-400">
                 {quiz.title}
               </h2>
               <p className="text-sm text-muted-foreground mb-4">
                 {quiz.description}
               </p>
-              <div className="flex items-center gap-4 text-sm text-muted-foreground">
+              <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-muted-foreground">
                 <div className="flex items-center gap-1">
                   <Target className="w-4 h-4" />
                   <span>{quiz.questionCount} questions</span>
@@ -63,7 +63,7 @@ function QuizCard({ quiz }: { quiz: QuizMeta }) {
                 </div>
               </div>
             </div>
-            <ChevronRight className="w-5 h-5 text-muted-foreground group-hover:text-purple-500 transition-colors mt-2" />
+            <ChevronRight className="mt-2 h-5 w-5 shrink-0 text-muted-foreground transition-colors group-hover:text-purple-500" />
           </div>
         </CardContent>
       </Card>
@@ -104,7 +104,7 @@ export function QuizzesPage() {
               </p>
             </div>
           </div>
-          <div className="grid gap-6 md:grid-cols-2">
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
             {misc.map((quiz) => (
               <QuizCard key={quiz.id} quiz={quiz} />
             ))}
@@ -127,7 +127,7 @@ export function QuizzesPage() {
             </p>
           </div>
         </div>
-        <div className="grid gap-6 md:grid-cols-2">
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
           {aim.map((quiz) => (
             <QuizCard key={quiz.id} quiz={quiz} />
           ))}
@@ -149,7 +149,7 @@ export function QuizzesPage() {
             </p>
           </div>
         </div>
-        <div className="grid gap-6 md:grid-cols-2">
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
           {far.map((quiz) => (
             <QuizCard key={quiz.id} quiz={quiz} />
           ))}
@@ -157,8 +157,8 @@ export function QuizzesPage() {
       </div>
 
       {/* Quiz Tips */}
-      <Card className="mt-12 rounded-2xl bg-gradient-to-br from-purple-500/10 to-purple-600/5 dark:from-purple-500/20 dark:to-purple-600/10 border-purple-200 dark:border-purple-800/50">
-        <CardContent className="p-8">
+      <Card className="mt-12 min-w-0 rounded-2xl border-purple-200 bg-gradient-to-br from-purple-500/10 to-purple-600/5 dark:border-purple-800/50 dark:from-purple-500/20 dark:to-purple-600/10">
+        <CardContent className="p-4 sm:p-8">
           <h2 className="text-xl font-bold text-foreground mb-4">Quiz Tips</h2>
           <ul className="space-y-3">
             {[

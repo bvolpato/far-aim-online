@@ -171,6 +171,35 @@ final class BundledDataIntegrityTests: XCTestCase {
         )
     }
 
+    func testFARContentTablesPreserveTextOrderEmptyCellsAndEscapedPipes() {
+        let blocks = parseFARContent(
+            "Before\n[TABLE]\n" +
+                "| Name | Note | End |\n\n" +
+                "| Route | Turns \\| Restrictions | |\n" +
+                "| Alternate | | Do not use |\n" +
+                "[/TABLE]\nAfter"
+        )
+
+        XCTAssertEqual(blocks.count, 3)
+        guard case .text(let before) = blocks[0],
+              case .table(let table) = blocks[1],
+              case .text(let after) = blocks[2] else {
+            XCTFail("Expected prose, a structured table, and trailing prose")
+            return
+        }
+
+        XCTAssertEqual(before, "Before\n")
+        XCTAssertEqual(after, "\nAfter")
+        XCTAssertEqual(table.headers, ["Name", "Note", "End"])
+        XCTAssertEqual(
+            table.rows,
+            [
+                ["Route", "Turns | Restrictions", ""],
+                ["Alternate", "", "Do not use"]
+            ]
+        )
+    }
+
     func testGlossarySearchRanksExactTermBeforeDefinitionMatches() {
         let results = DataService.shared.searchPCG(query: "  middle marker ")
 

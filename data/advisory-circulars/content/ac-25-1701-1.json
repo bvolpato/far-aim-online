@@ -4,11 +4,12 @@
   "number": "25.1701-1",
   "title": "Certification of Electrical Wiring Interconnection Systems on Transport Category Airplanes",
   "status": "partial",
-  "fetched": "2026-07-14",
+  "fetched": "2026-10-17",
   "documentUrl": "https://www.faa.gov/regulations_policies/advisory_circulars/index.cfm/go/document.information/documentID/73476",
   "pdfUrl": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_25_1701-1.pdf",
   "sha256": "8e8c3cbd94674d48c767823b49cae2c0b8d9ff88e827265e3de4c994f00fdb15",
   "pageCount": 92,
+  "extractedPageCount": 89,
   "wordCount": 34091,
   "ocrPageCount": 0,
   "pages": [
@@ -368,6 +369,5 @@
       "page": 92,
       "text": "Appendix B\n\nthat consume electrical power do not exceed the generating capacity of the onboard electrical generation and distribution system. The existing § 25.1351(a)(1) mandates that the required generating capacity, and the number and kinds of power sources, must be determined by an electrical load analysis. Typically, after an airplane is delivered and enters service, it is modified numerous times throughout its service life. Each addition or deletion of an electrical-power-consuming system changes the electrical load requirements. The only way to ensure that the capacity of the overall generating and distribution system, as well as individual electrical buses, is not exceeded is to have an up-to-date electrical load analysis. The best way to ensure that an up-to-date electrical load analysis is maintained is for the type certificate holder to include such data in the ICA provided with the airplane when it is first delivered to a customer, along with recommended practices for keeping it updated as electrical loads are deleted and added."
     }
-  ],
-  "extractedPageCount": 89
+  ]
 }

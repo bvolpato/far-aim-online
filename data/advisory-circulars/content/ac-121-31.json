@@ -4,11 +4,12 @@
   "number": "121-31",
   "title": "Flight Crew Sleeping Quarters and Rest Facilities",
   "status": "partial",
-  "fetched": "2026-07-14",
+  "fetched": "2026-10-17",
   "documentUrl": "https://www.faa.gov/regulations_policies/advisory_circulars/index.cfm/go/document.information/documentID/22511",
   "pdfUrl": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC121-31.pdf",
   "sha256": "a35317039c920388f27394a427ac5ada292361fb33195328ae03692cac835073",
   "pageCount": 6,
+  "extractedPageCount": 5,
   "wordCount": 1300,
   "ocrPageCount": 0,
   "pages": [
@@ -32,6 +33,5 @@
       "page": 5,
       "text": "g/30/94 AC 121-31 6 . REQUEST FOR ADEQUACY DETERMINATION FINDING. If the operator wants a formal FAA determination on the adequacy of flightcrew sleeping quarters and flightcrew rest facility installations, such requests should be forwarded to the following address: Federal Aviation Administration ATTN: Aircraft Evaluation Program Staff, AFS-60 800 Independence Avenue, SW, Washington, DC 20591 a, These requests will then be forwarded to the appropriate aircraft evaluation group by AFS-60 for evaluation and decision regarding whether or not to issue a finding that proposed installations are adequate for their intended function under FAR Sections 121.485(a) and 121.523(b). b Operators can have their crewmembers use sleeping quarters without a formal FAA adequacy determination. However, enforcement action may be taken if the FAA later determines arters were inadequate. William J. wh!ke Deputy Director Flight Standards Service Par 6 *U.S. G.P.0.:1994-387-549:71"
     }
-  ],
-  "extractedPageCount": 5
+  ]
 }

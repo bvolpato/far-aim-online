@@ -1,7 +1,12 @@
 {
   "title": "Federal Aviation Regulations - Pilot Index",
   "description": "CFR parts commonly found in pilot reference manuals (ASA FAR/AIM)",
-  "lastUpdated": "2026-10-17",
+  "lastUpdated": "2026-10-15",
+  "fetchedAt": "2026-10-17",
+  "effectiveDates": {
+    "14": "2026-10-15",
+    "49": "2026-10-13"
+  },
   "source": "eCFR (ecfr.gov)",
   "indexType": "pilot",
   "parts": [
@@ -433,7 +438,7 @@
       "subchapter": "F",
       "subchapterTitle": "Air Traffic and General Operating Rules",
       "isPilotIndex": true,
-      "sectionCount": 286,
+      "sectionCount": 287,
       "appendixCount": 10,
       "figureCount": 0
     },
@@ -445,9 +450,9 @@
       "subchapter": "F",
       "subchapterTitle": "Air Traffic and General Operating Rules",
       "isPilotIndex": true,
-      "sectionCount": 83,
-      "appendixCount": 1,
-      "figureCount": 0
+      "sectionCount": 81,
+      "appendixCount": 3,
+      "figureCount": 1
     },
     {
       "part": 95,
@@ -589,7 +594,7 @@
       "subchapter": "G",
       "subchapterTitle": "Air Carriers and Operators for Compensation or Hire: Certification and Operations",
       "isPilotIndex": true,
-      "sectionCount": 390,
+      "sectionCount": 391,
       "appendixCount": 18,
       "figureCount": 14
     },
@@ -613,7 +618,7 @@
       "subchapter": "G",
       "subchapterTitle": "Air Carriers and Operators for Compensation or Hire: Certification and Operations",
       "isPilotIndex": true,
-      "sectionCount": 30,
+      "sectionCount": 31,
       "appendixCount": 2,
       "figureCount": 0
     },

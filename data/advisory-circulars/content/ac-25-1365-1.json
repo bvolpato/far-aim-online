@@ -4,11 +4,12 @@
   "number": "25.1365-1",
   "title": "Electrical Appliances, Motors, and Transformers",
   "status": "partial",
-  "fetched": "2026-07-14",
+  "fetched": "2026-10-17",
   "documentUrl": "https://www.faa.gov/regulations_policies/advisory_circulars/index.cfm/go/document.information/documentID/73474",
   "pdfUrl": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_25_1365-1.pdf",
   "sha256": "c8498206aaf6fe5e540f2f45ecd46a25c49fbb79aac69e673e3a8664b7de60ce",
   "pageCount": 12,
+  "extractedPageCount": 10,
   "wordCount": 2265,
   "ocrPageCount": 0,
   "pages": [
@@ -52,6 +53,5 @@
       "page": 12,
       "text": "Appendix C\n\nAircraft operators and manufacturers, together with suppliers of galley and electrical equipment, could be affected by this change. Since newly certificated aircraft may have to be supplied with newly designed galley equipment, airplane operators may elect to introduce the same new equipment into their existing fleet to maintain fleet commonality. A new AC 25-1365 will be developed and an announcement of its availability for comment will be published in the Federal Register."
     }
-  ],
-  "extractedPageCount": 10
+  ]
 }
