@@ -200,6 +200,52 @@ final class BundledDataIntegrityTests: XCTestCase {
         )
     }
 
+    func testLargeAIMTablePagingBoundsRowsAndReachesEverySourceRow() {
+        let sourceRows = (0..<3_687).map { row in
+            (0..<14).map { column in "row \(row), column \(column)" }
+        }
+        let pageCount = (sourceRows.count + aimTableRowsPerPage - 1) / aimTableRowsPerPage
+        let first = pageAIMTableRows(rows: sourceRows, requestedPageIndex: 0)
+        let second = pageAIMTableRows(rows: sourceRows, requestedPageIndex: 1)
+        let last = pageAIMTableRows(rows: sourceRows, requestedPageIndex: pageCount - 1)
+        let allRows = (0..<pageCount).flatMap { page in
+            pageAIMTableRows(rows: sourceRows, requestedPageIndex: page).rows
+        }
+
+        XCTAssertEqual(pageCount, 148)
+        XCTAssertEqual(first.rows.count, 25)
+        XCTAssertEqual(first.firstRowNumber, 1)
+        XCTAssertEqual(first.lastRowNumber, 25)
+        XCTAssertEqual(second.firstRowNumber, 26)
+        XCTAssertEqual(second.lastRowNumber, 50)
+        XCTAssertEqual(last.firstRowNumber, 3_676)
+        XCTAssertEqual(last.lastRowNumber, 3_687)
+        XCTAssertEqual(last.rows.count, 12)
+        XCTAssertTrue(allRows.allSatisfy { $0.value.count == 14 })
+        XCTAssertEqual(allRows.map(\.sourceIndex), Array(sourceRows.indices))
+        XCTAssertEqual(allRows.map(\.value), sourceRows)
+        XCTAssertEqual(
+            pageAIMTableRows(rows: sourceRows, requestedPageIndex: Int.max).pageIndex,
+            last.pageIndex
+        )
+    }
+
+    func testLargeAIMTableSearchFindsLateExactAndMultiTermRows() {
+        let rowTexts = (0..<80).map { row in
+            switch row {
+            case 2: ["flux and then", "density"]
+            case 57: ["UN value", "flux density"]
+            case 61: ["oxygen material", "rate"]
+            default: ["ordinary row \(row)"]
+            }
+        }.map { $0.joined(separator: " ") }
+
+        XCTAssertEqual(firstMatchingAIMTableRow(rowTexts: rowTexts, query: "flux density"), 57)
+        XCTAssertEqual(firstMatchingAIMTableRow(rowTexts: rowTexts, query: "oxygen rate"), 61)
+        XCTAssertEqual(firstMatchingAIMTableRow(rowTexts: rowTexts, query: "ordinary absent"), 0)
+        XCTAssertNil(firstMatchingAIMTableRow(rowTexts: rowTexts, query: "not present"))
+    }
+
     func testGlossarySearchRanksExactTermBeforeDefinitionMatches() {
         let results = DataService.shared.searchPCG(query: "  middle marker ")
 

@@ -401,6 +401,66 @@ struct AIMSectionCard: View {
     }
 }
 
+let aimTableRowsPerPage = 25
+
+struct IndexedAIMTableRow<Element> {
+    let sourceIndex: Int
+    let value: Element
+}
+
+struct AIMTablePage<Element> {
+    let pageIndex: Int
+    let pageCount: Int
+    let totalRows: Int
+    let firstRowNumber: Int?
+    let lastRowNumber: Int?
+    let rows: [IndexedAIMTableRow<Element>]
+}
+
+func pageAIMTableRows<Element>(
+    rows: [Element],
+    requestedPageIndex: Int,
+    pageSize: Int = aimTableRowsPerPage
+) -> AIMTablePage<Element> {
+    precondition(pageSize > 0)
+    let pageCount = max(1, (rows.count + pageSize - 1) / pageSize)
+    let pageIndex = min(max(requestedPageIndex, 0), pageCount - 1)
+    let start = pageIndex * pageSize
+    let end = min(start + pageSize, rows.count)
+    let pageRows = (start..<end).map { index in
+        IndexedAIMTableRow(sourceIndex: index, value: rows[index])
+    }
+    return AIMTablePage(
+        pageIndex: pageIndex,
+        pageCount: pageCount,
+        totalRows: rows.count,
+        firstRowNumber: pageRows.first.map { $0.sourceIndex + 1 },
+        lastRowNumber: pageRows.last.map { $0.sourceIndex + 1 },
+        rows: pageRows
+    )
+}
+
+func firstMatchingAIMTableRow(rowTexts: [String], query: String) -> Int? {
+    let normalizedQuery = query.trimmingCharacters(in: .whitespacesAndNewlines)
+    guard !normalizedQuery.isEmpty else { return nil }
+    if let exactMatch = rowTexts.firstIndex(where: {
+        $0.localizedCaseInsensitiveContains(normalizedQuery)
+    }) {
+        return exactMatch
+    }
+
+    let terms = normalizedQuery.split(whereSeparator: \.isWhitespace).map(String.init)
+    guard !terms.isEmpty else { return nil }
+    if let allTermsMatch = rowTexts.firstIndex(where: { row in
+        terms.allSatisfy { row.localizedCaseInsensitiveContains($0) }
+    }) {
+        return allTermsMatch
+    }
+    return rowTexts.firstIndex(where: { row in
+        terms.contains { row.localizedCaseInsensitiveContains($0) }
+    })
+}
+
 struct AIMTableView: View {
     let table: AIMTable
     let number: Int
@@ -408,6 +468,7 @@ struct AIMTableView: View {
     var showsLabel: Bool = true
     var tableFont: Font? = nil
     var tableLineSpacing: CGFloat? = nil
+    @State private var currentPageIndex = 0
 
     private var headers: [String] { table.headers ?? [] }
     private var rows: [[String]] { table.rows ?? [] }
@@ -420,6 +481,7 @@ struct AIMTableView: View {
     }
 
     var body: some View {
+        let page = pageAIMTableRows(rows: rows, requestedPageIndex: currentPageIndex)
         VStack(alignment: .leading, spacing: 8) {
             if showsLabel {
                 Label {
@@ -439,14 +501,22 @@ struct AIMTableView: View {
                     .font(.caption)
                     .foregroundColor(.secondary)
             } else {
+                if rows.count > aimTableRowsPerPage {
+                    pagingControls(for: page)
+                }
+
                 ScrollView(.horizontal, showsIndicators: true) {
                     LazyVStack(alignment: .leading, spacing: 0) {
                         if !headers.isEmpty {
                             tableRow(headers, isHeader: true, rowNumber: nil)
                         }
 
-                        ForEach(Array(rows.enumerated()), id: \.offset) { index, row in
-                            tableRow(row, isHeader: false, rowNumber: index + 1)
+                        ForEach(page.rows, id: \.sourceIndex) { indexedRow in
+                            tableRow(
+                                indexedRow.value,
+                                isHeader: false,
+                                rowNumber: indexedRow.sourceIndex + 1
+                            )
                         }
                     }
                     .overlay {
@@ -458,6 +528,52 @@ struct AIMTableView: View {
         }
         .padding(.vertical, 4)
         .accessibilityElement(children: .contain)
+        .onAppear { selectPageForSearch(searchText) }
+        .onChange(of: searchText) { _, query in
+            selectPageForSearch(query)
+        }
+        .onChange(of: rows) { _, _ in
+            selectPageForSearch(searchText)
+        }
+    }
+
+    private func pagingControls(for page: AIMTablePage<[String]>) -> some View {
+        VStack(spacing: 8) {
+            Text("Rows \(page.firstRowNumber ?? 0)–\(page.lastRowNumber ?? 0) of \(page.totalRows)")
+                .font(.caption.weight(.medium))
+                .frame(maxWidth: .infinity)
+                .accessibilityLabel(
+                    "Rows \(page.firstRowNumber ?? 0) through \(page.lastRowNumber ?? 0) of \(page.totalRows)"
+                )
+
+            HStack(spacing: 8) {
+                Button {
+                    currentPageIndex = max(page.pageIndex - 1, 0)
+                } label: {
+                    Text("Previous")
+                        .frame(maxWidth: .infinity, minHeight: 44)
+                }
+                .disabled(page.pageIndex == 0)
+                .accessibilityLabel("Previous table rows")
+                .buttonStyle(.bordered)
+
+                Button {
+                    currentPageIndex = min(page.pageIndex + 1, page.pageCount - 1)
+                } label: {
+                    Text("Next")
+                        .frame(maxWidth: .infinity, minHeight: 44)
+                }
+                .disabled(page.pageIndex >= page.pageCount - 1)
+                .accessibilityLabel("Next table rows")
+                .buttonStyle(.bordered)
+            }
+        }
+    }
+
+    private func selectPageForSearch(_ query: String) {
+        let rowTexts = rows.map { $0.joined(separator: " ") }
+        currentPageIndex = firstMatchingAIMTableRow(rowTexts: rowTexts, query: query)
+            .map { $0 / aimTableRowsPerPage } ?? 0
     }
 
     @ViewBuilder
