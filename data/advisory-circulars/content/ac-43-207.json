@@ -4,11 +4,12 @@
   "number": "43-207",
   "title": "Correlation, Operation, Design, and Modification of Turbofan/Jet Engine Test Cells",
   "status": "partial",
-  "fetched": "2026-07-14",
+  "fetched": "2026-10-17",
   "documentUrl": "https://www.faa.gov/regulations_policies/advisory_circulars/index.cfm/go/document.information/documentID/22600",
   "pdfUrl": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC43-207.pdf",
   "sha256": "50a3481177dee812c71e25a63263da97744ba959ba8077fd8e6c5099fe8053df",
   "pageCount": 45,
+  "extractedPageCount": 40,
   "wordCount": 14821,
   "ocrPageCount": 0,
   "pages": [
@@ -172,6 +173,5 @@
       "page": 45,
       "text": "Appendix 4\n\nAPPENDIX 4. GLOSSARY OF ACRONYMS AND ABBREVIATIONS\n\nAC advisory circular ACO Aircraft Certification Office ARP Aerospace Recommended Practice ASTM American Society for Testing and Materials DER Designated Engineering Representative EGT Exhaust Gas Temperature EPR Engine Pressure Ratio F Temperature in degrees Fahrenheit FAA Federal Aviation Administration fps feet per second FSDO Flight Standards District Office in-HgA Inches of Mercury Absolute ISO International Standards Organization K Temperature in degrees Kelvin kPa kilopascal absolute LHV Lower Heating Value NIST National Institute of Standards and Technology OEM Original Engine Manufacturer Pcd Cell Depression psi Pounds Per Square Inch psia Pounds Per Square Inch Absolute QEC Quick Engine Change R Temperature in degrees Rankine SAE Society of Automotive Engineers Page 1 (and 2)"
     }
-  ],
-  "extractedPageCount": 40
+  ]
 }

@@ -877,6 +877,130 @@ struct FARPartDetailView: View {
     }
 }
 
+enum FARContentBlock {
+    case text(String)
+    case table(AIMTable)
+}
+
+func parseFARContent(_ content: String) -> [FARContentBlock] {
+    var blocks: [FARContentBlock] = []
+    var cursor = content.startIndex
+
+    func appendText(_ text: String) {
+        if !text.isEmpty { blocks.append(.text(text)) }
+    }
+
+    while cursor < content.endIndex {
+        guard let tableStart = content.range(of: "[TABLE]", range: cursor..<content.endIndex) else {
+            appendText(String(content[cursor...]))
+            break
+        }
+        appendText(String(content[cursor..<tableStart.lowerBound]))
+
+        guard let tableEnd = content.range(of: "[/TABLE]", range: tableStart.upperBound..<content.endIndex) else {
+            appendText(String(content[tableStart.lowerBound...]))
+            break
+        }
+
+        let rows = String(content[tableStart.upperBound..<tableEnd.lowerBound])
+            .components(separatedBy: .newlines)
+            .filter { !$0.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty }
+            .map(parseFARTableRow)
+        if let headers = rows.first {
+            blocks.append(.table(AIMTable(headers: headers, rows: Array(rows.dropFirst()), caption: nil)))
+        } else {
+            appendText(String(content[tableStart.lowerBound..<tableEnd.upperBound]))
+        }
+        cursor = tableEnd.upperBound
+    }
+
+    return blocks
+}
+
+private func parseFARTableRow(_ line: String) -> [String] {
+    var row = line.trimmingCharacters(in: .whitespacesAndNewlines)
+    if row.hasPrefix("|") { row.removeFirst() }
+    if row.hasSuffix("|"), !farTablePipeIsEscaped(row) { row.removeLast() }
+
+    var cells: [String] = []
+    var cell = ""
+    var index = row.startIndex
+    while index < row.endIndex {
+        let character = row[index]
+        let next = row.index(after: index)
+        if character == "\\", next < row.endIndex, row[next] == "|" {
+            cell.append("|")
+            index = row.index(after: next)
+        } else if character == "|" {
+            cells.append(cell.trimmingCharacters(in: .whitespacesAndNewlines))
+            cell = ""
+            index = next
+        } else {
+            cell.append(character)
+            index = next
+        }
+    }
+    cells.append(cell.trimmingCharacters(in: .whitespacesAndNewlines))
+    return cells
+}
+
+private func farTablePipeIsEscaped(_ row: String) -> Bool {
+    var index = row.index(before: row.endIndex)
+    guard row[index] == "|" else { return false }
+
+    var backslashCount = 0
+    while index > row.startIndex {
+        index = row.index(before: index)
+        guard row[index] == "\\" else { break }
+        backslashCount += 1
+    }
+    return backslashCount.isMultiple(of: 2) == false
+}
+
+private struct FARContentView: View {
+    let searchText: String
+    let readerPreferences: ReaderPreferences
+    @State private var blocks: [FARContentBlock]
+
+    init(content: String, searchText: String, readerPreferences: ReaderPreferences) {
+        self.searchText = searchText
+        self.readerPreferences = readerPreferences
+        _blocks = State(initialValue: parseFARContent(content))
+    }
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 0) {
+            ForEach(Array(blocks.enumerated()), id: \.offset) { index, block in
+                switch block {
+                case .text(let text):
+                    HighlightText(text: text, query: searchText)
+                        .font(readerPreferences.bodyFont)
+                        .lineSpacing(readerPreferences.lineSpacing)
+                        .foregroundColor(.primary)
+                        .fixedSize(horizontal: false, vertical: true)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                case .table(let table):
+                    AIMTableView(
+                        table: table,
+                        number: tableNumber(through: index),
+                        searchText: searchText,
+                        showsLabel: false,
+                        tableFont: readerPreferences.bodyFont,
+                        tableLineSpacing: readerPreferences.lineSpacing
+                    )
+                }
+            }
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
+    }
+
+    private func tableNumber(through index: Int) -> Int {
+        blocks.prefix(index + 1).reduce(into: 0) { count, block in
+            if case .table = block { count += 1 }
+        }
+    }
+}
+
 struct SectionCard: View {
     let section: FARSection
     let searchText: String
@@ -931,10 +1055,11 @@ struct SectionCard: View {
                         }
 
                         if !section.content.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
-                            HighlightText(text: section.content, query: searchText)
-                                .font(readerPreferences.bodyFont)
-                                .lineSpacing(readerPreferences.lineSpacing)
-                                .foregroundColor(.primary)
+                            FARContentView(
+                                content: section.content,
+                                searchText: searchText,
+                                readerPreferences: readerPreferences
+                            )
                         }
 
                         // Definitions

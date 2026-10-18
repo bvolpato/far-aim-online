@@ -331,15 +331,22 @@ def extract_pdf_url(html: str) -> str | None:
 
 
 def fetch_pdf_url(document_url: str, attempts: int = 4) -> tuple[bool, str | None]:
-    for attempt in range(attempts):
-        try:
-            response = requests.get(document_url, headers=HEADERS, timeout=45)
-            response.raise_for_status()
-            return True, extract_pdf_url(response.text)
-        except requests.RequestException:
-            if attempt + 1 < attempts:
-                time.sleep(2**attempt)
-    return False, None
+    try:
+        with requests.Session() as session:
+            return True, extract_pdf_url(fetch_text(session, document_url, attempts, timeout=45))
+    except requests.RequestException as error:
+        print(f"FAA document metadata request failed for {document_url}: {error}", file=sys.stderr)
+        return False, None
+
+
+def validate_pdf_metadata_results(
+    items: dict[str, dict[str, Any]], urls: dict[str, str | None]
+) -> None:
+    missing = sorted(
+        number for number, item in items.items() if item.get("documentUrl") and number not in urls
+    )
+    if missing:
+        raise ValueError(f"FAA PDF metadata fetch failed for ACs: {', '.join(missing)}")
 
 
 def fetch_pdf_urls(
@@ -360,6 +367,7 @@ def fetch_pdf_urls(
                 urls[number] = pdf_url
             if index % 100 == 0:
                 print(f"Fetched PDF metadata for {index}/{len(future_by_number)} ACs")
+    validate_pdf_metadata_results(items, urls)
     return urls
 
 
@@ -389,14 +397,27 @@ def fetch_pdf_sha256(
                         prefix = (prefix + chunk)[:4]
                     total += len(chunk)
                     if total > byte_limit:
+                        print(
+                            f"FAA PDF audit failed for {pdf_url}: PDF exceeds {max_pdf_mib} MiB limit",
+                            file=sys.stderr,
+                        )
                         return False, None
                     digest.update(chunk)
                 if prefix != b"%PDF":
+                    print(
+                        f"FAA PDF audit failed for {pdf_url}: FAA asset is not a PDF",
+                        file=sys.stderr,
+                    )
                     return False, None
                 return True, digest.hexdigest()
-        except requests.RequestException:
+        except requests.RequestException as error:
             if attempt + 1 < attempts:
                 time.sleep(2**attempt)
+            else:
+                print(
+                    f"FAA PDF audit failed for {pdf_url}: {type(error).__name__}: {error}",
+                    file=sys.stderr,
+                )
     return False, None
 
 
@@ -446,7 +467,7 @@ def audit_pdf_content(
     )
 
     changed_ids: set[str] = set()
-    failed = 0
+    failures: list[str] = []
     with ThreadPoolExecutor(max_workers=max_workers) as executor:
         future_by_id = {
             executor.submit(fetch_pdf_sha256, pdf_url, timeout, max_pdf_mib): (
@@ -459,7 +480,7 @@ def audit_pdf_content(
             item_id, expected_sha256 = future_by_id[future]
             fetched, actual_sha256 = future.result()
             if not fetched:
-                failed += 1
+                failures.append(item_id)
             elif actual_sha256 != expected_sha256:
                 changed_ids.add(item_id)
             if index % 100 == 0:
@@ -468,9 +489,11 @@ def audit_pdf_content(
     shard_label = f"{shard_index + 1}/{shard_count}" if shard_count else "0/0"
     print(
         f"PDF content audit shard {shard_label} checked "
-        f"{len(selected) - failed}/{len(selected)} ACs; {len(changed_ids)} changed, "
-        f"{failed} unavailable"
+        f"{len(selected) - len(failures)}/{len(selected)} ACs; {len(changed_ids)} changed, "
+        f"{len(failures)} failed"
     )
+    if failures:
+        raise ValueError(f"FAA PDF content audit failed for ACs: {', '.join(sorted(failures))}")
     return changed_ids
 
 
@@ -710,6 +733,7 @@ def main(argv: list[str] | None = None) -> int:
             number: item for number, item in existing_items.items() if not item.get("pdfUrl")
         }
         pdf_urls = fetch_pdf_urls(missing_pdf_items, args.max_workers)
+        validate_pdf_metadata_results(missing_pdf_items, pdf_urls)
         for number, item in existing_items.items():
             if pdf_urls.get(number):
                 item["pdfUrl"] = pdf_urls[number]
@@ -756,6 +780,8 @@ def main(argv: list[str] | None = None) -> int:
         )
 
     pdf_urls = {} if args.skip_pdf_fetch else fetch_pdf_urls(list_items, args.max_workers)
+    if not args.skip_pdf_fetch:
+        validate_pdf_metadata_results(list_items, pdf_urls)
     items = build_items(csv_items, list_items, existing_items, pdf_urls)
     pdf_content_changed_ids: set[str] = set()
     if args.audit_pdf_content:

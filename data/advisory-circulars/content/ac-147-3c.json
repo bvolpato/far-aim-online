@@ -3,14 +3,15 @@
   "id": "ac-147-3c",
   "number": "147-3C",
   "title": "Certification and Operation of Aviation Maintenance Technician Schools",
-  "status": "partial",
-  "fetched": "2026-07-14",
+  "status": "parsed",
+  "fetched": "2026-10-17",
   "documentUrl": "https://www.faa.gov/regulations_policies/advisory_circulars/index.cfm/go/document.information/documentID/1041282",
   "pdfUrl": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_147-3C.pdf",
   "sha256": "74c6e63111655194a571824277e010328c8eaff1caf611cfa29deee5e11966d6",
   "pageCount": 71,
-  "wordCount": 24094,
-  "ocrPageCount": 0,
+  "extractedPageCount": 71,
+  "wordCount": 25170,
+  "ocrPageCount": 5,
   "pages": [
     {
       "page": 1,
@@ -202,7 +203,7 @@
     },
     {
       "page": 48,
-      "text": "Figure 4-1. Part 147 Certification Process Flowchart"
+      "text": "3/22/22\nAC 147-3C\nFigure 4-1. Part 147Certification Process Flowchart\nPart 147 Certification Process Flowchart\nApplicant\nFAA\nInitial inquiry to\n4.2 Preapplication\nFAA responsible\nFlight Standards\noffice.\nForm 8400-6, Preapplication\nStatement of Intent (PASI)\nSubmit completed FAA\nPreapplication\nMeeting\ndocuments acceptable?\nAre the preapplication\n-YES\nNO\nNotify applicant of\nPASI deficiencies\nComplete application (FAA\nForm 8310-6) and develop\napplication attachments as necessary\n4.3 Formal Application\nSubmit application and application\nattachments to the FAA\nFormal Application\nMeeting\nÍs the formal application\nsubmission acceptable?\n-YES\n个\nNO\nCorrect deficiencies and return\nNotify applicant\ndocuments for FAA review\nsubmission is accepted\nYES\n4.4 Design Assessment\nCertification?\nContinue\nNotify applicant of\napplication\ndeficiencies\nConduct evaluation of\ndocumentation\nNO\nLNOAcceptable?\nNotify applicant of\ndocument\nacceptability\nYES\n4.5 Performance Assessment\nCorrect deficiencies\nArrange demonstration\nand inspection\nConduct inspections\n(as applicable)\nAcceptable?\n-YES\nNO\n_YES.\nCertification?\nContinue\nNotify applicant of\napplication\ndeficiencies\nNO\n4.6 Administrative Functions\nTerminate\n-NOCertification\nApplicant\nmeets all part 147\nrequirements?\nIssue certification\ndocumentation\n-YES4-2"
     },
     {
       "page": 49,
@@ -210,7 +211,11 @@
     },
     {
       "page": 50,
-      "text": "Figure 4-2. Preapplication Statement of Intent"
+      "text": "3/22/22\nAC 147-3C\nFigure 4-2. Preapplication Statement of Intent\nForm Approved\nOMB No. 2120-0593\nExpiration Date: 04/30/2024\nPREAPPLICATION STATEMENT OF INTENT\nUS Department of Transportation\nFederal Aviation Administration\nPaperwork Reduction Act Statement: A federal agency may not conduct or sponsor, and a person is not required to respond to, nor shall a person be subject to a penalty for failure to comply with a\ncollection of information subject to the requirements of the Paperwork Reduction Act unless that collection of information displays a currently valid OMB Control Number. The OMB Control Number for this\ninformation collection is 2120-0593. Public reporting for this collection of information is estimated to be approximately 96 hours per response, including the time for reviewing instructions, searching existing\ndata sources, gathering and maintaining the data needed, completing and reviewing the collection of information. All responses to this collection of information are mandatory per 14 CFR Part 119. Send\ncomments regarding this burden estimate or any other aspect of this collection of information, including suggestions for reducing this burden should be directed to the FAA at: 800 Independence Ave\nSW. Washington, DC 20591, Attn: Information Cofllection Clearance Officer, ASP-110.\nSection 1A. To Be Completed By All Applicants\n1. Name and mailing address of company\n2 d t ted\n(do not use post office box)\n3. Proposed Start-up date\n4. Requested three-letter company identifier in order of preference\n1.\n2.\n3.\nCompany Email Address\nDoing Business As (DBA)\n5. Management Personnel\nName (Last, first, middle)\nTitle\nTelephone (including area code) and\nEmail Address\nSection 1B. To Be Completed By Air Operators\n6. Proposed type of operation (check as many as applicable)\nAir Carrier Certificate\nPart 121\nPassengers and Cargo\nSingle Pilot Operator\nOperating Certificate\nPart 125\nCargo Only\n1Single Pilot-in-Command Operator\nPart 133\nScheduled Operations\nBasic Part 135 Operator\nPart 135\nNonscheduled Operations\nSection 1C. To Be Completed By Air Agencies\n7. Proposed type of agency and rating(s)\nPart 145 Repair Station\nPart 147 Maintenance Technical School\nDomestic\nAirframe\nForeign\nNew\n□Renew\nPowerplant\nSatellite\nBoth\nAirframe\nInstrument\nPowerplant\nAccessory\nPropeller\nSpecialized Service\nRadio\n]Any other purpose for which the FAA finds the applicant's request if appropriate\nSection 1D. To Be Completed By Air Operators\n8. Aircraft Data\n9. Geographic area of Intended operations\nNumbers and types of aircraft (Include Registration if available)\nNumber of passenger seats or\n(by make, model, and series)\ncargo payload capacity\nFAA Form 8400-6 (05-17) Supersedes Previous Edition\nElectronic Version"
+    },
+    {
+      "page": 51,
+      "text": "3/22/22\n\nAC 147-3C\n\nSection 1E. To Be Completed By All Applicants 10. Additional information that provides a better understanding of the proposed operation or business (attach additiona/ sheets, if necessary) 11. The statements and information contained on this form denote an intent to apply for FAA certification. Signature Date Name and Title Section 2. To Be Completed By FAA District Office Received by (district office): Precertification Number Date: Date Coordinated with AFS-620 Remarks FAA Form 8400-6 (05-17) Supersedes Previous Edition Electronic Version"
     },
     {
       "page": 52,
@@ -226,7 +231,7 @@
     },
     {
       "page": 55,
-      "text": "Figure 4-4. FAA Form 8310-6, Aviation Maintenance Technician School Certificate and\nRatings Application"
+      "text": "3/22/22\nAC 147-3C\nFigure 4-4. FAA Form 8310-6, Aviation Maintenance Technician School Certificate and\nRatings Application\nTYPE OR PRINT ALL ENTRIES IN DARK INK\nOMB No. 2120-0040\nExp. -----\nAviation Maintenance Technician School\nCertificate and Ratings Application\nA. APPLICANT\n1. Name of School\n2. Additional Business Names (Doing Business As (DBA)) (If applicable)\n3. Name of Contact/Training Director\n4. Contact Telephone No.\n5. Contact Email Address\nB. PURPOSE OF APPLICATION\na. RATINGS REQUESTED (Specify):\nb. ADDITIONAL TRAINING LOCATIONS REQUESTED (during initial certification):\n1. ORIGINAL CERTIFICATE\nAIRFRAME POWERPLANT\n□ NO\nAIRFRAME AND POWERPLANT\nYES (Enter address information in section C below)\na. ADDED RATING (Specify): AIRFRAME\nPOWERPLANT\nAIRFRAME AND POWERPLANT\n2. AMENDED CERTIFICATE\nb. REMOVED RATING (Specify):\nAIRFRAME\nPOWERPLANT\nAIRFRAME AND POWERPLANT\n(Indicate only those items that\nc. CHANGE OF LOCATION (Primary Location) (Enter new physical and/or mailing address in section C below)\nare additions/changes to what\nis currently approved.)\nd. CHANGE OF NAME: (Enter new name or changes to DBA)\na. IDENTIFY REASON FOR SUBMISSION:\n3. OTHER\nC. FACILITIES\n1. PHYSICAL ADDRESS OF PRIMARY SCHOOL LOCATION.\nAddress\nCity\nState\nZip Code\nCountry\n2. MAILING ADDRESS OF SCHOOL\nSame as Physical Address.\nAddress\nCity\nState\nZip Code\nCountry\n3. PHYSICAL ADDRESS OF ADDITIONAL TRAINING LOCATIONS. (List additional locations on separate sheet if needed)\nAdditional Locations Attached\nAddress\nCity\nState\nZip Code\nCountry\nAddress\nCity\nState\nZip Code\nCountry\nD. APPLICATION ATTACHMENTS\nDescription of Facilities (each location)\nDescription of ensuring instructor requirements\nQuality Control System (as applicable)\nDescription of equipment (each location)\n□ Curriculum\nOther (list other application attachments):\nDescription of materials (each location)\nEvidence of instructor qualifications\nDescription of curriculum\nEvidence of accreditation (as applicable)\nE. APPLICANT'S CERTIFICATION\nNAME OF AUTHORIZED REPRESENTATIVE OF THE APPLICANT (Print Name)\nTITLE OF AUTHORIZED REPRESENTATIVE OF THE APPLICANT (Print Title)\nI hereby certify that I have been authorized by the school identified in section A to make this application and that statements and attachments hereto\nare true and correct to the best of my knowledge.\nDATE (MM/DD/YYYY)\nAUTHORIZED REPRESENTATIVE SIGNATURE\nF. FAA CERTIFICATION ACTION (FOR FAA USE ONLY)\nACTION TAKEN\nCERTIFICATE ISSUED\nAPPROVED\nNumber:\nRatings Issued:\nDISAPPROVED (Certificate NOT Issued)\nDate:\nAIRFRAME\nPOWERPLANT\nAIRFRAME AND POWERPLANT\nDate\nFAA Signature\nFAA Office/Designation No.\n(dnitae ame sin)\nFAA Form 8310-6 (01-22) SUPERSEDES PREVIOUS EDITION"
     },
     {
       "page": 56,
@@ -254,7 +259,7 @@
     },
     {
       "page": 62,
-      "text": "Appendix C\n\nAPPENDIX C. SAMPLE FACILITY LAYOUT"
+      "text": "3/22/22\n\nAC 147-3C\n\nAppendix C\n\nAPPENDIX C. SAMPLE FACILITY LAYOUT\n\nGENERAL CLASSROOM\n\nGENERAL LAB\n\nMEN\n\nAIRFRAME\n\nPOWERPLANT\n\nCLASSROOM\n\nCLASSROON\n\nNICAD\n\nLEAD ACID\n\nBATTERY\n\nLBATTERY\n\nHANGAR\n\nBENCHES\n\nPOWERPLANT\n\nSHEET METAL/COMPOSITE AREA\n\nSHOP\n\nAIRFRAME/AIRFRAME SYSTEMS\n\nEOOUENT\n\n(CLEAN FACILITY)\n\n厂\n\nDOOR\n\nPARTS CLEANING\n\nAND INSPECTION\n\n」 一\n\nBENCHES\n\n一\n\nLIBRARY\n\nENER\n\nPAINT\n\nBREAK\n\nWELDING\n\nADMINISTRATION/\n\nBOOTH\n\nA\n\nROOM\n\nAREA\n\nTOOLS\n\nMATERIALS\n\nRECORDS\n\nN C E"
     },
     {
       "page": 63,
@@ -292,6 +297,5 @@
       "page": 71,
       "text": "Advisory Circular Feedback Form If you find an error in this AC, have recommendations for improving it, or have suggestions for new items/subjects to be added, you may let us know by contacting the Flight Standards Directives Management Officer at 9-AWA-AFB-120-Directives@faa.gov.\n\nSubject: AC 147-3C, Certification and Operation of Aviation Maintenance Technician Schools Date: _____________________ Please check all appropriate line items: An error (procedural or typographical) has been noted in paragraph ____________ on page _______. Recommend paragraph _____________ on page __________ be changed as follows: ______________________________________________________________________ ______________________________________________________________________ In a future change to this AC, please cover the following subject: (Briefly describe what you want added.) ______________________________________________________________________ ______________________________________________________________________ Other comments: ______________________________________________________________________ ______________________________________________________________________ I would like to discuss the above. Please contact me. Submitted by: Date: ______________________"
     }
-  ],
-  "extractedPageCount": 70
+  ]
 }

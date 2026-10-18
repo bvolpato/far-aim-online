@@ -2,9 +2,14 @@
   "title": "Aeronautical Information Manual (AIM)",
   "description": "Official guide to basic flight information and ATC procedures",
   "lastUpdated": "2026-07-09",
+  "fetchedAt": "2026-10-18T01:59:28.009070+00:00",
+  "edition": {
+    "effectiveDate": "2026-07-09",
+    "change": "Change 3"
+  },
   "source": "Federal Aviation Administration",
   "totalSections": 438,
-  "totalImages": 193,
+  "totalImages": 283,
   "chapters": [
     {
       "chapter": 0,
@@ -18,49 +23,49 @@
       "title": "Air Navigation",
       "file": "aim/chapter1.json",
       "sectionCount": 24,
-      "imageCount": 19
+      "imageCount": 20
     },
     {
       "chapter": 2,
       "title": "Aeronautical Lighting and Other Airport Visual Aids",
       "file": "aim/chapter2.json",
       "sectionCount": 29,
-      "imageCount": 38
+      "imageCount": 55
     },
     {
       "chapter": 3,
       "title": "Airspace",
       "file": "aim/chapter3.json",
       "sectionCount": 33,
-      "imageCount": 5
+      "imageCount": 6
     },
     {
       "chapter": 4,
       "title": "Air Traffic Control",
       "file": "aim/chapter4.json",
       "sectionCount": 108,
-      "imageCount": 19
+      "imageCount": 36
     },
     {
       "chapter": 5,
       "title": "Air Traffic Procedures",
       "file": "aim/chapter5.json",
       "sectionCount": 93,
-      "imageCount": 44
+      "imageCount": 51
     },
     {
       "chapter": 6,
       "title": "Emergency Procedures",
       "file": "aim/chapter6.json",
       "sectionCount": 19,
-      "imageCount": 0
+      "imageCount": 25
     },
     {
       "chapter": 7,
       "title": "Safety of Flight",
       "file": "aim/chapter7.json",
       "sectionCount": 76,
-      "imageCount": 26
+      "imageCount": 48
     },
     {
       "chapter": 8,
@@ -90,5 +95,10 @@
       "sectionCount": 27,
       "imageCount": 5
     }
-  ]
+  ],
+  "figureSource": {
+    "sourceUrl": "https://www.faa.gov/air_traffic/publications/media/AIM_Basic_w_Chg_1_and_2_and_3_dtd_7-9-26_FINAL.pdf",
+    "sha256": "8b11e7a168e1ef9ea16853b8ab7b3353f01490dffb51f2736a0a72e6278f8ff5",
+    "effectiveDate": "2026-07-09"
+  }
 }

@@ -4,11 +4,12 @@
   "number": "20-77B",
   "title": "Use of Manufacturers’ Maintenance Manuals",
   "status": "partial",
-  "fetched": "2026-07-14",
+  "fetched": "2026-10-17",
   "documentUrl": "https://www.faa.gov/regulations_policies/advisory_circulars/index.cfm/go/document.information/documentID/1028757",
   "pdfUrl": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_20-77B.pdf",
   "sha256": "a2b91301fc20d2233454b78aaf4dc5770fadd46e0340df46332813a76c181d31",
   "pageCount": 5,
+  "extractedPageCount": 4,
   "wordCount": 813,
   "ocrPageCount": 0,
   "pages": [
@@ -28,6 +29,5 @@
       "page": 5,
       "text": "Advisory Circular Feedback Form If you find an error in this AC, have recommendations for improving it, or have suggestions for new items/subjects to be added, you may let us know by contacting the Aircraft Maintenance Division (AFS-300) at 9-AWA-AFS-300-Division-Directives@faa.gov or the Flight Standards Directives Management Officer.\n\nSubject: AC 20-77B, Use of Manufacturers’ Maintenance Manuals Date: _____________________ Please check all appropriate line items: An error (procedural or typographical) has been noted in paragraph ____________ on page _______. Recommend paragraph _____________ on page __________ be changed as follows: ______________________________________________________________________ ______________________________________________________________________ In a future change to this AC, please cover the following subject: (Briefly describe what you want added.) ______________________________________________________________________ ______________________________________________________________________ Other comments: ______________________________________________________________________ ______________________________________________________________________ I would like to discuss the above. Please contact me. Submitted by: Date: ______________________"
     }
-  ],
-  "extractedPageCount": 4
+  ]
 }

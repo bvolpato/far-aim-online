@@ -283,7 +283,9 @@ def test_exhausted_catalog_fetch_preserves_index_and_changed_ids(tmp_path, monke
         )
 
     assert session.get.call_count == 2
-    session.get.assert_called_with(updater.FAA_AC_LIST_URL, headers=updater.HEADERS, timeout=(15, 90))
+    session.get.assert_called_with(
+        updater.FAA_AC_LIST_URL, headers=updater.HEADERS, timeout=(15, 90)
+    )
     assert data_path.read_text(encoding="utf-8") == original
     assert changed_ids_path.read_text(encoding="utf-8") == "existing output\n"
 
@@ -410,7 +412,7 @@ def test_pdf_url_audit_detects_replaced_pdf(tmp_path, monkeypatch):
     assert changed_ids_path.read_text(encoding="utf-8") == f"{item_id}\n"
 
 
-def test_pdf_lookup_failure_retains_stale_url_but_successful_no_pdf_clears_it(
+def test_pdf_lookup_failure_preserves_snapshot_and_successful_no_pdf_clears_it(
     tmp_path,
     monkeypatch,
 ):
@@ -428,12 +430,12 @@ def test_pdf_lookup_failure_retains_stale_url_but_successful_no_pdf_clears_it(
         }
     )
     data_path.write_text(json.dumps(index, indent=2) + "\n", encoding="utf-8")
+    original = data_path.read_bytes()
 
     monkeypatch.setattr(updater, "fetch_pdf_urls", lambda *_args: {})
-    assert run_update(csv_path, list_path, skip_pdf_fetch=False) == 0
-    retained = json.loads(data_path.read_text(encoding="utf-8"))["items"][0]
-    assert retained["pdfUrl"].endswith("/stale.pdf")
-    assert retained["contentPath"] == f"content/{item_id}.json"
+    with pytest.raises(ValueError, match="PDF metadata fetch failed.*20-1"):
+        run_update(csv_path, list_path, skip_pdf_fetch=False)
+    assert data_path.read_bytes() == original
 
     monkeypatch.setattr(updater, "fetch_pdf_urls", lambda *_args: {"20-1": None})
     assert run_update(csv_path, list_path, skip_pdf_fetch=False) == 0
@@ -443,20 +445,46 @@ def test_pdf_lookup_failure_retains_stale_url_but_successful_no_pdf_clears_it(
 
 
 def test_pdf_document_fetch_distinguishes_successful_no_pdf_from_failure(monkeypatch):
-    class NoPdfResponse:
-        text = "<html><body>No PDF published</body></html>"
-
-        def raise_for_status(self):
-            return None
-
-    monkeypatch.setattr(updater.requests, "get", lambda *_args, **_kwargs: NoPdfResponse())
+    response = catalog_response()
+    response._content = b"<html><body>No PDF published</body></html>"
+    session = Mock(spec=updater.requests.Session)
+    session.get.return_value = response
+    session.__enter__ = Mock(return_value=session)
+    session.__exit__ = Mock(return_value=None)
+    monkeypatch.setattr(updater.requests, "Session", lambda: session)
     assert updater.fetch_pdf_url("https://www.faa.gov/document/1", attempts=1) == (True, None)
 
-    def failed_request(*_args, **_kwargs):
-        raise updater.requests.ConnectionError("unavailable")
-
-    monkeypatch.setattr(updater.requests, "get", failed_request)
+    session.get.side_effect = updater.requests.ConnectionError("unavailable")
     assert updater.fetch_pdf_url("https://www.faa.gov/document/1", attempts=1) == (False, None)
+
+
+def test_pdf_metadata_batch_cannot_omit_failed_documents(monkeypatch):
+    monkeypatch.setattr(updater, "fetch_pdf_url", lambda *_args: (False, None))
+    with pytest.raises(ValueError, match="PDF metadata fetch failed.*20-1"):
+        updater.fetch_pdf_urls({"20-1": {"documentUrl": "https://www.faa.gov/ac"}}, 1)
+
+
+def test_pdf_hash_audit_failure_preserves_index_and_changed_ids(tmp_path, monkeypatch):
+    data_path = use_temporary_index(monkeypatch, tmp_path)
+    csv_path, list_path = write_sources(tmp_path)
+    assert run_update(csv_path, list_path) == 0
+    index = json.loads(data_path.read_text())
+    item = index["items"][0]
+    item.update(
+        {"pdfUrl": "https://www.faa.gov/ac.pdf", "contentPath": f"content/{item['id']}.json"}
+    )
+    data_path.write_text(json.dumps(index))
+    content_file = data_path.parent / item["contentPath"]
+    content_file.parent.mkdir()
+    content_file.write_text(json.dumps({"sha256": "a" * 64}))
+    original = data_path.read_bytes()
+    changed_ids_path = tmp_path / "changed-ids.txt"
+    changed_ids_path.write_text("previous\n")
+    monkeypatch.setattr(updater, "fetch_pdf_sha256", lambda *_args: (False, None))
+    with pytest.raises(ValueError, match=f"PDF content audit failed.*{item['id']}"):
+        run_update(csv_path, list_path, changed_ids_path, audit_pdf_content=True)
+    assert data_path.read_bytes() == original
+    assert changed_ids_path.read_text() == "previous\n"
 
 
 def test_pdf_content_audit_rotates_through_bounded_monthly_shards():

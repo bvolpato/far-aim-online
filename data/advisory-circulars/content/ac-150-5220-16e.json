@@ -4,11 +4,12 @@
   "number": "150/5220-16E",
   "title": "Automated Weather Observing Systems (AWOS) for Non-Federal Applications - with Change 1",
   "status": "partial",
-  "fetched": "2026-07-14",
+  "fetched": "2026-10-17",
   "documentUrl": "https://www.faa.gov/regulations_policies/advisory_circulars/index.cfm/go/document.information/documentID/1030909",
   "pdfUrl": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_150_5220-16E_w-chg1.pdf",
   "sha256": "d23a76128a6eda449cfeedcc820fc92ad2d0c012d0a1c99f519014a230f5f228",
   "pageCount": 82,
+  "extractedPageCount": 81,
   "wordCount": 28618,
   "ocrPageCount": 0,
   "pages": [
@@ -336,6 +337,5 @@
       "page": 82,
       "text": "01/31/2019 AC 150/5220-16E CHG 1\n\nAppendix 2\n\nThis page intentionally left blank. A2-2"
     }
-  ],
-  "extractedPageCount": 81
+  ]
 }

@@ -4,13 +4,14 @@
   "number": "120-16G",
   "title": "Air Carrier Maintenance Programs",
   "status": "partial",
-  "fetched": "2026-07-14",
+  "fetched": "2026-10-17",
   "documentUrl": "https://www.faa.gov/regulations_policies/advisory_circulars/index.cfm/go/document.information/documentID/1028859",
   "pdfUrl": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_120-16G.pdf",
   "sha256": "c3f8566005afe504f9ac0ccdf5a72dbffe27010f6ed79cbbef4ae14fc230ac31",
   "pageCount": 59,
-  "wordCount": 19567,
-  "ocrPageCount": 0,
+  "extractedPageCount": 52,
+  "wordCount": 19620,
+  "ocrPageCount": 1,
   "pages": [
     {
       "page": 1,
@@ -82,7 +83,7 @@
     },
     {
       "page": 20,
-      "text": "FIGURE 4-1. MAINTENANCE ORGANIZATIONAL CHART\n\nPar 4-4 Page 14"
+      "text": "1/4/16\nAC 120-16G\nFIGURE 4-1. MAINTENANCE ORGANIZATIONAL CHART\nMaintenance Organization\nDirector of Maintenance or\nEquivalent Position\nOverall authority and\nresponsibility for both RII and\nother maintenance and\nalteration functions\nMaintenance Department\nRequired Inspection\nOrganization\nResponsible Manager\nChief Inspector\nDirect responsibility for\nor Equivalent Position\nmaintenance, preventive\nmaintenance, and alteration\nDirect responsibility for RII\nfunctions\nfunctions\nMechanic\nRII Inspectors\nPar 4-4"
     },
     {
       "page": 21,
@@ -220,6 +221,5 @@
       "page": 59,
       "text": "______________________________________________________________________ ______________________________________________________________________ ______________________________________________________________________ ______________________________________________________________________ ______________________________________________________________________ ______________________________________________________________________ Advisory Circular Feedback Form If you find an error in this AC, have recommendations for improving it, or have suggestions for new items/subjects to be added, you may let us know by emailing the Aircraft Maintenance Division (AFS-300) at 9-AWA-AFS-300-Division-Directives@faa.gov or contacting the Flight Standards Directives Management Officer.\n\nSubject: AC 120-16G, Air Carrier Maintenance Programs Date: _____________________ Please check all appropriate line items: An error (procedural or typographical) has been noted in paragraph ____________ on page _______. Recommend paragraph _____________ on page __________ be changed as follows: In a future change to this AC, please cover the following subject: (Briefly describe what you want added.) Other comments: I would like to discuss the above. Please contact me. Submitted by: Date: ______________________"
     }
-  ],
-  "extractedPageCount": 52
+  ]
 }

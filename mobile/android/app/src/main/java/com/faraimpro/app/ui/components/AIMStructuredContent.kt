@@ -31,6 +31,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.produceState
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.ImageBitmap
@@ -40,6 +41,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -59,6 +61,92 @@ internal data class AIMTableLayout(
     val headers: List<String>,
     val rows: List<List<String>>
 )
+
+internal sealed interface FARContentBlock {
+    data class Text(val value: String) : FARContentBlock
+    data class Table(val value: AIMTable) : FARContentBlock
+}
+
+internal fun parseFARContent(content: String): List<FARContentBlock> {
+    val blocks = mutableListOf<FARContentBlock>()
+    var cursor = 0
+
+    fun addText(value: String) {
+        if (value.isNotEmpty()) blocks += FARContentBlock.Text(value)
+    }
+
+    while (cursor < content.length) {
+        val tableStart = content.indexOf("[TABLE]", startIndex = cursor)
+        if (tableStart < 0) {
+            addText(content.substring(cursor))
+            break
+        }
+        addText(content.substring(cursor, tableStart))
+
+        val bodyStart = tableStart + "[TABLE]".length
+        val tableEnd = content.indexOf("[/TABLE]", startIndex = bodyStart)
+        if (tableEnd < 0) {
+            addText(content.substring(tableStart))
+            break
+        }
+
+        val rows = content.substring(bodyStart, tableEnd)
+            .lineSequence()
+            .filter { it.isNotBlank() }
+            .map(::parseFARTableRow)
+            .toList()
+        if (rows.isEmpty()) {
+            addText(content.substring(tableStart, tableEnd + "[/TABLE]".length))
+        } else {
+            blocks += FARContentBlock.Table(
+                AIMTable(
+                    headers = rows.first(),
+                    rows = rows.drop(1),
+                    caption = null
+                )
+            )
+        }
+        cursor = tableEnd + "[/TABLE]".length
+    }
+
+    return blocks
+}
+
+private fun parseFARTableRow(line: String): List<String> {
+    var row = line.trim()
+    if (row.startsWith('|')) row = row.drop(1)
+    if (row.endsWith('|') && !isEscapedPipe(row, row.lastIndex)) row = row.dropLast(1)
+
+    val cells = mutableListOf<String>()
+    val cell = StringBuilder()
+    var index = 0
+    while (index < row.length) {
+        when {
+            row[index] == '\\' && row.getOrNull(index + 1) == '|' -> {
+                cell.append('|')
+                index += 2
+            }
+            row[index] == '|' -> {
+                cells += cell.toString().trim()
+                cell.clear()
+                index++
+            }
+            else -> cell.append(row[index++])
+        }
+    }
+    cells += cell.toString().trim()
+    return cells
+}
+
+private fun isEscapedPipe(value: String, pipeIndex: Int): Boolean {
+    var backslashes = 0
+    var index = pipeIndex - 1
+    while (index >= 0 && value[index] == '\\') {
+        backslashes++
+        index--
+    }
+    return backslashes % 2 == 1
+}
 
 internal fun normalizeAIMTable(table: AIMTable): AIMTableLayout {
     val rows = table.rows.orEmpty().filter { row -> row.any { it.isNotBlank() } }
@@ -269,22 +357,94 @@ private fun StructuredFigureCard(
 fun AIMTables(tables: List<AIMTable>, modifier: Modifier = Modifier) {
     Column(modifier = modifier, verticalArrangement = Arrangement.spacedBy(16.dp)) {
         tables.forEachIndexed { index, table ->
-            AIMTableView(layout = normalizeAIMTable(table), tableNumber = index + 1)
+            AIMTableView(
+                layout = normalizeAIMTable(table),
+                tableNumber = index + 1,
+                showDefaultCaption = true
+            )
         }
     }
 }
 
 @Composable
-private fun AIMTableView(layout: AIMTableLayout, tableNumber: Int) {
+fun StructuredTable(
+    table: AIMTable,
+    searchQuery: String,
+    modifier: Modifier = Modifier,
+    tableTextStyle: TextStyle? = null
+) {
+    AIMTableView(
+        layout = normalizeAIMTable(table),
+        tableNumber = 1,
+        searchQuery = searchQuery,
+        showDefaultCaption = false,
+        modifier = modifier,
+        tableTextStyle = tableTextStyle
+    )
+}
+
+@Composable
+fun FARContent(
+    content: String,
+    searchQuery: String,
+    modifier: Modifier = Modifier,
+    style: androidx.compose.ui.text.TextStyle = MaterialTheme.typography.bodyMedium,
+    color: androidx.compose.ui.graphics.Color = MaterialTheme.colorScheme.onSurface
+) {
+    val blocks = remember(content) { parseFARContent(content) }
+    if (blocks.size == 1 && blocks.first() is FARContentBlock.Text) {
+        HighlightText(
+            text = (blocks.first() as FARContentBlock.Text).value,
+            query = searchQuery,
+            modifier = modifier,
+            style = style,
+            color = color
+        )
+        return
+    }
+
+    Column(modifier = modifier) {
+        blocks.forEach { block ->
+            when (block) {
+                is FARContentBlock.Text -> if (block.value.isNotEmpty()) {
+                    HighlightText(
+                        text = block.value,
+                        query = searchQuery,
+                        style = style,
+                        color = color
+                    )
+                }
+                is FARContentBlock.Table -> StructuredTable(
+                    table = block.value,
+                    searchQuery = searchQuery,
+                    tableTextStyle = style
+                )
+            }
+        }
+    }
+}
+
+@Composable
+private fun AIMTableView(
+    layout: AIMTableLayout,
+    tableNumber: Int,
+    showDefaultCaption: Boolean,
+    modifier: Modifier = Modifier,
+    searchQuery: String = "",
+    tableTextStyle: TextStyle? = null
+) {
     if (layout.rows.isEmpty() && layout.headers.all { it.isBlank() }) return
 
-    Column(verticalArrangement = Arrangement.spacedBy(6.dp)) {
-        Text(
-            text = layout.caption?.takeIf { it.isNotBlank() } ?: "Table $tableNumber",
-            style = MaterialTheme.typography.labelMedium,
-            color = MaterialTheme.colorScheme.primary,
-            fontWeight = FontWeight.SemiBold
-        )
+    Column(modifier = modifier, verticalArrangement = Arrangement.spacedBy(6.dp)) {
+        val caption = layout.caption?.takeIf { it.isNotBlank() }
+        if (caption != null || showDefaultCaption) {
+            Text(
+                text = caption ?: "Table $tableNumber",
+                style = MaterialTheme.typography.labelMedium,
+                color = MaterialTheme.colorScheme.primary,
+                fontWeight = FontWeight.SemiBold
+            )
+        }
         Box(modifier = Modifier.horizontalScroll(rememberScrollState())) {
             Column {
                 if (layout.headers.any { it.isNotBlank() }) {
@@ -293,21 +453,23 @@ private fun AIMTableView(layout: AIMTableLayout, tableNumber: Int) {
                         accessibilityLabel = layout.headers.mapIndexed { index, value ->
                             "Column ${index + 1}: ${value.ifBlank { "Unlabeled" }}"
                         }.joinToString(". "),
-                        isHeader = true
+                        isHeader = true,
+                        searchQuery = searchQuery,
+                        textStyle = tableTextStyle ?: MaterialTheme.typography.bodySmall
                     )
                 }
                 layout.rows.forEachIndexed { rowIndex, row ->
-                    val label = row.mapIndexedNotNull { columnIndex, value ->
-                        if (value.isBlank()) null else {
-                            val header = layout.headers.getOrNull(columnIndex).orEmpty()
-                                .ifBlank { "Column ${columnIndex + 1}" }
-                            "$header: $value"
-                        }
+                    val label = row.mapIndexed { columnIndex, value ->
+                        val header = layout.headers.getOrNull(columnIndex).orEmpty()
+                            .ifBlank { "Column ${columnIndex + 1}" }
+                        "$header: ${value.ifBlank { "blank" }}"
                     }.joinToString(". ")
                     AIMTableRow(
                         cells = row,
                         accessibilityLabel = "Row ${rowIndex + 1}. $label",
-                        isHeader = false
+                        isHeader = false,
+                        searchQuery = searchQuery,
+                        textStyle = tableTextStyle ?: MaterialTheme.typography.bodySmall
                     )
                 }
             }
@@ -316,13 +478,19 @@ private fun AIMTableView(layout: AIMTableLayout, tableNumber: Int) {
 }
 
 @Composable
-private fun AIMTableRow(cells: List<String>, accessibilityLabel: String, isHeader: Boolean) {
+private fun AIMTableRow(
+    cells: List<String>,
+    accessibilityLabel: String,
+    isHeader: Boolean,
+    searchQuery: String,
+    textStyle: TextStyle
+) {
     Row(
         modifier = Modifier.clearAndSetSemantics { contentDescription = accessibilityLabel }
     ) {
         cells.forEach { value ->
             Surface(
-                modifier = Modifier.width(160.dp),
+                modifier = Modifier.width(132.dp),
                 color = if (isHeader) {
                     MaterialTheme.colorScheme.primaryContainer
                 } else {
@@ -330,10 +498,11 @@ private fun AIMTableRow(cells: List<String>, accessibilityLabel: String, isHeade
                 },
                 border = BorderStroke(0.5.dp, MaterialTheme.colorScheme.outlineVariant)
             ) {
-                Text(
+                HighlightText(
                     text = value.ifBlank { " " },
+                    query = searchQuery,
                     modifier = Modifier.padding(horizontal = 10.dp, vertical = 8.dp),
-                    style = MaterialTheme.typography.bodySmall,
+                    style = textStyle,
                     fontWeight = if (isHeader) FontWeight.SemiBold else FontWeight.Normal
                 )
             }

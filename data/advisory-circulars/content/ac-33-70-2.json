@@ -4,11 +4,12 @@
   "number": "33.70-2",
   "title": "Damage Tolerance of Hole Features in High-Energy Turbine",
   "status": "partial",
-  "fetched": "2026-07-14",
+  "fetched": "2026-10-17",
   "documentUrl": "https://www.faa.gov/regulations_policies/advisory_circulars/index.cfm/go/document.information/documentID/99687",
   "pdfUrl": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_33_70-2.pdf",
   "sha256": "3997e6b40c9dda8a1e36e3384d191acc578ce28ba493e3f42f1a757df3f29b28",
   "pageCount": 48,
+  "extractedPageCount": 47,
   "wordCount": 11664,
   "ocrPageCount": 0,
   "pages": [
@@ -200,6 +201,5 @@
       "page": 47,
       "text": "Appendix 7\nFigure A7-7: a0 Anomaly Life & Anomaly Size at Inspection(s) Calculations\nfrom “AvsN”Curve\na\nN\njust above threshold\nanomaly size\ninspection\na0\nanomaly size\nat inspection\na\nN\njust above threshold\nanomaly size\ninspection\na0\nanomaly size\nat inspection\nA vs N\nCurve\na0 anomaly\nlife"
     }
-  ],
-  "extractedPageCount": 47
+  ]
 }

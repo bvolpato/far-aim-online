@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "updated": "2026-10-13",
+  "updated": "2026-10-17",
   "source": "Federal Aviation Administration Advisory Circulars",
   "description": "Current FAA advisory circular metadata library generated from the FAA current AC export and document list, with official FAA document pages and PDF links where published.",
   "items": [
@@ -84,12 +84,12 @@
         "marshalling"
       ],
       "pdfUrl": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_00-34B.pdf",
-      "contentStatus": "partial",
+      "contentStatus": "parsed",
       "contentPath": "content/ac-00-34b.json",
       "pageCount": 19,
-      "wordCount": 5363,
-      "contentUpdated": "2026-07-14",
-      "extractedPageCount": 17
+      "wordCount": 5467,
+      "contentUpdated": "2026-10-17",
+      "extractedPageCount": 19
     },
     {
       "id": "ac-00-41b",
@@ -292,8 +292,8 @@
       "contentStatus": "partial",
       "contentPath": "content/ac-00-60b.json",
       "pageCount": 23,
-      "wordCount": 5495,
-      "contentUpdated": "2026-07-14",
+      "wordCount": 5799,
+      "contentUpdated": "2026-10-17",
       "extractedPageCount": 22
     },
     {
@@ -1324,7 +1324,7 @@
       "contentPath": "content/ac-20-73a.json",
       "pageCount": 233,
       "wordCount": 71918,
-      "contentUpdated": "2026-07-14",
+      "contentUpdated": "2026-10-17",
       "extractedPageCount": 217
     },
     {
@@ -1379,7 +1379,7 @@
       "contentPath": "content/ac-20-77b.json",
       "pageCount": 5,
       "wordCount": 813,
-      "contentUpdated": "2026-07-14",
+      "contentUpdated": "2026-10-17",
       "extractedPageCount": 4
     },
     {
@@ -5002,7 +5002,7 @@
       "contentPath": "content/ac-23-8c.json",
       "pageCount": 265,
       "wordCount": 88508,
-      "contentUpdated": "2026-07-14",
+      "contentUpdated": "2026-10-17",
       "extractedPageCount": 264
     },
     {
@@ -5095,7 +5095,7 @@
       "contentPath": "content/ac-23-13a.json",
       "pageCount": 76,
       "wordCount": 20263,
-      "contentUpdated": "2026-07-14",
+      "contentUpdated": "2026-10-17",
       "extractedPageCount": 73
     },
     {
@@ -5485,8 +5485,8 @@
       "contentStatus": "partial",
       "contentPath": "content/ac-23-1523.json",
       "pageCount": 32,
-      "wordCount": 11742,
-      "contentUpdated": "2026-07-14",
+      "wordCount": 11914,
+      "contentUpdated": "2026-10-17",
       "extractedPageCount": 29
     },
     {
@@ -5994,12 +5994,12 @@
         "crashworthiness",
         "handbook"
       ],
-      "contentStatus": "partial",
+      "contentStatus": "parsed",
       "contentPath": "content/ac-25-17a.json",
       "pageCount": 893,
-      "wordCount": 304046,
-      "contentUpdated": "2026-07-14",
-      "extractedPageCount": 861
+      "wordCount": 307711,
+      "contentUpdated": "2026-10-17",
+      "extractedPageCount": 893
     },
     {
       "id": "ac-25-18",
@@ -6231,7 +6231,7 @@
       "contentPath": "content/ac-25-26.json",
       "pageCount": 18,
       "wordCount": 3847,
-      "contentUpdated": "2026-07-14",
+      "contentUpdated": "2026-10-17",
       "extractedPageCount": 16
     },
     {
@@ -6831,7 +6831,7 @@
       "contentPath": "content/ac-25-723-1.json",
       "pageCount": 6,
       "wordCount": 1442,
-      "contentUpdated": "2026-07-14",
+      "contentUpdated": "2026-10-17",
       "extractedPageCount": 5
     },
     {
@@ -7574,7 +7574,7 @@
       "contentPath": "content/ac-25-869-1a.json",
       "pageCount": 11,
       "wordCount": 2190,
-      "contentUpdated": "2026-07-14",
+      "contentUpdated": "2026-10-17",
       "extractedPageCount": 8
     },
     {
@@ -8032,7 +8032,7 @@
       "contentPath": "content/ac-25-1353-1a.json",
       "pageCount": 14,
       "wordCount": 2950,
-      "contentUpdated": "2026-07-14",
+      "contentUpdated": "2026-10-17",
       "extractedPageCount": 11
     },
     {
@@ -8142,7 +8142,7 @@
       "contentPath": "content/ac-25-1365-1.json",
       "pageCount": 12,
       "wordCount": 2265,
-      "contentUpdated": "2026-07-14",
+      "contentUpdated": "2026-10-17",
       "extractedPageCount": 10
     },
     {
@@ -8317,7 +8317,7 @@
       "contentPath": "content/ac-25-1701-1.json",
       "pageCount": 92,
       "wordCount": 34091,
-      "contentUpdated": "2026-07-14",
+      "contentUpdated": "2026-10-17",
       "extractedPageCount": 89
     },
     {
@@ -8405,8 +8405,8 @@
       "contentStatus": "partial",
       "contentPath": "content/ac-29-2c.json",
       "pageCount": 1453,
-      "wordCount": 501225,
-      "contentUpdated": "2026-07-14",
+      "wordCount": 501254,
+      "contentUpdated": "2026-10-17",
       "extractedPageCount": 1452
     },
     {
@@ -9076,7 +9076,7 @@
       "contentPath": "content/ac-33-28-2.json",
       "pageCount": 52,
       "wordCount": 15930,
-      "contentUpdated": "2026-07-14",
+      "contentUpdated": "2026-10-17",
       "extractedPageCount": 49
     },
     {
@@ -9279,7 +9279,7 @@
       "contentPath": "content/ac-33-70-2.json",
       "pageCount": 48,
       "wordCount": 11664,
-      "contentUpdated": "2026-07-14",
+      "contentUpdated": "2026-10-17",
       "extractedPageCount": 47
     },
     {
@@ -10481,7 +10481,7 @@
       "contentPath": "content/ac-43-207.json",
       "pageCount": 45,
       "wordCount": 14821,
-      "contentUpdated": "2026-07-14",
+      "contentUpdated": "2026-10-17",
       "extractedPageCount": 40
     },
     {
@@ -10540,7 +10540,7 @@
       "contentPath": "content/ac-43-209a.json",
       "pageCount": 12,
       "wordCount": 3605,
-      "contentUpdated": "2026-07-14",
+      "contentUpdated": "2026-10-17",
       "extractedPageCount": 11
     },
     {
@@ -10796,12 +10796,12 @@
         "major alteration",
         "maintenance"
       ],
-      "contentStatus": "partial",
+      "contentStatus": "parsed",
       "contentPath": "content/ac-43-9-1g.json",
       "pageCount": 11,
-      "extractedPageCount": 10,
-      "wordCount": 3975,
-      "contentUpdated": "2026-09-01"
+      "extractedPageCount": 11,
+      "wordCount": 4052,
+      "contentUpdated": "2026-10-17"
     },
     {
       "id": "ac-43-13-1b",
@@ -11034,7 +11034,7 @@
       "contentPath": "content/ac-61-67c.json",
       "pageCount": 23,
       "wordCount": 8294,
-      "contentUpdated": "2026-07-14",
+      "contentUpdated": "2026-10-17",
       "extractedPageCount": 21
     },
     {
@@ -11155,7 +11155,7 @@
       "contentPath": "content/ac-61-107b.json",
       "pageCount": 52,
       "wordCount": 20459,
-      "contentUpdated": "2026-07-14",
+      "contentUpdated": "2026-10-17",
       "extractedPageCount": 50
     },
     {
@@ -12296,7 +12296,7 @@
       "contentPath": "content/ac-90-95.json",
       "pageCount": 10,
       "wordCount": 3281,
-      "contentUpdated": "2026-07-14",
+      "contentUpdated": "2026-10-17",
       "extractedPageCount": 9
     },
     {
@@ -12417,8 +12417,8 @@
       "contentStatus": "partial",
       "contentPath": "content/ac-90-101a.json",
       "pageCount": 51,
-      "wordCount": 15792,
-      "contentUpdated": "2026-07-14",
+      "wordCount": 16213,
+      "contentUpdated": "2026-10-17",
       "extractedPageCount": 46
     },
     {
@@ -12593,7 +12593,7 @@
       "contentPath": "content/ac-90-109a.json",
       "pageCount": 53,
       "wordCount": 16287,
-      "contentUpdated": "2026-07-14",
+      "contentUpdated": "2026-10-17",
       "extractedPageCount": 48
     },
     {
@@ -12742,8 +12742,8 @@
       "contentStatus": "partial",
       "contentPath": "content/ac-90-116.json",
       "pageCount": 25,
-      "wordCount": 6718,
-      "contentUpdated": "2026-07-14",
+      "wordCount": 6898,
+      "contentUpdated": "2026-10-17",
       "extractedPageCount": 24
     },
     {
@@ -13003,7 +13003,7 @@
       "contentPath": "content/ac-91-48.json",
       "pageCount": 8,
       "wordCount": 2579,
-      "contentUpdated": "2026-07-14",
+      "contentUpdated": "2026-10-17",
       "extractedPageCount": 7
     },
     {
@@ -13469,7 +13469,7 @@
       "contentPath": "content/ac-91-71.json",
       "pageCount": 16,
       "wordCount": 3407,
-      "contentUpdated": "2026-07-14",
+      "contentUpdated": "2026-10-17",
       "extractedPageCount": 15
     },
     {
@@ -13559,8 +13559,8 @@
       "contentStatus": "partial",
       "contentPath": "content/ac-91-74b.json",
       "pageCount": 63,
-      "wordCount": 23252,
-      "contentUpdated": "2026-07-14",
+      "wordCount": 23379,
+      "contentUpdated": "2026-10-17",
       "extractedPageCount": 58
     },
     {
@@ -14480,7 +14480,7 @@
       "contentPath": "content/ac-120-12a.json",
       "pageCount": 4,
       "wordCount": 1136,
-      "contentUpdated": "2026-07-14",
+      "contentUpdated": "2026-10-17",
       "extractedPageCount": 3
     },
     {
@@ -14507,8 +14507,8 @@
       "contentStatus": "partial",
       "contentPath": "content/ac-120-16g.json",
       "pageCount": 59,
-      "wordCount": 19567,
-      "contentUpdated": "2026-07-14",
+      "wordCount": 19620,
+      "contentUpdated": "2026-10-17",
       "extractedPageCount": 52
     },
     {
@@ -14887,7 +14887,7 @@
       "contentPath": "content/ac-120-50a.json",
       "pageCount": 12,
       "wordCount": 2272,
-      "contentUpdated": "2026-07-14",
+      "contentUpdated": "2026-10-17",
       "extractedPageCount": 9
     },
     {
@@ -15142,7 +15142,7 @@
       "contentPath": "content/ac-120-62.json",
       "pageCount": 12,
       "wordCount": 2854,
-      "contentUpdated": "2026-07-14",
+      "contentUpdated": "2026-10-17",
       "extractedPageCount": 11
     },
     {
@@ -15523,7 +15523,7 @@
       "contentPath": "content/ac-120-82.json",
       "pageCount": 78,
       "wordCount": 25381,
-      "contentUpdated": "2026-07-14",
+      "contentUpdated": "2026-10-17",
       "extractedPageCount": 76
     },
     {
@@ -15689,8 +15689,8 @@
       "contentStatus": "partial",
       "contentPath": "content/ac-120-90.json",
       "pageCount": 39,
-      "wordCount": 11368,
-      "contentUpdated": "2026-07-14",
+      "wordCount": 13369,
+      "contentUpdated": "2026-10-17",
       "extractedPageCount": 34
     },
     {
@@ -15953,7 +15953,7 @@
       "contentPath": "content/ac-120-100.json",
       "pageCount": 30,
       "wordCount": 12919,
-      "contentUpdated": "2026-07-14",
+      "contentUpdated": "2026-10-17",
       "extractedPageCount": 29
     },
     {
@@ -16224,7 +16224,7 @@
       "contentPath": "content/ac-120-109a.json",
       "pageCount": 43,
       "wordCount": 11662,
-      "contentUpdated": "2026-07-14",
+      "contentUpdated": "2026-10-17",
       "extractedPageCount": 36
     },
     {
@@ -16910,7 +16910,7 @@
       "contentPath": "content/ac-121-31.json",
       "pageCount": 6,
       "wordCount": 1300,
-      "contentUpdated": "2026-07-14",
+      "contentUpdated": "2026-10-17",
       "extractedPageCount": 5
     },
     {
@@ -17383,7 +17383,7 @@
       "contentPath": "content/ac-129-5.json",
       "pageCount": 23,
       "wordCount": 6846,
-      "contentUpdated": "2026-07-14",
+      "contentUpdated": "2026-10-17",
       "extractedPageCount": 18
     },
     {
@@ -17557,7 +17557,7 @@
       "contentPath": "content/ac-135-14b.json",
       "pageCount": 78,
       "wordCount": 26585,
-      "contentUpdated": "2026-07-14",
+      "contentUpdated": "2026-10-17",
       "extractedPageCount": 72
     },
     {
@@ -17612,12 +17612,12 @@
         "checking"
       ],
       "pdfUrl": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/ac135-16.pdf",
-      "contentStatus": "partial",
+      "contentStatus": "parsed",
       "contentPath": "content/ac-135-16.json",
       "pageCount": 19,
-      "wordCount": 4840,
-      "contentUpdated": "2026-07-14",
-      "extractedPageCount": 18
+      "wordCount": 5186,
+      "contentUpdated": "2026-10-17",
+      "extractedPageCount": 19
     },
     {
       "id": "ac-135-17",
@@ -18184,12 +18184,12 @@
         "schools"
       ],
       "pdfUrl": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_147-3C.pdf",
-      "contentStatus": "partial",
+      "contentStatus": "parsed",
       "contentPath": "content/ac-147-3c.json",
       "pageCount": 71,
-      "wordCount": 24094,
-      "contentUpdated": "2026-07-14",
-      "extractedPageCount": 70
+      "wordCount": 25170,
+      "contentUpdated": "2026-10-17",
+      "extractedPageCount": 71
     },
     {
       "id": "ac-150-5000-9b",
@@ -18214,12 +18214,12 @@
         "noise"
       ],
       "pdfUrl": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/150-5000-9B-Sound-Insulation-2022.pdf",
-      "contentStatus": "partial",
+      "contentStatus": "parsed",
       "contentPath": "content/ac-150-5000-9b.json",
       "pageCount": 167,
-      "wordCount": 47978,
-      "contentUpdated": "2026-07-14",
-      "extractedPageCount": 156
+      "wordCount": 51523,
+      "contentUpdated": "2026-10-17",
+      "extractedPageCount": 167
     },
     {
       "id": "ac-150-5000-13a",
@@ -18365,8 +18365,8 @@
       "contentStatus": "partial",
       "contentPath": "content/ac-150-5020-1.json",
       "pageCount": 72,
-      "wordCount": 23156,
-      "contentUpdated": "2026-07-14",
+      "wordCount": 23159,
+      "contentUpdated": "2026-10-17",
       "extractedPageCount": 66
     },
     {
@@ -19698,7 +19698,7 @@
       "contentPath": "content/ac-150-5220-16e.json",
       "pageCount": 82,
       "wordCount": 28618,
-      "contentUpdated": "2026-07-14",
+      "contentUpdated": "2026-10-17",
       "extractedPageCount": 81
     },
     {
@@ -20333,8 +20333,8 @@
       "contentStatus": "partial",
       "contentPath": "content/ac-150-5320-12c.json",
       "pageCount": 45,
-      "wordCount": 13307,
-      "contentUpdated": "2026-07-14",
+      "wordCount": 13528,
+      "contentUpdated": "2026-10-17",
       "extractedPageCount": 40
     },
     {
@@ -20564,8 +20564,8 @@
       "contentStatus": "partial",
       "contentPath": "content/ac-150-5340-26c.json",
       "pageCount": 144,
-      "wordCount": 45760,
-      "contentUpdated": "2026-07-14",
+      "wordCount": 45846,
+      "contentUpdated": "2026-10-17",
       "extractedPageCount": 143
     },
     {
@@ -21384,8 +21384,8 @@
       "contentStatus": "partial",
       "contentPath": "content/ac-150-5360-14a.json",
       "pageCount": 44,
-      "wordCount": 10992,
-      "contentUpdated": "2026-07-14",
+      "wordCount": 11267,
+      "contentUpdated": "2026-10-17",
       "extractedPageCount": 43
     },
     {

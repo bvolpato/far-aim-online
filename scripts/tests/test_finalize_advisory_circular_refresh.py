@@ -189,3 +189,18 @@ def test_finalize_rejects_failed_coverage_before_writing_claims(tmp_path):
     assert (tmp_path / "NEXT_STEPS.md").read_text() == original_next_steps
     assert not summary_json.exists()
     assert not summary_markdown.exists()
+
+
+def test_finalize_rejects_stale_cache_fallback_with_unresolved_refresh_error(tmp_path):
+    before_path, summary_json, summary_markdown = prepare_refresh(tmp_path)
+    coverage_path = tmp_path / "data/advisory-circulars/coverage.json"
+    coverage = json.loads(coverage_path.read_text())
+    coverage["items"][0]["refreshError"] = "FAA request timed out"
+    write_json(coverage_path, coverage)
+    source_path = tmp_path / "data/source-status.json"
+    original = source_path.read_bytes()
+    with pytest.raises(ValueError, match="Unresolved AC refresh failure"):
+        finalize(tmp_path, before_path, summary_json, summary_markdown)
+    assert source_path.read_bytes() == original
+    assert not summary_json.exists()
+    assert not summary_markdown.exists()

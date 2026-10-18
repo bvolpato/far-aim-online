@@ -2,17 +2,21 @@
 """Crawl AIM chapters, sections, and figures from the official FAA publication."""
 
 import json
+import math
 import re
 import shutil
+import subprocess
 import sys
 import time
 from copy import copy
+from datetime import datetime, timezone
 from io import BytesIO
 from pathlib import Path
 from urllib.parse import urljoin, urlsplit
 
 import requests
 from bs4 import BeautifulSoup, NavigableString, Tag
+from lxml import etree
 from PIL import Image, UnidentifiedImageError
 from tqdm import tqdm
 
@@ -32,6 +36,142 @@ REQUEST_DELAY = 1.25
 PAGE_CACHE: dict[str, str] = {}
 IMAGE_CACHE: dict[str, bytes] = {}
 SESSION = requests.Session()
+PDF_CACHE: dict[str, bytes] = {}
+PUBLICATIONS_URL = "https://www.faa.gov/air_traffic/publications/"
+# The ATPubs July 2026 HTML incorrectly reuses FIG 6-5-3 for all three hand signals.
+# The FAA's parallel AIM HTML has the distinct figures and their correct labels:
+# https://www.faa.gov/air_traffic/publications/aim_html/chap6_section_5.html
+HAND_SIGNAL_FIGURES = {
+    "Recommend Evacuation": ("6-5-1", "aim_fig_6_5_1.webp"),
+    "Recommend Stop": ("6-5-2", "aim_fig_6_5_2.webp"),
+    "Emergency Contained": ("6-5-3", "aim_fig_6_5_3.webp"),
+}
+# Appendix 1 repeats this 506 x 76, entirely white HTML-export footer twice.
+LAYOUT_IMAGE_FILENAMES = {"aimapd1_BlankFooter0.png"}
+# These current-source exports are blank or too complex to render reliably. The
+# resolver requires a matching current-PDF caption before choosing an FAA mirror asset.
+BROKEN_FIGURE_FILENAMES = {
+    "aim0503_Auto4.png",
+    "aim0603_fig191_recovered.svg",
+    "aim0603_fig192_recovered.svg",
+}
+VERIFIED_ASSET_REPAIR_PDF_SHA256 = (
+    "8b11e7a168e1ef9ea16853b8ab7b3353f01490dffb51f2736a0a72e6278f8ff5"
+)
+
+
+def require_verified_asset_repairs(resolver) -> None:
+    if resolver is None or resolver.catalog.source_sha256 != VERIFIED_ASSET_REPAIR_PDF_SHA256:
+        raise ValueError(
+            "FAA AIM image fallback needs revalidation against the current PDF edition"
+        )
+
+
+def load_figure_resolver(effective_date: str):
+    from aim_figures import FigureCatalog, FigureResolver
+
+    publications_html = fetch_page(PUBLICATIONS_URL)
+    if not publications_html:
+        raise RuntimeError("Could not fetch FAA publication links for the current AIM PDF")
+    soup = BeautifulSoup(publications_html, "lxml")
+    pdf_urls = {
+        urljoin(PUBLICATIONS_URL, link["href"])
+        for link in soup.select("a[href]")
+        if urlsplit(link["href"]).path.lower().endswith(".pdf")
+        and re.search(r"Aeronautical Information Manual.*Basic", link.get_text(" ", strip=True))
+    }
+    if len(pdf_urls) != 1:
+        raise ValueError("FAA publication page must identify exactly one current AIM Basic PDF")
+    pdf_url = pdf_urls.pop()
+    if pdf_url not in PDF_CACHE:
+        for attempt in range(5):
+            try:
+                time.sleep(REQUEST_DELAY)
+                response = SESSION.get(pdf_url, headers=HEADERS, timeout=90)
+                response.raise_for_status()
+                if not response.content.startswith(b"%PDF-"):
+                    raise ValueError("FAA AIM PDF response is not a PDF")
+                PDF_CACHE[pdf_url] = response.content
+                break
+            except requests.RequestException:
+                if attempt == 4:
+                    raise
+                time.sleep(2**attempt)
+    catalog = FigureCatalog.from_pdf(
+        PDF_CACHE[pdf_url], pdf_url, expected_effective_date=effective_date
+    )
+    return FigureResolver(catalog, fetch_page)
+
+
+def normalize_image(content: bytes) -> bytes:
+    """Rasterize self-contained FAA SVG figures for every offline reader."""
+    try:
+        with Image.open(BytesIO(content)) as image:
+            image.load()
+            if image.format == "WEBP":
+                png = BytesIO()
+                image.convert("RGBA").save(png, format="PNG")
+                return png.getvalue()
+        return content
+    except (UnidentifiedImageError, OSError):
+        pass
+
+    if len(content) > 20 * 1024 * 1024:
+        raise ValueError("AIM SVG exceeds the 20 MiB input limit")
+    try:
+        root = etree.fromstring(
+            content,
+            parser=etree.XMLParser(resolve_entities=False, no_network=True, remove_comments=True),
+        )
+    except etree.XMLSyntaxError as error:
+        raise ValueError("AIM figure is not a decodable image") from error
+    if root.tag != "{http://www.w3.org/2000/svg}svg" or root.getroottree().docinfo.doctype:
+        raise ValueError("AIM figure is not a self-contained SVG")
+
+    for node in root.iter():
+        for attribute, value in node.attrib.items():
+            if etree.QName(attribute).localname == "href" and not value.startswith(
+                ("#", "data:image/")
+            ):
+                raise ValueError("AIM SVG references an external resource")
+        style = node.get("style", "") + (node.text or "" if node.tag.endswith("}style") else "")
+        references = re.findall(r"url\(\s*([^)]+)\)", style, re.IGNORECASE)
+        if "@import" in style.lower() or any(
+            not value.strip(" \t\r\n'\"").startswith("#") for value in references
+        ):
+            raise ValueError("AIM SVG references an external style resource")
+
+    view_box = root.get("viewBox", "")
+    try:
+        _, _, width, height = [float(value) for value in re.split(r"[\s,]+", view_box.strip())]
+    except ValueError as error:
+        raise ValueError("AIM SVG requires a valid viewBox") from error
+    if not all(math.isfinite(value) and value > 0 for value in (width, height)):
+        raise ValueError("AIM SVG has invalid dimensions")
+    scale = 1600 / max(width, height)
+    output_width, output_height = max(1, round(width * scale)), max(1, round(height * scale))
+    try:
+        rendered = subprocess.run(
+            [
+                sys.executable,
+                "-c",
+                "import sys, resvg_py; sys.stdout.buffer.write(resvg_py.svg_to_bytes("
+                "svg_string=sys.stdin.read(), width=int(sys.argv[1]), height=int(sys.argv[2]), "
+                "dpi=96, background='white', skip_system_fonts=True))",
+                str(output_width),
+                str(output_height),
+            ],
+            input=etree.tostring(root, encoding="utf-8"),
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            check=True,
+            timeout=30,
+        )
+    except subprocess.TimeoutExpired as error:
+        raise ValueError("AIM SVG rendering exceeded 30 seconds") from error
+    except subprocess.CalledProcessError as error:
+        raise ValueError("AIM SVG could not be rendered") from error
+    return rendered.stdout
 
 
 def fetch_page(url: str, retries: int = 5) -> str | None:
@@ -55,7 +195,7 @@ def fetch_page(url: str, retries: int = 5) -> str | None:
 
 
 def download_image(url: str, save_path: Path, retries: int = 5) -> bool:
-    """Download a visible image, preserving an existing figure over an FAA blank placeholder."""
+    """Download an expected figure, failing if the server returns unusable content."""
     content = IMAGE_CACHE.get(url)
     if content is None:
         for attempt in range(retries):
@@ -75,10 +215,12 @@ def download_image(url: str, save_path: Path, retries: int = 5) -> bool:
     if content is None:
         raise RuntimeError(f"Could not download AIM image after retries: {url}")
 
+    try:
+        content = normalize_image(content)
+    except ValueError as error:
+        raise RuntimeError(f"Invalid AIM image from {url}: {error}") from error
     if not image_has_visible_content(content):
-        if save_path.is_file() and image_has_visible_content(save_path.read_bytes()):
-            return True
-        return False
+        raise RuntimeError(f"Expected AIM figure is blank: {url}")
 
     save_path.parent.mkdir(parents=True, exist_ok=True)
     save_path.write_bytes(content)
@@ -343,9 +485,66 @@ def extract_official_section(soup: BeautifulSoup, section_id: str) -> tuple[Tag 
     return title, fragment
 
 
-def parse_aim_section(html: str, section_id: str, section_url: str, chapter_num: int) -> dict:
+def repair_hand_signal_sources(soup: BeautifulSoup, section_id: str, resolver) -> None:
+    """Repair the known reused source image using the FAA's distinct AIM figures."""
+    if section_id != "6-5-3":
+        return
+    for image in soup.find_all("img"):
+        if Path(urlsplit(image.get("src", "")).path).name != "aim0605_fig197_recovered.svg":
+            continue
+        require_verified_asset_repairs(resolver)
+        label = image.get("alt", "")
+        if label not in HAND_SIGNAL_FIGURES:
+            raise ValueError(f"Unknown label on duplicated FAA hand-signal figure: {label}")
+        figure_id, filename = HAND_SIGNAL_FIGURES[label]
+        image["data-source-image-url"] = urljoin(BASE_URL, image.get("src", ""))
+        image["src"] = (
+            "https://www.faa.gov/air_traffic/publications/aim_html/assets/img/" + filename
+        )
+        figure = image.find_parent("figure")
+        caption = figure.find("figcaption") if figure else None
+        if caption:
+            caption.clear()
+            caption.append(f"FIG {figure_id} {label}")
+
+
+def reconcile_figure_captions(content: Tag, section_id: str, section_url: str, resolver) -> None:
+    for image in content.find_all("img"):
+        figure = image.find_parent("figure")
+        caption = figure.find("figcaption") if figure else None
+        if caption is None:
+            continue
+        title = caption.select_one(".fig-title")
+        title_text = title.get_text(" ", strip=True) if title else ""
+        if not title_text:
+            title_text = caption.get_text(" ", strip=True)
+            numbered = re.match(r"^(?:FIG|TBL)\s+\d+-\d+-\d+[:.\s]+(.+)$", title_text)
+            if numbered:
+                title_text = numbered.group(1)
+        image_url = urljoin(section_url, image.get("src", ""))
+        if Path(urlsplit(image_url).path).name in BROKEN_FIGURE_FILENAMES:
+            require_verified_asset_repairs(resolver)
+            verified = resolver.resolve_mirror_asset(section_id, title_text, image_url, section_url)
+            if not verified.asset_url:
+                raise ValueError(f"No verified replacement for broken FAA figure: {image_url}")
+            image["data-source-image-url"] = image_url
+            image["src"] = verified.asset_url
+        else:
+            verified = resolver.resolve(section_id, title_text, image_url, section_url)
+        caption.clear()
+        caption.append(verified.caption)
+        image["data-pdf-number"] = verified.number
+        image["data-pdf-kind"] = verified.kind
+        image["data-pdf-page"] = str(verified.page)
+        image["alt"] = verified.title or verified.label
+
+
+def parse_aim_section(
+    html: str, section_id: str, section_url: str, chapter_num: int, figure_resolver=None
+) -> dict:
     """Parse an individual AIM section page and download images."""
     soup = BeautifulSoup(html, "lxml")
+    repair_hand_signal_sources(soup, section_id, figure_resolver)
 
     section_data = {
         "section": section_id,
@@ -357,6 +556,8 @@ def parse_aim_section(html: str, section_id: str, section_url: str, chapter_num:
     }
 
     official_title, official_content = extract_official_section(soup, section_id)
+    if chapter_num != 0 and re.fullmatch(r"\d+-\d+-\d+", section_id) and official_title is None:
+        raise ValueError(f"AIM section {section_id} is missing its official paragraph heading")
 
     # Remove navigation, header, footer elements first
     for tag in soup.find_all(["nav", "header", "footer", "script", "style", "noscript"]):
@@ -417,7 +618,13 @@ def parse_aim_section(html: str, section_id: str, section_url: str, chapter_num:
     if not main_content:
         main_content = soup.body
 
+    image_scope = None
     if main_content:
+        for image in main_content.find_all("img"):
+            if Path(urlsplit(image.get("src", "")).path).name in LAYOUT_IMAGE_FILENAMES:
+                image.decompose()
+        if figure_resolver is not None:
+            reconcile_figure_captions(main_content, section_id, section_url, figure_resolver)
         # Remove only actual site navigation/chrome elements
         # Be very specific — DO NOT remove content containing common words
         # like "search", "contact", "prev" which appear in aviation text
@@ -432,6 +639,7 @@ def parse_aim_section(html: str, section_id: str, section_url: str, chapter_num:
             ):
                 elem.decompose()
 
+        image_scope = copy(main_content)
         tables = main_content.find_all("table")
         for table in tables:
             table_data = extract_table(table)
@@ -481,43 +689,58 @@ def parse_aim_section(html: str, section_id: str, section_url: str, chapter_num:
     # Find and download images
     base_url = section_url.rsplit("/", 1)[0] + "/"  # Get directory URL
 
-    image_scope = official_content or soup
-    for image_index, img in enumerate(image_scope.find_all("img"), start=1):
+    images = image_scope.find_all("img") if image_scope is not None else []
+    for image_index, img in enumerate(images, start=1):
         src = img.get("src", "")
         alt = img.get("alt", "Figure")
 
-        if src and not any(x in src.lower() for x in ["logo", "icon", "button", "nav"]):
+        if src:
             # Construct full image URL
             if not src.startswith("http"):
                 img_url = urljoin(base_url, src)
             else:
                 img_url = src
 
+            figure = img.find_parent("figure")
+            figcaption = figure.find("figcaption") if figure else None
+            caption = figcaption.get_text(" ", strip=True) if figcaption else img.get("title", "")
             # Local path for the image
-            suffix = Path(src.split("?", 1)[0]).suffix.lower() or ".png"
+            suffix = Path(urlsplit(img_url).path).suffix.lower() or ".png"
+            if suffix in {".svg", ".webp"}:
+                suffix = ".png"
             img_filename = f"section-{section_id}-img-{image_index}{suffix}"
             local_img_path = f"chapter{chapter_num}/{img_filename}"
             full_save_path = IMAGES_DIR / f"chapter{chapter_num}" / img_filename
 
-            if not download_image(img_url, full_save_path):
-                continue
-            figure = img.find_parent("figure")
-            figcaption = figure.find("figcaption") if figure else None
-            caption = figcaption.get_text(" ", strip=True) if figcaption else img.get("title", "")
-            section_data["figures"].append(
-                {
-                    "src": local_img_path,
-                    "alt": alt,
-                    "caption": clean_text(caption),
-                    "originalUrl": img_url,
-                }
-            )
+            download_image(img_url, full_save_path)
+            figure_data = {
+                "src": local_img_path,
+                "alt": alt,
+                "caption": clean_text(caption),
+                "originalUrl": img_url,
+            }
+            if img.get("data-pdf-number"):
+                figure_data.update(
+                    {
+                        "number": img["data-pdf-number"],
+                        "kind": img["data-pdf-kind"],
+                        "sourcePdfPage": int(img["data-pdf-page"]),
+                    }
+                )
+            if img.get("data-source-image-url"):
+                figure_data["sourceImageUrl"] = img["data-source-image-url"]
+            section_data["figures"].append(figure_data)
 
+    if not section_data["title"] or not any(
+        section_data[field] for field in ("content", "figures", "tables")
+    ):
+        raise ValueError(f"AIM section {section_id} has no title or usable content")
     return section_data
 
 
 def extract_table(table_elem) -> dict | None:
     """Extract table data from a table element."""
+
     def span(cell: Tag, attribute: str) -> int:
         try:
             return max(int(cell.get(attribute, 1) or 1), 1)
@@ -530,9 +753,7 @@ def extract_table(table_elem) -> dict | None:
         caption = table_elem.get("title", "") or table_elem.get("aria-label", "")
 
     source_rows = [
-        row
-        for row in table_elem.find_all("tr")
-        if row.find_parent("table") is table_elem
+        row for row in table_elem.find_all("tr") if row.find_parent("table") is table_elem
     ]
     grid: dict[tuple[int, int], str] = {}
     for row_index, row in enumerate(source_rows):
@@ -553,10 +774,7 @@ def extract_table(table_elem) -> dict | None:
 
     width = max(column for _, column in grid) + 1
     height = max(row for row, _ in grid) + 1
-    matrix = [
-        [grid.get((row, column), "") for column in range(width)]
-        for row in range(height)
-    ]
+    matrix = [[grid.get((row, column), "") for column in range(width)] for row in range(height)]
 
     thead = table_elem.find("thead")
     if thead:
@@ -645,18 +863,7 @@ def main():
             "title": get_chapter_title(0),
             "sections": index_supplements,
         }
-    if not chapter_pages:
-        chapter_pages = {
-            chapter_num: urljoin(BASE_URL, f"chap_{chapter_num}.html")
-            for chapter_num in range(0, 12)
-        }
-
     for chapter_num, chapter_url in sorted(chapter_pages.items()):
-        if not 0 <= chapter_num <= 11:
-            continue
-        if chapters.get(chapter_num, {}).get("sections"):
-            continue
-
         chapter_html = fetch_page(chapter_url)
         if not chapter_html:
             print(f"ERROR: Could not fetch AIM chapter {chapter_num} overview")
@@ -667,12 +874,21 @@ def main():
             chapters[0] = {
                 "chapter": 0,
                 "title": get_chapter_title(0),
-                "sections": list(
-                    {item["section"]: item for item in supplement_links}.values()
-                ),
+                "sections": list({item["section"]: item for item in supplement_links}.values()),
             }
         else:
-            chapters.update(parse_aim_chapter_overview(chapter_html, chapter_url))
+            overview = parse_aim_chapter_overview(chapter_html, chapter_url)
+            if not overview.get(chapter_num, {}).get("sections"):
+                raise ValueError(f"AIM chapter {chapter_num} overview contains no paragraph links")
+            combined = {
+                item["section"]: item for item in chapters.get(chapter_num, {}).get("sections", [])
+            }
+            combined.update({item["section"]: item for item in overview[chapter_num]["sections"]})
+            chapters[chapter_num] = {**overview[chapter_num], "sections": list(combined.values())}
+        if not chapters.get(chapter_num, {}).get("sections"):
+            raise ValueError(f"AIM chapter {chapter_num} contains no sections")
+    if not chapters:
+        raise ValueError("FAA AIM index contains no chapters or sections")
     print(f"Found {len(chapters)} AIM chapters")
 
     total_sections = sum(len(c["sections"]) for c in chapters.values())
@@ -683,6 +899,8 @@ def main():
 
     # Process each chapter
     all_chapters = []
+    chapter_documents = []
+    figure_resolver = None
     total_images = 0
 
     for chapter_num in tqdm(sorted(chapters.keys()), desc="Processing AIM chapters"):
@@ -701,8 +919,15 @@ def main():
                     f"{section_info['url']}"
                 )
 
+            if chapter_num > 0 and "<figcaption" in section_html and figure_resolver is None:
+                figure_resolver = load_figure_resolver(effective_date)
+
             section_data = parse_aim_section(
-                section_html, section_info["section"], section_info["url"], chapter_num
+                section_html,
+                section_info["section"],
+                section_info["url"],
+                chapter_num,
+                figure_resolver=figure_resolver if chapter_num > 0 else None,
             )
             if not section_data["title"] and section_info.get("title"):
                 section_data["title"] = clean_text(section_info["title"], is_title=True)
@@ -713,11 +938,7 @@ def main():
         total_images += chapter_images
         print(f"  Downloaded {chapter_images} images for chapter {chapter_num}")
 
-        # Save chapter file
-        chapter_file = DATA_DIR / f"chapter{chapter_num}.json"
-        with open(chapter_file, "w", encoding="utf-8") as f:
-            json.dump(full_chapter, f, indent=2, ensure_ascii=False)
-        print(f"  Saved {chapter_file}")
+        chapter_documents.append(full_chapter)
 
         all_chapters.append(
             {
@@ -729,23 +950,34 @@ def main():
             }
         )
 
-    remove_unused_images(
-        [
-            json.loads((DATA_DIR / f"chapter{chapter['chapter']}.json").read_text())
-            for chapter in all_chapters
-        ]
-    )
+    # Do not publish partially refreshed chapter data if any required section or figure failed.
+    for chapter in chapter_documents:
+        chapter_file = DATA_DIR / f"chapter{chapter['chapter']}.json"
+        with open(chapter_file, "w", encoding="utf-8") as f:
+            json.dump(chapter, f, indent=2, ensure_ascii=False)
+        print(f"  Saved {chapter_file}")
+    remove_unused_images(chapter_documents)
 
     # Create index file
     index_data = {
         "title": "Aeronautical Information Manual (AIM)",
         "description": "Official guide to basic flight information and ATC procedures",
         "lastUpdated": effective_date,
+        "fetchedAt": datetime.now(timezone.utc).isoformat(),
+        "edition": {"effectiveDate": effective_date},
         "source": "Federal Aviation Administration",
         "totalSections": total_sections,
         "totalImages": total_images,
         "chapters": all_chapters,
     }
+    change_match = re.search(
+        r"\bChange:\s*(Change\s+\d+|Basic)",
+        BeautifulSoup(index_html, "lxml").get_text(" ", strip=True),
+    )
+    if change_match:
+        index_data["edition"]["change"] = change_match.group(1)
+    if figure_resolver is not None:
+        index_data["figureSource"] = figure_resolver.catalog.provenance
 
     index_file = DATA_DIR / "index.json"
     with open(index_file, "w", encoding="utf-8") as f:

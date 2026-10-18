@@ -5,6 +5,7 @@ import json
 import re
 import sys
 from pathlib import Path
+from urllib.parse import urlsplit
 
 import requests
 from bs4 import BeautifulSoup
@@ -58,9 +59,13 @@ def extract_effective_date(html: str) -> str:
 def parse_pcg_index(html: str) -> list[str]:
     soup = BeautifulSoup(html, "lxml")
     pages = {
-        link.get("href", "")
-        for link in soup.select('a[href^="glossary-"]')
-        if re.fullmatch(r"glossary-[a-w]\.html", link.get("href", ""), re.IGNORECASE)
+        Path(urlsplit(link["href"]).path).name.lower()
+        for link in soup.select("a[href]")
+        if re.fullmatch(
+            r"glossary-[a-z]\.html",
+            Path(urlsplit(link["href"]).path).name,
+            re.IGNORECASE,
+        )
     }
     return sorted(pages)
 
@@ -107,7 +112,7 @@ def parse_official_pcg_page(html: str) -> list[dict]:
     soup = BeautifulSoup(html, "lxml")
     article = soup.select_one("article.pcg-content")
     if article is None:
-        return []
+        raise ValueError("FAA PCG page is missing its glossary article")
 
     terms: list[dict] = []
     current_term: str | None = None
@@ -116,6 +121,8 @@ def parse_official_pcg_page(html: str) -> list[dict]:
     def finish_term() -> None:
         nonlocal current_term, current_definition
         if current_term:
+            if not any(value.strip() for value in current_definition):
+                raise ValueError(f"FAA PCG term has no definition: {current_term}")
             terms.append(
                 {
                     "term": clean_pcg_value(current_term, is_title=True),
@@ -132,7 +139,7 @@ def parse_official_pcg_page(html: str) -> list[dict]:
         if node.name == "p" and "glossary-term-entry" in classes:
             full_text = node.get_text(" ", strip=True)
             term_node = node.select_one("dfn.term-name")
-            if term_node:
+            if term_node and term_node.get_text(strip=True):
                 raw_term = term_node.get_text(" ", strip=True)
                 raw_prefix = re.sub(rf"[{re.escape(PCG_DASHES)}]\s*$", "", raw_term).strip()
                 raw_start = full_text.find(raw_prefix)
@@ -162,6 +169,8 @@ def parse_official_pcg_page(html: str) -> list[dict]:
                     term, definition = separated.groups()
                 elif inline:
                     term, definition = inline.groups()
+                elif full_text.endswith(":") and is_term_candidate(full_text[:-1]):
+                    term, definition = full_text[:-1], ""
                 elif len(full_text) < 80 and not full_text.endswith(":"):
                     term, definition = full_text, ""
                 else:
@@ -200,6 +209,8 @@ def parse_official_pcg_page(html: str) -> list[dict]:
             current_definition.append(text)
 
     finish_term()
+    if not terms:
+        raise ValueError("FAA PCG page contains no glossary terms")
     return terms
 
 

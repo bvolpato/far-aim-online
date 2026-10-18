@@ -41,6 +41,31 @@ class AIMStructuredContentTest {
     }
 
     @Test
+    fun farContentTablesPreserveTextOrderEmptyCellsAndEscapedPipes() {
+        val blocks = parseFARContent(
+            "Before\n[TABLE]\n" +
+                "| Name | Note | End |\n\n" +
+                "| Route | Turns \\| Restrictions | |\n" +
+                "| Alternate | | Do not use |\n" +
+                "[/TABLE]\nAfter"
+        )
+
+        assertEquals(3, blocks.size)
+        assertEquals(FARContentBlock.Text("Before\n"), blocks[0])
+        assertEquals(FARContentBlock.Text("\nAfter"), blocks[2])
+
+        val table = (blocks[1] as FARContentBlock.Table).value
+        assertEquals(listOf("Name", "Note", "End"), table.headers)
+        assertEquals(
+            listOf(
+                listOf("Route", "Turns | Restrictions", ""),
+                listOf("Alternate", "", "Do not use")
+            ),
+            table.rows
+        )
+    }
+
+    @Test
     fun figureAssetPathsKeepAIMFallbacksAndSupportFARImages() {
         assertEquals(
             listOf(

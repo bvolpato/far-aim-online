@@ -4,11 +4,12 @@
   "number": "90-95",
   "title": "Unanticipated Right Yaw in Helicopters",
   "status": "partial",
-  "fetched": "2026-07-14",
+  "fetched": "2026-10-17",
   "documentUrl": "https://www.faa.gov/regulations_policies/advisory_circulars/index.cfm/go/document.information/documentID/23136",
   "pdfUrl": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/ac90-95.pdf",
   "sha256": "34d4666ead173ff08fbf0b012e3ff7315e507eebc7a8f26a89fcfd03b83dcfbb",
   "pageCount": 10,
+  "extractedPageCount": 9,
   "wordCount": 3281,
   "ocrPageCount": 4,
   "pages": [
@@ -48,6 +49,5 @@
       "page": 10,
       "text": "Penalty for Private Use $300 Official Business\n\nPOSTAGE GUARANTEED\n\nFORWARDING AND RETURN\n\nWashington, D.C. 20591 800 Independence Ave., S.W. Administration Federal Aviation of Transportation U.S.Department\n\nPOSTAGE & FEES PAID\n\nPERMIT NO. G-44\n\nADMINISTRATION\n\nFEDERAL AVIATION\n\nBULK MAIL"
     }
-  ],
-  "extractedPageCount": 9
+  ]
 }

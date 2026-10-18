@@ -4,11 +4,12 @@
   "number": "135-14B",
   "title": "Helicopter Air Ambulance Operations",
   "status": "partial",
-  "fetched": "2026-07-14",
+  "fetched": "2026-10-17",
   "documentUrl": "https://www.faa.gov/regulations_policies/advisory_circulars/index.cfm/go/document.information/documentID/1027108",
   "pdfUrl": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_135-14B.pdf",
   "sha256": "dbbea6e54f6807c7544670de697b01ee67897cc5fdfea78ebd797e0e9eb01e91",
   "pageCount": 78,
+  "extractedPageCount": 72,
   "wordCount": 26585,
   "ocrPageCount": 0,
   "pages": [
@@ -300,6 +301,5 @@
       "page": 78,
       "text": "Appendix C\nc. Cleaning/Decontamination of Aircraft and Equipment (biohazards).\nd. Servicing O2 Systems.\nC-4. EXAMPLE OF COMPETENCY-PROFICIENCY CHECK EVALUATION SHEET\nFOR HAA PIC.\nFIGURE C-1. EXAMPLE OF CHECK SHEET FOR PIC (NOTE: THIS EXAMPLE\nPRE-DATES RULE CHANGES EFFECTIVE 4/22/2015)"
     }
-  ],
-  "extractedPageCount": 72
+  ]
 }

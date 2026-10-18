@@ -4,17 +4,18 @@
   "number": "91-74B",
   "title": "Pilot Guide: Flight In Icing Conditions",
   "status": "partial",
-  "fetched": "2026-07-14",
+  "fetched": "2026-10-17",
   "documentUrl": "https://www.faa.gov/regulations_policies/advisory_circulars/index.cfm/go/document.information/documentID/1028388",
   "pdfUrl": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_91-74B.pdf",
   "sha256": "0df1666a5cd03ca2201f5eb5f5095a5457b753cb79454143f0d4b9cfdf160725",
   "pageCount": 63,
-  "wordCount": 23252,
-  "ocrPageCount": 0,
+  "extractedPageCount": 58,
+  "wordCount": 23379,
+  "ocrPageCount": 1,
   "pages": [
     {
       "page": 1,
-      "text": "U.S. Department Advisory of Transportation Federal Aviation Administration Circular\n\nSubject: Pilot Guide: Flight in Icing Conditions Date:10/8/15 AC No: 91-74B\n\nInitiated by: AFS-800 Change:\n\nThis advisory circular (AC) contains updated and additional information for the pilots of airplanes under Title 14 of the Code of Federal Regulations (14 CFR) parts 91, 121, 125, and 135. The purpose of this AC is to provide pilots with a convenient reference guide on the principal factors related to flight in icing conditions and the location of additional information in related publications. As a result of these updates and consolidating of information, AC 91-74A, Pilot Guide: Flight in Icing Conditions, dated December 31, 2007, and AC 91-51A, Effect of Icing on Aircraft Control and Airplane Deice and Anti-Ice Systems, dated July 19, 1996, are cancelled. This AC does not authorize deviations from established company procedures or regulatory requirements.\n\nJohn Barbagallo Deputy Director, Flight Standards Service"
+      "text": "U.S. Department Advisory of Transportation Federal Aviation Administration Circular\n\nSubject: Pilot Guide: Flight in Icing Conditions Date: 10/8/15 AC No: 91-74B\n\nInitiated by: AFS-800 Change:\n\nThis advisory circular (AC) contains updated and additional information for the pilots of airplanes under Title 14 of the Code of Federal Regulations (14 CFR) parts 91, 121, 125, and 135. The purpose of this AC is to provide pilots with a convenient reference guide on the principal factors related to flight in icing conditions and the location of additional information in related publications. As a result of these updates and consolidating of information, AC 91-74A, Pilot Guide: Flight in Icing Conditions, dated December 31, 2007, and AC 91-51A, Effect of Icing on Aircraft Control and Airplane Deice and Anti-Ice Systems, dated July 19, 1996, are cancelled. This AC does not authorize deviations from established company procedures or regulatory requirements.\n\nJohn Barbagallo Deputy Director, Flight Standards Service"
     },
     {
       "page": 3,
@@ -70,7 +71,7 @@
     },
     {
       "page": 17,
-      "text": "FIGURE 2-1. WARM FRONT\n\nFIGURE 2-2. COLD FRONT\n\nPar 2-3 Page 13"
+      "text": "10/8/15\nAC 91-74B\nFIGURE 2-1. WARM FRONT\nCIRRUS\nCIRROSTRATUS\nALTOSTRATUS\nWARM AIR\nNIMBOSTRATUS\nCOLD AIR\nSt. Louis\nIndíanapolis\n200 miles\nColumbus\n400 miles\nPittsburgh\n600 miles\nMETAR\nKSTL\n1950Z\n21018KT\n1SM\nOVC010\n18/18\nA2960\n10 St. Louis\n1-2\nMETAR\nKIND\nBKN020\n1950Z\n16012KT\n15/15\n3SM\nA2973\nRA\nIndianapolis\nColumbus\nPittsburgh\nMETAR\nKCMH\n1950Z\n13018KT\n6SM\nHZ\nOVC060\n14/10\nA2990\nMETAR\nKPIT\nSCT150\n1950Z\n13012KT\n12/01\n10SM\nA3002\nFIGURE 2-2. COLD FRONT\nCOLD AIR\nWARM AIR\nCUMULONIMBUS\nSt. Louis\nIndianapolis\n200 miles\nColumbus\n400 miles\nPittsburgh\n600 miles\nMETAR\nKSTL\n1950Z\n30018KT\n10SM\nSCT010\n08/02\nA2979\nMETAR\nKIND\nOVC010\n1950Z\n20024KT\n24/23\n3SM\nA2974\nSRA\nSt Louis\nIndianapolis\nColumbus\nPittsburgh\nMETAR\nKCMH\n1950Z\n20012KT\n6SM\nHZ\nBKN025\n25/24\nA2983\nMETAR\nKPIT\n1950Z\n20012KT\n3SM\nFU\nSCT035\n24/22\nA2989\nPar 2-3"
     },
     {
       "page": 18,
@@ -244,6 +245,5 @@
       "page": 63,
       "text": "Advisory Circular Feedback Form If you find an error in this AC, have recommendations for improving it, or have suggestions for new items/subjects to be added, you may let us know by contacting the General Aviation and Commercial Division (AFS-800) or the Flight Standards Directives Management Officer.\n\nSubject: AC 91-74B, Pilot Guide: Flight in Icing Conditions Date: _____________________ Please check all appropriate line items: An error (procedural or typographical) has been noted in paragraph ____________ on page _______. Recommend paragraph _____________ on page __________ be changed as follows: ______________________________________________________________________ ______________________________________________________________________ In a future change to this AC, please cover the following subject: (Briefly describe what you want added.) ______________________________________________________________________ ______________________________________________________________________ Other comments: ______________________________________________________________________ ______________________________________________________________________ I would like to discuss the above. Please contact me. Submitted by: Date: ______________________"
     }
-  ],
-  "extractedPageCount": 58
+  ]
 }

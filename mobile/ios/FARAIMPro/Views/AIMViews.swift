@@ -401,10 +401,13 @@ struct AIMSectionCard: View {
     }
 }
 
-private struct AIMTableView: View {
+struct AIMTableView: View {
     let table: AIMTable
     let number: Int
     let searchText: String
+    var showsLabel: Bool = true
+    var tableFont: Font? = nil
+    var tableLineSpacing: CGFloat? = nil
 
     private var headers: [String] { table.headers ?? [] }
     private var rows: [[String]] { table.rows ?? [] }
@@ -418,16 +421,18 @@ private struct AIMTableView: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
-            Label {
-                HighlightText(
-                    text: label,
-                    query: searchText
-                )
-            } icon: {
-                Image(systemName: "tablecells")
+            if showsLabel {
+                Label {
+                    HighlightText(
+                        text: label,
+                        query: searchText
+                    )
+                } icon: {
+                    Image(systemName: "tablecells")
+                }
+                .font(.caption.weight(.semibold))
+                .foregroundColor(AviationTheme.accent)
             }
-            .font(.caption.weight(.semibold))
-            .foregroundColor(AviationTheme.accent)
 
             if columnCount == 0 {
                 Text("Table data unavailable")
@@ -459,20 +464,22 @@ private struct AIMTableView: View {
     private func tableRow(_ values: [String], isHeader: Bool, rowNumber: Int?) -> some View {
         if values.count == 1, columnCount > 1 {
             HighlightText(text: values[0], query: searchText)
-                .font(isHeader ? .caption.weight(.bold) : .caption)
-                .frame(width: CGFloat(columnCount) * 180, alignment: .leading)
+                .font(cellFont(forHeader: isHeader))
+                .lineSpacing(tableLineSpacing ?? 0)
+                .frame(width: CGFloat(columnCount) * 140, alignment: .leading)
                 .padding(10)
                 .background(isHeader ? AviationTheme.ink : Color(.secondarySystemBackground))
                 .foregroundColor(isHeader ? .white : .primary)
-                .accessibilityLabel(rowNumber.map { "Row \($0), \(values[0])" } ?? values[0])
+                .accessibilityLabel(rowNumber.map { "Row \($0), \(values[0].isEmpty ? "blank" : values[0])" } ?? values[0])
         } else {
             HStack(alignment: .top, spacing: 0) {
                 ForEach(0..<columnCount, id: \.self) { column in
                     let value = column < values.count ? values[column] : ""
                     HighlightText(text: value, query: searchText)
-                        .font(isHeader ? .caption.weight(.bold) : .caption)
+                        .font(cellFont(forHeader: isHeader))
+                        .lineSpacing(tableLineSpacing ?? 0)
                         .fixedSize(horizontal: false, vertical: true)
-                        .frame(width: 180, alignment: .leading)
+                        .frame(width: 140, alignment: .leading)
                         .padding(10)
                         .background(isHeader ? AviationTheme.ink : Color(.secondarySystemBackground))
                         .foregroundColor(isHeader ? .white : .primary)
@@ -497,10 +504,15 @@ private struct AIMTableView: View {
         isHeader: Bool
     ) -> String {
         if isHeader {
-            return "Column \(column + 1), \(value)"
+            return "Column \(column + 1), \(value.isEmpty ? "blank" : value)"
         }
         let header = column < headers.count ? headers[column] : "Column \(column + 1)"
-        return "Row \(rowNumber ?? 0), \(header), \(value)"
+        return "Row \(rowNumber ?? 0), \(header), \(value.isEmpty ? "blank" : value)"
+    }
+
+    private func cellFont(forHeader isHeader: Bool) -> Font {
+        let baseFont = tableFont ?? .caption
+        return isHeader ? baseFont.weight(.bold) : baseFont
     }
 }
 

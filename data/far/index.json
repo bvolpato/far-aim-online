@@ -1,10 +1,15 @@
 {
   "title": "Federal Aviation Regulations (14 CFR) - Full Index",
   "description": "Complete Title 14 Code of Federal Regulations from eCFR",
-  "lastUpdated": "2026-10-17",
+  "lastUpdated": "2026-10-15",
+  "fetchedAt": "2026-10-17",
+  "effectiveDates": {
+    "14": "2026-10-15",
+    "49": "2026-10-13"
+  },
   "source": "eCFR (ecfr.gov)",
   "indexType": "full",
-  "totalFigures": 591,
+  "totalFigures": 592,
   "parts": [
     {
       "part": 1,
@@ -482,7 +487,7 @@
       "subchapter": "F",
       "subchapterTitle": "Air Traffic and General Operating Rules",
       "isPilotIndex": true,
-      "sectionCount": 286,
+      "sectionCount": 287,
       "appendixCount": 10,
       "figureCount": 0
     },
@@ -494,9 +499,9 @@
       "subchapter": "F",
       "subchapterTitle": "Air Traffic and General Operating Rules",
       "isPilotIndex": true,
-      "sectionCount": 83,
-      "appendixCount": 1,
-      "figureCount": 0
+      "sectionCount": 81,
+      "appendixCount": 3,
+      "figureCount": 1
     },
     {
       "part": 95,
@@ -674,7 +679,7 @@
       "subchapter": "G",
       "subchapterTitle": "Air Carriers and Operators for Compensation or Hire: Certification and Operations",
       "isPilotIndex": true,
-      "sectionCount": 390,
+      "sectionCount": 391,
       "appendixCount": 18,
       "figureCount": 14
     },
@@ -698,7 +703,7 @@
       "subchapter": "G",
       "subchapterTitle": "Air Carriers and Operators for Compensation or Hire: Certification and Operations",
       "isPilotIndex": true,
-      "sectionCount": 30,
+      "sectionCount": 31,
       "appendixCount": 2,
       "figureCount": 0
     },
@@ -1587,7 +1592,7 @@
       "subchapterTitle": "Economic Regulations",
       "isPilotIndex": false,
       "sectionCount": 17,
-      "appendixCount": 0,
+      "appendixCount": 1,
       "figureCount": 0
     },
     {
@@ -1911,7 +1916,7 @@
       "subchapterTitle": "Policy Statements",
       "isPilotIndex": false,
       "sectionCount": 34,
-      "appendixCount": 0,
+      "appendixCount": 1,
       "figureCount": 0
     },
     {
@@ -2270,7 +2275,7 @@
       "subchapter": "",
       "subchapterTitle": "",
       "isPilotIndex": false,
-      "sectionCount": 16,
+      "sectionCount": 30,
       "appendixCount": 0,
       "figureCount": 0
     },

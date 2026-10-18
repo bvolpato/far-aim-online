@@ -75,7 +75,7 @@ export function AdvisoryCircularsPage() {
   }, [advisoryCirculars, category, query, sort]);
 
   return (
-    <div className="max-w-6xl mx-auto px-4 py-8 animate-fade-in">
+    <div className="mx-auto max-w-6xl min-w-0 px-4 py-8 animate-fade-in">
       <Helmet>
         <title>FAA Advisory Circulars | FAR/AIM Online</title>
         <meta
@@ -84,7 +84,7 @@ export function AdvisoryCircularsPage() {
         />
       </Helmet>
 
-      <section className="mb-8 rounded-lg border bg-card p-6">
+      <section className="mb-8 min-w-0 rounded-lg border bg-card p-4 sm:p-6">
         <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
           <div className="space-y-3">
             <div className="inline-flex items-center gap-2 rounded-full bg-cyan-100 px-3 py-1 text-sm font-medium text-cyan-800 dark:bg-cyan-950 dark:text-cyan-200">
@@ -98,16 +98,16 @@ export function AdvisoryCircularsPage() {
               </p>
             </div>
           </div>
-          <div className="grid grid-cols-3 gap-2 text-center text-sm">
-            <div className="rounded-md border bg-muted/40 px-3 py-2">
+          <div className="grid min-w-0 grid-cols-3 gap-2 text-center text-sm">
+            <div className="min-w-0 rounded-md border bg-muted/40 px-2 py-2 sm:px-3">
               <p className="text-xl font-semibold text-foreground">{advisoryCirculars.length}</p>
               <p className="text-muted-foreground">ACs</p>
             </div>
-            <div className="rounded-md border bg-muted/40 px-3 py-2">
+            <div className="min-w-0 rounded-md border bg-muted/40 px-2 py-2 sm:px-3">
               <p className="text-xl font-semibold text-foreground">{categories.length - 1}</p>
               <p className="text-muted-foreground">topics</p>
             </div>
-            <div className="rounded-md border bg-muted/40 px-3 py-2">
+            <div className="min-w-0 rounded-md border bg-muted/40 px-2 py-2 sm:px-3">
               <p className="text-xl font-semibold text-foreground">FAA</p>
               <p className="text-muted-foreground">source</p>
             </div>
@@ -123,7 +123,7 @@ export function AdvisoryCircularsPage() {
               value={query}
               onChange={(event) => setQuery(event.target.value)}
               placeholder="Search forms, records, service difficulty, airworthiness..."
-              className="pl-9"
+              className="h-11 pl-9"
             />
           </div>
           <div className="relative">
@@ -133,7 +133,7 @@ export function AdvisoryCircularsPage() {
               id="ac-sort"
               value={sort}
               onChange={(event) => setSort(event.target.value as AdvisoryCircularSort)}
-              className="h-10 w-full rounded-md border border-input bg-background pl-9 pr-3 text-sm text-foreground shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              className="h-11 w-full rounded-md border border-input bg-background pl-9 pr-3 text-sm text-foreground shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             >
               <option value="newest">Newest issued</option>
               <option value="oldest">Oldest issued</option>
@@ -144,7 +144,7 @@ export function AdvisoryCircularsPage() {
         </div>
         <div className="flex items-start gap-2">
           <div
-            className={`flex min-w-0 flex-1 flex-wrap gap-2 overflow-hidden ${filtersExpanded ? '' : 'max-h-9'}`}
+            className={`flex min-w-0 flex-1 flex-wrap gap-2 overflow-hidden ${filtersExpanded ? '' : 'max-h-32'}`}
           >
             {displayedCategories.map((item) => (
               <Button
@@ -152,7 +152,7 @@ export function AdvisoryCircularsPage() {
                 type="button"
                 variant={category === item ? 'default' : 'secondary'}
                 size="sm"
-                className="shrink-0"
+                className="max-w-full min-h-11 min-w-0 whitespace-normal break-words text-left"
                 onClick={() => setCategory(item)}
               >
                 {item}
@@ -163,7 +163,7 @@ export function AdvisoryCircularsPage() {
             type="button"
             variant="outline"
             size="sm"
-            className="shrink-0"
+            className="min-h-11 shrink-0"
             aria-expanded={filtersExpanded}
             onClick={() => setFiltersExpanded((expanded) => !expanded)}
           >
@@ -177,10 +177,10 @@ export function AdvisoryCircularsPage() {
         </div>
       </div>
 
-      <div className="grid gap-4">
+      <div className="grid min-w-0 grid-cols-1 gap-4">
         {filteredCirculars.map((ac) => (
-          <Card key={ac.id} id={ac.id} className="scroll-mt-24">
-            <CardContent className="p-5">
+          <Card key={ac.id} id={ac.id} className="min-w-0 scroll-mt-24">
+            <CardContent className="p-4 sm:p-5">
               <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
                 <div className="min-w-0 space-y-3">
                   <div className="flex flex-wrap items-center gap-2">
@@ -227,14 +227,14 @@ export function AdvisoryCircularsPage() {
                   </div>
                 </div>
                 <div className="flex shrink-0 flex-wrap gap-2">
-                  <Button asChild variant="outline" size="sm">
+                  <Button asChild variant="outline" size="sm" className="min-h-11">
                     <a href={ac.documentUrl} target="_blank" rel="noreferrer">
                       <ExternalLink className="mr-2 h-4 w-4" />
                       FAA page
                     </a>
                   </Button>
                   {ac.pdfUrl && (
-                    <Button asChild variant={ac.contentPath ? 'outline' : 'default'} size="sm">
+                    <Button asChild variant={ac.contentPath ? 'outline' : 'default'} size="sm" className="min-h-11">
                       <a href={ac.pdfUrl} target="_blank" rel="noreferrer">
                         <FileDown className="mr-2 h-4 w-4" />
                         PDF

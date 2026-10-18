@@ -6,7 +6,7 @@
   "url": "https://www.ecfr.gov/current/title-14/part-117",
   "subchapter": "G",
   "subchapterTitle": "Air Carriers and Operators for Compensation or Hire: Certification and Operations",
-  "effectiveDate": "2026-07-24",
+  "effectiveDate": "2026-10-15",
   "subparts": [],
   "sections": [
     {
@@ -104,19 +104,19 @@
     {
       "appendix": "Table A to Part 117",
       "title": "Table A to Part 117-Maximum Flight Time Limits for Unaugmented Operations Table",
-      "content": "| Time of report\n(acclimated)\n| Maximum\nflight time\n(hours)\n\n| 0000-0459\n| 8\n\n| 0500-1959\n| 9\n\n| 2000-2359\n| 8",
+      "content": "[TABLE]\n| Time of report (acclimated) | Maximum flight time (hours) |\n\n| 0000-0459 | 8 |\n\n| 0500-1959 | 9 |\n\n| 2000-2359 | 8 |\n[/TABLE]",
       "figures": []
     },
     {
       "appendix": "Table B to Part 117",
       "title": "Table B to Part 117-Flight Duty Period: Unaugmented Operations",
-      "content": "| Scheduled time of start (acclimated time)\n| Maximum flight duty period (hours) for lineholders based on\nnumber of flight segments\n\n| 1\n| 2\n| 3\n| 4\n| 5\n| 6\n| 7 +\n\n| 0000-0359\n| 9\n| 9\n| 9\n| 9\n| 9\n| 9\n| 9\n\n| 0400-0459\n| 10\n| 10\n| 10\n| 10\n| 9\n| 9\n| 9\n\n| 0500-0559\n| 12\n| 12\n| 12\n| 12\n| 11.5\n| 11\n| 10.5\n\n| 0600-0659\n| 13\n| 13\n| 12\n| 12\n| 11.5\n| 11\n| 10.5\n\n| 0700-1159\n| 14\n| 14\n| 13\n| 13\n| 12.5\n| 12\n| 11.5\n\n| 1200-1259\n| 13\n| 13\n| 13\n| 13\n| 12.5\n| 12\n| 11.5\n\n| 1300-1659\n| 12\n| 12\n| 12\n| 12\n| 11.5\n| 11\n| 10.5\n\n| 1700-2159\n| 12\n| 12\n| 11\n| 11\n| 10\n| 9\n| 9\n\n| 2200-2259\n| 11\n| 11\n| 10\n| 10\n| 9\n| 9\n| 9\n\n| 2300-2359\n| 10\n| 10\n| 10\n| 9\n| 9\n| 9\n| 9",
+      "content": "[TABLE]\n| Scheduled time of start (acclimated time) | Maximum flight duty period (hours) for lineholders based on number of flight segments / 1 | Maximum flight duty period (hours) for lineholders based on number of flight segments / 2 | Maximum flight duty period (hours) for lineholders based on number of flight segments / 3 | Maximum flight duty period (hours) for lineholders based on number of flight segments / 4 | Maximum flight duty period (hours) for lineholders based on number of flight segments / 5 | Maximum flight duty period (hours) for lineholders based on number of flight segments / 6 | Maximum flight duty period (hours) for lineholders based on number of flight segments / 7 + |\n\n| 0000-0359 | 9 | 9 | 9 | 9 | 9 | 9 | 9 |\n\n| 0400-0459 | 10 | 10 | 10 | 10 | 9 | 9 | 9 |\n\n| 0500-0559 | 12 | 12 | 12 | 12 | 11.5 | 11 | 10.5 |\n\n| 0600-0659 | 13 | 13 | 12 | 12 | 11.5 | 11 | 10.5 |\n\n| 0700-1159 | 14 | 14 | 13 | 13 | 12.5 | 12 | 11.5 |\n\n| 1200-1259 | 13 | 13 | 13 | 13 | 12.5 | 12 | 11.5 |\n\n| 1300-1659 | 12 | 12 | 12 | 12 | 11.5 | 11 | 10.5 |\n\n| 1700-2159 | 12 | 12 | 11 | 11 | 10 | 9 | 9 |\n\n| 2200-2259 | 11 | 11 | 10 | 10 | 9 | 9 | 9 |\n\n| 2300-2359 | 10 | 10 | 10 | 9 | 9 | 9 | 9 |\n[/TABLE]",
       "figures": []
     },
     {
       "appendix": "Table C to Part 117",
       "title": "Table C to Part 117-Flight Duty Period: Augmented Operations",
-      "content": "| Scheduled time of start (acclimated time)\n| Maximum flight duty period (hours) based on rest facility and\nnumber of pilots\n\n| Class 1\nrest facility\n| Class 2\nrest facility\n| Class 3\nrest facility\n\n| 3 pilots\n| 4 pilots\n| 3 pilots\n| 4 pilots\n| 3 pilots\n| 4 pilots\n\n| 0000-0559\n| 15\n| 17\n| 14\n| 15.5\n| 13\n| 13.5\n\n| 0600-0659\n| 16\n| 18.5\n| 15\n| 16.5\n| 14\n| 14.5\n\n| 0700-1259\n| 17\n| 19\n| 16.5\n| 18\n| 15\n| 15.5\n\n| 1300-1659\n| 16\n| 18.5\n| 15\n| 16.5\n| 14\n| 14.5\n\n| 1700-2359\n| 15\n| 17\n| 14\n| 15.5\n| 13\n| 13.5",
+      "content": "[TABLE]\n| Scheduled time of start (acclimated time) | Maximum flight duty period (hours) based on rest facility and number of pilots / Class 1 rest facility / 3 pilots | Maximum flight duty period (hours) based on rest facility and number of pilots / Class 1 rest facility / 4 pilots | Maximum flight duty period (hours) based on rest facility and number of pilots / Class 2 rest facility / 3 pilots | Maximum flight duty period (hours) based on rest facility and number of pilots / Class 2 rest facility / 4 pilots | Maximum flight duty period (hours) based on rest facility and number of pilots / Class 3 rest facility / 3 pilots | Maximum flight duty period (hours) based on rest facility and number of pilots / Class 3 rest facility / 4 pilots |\n\n| 0000-0559 | 15 | 17 | 14 | 15.5 | 13 | 13.5 |\n\n| 0600-0659 | 16 | 18.5 | 15 | 16.5 | 14 | 14.5 |\n\n| 0700-1259 | 17 | 19 | 16.5 | 18 | 15 | 15.5 |\n\n| 1300-1659 | 16 | 18.5 | 15 | 16.5 | 14 | 14.5 |\n\n| 1700-2359 | 15 | 17 | 14 | 15.5 | 13 | 13.5 |\n[/TABLE]",
       "figures": []
     }
   ],

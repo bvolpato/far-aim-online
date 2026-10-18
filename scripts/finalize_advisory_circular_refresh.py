@@ -96,6 +96,8 @@ def validate_coverage(
     for item_id, item in items.items():
         if item.get("contentStatus") != results[item_id].get("status"):
             raise ValueError(f"Coverage status differs from index for {item_id}")
+        if results[item_id].get("refreshError"):
+            raise ValueError(f"Unresolved AC refresh failure for {item_id}")
 
     return {
         "total": len(items),
@@ -165,13 +167,13 @@ def update_source_status(
             "itemCount": total,
             "coverage": (
                 f"{total:,} current advisory circulars, {pdfs:,} official PDFs, "
-                f"{parsed:,} complete text extractions and {partial:,} partial extractions"
+                f"{parsed:,} text extractions covering every page and {partial:,} partial extractions"
             ),
             "notes": [
                 "Metadata is generated from the FAA current Advisory Circular export and document list.",
                 (
-                    f"Searchable text is bundled for {parsed + partial:,} records; {parsed:,} include every "
-                    f"PDF page and {partial:,} are marked partial."
+                    f"Searchable text is bundled for {parsed + partial:,} records; {parsed:,} have text on every "
+                    f"PDF page and {partial:,} are marked partial. Page coverage does not preserve all figures or layout."
                 ),
                 (
                     "Partial records direct readers to the official PDF for omitted pages, "
@@ -195,7 +197,7 @@ def update_source_status(
             "title": "Advisory Circular archive refreshed",
             "summary": (
                 f"The Advisory Circular library includes {total:,} current FAA records, "
-                f"{pdfs:,} direct PDF links, {parsed:,} complete text extractions, and "
+                f"{pdfs:,} direct PDF links, {parsed:,} text extractions covering every page, and "
                 f"{partial:,} clearly marked partial extractions."
             ),
         }

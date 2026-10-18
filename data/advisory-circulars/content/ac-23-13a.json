@@ -4,11 +4,12 @@
   "number": "23-13A",
   "title": "Fatigue, Fail-Safe, and Damage Tolerance Evaluation of Metallic Structure for Normal, Utility, Acrobatic, and Commuter Category Airplanes",
   "status": "partial",
-  "fetched": "2026-07-14",
+  "fetched": "2026-10-17",
   "documentUrl": "https://www.faa.gov/regulations_policies/advisory_circulars/index.cfm/go/document.information/documentID/22090",
   "pdfUrl": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_23-13A.pdf",
   "sha256": "7ff410f03519b67c800e7a88a67f8a272fa33fdf4fb7a84590efa4bcce6e6f3c",
   "pageCount": 76,
+  "extractedPageCount": 73,
   "wordCount": 20263,
   "ocrPageCount": 0,
   "pages": [
@@ -304,6 +305,5 @@
       "page": 76,
       "text": "AC 23-13A 9/29/05\nAppendix 2\nNote: Curves reproduced from Figure 12, Reference 3.\ni sk ~ T LA S, ssert S g nit anr et l A\n1 x 104\n1 x 105\n3 x 104\n3 x 10 5\n1 x 10 6\n3 x 106\nN\nNumber of Cycles\n0 5 10 15 20 25 30\nMean Stress, SMEAN, ksi\nAPPENDIX 2. S/N CURVES FOR ALUMINUM COMPONENTS (CONTINUED)\nFIGURE A2-2\n\nTYPICAL CONSTANT LIFE CURVES\n\nFOR COMPLETE WINGS AND TAILPLANES\n\n(ALUMINUM ALLOY MATERIALS)\n\nA2-2"
     }
-  ],
-  "extractedPageCount": 73
+  ]
 }

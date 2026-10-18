@@ -4,13 +4,14 @@
   "number": "29-2C",
   "title": "Certification of Transport Category Rotorcraft (Changes 1 - 9 incorporated)",
   "status": "partial",
-  "fetched": "2026-07-14",
+  "fetched": "2026-10-17",
   "documentUrl": "https://www.faa.gov/regulations_policies/advisory_circulars/index.cfm/go/document.information/documentID/74404",
   "pdfUrl": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_29-2C_CHG1-9.pdf",
   "sha256": "c57691386dd1e59263633bd8fdaabb842a958061a9b6a82d30dad18358977013",
   "pageCount": 1453,
-  "wordCount": 501225,
-  "ocrPageCount": 0,
+  "extractedPageCount": 1452,
+  "wordCount": 501254,
+  "ocrPageCount": 4,
   "pages": [
     {
       "page": 1,
@@ -46,7 +47,7 @@
     },
     {
       "page": 9,
-      "text": "US Department of Transportation Federal Aviation Administration Advisory Circular\n\nSubject: CERTIFICATION OF TRANSPORT Date: 9/30/2008 AC No:29-2C CATEGORY ROTORCRAFT Initiated by: ASW-110 Change: 3\n\n1. PURPOSE.\n\na. This Advisory Circular (AC) publishes needed changes to the existing AC material as a result of a safety-focused study. b. This change revises existing material in 9 sections. c. The change number and the date of the changed material are shown at the top of each page. The vertical lines in the right or left margin indicates the beginning and end of each change. Pages that have different page numbers, but no text changes, will retain the previous heading information. d. This AC does not change regulatory requirements and does not authorize changes in, or deviations from, regulatory requirements. This AC establishes an acceptable means, but not the only means, of compliance. Since the guidance material presented in this AC is not regulatory, terms having a mandatory definition, such as “shall” and “must,” etc., as used in this AC, apply either to the reiteration of a regulation itself, or to an applicant who chooses to follow a prescribed method of compliance without deviation. 2. PRINCIPAL CHANGES. Sections 29.571, 29.679, 29.695, 29.783, 29.901A, 29.917A, 29.1307, 29.1351, and 29.1431 are revised. 3. WEBSITE AVAILABILITY. To access this AC electronically, log on to http://www.airweb.faa.gov/rgl and then click on AC’s."
+      "text": "US Department of Transportation Federal Aviation Administration Advisory Circular\n\nSubject: CERTIFICATION OF TRANSPORT Date: 9/30/2008 AC No: 29-2C CATEGORY ROTORCRAFT Initiated by: ASW-110 Change: 3\n\n1. PURPOSE.\n\na. This Advisory Circular (AC) publishes needed changes to the existing AC material as a result of a safety-focused study. b. This change revises existing material in 9 sections. c. The change number and the date of the changed material are shown at the top of each page. The vertical lines in the right or left margin indicates the beginning and end of each change. Pages that have different page numbers, but no text changes, will retain the previous heading information. d. This AC does not change regulatory requirements and does not authorize changes in, or deviations from, regulatory requirements. This AC establishes an acceptable means, but not the only means, of compliance. Since the guidance material presented in this AC is not regulatory, terms having a mandatory definition, such as “shall” and “must,” etc., as used in this AC, apply either to the reiteration of a regulation itself, or to an applicant who chooses to follow a prescribed method of compliance without deviation. 2. PRINCIPAL CHANGES. Sections 29.571, 29.679, 29.695, 29.783, 29.901A, 29.917A, 29.1307, 29.1351, and 29.1431 are revised. 3. WEBSITE AVAILABILITY. To access this AC electronically, log on to http://www.airweb.faa.gov/rgl and then click on AC’s."
     },
     {
       "page": 10,
@@ -58,7 +59,7 @@
     },
     {
       "page": 12,
-      "text": "AC 29-2C, Chg 2 4/25/06\nAC 29-2C, Chg 2\nPAGE CONTROL CHART\nRemove Pages Dated Insert Pages Dated\niii thru x…………………….9/30/99 & 2/12/03\nxiii thru xxiv……………….9/30/99 & 2/12/03\nB-11 thru B-20 ………………………..9/30/99\nB-49 thru B-125………………………..9/30/99\nC-5 thru C-6 ………………………..9/30/99\nC-13 thru C-96 …………….9/30/99 & 2/12/03\nD-1 thru D-159 …………….9/30/99 & 2/12/03\nE-37 thru E-48 ………………………..9/30/99\nF-43 thru F-44 .. ………………………..9/30/99\nF-61 thru F-120 …………….9/30/99 & 2/12/03\nG-45 thru G-52 ………………………..9/30/99\nMG 1-15 thru MG 1-17………………..9/30/99\nMG 4-9 thru MG 4-13…………………9/30/99\nMG 8-1 thru MG 8-15……...9/30/99 & 2/12/03\nMG 12-1 thru MG 12-44…...9/30/99 & 2/12/03\nMG 16-1 thru MG 16-16………………2/12/03\nnone\nnone\nApdx A-47 thru Apdx A-70……………2/12/03\nApdx B-11 thru Apdx B-20...9/30/99 & 2/12/03\niii thru x  4/25/06\nxiii thru xxv  4/25/06\nB-11 thru B-20  4/25/06\nB-49 thru B-127  4/25/06\nC-5 thru C-6  4/25/06\nC-13 thru C-98  4/25/06\nD-1 thru D-185  4/25/06\nE-37 thru E-48  4/25/06\nF-43 thru F-44  4/25/06\nF-61 thru F-123  4/25/06\nG-45 thru G-52  4/25/06\nMG 1-15 thru MG 1-16  4/25/06\nMG 4-9 thru MG 4-13  4/25/06\nMG 8-1 thru MG 8-31  4/25/06\nMG 12-1  4/25/06\nMG 16-1 thru MG 16-18  4/25/06\nMG 17-1  4/25/06\nMG 18-1 thru MG 18-27  4/25/06\nApdx A-47 thru Apdx A-71  4/25/06\nApdx B-11 thru Apdx B-21  4/25/06\nDavid A. Downey\nManager, Rotorcraft Directorate\nAircraft Certification Service\nPage"
+      "text": "AC 29-2C, Chg 2 4/25/06\nAC 29-2C, Chg 2\nPAGE CONTROL CHART\nRemove Pages Dated Insert Pages Dated\niii thru x…………………….9/30/99 & 2/12/03\nxiii thru xxiv……………….9/30/99 & 2/12/03\nB-11 thru B-20 ………………………  9/30/99\nB-49 thru B-125………………………  9/30/99\nC-5 thru C-6 ………………………  9/30/99\nC-13 thru C-96 …………….9/30/99 & 2/12/03\nD-1 thru D-159 …………….9/30/99 & 2/12/03\nE-37 thru E-48 ………………………  9/30/99\nF-43 thru F-44  ………………………  9/30/99\nF-61 thru F-120 …………….9/30/99 & 2/12/03\nG-45 thru G-52 ………………………  9/30/99\nMG 1-15 thru MG 1-17………………  9/30/99\nMG 4-9 thru MG 4-13…………………9/30/99\nMG 8-1 thru MG 8-15……  9/30/99 & 2/12/03\nMG 12-1 thru MG 12-44…  9/30/99 & 2/12/03\nMG 16-1 thru MG 16-16………………2/12/03\nnone\nnone\nApdx A-47 thru Apdx A-70……………2/12/03\nApdx B-11 thru Apdx B-20  9/30/99 & 2/12/03\niii thru x  4/25/06\nxiii thru xxv  4/25/06\nB-11 thru B-20  4/25/06\nB-49 thru B-127  4/25/06\nC-5 thru C-6  4/25/06\nC-13 thru C-98  4/25/06\nD-1 thru D-185  4/25/06\nE-37 thru E-48  4/25/06\nF-43 thru F-44  4/25/06\nF-61 thru F-123  4/25/06\nG-45 thru G-52  4/25/06\nMG 1-15 thru MG 1-16  4/25/06\nMG 4-9 thru MG 4-13  4/25/06\nMG 8-1 thru MG 8-31  4/25/06\nMG 12-1  4/25/06\nMG 16-1 thru MG 16-18  4/25/06\nMG 17-1  4/25/06\nMG 18-1 thru MG 18-27  4/25/06\nApdx A-47 thru Apdx A-71  4/25/06\nApdx B-11 thru Apdx B-21  4/25/06\nDavid A. Downey\nManager, Rotorcraft Directorate\nAircraft Certification Service\nPage"
     },
     {
       "page": 13,
@@ -82,7 +83,7 @@
     },
     {
       "page": 18,
-      "text": "AC 29-2C, Chg 5 6/13/2014\nPage No.\nSUBPART B - FLIGHT (continued)\nPERFORMANCE (continued)\nAC 29.51 Takeoff Data - General  B-29\nAC 29.51A Takeoff Data - General  B-30\nAC 29.53 Takeoff: Category A  B-31\nAC 29.53A Takeoff: Category A  B-34\nAC 29.55 Takeoff Decision Point: Category A  B-36\nAC 29.59 Takeoff Path: Category A  B-36\nAC 29.59A Takeoff Path, Distance and Rejected Takeoff, Ground Level and ... B-46\nElevated Heliport: Category A\nAC 29.63 Takeoff: Category B  B-57\nAC 29.65 Climb: (All Engines Operating)  B-60\nAC 29.65A Climb: (General and All Engines Operating)  B-61\nAC 29.67 Climb: One Engine Inoperative  B-63\nAC 29.67A Climb: One Engine Inoperative  B-65\nAC 29.71 Rotorcraft Angle of Glide: Category B  B-66\nAC 29.73 Performance at Minimum Operating Speed  B-69\nAC 29.75 Landing  B-71\nAC 29.75A Landing  B-80\nAC 29.77 Balked Landing: Category A  B-91\nAC 29.79 Limiting Height - Speed Envelope  B-92\nAC 29.85 Balked Landing: Category A  B-100\nAC 29.87 Limiting Height - Speed Envelope  B-101\nFLIGHT CHARACTERISTICS\nAC 29.141 Flight Characteristics – General  B-102\nAC 29.143 Controllability and Maneuverability  B-104\nAC 29.143A Controllability and Maneuverability  B-106\nAC 29.151 Flight Controls  B-108\nAC 29.161 Trim Control  B-109\nAC 29.161A Trim Control  B-110\nAC 29.171 Stability: General  B-110\nAC 29.173 Static Longitudinal Stability  B-111\nAC 29.173A Static Longitudinal Stability  B-111\nAC 29.175 Demonstration of Static Longitudinal Stability  B-112.2\nAC 29.175A Demonstration of Static Longitudinal Stability  B-116\nAC 29.177 Static Directional Stability  B-\u0014\u0014\u0019\u0011\u0017\nAC 29.177A Static Directional Stability  B-116.5\nAC 29.181 Dynamic Stability: Category A Rotorcraft  B-117\nPage"
+      "text": "AC 29-2C, Chg 5 6/13/2014\nPage No.\nSUBPART B - FLIGHT (continued)\nPERFORMANCE (continued)\nAC 29.51 Takeoff Data - General  B-29\nAC 29.51A Takeoff Data - General  B-30\nAC 29.53 Takeoff: Category A  B-31\nAC 29.53A Takeoff: Category A  B-34\nAC 29.55 Takeoff Decision Point: Category A  B-36\nAC 29.59 Takeoff Path: Category A  B-36\nAC 29.59A Takeoff Path, Distance and Rejected Takeoff, Ground Level and  B-46\nElevated Heliport: Category A\nAC 29.63 Takeoff: Category B  B-57\nAC 29.65 Climb: (All Engines Operating)  B-60\nAC 29.65A Climb: (General and All Engines Operating)  B-61\nAC 29.67 Climb: One Engine Inoperative  B-63\nAC 29.67A Climb: One Engine Inoperative  B-65\nAC 29.71 Rotorcraft Angle of Glide: Category B  B-66\nAC 29.73 Performance at Minimum Operating Speed  B-69\nAC 29.75 Landing  B-71\nAC 29.75A Landing  B-80\nAC 29.77 Balked Landing: Category A  B-91\nAC 29.79 Limiting Height - Speed Envelope  B-92\nAC 29.85 Balked Landing: Category A  B-100\nAC 29.87 Limiting Height - Speed Envelope  B-101\nFLIGHT CHARACTERISTICS\nAC 29.141 Flight Characteristics – General  B-102\nAC 29.143 Controllability and Maneuverability  B-104\nAC 29.143A Controllability and Maneuverability  B-106\nAC 29.151 Flight Controls  B-108\nAC 29.161 Trim Control  B-109\nAC 29.161A Trim Control  B-110\nAC 29.171 Stability: General  B-110\nAC 29.173 Static Longitudinal Stability  B-111\nAC 29.173A Static Longitudinal Stability  B-111\nAC 29.175 Demonstration of Static Longitudinal Stability  B-112.2\nAC 29.175A Demonstration of Static Longitudinal Stability  B-116\nAC 29.177 Static Directional Stability  B-\u0014\u0014\u0019\u0011\u0017\nAC 29.177A Static Directional Stability  B-116.5\nAC 29.181 Dynamic Stability: Category A Rotorcraft  B-117\nPage"
     },
     {
       "page": 19,
@@ -98,7 +99,7 @@
     },
     {
       "page": 22,
-      "text": "AC 29-2C, Chg 5 6/13/2014\nPage No.\nSUBPART D - DESIGN AND CONSTRUCTION (continued)\nROTORS\nAC 29.653 Pressure Venting and Drainage of Rotor Blades  D-32\nAC 29.659 Mass Balance  D-32\nAC 29.661 Rotor Blade Clearance  D-32\nAC 29.663 Ground Resonance Prevention Means  D-34\nAC 29.663A Ground Resonance Prevention Means  D-36\nCONTROL SYSTEMS\nAC 29.671 Control Systems - General  D-37\nAC 29.672 Stability Augmentation, Automatic, and Power-Operated Systems... D-37\nAC 29.673 Primary Flight Controls  D-38\nAC 29.674 Interconnected Controls  D-39\nAC 29.675 Stops  D-39\nAC 29.679 Control System Locks  D-41\nAC 29.681 Limit Load Static Tests  D-42\nAC 29.683 Operation Tests  D-42\nAC 29.685 Control System Details  D-43\nAC 29.687 Spring Devices  D-45\nAC 29.691 Autorotation Control Mechanism  D-45\nAC 29.695 Power Boost and Power-Operated Control System  D-46\nLANDING GEAR\nAC 29.723 Shock Absorption Tests  D-49\nAC 29.725 Limit Drop Test  D-52\nAC 29.727 Reserve Energy Absorption Drop Test  D-52\nAC 29.727A Reserve Energy Absorption Drop Test  D-53\nAC 29.729 Retracting Mechanism, Landing Gear  D-53\nAC 29.731 Wheels  D-55\nAC 29.733 Tires  D-56\nAC 29.735 Brakes  D-58\nAC 29.737 Skis  D-59\nFLOATS AND HULLS\nAC 29.751 Main Float Buoyancy  D-61\nAC 29.753 Main Float Design  D-61\nAC 29.755 Hull Buoyancy  D-64\nAC 29.757 Hull and Auxiliary Float Strength  D-65\nPage"
+      "text": "AC 29-2C, Chg 5 6/13/2014\nPage No.\nSUBPART D - DESIGN AND CONSTRUCTION (continued)\nROTORS\nAC 29.653 Pressure Venting and Drainage of Rotor Blades  D-32\nAC 29.659 Mass Balance  D-32\nAC 29.661 Rotor Blade Clearance  D-32\nAC 29.663 Ground Resonance Prevention Means  D-34\nAC 29.663A Ground Resonance Prevention Means  D-36\nCONTROL SYSTEMS\nAC 29.671 Control Systems - General  D-37\nAC 29.672 Stability Augmentation, Automatic, and Power-Operated Systems  D-37\nAC 29.673 Primary Flight Controls  D-38\nAC 29.674 Interconnected Controls  D-39\nAC 29.675 Stops  D-39\nAC 29.679 Control System Locks  D-41\nAC 29.681 Limit Load Static Tests  D-42\nAC 29.683 Operation Tests  D-42\nAC 29.685 Control System Details  D-43\nAC 29.687 Spring Devices  D-45\nAC 29.691 Autorotation Control Mechanism  D-45\nAC 29.695 Power Boost and Power-Operated Control System  D-46\nLANDING GEAR\nAC 29.723 Shock Absorption Tests  D-49\nAC 29.725 Limit Drop Test  D-52\nAC 29.727 Reserve Energy Absorption Drop Test  D-52\nAC 29.727A Reserve Energy Absorption Drop Test  D-53\nAC 29.729 Retracting Mechanism, Landing Gear  D-53\nAC 29.731 Wheels  D-55\nAC 29.733 Tires  D-56\nAC 29.735 Brakes  D-58\nAC 29.737 Skis  D-59\nFLOATS AND HULLS\nAC 29.751 Main Float Buoyancy  D-61\nAC 29.753 Main Float Design  D-61\nAC 29.755 Hull Buoyancy  D-64\nAC 29.757 Hull and Auxiliary Float Strength  D-65\nPage"
     },
     {
       "page": 23,
@@ -134,7 +135,7 @@
     },
     {
       "page": 31,
-      "text": "2/4/2016 AC 29-2C, Chg 7\nPage No.\nCHAPTER 3 - MISCELLANEOUS GUIDANCE (MG),\nTRANSPORT CATEGORY ROTORCRAFT\nAC 29 MG 1 Certification Procedure for Rotorcraft Avionics Equipment  MG 1-1\nSystem Tests\nInterior Arrangements, and Equipment\nFlotation System\nRotorcraft Metallic Structure (Including Flaw Tolerance)\nAir Conditioning Systems\nSystems (HUMS)\nSystems (NVIS) Equipment\nSystem\nAC 29 MG 18 Helicopter Terrain Awareness and Warning System (HTAWS)  MG 18-1\nInstallations\nAssessment (FHA)\nInstallation in Part 29 Rotorcraft\nAC 29 MG 2 Standardized Test Procedure for Rotorcraft DC Electrical  MG 2-1\nAC 29 MG 3 Rotorcraft and Systems Certification for Category II Operations .... MG 3-1\nAC 29 MG 4 Full Authority Digital Electronic Controls (FADEC)  MG 4-1\nAC 29 MG 5 Agricultural Dispensing Equipment Installation  MG 5-1\nAC 29 MG 6 Emergency Medical Service (EMS) Systems, Installations,  MG 6-1\nAC 29 MG 7 Structural Condition Indicators  MG 7-1\nAC 29 MG 8 Substantiation of Composite Rotorcraft Structure  MG 8-1\nAC 29 MG 9 Rotorcraft One-Engine-Inoperative (OEI) Power Assurance  MG 9-1\nAC 29 MG 10 Advisory Material for Substantiation of Emergency  MG 10-1\nAC 29 MG 11 Fatigue Tolerance Evaluation of Transport Category  MG 11-1\nAC 29 MG 12 External Loads  MG 12-1\nAC 29 MG 13 Systems Certification Considerations  MG 13-1\nAC 29 MG 14 Certification Procedure for Installation of Vapor Cycle  MG 14-1\nAC 29 MG 15 Airworthiness Approval of Rotorcraft Health Usage Monitoring  MG 15-1\nAC 29 MG 16 Certification Procedure for Rotorcraft Night Vision Imaging  MG 16-1\nAC 29 MG 17 Guidance on Analyzing an Advanced Flight Controls (AdFC)  MG 17-1\nAC 29 MG 19 Guidance on Electronic Display Systems (EDS) for Rotorcraft  MG 19-1\nAC 29 MG 20 Human Factors (HF)  MG 20-1\nAC 29 MG 21 Guidance on Creating a System Level Functional Hazard  MG 21-1\nAC 29 MG 22 Rotorcraft One Engine Inoperative (OEI) Training Mode  MG 22-1\nAC 29 MG 23 Automatic Flight Guidance and Control Systems (AFGCS)  MG 23-1\nPage xvii"
+      "text": "2/4/2016 AC 29-2C, Chg 7\nPage No.\nCHAPTER 3 - MISCELLANEOUS GUIDANCE (MG),\nTRANSPORT CATEGORY ROTORCRAFT\nAC 29 MG 1 Certification Procedure for Rotorcraft Avionics Equipment  MG 1-1\nSystem Tests\nInterior Arrangements, and Equipment\nFlotation System\nRotorcraft Metallic Structure (Including Flaw Tolerance)\nAir Conditioning Systems\nSystems (HUMS)\nSystems (NVIS) Equipment\nSystem\nAC 29 MG 18 Helicopter Terrain Awareness and Warning System (HTAWS)  MG 18-1\nInstallations\nAssessment (FHA)\nInstallation in Part 29 Rotorcraft\nAC 29 MG 2 Standardized Test Procedure for Rotorcraft DC Electrical  MG 2-1\nAC 29 MG 3 Rotorcraft and Systems Certification for Category II Operations  MG 3-1\nAC 29 MG 4 Full Authority Digital Electronic Controls (FADEC)  MG 4-1\nAC 29 MG 5 Agricultural Dispensing Equipment Installation  MG 5-1\nAC 29 MG 6 Emergency Medical Service (EMS) Systems, Installations,  MG 6-1\nAC 29 MG 7 Structural Condition Indicators  MG 7-1\nAC 29 MG 8 Substantiation of Composite Rotorcraft Structure  MG 8-1\nAC 29 MG 9 Rotorcraft One-Engine-Inoperative (OEI) Power Assurance  MG 9-1\nAC 29 MG 10 Advisory Material for Substantiation of Emergency  MG 10-1\nAC 29 MG 11 Fatigue Tolerance Evaluation of Transport Category  MG 11-1\nAC 29 MG 12 External Loads  MG 12-1\nAC 29 MG 13 Systems Certification Considerations  MG 13-1\nAC 29 MG 14 Certification Procedure for Installation of Vapor Cycle  MG 14-1\nAC 29 MG 15 Airworthiness Approval of Rotorcraft Health Usage Monitoring  MG 15-1\nAC 29 MG 16 Certification Procedure for Rotorcraft Night Vision Imaging  MG 16-1\nAC 29 MG 17 Guidance on Analyzing an Advanced Flight Controls (AdFC)  MG 17-1\nAC 29 MG 19 Guidance on Electronic Display Systems (EDS) for Rotorcraft  MG 19-1\nAC 29 MG 20 Human Factors (HF)  MG 20-1\nAC 29 MG 21 Guidance on Creating a System Level Functional Hazard  MG 21-1\nAC 29 MG 22 Rotorcraft One Engine Inoperative (OEI) Training Mode  MG 22-1\nAC 29 MG 23 Automatic Flight Guidance and Control Systems (AFGCS)  MG 23-1\nPage xvii"
     },
     {
       "page": 32,
@@ -222,7 +223,7 @@
     },
     {
       "page": 53,
-      "text": "9/30/99 AC 29-2C\n\nAC 29.21A. § 29.21(Amendment 29-39) PROOF OF COMPLIANCE.\na. Explanation. Amendment 39 added § 29.83 which changes the requirements for\ndetermination of landing distance for Category B rotorcraft. This amendment requires\nlanding distance to be determined with all engines operating within approved limits.\nb. Procedures. The guidance material presented in paragraph AC 29.21 continues\nto apply.\nAC 29.25. § 29.25 (Amendment 29-12) WEIGHT LIMITS.\na. Explanation.\n(1) This section is definitive and specifies criteria for establishing maximum and\nminimum certificating weights. These weights may be based on those selected by the\napplicant, design requirements, or the limits for which compliance with all applicable\nflight requirements has been shown.\n(2) Typical requirements that may establish the maximum and minimum weight\nlimits include:\nMaximum: Structural limits, performance requirements, stability, and\ncontrollability requirements.\nMinimum: Autorotative rotor RPM, stability, and controllability requirements.\n(3) Jettisonable External Cargo.\n(i) Paragraph (c) was added by Amendment 29-12 to provide, in the\ncertification standards, a basis for approving an increase in gross weight (exceed\nstandard limits) that would be an external jettisonable load. The attachment device\nstandards were moved from Part 133 (Amendment 133-5) to Parts 27 and 29.\nSection 29.865, “External load attaching means,“ now contains the standards, including\ndesign features, for the attaching devices. Cargo hoists and hooks were envisioned.\nPrior to these amendments, type design approvals were made under Part 133 and the\npolicy in Review Cases Nos. 37 and 55 of FAA Order 8110.6 whenever the standard\nlimits were exceeded.\n(ii) In the preamble of Amendment 29-12 (Proposal 2-99, 41 FR 55454,\nDecember 20, 1976) the agency stated, in part, that “...§ 29.25(c) is intended to provide\nonly a total weight standard for approving the rotorcraft structure (and propulsion\nsystems) for operation under Part 133.” As indicated in § 29.865, fatigue substantiation\nof the external cargo attaching means is not required. The rotorcraft structure, rotors,\ntransmissions, engines, etc., are subject to evaluation under § 29.571 for external cargo\napproval whenever the “standard” structural limitations are exceeded (Review Case\nNos. 37 and 55).\nPage B - 3"
+      "text": "9/30/99 AC 29-2C\n\nAC 29.21A. § 29.21(Amendment 29-39) PROOF OF COMPLIANCE.\na. Explanation. Amendment 39 added § 29.83 which changes the requirements for\ndetermination of landing distance for Category B rotorcraft. This amendment requires\nlanding distance to be determined with all engines operating within approved limits.\nb. Procedures. The guidance material presented in paragraph AC 29.21 continues\nto apply.\nAC 29.25. § 29.25 (Amendment 29-12) WEIGHT LIMITS.\na. Explanation.\n(1) This section is definitive and specifies criteria for establishing maximum and\nminimum certificating weights. These weights may be based on those selected by the\napplicant, design requirements, or the limits for which compliance with all applicable\nflight requirements has been shown.\n(2) Typical requirements that may establish the maximum and minimum weight\nlimits include:\nMaximum: Structural limits, performance requirements, stability, and\ncontrollability requirements.\nMinimum: Autorotative rotor RPM, stability, and controllability requirements.\n(3) Jettisonable External Cargo.\n(i) Paragraph (c) was added by Amendment 29-12 to provide, in the\ncertification standards, a basis for approving an increase in gross weight (exceed\nstandard limits) that would be an external jettisonable load. The attachment device\nstandards were moved from Part 133 (Amendment 133-5) to Parts 27 and 29.\nSection 29.865, “External load attaching means,“ now contains the standards, including\ndesign features, for the attaching devices. Cargo hoists and hooks were envisioned.\nPrior to these amendments, type design approvals were made under Part 133 and the\npolicy in Review Cases Nos. 37 and 55 of FAA Order 8110.6 whenever the standard\nlimits were exceeded.\n(ii) In the preamble of Amendment 29-12 (Proposal 2-99, 41 FR 55454,\nDecember 20, 1976) the agency stated, in part, that “  § 29.25(c) is intended to provide\nonly a total weight standard for approving the rotorcraft structure (and propulsion\nsystems) for operation under Part 133.” As indicated in § 29.865, fatigue substantiation\nof the external cargo attaching means is not required. The rotorcraft structure, rotors,\ntransmissions, engines, etc., are subject to evaluation under § 29.571 for external cargo\napproval whenever the “standard” structural limitations are exceeded (Review Case\nNos. 37 and 55).\nPage B - 3"
     },
     {
       "page": 54,
@@ -310,15 +311,15 @@
     },
     {
       "page": 75,
-      "text": ".... 14 ~ I-w w LL 12 ' w :::) I- 10 i= _J <( w Cl:'. H :::) (f) (f) w Cl:'. CL ,, 0 '---------------'-----'---'---'--'---'------''----'-_,_ 2110 :1011 400 500\n\nSHAFT HORSEPOWER AVAILABLE\n\nFIGURE AC 29.45-4 UNINSTALLED TAKEOFF POWER AVAILABLE\n\n5/1/2014 AC 29-2C, Chg 4 Page B – 25"
+      "text": ".... 14\n\n~ I-w w LL 12 ' w :::) I- 10 i= _J <( w Cl:'. H :::) (f) (f) w Cl:'. CL ,, 0 '---------------'-----'---'---'--'---'------''----'-_,_ 2110 :1011 400 500\n\nSHAFT HORSEPOWER AVAILABLE\n\nFIGURE AC 29.45-4 UNINSTALLED TAKEOFF POWER AVAILABLE\n\n5/1/2014 AC 29-2C, Chg 4 Page B – 25"
     },
     {
       "page": 76,
-      "text": "1 8\nI\nI\nI\nI -,\n,o\n,. I I 'ifi\n1s _ L __ I\nI\nI\nI\nI I\n14 - t-- --11 I\n0 I I\no I I 0 I I\nX ~ I 12 __ L ___ _ ~ I I\n1- I I\n11:J I I\nLL I I\n' I I ~ I I I\n:::l 10 I I I\n1- I I I\n~ I I I\n4'. I I I\nw I I I\n0:: 8 - 1---1---t--\n:::l I I I\n~ I I I\nW I I I 8: I I I I\nI I I I\n6 --r --t---,---r\nI I I I\nI I I I\nI I I I\nI I I I\n4 _ L __ I __ J ___ f __\nI I I I\nI I I I\nI I I I\nI I I I\nI I I I I I\n2 - 1---1---t---J---t-- -\nI I I I I\nI I I I I\nI I I I I\nI I I I I\nI I I I I\nI\nI\nI\nI\nof I I I I .,,.1---+--+---i---r\n91, I I I I\n1< I I I I\nS I I I I\n1•0 I I I I\n1-'t<'r-+--+---i---r\nI ' I I Z I I\nI I I Of I\nI I V51 I\nI I ~ I I:: I\n__ Tl __ Tl -iL 2_.1\nz l _, I\nI I I\nI I I\nI I I\nI I I\n-+- +-- ---t\nI I I\nI I I\nI I I\nI I I\nI . I\n-I--- ,---t-i I I\nI I I\nI I I\nI I I\nI I I -r--,---,\nI I I\nI I I\nI I I\nI I I I __ L __ J\nI I\nI I\nI I\nI I\nI I - ,---r-1 I\nI I\nI\nI __ L\nI\nI\nI\nI\nI\n0 -------------------------------.._  _....,..___ ... 200 400\nSHAFT HORSEPOWER AVAi LABLE\nFI GURE AC 29.45-5 INSTALLED TAKEOFF POWER AVAILABLE, ANTI-ICE OFF. 400 RPM\nAC 29-2C, Chg 4 5/1/2014\nPage B – 26"
+      "text": "1 8\nI\nI\nI\nI -,\n,o\n,. I I 'ifi\n1s _ L __ I\nI\nI\nI\nI I\n14 - t-- --11 I\n0 I I\no I I 0 I I\nX ~ I 12 __ L ___ _ ~ I I\n1- I I\n11:J I I\nLL I I\n' I I ~ I I I\n:::l 10 I I I\n1- I I I\n~ I I I\n4'. I I I\nw I I I\n0:: 8 - 1---1---t--\n:::l I I I\n~ I I I\nW I I I 8: I I I I\nI I I I\n6 --r --t---,---r\nI I I I\nI I I I\nI I I I\nI I I I\n4 _ L __ I __ J ___ f __\nI I I I\nI I I I\nI I I I\nI I I I\nI I I I I I\n2 - 1---1---t---J---t-- -\nI I I I I\nI I I I I\nI I I I I\nI I I I I\nI I I I I\nI\nI\nI\nI\nof I I I I .,,.1---+--+---i---r\n91, I I I I\n1< I I I I\nS I I I I\n1•0 I I I I\n1-'t<'r-+--+---i---r\nI ' I I Z I I\nI I I Of I\nI I V51 I\nI I ~ I I:: I\n__ Tl __ Tl -iL 2_.1\nz l _, I\nI I I\nI I I\nI I I\nI I I\n-+- +-- ---t\nI I I\nI I I\nI I I\nI I I\nI . I\n-I--- ,---t-i I I\nI I I\nI I I\nI I I\nI I I -r--,---,\nI I I\nI I I\nI I I\nI I I I __ L __ J\nI I\nI I\nI I\nI I\nI I - ,---r-1 I\nI I\nI\nI __ L\nI\nI\nI\nI\nI\n0 -------------------------------  _  _  ,  ___  200 400\nSHAFT HORSEPOWER AVAi LABLE\nFI GURE AC 29.45-5 INSTALLED TAKEOFF POWER AVAILABLE, ANTI-ICE OFF. 400 RPM\nAC 29-2C, Chg 4 5/1/2014\nPage B – 26"
     },
     {
       "page": 77,
-      "text": ",,\nGi\nC\n::0\nm\n)>\n(\")\nI',)\n(0 soo·c '.:,.\n0, 780°C &,\n\"'O 760°C\n0 740\"C\nm\nn o·c\n::0 1oo·c\n)>\n(/) sso·c\n(/) sso·c C\nz\n(\")\nm\n(\")\n::i::\nm\n(\")\n;,:::\n(\")\n::i::\n)>\n::0\n-I\nCONDITI\nONS\nr-...\n' r-._ '\\\n' ' \" ' ' \\ '\\ '\\\n\\ \\ \\\n\\ '\\ '\\\n\"\\ ,\\ '\\ ' '\\ '\\ ' \\ \\ ' ' ' \\ \\\n\\ \\\n\\\n\\\nZERO\nAIRSPEED\nRPM 100%\nMJTI-ICE\nOFF\nGENERATOR LOAD 100 A\nMPS\n'\\\n'\\ '\\\n'i: \\. \"\"\n--- - --- -\n\\ I ' '\nI\\ '\\ \\ '\\\n'h \\ \\ i\\ '\\\n\\I ' ' \\ \\\n,;\\ \\ \\ \\ \\ \\\ni\\ \\ \\ i\\ \\ \\ '\\\nZ, \\ \\ ' ' '\nI\\ \\ \\ \\ \\ \\ \\ \\ I '\n20 30 40 60\nOUTSIDE\nAIR\nTEM\nPERATURE- °C\nEXAMPLE:\nOA\nT = 17.5°C\nTO\nT = 760° C\nH • = 4000 FT\nREQUIRED TORQUE= 70%\n,,\n/\nV /\n/\n., V / ,,\n- -. - - - -\n, l,,,L 7 v_ / l,L 17 ,,.\nV , / V /\n)/ V ,/ V V A\nV I/ V I , ,/\nV V / ,v I\nV V _/ ..\nV V I\nV I\nI\n0 20 40 60\n/ V\n/ /\n,\n/ / V\n/ / V\n/ _,, v\n/ /v\n/\n/\n80 100\nPERCENT TORQUE\n/\n,/\n,\n/\n/\n/\n/\n10000 FT\n8000 FT\n60()() FT\n4000 FT\n2000 FT\nSEA LEVEL\n5/1/2014 AC 29-2C, Chg 4\nPage B – 26.1"
+      "text": ",,\nGi\nC\n::0\nm\n)>\n(\")\nI',)\n(0 soo·c '.:,.\n0, 780°C &,\n\"'O 760°C\n0 740\"C\nm\nn o·c\n::0 1oo·c\n)>\n(/) sso·c\n(/) sso·c C\nz\n(\")\nm\n(\")\n::i::\nm\n(\")\n;,:::\n(\")\n::i::\n)>\n::0\n-I\nCONDITI\nONS\nr-\n' r-._ '\\\n' ' \" ' ' \\ '\\ '\\\n\\ \\ \\\n\\ '\\ '\\\n\"\\ ,\\ '\\ ' '\\ '\\ ' \\ \\ ' ' ' \\ \\\n\\ \\\n\\\n\\\nZERO\nAIRSPEED\nRPM 100%\nMJTI-ICE\nOFF\nGENERATOR LOAD 100 A\nMPS\n'\\\n'\\ '\\\n'i: \\. \"\"\n--- - --- -\n\\ I ' '\nI\\ '\\ \\ '\\\n'h \\ \\ i\\ '\\\n\\I ' ' \\ \\\n,;\\ \\ \\ \\ \\ \\\ni\\ \\ \\ i\\ \\ \\ '\\\nZ, \\ \\ ' ' '\nI\\ \\ \\ \\ \\ \\ \\ \\ I '\n20 30 40 60\nOUTSIDE\nAIR\nTEM\nPERATURE- °C\nEXAMPLE:\nOA\nT = 17.5°C\nTO\nT = 760° C\nH • = 4000 FT\nREQUIRED TORQUE= 70%\n,,\n/\nV /\n/\n., V / ,,\n- -. - - - -\n, l,,,L 7 v_ / l,L 17 ,,.\nV , / V /\n)/ V ,/ V V A\nV I/ V I , ,/\nV V / ,v I\nV V _/\nV V I\nV I\nI\n0 20 40 60\n/ V\n/ /\n,\n/ / V\n/ / V\n/ _,, v\n/ /v\n/\n/\n80 100\nPERCENT TORQUE\n/\n,/\n,\n/\n/\n/\n/\n10000 FT\n8000 FT\n60()() FT\n4000 FT\n2000 FT\nSEA LEVEL\n5/1/2014 AC 29-2C, Chg 4\nPage B – 26.1"
     },
     {
       "page": 78,
@@ -358,7 +359,7 @@
     },
     {
       "page": 87,
-      "text": "1000 ft. I ::::i g -cJ C :::, ~ C) Q) > 200 ft 0 .0 ~ - ~ .s:::.\n\nH-V AVOID (29 87)\n\n1/.//1//.((/(,f / 0) ·;;; I 35 ft 15 ft. Oft. I+-- Rejected T.O. Dist (29.62) I+-- T.O. Dist (29.61) v. ?.100 fpm (29.67 a.1) ,,- Vv .:.150fpm (29.67a.2) §-'\" \"',§$ V,oss .._l;- 35 ft. - ' 15 ft., -----.. ' _____.. Horizontal Distance\n\nFIGURE AC 29.53A-1 TAKEOFF PERFORMANCE CATEGORY A\n\n1000 ft\n\n9/30/99 AC 29-2C\n\nPage B - 35"
+      "text": "1000 ft. I ::::i g -cJ C :::, ~ C) Q) > 200 ft 0 .0 ~ - ~ .s:::.\n\nH-V AVOID (29 87)\n\n1/.//1//.((/(,f / 0) ·;;; I 35 ft 15 ft. Oft. I+-- Rejected T.O. Dist (29.62) I+-- T.O. Dist (29.61) v. ?.100 fpm (29.67 a.1) ,,- Vv .:.150fpm (29.67a.2) §-'\"\n\n\"',§$ V,oss .._l;-\n\n35 ft. - ' 15 ft., -----.. ' _____.. Horizontal Distance\n\nFIGURE AC 29.53A-1 TAKEOFF PERFORMANCE CATEGORY A\n\n1000 ft\n\n9/30/99 AC 29-2C\n\nPage B - 35"
     },
     {
       "page": 88,
@@ -454,7 +455,7 @@
     },
     {
       "page": 111,
-      "text": "z :::) 0:: w~ > tu OW\n\nCD LL ~~\n\n~ 0 w I\n\nAVOID\n\nw _J LL 0:: 0... LL LL @ ::,:: ~\n\n.,___ 5 KTS MINIMUM\n\nMARGIN\n\nAVOID\n\nVELOCITY (KNOTS)\n\nFl GURE AC 29.63-1 CONVENTIONAL TAKE OFF PROFILE CATEGORY B\n\n9/30/99 AC 29-2C\n\nPage B - 59"
+      "text": "z :::) 0:: w~ > tu OW\n\nCD LL ~~\n\n~ 0 w I\n\nAVOID\n\nw _J LL 0::\n\n0...\n\nLL LL @ ::,:: ~\n\n.,___ 5 KTS MINIMUM\n\nMARGIN\n\nAVOID\n\nVELOCITY (KNOTS)\n\nFl GURE AC 29.63-1 CONVENTIONAL TAKE OFF PROFILE CATEGORY B\n\n9/30/99 AC 29-2C\n\nPage B - 59"
     },
     {
       "page": 112,
@@ -534,7 +535,7 @@
     },
     {
       "page": 131,
-      "text": "FIGURE AC 29.75-2 CATEGORY A VERTICAL LANDING\n\n9/30/99 AC 29-2C\n\nPage B - 79"
+      "text": "9/30/99\n\nAC 29-2C\n\nVToss\n\nLDP\n\nVTOSS\n\n35 ft. 25 ft. Landing Distance\n\nFIGURE AC 29.75-2 CATEGORY A VERTICAL LANDING\n\nPage B - 79"
     },
     {
       "page": 132,
@@ -574,11 +575,11 @@
     },
     {
       "page": 141,
-      "text": "LANDING DISTANCE _____.\n\nFIGURE AC 29.75A-1 CATEGORY A CONVENTIONAL LANDING- CLEAR HELIPORT\n\n9/30/99 AC 29-2C\n\nPage B - 89"
+      "text": "9/30/99\n\nAC 29-2C\n\nVToss Vy\n\nLDP\n\nVTOSS\n\n50'ft. 15 ft.\n\nLANDING DISTANCE\n\nFIGURE AC 29.75A-1 CATEGORY A CONVENTIONAL LANDING - CLEAR HELIPORT\n\nPage B- 89"
     },
     {
       "page": 142,
-      "text": "FIGURE AC 29.75A-2 CATEGORY A VERTICAL LANDING\n\nAC 29-2C 9/30/99\n\nPage B - 90"
+      "text": "AC 29-2C\n\n9/30/99 VToss\n\nLDP\n\nVTOSS\n\n15 ft.\n\nFIGURE AC 29.75A-2 CATEGORY A VERTICAL LANDING\n\nPage B - 90"
     },
     {
       "page": 143,
@@ -726,7 +727,7 @@
     },
     {
       "page": 179,
-      "text": "O CRUISE\n□ CLIMB\nb.◊ AUTOROTATION\nHOVER\nSHADED POINTS REPRESENT TRIM\nti:\n90 t---+---+-----,f---+--+----+-+---+---+-----,f---+--+---+-+---+---+------:;j<i!-~·...---,--, 0<: 0 I 1-\n~ f>l•>®W•\n:J 80 l----l----l-.... f---l---l----1---1----1----1-.... f----l-li.e,,i\\>· I •~l ---1---1---1-----!-.... -+---I----I\nc2\n~ ~~ o 7 0 l----+---+-----,f---+--+----+-+-----+-,,,....+-----,f---+--+---+-+---+---+------,-+--+----1 8: r=,.,l.!J\n~ [•)..,1•·..!.\nz 60 1----1----1-.... f---l---l----l--'=L!!J\"-+----f--+---l----l--l---l-----l----l---l----l----l--f----t\ni=\nV5\n~ 50 1----+---+-----,f---+--+----+-+----+---+-----,f---+--+---+-+---+---+------,-+--+----I\n(.)\n::J\n(.)\n(3 40 l----+--+--:---11--<v[••} +--+---t-----,1,;--A----,,ti.-----,ti•;.-4,-4~----'f'--t-+--+---l-+--+----I _J I t~ ~~ '~ •~ ••\n~\n~ 30 l--~~----l----+-+---l---l----l--+--+---1----1---l-+---+---l----l--+--+---I---I\n:::)\nt:\nz\n_J\n20 .... t--+--+-t--+---+--+----+--+----r--+---+--+--+--+---+--+-t--+---1\n10 l----+---+-----,1---+--+----+-+----+---+-----,f---+--+---+-+---+---+------,-+--+----I\n0 .__...._  ___ .__..,___,___,,_.,__....___._ ___ ...._..,___,_  _.,__...____,_ ____ ..._  ___,\n0 20 40 60 80 100 120 140 160\nCALIBRATED AIRSPEED (KNOTS)\nFl GURE AC 29.175-1 STATIC LONGITUDINAL ST ABILITY\n9/30/99 AC 29-2C\nPage B – 115"
+      "text": "O CRUISE\n□ CLIMB\nb.◊ AUTOROTATION\nHOVER\nSHADED POINTS REPRESENT TRIM\nti:\n90 t---+---+-----,f---+--+----+-+---+---+-----,f---+--+---+-+---+---+------:;j<i!-~·  ---,--, 0<: 0 I 1-\n~ f>l•>®W•\n:J 80 l----l----l-  f---l---l----1---1----1----1-  f----l-li.e,,i\\>· I •~l ---1---1---1-----!-  -+---I----I\nc2\n~ ~~ o 7 0 l----+---+-----,f---+--+----+-+-----+-,,,  +-----,f---+--+---+-+---+---+------,-+--+----1 8: r=,.,l.!J\n~ [•)  ,1•·  !.\nz 60 1----1----1-  f---l---l----l--'=L!!J\"-+----f--+---l----l--l---l-----l----l---l----l----l--f----t\ni=\nV5\n~ 50 1----+---+-----,f---+--+----+-+----+---+-----,f---+--+---+-+---+---+------,-+--+----I\n(.)\n::J\n(.)\n(3 40 l----+--+--:---11--<v[••} +--+---t-----,1,;--A----,,ti.-----,ti•;.-4,-4~----'f'--t-+--+---l-+--+----I _J I t~ ~~ '~ •~ ••\n~\n~ 30 l--~~----l----+-+---l---l----l--+--+---1----1---l-+---+---l----l--+--+---I---I\n:::)\nt:\nz\n_J\n20  t--+--+-t--+---+--+----+--+----r--+---+--+--+--+---+--+-t--+---1\n10 l----+---+-----,1---+--+----+-+----+---+-----,f---+--+---+-+---+---+------,-+--+----I\n0 .__  _  ___ .__  ,___,___,,_.,__  ___._ ___  _  ,___,_  _.,__  ____,_ ____  _  ___,\n0 20 40 60 80 100 120 140 160\nCALIBRATED AIRSPEED (KNOTS)\nFl GURE AC 29.175-1 STATIC LONGITUDINAL ST ABILITY\n9/30/99 AC 29-2C\nPage B – 115"
     },
     {
       "page": 180,
@@ -742,7 +743,7 @@
     },
     {
       "page": 183,
-      "text": "... • ■ ♦ • . .. - .i. A.&. - n• t ~ - • ,. ■ .4 ,. - ■ I~ ~ ♦◄ ► T 9/17/2009 AC 29-2C, Chg 4 Climb (Vy) Cruise (Vne) Criuse (Vh) Autorotation (Vglide) Autorotation (Vmin RoD) Longitudinal Cyclic Position (% from Full Aft) 0 20 40 60 80 100 120 140 160 Calibrated Airspeed (Knots)\n\nFIGURE AC 29.175A-1: STATIC LONGITUDINAL STABILITY\n\nPage B – 116.3"
+      "text": "...\n\n• ■ ♦ •\n\n. .. -\n\n.i. A.&. - n• t ~ - • ,. ■ .4 ,. - ■ I~ ~ ♦◄ ► T 9/17/2009 AC 29-2C, Chg 4 Climb (Vy) Cruise (Vne) Criuse (Vh) Autorotation (Vglide) Autorotation (Vmin RoD) Longitudinal Cyclic Position (% from Full Aft) 0 20 40 60 80 100 120 140 160 Calibrated Airspeed (Knots)\n\nFIGURE AC 29.175A-1: STATIC LONGITUDINAL STABILITY\n\nPage B – 116.3"
     },
     {
       "page": 184,
@@ -1038,7 +1039,7 @@
     },
     {
       "page": 258,
-      "text": "AC 29-2C, Chg 1 2/12/03 Illustration shows Test 1 Test 2 a forward facing seat\n\nATD\n\nload inertial shown by arrow: f,i- ~~~ 5 • • Min. V1, fps 30 42 Max. tr, sec. . 031 . 071 Min. G 30 18.4 Defont floor: degrees roll 10 10 degrees pitch 10 10 t r time .... 0-tr-7\"'7\":l~ll'\"r-~~--- • deceleration ' tr = rise the v1 = tnpact velocity G FIGURE AC 29.562-1 . Seat Restraint System Dynamic Tests Normal and Transport Category Rotorcraft Page C - 58"
+      "text": "AC 29-2C, Chg 1 2/12/03 Illustration shows Test 1 Test 2 a forward facing seat\n\nATD\n\nload inertial shown by arrow: f,i- ~~~ 5 • • Min. V1, fps 30 42 Max. tr, sec. . 031 . 071 Min. G 30 18.4 Defont floor: degrees roll 10 10 degrees pitch 10 10 t\n\nr time ....\n\n0-tr-7\"'7\":l~ll'\"r-~~--- • deceleration ' tr = rise the v1 = tnpact velocity G FIGURE AC 29.562-1 . Seat Restraint System Dynamic Tests Normal and Transport Category Rotorcraft Page C - 58"
     },
     {
       "page": 259,
@@ -1390,7 +1391,7 @@
     },
     {
       "page": 346,
-      "text": "!ti w :IE u, ~ (.) ii: w z w C) .. ••\n\nCOMPONENTS I\n\nI • I • ' c TAIL ROTOR BLADE ;-\n\n·- - -' I SUB-COMPONENTS I\n\nI ' I • ·~·::-:-:·:.:,ii, :,;:-:·::~)·tt-:; · _ 7 I I I I I I I\n\n- -- - - DETAILS I \\\n\n\\ \\ \\ \\ \\ \\ ,,, ____________ -\\\n\n/ I ELEMENTS I \\\n\n~ 0\n\n: SKIN\n\nI 1 • i----------------l\n\n: I COUPONS I \\\n\n/ : - - ttfi:dif ~ \\ \\ I --' , ~ UJID rrm fZZ3 ea \\ I \\ u, a: \"' s ... I In ~--------------------· AC 29-2C, Chg 4 12/1/2011 Figure AC 29.573-1: Schematic Diagram of Building Block Tests. Page C - 146"
+      "text": "!ti w :IE u, ~ (.) ii: w z w C) .. ••\n\nCOMPONENTS I\n\nI • I • ' c TAIL ROTOR BLADE ;-\n\n·- - -' I SUB-COMPONENTS I\n\nI ' I • ·~·::-:-:·:.:,ii, :,;:-:·::~)·tt-:; · _ 7 I I I I I I I\n\n- -- - - DETAILS I \\\n\n\\ \\ \\ \\ \\ \\ ,,, ____________ -\\\n\n/ I ELEMENTS I \\\n\n~ 0\n\n: SKIN\n\nI 1 • i----------------l\n\n: I COUPONS I \\\n\n/ : - - ttfi:dif ~ \\ \\ I --' , ~ UJID rrm fZZ3 ea \\ I \\ u, a: \"'\n\ns ...\n\nI In ~--------------------· AC 29-2C, Chg 4 12/1/2011 Figure AC 29.573-1: Schematic Diagram of Building Block Tests. Page C - 146"
     },
     {
       "page": 347,
@@ -1430,7 +1431,7 @@
     },
     {
       "page": 356,
-      "text": "-..... -- ~ t ~ , AC 29-2C, Chg 4 12/1/2011 less than ultimate, providing a lower safety level than in the typical slow growth situation, as illustrated by the Figure AC 29.573-3. Once the damage is detected, the component is either repaired to restore ultimate load capability or replaced. Damage initiation Re s id u a l s t re n g th T i me No -g ro wt h a p p ro a c h ** Slo w-g ro wt h a p p ro a c h * Ult i ma t e lo a d s L i mit lo a d s o r o c c u rre n c e * Re p a ir t o Re s t o re U lt i ma t e St re n g t h * * No g ro wt h wit h o u t re p a ir is n o t a c c e p t a b le Figure AC 29.573-3: Residual Strength vs. Time. The lower the residual strength of a structure after an accidental damage event, the shorter the inspection interval should be. Considerations of both inspectability and impact surveys (including probability of occurrence) for specific structure may be used to isolate the most critical threats to consider in setting a maintenance inspection interval. Knowledge of the residual strength for a given critical damage is also needed for such an evaluation. If it is known that the design is capable of handling large and clearly detectable damage, while maintaining a residual strength well above limit load, a less rigorous engineering approach may be applied in establishing the inspection interval. (2) Slow Growth Evaluation. This method is applicable when the damage grows in the test and the growth rate is shown to be slow, stable, and predictable, as illustrated in Figure AC 29.573-4. An inspection program should be developed consisting of the frequency, extent, and methods of inspection for inclusion in the maintenance plan. Inspection intervals should be established so that the damage will have a very high probability of detection between the time it becomes initially inspectable and the time at which the extent of the damage reduces the residual static strength to limit load (considered as ultimate), including the effects of environment. For any damage size that reduces the load capability below ultimate, the component is either repaired to restore ultimate load capability or replaced. Should functional impairment (such as unacceptable loss of stiffness) occur before the damage becomes Page C - 156"
+      "text": "-.....\n\n-- ~ t ~ , AC 29-2C, Chg 4 12/1/2011 less than ultimate, providing a lower safety level than in the typical slow growth situation, as illustrated by the Figure AC 29.573-3. Once the damage is detected, the component is either repaired to restore ultimate load capability or replaced. Damage initiation Re s id u a l s t re n g th T i me No -g ro wt h a p p ro a c h ** Slo w-g ro wt h a p p ro a c h * Ult i ma t e lo a d s L i mit lo a d s o r o c c u rre n c e * Re p a ir t o Re s t o re U lt i ma t e St re n g t h * * No g ro wt h wit h o u t re p a ir is n o t a c c e p t a b le Figure AC 29.573-3: Residual Strength vs. Time. The lower the residual strength of a structure after an accidental damage event, the shorter the inspection interval should be. Considerations of both inspectability and impact surveys (including probability of occurrence) for specific structure may be used to isolate the most critical threats to consider in setting a maintenance inspection interval. Knowledge of the residual strength for a given critical damage is also needed for such an evaluation. If it is known that the design is capable of handling large and clearly detectable damage, while maintaining a residual strength well above limit load, a less rigorous engineering approach may be applied in establishing the inspection interval. (2) Slow Growth Evaluation. This method is applicable when the damage grows in the test and the growth rate is shown to be slow, stable, and predictable, as illustrated in Figure AC 29.573-4. An inspection program should be developed consisting of the frequency, extent, and methods of inspection for inclusion in the maintenance plan. Inspection intervals should be established so that the damage will have a very high probability of detection between the time it becomes initially inspectable and the time at which the extent of the damage reduces the residual static strength to limit load (considered as ultimate), including the effects of environment. For any damage size that reduces the load capability below ultimate, the component is either repaired to restore ultimate load capability or replaced. Should functional impairment (such as unacceptable loss of stiffness) occur before the damage becomes Page C - 156"
     },
     {
       "page": 357,
@@ -1558,7 +1559,7 @@
     },
     {
       "page": 388,
-      "text": "Tension Comp\n\nULTIMATE LOADS\n\np +5,000 # TENS. i\n\n-1,000 # COMP -\n\nr-1--, - ---- --~ Tension Reaction Compression Reaction / - - - ..... ~ - -- -- .\n\nFIGURE AC 29.621-1\n\nEXAMPLE OF CASTING LOAD SHEET\n\nRETRACT ACTUATOR SUPPORT - LANDING GEAR\n\nAC 29-2C 9/30/99\n\nPage D - 24"
+      "text": "Tension Comp\n\nULTIMATE LOADS\n\np +5,000 # TENS. i\n\n-1,000 # COMP -\n\nr-1--, - ---- --~ Tension Reaction Compression Reaction / - -\n\n- .....\n\n~ - -- -- .\n\nFIGURE AC 29.621-1\n\nEXAMPLE OF CASTING LOAD SHEET\n\nRETRACT ACTUATOR SUPPORT - LANDING GEAR\n\nAC 29-2C 9/30/99\n\nPage D - 24"
     },
     {
       "page": 389,
@@ -2206,11 +2207,11 @@
     },
     {
       "page": 550,
-      "text": "AC 29-2C 9/30/99\n-10\n0 2000 4000 6000 8000 10,000\nLL\nw\nw '\n0::\n:::)\n0::\nw\n0...\nw\nI-I-z\nw\nCD\n<(\nPRESSURE ALTITUDE - FT\nFIGURE AC 29.877-2 INTERMITTENT ICING - TEMPERATURE VS ALTITUDE LIMITS\nFigures AC 29.877-1 through 4 represent one approach to a 10,000-foot altitude limit\nand Figure AC 29.877-5 represents another. See Paragraph 386b(5)(iii) for a discussion of\nthe individual application of the two approach es\nPage D - 182"
+      "text": "AC 29-2C 9/30/99\n-10\n0 2000 4000 6000 8000 10,000\nLL\nw\nw '\n0::\n:::)\n0::\nw\n0\nw\nI-I-z\nw\nCD\n<(\nPRESSURE ALTITUDE - FT\nFIGURE AC 29.877-2 INTERMITTENT ICING - TEMPERATURE VS ALTITUDE LIMITS\nFigures AC 29.877-1 through 4 represent one approach to a 10,000-foot altitude limit\nand Figure AC 29.877-5 represents another. See Paragraph 386b(5)(iii) for a discussion of\nthe individual application of the two approach es\nPage D - 182"
     },
     {
       "page": 551,
-      "text": "0::\nw\nI-w\n~\n()\n-\nai\n:::)\n()\n(f)\n~\n~\n0::\n' I-z\nw\nI-z\n()\n0::\nw\n~\ns\n:::)\na\n_J\n1.0\nSEA LEVEL TO 10,000 FT PRESSURE ALTITUDE\n0.8\n\"1~\n~~ ;,z,,)'.\n0.6 <Y A~ ~ ~..o ,..___\n0.2\n0-----------------------\n0 10 20 30 40 50\nMEAN EFFECTIVE DROP DIAMETER- MICRONS\nFIGURE AC 29.877-3 MEAN EFFECTIVE DROP DIAMETER- MICRONS\nFigures AC 29.877-1 through 4 represent one approach to a 10,000-foot altitude limit\nand Figure AC 29.877-5 represents an other. See Paragraph 386b(5)(iii) for discussion\nof the individual application of the two approach es\n9/30/99 AC 29-2C\nPage D - 183"
+      "text": "0::\nw\nI-w\n~\n()\n-\nai\n:::)\n()\n(f)\n~\n~\n0::\n' I-z\nw\nI-z\n()\n0::\nw\n~\ns\n:::)\na\n_J\n1.0\nSEA LEVEL TO 10,000 FT PRESSURE ALTITUDE\n0.8\n\"1~\n~~ ;,z,,)'.\n0.6 <Y A~ ~ ~  o ,  ___\n0.2\n0-----------------------\n0 10 20 30 40 50\nMEAN EFFECTIVE DROP DIAMETER- MICRONS\nFIGURE AC 29.877-3 MEAN EFFECTIVE DROP DIAMETER- MICRONS\nFigures AC 29.877-1 through 4 represent one approach to a 10,000-foot altitude limit\nand Figure AC 29.877-5 represents an other. See Paragraph 386b(5)(iii) for discussion\nof the individual application of the two approach es\n9/30/99 AC 29-2C\nPage D - 183"
     },
     {
       "page": 552,
@@ -2318,11 +2319,11 @@
     },
     {
       "page": 578,
-      "text": ",,_---.... / ., ,/ / / I I ~ 11/3 (R • bl ' ' \\ \\ b I Where R = disc radius b = blade length Maximum dimension= 1/3 (R + b) Mass assumed to be 1/ 30th of bladed disc CG is taken to lie on the disc rim\n\nFIGURE AC 29.903C-3. INTERMEDIATE AND SMALL PIECES OF DEBRIS\n\n9/30/99 AC 29-2C\n\nPage E - 25"
+      "text": ",,_---....\n\n/ ., ,/ / / I I ~ 11/3 (R • bl ' ' \\ \\ b I Where R = disc radius b = blade length Maximum dimension= 1/3 (R + b) Mass assumed to be 1/ 30th of bladed disc CG is taken to lie on the disc rim\n\nFIGURE AC 29.903C-3. INTERMEDIATE AND SMALL PIECES OF DEBRIS\n\n9/30/99 AC 29-2C\n\nPage E - 25"
     },
     {
       "page": 579,
-      "text": "T 1/3X J_\n\n- GEOMETRIC CG\n\nX\n\nWHERE X = AIRFOIL LENGTH\n\n(LESS BLADE ROOT & PLATFORM)\n\nCG IS TAKEN TO LIE AT THE\n\nCENTERLINE OF THE 1/3 FRAGMENT\n\nFRAGMENT VELOCITY TAKEN AT\n\nGEOMETRIC CG\n\nFRAGMENT MASS ASSUMED TO BE\n\n1/3 OF THE AIRFOIL MASS\n\nTl (j) C ;:o m () t-..) <D <D (>) () '\n\nBLADE FRAGMENT DEFINITION\n\nAC 29 -2C 9/30/99 Page E - 26"
+      "text": "T 1/3X J_\n\n- GEOMETRIC CG\n\nX\n\nWHERE X = AIRFOIL LENGTH\n\n(LESS BLADE ROOT & PLATFORM)\n\nCG IS TAKEN TO LIE AT THE\n\nCENTERLINE OF THE 1/3 FRAGMENT\n\nFRAGMENT VELOCITY TAKEN AT\n\nGEOMETRIC CG\n\nFRAGMENT MASS ASSUMED TO BE\n\n1/3 OF THE AIRFOIL MASS\n\nTl (j) C ;:o m ()\n\nt-..)\n\n<D <D (>) () '\n\nBLADE FRAGMENT DEFINITION\n\nAC 29 -2C 9/30/99 Page E - 26"
     },
     {
       "page": 580,
@@ -2418,7 +2419,7 @@
     },
     {
       "page": 603,
-      "text": "O.E.I. RUN ::\n30 MIN O.E.I. OR CONT O.E.I.\nEACH ENGINE\n29.923 (k)\nNOTE 6 0\nOVERSPEEDATM.C. TORQUE\n29.923 (h)\nMALFUNCTION RUN OR \"'\nREPEATT.O. RUN\n29.923 Wl\nNOTE\n60% M.C. W 00 29.923 (f) <.:,W\nz:a; NOTE 4 - :::)\n~~~ N 00\n0 f- ct: z <( :::> WwO\n:a; o.. I wW+\n~a::g\n00 • N >- W 80% M.C. LL 00 _J 0 29.923 (e) w 0 _,\n<::(}<(\nct: ct'.f-' o=>o\nct:ot::;, 90% M.C. OI 29.923 (d) b~\nct:~\n....\n~ 00 M (t'.N\n<D :::>~\n0~\nIo\n' <( Ww\n~ct:\n\"' f- :::>\n(:,\nLL\n...\nM\nM\nw MAXIMUM CONTINUOUS RUN f-0 29.923 (C) z\nN ~ w w f- f- 0 0 z z\n\\ I C : 1  z\n'= ~ :::>\nct:\n' LL\n- LL :!:: 0\nw\n~\nN\nI -- • <(\n. ' . ' . ' ' ' 0\n. ' . . . .\niii 0 iii (.) (.) (.) (.) Q) .!!1 0 f-C 0 :a; :a; :a; :a; '§ :!1\n~ ~ -;j< -;j< -;j< ....\nLL <°5 :a; :a; 0 0 0\n\"°! 0 \"' 00 <D\nN M\nAC 29-2C 9/30/99\nPage E - 48"
+      "text": "O.E.I. RUN ::\n30 MIN O.E.I. OR CONT O.E.I.\nEACH ENGINE\n29.923 (k)\nNOTE 6 0\nOVERSPEEDATM.C. TORQUE\n29.923 (h)\nMALFUNCTION RUN OR \"'\nREPEATT.O. RUN\n29.923 Wl\nNOTE\n60% M.C. W 00 29.923 (f) <.:,W\nz:a; NOTE 4 - :::)\n~~~ N 00\n0 f- ct: z <( :::> WwO\n:a; o  I wW+\n~a::g\n00 • N >- W 80% M.C. LL 00 _J 0 29.923 (e) w 0 _,\n<::(}<(\nct: ct'.f-' o=>o\nct:ot::;, 90% M.C. OI 29.923 (d) b~\nct:~\n\n~ 00 M (t'.N\n<D :::>~\n0~\nIo\n' <( Ww\n~ct:\n\"' f- :::>\n(:,\nLL\n\nM\nM\nw MAXIMUM CONTINUOUS RUN f-0 29.923 (C) z\nN ~ w w f- f- 0 0 z z\n\\ I C : 1  z\n'= ~ :::>\nct:\n' LL\n- LL :!:: 0\nw\n~\nN\nI -- • <(\n. ' . ' . ' ' ' 0\n. ' . . . .\niii 0 iii (.) (.) (.) (.) Q) .!!1 0 f-C 0 :a; :a; :a; :a; '§ :!1\n~ ~ -;j< -;j< -;j<\nLL <°5 :a; :a; 0 0 0\n\"°! 0 \"' 00 <D\nN M\nAC 29-2C 9/30/99\nPage E - 48"
     },
     {
       "page": 604,
@@ -2490,7 +2491,7 @@
     },
     {
       "page": 621,
-      "text": "/] 41--- L ---•I - - ...__ ----::_-..1' -- -, ...., r I ~ k M + 0.23m Wcr = first critical speed, RAD/SEC k = shaft spring rate, LB/IN = 3EI/L 3 E M = m odu I us of elasticity = moment on inertia = mass of weight, LB-SEC2/IN m = mass of shaft, LB-SEC2/IN Fl GURE AC 29.931-1. CANTILEVERED SHAFT, Fl RST CRITICAL SPEED wcr = a/,~ ~ ~ W0, = first critical speed-RAD/SEC u = mass per unit I ength E = Young's modulus L = length between supports = inertia of shaft a = a numerical constant for first critical speed, a= (pi)2 = 9.87 The numerical constant (a) for higher critical whirl modes or other shaft support systems may be derived from standard texts on this subject\n\nFIGURE AC 29.931-2. SHAFT BETWEEN SUPPORT BEARINGS, FIRST CRITICAL SPEED\n\nAC 29-2C 9/30/99\n\nPage E - 62"
+      "text": "/] 41--- L ---•I - - ...__ ----::_-..1' -- -,\n\n....,\n\nr I ~ k M + 0.23m Wcr = first critical speed, RAD/SEC k = shaft spring rate, LB/IN = 3EI/L 3 E M = m odu I us of elasticity = moment on inertia = mass of weight, LB-SEC2/IN m = mass of shaft, LB-SEC2/IN Fl GURE AC 29.931-1. CANTILEVERED SHAFT, Fl RST CRITICAL SPEED wcr = a/,~ ~ ~ W0, = first critical speed-RAD/SEC u = mass per unit I ength E = Young's modulus L = length between supports = inertia of shaft a = a numerical constant for first critical speed, a= (pi)2 = 9.87 The numerical constant (a) for higher critical whirl modes or other shaft support systems may be derived from standard texts on this subject\n\nFIGURE AC 29.931-2. SHAFT BETWEEN SUPPORT BEARINGS, FIRST CRITICAL SPEED\n\nAC 29-2C 9/30/99\n\nPage E - 62"
     },
     {
       "page": 622,
@@ -2610,7 +2611,7 @@
     },
     {
       "page": 651,
-      "text": "). .,\n\nTENSION TESTS\n\n90-DEGREE TESTS\n\nFIGURE AC 29.952-2 HOSE ASSEMBLY TESTS\n\nAC 29-2C 9/30/99\n\nPage E - 88"
+      "text": "AC 29-2C\n\n9/30/99\n\nLOAD\n\nLOAD\n\nTENSION TESTS\n\nLOAD\n\nLOAD\n\n90-DEGREE TESTS\n\nFIGURE AC 29.952-2 HOSE ASSEMBLY TESTS\n\nPage E - 88"
     },
     {
       "page": 652,
@@ -2834,7 +2835,7 @@
     },
     {
       "page": 707,
-      "text": "9/30/99 AC 29-2C\n\nMULTI ENGINE POWER AVAILABLE\n\n20K 15K I- ~ ::::; w z 0 (f) :::) 2' I- X i== _J ~ w 0:: :::) (f) 10K (f) w 0:: 0... SK\n\nPOWER\n\nFIGURE AC 29.1041-1 ADCH IONAL COOLING TEST POINT\n\nPage E - 139"
+      "text": "9/30/99 AC 29-2C\n\nMULTI ENGINE POWER AVAILABLE\n\n20K 15K I- ~ ::::; w z 0 (f) :::) 2' I- X i== _J ~ w 0:: :::) (f) 10K (f) w 0::\n\n0...\n\nSK\n\nPOWER\n\nFIGURE AC 29.1041-1 ADCH IONAL COOLING TEST POINT\n\nPage E - 139"
     },
     {
       "page": 708,
@@ -2862,7 +2863,7 @@
     },
     {
       "page": 714,
-      "text": "AC 29-2C 9/30/99\n\nMULTI ENGINE POWER AVAILABLE\n\nw :::)\n\nI-I_J\n\n~ w 0:: :::) (f) (f) w 0:: 0... 20K 15K\n\nCRITICAL ALTITUDE 10K ---------\n\n5K t::I 2: ~ ~ ~\n\nPOWER\n\nFl GURE AC 29.1045-1 ALL-ENGINE CRITICAL ALTITUDE\n\nADDITIONAL COOLING TEST POINT\n\nPage E - 146"
+      "text": "AC 29-2C 9/30/99\n\nMULTI ENGINE POWER AVAILABLE\n\nw :::)\n\nI-I_J\n\n~ w 0:: :::) (f) (f) w 0::\n\n0...\n\n20K 15K\n\nCRITICAL ALTITUDE 10K ---------\n\n5K t::I 2: ~ ~ ~\n\nPOWER\n\nFl GURE AC 29.1045-1 ALL-ENGINE CRITICAL ALTITUDE\n\nADDITIONAL COOLING TEST POINT\n\nPage E - 146"
     },
     {
       "page": 715,
@@ -3442,7 +3443,7 @@
     },
     {
       "page": 859,
-      "text": ". . .... ' · . ' · ....... .... . Height Loss .... ·, . . ·, .... ·< .... ....... . ·, .... ·, 1. Failure Initiation 2. Failure Recognition by pilot 3. Initiation of Manual Recovery action by pilot\n\n...........\n\n·-....: .... ....... . ·, ....\n\n·, _. .... ....... . . ....... ....\n\n.... .... .... .... .... .... .... .... .... AC 29-2C, Chg 4 5/1/2014 (D) For approach with vertical guidance, the height loss should be determined as discussed in paragraph (d) below. (ii) The more critical of the following should be induced into the automatic pilot system. (A) A signal about any axis equivalent to the cumulative effect of any single failure, including autotrim (if installed). (B) The combined signals about all affected axes, if multiple axes failures can result from the malfunction of any single component. -\n\nFIGURE AC 29.1329-1 HEIGHT LOSS METHOD\n\nLimit Loads. The simulated failure and the subsequent corrective action should n (2) ot create loads in excess of structural limits or result in dangerous dynamic conditions or hazardous deviations from the flight path. Additional guidance regarding the method of determining pilot recognition times and reasonable flight path deviation due to these simulated failures is contained in paragraph b.(6) of Appendix B of this AC. Resultant flight loads outside the envelope of zero to 2g will be acceptable provided adequate analysis and flight test measurements are conducted to establish that no resultant aircraft load is beyond limit loads for the structure, including a critical assessment and consideration of the effects of structural loading parameter variations Page F - 54"
+      "text": ".\n.  ' · . ' ·    .\nHeight Loss\n·, . . ·,\n·<    . ·,\n·,\n1. Failure Initiation\n2. Failure Recognition by pilot\n3. Initiation of Manual Recovery action by pilot\n·-  :    . ·,\n·, _.    . .\n\nAC 29-2C, Chg 4 5/1/2014\n(D) For approach with vertical guidance, the height loss should be\ndetermined as discussed in paragraph (d) below.\n(ii) The more critical of the following should be induced into the automatic pilot\nsystem.\n(A) A signal about any axis equivalent to the cumulative effect of any\nsingle failure, including autotrim (if installed).\n(B) The combined signals about all affected axes, if multiple axes failures\ncan result from the malfunction of any single component.\n-\nFIGURE AC 29.1329-1 HEIGHT LOSS METHOD\nLimit Loads. The simulated failure and the subsequent corrective action\nshould n\n(2)\not create loads in excess of structural limits or result in dangerous dynamic\nconditions or hazardous deviations from the flight path. Additional guidance regarding\nthe method of determining pilot recognition times and reasonable flight path deviation\ndue to these simulated failures is contained in paragraph b.(6) of Appendix B of this AC.\nResultant flight loads outside the envelope of zero to 2g will be acceptable provided\nadequate analysis and flight test measurements are conducted to establish that no\nresultant aircraft load is beyond limit loads for the structure, including a critical\nassessment and consideration of the effects of structural loading parameter variations\nPage F - 54"
     },
     {
       "page": 860,
@@ -3458,7 +3459,7 @@
     },
     {
       "page": 863,
-      "text": "Fault Rotorcraft --ConfiBuration No. 1 Z' ..,,,. .... _,..,,. Deviation Profile No. 1 Terr ain Point of Change or .- Rolorcraft Config;uralfon Fault Rotorcrafl \\ Configur ation Na. 2 \\ ... \" .... , Devialiun ProfiJe N 2 NO TE: Poinl of change of rolorcraft configuration may be more lhan one point For instance: 1. Gain changes ailong the glide path. 2. The 200 ft. or middle marker lransition. Point of Cllange lo Flare -Made Projected Automatic D ecelerationkiov er Mode (rf Provided) F autt: R ol.orcrafl .- Configuration No. 3 De~atbn rieNo. Rull'f1ay AC 29-2C, Chg 4 5/1/2014\n\nFIGURE AC 29.1329-2 DEVIATION PROFILE\n\nPage F - 58"
+      "text": "Fault Rotorcraft --ConfiBuration No. 1 Z' ..,,,. .... _,..,,. Deviation Profile No. 1 Terr ain Point of Change or .- Rolorcraft Config;uralfon Fault Rotorcrafl \\ Configur ation Na. 2 \\\n\n...\n\n\" .... ,\n\nDevialiun ProfiJe N 2 NO TE: Poinl of change of rolorcraft configuration may be more lhan one point For instance: 1. Gain changes ailong the glide path. 2. The 200 ft. or middle marker lransition. Point of Cllange lo Flare -Made Projected Automatic D ecelerationkiov er Mode (rf Provided) F autt: R ol.orcrafl .- Configuration No. 3 De~atbn rieNo. Rull'f1ay AC 29-2C, Chg 4 5/1/2014\n\nFIGURE AC 29.1329-2 DEVIATION PROFILE\n\nPage F - 58"
     },
     {
       "page": 864,
@@ -3770,15 +3771,15 @@
     },
     {
       "page": 941,
-      "text": "w w ' 20 0:: :::) I- ~ 0:: w 0... 2: w 10 I-I-z w ai 2: ~ 0 2000 4000 6000 8000 10,000\n\nPRESSURE ALTITUDE - FT\n\nFl GURE AC 29.1419-1 CONTINUOUS I Cl NG - TEMPERATURE VS ALTITUDE LIMITS Figures AC 29.1419 -1 through 4 represent the approach to a 10,000-foot altitude limit. See Paragraph b(5)(iii) for a discussion of this approach\n\nAC 29-2C 9/30/99\n\nPage F – 110"
+      "text": "w w ' 20 0:: :::) I- ~ 0:: w\n\n0...\n\n2: w 10 I-I-z w ai 2: ~ 0 2000 4000 6000 8000 10,000\n\nPRESSURE ALTITUDE - FT\n\nFl GURE AC 29.1419-1 CONTINUOUS I Cl NG - TEMPERATURE VS ALTITUDE LIMITS Figures AC 29.1419 -1 through 4 represent the approach to a 10,000-foot altitude limit. See Paragraph b(5)(iii) for a discussion of this approach\n\nAC 29-2C 9/30/99\n\nPage F – 110"
     },
     {
       "page": 942,
-      "text": "9/30/99 AC 29-2C\n\nw w ' 20 0:: :::) ~ 0:: w 0... w 10 I-I-z w CD <( -10 0 2000 4000 6000 8000 10,000\n\nPRESSURE ALTITUDE - FT\n\nFIGURE AC 29.1419-2 INTERMITTENT ICING - TEMPERATURE VS ALTITUDE LIMITS\n\nFigures AC 29.1419-1 through 4 represent the approach to a 10,000-foot altitude limit See Paragraph b(5)(iii) for a discussion on this approach Page F - 111"
+      "text": "9/30/99 AC 29-2C\n\nw w ' 20 0:: :::) ~ 0:: w\n\n0...\n\nw 10 I-I-z w CD <( -10 0 2000 4000 6000 8000 10,000\n\nPRESSURE ALTITUDE - FT\n\nFIGURE AC 29.1419-2 INTERMITTENT ICING - TEMPERATURE VS ALTITUDE LIMITS\n\nFigures AC 29.1419-1 through 4 represent the approach to a 10,000-foot altitude limit See Paragraph b(5)(iii) for a discussion on this approach Page F - 111"
     },
     {
       "page": 943,
-      "text": "0:: w ti:i () CD :::) () -(f) ~ 0:: ' I-z w I-z () 0:: w I- ~ s :::) a _J 1.0\n\nSEA LEVEL TO 10,000 FT PRESSURE ALTITUDE\n\n0.8 \"1~ ~~ 1';-. 0.6 <¥ A~ ~ ~..o ~ 0.2 0 +-------.--------------...----- 0 10 20 30 40 50\n\nMEAN EFFECTIVE DROP DIAMETER- MICRONS\n\nFIGURE AC 29.1419-3 CONTINUOUS I Cl NG -\n\nLIQUID WATER CONTENT VS. DROP DIAMETER\n\nFigures AC 29.1419-1 through 4 represent one approach to a 10,000-foot altitude limit. See Paragraph b(5)(iii) for a discussion on this approach\n\nAC 29-2C 9/30/99\n\nPage F – 112"
+      "text": "0:: w ti:i () CD :::) () -(f) ~ 0:: ' I-z w I-z () 0:: w I- ~ s :::) a _J 1.0\n\nSEA LEVEL TO 10,000 FT PRESSURE ALTITUDE\n\n0.8 \"1~\n\n~~ 1';-. 0.6 <¥ A~ ~ ~..o\n\n~ 0.2\n\n0 +-------.--------------...-----\n\n0 10 20 30 40 50\n\nMEAN EFFECTIVE DROP DIAMETER- MICRONS\n\nFIGURE AC 29.1419-3 CONTINUOUS I Cl NG -\n\nLIQUID WATER CONTENT VS. DROP DIAMETER\n\nFigures AC 29.1419-1 through 4 represent one approach to a 10,000-foot altitude limit. See Paragraph b(5)(iii) for a discussion on this approach\n\nAC 29-2C 9/30/99\n\nPage F – 112"
     },
     {
       "page": 944,
@@ -4746,11 +4747,11 @@
     },
     {
       "page": 1185,
-      "text": "2/12/03 AC 29-2C, Chg 1 Gaseous refrigerant under Compressor increasing pressure Gaseous refrigerant Under low pressure\n\nREFRIGERATION CYCLE\n\nReceiver Drier Liquid refrigerant Expans Condenser Coil Evaporator Coil Cooled\n\ni t I I ~ • • ~ t I ~ I I • I ~ I / i I I I L_ ... / Figure AC 29.MG 14-1 Page MG 14 - 7"
+      "text": "2/12/03 AC 29-2C, Chg 1 Gaseous refrigerant under Compressor increasing pressure Gaseous refrigerant Under low pressure\n\nREFRIGERATION CYCLE\n\nReceiver Drier Liquid refrigerant Expans Condenser Coil Evaporator Coil Cooled\n\ni t I I ~ • • ~ t I ~ I I • I ~ I / i I I I\n\nL_ ...\n\n/ Figure AC 29.MG 14-1 Page MG 14 - 7"
     },
     {
       "page": 1186,
-      "text": "AC 29-2C, Chg 1 2/12/03\n\nINTENTIONALLY\n\nLEFT\n\nBLANK\n\nPage MG 14 - 8"
+      "text": "AC 29-2 C, Chg 1 2/12/03\n\nINTENTIONALLY\n\nLEFT\n\nBLANK\n\nPage MG 14 - 8"
     },
     {
       "page": 1187,
@@ -4870,7 +4871,7 @@
     },
     {
       "page": 1216,
-      "text": "AC 29-2C, Chg 7 2/4/2016 An RFMS template is provided on the following pages. Page MG 16-12"
+      "text": "AC 2 9-2C, Chg 7 2/4/2016 An RFMS template is provided on the following pages. Page MG 16-12"
     },
     {
       "page": 1217,
@@ -5314,7 +5315,7 @@
     },
     {
       "page": 1327,
-      "text": "2/4/2016 AC 29-2C, Chg 7\n\nFigure AC 29 MG 21-1. Generic Examples by ATA. Page MG 21 - 27"
+      "text": "2/4/2016 A C 29-2C, Chg 7\n\nFigure AC 29 MG 21-1. Generic Examples by ATA. Page MG 21 - 27"
     },
     {
       "page": 1328,
@@ -5406,7 +5407,7 @@
     },
     {
       "page": 1350,
-      "text": "AC 29-2C, Chg 4 5/1/2014\n\nPage MG 22 - 6"
+      "text": "AC 29-2 C, Chg 4 5/1/2014\n\nPage MG 22 - 6"
     },
     {
       "page": 1351,
@@ -5422,7 +5423,7 @@
     },
     {
       "page": 1354,
-      "text": "AC 29-2C, Chg 6 7/25/2014\n\nPage MG 23 - 4"
+      "text": "AC 29-2C, Chg 6 7/25/2014\n\nPag e MG 23 - 4"
     },
     {
       "page": 1355,
@@ -5450,7 +5451,7 @@
     },
     {
       "page": 1361,
-      "text": "2/12/03 AC 29-2C, Chg 1\n(MANUAL IDENTIFICATION)\nLIST OF EFFECTIVE PAGES\nLIST OF REVISIONS Revision 0 (Original Issue)  August 4, 1997\nRevision 1  ……January 30,1998\nRevision 2 …………………………………June 18,1998\nRevision 3 ……………………………..October 21,1999\nRevision 4 ……………………………….August 4, 2000\nLIST OF EFFECTIVE PAGES\nTitle Pages Revision No.\nCOVER i, ii BLANK 4\nRECORD OF REVISION iii, iv BLANK 4\nLIST OF EFFECTIVE PAGES v THRU vi 4\nTABLE OF CONTENTS vii THRU x 4\nCHAPTER 1 INTRODUCTION 01-00-00 1 THRU 8 4\nCHAPTER 4 AIRWORTHINESS LIMITATION\nSECTION 04-00-00 1, 2 BLANK 4\nCHAPTER 5 INSPECTIONS 05-00-00 1 THRU 4 4\nCHAPTER 6 DIMENSION AND ACCESS 06-00-00 1, 2 BLANK 3\nCHAPTER 7 LIFTING AND SHORING 07-00-00 1, 2 BLANK 2\nCHAPTER 8 LEVELING AND WEIGHING 08-00-00 1, 2 BLANK 3\nCHAPTER 9 TOWING AND TAXIING 09-00-00 1, 2 BLANK 2\nCHPATER 10 PARKING AND MOORING 10-00-00 1, 2 BLANK 4\nCHAPTER 11 PLACARDS AND MARKING 11-00-00 1, 2 BLANK 4\nCHAPTER 12 SERVICING 12-00-00 1, 2 BLANK 2\nCHAPTERS 20, 51, 60, 70, STANDARD PRACTICES ( )-00-00 1, 2 BLANK 3\nCHAPTERS 21, 22, 23, 24, 25, 26, 27, 29, 30, 31, 33, 34,\n35, 36, 37, 45, 49, AIRFRAME SYSTEM ( )-00-00\n52, 53, 54, 55, 56, STRUCTURES ( )-00-00\n62, 63, 64, 65, 66, 67 ROTORS ( )-00-00\n71, 72, 73, 74, 75, 76, 77, 78, 79, 80, and\n83 POWERPLANT ( )-00-00 1,2 ,3, 4, 5, 3\n6, 7, 8 4\nAttachment 1 PART 29 REQUIREMENTS 1, THRU 5, 6 BLANK 4\nAttachment 2 INSTRUCTIONS FOR CONTINUED\nAIRWORTHINESS PROCEDURE INFORMATION 1 AND 2 3\nAttachment 3 ATA CHAPTER LISTING 1, 2 BLANK 3\nAttachment 4 TYPE DESIGN CHANGE ICA RECOMMENDED\nPROCEDURE 1, THRU 9,10 BLANK 4\nREVISION: (PAGE NUMBER)\nRevision 4 Page v\nPage Apdx A - 7"
+      "text": "2/12/03 AC 29-2C, Chg 1\n(MANUAL IDENTIFICATION)\nLIST OF EFFECTIVE PAGES\nLIST OF REVISIONS Revision 0 (Original Issue)  August 4, 1997\nRevision 1  ……January 30,1998\nRevision 2 …………………………………June 18,1998\nRevision 3 ……………………………  October 21,1999\nRevision 4 ……………………………….August 4, 2000\nLIST OF EFFECTIVE PAGES\nTitle Pages Revision No.\nCOVER i, ii BLANK 4\nRECORD OF REVISION iii, iv BLANK 4\nLIST OF EFFECTIVE PAGES v THRU vi 4\nTABLE OF CONTENTS vii THRU x 4\nCHAPTER 1 INTRODUCTION 01-00-00 1 THRU 8 4\nCHAPTER 4 AIRWORTHINESS LIMITATION\nSECTION 04-00-00 1, 2 BLANK 4\nCHAPTER 5 INSPECTIONS 05-00-00 1 THRU 4 4\nCHAPTER 6 DIMENSION AND ACCESS 06-00-00 1, 2 BLANK 3\nCHAPTER 7 LIFTING AND SHORING 07-00-00 1, 2 BLANK 2\nCHAPTER 8 LEVELING AND WEIGHING 08-00-00 1, 2 BLANK 3\nCHAPTER 9 TOWING AND TAXIING 09-00-00 1, 2 BLANK 2\nCHPATER 10 PARKING AND MOORING 10-00-00 1, 2 BLANK 4\nCHAPTER 11 PLACARDS AND MARKING 11-00-00 1, 2 BLANK 4\nCHAPTER 12 SERVICING 12-00-00 1, 2 BLANK 2\nCHAPTERS 20, 51, 60, 70, STANDARD PRACTICES ( )-00-00 1, 2 BLANK 3\nCHAPTERS 21, 22, 23, 24, 25, 26, 27, 29, 30, 31, 33, 34,\n35, 36, 37, 45, 49, AIRFRAME SYSTEM ( )-00-00\n52, 53, 54, 55, 56, STRUCTURES ( )-00-00\n62, 63, 64, 65, 66, 67 ROTORS ( )-00-00\n71, 72, 73, 74, 75, 76, 77, 78, 79, 80, and\n83 POWERPLANT ( )-00-00 1,2 ,3, 4, 5, 3\n6, 7, 8 4\nAttachment 1 PART 29 REQUIREMENTS 1, THRU 5, 6 BLANK 4\nAttachment 2 INSTRUCTIONS FOR CONTINUED\nAIRWORTHINESS PROCEDURE INFORMATION 1 AND 2 3\nAttachment 3 ATA CHAPTER LISTING 1, 2 BLANK 3\nAttachment 4 TYPE DESIGN CHANGE ICA RECOMMENDED\nPROCEDURE 1, THRU 9,10 BLANK 4\nREVISION: (PAGE NUMBER)\nRevision 4 Page v\nPage Apdx A - 7"
     },
     {
       "page": 1362,
@@ -5678,7 +5679,7 @@
     },
     {
       "page": 1418,
-      "text": "AC 29-2C, Chg 1 2/12/03\n(MANUAL IDENTIFICATION)\nATTACHMENT 4\nTYPE DESIGN CHANGE\nICA RECOMMENDED PROCEDURES\n(Continued)\nTwidget Type Design Change Attachment 2\n1. Use the list of appliances and modifications required for that Type Design Change (TDC) to\ndetermine which ATA chapters of the original rotorcraft manufacturer's maintenance manual the\nTDC will affect and which additional ATA chapters will be affected.\n2. The following are component and systems that will be affected by the Twidget TDC:\na. Fuselage structure will be modified to mount twidget arm assembly.\nb. Cabin door will be modified.\nc. Electrical power will be required for electrical motor.\nd. Hydraulic power source will be required for deploying and storing twidget arm.\ne. Twidget control assembly will be installed in the cabin.\nf. Control will be mounted in cockpit for emergency release of the twidget..\ng. An Instrument will be installed in instrument panel indicating twidget's position.\nh. Twidget recording equipment and monitor will be mounted in cabin.\ni. Twidget antenna will be mounted on belly of fuselage.\nj. Cables and wiring will be routed through rotorcraft.\nk. Two-way communication will be required between the pilot and twidget operator.\nI. Twidget gearbox requires servicing to full mark on site gage every 50 hours.\nm. Twidget arm assemblies and clutch requires lubrication every 100 hours.\nn. Twidget installation requires an inspection every 300 hours.\no. Twidget arm assembly requires an ultrasonic test every 600 hours.\np. Clutch has a wear tolerance of 1.56 mm.\nq. Clutch is life-limited to be replaced every l,000 hours time in service.\nr. Twidget gearbox is required to be overhauled every l,000 hours time in service.\ns. Twidget gearbox attach bolt torque is 75-ft lb. and twidget arm assembly torque is 110 in lb.\nt. Warning: Twidget should be retracted during takeoff, landing, and cruise above 85 knots.\nu. Caution: Do not tow or taxi the rotorcraft with the twidget arm deployed.\nv. Placards are required on the twidget unit and in the cockpit.\n3. This example TDC will affect ATA-100 chapters: 4 Airworthiness Limitations, 5 Inspection, 6\nDimensions, 9 Towing and Taxiing, 10 Parking and Mooring, 11 Placards, 12 Servicing, 23\nCommunication, 24 Electrical, 25 Furnishings, 29 Hydraulic, 31 Indication and Recording, 52\nDoors, and 53 Fuselage. A Chapter1 Introduction is also needed.\nREVISION: (DATE)\nRevision 4 Page 3\nPage Apdx A - 64"
+      "text": "AC 29-2C, Chg 1 2/12/03\n(MANUAL IDENTIFICATION)\nATTACHMENT 4\nTYPE DESIGN CHANGE\nICA RECOMMENDED PROCEDURES\n(Continued)\nTwidget Type Design Change Attachment 2\n1. Use the list of appliances and modifications required for that Type Design Change (TDC) to\ndetermine which ATA chapters of the original rotorcraft manufacturer's maintenance manual the\nTDC will affect and which additional ATA chapters will be affected.\n2. The following are component and systems that will be affected by the Twidget TDC:\na. Fuselage structure will be modified to mount twidget arm assembly.\nb. Cabin door will be modified.\nc. Electrical power will be required for electrical motor.\nd. Hydraulic power source will be required for deploying and storing twidget arm.\ne. Twidget control assembly will be installed in the cabin.\nf. Control will be mounted in cockpit for emergency release of the twidget\ng. An Instrument will be installed in instrument panel indicating twidget's position.\nh. Twidget recording equipment and monitor will be mounted in cabin.\ni. Twidget antenna will be mounted on belly of fuselage.\nj. Cables and wiring will be routed through rotorcraft.\nk. Two-way communication will be required between the pilot and twidget operator.\nI. Twidget gearbox requires servicing to full mark on site gage every 50 hours.\nm. Twidget arm assemblies and clutch requires lubrication every 100 hours.\nn. Twidget installation requires an inspection every 300 hours.\no. Twidget arm assembly requires an ultrasonic test every 600 hours.\np. Clutch has a wear tolerance of 1.56 mm.\nq. Clutch is life-limited to be replaced every l,000 hours time in service.\nr. Twidget gearbox is required to be overhauled every l,000 hours time in service.\ns. Twidget gearbox attach bolt torque is 75-ft lb. and twidget arm assembly torque is 110 in lb.\nt. Warning: Twidget should be retracted during takeoff, landing, and cruise above 85 knots.\nu. Caution: Do not tow or taxi the rotorcraft with the twidget arm deployed.\nv. Placards are required on the twidget unit and in the cockpit.\n3. This example TDC will affect ATA-100 chapters: 4 Airworthiness Limitations, 5 Inspection, 6\nDimensions, 9 Towing and Taxiing, 10 Parking and Mooring, 11 Placards, 12 Servicing, 23\nCommunication, 24 Electrical, 25 Furnishings, 29 Hydraulic, 31 Indication and Recording, 52\nDoors, and 53 Fuselage. A Chapter1 Introduction is also needed.\nREVISION: (DATE)\nRevision 4 Page 3\nPage Apdx A - 64"
     },
     {
       "page": 1419,
@@ -5814,12 +5815,11 @@
     },
     {
       "page": 1452,
-      "text": "I \\, 0\nw 25 (j)\n-\nf5\n0..\nI\nL 10\nI\nUNACCEPT\nABLE\n-0.3 -0.2 -0.1\nI'\n'\nDAMPING RATIO\nACCEPTAB\nLE\n0 05 . 0.1 0.15\n2/4/2016 AC 29-2C, Chg 7\nFIGURE AC 29 APX B-1 ROTORCRAFT DYNAMIC STABILITY\nREQUIREMENTS FOR IFR\nPage Apdx B - 27"
+      "text": "I \\, 0\nw 25 (j)\n-\nf5\n0\nI\nL 10\nI\nUNACCEPT\nABLE\n-0.3 -0.2 -0.1\nI'\n'\nDAMPING RATIO\nACCEPTAB\nLE\n0 05 . 0.1 0.15\n2/4/2016 AC 29-2C, Chg 7\nFIGURE AC 29 APX B-1 ROTORCRAFT DYNAMIC STABILITY\nREQUIREMENTS FOR IFR\nPage Apdx B - 27"
     },
     {
       "page": 1453,
       "text": "6/23/23 AC 29-2C, Chg 9\n\nAC 29 APPENDIX B (AMENDMENT 29-59) AIRWORTHINESS GUIDANCE FOR\n\nROTORCRAFT INSTRUMENT FLIGHT.\n\na. Explanation. (3) Amendment 29-59 revised section VIII (b)(5)(i), which requires isolating the pilot instrument system from any other operating systems, to only apply to pneumatic systems. This change allows other types of pilot instrument systems to be connected to other systems on the rotorcraft and allows the use of modern technology to monitor and display highly integrated information. This guidance remains unchanged except paragraphs (b)(9)(v) and (b)(9)(vi) of this AC section do not apply to non-pneumatic systems. Page Apdx B - 28"
     }
-  ],
-  "extractedPageCount": 1452
+  ]
 }

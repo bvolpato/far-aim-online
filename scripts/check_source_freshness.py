@@ -17,10 +17,12 @@ from typing import Any
 import requests
 from bs4 import BeautifulSoup
 
+from ecfr import ECFR_VERSIONS_URL, TITLE_49_PARTS, latest_ecfr_issue_date
+
 ROOT_DIR = Path(__file__).resolve().parents[1]
 DATA_DIR = ROOT_DIR / "data"
 
-ECFR_TITLE_14_VERSIONS_URL = "https://www.ecfr.gov/api/versioner/v1/versions/title-14.json"
+ECFR_TITLE_14_VERSIONS_URL = ECFR_VERSIONS_URL.format(title=14)
 FAA_AIM_URL = "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/"
 FAA_PCG_URL = "https://www.faa.gov/air_traffic/publications/atpubs/pcg_html/"
 FAA_AC_EXPORT_URL = (
@@ -152,17 +154,51 @@ def fetch_text(session: requests.Session, url: str) -> str:
 
 def check_far(source_status: dict[str, Any], session: requests.Session) -> SourceCheck:
     source = source_by_id(source_status, "far")
-    data = fetch_json(session, ECFR_TITLE_14_VERSIONS_URL)
-    dates = [
-        item.get("issue_date") or item.get("amendment_date") or item.get("date")
-        for item in data.get("content_versions", [])
-    ]
-    remote_date = max(date_value for date_value in dates if date_value)
-    return compare_source(
-        source,
-        remote_date,
-        "Latest eCFR Title 14 content version date.",
-        ECFR_TITLE_14_VERSIONS_URL,
+    index = read_json(DATA_DIR / "far" / "index.json")
+    snapshots: dict[int, dict[int, str]] = {14: {}, 49: {}}
+    for entry in index["parts"]:
+        cfr = re.fullmatch(r"(14|49) CFR Part (\d+)", entry["cfr"])
+        if cfr is None:
+            raise ValueError(f"Unrecognized bundled CFR reference: {entry['cfr']}")
+        title, part = map(int, cfr.groups())
+        content = read_json(DATA_DIR / entry["file"])
+        if content.get("cfr") != entry["cfr"]:
+            raise ValueError(f"Bundled CFR identity mismatch for {entry['cfr']}")
+        # lastUpdated records when the crawl ran in older bundles. Only each
+        # part's effectiveDate identifies the eCFR snapshot actually downloaded.
+        snapshots[title][part] = parse_date(content["effectiveDate"]).isoformat()
+
+    if not snapshots[14] or set(snapshots[49]) != set(TITLE_49_PARTS):
+        raise ValueError("Bundled FAR index must include Title 14 and all supported Title 49 parts")
+
+    latest_title14 = latest_ecfr_issue_date(fetch_json(session, ECFR_TITLE_14_VERSIONS_URL))
+    remote_dates = [latest_title14]
+    older_parts = []
+    if min(snapshots[14].values()) < latest_title14:
+        older_parts.append(f"Title 14 (official issue {latest_title14})")
+    for part in TITLE_49_PARTS:
+        url = f"{ECFR_VERSIONS_URL.format(title=49)}?part={part}"
+        latest = latest_ecfr_issue_date(fetch_json(session, url))
+        remote_dates.append(latest)
+        if snapshots[49][part] < latest:
+            older_parts.append(f"49 CFR Part {part} (official issue {latest})")
+
+    local_dates = [value for parts in snapshots.values() for value in parts.values()]
+    detail = (
+        "Compared bundled effectiveDate values with complete eCFR issue metadata for "
+        f"Title 14 and Title 49 parts {', '.join(map(str, TITLE_49_PARTS))}. "
+        f"Bundled snapshots span {min(local_dates)} to {max(local_dates)}."
+    )
+    if older_parts:
+        detail += f" Newer official content: {'; '.join(older_parts)}."
+    return SourceCheck(
+        id=source["id"],
+        label=source["label"],
+        local_date=min(local_dates),
+        remote_date=max(remote_dates),
+        status="stale" if older_parts else "current",
+        detail=detail,
+        url=ECFR_TITLE_14_VERSIONS_URL,
     )
 
 
@@ -328,8 +364,7 @@ def main(argv: list[str] | None = None) -> int:
     else:
         print(format_text(checks))
 
-    stale = [check for check in checks if check.status == "stale"]
-    return 1 if stale else 0
+    return 1 if any(check.status != "current" for check in checks) else 0
 
 
 if __name__ == "__main__":

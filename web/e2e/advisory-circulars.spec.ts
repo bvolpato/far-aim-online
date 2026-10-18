@@ -1,4 +1,5 @@
 import { expect, test } from '@playwright/test';
+import acIndex from '../../data/advisory-circulars/index.json' with { type: 'json' };
 
 test.describe('advisory circulars', () => {
   test('browses and filters FAA advisory circulars', async ({ page }) => {
@@ -37,10 +38,12 @@ test.describe('advisory circulars', () => {
   });
 
   test('labels incomplete PDF extraction without hiding official source', async ({ page }) => {
-    await page.goto('/advisory-circulars#ac-00-34b');
-    await expect(page.locator('#ac-00-34b')).toContainText('Partial offline text');
+    const partial = acIndex.items.find((item) => item.contentStatus === 'partial');
+    if (!partial) throw new Error('The bundled catalog has no partial AC extraction to exercise');
+    await page.goto(`/advisory-circulars#${partial.id}`);
+    await expect(page.locator(`#${partial.id}`)).toContainText('Partial offline text');
 
-    await page.goto('/advisory-circulars/ac-00-34b');
+    await page.goto(`/advisory-circulars/${partial.id}`);
 
     await expect(page.getByText(/\d+ of \d+ pages extracted/)).toBeVisible();
     await expect(page.getByRole('status')).toContainText('Extracted text is incomplete');

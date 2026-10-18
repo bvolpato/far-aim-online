@@ -4,11 +4,12 @@
   "number": "90-109A",
   "title": "Transition to Unfamiliar Aircraft",
   "status": "partial",
-  "fetched": "2026-07-14",
+  "fetched": "2026-10-17",
   "documentUrl": "https://www.faa.gov/regulations_policies/advisory_circulars/index.cfm/go/document.information/documentID/1027806",
   "pdfUrl": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_90-109A.pdf",
   "sha256": "a5fb660fcd2f42970ffa2c9f66509b3860a792239c8e2e2ee04cc74e38d9668e",
   "pageCount": 53,
+  "extractedPageCount": 48,
   "wordCount": 16287,
   "ocrPageCount": 0,
   "pages": [
@@ -204,6 +205,5 @@
       "page": 53,
       "text": "Appendix 10\n\nin § 61.1, or for aircraft certificated in the experimental category. Furthermore, it was not developed for rotorcraft, gliders, or lighter-than-air aircraft. Pilots transitioning into different complex and high-performance aircraft models may wish to use the transition training guide as an aid to conversion to new models. The GAMA Transition Training Master Syllabus is available at the GAMA Web site, www.gama.aero. 4. TRAINING GUIDANCE. You can find the guidance for transition training in many publications including, but not limited to the current editions of:  AC 61-67, Stall and Spin Awareness Training.  AC 61-107, Operations of Aircraft at Altitudes Above 25,000 Feet Mean Sea Level (MSL) and/or Mach Numbers Greater Than .75.  FAA-H-8083-3, Airplane Flying Handbook.  FAA-H-8083-25, Pilot’s Handbook of Aeronautical Knowledge.  Turbine Pilot’s Flight Manual by Gregory N. Brown, Published by ASA.  The Advanced Pilot’s Flight Manual, by William K. Kershner, Published by Blackwell Publishing. 5. ADDITIONAL INFORMATION. Additional information can found at:  Experimental Aircraft Association (EAA), http://www.eaa.org.  Aircraft Owners and Pilots Association (AOPA) Online, http://www.aopa.org/.  GAMA, http://www.gama.aero/.  FAA Safety Team, http://faasafety.gov/. Page 3 (and 4)"
     }
-  ],
-  "extractedPageCount": 48
+  ]
 }
