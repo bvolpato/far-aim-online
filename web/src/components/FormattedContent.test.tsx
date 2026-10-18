@@ -69,6 +69,22 @@ describe('FormattedContent', () => {
     expect(html).toContain('Second');
   });
 
+  it('preserves empty table columns and treats escaped pipes as cell content', () => {
+    const html = render(
+      '[TABLE]\n| Hazard label | Class or division / 1 | Class or division / 2.1 |\n\n| 1 | Note 1 | Note 2 |\n\n| 2.1 |  | X |\n\n| 3 | Notes include \\| as data | |\n[/TABLE]'
+    );
+    const body = html.match(/<tbody[^>]*>([\s\S]*?)<\/tbody>/)?.[1] ?? '';
+    const rows = [...body.matchAll(/<tr[^>]*>([\s\S]*?)<\/tr>/g)].map(([, row]) =>
+      [...row.matchAll(/<td\b[^>]*>([\s\S]*?)<\/td>/g)].map(([, cell]) => cell.replace(/<[^>]+>/g, ''))
+    );
+
+    expect(rows).toEqual([
+      ['1', 'Note 1', 'Note 2'],
+      ['2.1', '', 'X'],
+      ['3', 'Notes include | as data', ''],
+    ]);
+  });
+
   it('renders single-group raw crawler tables', () => {
     const html = render('[TABLE]\nSingle  Row\n[/TABLE]');
 

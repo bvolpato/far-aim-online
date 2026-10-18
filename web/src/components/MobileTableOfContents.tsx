@@ -88,14 +88,14 @@ export function MobileTableOfContents({
         className="w-full h-auto py-3.5 px-4 rounded-xl flex items-center justify-between border-border bg-card text-foreground shadow-sm hover:bg-accent"
         aria-label="Open table of contents drawer"
       >
-        <span className="flex items-center gap-2 text-sm font-semibold">
-          <List className="w-4 h-4 text-primary" />
+        <span className="flex min-w-0 items-center gap-2 text-sm font-semibold">
+          <List className="w-4 h-4 shrink-0 text-primary" />
           <span>{title}</span>
           <span className="text-xs px-2 py-0.5 rounded-full bg-secondary text-muted-foreground font-normal">
             {items.length}
           </span>
         </span>
-        <span className="flex items-center gap-1 text-xs text-muted-foreground truncate max-w-[150px]">
+        <span className="flex min-w-0 max-w-[150px] items-center gap-1 truncate text-xs text-muted-foreground">
           {activeItem ? activeItem.label : 'Jump to section'}
           <ChevronRight className="w-4 h-4 shrink-0" />
         </span>
@@ -134,7 +134,7 @@ export function MobileTableOfContents({
                 size="icon"
                 onClick={() => setIsOpen(false)}
                 aria-label="Close table of contents"
-                className="h-8 w-8 text-muted-foreground hover:text-foreground"
+                className="h-11 w-11 text-muted-foreground hover:text-foreground"
               >
                 <X className="w-5 h-5" />
               </Button>
@@ -150,13 +150,13 @@ export function MobileTableOfContents({
                   value={filter}
                   onChange={(e) => setFilter(e.target.value)}
                   placeholder="Filter sections..."
-                  className="pl-9 h-9 text-sm rounded-lg"
+                  className="h-11 rounded-lg pl-9 pr-14 text-sm"
                 />
                 {filter && (
                   <button
                     type="button"
                     onClick={() => setFilter('')}
-                    className="absolute right-2.5 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground text-xs"
+                    className="absolute right-1 top-1/2 flex h-11 min-w-11 -translate-y-1/2 items-center justify-center rounded-md px-2 text-xs text-muted-foreground hover:text-foreground"
                   >
                     Clear
                   </button>
@@ -182,7 +182,7 @@ export function MobileTableOfContents({
                         handleSelect(item.id);
                       }}
                       className={cn(
-                        'block w-full text-left px-3 py-2.5 rounded-lg text-sm transition-colors',
+                        'block w-full text-left px-3 py-3 rounded-lg text-sm transition-colors',
                         isActive
                           ? 'bg-primary/10 text-primary font-semibold border-l-2 border-primary'
                           : 'text-muted-foreground hover:bg-accent hover:text-foreground'

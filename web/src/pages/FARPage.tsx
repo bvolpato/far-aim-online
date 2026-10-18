@@ -806,13 +806,13 @@ function FARPartView({
 
           {/* Previous/Next Navigation */}
           <div className="mt-8 pt-8 border-t border-border">
-            <div className="flex items-center justify-between gap-4">
+            <div className="flex flex-col gap-3 sm:flex-row sm:items-stretch sm:justify-between sm:gap-4">
               {prevPart ? (
                 <Link
                   to={`/far/${prevPart.part}`}
-                  className="flex-1 group flex items-center gap-3 p-4 bg-card rounded-xl border border-border hover:border-primary/30 hover:shadow-md transition-all"
+                  className="w-full min-w-0 group flex items-center gap-3 p-4 bg-card rounded-xl border border-border hover:border-primary/30 hover:shadow-md transition-all sm:flex-1"
                 >
-                  <ChevronLeft className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors" />
+                  <ChevronLeft className="w-5 h-5 shrink-0 text-muted-foreground group-hover:text-primary transition-colors" />
                   <div className="text-left min-w-0">
                     <p className="text-xs text-muted-foreground uppercase tracking-wide">Previous</p>
                     <p className="font-semibold text-foreground group-hover:text-primary transition-colors truncate">
@@ -821,13 +821,13 @@ function FARPartView({
                   </div>
                 </Link>
               ) : (
-                <div className="flex-1" />
+                <div className="hidden sm:block sm:flex-1" />
               )}
 
               {nextPart ? (
                 <Link
                   to={`/far/${nextPart.part}`}
-                  className="flex-1 group flex items-center justify-end gap-3 p-4 bg-card rounded-xl border border-border hover:border-primary/30 hover:shadow-md transition-all"
+                  className="w-full min-w-0 group flex items-center justify-end gap-3 p-4 bg-card rounded-xl border border-border hover:border-primary/30 hover:shadow-md transition-all sm:flex-1"
                 >
                   <div className="text-right min-w-0">
                     <p className="text-xs text-muted-foreground uppercase tracking-wide">Next</p>
@@ -835,10 +835,10 @@ function FARPartView({
                       Part {nextPart.part}: {nextPart.title || 'Untitled'}
                     </p>
                   </div>
-                  <ChevronRight className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors" />
+                  <ChevronRight className="w-5 h-5 shrink-0 text-muted-foreground group-hover:text-primary transition-colors" />
                 </Link>
               ) : (
-                <div className="flex-1" />
+                <div className="hidden sm:block sm:flex-1" />
               )}
             </div>
           </div>
