@@ -12,9 +12,12 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
@@ -434,6 +437,8 @@ private fun AIMTableView(
     tableTextStyle: TextStyle? = null
 ) {
     if (layout.rows.isEmpty() && layout.headers.all { it.isBlank() }) return
+    val scrollRows = layout.rows.size > 20
+    val textStyle = tableTextStyle ?: MaterialTheme.typography.bodySmall
 
     Column(modifier = modifier, verticalArrangement = Arrangement.spacedBy(6.dp)) {
         val caption = layout.caption?.takeIf { it.isNotBlank() }
@@ -443,6 +448,13 @@ private fun AIMTableView(
                 style = MaterialTheme.typography.labelMedium,
                 color = MaterialTheme.colorScheme.primary,
                 fontWeight = FontWeight.SemiBold
+            )
+        }
+        if (scrollRows) {
+            Text(
+                text = "Scroll within the table to read all ${layout.rows.size} rows.",
+                style = MaterialTheme.typography.bodySmall,
+                color = MaterialTheme.colorScheme.onSurfaceVariant
             )
         }
         Box(modifier = Modifier.horizontalScroll(rememberScrollState())) {
@@ -455,26 +467,49 @@ private fun AIMTableView(
                         }.joinToString(". "),
                         isHeader = true,
                         searchQuery = searchQuery,
-                        textStyle = tableTextStyle ?: MaterialTheme.typography.bodySmall
+                        textStyle = textStyle
                     )
                 }
-                layout.rows.forEachIndexed { rowIndex, row ->
-                    val label = row.mapIndexed { columnIndex, value ->
-                        val header = layout.headers.getOrNull(columnIndex).orEmpty()
-                            .ifBlank { "Column ${columnIndex + 1}" }
-                        "$header: ${value.ifBlank { "blank" }}"
-                    }.joinToString(". ")
-                    AIMTableRow(
-                        cells = row,
-                        accessibilityLabel = "Row ${rowIndex + 1}. $label",
-                        isHeader = false,
-                        searchQuery = searchQuery,
-                        textStyle = tableTextStyle ?: MaterialTheme.typography.bodySmall
-                    )
+                if (scrollRows) {
+                    LazyColumn(
+                        modifier = Modifier
+                            .width(132.dp * layout.headers.size)
+                            .heightIn(max = 480.dp)
+                    ) {
+                        itemsIndexed(layout.rows) { rowIndex, row ->
+                            AIMTableBodyRow(row, rowIndex, layout.headers, searchQuery, textStyle)
+                        }
+                    }
+                } else {
+                    layout.rows.forEachIndexed { rowIndex, row ->
+                        AIMTableBodyRow(row, rowIndex, layout.headers, searchQuery, textStyle)
+                    }
                 }
             }
         }
     }
+}
+
+@Composable
+private fun AIMTableBodyRow(
+    row: List<String>,
+    rowIndex: Int,
+    headers: List<String>,
+    searchQuery: String,
+    textStyle: TextStyle
+) {
+    val label = row.mapIndexed { columnIndex, value ->
+        val header = headers.getOrNull(columnIndex).orEmpty()
+            .ifBlank { "Column ${columnIndex + 1}" }
+        "$header: ${value.ifBlank { "blank" }}"
+    }.joinToString(". ")
+    AIMTableRow(
+        cells = row,
+        accessibilityLabel = "Row ${rowIndex + 1}. $label",
+        isHeader = false,
+        searchQuery = searchQuery,
+        textStyle = textStyle
+    )
 }
 
 @Composable
