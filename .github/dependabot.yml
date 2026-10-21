@@ -14,7 +14,7 @@ updates:
     cooldown:
       default-days: 7
 
-  - package-ecosystem: "pip"
+  - package-ecosystem: "uv"
     directory: "/scripts"
     schedule:
       interval: "weekly"
