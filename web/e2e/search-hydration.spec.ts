@@ -31,12 +31,25 @@ test('keeps global search input disabled until SearchPage hydration completes', 
 
     chunk.release();
     await expect(input).toBeEnabled();
+    await expect(input).toBeFocused();
     await input.fill('airspace');
     await expect(page.getByText(/results? for "airspace"/)).toBeVisible();
     await expect(page.locator('main a.block[href*="highlight="]').first()).toBeVisible();
   } finally {
     chunk.release();
   }
+});
+
+test('focuses global search after client-side navigation', async ({ page }) => {
+  await page.goto('/', { waitUntil: 'networkidle' });
+  const headerSearch = page.getByLabel('Search regulations and terms');
+  await headerSearch.fill('airspace');
+  await headerSearch.press('Enter');
+
+  const searchInput = page.getByLabel('Search FAR/AIM content');
+  await expect(page).toHaveURL(/\/search\?q=airspace$/);
+  await expect(searchInput).toHaveValue('airspace');
+  await expect(searchInput).toBeFocused();
 });
 
 test('keeps FAR index search input disabled until FARPage hydration completes', async ({ page }) => {
