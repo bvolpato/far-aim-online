@@ -37,7 +37,9 @@ export function SearchPage() {
   const [searchParams, setSearchParams] = useSearchParams();
   const initialQuery = searchParams.get('q') || '';
 
+  const searchInputRef = useRef<HTMLInputElement>(null);
   const [inputValue, setInputValue] = useState(initialQuery);
+  const [isSearchInteractive, setIsSearchInteractive] = useState(false);
   const [query, setQuery] = useState(initialQuery);
   const [rawResults, setRawResults] = useState<SearchResult[]>([]);
   const [isSearching, setIsSearching] = useState(false);
@@ -54,6 +56,14 @@ export function SearchPage() {
     ac: true,
     flashcards: true,
   });
+
+  useEffect(() => {
+    setIsSearchInteractive(true);
+  }, []);
+
+  useEffect(() => {
+    if (isSearchInteractive) searchInputRef.current?.focus();
+  }, [isSearchInteractive]);
 
   // Sync URL changes from browser navigation into local state.
   useEffect(() => {
@@ -259,13 +269,14 @@ export function SearchPage() {
       <div className="relative mb-4">
         <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground pointer-events-none" />
         <Input
+          ref={searchInputRef}
           type="text"
           value={inputValue}
+          disabled={!isSearchInteractive}
           onChange={(e) => setInputValue(e.target.value)}
           placeholder="Search for regulations, definitions, topics..."
           aria-label="Search FAR/AIM content"
           className="pl-12 pr-12 py-4 h-auto rounded-xl"
-          autoFocus
         />
         {inputValue && (
           <Button

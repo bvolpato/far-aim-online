@@ -17,6 +17,22 @@ import { MobileTableOfContents } from '../components/MobileTableOfContents';
 
 type IndexFilter = 'all' | 'pilot';
 
+function withIndexFilter(path: string, indexFilter: IndexFilter): string {
+  if (indexFilter !== 'all') return path;
+  const url = new URL(path, 'https://faraim.online');
+  url.searchParams.set('index', 'all');
+  return `${url.pathname}${url.search}${url.hash}`;
+}
+
+function decodeHash(hash: string): string {
+  const value = hash.startsWith('#') ? hash.slice(1) : hash;
+  try {
+    return decodeURIComponent(value);
+  } catch {
+    return value;
+  }
+}
+
 // Content search result for part listing
 interface PartSearchMatch {
   part: FARPartMeta;
@@ -35,8 +51,13 @@ export function FARPage() {
   const lastViewed = getLastViewed('far');
 
   const [filterQuery, setFilterQuery] = useState('');
+  const [isIndexSearchInteractive, setIsIndexSearchInteractive] = useState(false);
   const [contentSearchResults, setContentSearchResults] = useState<SearchResult[]>([]);
   const [isSearching, setIsSearching] = useState(false);
+
+  useEffect(() => {
+    setIsIndexSearchInteractive(true);
+  }, []);
 
   const allParts = getAllFARParts();
   const [selectedPart, setSelectedPart] = useState<FARPart | null>(initialPart ?? null);
@@ -175,15 +196,23 @@ export function FARPage() {
     setSearchParams({ index: filter });
   };
 
-  // Find previous and next parts for navigation (within the current index filter)
+  // Use the full sequence for deep-linked parts outside the selected pilot index.
+  const useAllIndexNavigation = indexFilter === 'all' ||
+    Boolean(selectedPart && !indexFilteredParts.some(p => p.part === selectedPart.part));
+  const navigationParts = useAllIndexNavigation ? allParts : indexFilteredParts;
+
+  // Find previous and next parts for navigation within the active sequence.
   const navigation = useMemo(() => {
     if (!selectedPart) return { prev: null, next: null };
-    const currentIndex = indexFilteredParts.findIndex(p => p.part === selectedPart.part);
+    const currentIndex = navigationParts.findIndex(p => p.part === selectedPart.part);
+    if (currentIndex < 0) return { prev: null, next: null };
     return {
-      prev: currentIndex > 0 ? indexFilteredParts[currentIndex - 1] : null,
-      next: currentIndex < indexFilteredParts.length - 1 ? indexFilteredParts[currentIndex + 1] : null,
+      prev: currentIndex > 0 ? navigationParts[currentIndex - 1] : null,
+      next: currentIndex < navigationParts.length - 1 ? navigationParts[currentIndex + 1] : null,
     };
-  }, [selectedPart, indexFilteredParts]);
+  }, [selectedPart, navigationParts]);
+
+  const navigationQuery = useAllIndexNavigation ? '?index=all' : '';
 
   if (loading) {
     return (
@@ -194,7 +223,14 @@ export function FARPage() {
   }
 
   if (selectedPart) {
-    return <FARPartView part={selectedPart} prevPart={navigation.prev} nextPart={navigation.next} />;
+    return (
+      <FARPartView
+        part={selectedPart}
+        prevPart={navigation.prev}
+        nextPart={navigation.next}
+        navigationQuery={navigationQuery}
+      />
+    );
   }
 
   if (partId && loadError) {
@@ -283,7 +319,7 @@ export function FARPage() {
         </div>
         <p className="mt-2 text-sm text-muted-foreground">
           {indexFilter === 'pilot'
-            ? 'Showing 84 CFR parts typically found in pilot reference manuals (ASA FAR/AIM)'
+            ? `Showing ${pilotCount} CFR parts typically found in pilot reference manuals (ASA FAR/AIM)`
             : 'Showing all Title 14 and Title 49 CFR aviation regulations'}
         </p>
       </div>
@@ -295,6 +331,7 @@ export function FARPage() {
           type="text"
           placeholder="Search parts by number, title, or content..."
           value={filterQuery}
+          disabled={!isIndexSearchInteractive}
           onChange={(e) => setFilterQuery(e.target.value)}
           className="w-full pl-10 pr-4 py-2.5 bg-card border border-border rounded-xl focus:ring-2 focus:ring-ring outline-none text-foreground placeholder:text-muted-foreground"
         />
@@ -324,7 +361,7 @@ export function FARPage() {
           return (
             <div key={part.part} className="space-y-2">
               <Link
-                to={`/far/${part.part}`}
+                to={withIndexFilter(`/far/${part.part}`, indexFilter)}
                 className="group bg-card rounded-xl p-6 shadow-sm hover:shadow-lg transition-all border border-border card-hover block"
               >
                 <div className="flex items-start justify-between">
@@ -378,7 +415,7 @@ export function FARPage() {
                   {contentMatches.slice(0, 3).map((match, idx) => (
                     <Link
                       key={idx}
-                      to={match.link}
+                      to={withIndexFilter(match.link, indexFilter)}
                       className="block p-3 bg-secondary/50 rounded-lg border border-border hover:border-primary/30 transition-colors"
                     >
                       <div className="flex items-start gap-2">
@@ -396,7 +433,7 @@ export function FARPage() {
                   ))}
                   {contentMatches.length > 3 && (
                     <Link
-                      to={`/far/${part.part}?highlight=${encodeURIComponent(filterQuery)}`}
+                      to={withIndexFilter(`/far/${part.part}?highlight=${encodeURIComponent(filterQuery)}`, indexFilter)}
                       className="block text-sm text-blue-600 dark:text-blue-400 hover:underline ml-6"
                     >
                       View all {contentMatches.length} matches in Part {part.part}...
@@ -422,11 +459,13 @@ export function FARPage() {
 function FARPartView({
   part,
   prevPart,
-  nextPart
+  nextPart,
+  navigationQuery,
 }: {
   part: FARPart;
   prevPart: FARPartMeta | null;
   nextPart: FARPartMeta | null;
+  navigationQuery: string;
 }) {
   const [searchParams] = useSearchParams();
   const [searchQuery, setSearchQuery] = useState('');
@@ -508,63 +547,64 @@ function FARPartView({
   }, [allSections, appendices]);
 
   useEffect(() => {
-    if (!location.hash) return;
-    let targetId: string;
-    try {
-      targetId = decodeURIComponent(location.hash.slice(1));
-    } catch {
-      targetId = location.hash.slice(1);
-    }
+    const targetId = decodeHash(location.hash);
+    if (!targetId) return;
     const timeout = window.setTimeout(() => {
       document.getElementById(targetId)?.scrollIntoView({ behavior: 'auto', block: 'start' });
     }, 100);
     return () => window.clearTimeout(timeout);
   }, [location.hash, allSections, appendices]);
 
-  // When there's a highlight term (from search), find and scroll to the first matching section
+  // When there's a highlight term (from search), scroll to a match unless the URL
+  // already names a section or appendix. The URL anchor takes priority, while the
+  // highlight remains available to mark matching text in the rendered content.
   useEffect(() => {
-    if (highlightTerm && allSections.length > 0) {
-      const query = highlightTerm.toLowerCase();
+    setHighlightedSectionId(null);
+    if (!highlightTerm || allSections.length === 0) return;
 
-      // Find the first section that contains the highlight term
-      const matchingSection = allSections.find(section => {
-        if (section.section.toLowerCase().includes(query)) return true;
-        if (section.title?.toLowerCase().includes(query)) return true;
-        if (section.content?.toLowerCase().includes(query)) return true;
-        if (section.definitions?.some(d =>
-          d.term.toLowerCase().includes(query) ||
-          d.definition.toLowerCase().includes(query)
-        )) return true;
-        if (section.abbreviations?.some(a =>
-          a.abbr.toLowerCase().includes(query) ||
-          a.meaning.toLowerCase().includes(query)
-        )) return true;
-        if (section.figures?.some(figure =>
-          figure.alt?.toLowerCase().includes(query) ||
-          figure.caption?.toLowerCase().includes(query)
-        )) return true;
-        return false;
-      });
+    const targetId = decodeHash(location.hash);
+    const hasExplicitAnchor = [...allSections, ...appendices].some(item =>
+      ('section' in item ? item.section : item.appendix) === targetId
+    );
+    if (hasExplicitAnchor) return;
 
-      if (matchingSection) {
-        // Set the highlighted section for flash effect
-        setHighlightedSectionId(matchingSection.section);
+    const query = highlightTerm.toLowerCase();
 
-        // Scroll to the section after a short delay to allow render
-        setTimeout(() => {
-          const element = document.getElementById(matchingSection.section);
-          if (element) {
-            element.scrollIntoView({ behavior: 'smooth', block: 'center' });
-          }
-        }, 100);
+    // Find the first section that contains the highlight term.
+    const matchingSection = allSections.find(section => {
+      if (section.section.toLowerCase().includes(query)) return true;
+      if (section.title?.toLowerCase().includes(query)) return true;
+      if (section.content?.toLowerCase().includes(query)) return true;
+      if (section.definitions?.some(d =>
+        d.term.toLowerCase().includes(query) ||
+        d.definition.toLowerCase().includes(query)
+      )) return true;
+      if (section.abbreviations?.some(a =>
+        a.abbr.toLowerCase().includes(query) ||
+        a.meaning.toLowerCase().includes(query)
+      )) return true;
+      if (section.figures?.some(figure =>
+        figure.alt?.toLowerCase().includes(query) ||
+        figure.caption?.toLowerCase().includes(query)
+      )) return true;
+      return false;
+    });
 
-        // Clear highlight after animation
-        setTimeout(() => {
-          setHighlightedSectionId(null);
-        }, 3000);
-      }
-    }
-  }, [highlightTerm, allSections]);
+    if (!matchingSection) return;
+
+    setHighlightedSectionId(matchingSection.section);
+    const scrollTimeout = window.setTimeout(() => {
+      document.getElementById(matchingSection.section)?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }, 100);
+    const clearTimeoutId = window.setTimeout(() => {
+      setHighlightedSectionId(null);
+    }, 3000);
+
+    return () => {
+      window.clearTimeout(scrollTimeout);
+      window.clearTimeout(clearTimeoutId);
+    };
+  }, [highlightTerm, location.hash, allSections, appendices]);
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -809,7 +849,7 @@ function FARPartView({
             <div className="flex flex-col gap-3 sm:flex-row sm:items-stretch sm:justify-between sm:gap-4">
               {prevPart ? (
                 <Link
-                  to={`/far/${prevPart.part}`}
+                  to={`/far/${prevPart.part}${navigationQuery}`}
                   className="w-full min-w-0 group flex items-center gap-3 p-4 bg-card rounded-xl border border-border hover:border-primary/30 hover:shadow-md transition-all sm:flex-1"
                 >
                   <ChevronLeft className="w-5 h-5 shrink-0 text-muted-foreground group-hover:text-primary transition-colors" />
@@ -826,7 +866,7 @@ function FARPartView({
 
               {nextPart ? (
                 <Link
-                  to={`/far/${nextPart.part}`}
+                  to={`/far/${nextPart.part}${navigationQuery}`}
                   className="w-full min-w-0 group flex items-center justify-end gap-3 p-4 bg-card rounded-xl border border-border hover:border-primary/30 hover:shadow-md transition-all sm:flex-1"
                 >
                   <div className="text-right min-w-0">
@@ -1016,7 +1056,7 @@ function SectionView({
   return (
     <div
       id={section.section}
-      className={`bg-card rounded-xl p-6 shadow-sm border border-border transition-colors duration-500 ${isFlashed ? 'ring-2 ring-primary bg-primary/5' : ''
+      className={`scroll-mt-24 bg-card rounded-xl p-6 shadow-sm border border-border transition-colors duration-500 ${isFlashed ? 'ring-2 ring-primary bg-primary/5' : ''
         }`}
     >
       <div className="flex items-start justify-between gap-2 mb-3">

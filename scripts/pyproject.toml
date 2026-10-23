@@ -14,8 +14,8 @@ dependencies = [
     "urllib3>=2.8.0",
     "beautifulsoup4>=4.12.0",
     "lxml>=6.1.0",
-    "pillow>=12.1.1",
-    "pypdf>=6.19.0",
+    "pillow>=13.0.0",
+    "pypdf>=6.21.1",
     "pypdfium2>=5.11.0",
     "tqdm>=4.66.0",
     "resvg-py>=0.5.0",
@@ -28,7 +28,7 @@ ocr = [
 ]
 dev = [
     "pytest>=9.0.3",
-    "black>=26.3.1",
+    "black>=26.10.1",
     "ruff>=0.1.0",
 ]
 
@@ -41,7 +41,7 @@ check-source-freshness = "check_source_freshness:main"
 [dependency-groups]
 dev = [
     "pytest>=9.0.3",
-    "black>=26.3.1",
+    "black>=26.10.1",
     "ruff>=0.1.0",
 ]
 
@@ -56,3 +56,10 @@ ignore = ["E501"]
 [tool.black]
 line-length = 100
 target-version = ["py311"]
+
+# Admit the audited security patches without exempting future uploads.
+[tool.uv.exclude-newer-package]
+black = "2026-10-23T00:00:00Z"
+certifi = "2026-10-23T00:00:00Z"
+pillow = "2026-10-23T00:00:00Z"
+pypdf = "2026-10-23T00:00:00Z"

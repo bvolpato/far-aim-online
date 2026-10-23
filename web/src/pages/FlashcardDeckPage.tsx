@@ -27,6 +27,11 @@ export function FlashcardDeckPage() {
   const [knownCards, setKnownCards] = useState<Set<string>>(new Set());
   const [unknownCards, setUnknownCards] = useState<Set<string>>(new Set());
   const [isReviewMode, setIsReviewMode] = useState(false);
+  const [isInteractive, setIsInteractive] = useState(false);
+
+  useEffect(() => {
+    setIsInteractive(true);
+  }, []);
 
   useEffect(() => {
     setCurrentIndex(0);
@@ -97,7 +102,7 @@ export function FlashcardDeckPage() {
       <div className="max-w-4xl mx-auto px-4 py-8 text-center">
         <h1 className="text-2xl font-bold text-foreground mb-3">This deck couldn’t be loaded</h1>
         <p role="alert" className="text-muted-foreground mb-5">Check your connection and try again.</p>
-        <Button onClick={() => setLoadAttempt((attempt) => attempt + 1)} className="mr-3">Try again</Button>
+        <Button onClick={() => setLoadAttempt((attempt) => attempt + 1)} disabled={!isInteractive} className="mr-3">Try again</Button>
         <Button variant="link" asChild>
           <Link to="/flashcards">Return to flashcards</Link>
         </Button>
@@ -110,6 +115,7 @@ export function FlashcardDeckPage() {
   const isComplete = cards.length > 0 && completedCount === cards.length;
 
   const handleFlip = () => {
+    if (!isInteractive) return;
     setIsFlipped(!isFlipped);
   };
 
@@ -185,6 +191,8 @@ export function FlashcardDeckPage() {
   };
 
   const handleKeyDown = (e: KeyboardEvent<HTMLDivElement>) => {
+    if (!isInteractive) return;
+
     switch (e.key) {
       case 'ArrowRight':
         handleNext();
@@ -202,6 +210,8 @@ export function FlashcardDeckPage() {
   };
 
   const handleCardKeyDown = (e: KeyboardEvent<HTMLDivElement>) => {
+    if (!isInteractive) return;
+
     if (e.key === ' ' || e.key === 'Enter') {
       e.preventDefault();
       handleFlip();
@@ -291,12 +301,12 @@ export function FlashcardDeckPage() {
           </div>
           <div className="mt-8 flex flex-wrap justify-center gap-3">
             {!isReviewMode && unknownCards.size > 0 && (
-              <Button type="button" variant="outline" onClick={handleReviewMissed}>
+              <Button type="button" variant="outline" onClick={handleReviewMissed} disabled={!isInteractive}>
                 <RotateCcw className="mr-2 h-4 w-4" aria-hidden="true" />
                 Review {unknownCards.size} missed card{unknownCards.size === 1 ? '' : 's'}
               </Button>
             )}
-            <Button type="button" onClick={handleReset}>
+            <Button type="button" onClick={handleReset} disabled={!isInteractive}>
               <RotateCcw className="mr-2 h-4 w-4" aria-hidden="true" />
               Restart deck
             </Button>
@@ -311,7 +321,8 @@ export function FlashcardDeckPage() {
               onClick={handleFlip}
               onKeyDown={handleCardKeyDown}
               role="button"
-              tabIndex={0}
+              tabIndex={isInteractive ? 0 : -1}
+              aria-disabled={isInteractive ? undefined : true}
               aria-pressed={isFlipped}
               aria-label={`Show ${isFlipped ? 'term' : 'definition'} for ${currentCard.front}`}
               style={{ minHeight: '320px' }}
@@ -351,7 +362,7 @@ export function FlashcardDeckPage() {
                 type="button"
                 variant="ghost"
                 onClick={handlePrevious}
-                disabled={currentIndex === 0}
+                disabled={!isInteractive || currentIndex === 0}
               >
                 <ChevronLeft className="mr-2 h-5 w-5" aria-hidden="true" />
                 Previous
@@ -363,6 +374,7 @@ export function FlashcardDeckPage() {
                   variant="ghost"
                   size="icon"
                   onClick={handleShuffle}
+                  disabled={!isInteractive}
                   title="Shuffle cards"
                   aria-label="Shuffle cards and restart"
                 >
@@ -373,6 +385,7 @@ export function FlashcardDeckPage() {
                   variant="ghost"
                   size="icon"
                   onClick={handleReset}
+                  disabled={!isInteractive}
                   title="Restart deck"
                   aria-label="Restart deck"
                 >
@@ -384,7 +397,7 @@ export function FlashcardDeckPage() {
                 type="button"
                 variant="ghost"
                 onClick={handleNext}
-                disabled={currentIndex === cards.length - 1}
+                disabled={!isInteractive || currentIndex === cards.length - 1}
               >
                 Next
                 <ChevronRight className="ml-2 h-5 w-5" aria-hidden="true" />
@@ -397,6 +410,7 @@ export function FlashcardDeckPage() {
                 type="button"
                 variant="outline"
                 onClick={handleMarkUnknown}
+                disabled={!isInteractive}
                 className="flex-1 rounded-xl border-2 border-red-200 bg-red-50 py-6 text-red-600 hover:bg-red-100 dark:border-red-800 dark:bg-red-900/30 dark:text-red-400 dark:hover:bg-red-900/50"
               >
                 <X className="mr-2 h-5 w-5" aria-hidden="true" />
@@ -406,6 +420,7 @@ export function FlashcardDeckPage() {
                 type="button"
                 variant="outline"
                 onClick={handleMarkKnown}
+                disabled={!isInteractive}
                 className="flex-1 rounded-xl border-2 border-emerald-200 bg-emerald-50 py-6 text-emerald-600 hover:bg-emerald-100 dark:border-emerald-800 dark:bg-emerald-900/30 dark:text-emerald-400 dark:hover:bg-emerald-900/50"
               >
                 <Check className="mr-2 h-5 w-5" aria-hidden="true" />
