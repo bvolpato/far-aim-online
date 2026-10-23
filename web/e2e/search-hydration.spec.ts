@@ -101,3 +101,43 @@ test('keeps reader preferences inert until FAR hydration completes', async ({ pa
     chunk.release();
   }
 });
+
+test('keeps flashcard controls inert until deck hydration completes', async ({ page }) => {
+  const chunk = await holdPageChunk(page, '**/assets/FlashcardDeckPage-*.js');
+
+  try {
+    await page.goto('/flashcards/far-definitions', { waitUntil: 'domcontentloaded' });
+    await chunk.requested;
+
+    const flashcard = page.locator('.flashcard');
+    const nextButton = page.getByRole('button', { name: 'Next' });
+    const gotItButton = page.getByRole('button', { name: 'Got It!' });
+
+    await expect(page.getByRole('heading', { name: 'Aircraft' })).toBeVisible();
+    await expect(flashcard).toHaveAccessibleName('Show definition for Aircraft');
+    await expect(flashcard).toHaveAttribute('aria-disabled', 'true');
+    await expect(flashcard).toHaveAttribute('tabindex', '-1');
+    await expect(nextButton).toBeDisabled();
+    await expect(gotItButton).toBeDisabled();
+
+    chunk.release();
+    await expect(flashcard).toBeEnabled();
+    await expect(flashcard).toHaveAttribute('tabindex', '0');
+    await expect(nextButton).toBeEnabled();
+    await expect(gotItButton).toBeEnabled();
+
+    await flashcard.press('Enter');
+    await expect(flashcard).toHaveAttribute('aria-pressed', 'true');
+    await flashcard.click();
+    await expect(flashcard).toHaveAttribute('aria-pressed', 'false');
+
+    await gotItButton.click();
+    await expect(page.getByText('Card 2 of 50')).toBeVisible();
+    await page.locator('.flashcard').press('ArrowRight');
+    await expect(page.getByText('Card 3 of 50')).toBeVisible();
+    await page.getByRole('button', { name: 'Previous' }).click();
+    await expect(page.getByText('Card 2 of 50')).toBeVisible();
+  } finally {
+    chunk.release();
+  }
+});

@@ -20,6 +20,7 @@ test.describe('flashcards', () => {
 
     const flashcard = page.getByRole('button', { name: /Show definition for Aircraft/i });
     await expect(flashcard).toBeVisible();
+    await expect(flashcard).toBeEnabled();
     await flashcard.press('Enter');
     await expect(page.getByRole('button', { name: /Show term for Aircraft/i })).toHaveAttribute('aria-pressed', 'true');
 
