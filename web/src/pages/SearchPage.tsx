@@ -38,6 +38,7 @@ export function SearchPage() {
   const initialQuery = searchParams.get('q') || '';
 
   const [inputValue, setInputValue] = useState(initialQuery);
+  const [isSearchInteractive, setIsSearchInteractive] = useState(false);
   const [query, setQuery] = useState(initialQuery);
   const [rawResults, setRawResults] = useState<SearchResult[]>([]);
   const [isSearching, setIsSearching] = useState(false);
@@ -54,6 +55,10 @@ export function SearchPage() {
     ac: true,
     flashcards: true,
   });
+
+  useEffect(() => {
+    setIsSearchInteractive(true);
+  }, []);
 
   // Sync URL changes from browser navigation into local state.
   useEffect(() => {
@@ -261,6 +266,7 @@ export function SearchPage() {
         <Input
           type="text"
           value={inputValue}
+          disabled={!isSearchInteractive}
           onChange={(e) => setInputValue(e.target.value)}
           placeholder="Search for regulations, definitions, topics..."
           aria-label="Search FAR/AIM content"
