@@ -71,3 +71,33 @@ test('keeps FAR index search input disabled until FARPage hydration completes', 
     chunk.release();
   }
 });
+
+test('keeps reader preferences inert until FAR hydration completes', async ({ page }) => {
+  const chunk = await holdPageChunk(page, '**/assets/FARPage-*.js');
+
+  try {
+    await page.goto('/far/61', { waitUntil: 'domcontentloaded' });
+    await chunk.requested;
+
+    const preferencesToggle = page.getByRole('button', { name: 'Reader preferences' });
+    await expect(preferencesToggle).toBeDisabled();
+
+    chunk.release();
+    await expect(preferencesToggle).toBeEnabled();
+    await preferencesToggle.click();
+
+    const dialog = page.getByRole('dialog', { name: 'Reader settings' });
+    await expect(dialog).toBeVisible();
+    await page.getByRole('button', { name: 'Increase reader text size' }).click();
+    await expect(dialog).toContainText('110%');
+    await page.getByRole('button', { name: 'Comfort' }).click();
+    await expect(page.getByRole('button', { name: 'Comfort' })).toHaveAttribute('aria-pressed', 'true');
+
+    await page.reload({ waitUntil: 'networkidle' });
+    await page.getByRole('button', { name: 'Reader preferences' }).click();
+    await expect(page.getByRole('dialog', { name: 'Reader settings' })).toContainText('110%');
+    await expect(page.getByRole('button', { name: 'Comfort' })).toHaveAttribute('aria-pressed', 'true');
+  } finally {
+    chunk.release();
+  }
+});
