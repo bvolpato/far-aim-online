@@ -20,8 +20,13 @@ export function ReaderControls({
   className?: string;
 }) {
   const [isOpen, setIsOpen] = useState(false);
+  const [isInteractive, setIsInteractive] = useState(false);
   const [showScrollTop, setShowScrollTop] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    setIsInteractive(true);
+  }, []);
 
   // Monitor scroll for Scroll-to-Top visibility
   useEffect(() => {
@@ -158,6 +163,7 @@ export function ReaderControls({
         type="button"
         variant="default"
         onClick={() => setIsOpen(!isOpen)}
+        disabled={!isInteractive}
         className={cn(
           'h-12 w-12 rounded-full shadow-lg border border-border flex items-center justify-center font-bold text-base transition-all duration-200 hover:scale-105 active:scale-95',
           isOpen ? 'bg-primary text-primary-foreground' : 'bg-card text-foreground hover:bg-accent'

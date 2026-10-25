@@ -337,7 +337,16 @@ fi
 cd "$PROJECT_DIR"
 
 if [[ "$SKIP_SIM_BUILD" = false ]]; then
-  SIM_DESTINATION="${IOS_SIM_DESTINATION:-platform=iOS Simulator,name=iPhone 17,OS=26.5}"
+  if [[ -z "${IOS_SIM_DESTINATION:-}" ]]; then
+    SIM_ID="$(xcrun simctl list devices available | grep -m1 -E 'iPhone.*([0-9A-F-]{36})' | grep -o -E '[0-9A-F]{8}-[0-9A-F]{4}-[0-9A-F]{4}-[0-9A-F]{4}-[0-9A-F]{12}' || true)"
+    if [[ -n "$SIM_ID" ]]; then
+      SIM_DESTINATION="id=$SIM_ID"
+    else
+      SIM_DESTINATION="platform=iOS Simulator,name=iPhone 17"
+    fi
+  else
+    SIM_DESTINATION="$IOS_SIM_DESTINATION"
+  fi
   xcodebuild clean test \
     -project "$PROJECT" \
     -scheme "$SCHEME" \
