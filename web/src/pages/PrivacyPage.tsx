@@ -10,10 +10,19 @@ const sections = [
   {
     title: 'Information We Collect',
     body: [
-      'FAR/AIM Online does not require an account and does not collect personal information through an app backend.',
+      'FAR/AIM Online does not require an account. Locally saved study data is not sent to an app backend. Optional website analytics is described below.',
       'The app and website may store reading history, search history, quiz progress, flashcard progress, saved references, highlights, notes, and theme preferences locally on your device or browser.',
       'If you export a study pack, it can include saved references, highlights, notes, reading history, and search history. You choose where the exported file is stored or shared. You can import a study pack from a file you select.',
       'Our static website host may process standard server logs, such as IP address, user agent, requested URL, and timestamp, to operate and protect the website.',
+    ],
+  },
+  {
+    title: 'Optional Website Analytics',
+    body: [
+      'If you choose Allow analytics, the website loads Google Analytics. It measures visits, pages viewed, traffic sources, approximate location, and browser and device categories. Google uses first-party analytics cookies to distinguish browsers and sessions. It processes technical information when receiving requests.',
+      'Analytics stays off until you opt in. Declining does not affect the reference or study tools. You can change your choice using Analytics preferences in the website footer. Withdrawing consent stops future analytics collection and removes the analytics cookies. It does not delete information already collected.',
+      'Page URLs are sent without query strings or fragments. We do not send search terms, notes, saved references, highlights, quiz or flashcard progress, or account identifiers to Google Analytics. Google signals and advertising personalization are disabled.',
+      'Your analytics choice is stored locally in your browser. This optional tracking applies to the website. The native apps do not include a Google Analytics SDK.',
     ],
   },
   {
@@ -21,6 +30,7 @@ const sections = [
     body: [
       'Local study data is used to provide app features such as recent reading history, search history, saved preferences, and progress tracking.',
       'Server logs, when processed by hosting providers, are used for website delivery, reliability, security, and abuse prevention.',
+      'Optional website analytics helps us understand which references visitors use and how they find the site.',
     ],
   },
   {
@@ -29,6 +39,7 @@ const sections = [
       'We do not sell personal information.',
       'We do not share personal information for cross-context behavioral advertising.',
       'Hosting providers may process technical logs as needed to run the website and related infrastructure.',
+      'When you allow website analytics, Google processes the analytics information described above as our analytics provider.',
     ],
   },
   {
@@ -36,6 +47,7 @@ const sections = [
     body: [
       'You can clear local browser data, app data, or uninstall the app to remove locally stored study information. Delete any study-pack files you exported separately from the location where you saved them.',
       'You can use FAR/AIM Online without creating an account.',
+      'You can decline website analytics or withdraw consent through Analytics preferences in the footer.',
     ],
   },
   {
@@ -43,6 +55,7 @@ const sections = [
     body: [
       'The FAR/AIM Pro Android app does not transmit locally stored study data to FAR/AIM Online servers. The website uses HTTPS for data in transit.',
       'We do not retain app study data on a server. Local study data remains on your device or in your browser until you clear it or uninstall the app. Website hosts may retain technical access logs for service operation and security.',
+      'Google Analytics user and event data is configured for two-month retention without extending retention when you return. Aggregated reports may remain available beyond that period.',
     ],
   },
   {
@@ -66,14 +79,14 @@ export function PrivacyPage() {
         <title>Privacy Policy | FAR/AIM Online</title>
         <meta
           name="description"
-          content="Privacy Policy for FAR/AIM Online, including local study data, website logs, and user choices."
+          content="Privacy Policy for FAR/AIM Online, including local study data, optional website analytics, website logs, and user choices."
         />
         <link rel="canonical" href="https://faraim.online/privacy" />
       </Helmet>
 
       <div className="bg-secondary/30 border-b">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-          <p className="text-sm font-semibold text-primary mb-3">Effective September 27, 2026</p>
+          <p className="text-sm font-semibold text-primary mb-3">Effective October 25, 2026</p>
           <h1 className="text-4xl font-bold text-foreground">Privacy Policy</h1>
           <p className="text-muted-foreground mt-4 text-lg">
             FAR/AIM Online is built as an offline-first aviation study reference. We keep data collection minimal.
@@ -92,6 +105,13 @@ export function PrivacyPage() {
             ))}
           </section>
         ))}
+        <p className="text-muted-foreground leading-7">
+          Read{' '}
+          <a href="https://policies.google.com/privacy" className="text-primary underline">
+            Google’s privacy policy
+          </a>{' '}
+          for more information about its handling of analytics data.
+        </p>
       </article>
     </>
   );
