@@ -58,11 +58,4 @@ line-length = 100
 target-version = ["py311"]
 
 [tool.uv]
-exclude-newer = "7 days"
-
-# Admit the audited security patches without exempting future uploads.
-[tool.uv.exclude-newer-package]
-black = "2026-10-23T00:00:00Z"
-certifi = "2026-10-23T00:00:00Z"
-pillow = "2026-10-23T00:00:00Z"
-pypdf = "2026-10-23T00:00:00Z"
+required-version = ">=0.13.4"
