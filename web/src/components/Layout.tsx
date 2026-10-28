@@ -18,6 +18,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { cn } from '@/lib/utils';
 import { useStudyMarks } from '@/hooks/useStudyMarks';
+import { AnalyticsPreferences } from './AnalyticsPreferences';
 
 interface LayoutProps {
   children: ReactNode;
@@ -316,6 +317,7 @@ export function Layout({ children }: LayoutProps) {
               &copy; {new Date().getFullYear()} FAR/AIM Online. Free and open source. For educational purposes.
             </div>
             <div className="flex flex-wrap items-center justify-center sm:justify-end gap-x-4 gap-y-2 text-sm text-muted-foreground">
+              <AnalyticsPreferences />
               <Link to="/privacy" className="hover:text-primary transition-colors">
                 Privacy
               </Link>
