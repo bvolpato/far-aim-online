@@ -59,6 +59,18 @@ class DataRepositoryRuntimeTest {
     }
 
     @Test
+    fun globalSearchFindsFARSectionByNumberAndKeepsCrossCatalogMatches() {
+        val results = DataRepository(context).search("91.205")
+        val farSection = results.firstOrNull {
+            it.type == "far" && it.link == "far/91#91.205"
+        }
+
+        assertNotNull("Section 91.205 should match its FAR reference", farSection)
+        assertEquals("A direct section lookup should rank the FAR result first", farSection, results.first())
+        assertTrue("Cross-catalog matches should remain available", results.any { it.type == "ac" })
+    }
+
+    @Test
     fun glossarySearchRanksExactTermsBeforeDefinitionMatches() {
         val repository = DataRepository(context)
 
