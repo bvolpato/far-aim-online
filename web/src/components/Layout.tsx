@@ -12,6 +12,8 @@ import {
   ClipboardList,
   ChevronDown,
   Bookmark,
+  Download,
+  Smartphone,
 } from 'lucide-react';
 import { ThemeToggle } from './ThemeToggle';
 import { Button } from '@/components/ui/button';
@@ -19,6 +21,7 @@ import { Input } from '@/components/ui/input';
 import { cn } from '@/lib/utils';
 import { useStudyMarks } from '@/hooks/useStudyMarks';
 import { AnalyticsPreferences } from './AnalyticsPreferences';
+import { androidRelease, iosAppUrl } from '@/lib/mobileApps';
 
 interface LayoutProps {
   children: ReactNode;
@@ -299,6 +302,16 @@ export function Layout({ children }: LayoutProps) {
                   </Link>
                 );
               })}
+              <div className="mt-3 border-t pt-3">
+                <a href={iosAppUrl} className="flex min-h-11 items-center gap-3 rounded-lg px-4 py-3 text-sm font-medium hover:bg-accent">
+                  <Smartphone className="h-5 w-5" aria-hidden="true" />
+                  Get the iOS app
+                </a>
+                <a href={androidRelease.url} download={androidRelease.filename} className="flex min-h-11 items-center gap-3 rounded-lg px-4 py-3 text-sm font-medium hover:bg-accent">
+                  <Download className="h-5 w-5" aria-hidden="true" />
+                  Download Android APK
+                </a>
+              </div>
             </nav>
           </div>
         )}
@@ -318,6 +331,12 @@ export function Layout({ children }: LayoutProps) {
             </div>
             <div className="flex flex-wrap items-center justify-center sm:justify-end gap-x-4 gap-y-2 text-sm text-muted-foreground">
               <AnalyticsPreferences />
+              <a href={iosAppUrl} className="hover:text-primary transition-colors">
+                iPhone &amp; iPad app
+              </a>
+              <a href={androidRelease.url} download={androidRelease.filename} className="hover:text-primary transition-colors">
+                Android APK
+              </a>
               <Link to="/privacy" className="hover:text-primary transition-colors">
                 Privacy
               </Link>

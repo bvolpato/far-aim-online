@@ -36,6 +36,9 @@ self.addEventListener('fetch', (event) => {
   // Skip external origins
   if (url.origin !== self.location.origin) return;
 
+  // Let the browser download installers without caching them or returning HTML offline.
+  if (url.pathname.startsWith('/downloads/')) return;
+
   // Navigation requests: Network-first with cache fallback
   if (request.mode === 'navigate') {
     event.respondWith(

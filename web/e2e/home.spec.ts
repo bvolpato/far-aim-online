@@ -65,6 +65,32 @@ test.describe('home page', () => {
     await expect(page.getByRole('heading', { name: /Certification: Pilots/i, level: 1 })).toBeVisible();
   });
 
+  test('provides mobile downloads and Android installation help', async ({ page }) => {
+    await page.setViewportSize({ width: 320, height: 844 });
+    await page.goto('/', { waitUntil: 'networkidle' });
+    const downloads = page.getByRole('navigation', { name: 'Mobile app downloads' });
+    await expect(downloads.getByRole('link', { name: 'Get the iOS app' })).toHaveAttribute(
+      'href', 'https://apps.apple.com/us/app/far-aim-pro/id6765584356',
+    );
+    const apk = downloads.getByRole('link', { name: 'Download Android APK' });
+    await expect(apk).toHaveAttribute('href', '/downloads/android/faraim-online-1.1.0-4.apk');
+    await expect(apk).toHaveAttribute('download', 'faraim-online-1.1.0-4.apk');
+    expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+
+    await page.getByLabel('Open navigation menu').click();
+    const menu = page.getByRole('navigation', { name: 'Mobile navigation' });
+    await expect(menu.getByRole('link', { name: 'Get the iOS app' })).toBeVisible();
+    await expect(menu.getByRole('link', { name: 'Download Android APK' })).toBeVisible();
+    await page.getByLabel('Close navigation menu').click();
+
+    await page.getByRole('link', { name: 'Android installation help' }).click();
+    await expect(page).toHaveURL(/\/support#android-install$/);
+    await expect(page.getByRole('heading', { name: 'Install on Android' })).toBeInViewport();
+    await expect(page.getByRole('link', { name: 'SHA-256 checksum' })).toHaveAttribute(
+      'href', '/downloads/android/faraim-online-1.1.0-4.apk.sha256',
+    );
+  });
+
   test('mobile menu exposes navigation and search', async ({ page }) => {
     await page.setViewportSize({ width: 390, height: 844 });
     await page.goto('/');
