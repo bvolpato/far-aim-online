@@ -13,6 +13,8 @@ import {
   Layers,
   Search,
   ClipboardList,
+  Download,
+  Smartphone,
 } from 'lucide-react';
 import { Helmet } from 'react-helmet-async';
 import { useReadingHistory } from '../hooks/useReadingHistory';
@@ -26,6 +28,7 @@ import {
   getStudyPaths,
   getSourceStatus,
 } from '../data/catalog';
+import { androidRelease, iosAppUrl } from '@/lib/mobileApps';
 
 export function HomePage() {
   const navigate = useNavigate();
@@ -157,6 +160,26 @@ export function HomePage() {
               </form>
               <p className="mt-6 text-xs tracking-wide text-slate-300">
                 No account, subscription, or in-app purchases.
+              </p>
+              <nav aria-label="Mobile app downloads" className="mt-5 flex flex-wrap gap-3">
+                <Button asChild className="min-h-11 bg-white text-[#102b40] hover:bg-slate-100">
+                  <a href={iosAppUrl}>
+                    <Smartphone className="mr-2 h-4 w-4" aria-hidden="true" />
+                    Get the iOS app
+                  </a>
+                </Button>
+                <Button asChild className="min-h-11 border border-white/35 bg-transparent text-white hover:bg-white/10">
+                  <a href={androidRelease.url} download={androidRelease.filename}>
+                    <Download className="mr-2 h-4 w-4" aria-hidden="true" />
+                    Download Android APK
+                  </a>
+                </Button>
+              </nav>
+              <p className="mt-3 text-sm text-slate-300">
+                Free offline apps for iPhone, iPad, and Android.{' '}
+                <Link to="/support#android-install" className="underline underline-offset-4 hover:text-white">
+                  Android installation help
+                </Link>
               </p>
               <a
                 href="https://github.com/bvolpato/far-aim-online"

@@ -46,6 +46,25 @@ the private helper. Outputs are under `mobile/android/app/build/outputs/`.
 Upload the signed AAB only after verifying it and choosing an unused Play version
 code. Google Play retains the app-signing key through Play App Signing.
 
+### Direct APK downloads
+
+The website also offers a signed APK at
+`https://faraim.online/downloads/android/faraim-online-1.1.0-4.apk`.
+The adjacent `.apk.sha256` file contains its SHA-256 checksum, and
+`faraim-online-1.1.0-4.json` records the source commit, package version, size,
+checksum, and signing certificate fingerprint.
+
+Build with the private signing helper above, verify the APK signature, and test
+installation before uploading to `gs://faraim.online/downloads/android/`.
+Publish the APK and metadata before deploying website links. Use a new version
+code and filename for each release, with immutable caching; do not replace an
+existing version. APKs stay outside Git and the web build. Website deploys retain
+these separately uploaded objects.
+
+Direct APK updates are installed manually. These APKs use the upload certificate,
+while Google Play uses its separate app-signing certificate. A direct APK cannot
+update an installation signed by Google Play.
+
 ## iOS
 
 The public `iOS CI` workflow runs XCTest on a simulator and builds an unsigned

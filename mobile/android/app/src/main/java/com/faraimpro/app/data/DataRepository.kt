@@ -846,6 +846,12 @@ class DataRepository(private val context: Context) {
         val flashcardDecks = loadFlashcardDecks().getOrThrow()
         val advisoryCirculars = loadAdvisoryCirculars().getOrThrow()
         val acSearchIndex = loadACSearchIndex()
+
+        val referencePunctuation = Regex("[^\\w\\s]")
+        fun farSectionSearchTitle(section: FARSection): String {
+            val normalizedReference = section.section.replace(referencePunctuation, "")
+            return "${section.title} $normalizedReference"
+        }
         
         data class ScoredResult(val result: SearchResult, val score: Double)
         val scoredResults = mutableListOf<ScoredResult>()
@@ -855,11 +861,11 @@ class DataRepository(private val context: Context) {
         
         for (part in farParts) {
             part.sections?.forEach { section ->
-                allDocs.add(section.title to section.searchableText)
+                allDocs.add(farSectionSearchTitle(section) to section.searchableText)
             }
             part.subparts?.forEach { subpart ->
                 subpart.sections.forEach { section ->
-                    allDocs.add(section.title to section.searchableText)
+                    allDocs.add(farSectionSearchTitle(section) to section.searchableText)
                 }
             }
             part.appendices?.forEach { appendix ->
@@ -895,7 +901,7 @@ class DataRepository(private val context: Context) {
         // Search FAR with scoring
         for (part in farParts) {
             part.sections?.forEach { section ->
-                val score = calculateTfIdfScore(section.title, section.searchableText, tokens, docFrequency, totalDocs)
+                val score = calculateTfIdfScore(farSectionSearchTitle(section), section.searchableText, tokens, docFrequency, totalDocs)
                 if (score > 0) {
                     scoredResults.add(ScoredResult(
                         SearchResult(
@@ -912,7 +918,7 @@ class DataRepository(private val context: Context) {
             
             part.subparts?.forEach { subpart ->
                 subpart.sections.forEach { section ->
-                    val score = calculateTfIdfScore(section.title, section.searchableText, tokens, docFrequency, totalDocs)
+                    val score = calculateTfIdfScore(farSectionSearchTitle(section), section.searchableText, tokens, docFrequency, totalDocs)
                     if (score > 0) {
                         scoredResults.add(ScoredResult(
                             SearchResult(
