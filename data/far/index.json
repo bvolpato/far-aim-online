@@ -1,11 +1,11 @@
 {
   "title": "Federal Aviation Regulations (14 CFR) - Full Index",
   "description": "Complete Title 14 Code of Federal Regulations from eCFR",
-  "lastUpdated": "2026-10-15",
-  "fetchedAt": "2026-10-17",
+  "lastUpdated": "2026-10-28",
+  "fetchedAt": "2026-10-31",
   "effectiveDates": {
     "14": "2026-10-15",
-    "49": "2026-10-13"
+    "49": "2026-10-28"
   },
   "source": "eCFR (ecfr.gov)",
   "indexType": "full",

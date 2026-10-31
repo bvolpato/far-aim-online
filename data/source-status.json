@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-10-17",
+  "generatedAt": "2026-10-31",
   "appVersion": "1.1.0",
   "sources": [
     {
@@ -9,7 +9,7 @@
       "shortLabel": "FAR",
       "source": "eCFR Titles 14 and 49",
       "status": "Current snapshot",
-      "lastUpdated": "2026-10-15",
+      "lastUpdated": "2026-10-28",
       "itemCount": 213,
       "sectionCount": 6546,
       "coverage": "213 indexed parts, 200 content parts, 6,546 sections, 185 appendices and 592 figures",
@@ -57,7 +57,7 @@
       "shortLabel": "ACs",
       "source": "Federal Aviation Administration",
       "status": "Current FAA AC archive with offline text",
-      "lastUpdated": "2026-10-17",
+      "lastUpdated": "2026-10-31",
       "itemCount": 779,
       "coverage": "779 current advisory circulars, 778 official PDFs, 731 text extractions covering every page and 42 partial extractions",
       "officialUrl": "https://www.faa.gov/regulations_policies/advisory_circulars",
@@ -88,8 +88,8 @@
   ],
   "changeWatch": [
     {
-      "id": "far-2026-10-15",
-      "date": "2026-10-15",
+      "id": "far-2026-10-28",
+      "date": "2026-10-28",
       "sourceId": "far",
       "severity": "review",
       "title": "FAR/eCFR snapshot refreshed",
@@ -131,8 +131,8 @@
       "link": "/aim"
     },
     {
-      "id": "ac-2026-10-17",
-      "date": "2026-10-17",
+      "id": "ac-2026-10-31",
+      "date": "2026-10-31",
       "sourceId": "ac",
       "severity": "review",
       "title": "Advisory Circular archive refreshed",

@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "updated": "2026-10-17",
+  "updated": "2026-10-31",
   "source": "Federal Aviation Administration Advisory Circulars",
   "description": "Current FAA advisory circular metadata library generated from the FAA current AC export and document list, with official FAA document pages and PDF links where published.",
   "items": [
@@ -360,14 +360,14 @@
       "title": "Air Medical Resource Management",
       "status": "Active",
       "issued": "2005-09-22",
-      "office": "AFS-300",
+      "office": "AFS-200",
       "category": "General Guidance",
       "summary": "This AC provides guidance and information, which establish minimum guidelines for Air Medical Resource Management Training.",
       "relatedCfr": [],
       "documentUrl": "https://www.faa.gov/regulations_policies/advisory_circulars/index.cfm/go/document.information/documentID/22500",
       "tags": [
         "00",
-        "afs-300",
+        "afs-200",
         "general guidance",
         "air",
         "medical",
@@ -379,7 +379,7 @@
       "contentPath": "content/ac-00-64.json",
       "pageCount": 17,
       "wordCount": 6112,
-      "contentUpdated": "2026-07-14",
+      "contentUpdated": "2026-10-31",
       "extractedPageCount": 17
     },
     {
@@ -2847,19 +2847,19 @@
       "extractedPageCount": 4
     },
     {
-      "id": "ac-20-164a",
-      "number": "20-164A",
+      "id": "ac-20-164b",
+      "number": "20-164B",
       "title": "Designing and Demonstrating Aircraft Tolerance to Portable Electronic Devices",
       "status": "Active",
-      "issued": "2017-06-09",
-      "office": "AIR-100",
+      "issued": "2026-07-30",
+      "office": "AIR-626",
       "category": "Aircraft Certification and Airworthiness",
-      "summary": "This advisory circular (AC) identifies RTCA, Inc., document DO-307A, Aircraft Design and Certification for Portable Electronic Device (PED) Tolerance, dated December 15, 2016, as an acceptable means for designing and demonstrating aircraft toleranceto potential electromagnetic interference from portable electronic devices (PEDs).",
+      "summary": "This advisory circular (AC) identifies RTCA Inc.1, document, DO-307B, or later FAA-accepted revision, Aircraft Design and Certification for Portable Electronic Device (PED) Tolerance, as an acceptable means for designing and demonstrating aircraft tolerance to potential electromagnetic interference from portable electronic devices (PEDs).",
       "relatedCfr": [],
-      "documentUrl": "https://www.faa.gov/regulations_policies/advisory_circulars/index.cfm/go/document.information/documentID/1031366",
+      "documentUrl": "https://www.faa.gov/regulations_policies/advisory_circulars/index.cfm/go/document.information/documentID/1045838",
       "tags": [
         "20",
-        "air-100",
+        "air-626",
         "aircraft certification and airworthiness",
         "designing",
         "demonstrating",
@@ -2868,13 +2868,13 @@
         "electronic",
         "devices"
       ],
-      "pdfUrl": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_20-164A.pdf",
+      "pdfUrl": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_20-164B.pdf",
       "contentStatus": "parsed",
-      "contentPath": "content/ac-20-164a.json",
-      "pageCount": 5,
-      "wordCount": 1204,
-      "contentUpdated": "2026-07-14",
-      "extractedPageCount": 5
+      "contentPath": "content/ac-20-164b.json",
+      "pageCount": 6,
+      "extractedPageCount": 6,
+      "wordCount": 1714,
+      "contentUpdated": "2026-10-31"
     },
     {
       "id": "ac-20-165b",
@@ -10079,35 +10079,35 @@
       "extractedPageCount": 7
     },
     {
-      "id": "ac-39-8",
-      "number": "39-8",
-      "title": "Continued Airworthiness Assessments of Powerplant and Auxiliary Power Unit Installations of Transport Category Airplanes",
+      "id": "ac-39-8a",
+      "number": "39-8A",
+      "title": "Continued Airworthiness Assessment Methodologies of Powerplant and Auxiliary Power Unit Installations on Transport Category Airplanes",
       "status": "Active",
-      "issued": "2003-09-08",
-      "office": "AIR-100",
+      "issued": "2026-10-01",
+      "office": "AIR-630",
       "category": "Airworthiness Directives",
-      "summary": "Describes the Continued Airworthiness Assessment Methodologies (CAAM). The Federal Aviation Administration (FAA) Engine and Propeller Directorate (EPD) and the Transport Airplane Directorate (TAD) may use CAAM to identify unsafe conditions and determine when an “unsafe condition is likely to exist or develop in other products of the same type design” before prescribing corrective action in accordance with Title 14 of the Code of Federal Regulations (14 CFR) part 39.",
+      "summary": "This advisory circular (AC) describes continued airworthiness assessment methodologies (CAAM) that may be used for products associated with the powerplant or auxiliary power unit (APU) installations on transport category airplanes.",
       "relatedCfr": [],
-      "documentUrl": "https://www.faa.gov/regulations_policies/advisory_circulars/index.cfm/go/document.information/documentID/22951",
-      "pdfUrl": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_39-8.pdf",
+      "documentUrl": "https://www.faa.gov/regulations_policies/advisory_circulars/index.cfm/go/document.information/documentID/1045839",
       "tags": [
         "39",
-        "air-100",
+        "air-630",
         "airworthiness directives",
         "continued",
         "airworthiness",
-        "assessments",
+        "assessment",
+        "methodologies",
         "powerplant",
         "auxiliary",
-        "power",
-        "unit"
+        "power"
       ],
+      "pdfUrl": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_39-8A.pdf",
       "contentStatus": "parsed",
-      "contentPath": "content/ac-39-8.json",
-      "pageCount": 99,
-      "wordCount": 27333,
-      "contentUpdated": "2026-07-14",
-      "extractedPageCount": 99
+      "contentPath": "content/ac-39-8a.json",
+      "pageCount": 76,
+      "extractedPageCount": 76,
+      "wordCount": 19913,
+      "contentUpdated": "2026-10-31"
     },
     {
       "id": "ac-39-9",
@@ -15868,16 +15868,16 @@
       "extractedPageCount": 37
     },
     {
-      "id": "ac-120-97a",
-      "number": "120-97A",
-      "title": "Incorporation of Fuel Tank System Instructions for Continued Airworthiness into Operator Maintenance or Inspection Programs (Including Change 1)",
+      "id": "ac-120-97b",
+      "number": "120-97B",
+      "title": "Incorporation of Fuel Tank System Instructions for Continued Airworthiness into Operator Maintenance and/or Inspection Programs",
       "status": "Active",
-      "issued": "2012-05-25",
+      "issued": "2026-09-29",
       "office": "AFS-300",
       "category": "Air Carrier Operations",
-      "summary": "On May 7, 2001, the Transport Airplane Fuel Tank System Design Review, Flammability Reduction and Maintenance and Inspection Requirements final rule was published in the Federal Register (FR).",
+      "summary": "This AC provides information regarding compliance with the fuel tank system maintenance and inspection program requirements in Title 14 of the Code of Federal Regulations (14 CFR) for parts 91 subpart K (part 91K), 121, 125, and § 129.14 foreign air carriers hereafter referred to as operators.",
       "relatedCfr": [],
-      "documentUrl": "https://www.faa.gov/regulations_policies/advisory_circulars/index.cfm/go/document.information/documentID/1020085",
+      "documentUrl": "https://www.faa.gov/regulations_policies/advisory_circulars/index.cfm/go/document.information/documentID/1045837",
       "tags": [
         "120",
         "afs-300",
@@ -15890,13 +15890,13 @@
         "continued",
         "airworthiness"
       ],
-      "pdfUrl": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_120-97A.pdf",
+      "pdfUrl": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_120-97B.pdf",
       "contentStatus": "parsed",
-      "contentPath": "content/ac-120-97a.json",
-      "pageCount": 33,
-      "wordCount": 12041,
-      "contentUpdated": "2026-07-14",
-      "extractedPageCount": 33
+      "contentPath": "content/ac-120-97b.json",
+      "pageCount": 34,
+      "extractedPageCount": 34,
+      "wordCount": 12124,
+      "contentUpdated": "2026-10-31"
     },
     {
       "id": "ac-120-98a",

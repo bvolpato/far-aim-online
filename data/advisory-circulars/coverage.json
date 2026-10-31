@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-10-17",
+  "updated": "2026-10-31",
   "total": 779,
   "counts": {
     "parsed": 731,
@@ -36,7 +36,6 @@
       "wordCount": 5467,
       "ocrPageCount": 3,
       "contentPath": "content/ac-00-34b.json",
-      "pdfUrl": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_00-34B.pdf",
       "sha256": "6b1a4a7313b39c4b54436cc68459bba97fe589ce78b682f1d8f8303e35bba3c8"
     },
     {
@@ -107,7 +106,6 @@
       "wordCount": 5799,
       "ocrPageCount": 2,
       "contentPath": "content/ac-00-60b.json",
-      "pdfUrl": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_00-60B.pdf",
       "sha256": "843f61e8e5a516ec2f5e199eca53fc2a3e83bcd2c0c640cc0eb9da6499227131"
     },
     {
@@ -138,6 +136,7 @@
       "wordCount": 6112,
       "ocrPageCount": 0,
       "contentPath": "content/ac-00-64.json",
+      "pdfUrl": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_00-64.pdf",
       "sha256": "c8b620b55dabbf51d6df43a3da9b2d6f6f980573b34c85fd71886dbcfefeafb0"
     },
     {
@@ -328,7 +327,6 @@
       "wordCount": 12919,
       "ocrPageCount": 0,
       "contentPath": "content/ac-120-100.json",
-      "pdfUrl": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC%20120-100.pdf",
       "sha256": "53d5e144521a58c1bdff6387ea76bee2be1428352050e7f08f2c7b74e7b5b6fd"
     },
     {
@@ -419,7 +417,6 @@
       "wordCount": 11662,
       "ocrPageCount": 0,
       "contentPath": "content/ac-120-109a.json",
-      "pdfUrl": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_120-109A_CHG_1.pdf",
       "sha256": "dd4fbe4c25ecf5228d77f189d2b65230d61b259027a4440c63cdcfb8ccd38945"
     },
     {
@@ -590,7 +587,6 @@
       "wordCount": 1136,
       "ocrPageCount": 0,
       "contentPath": "content/ac-120-12a.json",
-      "pdfUrl": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC%20120-12A.pdf",
       "sha256": "416271dd9829b910dbbea9fc705ba4ad0a692ffcb7c0e001de90194532189a1b"
     },
     {
@@ -601,7 +597,6 @@
       "wordCount": 19620,
       "ocrPageCount": 1,
       "contentPath": "content/ac-120-16g.json",
-      "pdfUrl": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_120-16G.pdf",
       "sha256": "c3f8566005afe504f9ac0ccdf5a72dbffe27010f6ed79cbbef4ae14fc230ac31"
     },
     {
@@ -732,7 +727,6 @@
       "wordCount": 2272,
       "ocrPageCount": 0,
       "contentPath": "content/ac-120-50a.json",
-      "pdfUrl": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC120-50A.pdf",
       "sha256": "6712cbe1f8bf0a2ef7357b1953432aacf8089b6009107e58f5bdbb408434e88c"
     },
     {
@@ -823,7 +817,6 @@
       "wordCount": 2854,
       "ocrPageCount": 0,
       "contentPath": "content/ac-120-62.json",
-      "pdfUrl": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC%20120-62.pdf",
       "sha256": "d66e247ccbf97a4c42a7f71ccd47722f75da1540b76f0cc2b5799b08ea6ca31a"
     },
     {
@@ -954,7 +947,6 @@
       "wordCount": 25381,
       "ocrPageCount": 0,
       "contentPath": "content/ac-120-82.json",
-      "pdfUrl": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_120-82.pdf",
       "sha256": "957b5b6c5149c76f9d9962b2a79c9930f9f67f610b5bce9231bb722010eb7e79"
     },
     {
@@ -1015,7 +1007,6 @@
       "wordCount": 13369,
       "ocrPageCount": 7,
       "contentPath": "content/ac-120-90.json",
-      "pdfUrl": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_120-90.pdf",
       "sha256": "1dead0efaf74d33a76b33bfa079a552c052886a641c18ae93d4faf248016393e"
     },
     {
@@ -1079,14 +1070,15 @@
       "sha256": "949b62d3e0f1c29f4e740905614a5d58e00a629068aca527041dd951f4166335"
     },
     {
-      "id": "ac-120-97a",
+      "id": "ac-120-97b",
       "status": "parsed",
-      "pageCount": 33,
-      "extractedPageCount": 33,
-      "wordCount": 12041,
+      "pageCount": 34,
+      "extractedPageCount": 34,
+      "wordCount": 12124,
       "ocrPageCount": 0,
-      "contentPath": "content/ac-120-97a.json",
-      "sha256": "3af27cda6b6f8e3ba2664affe19d8169307fe06b1aee94c89843e34abc4505b9"
+      "contentPath": "content/ac-120-97b.json",
+      "pdfUrl": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_120-97B.pdf",
+      "sha256": "51e77a8ab6da46524cf323ee675453c7e9eccc3cfe0ab97591837c04e54ef6b5"
     },
     {
       "id": "ac-120-98a",
@@ -1166,7 +1158,6 @@
       "wordCount": 1300,
       "ocrPageCount": 0,
       "contentPath": "content/ac-121-31.json",
-      "pdfUrl": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC121-31.pdf",
       "sha256": "a35317039c920388f27394a427ac5ada292361fb33195328ae03692cac835073"
     },
     {
@@ -1327,7 +1318,6 @@
       "wordCount": 6846,
       "ocrPageCount": 0,
       "contentPath": "content/ac-129-5.json",
-      "pdfUrl": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_129-5.pdf",
       "sha256": "4f373334b105e333771033c6ba50cc4f362f1999175d312b475001e410787bc4"
     },
     {
@@ -1358,7 +1348,6 @@
       "wordCount": 26585,
       "ocrPageCount": 0,
       "contentPath": "content/ac-135-14b.json",
-      "pdfUrl": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_135-14B.pdf",
       "sha256": "dbbea6e54f6807c7544670de697b01ee67897cc5fdfea78ebd797e0e9eb01e91"
     },
     {
@@ -1379,7 +1368,6 @@
       "wordCount": 5186,
       "ocrPageCount": 2,
       "contentPath": "content/ac-135-16.json",
-      "pdfUrl": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/ac135-16.pdf",
       "sha256": "7ebe96312266ae1889fc4eb51a70d81c479b05fcd7be67816ff7072a951b2203"
     },
     {
@@ -1600,7 +1588,6 @@
       "wordCount": 25170,
       "ocrPageCount": 5,
       "contentPath": "content/ac-147-3c.json",
-      "pdfUrl": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_147-3C.pdf",
       "sha256": "74c6e63111655194a571824277e010328c8eaff1caf611cfa29deee5e11966d6"
     },
     {
@@ -1651,7 +1638,6 @@
       "wordCount": 51523,
       "ocrPageCount": 11,
       "contentPath": "content/ac-150-5000-9b.json",
-      "pdfUrl": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/150-5000-9B-Sound-Insulation-2022.pdf",
       "sha256": "78836e01f67d7de7104e9ce5f35ba43455c8681a6fc63fc4b582892d889e6539"
     },
     {
@@ -1662,7 +1648,6 @@
       "wordCount": 23159,
       "ocrPageCount": 1,
       "contentPath": "content/ac-150-5020-1.json",
-      "pdfUrl": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_150_5020-1.pdf",
       "sha256": "bb5f7d63c85378fc708a43d2551d3ac02033547453eb100555178f9e63dca2f5"
     },
     {
@@ -2103,7 +2088,6 @@
       "wordCount": 28618,
       "ocrPageCount": 0,
       "contentPath": "content/ac-150-5220-16e.json",
-      "pdfUrl": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_150_5220-16E_w-chg1.pdf",
       "sha256": "d23a76128a6eda449cfeedcc820fc92ad2d0c012d0a1c99f519014a230f5f228"
     },
     {
@@ -2314,7 +2298,6 @@
       "wordCount": 13528,
       "ocrPageCount": 6,
       "contentPath": "content/ac-150-5320-12c.json",
-      "pdfUrl": "https://www.faa.gov/documentLibrary/media/advisory_circular/150-5320-12C/150_5320_12c.PDF",
       "sha256": "a416dda04ee1b6788fd0a4d7caef813c73ef3557d1539251cee066a8df1bfbe7"
     },
     {
@@ -2400,7 +2383,6 @@
       "wordCount": 45846,
       "ocrPageCount": 1,
       "contentPath": "content/ac-150-5340-26c.json",
-      "pdfUrl": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/150-5340-26c.pdf",
       "sha256": "10b186b96742c8c7060b588eaf72ac288ef58ec7cc607f88111bacd830a1520f"
     },
     {
@@ -2686,7 +2668,6 @@
       "wordCount": 11267,
       "ocrPageCount": 3,
       "contentPath": "content/ac-150-5360-14a.json",
-      "pdfUrl": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/150-5360-14A.pdf",
       "sha256": "49cd3a533e9df596aa1670e0827f94a5b213b0d1fab9c014286ad80953c68d10"
     },
     {
@@ -3360,14 +3341,15 @@
       "sha256": "02718fe0aef76494dac6c3b79d6801e9307edefc3ea7b6ccbc5c6c33771110ea"
     },
     {
-      "id": "ac-20-164a",
+      "id": "ac-20-164b",
       "status": "parsed",
-      "pageCount": 5,
-      "extractedPageCount": 5,
-      "wordCount": 1204,
-      "ocrPageCount": 0,
-      "contentPath": "content/ac-20-164a.json",
-      "sha256": "3234457d4dcea26c7472cb69bd77974a9d9c03bdb7a4f5149fd80d06162986e4"
+      "pageCount": 6,
+      "extractedPageCount": 6,
+      "wordCount": 1714,
+      "ocrPageCount": 1,
+      "contentPath": "content/ac-20-164b.json",
+      "pdfUrl": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_20-164B.pdf",
+      "sha256": "d04c2f173731188461898e639c208c0d1f349bb581c1ae8a609672f8820a765e"
     },
     {
       "id": "ac-20-165b",
@@ -3867,7 +3849,6 @@
       "wordCount": 71918,
       "ocrPageCount": 0,
       "contentPath": "content/ac-20-73a.json",
-      "pdfUrl": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_20-73A.pdf",
       "sha256": "ee71b45222bd05e13c3de8d3315bd5f41052800f4acccd130f706bb3b2fa95a9"
     },
     {
@@ -3888,7 +3869,6 @@
       "wordCount": 813,
       "ocrPageCount": 0,
       "contentPath": "content/ac-20-77b.json",
-      "pdfUrl": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_20-77B.pdf",
       "sha256": "a2b91301fc20d2233454b78aaf4dc5770fadd46e0340df46332813a76c181d31"
     },
     {
@@ -4379,7 +4359,6 @@
       "wordCount": 20263,
       "ocrPageCount": 0,
       "contentPath": "content/ac-23-13a.json",
-      "pdfUrl": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_23-13A.pdf",
       "sha256": "7ff410f03519b67c800e7a88a67f8a272fa33fdf4fb7a84590efa4bcce6e6f3c"
     },
     {
@@ -4420,7 +4399,6 @@
       "wordCount": 11914,
       "ocrPageCount": 2,
       "contentPath": "content/ac-23-1523.json",
-      "pdfUrl": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_23-1523.pdf",
       "sha256": "ef359023b10604ca48f64a7fbdb491d275fe3e67973c67291423fdf40367e71d"
     },
     {
@@ -4591,7 +4569,6 @@
       "wordCount": 88508,
       "ocrPageCount": 0,
       "contentPath": "content/ac-23-8c.json",
-      "pdfUrl": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_23-8C.pdf",
       "sha256": "2442f2c3f3da768721456e0b0745f27f4e12b0894eb649a6cce88792784e9c37"
     },
     {
@@ -4682,7 +4659,6 @@
       "wordCount": 2950,
       "ocrPageCount": 0,
       "contentPath": "content/ac-25-1353-1a.json",
-      "pdfUrl": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_25_1353-1A.pdf",
       "sha256": "08c4606fd7a5aa5aae68c085609f9a238e770409c57efdb6fab4fa471014c951"
     },
     {
@@ -4723,7 +4699,6 @@
       "wordCount": 2265,
       "ocrPageCount": 0,
       "contentPath": "content/ac-25-1365-1.json",
-      "pdfUrl": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_25_1365-1.pdf",
       "sha256": "c8498206aaf6fe5e540f2f45ecd46a25c49fbb79aac69e673e3a8664b7de60ce"
     },
     {
@@ -4804,7 +4779,6 @@
       "wordCount": 34091,
       "ocrPageCount": 0,
       "contentPath": "content/ac-25-1701-1.json",
-      "pdfUrl": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_25_1701-1.pdf",
       "sha256": "8e8c3cbd94674d48c767823b49cae2c0b8d9ff88e827265e3de4c994f00fdb15"
     },
     {
@@ -4815,7 +4789,6 @@
       "wordCount": 307711,
       "ocrPageCount": 67,
       "contentPath": "content/ac-25-17a.json",
-      "pdfUrl": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_25-17A_CHG-1.pdf",
       "sha256": "1059d52a8ea878f0722f1cb1f420cbbe0cba596d91c106e361a03de6eb8ee793"
     },
     {
@@ -4896,7 +4869,6 @@
       "wordCount": 3847,
       "ocrPageCount": 0,
       "contentPath": "content/ac-25-26.json",
-      "pdfUrl": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_25-26.pdf",
       "sha256": "fc5b438f38718d46f60ec1690807025ce3e7cf1b5aaea56d486d61981c66ac4a"
     },
     {
@@ -5107,7 +5079,6 @@
       "wordCount": 1442,
       "ocrPageCount": 0,
       "contentPath": "content/ac-25-723-1.json",
-      "pdfUrl": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_25_723-1.pdf",
       "sha256": "cd6f0dffa6d68168ebde39007264bcbcc611467884b2a1a8103fe592b64ffdeb"
     },
     {
@@ -5388,7 +5359,6 @@
       "wordCount": 2190,
       "ocrPageCount": 0,
       "contentPath": "content/ac-25-869-1a.json",
-      "pdfUrl": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_25_869-1A.pdf",
       "sha256": "3eb0402b5f9f20e501a974162aafda313946596dd4dcf125a94962efb07b2db7"
     },
     {
@@ -5539,7 +5509,6 @@
       "wordCount": 501254,
       "ocrPageCount": 4,
       "contentPath": "content/ac-29-2c.json",
-      "pdfUrl": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_29-2C_CHG1-9.pdf",
       "sha256": "c57691386dd1e59263633bd8fdaabb842a958061a9b6a82d30dad18358977013"
     },
     {
@@ -5680,7 +5649,6 @@
       "wordCount": 15930,
       "ocrPageCount": 0,
       "contentPath": "content/ac-33-28-2.json",
-      "pdfUrl": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_33_28-2.pdf",
       "sha256": "fd6eedfe69e79987890ad94995b0db17e1216329076659502dea6ce4392706f4"
     },
     {
@@ -5821,7 +5789,6 @@
       "wordCount": 11664,
       "ocrPageCount": 0,
       "contentPath": "content/ac-33-70-2.json",
-      "pdfUrl": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_33_70-2.pdf",
       "sha256": "3997e6b40c9dda8a1e36e3384d191acc578ce28ba493e3f42f1a757df3f29b28"
     },
     {
@@ -6125,14 +6092,15 @@
       "sha256": "267d9b1aa49d6909dbb1652cb4ea6825e47a95953cb9f324c57c2f2edd1e163e"
     },
     {
-      "id": "ac-39-8",
+      "id": "ac-39-8a",
       "status": "parsed",
-      "pageCount": 99,
-      "extractedPageCount": 99,
-      "wordCount": 27333,
-      "ocrPageCount": 0,
-      "contentPath": "content/ac-39-8.json",
-      "sha256": "dd5b4ed8022f7f940cf6b7e839e58075274455282e372eaa2b49fd4588be83f7"
+      "pageCount": 76,
+      "extractedPageCount": 76,
+      "wordCount": 19913,
+      "ocrPageCount": 1,
+      "contentPath": "content/ac-39-8a.json",
+      "pdfUrl": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_39-8A.pdf",
+      "sha256": "409d3a4afd41cdf58e76b96ee8067217eafdfea23c615f32b3176e919684aa06"
     },
     {
       "id": "ac-39-9",
@@ -6242,7 +6210,6 @@
       "wordCount": 14821,
       "ocrPageCount": 0,
       "contentPath": "content/ac-43-207.json",
-      "pdfUrl": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC43-207.pdf",
       "sha256": "50a3481177dee812c71e25a63263da97744ba959ba8077fd8e6c5099fe8053df"
     },
     {
@@ -6263,7 +6230,6 @@
       "wordCount": 3605,
       "ocrPageCount": 0,
       "contentPath": "content/ac-43-209a.json",
-      "pdfUrl": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_43-209A.pdf",
       "sha256": "015456820c56a45eb6e4b9f55b24ac0c1fa2c7ebe7633d38e977195388242079"
     },
     {
@@ -6384,7 +6350,6 @@
       "wordCount": 4052,
       "ocrPageCount": 1,
       "contentPath": "content/ac-43-9-1g.json",
-      "pdfUrl": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_43.9-1G_Ed_Upd_(12-19-25).pdf",
       "sha256": "ca5a369b6edf3536d16317417403b5d9c915c94c8dc14a0a33750d0776702730"
     },
     {
@@ -6715,7 +6680,6 @@
       "wordCount": 20459,
       "ocrPageCount": 0,
       "contentPath": "content/ac-61-107b.json",
-      "pdfUrl": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_61-107B_CHG_1_FAA.pdf",
       "sha256": "f72288cc92448ddee1c35c03cee0db0164ecd2ee7df0343fe542e3cc1005bbbf"
     },
     {
@@ -6861,7 +6825,6 @@
       "wordCount": 8294,
       "ocrPageCount": 0,
       "contentPath": "content/ac-61-67c.json",
-      "pdfUrl": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_61-67C_Chg_2.pdf",
       "sha256": "ffc33e3b2e957c7296eab5b3ce750ab68701e1d54eee49c09b48f6d611102e49"
     },
     {
@@ -7077,7 +7040,6 @@
       "wordCount": 16213,
       "ocrPageCount": 3,
       "contentPath": "content/ac-90-101a.json",
-      "pdfUrl": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_90-101A_CHG_1.pdf",
       "sha256": "939987d6d02c259b78741b462082c2f5e160d2265b2a5593185ff225cfef458b"
     },
     {
@@ -7138,7 +7100,6 @@
       "wordCount": 16287,
       "ocrPageCount": 0,
       "contentPath": "content/ac-90-109a.json",
-      "pdfUrl": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_90-109A.pdf",
       "sha256": "a5fb660fcd2f42970ffa2c9f66509b3860a792239c8e2e2ee04cc74e38d9668e"
     },
     {
@@ -7189,7 +7150,6 @@
       "wordCount": 6898,
       "ocrPageCount": 1,
       "contentPath": "content/ac-90-116.json",
-      "pdfUrl": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_90-116.pdf",
       "sha256": "f0d4d66e8677c59e079ae3ab90e9b5957ff15a7e4b4629b4ed5039eca68fdc7d"
     },
     {
@@ -7310,7 +7270,6 @@
       "wordCount": 3281,
       "ocrPageCount": 4,
       "contentPath": "content/ac-90-95.json",
-      "pdfUrl": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/ac90-95.pdf",
       "sha256": "34d4666ead173ff08fbf0b012e3ff7315e507eebc7a8f26a89fcfd03b83dcfbb"
     },
     {
@@ -7411,7 +7370,6 @@
       "wordCount": 2579,
       "ocrPageCount": 0,
       "contentPath": "content/ac-91-48.json",
-      "pdfUrl": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/91-48.pdf",
       "sha256": "fd38c4a3aa7f4f32302f2c5f59bb8839d3540fd45b4ed794a875571824460caf"
     },
     {
@@ -7572,7 +7530,6 @@
       "wordCount": 3407,
       "ocrPageCount": 0,
       "contentPath": "content/ac-91-71.json",
-      "pdfUrl": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/ac91-71.pdf",
       "sha256": "33a767797e421d232aac1f756f4c0c9cc7c2b05897ddf0fef6b08a721cb0e0ef"
     },
     {
@@ -7603,7 +7560,6 @@
       "wordCount": 23379,
       "ocrPageCount": 1,
       "contentPath": "content/ac-91-74b.json",
-      "pdfUrl": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_91-74B.pdf",
       "sha256": "0df1666a5cd03ca2201f5eb5f5095a5457b753cb79454143f0d4b9cfdf160725"
     },
     {
