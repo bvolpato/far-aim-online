@@ -4,11 +4,12 @@
   "number": "00-64",
   "title": "Air Medical Resource Management",
   "status": "parsed",
-  "fetched": "2026-07-14",
+  "fetched": "2026-10-31",
   "documentUrl": "https://www.faa.gov/regulations_policies/advisory_circulars/index.cfm/go/document.information/documentID/22500",
   "pdfUrl": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_00-64.pdf",
   "sha256": "c8b620b55dabbf51d6df43a3da9b2d6f6f980573b34c85fd71886dbcfefeafb0",
   "pageCount": 17,
+  "extractedPageCount": 17,
   "wordCount": 6112,
   "ocrPageCount": 0,
   "pages": [
@@ -80,6 +81,5 @@
       "page": 17,
       "text": "Par 12 Page 17 12. SUMMARY. More and more operators in the air medical community are discovering the value of extending resource management training across organizational lines of business. Effective AMRM begins with training the trainers. It is implemented through initial training and strengthened by recurrent practice and feedback. Each and every person on the air medical team is a resource to the air medical community. All operators and programs engaged in the provision of AMS are encouraged to include all middle and upper-level managers as well as all support staff in their training. It is sustained by annual continuous reinforcement that is part of the corporate culture and embedded in every element of the air medical team’s training. Their objective is to improve the effectiveness of all the groups within the operator’s team.\n\nORIGINAL SIGNED BY\n\n/s/ James J. Ballough Director, Flight Standards Service"
     }
-  ],
-  "extractedPageCount": 17
+  ]
 }
