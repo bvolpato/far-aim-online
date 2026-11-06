@@ -69,8 +69,8 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Audit production dependencies
-        run: pnpm audit --prod
+      - name: Audit all dependencies
+        run: pnpm audit
 
   python-dependencies:
     name: Python dependency audit
