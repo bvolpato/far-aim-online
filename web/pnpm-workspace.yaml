@@ -9,11 +9,11 @@ trustPolicy: no-downgrade
 overrides:
   # Security patches for GHSA-73wf-gq98-2v4g and GHSA-c83g-rgw3-j3cx.
   "browserslist@<=4.28.6": 4.29.5
-  # Keep vulnerable glob parsing below the fixed minimatch 11.0.1 release.
+  # These audited callers support the patched minimatch release.
   "@eslint/config-array@0.23.5>minimatch": 11.0.1
   "eslint@10.13.0>minimatch": 11.0.1
   "@typescript-eslint/typescript-estree@8.72.1>minimatch": 11.0.1
-  # Babel requests semver 6 without trusted provenance; its used API is compatible with trusted semver 7.
+  # These Babel callers use APIs supported by trusted semver 7.
   "@babel/core@7.29.7>semver": 7.8.5
   "@babel/helper-compilation-targets@7.29.7>semver": 7.8.5
   "zod@>=4.0.0 <4.6.6": 4.6.6
