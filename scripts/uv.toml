@@ -1,9 +1,2 @@
-required-version = ">=0.13.4"
+required-version = ">=0.13.6"
 exclude-newer = "7 days"
-
-# Admit the audited security patches without exempting future uploads.
-[exclude-newer-package]
-black = "2026-10-23T00:00:00Z"
-certifi = "2026-10-23T00:00:00Z"
-pillow = "2026-10-23T00:00:00Z"
-pypdf = "2026-10-28T17:00:55Z"
