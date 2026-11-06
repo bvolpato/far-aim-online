@@ -45,6 +45,30 @@ function commandEntries(layer: unknown[][], command: string) {
 }
 
 test.describe('opt-in analytics', () => {
+  test('keeps the prompt at the bottom without covering the page heading', async ({ page }) => {
+    await simulateProductionVisitor(page);
+
+    for (const viewport of [
+      { width: 320, height: 568 },
+      { width: 390, height: 844 },
+      { width: 1280, height: 900 },
+    ]) {
+      await page.setViewportSize(viewport);
+      await page.goto(productionOrigin);
+
+      const panel = page.getByRole('region', { name: 'Analytics preferences' });
+      await expect(panel).toBeVisible();
+      const panelBounds = await panel.boundingBox();
+      const headingBounds = await page.getByRole('heading', { level: 1 }).boundingBox();
+      expect(panelBounds).not.toBeNull();
+      expect(headingBounds).not.toBeNull();
+      expect(panelBounds!.y + panelBounds!.height).toBeCloseTo(viewport.height, 0);
+      expect(panelBounds!.y).toBeGreaterThan(headingBounds!.y + headingBounds!.height);
+      expect(panelBounds!.x).toBeGreaterThanOrEqual(0);
+      expect(panelBounds!.x + panelBounds!.width).toBeLessThanOrEqual(viewport.width);
+    }
+  });
+
   test('does not load Google before choice or after declining', async ({ page }) => {
     const tagRequests = await stubGoogleTag(page);
     await simulateProductionVisitor(page);

@@ -76,37 +76,39 @@ export function AnalyticsPreferences() {
           id="analytics-preferences-panel"
           role="region"
           aria-label="Analytics preferences"
-          className="fixed left-3 right-3 top-20 z-40 max-h-[calc(100dvh-6rem)] overflow-y-auto rounded-xl border bg-background p-4 text-foreground shadow-xl sm:left-auto sm:right-4 sm:max-w-md sm:p-5"
+          className="fixed inset-x-0 bottom-0 z-40 max-h-[calc(100dvh-4rem)] overflow-y-auto border-t bg-background px-4 pt-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] text-foreground shadow-[0_-2px_12px_rgb(0_0_0/0.06)]"
         >
-          <div className="space-y-2">
-            <h2 className="text-base font-semibold">Optional analytics</h2>
-            <p className="text-sm leading-relaxed text-muted-foreground">
-              Google Analytics helps us understand aggregate website visits. Search terms, notes, and saved study data are not sent.{' '}
-              <Link to="/privacy" className="underline underline-offset-2 hover:text-primary">
-                Privacy policy
-              </Link>
-            </p>
-            {consent && (
-              <p className="text-sm text-muted-foreground" role="status">
-                Analytics are {consent === 'accepted' ? 'on' : 'off'}.
+          <div className="mx-auto flex max-w-7xl flex-col gap-2 sm:flex-row sm:items-center sm:justify-between sm:gap-6">
+            <div>
+              <h2 className="sr-only">Optional analytics</h2>
+              <p className="text-sm leading-relaxed text-muted-foreground">
+                Optional Google Analytics helps improve the site.{' '}
+                <Link to="/privacy" className="underline underline-offset-2 hover:text-primary">
+                  Privacy policy
+                </Link>
               </p>
-            )}
-          </div>
-          <div className="mt-4 flex flex-col gap-2 min-[380px]:flex-row">
-            <button
-              type="button"
-              onClick={() => chooseConsent('accepted')}
-              className="min-h-11 flex-1 rounded-lg bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
-            >
-              Allow analytics
-            </button>
-            <button
-              type="button"
-              onClick={() => chooseConsent('denied')}
-              className="min-h-11 flex-1 rounded-lg border bg-background px-4 py-2 text-sm font-semibold text-foreground hover:bg-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
-            >
-              {consent === 'accepted' ? 'Turn off analytics' : consent === 'denied' ? 'Keep off' : 'No thanks'}
-            </button>
+              {consent && (
+                <p className="text-sm text-muted-foreground" role="status">
+                  Analytics are {consent === 'accepted' ? 'on' : 'off'}.
+                </p>
+              )}
+            </div>
+            <div className="flex shrink-0 gap-2">
+              <button
+                type="button"
+                onClick={() => chooseConsent('accepted')}
+                className="min-h-11 flex-1 rounded-md border px-3 py-2 text-sm font-medium hover:bg-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 sm:flex-none"
+              >
+                Allow analytics
+              </button>
+              <button
+                type="button"
+                onClick={() => chooseConsent('denied')}
+                className="min-h-11 flex-1 rounded-md border px-3 py-2 text-sm font-medium hover:bg-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 sm:flex-none"
+              >
+                {consent === 'accepted' ? 'Turn off analytics' : consent === 'denied' ? 'Keep off' : 'No thanks'}
+              </button>
+            </div>
           </div>
         </section>
       )}
