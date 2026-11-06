@@ -8,27 +8,16 @@ blockExoticSubdeps: true
 trustPolicy: no-downgrade
 overrides:
   # Security patches for GHSA-73wf-gq98-2v4g and GHSA-c83g-rgw3-j3cx.
-  "browserslist@<=4.28.6": 4.28.7
-  # These tooling callers use the matching APIs retained in minimatch 11.
+  "browserslist@<=4.28.6": 4.29.5
+  # Keep vulnerable glob parsing below the fixed minimatch 11.0.1 release.
   "@eslint/config-array@0.23.5>minimatch": 11.0.1
-  "eslint@10.8.0>minimatch": 11.0.1
-  "@typescript-eslint/typescript-estree@8.66.0>minimatch": 11.0.1
+  "eslint@10.13.0>minimatch": 11.0.1
+  "@typescript-eslint/typescript-estree@8.72.1>minimatch": 11.0.1
+  # Babel requests semver 6 without trusted provenance; its used API is compatible with trusted semver 7.
+  "@babel/core@7.29.7>semver": 7.8.5
+  "@babel/helper-compilation-targets@7.29.7>semver": 7.8.5
   "zod@>=4.0.0 <4.6.6": 4.6.6
 auditConfig:
   # FAR/AIM Pro is a static SPA and does not use React Router RSC APIs.
   ignoreGhsas:
     - GHSA-qwww-vcr4-c8h2
-minimumReleaseAgeExclude:
-  # Security patch for GHSA-2v37-7h3g-55p8; remove after it clears age gate.
-  - nanoid@3.3.18
-  # Security patch for GHSA-698v-4r3x-3vcv.
-  - vite@8.1.6
-  # Security patches for GHSA-qxg6-89mg-rqv8 and GHSA-xp26-3454-mjgp.
-  - "vitest@4.1.12"
-  - "@vitest/spy@4.1.12"
-  - "@vitest/utils@4.1.12"
-  - "@vitest/expect@4.1.12"
-  - "@vitest/mocker@4.1.12"
-  - "@vitest/runner@4.1.12"
-  - "@vitest/snapshot@4.1.12"
-  - "@vitest/pretty-format@4.1.12"
