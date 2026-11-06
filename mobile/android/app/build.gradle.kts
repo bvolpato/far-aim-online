@@ -114,7 +114,7 @@ dependencies {
     implementation("androidx.navigation:navigation-compose:2.10.2")
     
     // JSON parsing
-    implementation("com.google.code.gson:gson:2.14.0")
+    implementation("com.google.code.gson:gson:2.15.0")
 
     testImplementation("junit:junit:4.13.2")
     testImplementation("androidx.test:core:1.7.0")

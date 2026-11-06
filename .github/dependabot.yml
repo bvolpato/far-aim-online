@@ -8,9 +8,6 @@ updates:
       time: "05:00"
       timezone: "UTC"
     open-pull-requests-limit: 10
-    labels:
-      - "dependencies"
-      - "web"
     cooldown:
       default-days: 7
 
@@ -22,9 +19,6 @@ updates:
       time: "05:10"
       timezone: "UTC"
     open-pull-requests-limit: 10
-    labels:
-      - "dependencies"
-      - "python"
     cooldown:
       default-days: 7
 
@@ -36,9 +30,6 @@ updates:
       time: "05:20"
       timezone: "UTC"
     open-pull-requests-limit: 10
-    labels:
-      - "dependencies"
-      - "android"
     cooldown:
       default-days: 7
 
@@ -50,8 +41,5 @@ updates:
       time: "05:30"
       timezone: "UTC"
     open-pull-requests-limit: 10
-    labels:
-      - "dependencies"
-      - "github-actions"
     cooldown:
       default-days: 7

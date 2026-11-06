@@ -33,7 +33,7 @@ for source and attribution requirements.
 
 | Platform | Technology | Requirements |
 |----------|------------|--------------|
-| **Web** | React 19, TypeScript, Vite, Tailwind CSS | Node.js 22+, pnpm 11 |
+| **Web** | React 19, TypeScript, Vite, Tailwind CSS | Node.js 22+, pnpm 12 |
 | **iOS** | SwiftUI | Xcode 26+, iOS 17.0+ |
 | **Android** | Kotlin, Jetpack Compose | JDK 17, Android SDK 36+, Min SDK 26 |
 
