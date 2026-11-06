@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "updated": "2026-10-31",
+  "updated": "2026-11-01",
   "source": "Federal Aviation Administration Advisory Circulars",
   "description": "Current FAA advisory circular metadata library generated from the FAA current AC export and document list, with official FAA document pages and PDF links where published.",
   "items": [
@@ -13086,13 +13086,13 @@
         "engine",
         "starting"
       ],
-      "pdfUrl": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_91-55A.pdf",
+      "pdfUrl": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_91-55A_Ed_Upd_(9-25-26).pdf",
       "contentStatus": "parsed",
       "contentPath": "content/ac-91-55a.json",
       "pageCount": 3,
-      "wordCount": 576,
-      "contentUpdated": "2026-07-14",
-      "extractedPageCount": 3
+      "extractedPageCount": 3,
+      "wordCount": 770,
+      "contentUpdated": "2026-11-01"
     },
     {
       "id": "ac-91-56b",
@@ -18093,13 +18093,13 @@
         "programs",
         "change"
       ],
-      "pdfUrl": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_145-5_CHG_1_Ed_Upd.pdf",
+      "pdfUrl": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_145-5_CHG_1_Ed_Upd_2_(9-25-26).pdf",
       "contentStatus": "parsed",
       "contentPath": "content/ac-145-5.json",
       "pageCount": 29,
-      "wordCount": 9692,
-      "contentUpdated": "2026-07-14",
-      "extractedPageCount": 29
+      "extractedPageCount": 29,
+      "wordCount": 9872,
+      "contentUpdated": "2026-11-01"
     },
     {
       "id": "ac-145-9a",
@@ -19972,7 +19972,7 @@
       "summary": "This AC contains specifications and guidance for the storage, handling, and dispensing of aviation fuel on airports.",
       "relatedCfr": [],
       "documentUrl": "https://www.faa.gov/regulations_policies/advisory_circulars/index.cfm/go/document.information/documentID/1040345",
-      "pdfUrl": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/150-5230-4C-Aircraft-Fuel-20260617.pdf",
+      "pdfUrl": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/150-5230-4C-Aircraft-Fuel-20260617-errata-changes.pdf",
       "tags": [
         "150",
         "aas-300",
@@ -19986,9 +19986,9 @@
       "contentStatus": "parsed",
       "contentPath": "content/ac-150-5230-4c.json",
       "pageCount": 29,
-      "wordCount": 6347,
-      "contentUpdated": "2026-07-14",
-      "extractedPageCount": 29
+      "extractedPageCount": 29,
+      "wordCount": 6288,
+      "contentUpdated": "2026-11-01"
     },
     {
       "id": "ac-150-5300-7b",
