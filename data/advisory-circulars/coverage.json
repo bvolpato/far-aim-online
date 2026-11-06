@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-10-31",
+  "updated": "2026-11-01",
   "total": 779,
   "counts": {
     "parsed": 731,
@@ -136,7 +136,6 @@
       "wordCount": 6112,
       "ocrPageCount": 0,
       "contentPath": "content/ac-00-64.json",
-      "pdfUrl": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_00-64.pdf",
       "sha256": "c8b620b55dabbf51d6df43a3da9b2d6f6f980573b34c85fd71886dbcfefeafb0"
     },
     {
@@ -1077,7 +1076,6 @@
       "wordCount": 12124,
       "ocrPageCount": 0,
       "contentPath": "content/ac-120-97b.json",
-      "pdfUrl": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_120-97B.pdf",
       "sha256": "51e77a8ab6da46524cf323ee675453c7e9eccc3cfe0ab97591837c04e54ef6b5"
     },
     {
@@ -1565,10 +1563,11 @@
       "status": "parsed",
       "pageCount": 29,
       "extractedPageCount": 29,
-      "wordCount": 9692,
+      "wordCount": 9872,
       "ocrPageCount": 0,
       "contentPath": "content/ac-145-5.json",
-      "sha256": "e89463bd51b1f85a8063425cd988ca8bdbaf6f068b2d79a59f34a33a0c0d3dac"
+      "pdfUrl": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_145-5_CHG_1_Ed_Upd_2_(9-25-26).pdf",
+      "sha256": "0179eb113b300223007f6fdebab343e5aa8d04e74d87b1fa1aec8ed8a5c1457f"
     },
     {
       "id": "ac-145-9a",
@@ -2195,10 +2194,11 @@
       "status": "parsed",
       "pageCount": 29,
       "extractedPageCount": 29,
-      "wordCount": 6347,
+      "wordCount": 6288,
       "ocrPageCount": 0,
       "contentPath": "content/ac-150-5230-4c.json",
-      "sha256": "f49033be855c7f0f728ede03c1d01a87a986dc71b29f07fb37a87b9a4c8122a0"
+      "pdfUrl": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/150-5230-4C-Aircraft-Fuel-20260617-errata-changes.pdf",
+      "sha256": "fde5d5772aeb5f3a2b06f8ff7ec5a6e66ff535425cf29109e4b298b6375fb671"
     },
     {
       "id": "ac-150-5300-13b",
@@ -3348,7 +3348,6 @@
       "wordCount": 1714,
       "ocrPageCount": 1,
       "contentPath": "content/ac-20-164b.json",
-      "pdfUrl": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_20-164B.pdf",
       "sha256": "d04c2f173731188461898e639c208c0d1f349bb581c1ae8a609672f8820a765e"
     },
     {
@@ -6099,7 +6098,6 @@
       "wordCount": 19913,
       "ocrPageCount": 1,
       "contentPath": "content/ac-39-8a.json",
-      "pdfUrl": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_39-8A.pdf",
       "sha256": "409d3a4afd41cdf58e76b96ee8067217eafdfea23c615f32b3176e919684aa06"
     },
     {
@@ -7397,10 +7395,11 @@
       "status": "parsed",
       "pageCount": 3,
       "extractedPageCount": 3,
-      "wordCount": 576,
+      "wordCount": 770,
       "ocrPageCount": 0,
       "contentPath": "content/ac-91-55a.json",
-      "sha256": "11e4027b30fea255bf91fe46b037aca0e76adc518b7f7e964bff32e910db97c2"
+      "pdfUrl": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_91-55A_Ed_Upd_(9-25-26).pdf",
+      "sha256": "9d007762fa651502ae02422e8cc817ae054c898f665ba97d33558bce06902758"
     },
     {
       "id": "ac-91-56b",
