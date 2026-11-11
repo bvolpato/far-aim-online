@@ -29,8 +29,8 @@ Select an unused build number and push a signed release tag from a reviewed
 commit. GitHub Actions runs the same archive workflow on a native Apple runner:
 
 ```sh
-git tag -s testflight-ios-10 REVIEWED_SOURCE_SHA -m 'iOS TestFlight build 10'
-git push origin refs/tags/testflight-ios-10
+git tag -s testflight-ios-11 REVIEWED_SOURCE_SHA -m 'iOS TestFlight build 11'
+git push origin refs/tags/testflight-ios-11
 GH_CONFIG_DIR="$HOME/.config/gh-personal" gh run list --workflow ios-testflight.yml
 ```
 
@@ -43,9 +43,9 @@ GH_CONFIG_DIR="$HOME/.config/gh-personal" gh run list \
   --workflow ios-testflight.yml --limit 10 \
   --json databaseId,headSha,headBranch,status,conclusion
 GH_CONFIG_DIR="$HOME/.config/gh-personal" gh run download RUN_ID \
-  --name ios-native-archive-10 --dir mobile/ios/build/native-10/download
-unzip mobile/ios/build/native-10/download/ios-native-archive.zip \
-  -d mobile/ios/build/native-10
+  --name ios-native-archive-11 --dir mobile/ios/build/native-11/download
+unzip mobile/ios/build/native-11/download/ios-native-archive.zip \
+  -d mobile/ios/build/native-11
 ```
 
 Verify `native-ios-release/provenance.json` matches the reviewed source commit,
@@ -88,13 +88,13 @@ The archive uses Xcode's native resources and remains unsigned in GitHub. Sign
 and upload it on the Linux release host with the matching profile and certificate:
 
 ```sh
-IOS_RELEASE_DIR="$PWD/mobile/ios/build/native-10/signed" \
-IOS_ENTITLEMENTS_PATH="$PWD/mobile/ios/build/native-10/native-ios-release/signing-entitlements.plist" \
-IOS_BUILD_NUMBER=10 IOS_BUNDLE_ID=com.faraimpro.ios \
+IOS_RELEASE_DIR="$PWD/mobile/ios/build/native-11/signed" \
+IOS_ENTITLEMENTS_PATH="$PWD/mobile/ios/build/native-11/native-ios-release/signing-entitlements.plist" \
+IOS_BUILD_NUMBER=11 IOS_BUNDLE_ID=com.faraimpro.ios \
 IOS_APP_STORE_ID=6765584356 \
 uv run --env-file .env -- "$BRUTV_IOS/release.sh" \
   --platform ios \
-  --app "$PWD/mobile/ios/build/native-10/native-ios-release/Application.xcarchive/Products/Applications/FARAIMPro.app" \
+  --app "$PWD/mobile/ios/build/native-11/native-ios-release/Application.xcarchive/Products/Applications/FARAIMPro.app" \
   --upload --testflight-group Testers \
   --whats-new 'Check current FAR and AIM references, search, study marks, and offline launch.' \
   --tester tester@example.com
