@@ -11,7 +11,7 @@ overrides:
   "browserslist@<=4.28.6": 4.29.5
   # These audited callers support the patched minimatch release.
   "@eslint/config-array@0.23.5>minimatch": 11.0.1
-  "eslint@10.13.0>minimatch": 11.0.1
+  "eslint@10.14.0>minimatch": 11.0.1
   "@typescript-eslint/typescript-estree@8.72.1>minimatch": 11.0.1
   # These Babel callers use APIs supported by trusted semver 7.
   "@babel/core@7.29.7>semver": 7.8.5
