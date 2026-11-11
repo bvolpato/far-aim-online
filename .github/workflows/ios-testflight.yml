@@ -1,0 +1,55 @@
+name: iOS TestFlight archive
+run-name: iOS TestFlight archive - ${{ inputs.build_number || github.ref_name }}
+
+on:
+  push:
+    tags:
+      - testflight-ios-*
+  workflow_dispatch:
+    inputs:
+      build_number:
+        description: Positive numeric CFBundleVersion, not previously uploaded
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ios-testflight-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  release-inputs:
+    name: Validate release build number
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    outputs:
+      build-number: ${{ steps.number.outputs.build_number }}
+    steps:
+      - name: Resolve tag or manual build number
+        id: number
+        shell: bash
+        env:
+          MANUAL_BUILD_NUMBER: ${{ inputs.build_number }}
+        run: |
+          case "$GITHUB_EVENT_NAME" in
+            workflow_dispatch) build_number="$MANUAL_BUILD_NUMBER" ;;
+            push)
+              [[ "$GITHUB_REF" == refs/tags/testflight-ios-* ]] || { echo 'error: a TestFlight release tag is required' >&2; exit 1; }
+              build_number="${GITHUB_REF_NAME#testflight-ios-}"
+              ;;
+            *) echo 'error: unsupported release event' >&2; exit 1 ;;
+          esac
+          [[ "$build_number" =~ ^[1-9][0-9]*$ ]] || { echo 'error: build number must be a positive integer' >&2; exit 1; }
+          echo "build_number=$build_number" >> "$GITHUB_OUTPUT"
+
+  archive:
+    needs: release-inputs
+    uses: bvolpato/brutv/.github/workflows/ios-native-archive.yml@1f67eff147f52fd43efbbaad3aaf83d096bc7f34
+    with:
+      project: mobile/ios/FARAIMPro.xcodeproj
+      scheme: FARAIMPro
+      build-number: ${{ needs.release-inputs.outputs.build-number }}
+      unit-test-target: FARAIMProTests
+      prepare-command: ./scripts/sync-data.sh ios
