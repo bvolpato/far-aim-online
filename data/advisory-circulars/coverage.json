@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-11-01",
+  "updated": "2026-11-11",
   "total": 779,
   "counts": {
     "parsed": 731,
@@ -1079,14 +1079,15 @@
       "sha256": "51e77a8ab6da46524cf323ee675453c7e9eccc3cfe0ab97591837c04e54ef6b5"
     },
     {
-      "id": "ac-120-98a",
+      "id": "ac-120-98b",
       "status": "parsed",
-      "pageCount": 24,
-      "extractedPageCount": 24,
-      "wordCount": 8469,
+      "pageCount": 26,
+      "extractedPageCount": 26,
+      "wordCount": 8612,
       "ocrPageCount": 0,
-      "contentPath": "content/ac-120-98a.json",
-      "sha256": "938357973df988c927ec056b35630ca7f1c84b0cde8571f4f4a2549f5bd210ba"
+      "contentPath": "content/ac-120-98b.json",
+      "pdfUrl": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_120-98B.pdf",
+      "sha256": "99c53b256636aa161822540131960e714af7798e30d875116751563ccc23ef94"
     },
     {
       "id": "ac-121-195-1a",
@@ -1566,7 +1567,6 @@
       "wordCount": 9872,
       "ocrPageCount": 0,
       "contentPath": "content/ac-145-5.json",
-      "pdfUrl": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_145-5_CHG_1_Ed_Upd_2_(9-25-26).pdf",
       "sha256": "0179eb113b300223007f6fdebab343e5aa8d04e74d87b1fa1aec8ed8a5c1457f"
     },
     {
@@ -2197,7 +2197,6 @@
       "wordCount": 6288,
       "ocrPageCount": 0,
       "contentPath": "content/ac-150-5230-4c.json",
-      "pdfUrl": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/150-5230-4C-Aircraft-Fuel-20260617-errata-changes.pdf",
       "sha256": "fde5d5772aeb5f3a2b06f8ff7ec5a6e66ff535425cf29109e4b298b6375fb671"
     },
     {
@@ -7398,7 +7397,6 @@
       "wordCount": 770,
       "ocrPageCount": 0,
       "contentPath": "content/ac-91-55a.json",
-      "pdfUrl": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_91-55A_Ed_Upd_(9-25-26).pdf",
       "sha256": "9d007762fa651502ae02422e8cc817ae054c898f665ba97d33558bce06902758"
     },
     {
@@ -7514,12 +7512,13 @@
     {
       "id": "ac-91-70d",
       "status": "parsed",
-      "pageCount": 135,
-      "extractedPageCount": 135,
-      "wordCount": 45672,
+      "pageCount": 138,
+      "extractedPageCount": 138,
+      "wordCount": 46713,
       "ocrPageCount": 0,
       "contentPath": "content/ac-91-70d.json",
-      "sha256": "8073fed1907cd99e2a82e1960d85f2a6c4076009d45d423da03da4b650599a01"
+      "pdfUrl": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_91-70D_CHG_1.pdf",
+      "sha256": "20b2e3ed9bc054bbef3984def021a9904abbed1dd0c571bfc54d986c4597e8e1"
     },
     {
       "id": "ac-91-71",

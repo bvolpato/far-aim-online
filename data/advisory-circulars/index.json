@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "updated": "2026-11-01",
+  "updated": "2026-11-11",
   "source": "Federal Aviation Administration Advisory Circulars",
   "description": "Current FAA advisory circular metadata library generated from the FAA current AC export and document list, with official FAA document pages and PDF links where published.",
   "items": [
@@ -13416,7 +13416,7 @@
     {
       "id": "ac-91-70d",
       "number": "91-70D",
-      "title": "Oceanic and Remote Continental Airspace Operations",
+      "title": "Oceanic and Remote Continental Airspace Operations including Change 1",
       "status": "Active",
       "issued": "2025-04-03",
       "office": "AFS-400",
@@ -13432,15 +13432,16 @@
         "remote",
         "continental",
         "airspace",
-        "operations"
+        "operations",
+        "change"
       ],
-      "pdfUrl": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_91-70D.pdf",
+      "pdfUrl": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_91-70D_CHG_1.pdf",
       "contentStatus": "parsed",
       "contentPath": "content/ac-91-70d.json",
-      "pageCount": 135,
-      "wordCount": 45672,
-      "contentUpdated": "2026-07-14",
-      "extractedPageCount": 135
+      "pageCount": 138,
+      "wordCount": 46713,
+      "contentUpdated": "2026-11-11",
+      "extractedPageCount": 138
     },
     {
       "id": "ac-91-71",
@@ -15899,17 +15900,16 @@
       "contentUpdated": "2026-10-31"
     },
     {
-      "id": "ac-120-98a",
-      "number": "120-98A",
-      "title": "Operator Information for Incorporating Fuel Tank Flammability Reduction Requirements into a Maintenance or Inspection Program (Including Change 1)",
+      "id": "ac-120-98b",
+      "number": "120-98B",
+      "title": "Operator Information for Incorporating Fuel Tank Flammability Reduction Requirements into a Maintenance and/or Inspection Program",
       "status": "Active",
-      "issued": "2012-06-22",
+      "issued": "2026-10-21",
       "office": "AFS-300",
       "category": "Air Carrier Operations",
-      "summary": "This advisory circular (AC) provides information and describes an acceptable means of compliance (AMC) with the Reduction of Fuel Tank Flammability in Transport Category Airplanes, final rule.",
+      "summary": "This AC provides information and describes an acceptable means of compliance (AMC) with the Reduction of Fuel Tank Flammability in Transport Category Airplanes final rule.",
       "relatedCfr": [],
-      "documentUrl": "https://www.faa.gov/regulations_policies/advisory_circulars/index.cfm/go/document.information/documentID/1020165",
-      "pdfUrl": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_120-98A_CHG_1.pdf",
+      "documentUrl": "https://www.faa.gov/regulations_policies/advisory_circulars/index.cfm/go/document.information/documentID/1045956",
       "tags": [
         "120",
         "afs-300",
@@ -15922,12 +15922,13 @@
         "flammability",
         "reduction"
       ],
+      "pdfUrl": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_120-98B.pdf",
       "contentStatus": "parsed",
-      "contentPath": "content/ac-120-98a.json",
-      "pageCount": 24,
-      "wordCount": 8469,
-      "contentUpdated": "2026-07-14",
-      "extractedPageCount": 24
+      "contentPath": "content/ac-120-98b.json",
+      "pageCount": 26,
+      "extractedPageCount": 26,
+      "wordCount": 8612,
+      "contentUpdated": "2026-11-11"
     },
     {
       "id": "ac-120-100",
