@@ -111,6 +111,23 @@ For native local signing with Xcode on a Mac, the app's existing `release.sh`
 still requires the private helper's ready credential generation. The new local
 Linux signing path does not update or bypass that private GCS quarantine gate.
 
+### Export compliance
+
+The native target links only Apple platform frameworks. It reads bundled
+references, stores local study marks, exchanges JSON study packs through the
+system file picker, and opens external HTTPS references with SwiftUI `Link`.
+It includes no third-party cryptographic dependency or custom cryptography.
+Following [Apple's encryption declaration guidance](https://developer.apple.com/documentation/security/complying-with-encryption-export-regulations),
+`FARAIMPro/Info.plist` declares `ITSAppUsesNonExemptEncryption=false` for this
+use of Apple operating-system services. Review the declaration when adding
+cryptographic features or dependencies.
+
+Build 12 was uploaded before this key was present. Apple processed it as
+`VALID` but held TestFlight availability at `MISSING_EXPORT_COMPLIANCE`.
+Complete its encryption declaration in App Store Connect, then resume assignment
+to `Testers`. The existing build's metadata can be completed without rebuilding
+or uploading another binary solely for this declaration.
+
 Output:
 
 - Native CI archive: `Application.xcarchive`, dSYMs, `signing-entitlements.plist`,
