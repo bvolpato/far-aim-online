@@ -68,24 +68,19 @@ update an installation signed by Google Play.
 ## iOS
 
 The public `iOS CI` workflow runs XCTest on a simulator and builds an unsigned
-device app on a GitHub-hosted Mac. A signed App Store archive also requires a Mac,
-Xcode 26+, and the iOS 26+ SDK.
+device app on a GitHub-hosted Mac. The `iOS TestFlight archive` workflow uses
+Xcode 27.2 to test and archive the app with native assets. A pushed signed tag
+named `testflight-ios-<build>` starts the archive workflow. It uploads an unsigned
+archive and symbols, but it does not sign or send any package to Apple.
 
-The previous distribution certificate and profile are quarantined in private
-storage. The helper refuses to use them. Revoke the previously exposed
-certificate and issue a replacement certificate and matching profile. Store
-the replacement P12, profile, and password file privately under `ios/`, then
-publish a new generation-pinned private manifest with the iOS state `ready`.
+The previous signing set remains quarantined. `scripts/release_credentials.py`
+refuses it, and this workflow does not modify the private manifest or send signing
+credentials to GitHub. A separate local signing identity and App Store profile
+can be stored outside Git and configured through an ignored `.env` for the
+shared Linux signing and App Store Connect helpers. The new profile must match
+`com.faraimpro.ios` and the certificate used to sign the archive.
 
-After simulator tests pass and replacement credentials are available:
-
-```bash
-export IOS_TEAM_ID="<Apple developer team>"
-export IOS_PROFILE_NAME="<matching App Store profile>"
-export IOS_BUILD_NUMBER="<unused App Store build number>"
-./scripts/package-ios.sh
-```
-
-The helper supplies certificate, profile, and password file paths. Signed IPA
-output is under `mobile/ios/build/release/export/`. A passing unsigned CI build
-does not validate signing, TestFlight installation, or App Store acceptance.
+For the local process and commands, see `mobile/ios/RELEASE.md`. The direct
+`./scripts/package-ios.sh` path remains disabled for signing until the private
+credential manifest is deliberately reissued and reviewed. Unsigned native CI
+results do not validate signing, TestFlight installation, or App Store acceptance.
