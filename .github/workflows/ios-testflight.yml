@@ -46,7 +46,7 @@ jobs:
 
   archive:
     needs: release-inputs
-    uses: bvolpato/brutv/.github/workflows/ios-native-archive.yml@c358e3f1157d923a020ff1c9c838b7fa97953324
+    uses: bvolpato/brutv/.github/workflows/ios-native-archive.yml@1f67eff147f52fd43efbbaad3aaf83d096bc7f34
     with:
       project: mobile/ios/FARAIMPro.xcodeproj
       scheme: FARAIMPro
