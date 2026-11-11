@@ -80,7 +80,8 @@ FAR/AIM Pro currently uses the closed Alpha track. Production access requires at
 Saving a release or submitting it for review does not make it available to testers or production users.
 
 See `MOBILE_RELEASE.md` for private credential storage and retrieval. Public CI
-builds unsigned mobile artifacts and never fetches release keys. iOS CI validates
-simulator tests and an unsigned device build; signed packaging and App Store
-submission require Mac validation and replacement credentials. The old iOS
-certificate/profile remain quarantined.
+builds unsigned mobile artifacts and never fetches release keys. The iOS
+TestFlight workflow runs simulator tests and archives a native unsigned app.
+Local signing and upload require an app-specific App Store profile that matches
+the new local distribution certificate. The existing GCS release helper remains
+blocked while the previous iOS signing set is quarantined.
