@@ -8,12 +8,16 @@ test.describe('updates page', () => {
     await expect(page).toHaveTitle(/Data Updates/);
     await expect(page.getByRole('heading', { name: 'Updates' })).toBeVisible();
     await expect(page.getByText('Federal Aviation Regulations')).toBeVisible();
-    await expect(page.getByText('2026-08-13').first()).toBeVisible();
+    const farSource = sourceStatus.sources.find(source => source.id === 'far');
+    expect(farSource).toBeDefined();
+    await expect(page.getByText(farSource!.lastUpdated).first()).toBeVisible();
     await expect(page.getByText('Aeronautical Information Manual')).toBeVisible();
     await expect(page.getByText('2026-07-09').first()).toBeVisible();
     await expect(page.getByRole('heading', { name: 'Change Watch' })).toBeVisible();
     await expect(page.getByText('FAR/eCFR snapshot refreshed')).toBeVisible();
-    await expect(page.getByText('14 CFR Part 61')).toBeVisible();
+    const farChange = sourceStatus.changeWatch.find(change => change.sourceId === 'far');
+    expect(farChange).toBeDefined();
+    await expect(page.getByText(farChange!.affectedReferences[0], { exact: true })).toBeVisible();
     await expect(page.getByText('Review saved FAR notes and highlights')).toBeVisible();
     await expect(page.getByRole('heading', { name: 'Release Notes' })).toBeVisible();
     await expect(page.getByText('FAR figure and crawler fidelity')).toBeVisible();
