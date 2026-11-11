@@ -29,8 +29,8 @@ Select an unused build number and push a signed release tag from a reviewed
 commit. GitHub Actions runs the same archive workflow on a native Apple runner:
 
 ```sh
-git tag -s testflight-ios-11 REVIEWED_SOURCE_SHA -m 'iOS TestFlight build 11'
-git push origin refs/tags/testflight-ios-11
+git tag -s testflight-ios-12 REVIEWED_SOURCE_SHA -m 'iOS TestFlight build 12'
+git push origin refs/tags/testflight-ios-12
 GH_CONFIG_DIR="$HOME/.config/gh-personal" gh run list --workflow ios-testflight.yml
 ```
 
@@ -43,9 +43,9 @@ GH_CONFIG_DIR="$HOME/.config/gh-personal" gh run list \
   --workflow ios-testflight.yml --limit 10 \
   --json databaseId,headSha,headBranch,status,conclusion
 GH_CONFIG_DIR="$HOME/.config/gh-personal" gh run download RUN_ID \
-  --name ios-native-archive-11 --dir mobile/ios/build/native-11/download
-unzip mobile/ios/build/native-11/download/ios-native-archive.zip \
-  -d mobile/ios/build/native-11
+  --name ios-native-archive-12 --dir mobile/ios/build/native-12/download
+unzip mobile/ios/build/native-12/download/ios-native-archive.zip \
+  -d mobile/ios/build/native-12
 ```
 
 Verify `native-ios-release/provenance.json` matches the reviewed source commit,
@@ -68,9 +68,9 @@ signing tool:
 git clone --filter=blob:none --no-checkout https://github.com/bvolpato/brutv.git \
   "$HOME/.cache/brutv-release"
 git -C "$HOME/.cache/brutv-release" fetch --depth=1 origin \
-  c358e3f1157d923a020ff1c9c838b7fa97953324
+  1f67eff147f52fd43efbbaad3aaf83d096bc7f34
 git -C "$HOME/.cache/brutv-release" checkout --detach \
-  c358e3f1157d923a020ff1c9c838b7fa97953324
+  1f67eff147f52fd43efbbaad3aaf83d096bc7f34
 export BRUTV_IOS="$HOME/.cache/brutv-release/mobile/ios/BruTV"
 "$BRUTV_IOS/setup-linux.sh" --signing-tools
 ```
@@ -88,13 +88,13 @@ The archive uses Xcode's native resources and remains unsigned in GitHub. Sign
 and upload it on the Linux release host with the matching profile and certificate:
 
 ```sh
-IOS_RELEASE_DIR="$PWD/mobile/ios/build/native-11/signed" \
-IOS_ENTITLEMENTS_PATH="$PWD/mobile/ios/build/native-11/native-ios-release/signing-entitlements.plist" \
-IOS_BUILD_NUMBER=11 IOS_BUNDLE_ID=com.faraimpro.ios \
+IOS_RELEASE_DIR="$PWD/mobile/ios/build/native-12/signed" \
+IOS_ENTITLEMENTS_PATH="$PWD/mobile/ios/build/native-12/native-ios-release/signing-entitlements.plist" \
+IOS_BUILD_NUMBER=12 IOS_BUNDLE_ID=com.faraimpro.ios \
 IOS_APP_STORE_ID=6765584356 \
 uv run --env-file .env -- "$BRUTV_IOS/release.sh" \
   --platform ios \
-  --app "$PWD/mobile/ios/build/native-11/native-ios-release/Application.xcarchive/Products/Applications/FARAIMPro.app" \
+  --app "$PWD/mobile/ios/build/native-12/native-ios-release/Application.xcarchive/Products/Applications/FARAIMPro.app" \
   --upload --testflight-group Testers \
   --whats-new 'Check current FAR and AIM references, search, study marks, and offline launch.' \
   --tester tester@example.com
