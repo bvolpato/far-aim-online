@@ -1846,6 +1846,12 @@ struct HomeView: View {
                             .stroke(AviationTheme.border, lineWidth: 1)
                     }
                 }
+
+                Link(destination: URL(string: "https://faraim.online/privacy")!) {
+                    Text("Privacy Policy")
+                        .font(.footnote)
+                        .frame(minHeight: 44, alignment: .leading)
+                }
             }
             .frame(maxWidth: 960, alignment: .leading)
             .padding(.horizontal, 16)
