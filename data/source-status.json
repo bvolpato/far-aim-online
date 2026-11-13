@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-11-11",
+  "generatedAt": "2026-11-12",
   "appVersion": "1.1.0",
   "sources": [
     {
@@ -9,7 +9,7 @@
       "shortLabel": "FAR",
       "source": "eCFR Titles 14 and 49",
       "status": "Current snapshot",
-      "lastUpdated": "2026-11-09",
+      "lastUpdated": "2026-11-10",
       "itemCount": 213,
       "sectionCount": 6546,
       "coverage": "213 indexed parts, 200 content parts, 6,546 sections, 185 appendices and 592 figures",
@@ -88,19 +88,27 @@
   ],
   "changeWatch": [
     {
-      "id": "far-2026-11-09",
-      "date": "2026-11-09",
+      "id": "far-2026-11-10",
+      "date": "2026-11-10",
       "sourceId": "far",
       "severity": "review",
       "title": "FAR/eCFR snapshot refreshed",
-      "summary": "The Title 14 snapshot was refreshed through November 9, 2026. Updated text appears in commercial-space Parts 413, 414, 450 and 460. Recheck saved references before operational use.",
+      "summary": "The Title 14 snapshot was refreshed through November 10, 2026. New eCFR editorial notes link Federal Register amendments for maintenance and inspection provisions in Parts 91, 125, 135, 137 and 145. Consult each official amendment for its effective date.",
       "affectedReferences": [
-        "14 CFR 413.7",
-        "14 CFR 414.43",
-        "14 CFR 450.101",
-        "14 CFR 450.173",
-        "14 CFR 450.207",
-        "14 CFR 460.45"
+        "14 CFR 91.1415",
+        "14 CFR 91.401",
+        "14 CFR 91.403",
+        "14 CFR 91.405",
+        "14 CFR 91.409",
+        "14 CFR 91.415",
+        "14 CFR 91.501",
+        "14 CFR 125.247",
+        "14 CFR 135.411",
+        "14 CFR 137.53",
+        "14 CFR 145.109",
+        "14 CFR 145.201",
+        "14 CFR 145.211",
+        "14 CFR 145.217"
       ],
       "actions": [
         "Review saved FAR notes and highlights after this snapshot date.",

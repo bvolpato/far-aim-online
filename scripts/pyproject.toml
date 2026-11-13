@@ -3,7 +3,7 @@ name = "far-aim-pro-scripts"
 version = "1.0.0"
 description = "Data crawling and processing scripts for FAR/AIM Pro"
 readme = "README.md"
-requires-python = ">=3.11"
+requires-python = ">=3.11.5"
 license = { text = "MIT" }
 authors = [
     { name = "FAR/AIM Pro Team" }
