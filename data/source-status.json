@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-11-12",
+  "generatedAt": "2026-11-14",
   "appVersion": "1.1.0",
   "sources": [
     {
@@ -9,7 +9,7 @@
       "shortLabel": "FAR",
       "source": "eCFR Titles 14 and 49",
       "status": "Current snapshot",
-      "lastUpdated": "2026-11-10",
+      "lastUpdated": "2026-11-12",
       "itemCount": 213,
       "sectionCount": 6546,
       "coverage": "213 indexed parts, 200 content parts, 6,546 sections, 185 appendices and 592 figures",
@@ -88,8 +88,8 @@
   ],
   "changeWatch": [
     {
-      "id": "far-2026-11-10",
-      "date": "2026-11-10",
+      "id": "far-2026-11-12",
+      "date": "2026-11-12",
       "sourceId": "far",
       "severity": "review",
       "title": "FAR/eCFR snapshot refreshed",

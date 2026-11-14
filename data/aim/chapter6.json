@@ -595,31 +595,28 @@
           "src": "chapter6/section-6-5-3-img-1.png",
           "alt": "Recommend Evacuation",
           "caption": "FIG 6-5-1: Recommend Evacuation",
-          "originalUrl": "https://www.faa.gov/air_traffic/publications/aim_html/assets/img/aim_fig_6_5_1.webp",
+          "originalUrl": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/images/fig_6_5_1_reccomend_evacuation.png",
           "number": "6-5-1",
           "kind": "FIG",
-          "sourcePdfPage": 515,
-          "sourceImageUrl": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/images/aim0605_fig197_recovered.svg"
+          "sourcePdfPage": 515
         },
         {
           "src": "chapter6/section-6-5-3-img-2.png",
           "alt": "Recommend Stop",
           "caption": "FIG 6-5-2: Recommend Stop",
-          "originalUrl": "https://www.faa.gov/air_traffic/publications/aim_html/assets/img/aim_fig_6_5_2.webp",
+          "originalUrl": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/images/fig_6_5_2_recommend_stop.png",
           "number": "6-5-2",
           "kind": "FIG",
-          "sourcePdfPage": 516,
-          "sourceImageUrl": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/images/aim0605_fig197_recovered.svg"
+          "sourcePdfPage": 516
         },
         {
           "src": "chapter6/section-6-5-3-img-3.png",
           "alt": "Emergency Contained",
           "caption": "FIG 6-5-3: Emergency Contained",
-          "originalUrl": "https://www.faa.gov/air_traffic/publications/aim_html/assets/img/aim_fig_6_5_3.webp",
+          "originalUrl": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/images/fig_6_5_3_emergency_contained.png",
           "number": "6-5-3",
           "kind": "FIG",
-          "sourcePdfPage": 516,
-          "sourceImageUrl": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/images/aim0605_fig197_recovered.svg"
+          "sourcePdfPage": 516
         }
       ],
       "tables": []
