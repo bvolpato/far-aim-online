@@ -56,6 +56,57 @@ struct HighlightText15: View {
     }
 
     var attributedString: AttributedString {
+        HighlightedTextCache.value(text: text, query: query)
+    }
+}
+
+@available(iOS 15.0, *)
+private enum HighlightedTextCache {
+    private final class Key: NSObject {
+        let text: String
+        let query: String
+
+        init(text: String, query: String) {
+            self.text = text
+            self.query = query
+        }
+
+        override var hash: Int {
+            var hasher = Hasher()
+            hasher.combine(text)
+            hasher.combine(query)
+            return hasher.finalize()
+        }
+
+        override func isEqual(_ object: Any?) -> Bool {
+            guard let other = object as? Key else { return false }
+            return text == other.text && query == other.query
+        }
+    }
+
+    private final class Entry {
+        let value: AttributedString
+        init(_ value: AttributedString) { self.value = value }
+    }
+
+    private static let storage: NSCache<Key, Entry> = {
+        let cache = NSCache<Key, Entry>()
+        cache.countLimit = 2048
+        cache.totalCostLimit = 8 * 1024 * 1024
+        return cache
+    }()
+
+    static func value(text: String, query: String) -> AttributedString {
+        let key = Key(text: text, query: query)
+        if let entry = storage.object(forKey: key) { return entry.value }
+        let value = render(text: text, query: query)
+        // Estimate keys, formatted text, and entry overhead. NSCache can discard
+        // these immutable values under memory pressure without losing drafts.
+        storage.setObject(Entry(value), forKey: key, cost: text.utf8.count * 4 + query.utf8.count + 256)
+        return value
+    }
+
+    private static func render(text: String, query: String) -> AttributedString {
         var attributed = (try? AttributedString(
             markdown: text,
             options: .init(interpretedSyntax: .inlineOnlyPreservingWhitespace)
@@ -1265,7 +1316,11 @@ struct SectionCard: View {
     }
 
     var body: some View {
-        if matchesSearch {
+        let searchMatches = matchesSearch
+        let expanded = userExpanded ?? (
+            searchText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty ? defaultExpanded : searchMatches
+        )
+        if searchMatches {
             VStack(alignment: .leading, spacing: 12) {
                 Button(action: {
                     let nextExpanded = !shouldExpand
@@ -1285,15 +1340,15 @@ struct SectionCard: View {
 
                         Spacer()
 
-                        Image(systemName: shouldExpand ? "chevron.up" : "chevron.down")
+                        Image(systemName: expanded ? "chevron.up" : "chevron.down")
                             .foregroundColor(.secondary)
                     }
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .contentShape(Rectangle())
                 }
                 .buttonStyle(.plain)
-                .accessibilityValue(shouldExpand ? "Expanded" : "Collapsed")
-                .accessibilityHint(shouldExpand ? "Collapse this section" : "Expand this section")
+                .accessibilityValue(expanded ? "Expanded" : "Collapsed")
+                .accessibilityHint(expanded ? "Collapse this section" : "Expand this section")
                 .accessibilityIdentifier("far-section-\(section.section)")
                 .contextMenu {
                     Button("Copy section text", systemImage: "doc.on.doc") {
@@ -1301,7 +1356,7 @@ struct SectionCard: View {
                     }
                 }
 
-                if shouldExpand {
+                if expanded {
                     VStack(alignment: .leading, spacing: 12) {
                         if let studyMarkInput {
                             StudyMarkTools(input: studyMarkInput)

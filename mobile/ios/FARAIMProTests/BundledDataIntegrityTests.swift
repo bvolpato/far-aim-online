@@ -1,3 +1,4 @@
+import SwiftUI
 import XCTest
 @testable import FARAIMPro
 
@@ -893,6 +894,44 @@ final class BundledDataIntegrityTests: XCTestCase {
         try importMark()
         XCTAssertEqual(dataService.studyMarks.first?.note, "")
         XCTAssertEqual(dataService.studyMarks.first?.highlighted, false)
+    }
+
+    @MainActor
+    func testCachedReaderTextPreservesMarkdownUnicodeAndIndependentQueries() throws {
+        let text = "✈️ **Café**: DA and data. *61.8* [pilot](https://www.faa.gov)."
+        func formatted(_ query: String) -> AttributedString {
+            HighlightText15(text: text, query: query).attributedString
+        }
+        func highlights(_ value: AttributedString) -> [String] {
+            value.runs.compactMap { run in
+                run.backgroundColor == nil ? nil : String(value[run.range].characters)
+            }
+        }
+
+        let shortQuery = formatted("DA")
+        let identifierQuery = formatted("61.8")
+        let noQuery = formatted("")
+        XCTAssertEqual(String(shortQuery.characters), "✈️ Café: DA and data. 61.8 pilot.")
+        XCTAssertEqual(highlights(shortQuery), ["DA"])
+        XCTAssertEqual(highlights(identifierQuery), ["61.8"])
+        XCTAssertTrue(highlights(noQuery).isEmpty)
+        let cafe = try XCTUnwrap(shortQuery.range(of: "Café"))
+        XCTAssertTrue(shortQuery[cafe].inlinePresentationIntent?.contains(.stronglyEmphasized) == true)
+        let identifier = try XCTUnwrap(identifierQuery.range(of: "61.8"))
+        XCTAssertTrue(identifierQuery[identifier].inlinePresentationIntent?.contains(.emphasized) == true)
+        let link = try XCTUnwrap(shortQuery.range(of: "pilot"))
+        XCTAssertEqual(shortQuery[link].link, URL(string: "https://www.faa.gov"))
+
+        let otherText = HighlightText15(text: "Different DA paragraph", query: "DA").attributedString
+        XCTAssertEqual(String(otherText.characters), "Different DA paragraph")
+        XCTAssertEqual(highlights(otherText), ["DA"])
+
+        var editedCopy = shortQuery
+        editedCopy.backgroundColor = .red
+        XCTAssertNotEqual(editedCopy, shortQuery)
+        XCTAssertEqual(formatted("DA"), shortQuery)
+        XCTAssertEqual(formatted("61.8"), identifierQuery)
+        XCTAssertEqual(formatted(""), noQuery)
     }
 
     func testStudyPackPreservesSectionAnchorsAndAppendixReferences() throws {

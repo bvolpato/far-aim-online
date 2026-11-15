@@ -19,22 +19,7 @@ final class ReaderExperienceTests: XCTestCase {
     func testGlobalSearchOpensTheMatchingFARSection() {
         let app = launch()
         defer { app.terminate() }
-
-        let searchLink = app.buttons["home-search"]
-        reveal(searchLink, in: app)
-        searchLink.tap()
-
-        let field = app.textFields["global-search-input"]
-        XCTAssertTrue(field.waitForExistence(timeout: 10))
-        field.tap()
-        field.typeText("FAR 61.8")
-
-        let result = app.buttons["global-result-far/61#61.8"]
-        XCTAssertTrue(result.waitForExistence(timeout: 10))
-        reveal(result, in: app)
-        result.tap()
-
-        XCTAssertTrue(app.navigationBars["Part 61"].waitForExistence(timeout: 10))
+        openFARReaderFromGlobalSearch(in: app)
         let section = app.buttons["far-section-61.8"]
         XCTAssertTrue(section.waitForExistence(timeout: 10))
         XCTAssertEqual(section.value as? String, "Expanded")
@@ -48,11 +33,7 @@ final class ReaderExperienceTests: XCTestCase {
             app.terminate()
         }
 
-        selectTab("FAR", in: app)
-        replaceSearch(in: app, with: "Inapplicability unmanned")
-        let part = app.buttons["far-part-61"]
-        XCTAssertTrue(part.waitForExistence(timeout: 10))
-        part.tap()
+        openFARReaderFromGlobalSearch(in: app)
 
         let noteButton = app.buttons["study-note-toggle-far:§ 61.8"]
         reveal(noteButton, in: app)
@@ -70,7 +51,7 @@ final class ReaderExperienceTests: XCTestCase {
         app.swipeDown()
 
         selectTab("Study", in: app)
-        selectTab("FAR", in: app)
+        selectTab("Home", in: app)
         XCTAssertTrue(app.navigationBars["Part 61"].waitForExistence(timeout: 5))
         XCTAssertTrue(editor.waitForExistence(timeout: 5))
         XCTAssertTrue((editor.value as? String)?.contains(draft) == true)
@@ -114,6 +95,24 @@ final class ReaderExperienceTests: XCTestCase {
         attachment.name = "Reader controls at accessibility text size"
         attachment.lifetime = .keepAlways
         add(attachment)
+    }
+
+    @MainActor
+    private func openFARReaderFromGlobalSearch(in app: XCUIApplication) {
+        let searchLink = app.buttons["home-search"]
+        reveal(searchLink, in: app)
+        searchLink.tap()
+
+        let field = app.textFields["global-search-input"]
+        XCTAssertTrue(field.waitForExistence(timeout: 10))
+        field.tap()
+        field.typeText("FAR 61.8")
+
+        let result = app.buttons["global-result-far/61#61.8"]
+        XCTAssertTrue(result.waitForExistence(timeout: 10))
+        reveal(result, in: app)
+        result.tap()
+        XCTAssertTrue(app.navigationBars["Part 61"].waitForExistence(timeout: 10))
     }
 
     @MainActor
