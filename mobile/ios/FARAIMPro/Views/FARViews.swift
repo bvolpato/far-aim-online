@@ -825,6 +825,7 @@ struct FARPartDetailView: View {
     @State private var searchText = ""
     @State private var readerSearchMemo = FARReaderSearchMemo()
     @State private var visibleSectionID: String?
+    @State private var didRequestInitialScroll = false
     @AppStorage("far-aim-pro-reader-font-scale-index") private var readerFontScaleIndex = 1
     @AppStorage("far-aim-pro-reader-density") private var readerDensityRawValue = ReaderDensity.standard.rawValue
     @State private var showReaderControls = false
@@ -948,138 +949,149 @@ struct FARPartDetailView: View {
             density: ReaderDensity(rawValue: readerDensityRawValue) ?? .standard
         )
 
-        ScrollView {
-            LazyVStack(alignment: .leading, spacing: 16) {
-                // Header
-                VStack(alignment: .leading, spacing: 8) {
-                    Text(part.cfr)
-                        .font(.subheadline)
-                        .foregroundStyle(AviationTheme.sky)
-
-                    Text(part.title)
-                        .font(.title2)
-                        .fontWeight(.bold)
-                        .foregroundStyle(.white)
-
-                    if let subchapter = part.subchapter, let subchapterTitle = part.subchapterTitle {
-                        Text("Subchapter \(subchapter): \(subchapterTitle)")
+        ScrollViewReader { scrollProxy in
+            ScrollView {
+                LazyVStack(alignment: .leading, spacing: 16) {
+                    // Header
+                    VStack(alignment: .leading, spacing: 8) {
+                        Text(part.cfr)
                             .font(.subheadline)
-                            .foregroundStyle(.white.opacity(0.7))
-                    }
-
-                    if let urlString = part.url, let url = URL(string: urlString) {
-                        Link(destination: url) {
-                            HStack {
-                                Text("View on eCFR")
-                                    .font(.caption)
-                                Image(systemName: "arrow.up.right.square")
-                                    .font(.caption)
-                            }
                             .foregroundStyle(AviationTheme.sky)
+
+                        Text(part.title)
+                            .font(.title2)
+                            .fontWeight(.bold)
+                            .foregroundStyle(.white)
+
+                        if let subchapter = part.subchapter, let subchapterTitle = part.subchapterTitle {
+                            Text("Subchapter \(subchapter): \(subchapterTitle)")
+                                .font(.subheadline)
+                                .foregroundStyle(.white.opacity(0.7))
                         }
-                    }
-                }
-                .padding(20)
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .background(AviationTheme.heroGradient)
-                .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
 
-                if readerSections.isEmpty {
-                    ContentUnavailableView(
-                        "Part Reserved",
-                        systemImage: "doc.badge.ellipsis",
-                        description: Text("This part is reserved in 14 CFR and currently contains no active sections.")
-                    )
-                    .padding(.vertical, 24)
-                } else if displayedSections.isEmpty {
-                    ContentUnavailableView.search(text: searchText)
-                        .accessibilityIdentifier("reader-no-results")
-                        .padding(.vertical, 24)
-                } else {
-                    ForEach(displayedSections) { item in
-                        VStack(alignment: .leading, spacing: 16) {
-                            if let subpartHeading = item.subpartHeading {
-                                Text(subpartHeading)
-                                    .font(.title3)
-                                    .fontWeight(.semibold)
-                                    .padding(.top, 8)
-                            }
-
-                            SectionCard(
-                                section: item.section,
-                                searchText: activeQuery,
-                                defaultExpanded: initialSection == item.section.section,
-                                preserveInitialSearchMatch: preservesInitialSearchAnchor,
-                                knownSearchMatch: true,
-                                referenceLabel: item.referenceLabel,
-                                searchContext: sectionSearchContext(for: item),
-                                studyMarkInput: StudyMarkInput(
-                                    type: "far",
-                                    reference: item.referenceLabel ?? "§ \(item.section.section)",
-                                    title: item.section.title.isEmpty
-                                        ? (item.referenceLabel ?? "FAR \(item.section.section)")
-                                        : item.section.title,
-                                    route: "far:\(part.part)#\(item.section.section)"
-                                ),
-                                readerPreferences: readerPreferences,
-                                onExpanded: {
-                                    dataService.saveFARReadingHistory(
-                                        part: part.part,
-                                        title: part.title,
-                                        section: item.section.section
-                                    )
+                        if let urlString = part.url, let url = URL(string: urlString) {
+                            Link(destination: url) {
+                                HStack {
+                                    Text("View on eCFR")
+                                        .font(.caption)
+                                    Image(systemName: "arrow.up.right.square")
+                                        .font(.caption)
                                 }
-                            )
-                        }
-                        .id(item.id)
-                    }
-                }
-
-                // Study Materials Link at end
-                VStack(alignment: .leading, spacing: 12) {
-                    Text("Study Materials")
-                        .font(.headline)
-                        .padding(.top, 8)
-
-                    HStack(spacing: 12) {
-                        NavigationLink(destination: QuizListView()) {
-                            HStack {
-                                Image(systemName: "questionmark.circle.fill")
-                                Text("Quizzes")
+                                .foregroundStyle(AviationTheme.sky)
                             }
-                            .font(.subheadline)
-                            .fontWeight(.semibold)
-                            .foregroundColor(.white)
-                            .padding(.vertical, 10)
-                            .padding(.horizontal, 16)
-                            .background(Color.indigo)
-                            .cornerRadius(8)
-                        }
-
-                        NavigationLink(destination: FlashcardListView()) {
-                            HStack {
-                                Image(systemName: "rectangle.on.rectangle.angled")
-                                Text("Flashcards")
-                            }
-                            .font(.subheadline)
-                            .fontWeight(.semibold)
-                            .foregroundColor(.white)
-                            .padding(.vertical, 10)
-                            .padding(.horizontal, 16)
-                            .background(Color.orange)
-                            .cornerRadius(8)
                         }
                     }
+                    .padding(20)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .background(AviationTheme.heroGradient)
+                    .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
+
+                    if readerSections.isEmpty {
+                        ContentUnavailableView(
+                            "Part Reserved",
+                            systemImage: "doc.badge.ellipsis",
+                            description: Text("This part is reserved in 14 CFR and currently contains no active sections.")
+                        )
+                        .padding(.vertical, 24)
+                    } else if displayedSections.isEmpty {
+                        ContentUnavailableView.search(text: searchText)
+                            .accessibilityIdentifier("reader-no-results")
+                            .padding(.vertical, 24)
+                    } else {
+                        ForEach(displayedSections) { item in
+                            VStack(alignment: .leading, spacing: 16) {
+                                if let subpartHeading = item.subpartHeading {
+                                    Text(subpartHeading)
+                                        .font(.title3)
+                                        .fontWeight(.semibold)
+                                        .padding(.top, 8)
+                                }
+
+                                SectionCard(
+                                    section: item.section,
+                                    searchText: activeQuery,
+                                    defaultExpanded: initialSection == item.section.section,
+                                    preserveInitialSearchMatch: preservesInitialSearchAnchor,
+                                    knownSearchMatch: true,
+                                    referenceLabel: item.referenceLabel,
+                                    searchContext: sectionSearchContext(for: item),
+                                    studyMarkInput: StudyMarkInput(
+                                        type: "far",
+                                        reference: item.referenceLabel ?? "§ \(item.section.section)",
+                                        title: item.section.title.isEmpty
+                                            ? (item.referenceLabel ?? "FAR \(item.section.section)")
+                                            : item.section.title,
+                                        route: "far:\(part.part)#\(item.section.section)"
+                                    ),
+                                    readerPreferences: readerPreferences,
+                                    onExpanded: {
+                                        dataService.saveFARReadingHistory(
+                                            part: part.part,
+                                            title: part.title,
+                                            section: item.section.section
+                                        )
+                                    }
+                                )
+                            }
+                            .id(item.id)
+                        }
+                    }
+
+                    // Study Materials Link at end
+                    VStack(alignment: .leading, spacing: 12) {
+                        Text("Study Materials")
+                            .font(.headline)
+                            .padding(.top, 8)
+
+                        HStack(spacing: 12) {
+                            NavigationLink(destination: QuizListView()) {
+                                HStack {
+                                    Image(systemName: "questionmark.circle.fill")
+                                    Text("Quizzes")
+                                }
+                                .font(.subheadline)
+                                .fontWeight(.semibold)
+                                .foregroundColor(.white)
+                                .padding(.vertical, 10)
+                                .padding(.horizontal, 16)
+                                .background(Color.indigo)
+                                .cornerRadius(8)
+                            }
+
+                            NavigationLink(destination: FlashcardListView()) {
+                                HStack {
+                                    Image(systemName: "rectangle.on.rectangle.angled")
+                                    Text("Flashcards")
+                                }
+                                .font(.subheadline)
+                                .fontWeight(.semibold)
+                                .foregroundColor(.white)
+                                .padding(.vertical, 10)
+                                .padding(.horizontal, 16)
+                                .background(Color.orange)
+                                .cornerRadius(8)
+                            }
+                        }
+                    }
+                    .padding()
+                    .background(Color(.secondarySystemBackground))
+                    .cornerRadius(12)
                 }
+                .scrollTargetLayout()
                 .padding()
-                .background(Color(.secondarySystemBackground))
-                .cornerRadius(12)
             }
-            .scrollTargetLayout()
-            .padding()
+            .scrollPosition(id: $visibleSectionID, anchor: .top)
+            .scrollDismissesKeyboard(.interactively)
+            .onGeometryChange(for: Bool.self) { geometry in
+                geometry.size.width > 0 && geometry.size.height > 0
+            } action: { hasViewport in
+                guard hasViewport, !didRequestInitialScroll,
+                      let initialSection,
+                      displayedSections.contains(where: { $0.id == initialSection }) else { return }
+                didRequestInitialScroll = true
+                scrollProxy.scrollTo(initialSection, anchor: .top)
+            }
         }
-        .scrollPosition(id: $visibleSectionID, anchor: .top)
-        .scrollDismissesKeyboard(.interactively)
         .navigationTitle("Part \(part.part)")
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
