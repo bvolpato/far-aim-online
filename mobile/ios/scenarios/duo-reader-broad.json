@@ -12,7 +12,7 @@
     {"action":"text","text":"FAR student pilot"},
     {"action":"key","name":"return"},
     {"action":"wait_text","identifier":"global-result-far/61#61.83","text":"Eligibility requirements for student pilots","timeout":60},
-    {"action":"scroll_to_element","identifier":"global-result-far/61#61.83","max_swipes":3,"timeout":20},
+    {"action":"scroll_to_element","identifier":"global-result-far/61#61.83","max_swipes":3,"timeout":60},
     {"action":"tap_element","identifier":"global-result-far/61#61.83"},
     {"action":"wait_text","identifier":"far-section-61.83","text":"Expanded","exact":true,"timeout":60},
     {"action":"scroll_to_element","identifier":"study-note-toggle-far:§ 61.83","max_swipes":4,"timeout":60},

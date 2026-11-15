@@ -824,6 +824,7 @@ struct FARPartDetailView: View {
     private let initialSearchText: String
     @State private var searchText = ""
     @State private var readerSearchMemo = FARReaderSearchMemo()
+    @State private var visibleSectionID: String?
     @AppStorage("far-aim-pro-reader-font-scale-index") private var readerFontScaleIndex = 1
     @AppStorage("far-aim-pro-reader-density") private var readerDensityRawValue = ReaderDensity.standard.rawValue
     @State private var showReaderControls = false
@@ -836,6 +837,7 @@ struct FARPartDetailView: View {
         self.initialSection = initialSection
         self.initialSearchText = initialSearchText
         _searchText = State(initialValue: initialSearchText)
+        _visibleSectionID = State(initialValue: initialSection.flatMap { $0.isEmpty ? nil : $0 })
     }
 
     private var partSearchContext: String {
@@ -946,9 +948,8 @@ struct FARPartDetailView: View {
             density: ReaderDensity(rawValue: readerDensityRawValue) ?? .standard
         )
 
-        ScrollViewReader { proxy in
-            ScrollView {
-                LazyVStack(alignment: .leading, spacing: 16) {
+        ScrollView {
+            LazyVStack(alignment: .leading, spacing: 16) {
                 // Header
                 VStack(alignment: .leading, spacing: 8) {
                     Text(part.cfr)
@@ -996,39 +997,41 @@ struct FARPartDetailView: View {
                         .padding(.vertical, 24)
                 } else {
                     ForEach(displayedSections) { item in
-                        if let subpartHeading = item.subpartHeading {
-                            Text(subpartHeading)
-                                .font(.title3)
-                                .fontWeight(.semibold)
-                                .padding(.top, 8)
-                        }
-
-                        SectionCard(
-                            section: item.section,
-                            searchText: activeQuery,
-                            defaultExpanded: initialSection == item.section.section,
-                            preserveInitialSearchMatch: preservesInitialSearchAnchor,
-                            knownSearchMatch: true,
-                            referenceLabel: item.referenceLabel,
-                            searchContext: sectionSearchContext(for: item),
-                            studyMarkInput: StudyMarkInput(
-                                type: "far",
-                                reference: item.referenceLabel ?? "§ \(item.section.section)",
-                                title: item.section.title.isEmpty
-                                    ? (item.referenceLabel ?? "FAR \(item.section.section)")
-                                    : item.section.title,
-                                route: "far:\(part.part)#\(item.section.section)"
-                            ),
-                            readerPreferences: readerPreferences,
-                            onExpanded: {
-                                dataService.saveFARReadingHistory(
-                                    part: part.part,
-                                    title: part.title,
-                                    section: item.section.section
-                                )
+                        VStack(alignment: .leading, spacing: 16) {
+                            if let subpartHeading = item.subpartHeading {
+                                Text(subpartHeading)
+                                    .font(.title3)
+                                    .fontWeight(.semibold)
+                                    .padding(.top, 8)
                             }
-                        )
-                        .id(item.section.section)
+
+                            SectionCard(
+                                section: item.section,
+                                searchText: activeQuery,
+                                defaultExpanded: initialSection == item.section.section,
+                                preserveInitialSearchMatch: preservesInitialSearchAnchor,
+                                knownSearchMatch: true,
+                                referenceLabel: item.referenceLabel,
+                                searchContext: sectionSearchContext(for: item),
+                                studyMarkInput: StudyMarkInput(
+                                    type: "far",
+                                    reference: item.referenceLabel ?? "§ \(item.section.section)",
+                                    title: item.section.title.isEmpty
+                                        ? (item.referenceLabel ?? "FAR \(item.section.section)")
+                                        : item.section.title,
+                                    route: "far:\(part.part)#\(item.section.section)"
+                                ),
+                                readerPreferences: readerPreferences,
+                                onExpanded: {
+                                    dataService.saveFARReadingHistory(
+                                        part: part.part,
+                                        title: part.title,
+                                        section: item.section.section
+                                    )
+                                }
+                            )
+                        }
+                        .id(item.id)
                     }
                 }
 
@@ -1072,16 +1075,11 @@ struct FARPartDetailView: View {
                 .background(Color(.secondarySystemBackground))
                 .cornerRadius(12)
             }
-                .padding()
-            }
-            .scrollDismissesKeyboard(.interactively)
-            .task(id: initialSection) {
-                guard let initialSection, !initialSection.isEmpty else { return }
-                try? await Task.sleep(for: .milliseconds(50))
-                guard !Task.isCancelled else { return }
-                proxy.scrollTo(initialSection, anchor: .top)
-            }
+            .scrollTargetLayout()
+            .padding()
         }
+        .scrollPosition(id: $visibleSectionID, anchor: .top)
+        .scrollDismissesKeyboard(.interactively)
         .navigationTitle("Part \(part.part)")
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {

@@ -69,6 +69,19 @@ Use the prepared app above rather than `limulator run mobile/ios`: FAR/AIM needs
 the shared-data and asset preparation in `build-linux.sh`. Installation signs
 for the guest environment and does not test an Apple Distribution identity.
 
+The prepared workstation uses a pinned Limulator checkout selected by
+`.limulator/dev.env`. Duo automation needs the bounded accessibility waits,
+named keyboard input, and controlled scrolling from
+[Limulator PR 18](https://github.com/bvolpato/limulator/pull/18). Its guest worker
+also includes the active-display coordinate fix in
+[vphone-cli PR 938](https://github.com/Lakr233/vphone-cli/pull/938), and its hinge
+provider includes the elapsed-time fix in
+[vphone-cli PR 937](https://github.com/Lakr233/vphone-cli/pull/937).
+Check these capabilities when preparing another workstation. Replacing a guest
+worker or hinge library requires its matching build provenance; restart the
+guest cleanly after a hinge update so backboardd loads the new library.
+The existing VM and SDK installation can be retained.
+
 ## Reader and fold checks
 
 Unlock the guest before each scenario and use a new output directory. Scenarios

@@ -147,7 +147,10 @@ final class ReaderExperienceTests: XCTestCase {
         XCTAssertEqual(matchingSection.value as? String, "Expanded")
         reveal(matchingSection, in: app)
         matchingSection.tap()
-        XCTAssertEqual(matchingSection.value as? String, "Collapsed",
+        let collapsed = XCTNSPredicateExpectation(
+            predicate: NSPredicate(format: "value == %@", "Collapsed"), object: matchingSection
+        )
+        XCTAssertEqual(XCTWaiter.wait(for: [collapsed], timeout: 5), .completed,
                        "An active search must not disable the collapse control.")
     }
 
@@ -192,7 +195,9 @@ final class ReaderExperienceTests: XCTestCase {
         }
         field.typeText(query)
         let searchKey = app.keyboards.buttons["Search"]
-        if searchKey.exists { searchKey.tap() }
+        XCTAssertTrue(searchKey.waitForExistence(timeout: 5))
+        searchKey.tap()
+        XCTAssertTrue(app.keyboards.firstMatch.waitForNonExistence(timeout: 5))
     }
 
     @MainActor
@@ -218,9 +223,22 @@ final class ReaderExperienceTests: XCTestCase {
 
     @MainActor
     private func reveal(_ element: XCUIElement, in app: XCUIApplication) {
-        for _ in 0..<5 {
+        let window = app.windows.firstMatch
+        guard window.waitForExistence(timeout: 10) else {
+            XCTFail("The app accessibility window must be available before scrolling.")
+            return
+        }
+        _ = element.waitForExistence(timeout: 2)
+        for _ in 0..<8 {
             if element.exists && element.isHittable { return }
-            app.swipeUp()
+            guard window.waitForExistence(timeout: 5) else {
+                XCTFail("The app accessibility window disappeared while revealing the control.")
+                return
+            }
+            let aboveViewport = element.exists && element.frame.midY < window.frame.midY
+            let start = window.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: aboveViewport ? 0.5 : 0.7))
+            let end = window.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: aboveViewport ? 0.7 : 0.5))
+            start.press(forDuration: 0.1, thenDragTo: end, withVelocity: .slow, thenHoldForDuration: 0.1)
         }
         XCTAssertTrue(element.exists)
         XCTAssertTrue(element.isHittable)
