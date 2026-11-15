@@ -86,6 +86,9 @@ The reader smoke covers search handoff, expand/collapse, reader settings, and
 native note entry. The Duo scenario requires a Duo guest and checks an unsaved
 note through closed, book, open, and closed postures. Inspect `report.json` and
 the screenshots. Keep the guest OS version and graphics policy with results.
+The bounded waits allow for CPU emulation and guest accessibility inspection;
+these are functional checks, not responsiveness benchmarks. Retain the build's
+`provenance.json` beside the test report to identify the installed source.
 Diagnostic graphics are for investigation; they are not acceptance evidence.
 
 The guest's installed iOS version can differ from the build SDK. A passed Linux
