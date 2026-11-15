@@ -38,6 +38,88 @@ func files(in directory: URL) throws -> [String: URL] {
     return result
 }
 
+let iconSlots: [(idiom: String, points: String, scales: [Int])] = [
+    ("iphone", "20", [2, 3]), ("iphone", "29", [2, 3]),
+    ("iphone", "40", [2, 3]), ("iphone", "60", [2, 3]),
+    ("ipad", "20", [1, 2]), ("ipad", "29", [1, 2]),
+    ("ipad", "40", [1, 2]), ("ipad", "76", [1, 2]), ("ipad", "83.5", [2]),
+]
+
+func verifyIconPNG(_ file: URL, pixels: Int) throws {
+    let data = try Data(contentsOf: file)
+    guard data.count >= 33, data.prefix(8) == Data([137, 80, 78, 71, 13, 10, 26, 10]) else {
+        throw BuildError("Invalid icon PNG: \(file.lastPathComponent)")
+    }
+    func uint32(_ offset: Int) -> Int { data[offset..<offset + 4].reduce(0) { ($0 << 8) | Int($1) } }
+    guard uint32(16) == pixels, uint32(20) == pixels, data[24] == 8, data[25] == 2 else {
+        throw BuildError("Icon must be an opaque 8-bit RGB \(pixels)x\(pixels) PNG: \(file.lastPathComponent)")
+    }
+    var offset = 8
+    while offset + 12 <= data.count {
+        let length = uint32(offset)
+        guard offset + length + 12 <= data.count else { throw BuildError("Truncated icon PNG") }
+        guard String(decoding: data[offset + 4..<offset + 8], as: UTF8.self) != "tRNS" else {
+            throw BuildError("App icons cannot contain transparency")
+        }
+        offset += length + 12
+    }
+}
+
+func prepareIconCatalog(_ catalog: URL) throws {
+    let directory = catalog.appendingPathComponent("AppIcon.appiconset")
+    let contentsURL = directory.appendingPathComponent("Contents.json")
+    guard var contents = try JSONSerialization.jsonObject(with: Data(contentsOf: contentsURL)) as? [String: Any],
+          var images = contents["images"] as? [[String: Any]] else { throw BuildError("Invalid AppIcon contents") }
+    // AssetKit needs explicit device slots to emit SpringBoard's primary icon
+    // roles and loose PNG fallback. Xcode expands this universal source itself.
+    if images.count == 1, images[0]["idiom"] as? String == "universal",
+       images[0]["size"] as? String == "1024x1024", let filename = images[0]["filename"] as? String {
+        let original = directory.appendingPathComponent(filename)
+        try verifyIconPNG(original, pixels: 1024)
+        images[0]["scale"] = "1x"
+        var generatedPixels: Set<Int> = []
+        for slot in iconSlots {
+            for scale in slot.scales {
+                let pixels = Int(Double(slot.points)! * Double(scale))
+                let generatedName = "GeneratedIcon\(pixels).png"
+                if generatedPixels.insert(pixels).inserted {
+                    let converter = Process()
+                    converter.executableURL = URL(fileURLWithPath: "/usr/bin/env")
+                    converter.arguments = ["convert", original.path, "-filter", "Lanczos", "-resize", "\(pixels)x\(pixels)",
+                                           "-alpha", "off", "-strip", "PNG24:" + directory.appendingPathComponent(generatedName).path]
+                    try converter.run()
+                    converter.waitUntilExit()
+                    guard converter.terminationStatus == 0 else { throw BuildError("ImageMagick failed to resize the app icon") }
+                    try verifyIconPNG(directory.appendingPathComponent(generatedName), pixels: pixels)
+                }
+                images.append(["filename": generatedName, "idiom": slot.idiom, "scale": "\(scale)x", "size": "\(slot.points)x\(slot.points)"])
+            }
+        }
+    }
+    contents["images"] = images
+    try JSONSerialization.data(withJSONObject: contents, options: [.sortedKeys]).write(to: contentsURL)
+}
+
+func verifyIcons(info: [String: Any], directory: URL) throws {
+    for (key, requiredNames) in [
+        ("CFBundleIcons", ["AppIcon60x60"]),
+        ("CFBundleIcons~ipad", ["AppIcon76x76", "AppIcon83.5x83.5"]),
+    ] {
+        guard let icons = info[key] as? [String: Any],
+              let primary = icons["CFBundlePrimaryIcon"] as? [String: Any],
+              primary["CFBundleIconName"] as? String == "AppIcon",
+              let files = primary["CFBundleIconFiles"] as? [String],
+              Set(requiredNames).isSubset(of: Set(files)) else { throw BuildError("Missing primary icon metadata: \(key)") }
+    }
+    for slot in iconSlots {
+        for scale in slot.scales {
+            let suffix = scale == 1 ? "" : "@\(scale)x"
+            try verifyIconPNG(directory.appendingPathComponent("AppIcon\(slot.points)x\(slot.points)\(suffix).png"),
+                              pixels: Int(Double(slot.points)! * Double(scale)))
+        }
+    }
+}
+
 func prepare(source: URL, output: URL) async throws {
     let project = try plist(source.appendingPathComponent("FARAIMPro.xcodeproj/project.pbxproj"))
     guard let objects = project["objects"] as? [String: [String: Any]],
@@ -88,18 +170,7 @@ func prepare(source: URL, output: URL) async throws {
     let catalog = output.appendingPathComponent("Assets.xcassets")
     if FileManager.default.fileExists(atPath: catalog.path) { try FileManager.default.removeItem(at: catalog) }
     try FileManager.default.copyItem(at: source.appendingPathComponent("FARAIMPro/Assets.xcassets"), to: catalog)
-    let iconContentsURL = catalog.appendingPathComponent("AppIcon.appiconset/Contents.json")
-    guard var iconContents = try JSONSerialization.jsonObject(with: Data(contentsOf: iconContentsURL)) as? [String: Any],
-          var images = iconContents["images"] as? [[String: Any]] else { throw BuildError("Invalid AppIcon contents") }
-    // Xcode implies 1x for a universal 1024px icon; AssetKit requires the scale.
-    for index in images.indices where images[index]["scale"] == nil {
-        guard images[index]["idiom"] as? String == "universal", images[index]["size"] as? String == "1024x1024" else {
-            throw BuildError("AppIcon entry has no explicit scale")
-        }
-        images[index]["scale"] = "1x"
-    }
-    iconContents["images"] = images
-    try JSONSerialization.data(withJSONObject: iconContents, options: [.sortedKeys]).write(to: iconContentsURL)
+    try prepareIconCatalog(catalog)
     let compiled = try await XCAssetCompiler(deploymentTarget: "17.0").compile(
         catalog: catalog
     )
@@ -109,6 +180,7 @@ func prepare(source: URL, output: URL) async throws {
     try compiled.carData.write(to: output.appendingPathComponent("Assets.car"), options: .atomic)
     for (key, value) in icons.infoPlistAdditions { info[key] = value }
     for icon in icons.looseFiles { try icon.data.write(to: output.appendingPathComponent(icon.name), options: .atomic) }
+    try verifyIcons(info: info, directory: output)
     info["MinimumOSVersion"] = "17.0"
     info["UIDeviceFamily"] = [1, 2]
     try PropertyListSerialization.data(fromPropertyList: info, format: .xml, options: 0)
@@ -178,6 +250,7 @@ func verify(source: URL, app: URL) throws {
     guard FileManager.default.fileExists(atPath: app.appendingPathComponent("Assets.car").path), info["CFBundleIcons"] != nil else {
         throw BuildError("Compiled assets or app icon metadata missing")
     }
+    try verifyIcons(info: info, directory: app)
     print("Verified arm64 iOS app: SDK 27.2, minimum iOS 17, compiled assets, privacy manifest, \(expected.count) matching data files")
 }
 

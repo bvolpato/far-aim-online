@@ -129,7 +129,6 @@ final class ReaderExperienceTests: XCTestCase {
         XCTAssertFalse(sectionButton.exists)
 
         replaceSearch(in: app, with: query)
-        XCTAssertTrue(sectionButton.waitForExistence(timeout: 5))
         reveal(sectionButton, in: app)
         sectionButton.tap()
         XCTAssertEqual(sectionButton.value as? String, "Collapsed",
@@ -159,11 +158,22 @@ final class ReaderExperienceTests: XCTestCase {
     @MainActor
     private func replaceSearch(in app: XCUIApplication, with query: String) {
         let field = app.searchFields.firstMatch
-        if !field.isHittable { app.swipeDown() }
+        if !field.exists {
+            let searchButton = app.buttons["Search"].firstMatch
+            if searchButton.exists {
+                searchButton.tap()
+            } else {
+                app.swipeDown()
+            }
+        }
         XCTAssertTrue(field.waitForExistence(timeout: 10))
+        if !field.isHittable { app.swipeDown() }
         field.tap()
         let clear = field.buttons["Clear text"]
-        if clear.exists { clear.tap() }
+        if clear.exists {
+            clear.tap()
+            field.tap()
+        }
         field.typeText(query)
         let searchKey = app.keyboards.buttons["Search"]
         if searchKey.exists { searchKey.tap() }

@@ -32,7 +32,7 @@ esac
   echo 'error: prepared xtool and Swift 6.4.1 are required; set FARAIM_XTOOL/FARAIM_SWIFT or prepare the Limulator toolchain' >&2
   exit 1
 }
-for tool in jq flock node sha256sum; do
+for tool in jq flock node sha256sum convert; do
   command -v "$tool" >/dev/null || { echo "error: missing required command: $tool" >&2; exit 1; }
 done
 TOOL_VERSION="$("$XTOOL" --version)"

@@ -200,6 +200,35 @@ final class BundledDataIntegrityTests: XCTestCase {
         )
     }
 
+    func testFARReaderParagraphsPreserveSourceAndTables() {
+        let content = "First *paragraph*.\n\nSecond [reference](https://www.faa.gov).\n\n" +
+            "[TABLE]\n| Name | Value |\n| Altitude | 2,000 |\n[/TABLE]\n" +
+            "Third paragraph.\r\n\r\nLast paragraph 🛩️."
+        let parsed = parseFARContent(content)
+        let rendered = farReaderContentBlocks(content)
+        func prose(_ blocks: [FARContentBlock]) -> [String] {
+            blocks.compactMap { block in
+                guard case .text(let text) = block else { return nil }
+                return text
+            }
+        }
+
+        XCTAssertEqual(prose(rendered).joined(), prose(parsed).joined())
+        XCTAssertEqual(prose(rendered), [
+            "First *paragraph*.\n\n",
+            "Second [reference](https://www.faa.gov).\n\n",
+            "\nThird paragraph.\r\n\r\n",
+            "Last paragraph 🛩️."
+        ])
+        let tables = rendered.compactMap { block -> AIMTable? in
+            guard case .table(let table) = block else { return nil }
+            return table
+        }
+        XCTAssertEqual(tables.count, 1)
+        XCTAssertEqual(tables.first?.headers, ["Name", "Value"])
+        XCTAssertEqual(tables.first?.rows, [["Altitude", "2,000"]])
+    }
+
     func testLargeAIMTablePagingBoundsRowsAndReachesEverySourceRow() {
         let sourceRows = (0..<3_687).map { row in
             (0..<14).map { column in "row \(row), column \(column)" }

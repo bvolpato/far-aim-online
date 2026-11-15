@@ -7,8 +7,8 @@ from stable Xcode 27.2 (27B52).
 
 ## Build
 
-The workstation needs `uv`, Node.js, `jq`, `flock`, and a prepared Limulator
-toolchain. The build requires xtool revision
+The workstation needs `uv`, Node.js, `jq`, `flock`, ImageMagick (`convert`), and a
+prepared Limulator toolchain. The build requires xtool revision
 `e3c615391817cde2512a38118a064f834ff64a32`, Swift 6.4.1, and the Apple SDK above.
 For a new workstation, follow Limulator's
 [setup guide](https://github.com/bvolpato/limulator/blob/main/docs/SETUP.md).

@@ -1066,6 +1066,41 @@ func parseFARContent(_ content: String) -> [FARContentBlock] {
     return blocks
 }
 
+func farReaderContentBlocks(_ content: String) -> [FARContentBlock] {
+    parseFARContent(content).flatMap { block -> [FARContentBlock] in
+        guard case .text(let text) = block else { return [block] }
+        var paragraphs: [FARContentBlock] = []
+        var start = text.startIndex
+        while let separator = text.range(
+            of: #"\r?\n(?:[ \t]*\r?\n)+"#,
+            options: .regularExpression,
+            range: start..<text.endIndex
+        ) {
+            paragraphs.append(.text(String(text[start..<separator.upperBound])))
+            start = separator.upperBound
+        }
+        if start < text.endIndex {
+            paragraphs.append(.text(String(text[start...])))
+        }
+        return paragraphs
+    }
+}
+
+private func copyFARSectionText(_ section: FARSection) {
+    UIPasteboard.general.string = parseFARContent(section.searchableText).map { block in
+        switch block {
+        case .text(let text):
+            return (try? AttributedString(
+                markdown: text,
+                options: .init(interpretedSyntax: .inlineOnlyPreservingWhitespace)
+            )).map { String($0.characters) } ?? text
+        case .table(let table):
+            let rows = (table.headers.map { [$0] } ?? []) + (table.rows ?? [])
+            return "\n" + rows.map { $0.joined(separator: "\t") }.joined(separator: "\n") + "\n"
+        }
+    }.joined()
+}
+
 private func parseFARTableRow(_ line: String) -> [String] {
     var row = line.trimmingCharacters(in: .whitespacesAndNewlines)
     if row.hasPrefix("|") { row.removeFirst() }
@@ -1119,7 +1154,7 @@ private enum FARContentParserCache {
         }
         lock.unlock()
 
-        let parsed = parseFARContent(content)
+        let parsed = farReaderContentBlocks(content)
         lock.lock()
         if storage.count > 512 {
             storage.removeAll(keepingCapacity: true)
@@ -1137,11 +1172,11 @@ private struct FARContentView: View {
 
     var body: some View {
         let blocks = FARContentParserCache.blocks(for: content)
-        VStack(alignment: .leading, spacing: 0) {
+        LazyVStack(alignment: .leading, spacing: 0) {
             ForEach(Array(blocks.enumerated()), id: \.offset) { index, block in
                 switch block {
                 case .text(let text):
-                    HighlightText(text: text, query: searchText)
+                    HighlightText(text: displayText(text, in: blocks, at: index), query: searchText)
                         .font(readerPreferences.bodyFont)
                         .lineSpacing(readerPreferences.lineSpacing)
                         .foregroundColor(.primary)
@@ -1161,6 +1196,14 @@ private struct FARContentView: View {
             }
         }
         .frame(maxWidth: .infinity, alignment: .leading)
+    }
+
+    private func displayText(_ text: String, in blocks: [FARContentBlock], at index: Int) -> String {
+        // Separate Text views already introduce a line break between paragraphs.
+        guard index + 1 < blocks.count, case .text = blocks[index + 1] else { return text }
+        if text.hasSuffix("\r\n") { return String(text.dropLast(2)) }
+        if text.hasSuffix("\n") { return String(text.dropLast()) }
+        return text
     }
 
     private func tableNumber(in blocks: [FARContentBlock], through index: Int) -> Int {
@@ -1228,11 +1271,18 @@ struct SectionCard: View {
                         Image(systemName: shouldExpand ? "chevron.up" : "chevron.down")
                             .foregroundColor(.secondary)
                     }
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .contentShape(Rectangle())
                 }
                 .buttonStyle(.plain)
                 .accessibilityValue(shouldExpand ? "Expanded" : "Collapsed")
                 .accessibilityHint(shouldExpand ? "Collapse this section" : "Expand this section")
                 .accessibilityIdentifier("far-section-\(section.section)")
+                .contextMenu {
+                    Button("Copy section text", systemImage: "doc.on.doc") {
+                        copyFARSectionText(section)
+                    }
+                }
 
                 if shouldExpand {
                     VStack(alignment: .leading, spacing: 12) {

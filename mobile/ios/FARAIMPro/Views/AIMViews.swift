@@ -385,6 +385,7 @@ struct AIMSectionCard: View {
                         Image(systemName: shouldExpand ? "chevron.up" : "chevron.down")
                             .foregroundColor(.secondary)
                     }
+                    .contentShape(Rectangle())
                 }
                 .buttonStyle(.plain)
                 .accessibilityValue(shouldExpand ? "Expanded" : "Collapsed")
