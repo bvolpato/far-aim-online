@@ -1637,8 +1637,8 @@ struct AdvisoryCircularReaderView: View {
                 .toolbar {
                     ToolbarItemGroup(placement: .topBarTrailing) {
                         Button(action: { showReaderControls.toggle() }) {
-                            Text("Aa")
-                                .font(.title3.weight(.medium))
+                            Label("Reader controls", systemImage: "textformat.size")
+                                .labelStyle(.iconOnly)
                         }
                         .accessibilityLabel("Reader appearance")
                         .accessibilityIdentifier("reader-controls")

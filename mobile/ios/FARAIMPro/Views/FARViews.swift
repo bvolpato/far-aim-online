@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Combine
 
 // MARK: - Highlight Helper (Merged here to avoid project file issues)
 
@@ -136,14 +137,37 @@ private enum HighlightedTextCache {
     }
 }
 
+final class StudyMarkNoteState: ObservableObject {
+    @Published var draft = ""
+    @Published var isOpen = false {
+        willSet {
+            if isOpen != newValue { onVisibilityChange?() }
+        }
+    }
+    var onVisibilityChange: (() -> Void)?
+}
+
+enum StudyMarkToolsPresentation {
+    case full, actions, note
+}
+
 struct StudyMarkTools: View {
     @ObservedObject var dataService = DataService.shared
     let input: StudyMarkInput
-    @State private var noteOpen = false
-    @State private var draft = ""
+    @StateObject private var noteState: StudyMarkNoteState
+    var presentation: StudyMarkToolsPresentation = .full
+    var onNoteFocusChange: ((Bool) -> Void)?
     @FocusState private var noteFocused: Bool
     @State private var confirmRemoval = false
     @State private var feedbackTrigger = 0
+
+    init(input: StudyMarkInput, noteState: StudyMarkNoteState? = nil,
+         presentation: StudyMarkToolsPresentation = .full, onNoteFocusChange: ((Bool) -> Void)? = nil) {
+        self.input = input
+        _noteState = StateObject(wrappedValue: noteState ?? StudyMarkNoteState())
+        self.presentation = presentation
+        self.onNoteFocusChange = onNoteFocusChange
+    }
 
     private var mark: StudyMark? {
         dataService.getStudyMark(input)
@@ -151,29 +175,31 @@ struct StudyMarkTools: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
-            ViewThatFits(in: .horizontal) {
-                HStack(spacing: 8) {
-                    actionButtons(showTitles: true)
-                }
-                .controlSize(.small)
+            if presentation != .note {
+                ViewThatFits(in: .horizontal) {
+                    HStack(spacing: 8) {
+                        actionButtons(showTitles: true)
+                    }
+                    .controlSize(.small)
 
-                HStack(spacing: 8) {
-                    actionButtons(showTitles: false)
-                }
-                .controlSize(.regular)
+                    HStack(spacing: 8) {
+                        actionButtons(showTitles: false)
+                    }
+                    .controlSize(.regular)
 
-                LazyVGrid(columns: [GridItem(.adaptive(minimum: 44))], alignment: .leading, spacing: 8) {
-                    actionButtons(showTitles: false)
+                    LazyVGrid(columns: [GridItem(.adaptive(minimum: 44))], alignment: .leading, spacing: 8) {
+                        actionButtons(showTitles: false)
+                    }
+                    .controlSize(.regular)
                 }
-                .controlSize(.regular)
             }
 
-            if noteOpen {
+            if noteState.isOpen && presentation != .actions {
                 VStack(alignment: .leading, spacing: 8) {
                     Text("Note for \(input.reference)")
                         .font(.caption)
                         .foregroundColor(.secondary)
-                    TextEditor(text: $draft)
+                    TextEditor(text: $noteState.draft)
                         .focused($noteFocused)
                         .accessibilityLabel("Note for \(input.reference)")
                         .accessibilityIdentifier("study-note-\(input.key)")
@@ -192,17 +218,26 @@ struct StudyMarkTools: View {
                             }
                         }
                     Button("Save note") {
-                        dataService.saveNote(input, note: draft)
+                        dataService.saveNote(input, note: noteState.draft)
                         feedbackTrigger += 1
-                        noteOpen = false
+                        noteState.isOpen = false
                     }
                     .buttonStyle(.borderedProminent)
                 }
             }
         }
-        .padding(12)
+        .padding(.horizontal, 12)
+        .padding(.top, presentation == .note ? 5 : 12)
+        .padding(.bottom, presentation == .actions && noteState.isOpen ? 5 : 12)
         .background(AviationTheme.surface)
-        .clipShape(RoundedRectangle(cornerRadius: 14, style: .continuous))
+        .clipShape(UnevenRoundedRectangle(
+            topLeadingRadius: presentation == .note ? 0 : 14,
+            bottomLeadingRadius: presentation == .actions && noteState.isOpen ? 0 : 14,
+            bottomTrailingRadius: presentation == .actions && noteState.isOpen ? 0 : 14,
+            topTrailingRadius: presentation == .note ? 0 : 14
+        ))
+        .onChange(of: noteFocused) { _, focused in onNoteFocusChange?(focused) }
+        .onDisappear { onNoteFocusChange?(false) }
         .sensoryFeedback(.selection, trigger: feedbackTrigger)
         .confirmationDialog(
             "Remove \(input.reference) from Study?",
@@ -211,8 +246,8 @@ struct StudyMarkTools: View {
         ) {
             Button("Remove study item", role: .destructive) {
                 dataService.removeStudyMark(key: input.key)
-                draft = ""
-                noteOpen = false
+                noteState.draft = ""
+                noteState.isOpen = false
                 feedbackTrigger += 1
             }
         } message: {
@@ -233,8 +268,8 @@ struct StudyMarkTools: View {
         .tint(mark?.saved == true ? .blue : .gray)
 
         Button(action: {
-            draft = mark?.note ?? ""
-            withAnimation { noteOpen.toggle() }
+            noteState.draft = mark?.note ?? ""
+            withAnimation { noteState.isOpen.toggle() }
         }) {
             actionLabel(
                 (mark?.note.isEmpty == false) ? "Note" : "Add note",
@@ -786,12 +821,295 @@ struct ReferenceRowCard: View {
     }
 }
 
-private struct FARReaderSection: Identifiable {
+struct FARReaderSection: Identifiable {
     var id: String { section.section }
     let section: FARSection
     let groupTitle: String?
-    let subpartHeading: String?
     let referenceLabel: String?
+}
+
+struct FARReaderRowID: Hashable {
+    enum Kind: Hashable {
+        case partHeader, groupHeading, sectionHeader, studyTools, noteEditor
+        case paragraph(Int), table(Int), heading(String), definition(Int), abbreviation(Int)
+        case keyPoint(Int), figure(Int), empty, studyFooter
+    }
+
+    let part: Int
+    let section: String
+    let kind: Kind
+}
+
+enum FARReaderRowContent {
+    case partHeader, groupHeading(String), sectionHeader, studyTools, noteEditor
+    case paragraph(String), table(AIMTable, number: Int), heading(String)
+    case definition(Definition), abbreviation(Abbreviation), keyPoint(String)
+    case figure(AIMFigure, number: Int), reserved, noResults, studyFooter
+}
+
+struct FARReaderRow: Identifiable {
+    let id: FARReaderRowID
+    let content: FARReaderRowContent
+    let sectionIndex: Int?
+    let spacingBefore: CGFloat
+    var beginsCard = false
+    var endsCard = false
+}
+
+struct FARReaderRows {
+    let rows: [FARReaderRow]
+    let activeQuery: String
+    let matchingSectionIDs: [String]
+
+    func headerID(for section: String) -> FARReaderRowID? {
+        rows.first { $0.id.section == section && $0.id.kind == .sectionHeader }?.id
+    }
+
+    var firstHeaderID: FARReaderRowID? {
+        rows.first { $0.id.kind == .sectionHeader }?.id
+    }
+}
+
+struct FARReaderDocumentKey: Hashable {
+    struct SectionKey: Hashable {
+        let fields: [String?]
+        let definitions: [[String]]
+        let abbreviations: [[String]]
+        let keyPoints: [String]
+        let figures: [[String?]]
+    }
+
+    let part: Int
+    let fields: [String?]
+    let sections: [SectionKey]
+
+    init(part: FARPart) {
+        self.part = part.part
+        fields = [part.title, part.cfr, part.subchapter, part.subchapterTitle, part.effectiveDate, part.source, part.url]
+        sections = FARReaderDocument.flatten(part).map { item in
+            SectionKey(
+                fields: [item.section.section, item.section.title, item.section.content, item.groupTitle, item.referenceLabel],
+                definitions: (item.section.definitions ?? []).map { [$0.term, $0.definition] },
+                abbreviations: (item.section.abbreviations ?? []).map { [$0.abbr, $0.meaning] },
+                keyPoints: item.section.keyPoints ?? [],
+                figures: (item.section.figures ?? []).map { [$0.src, $0.alt, $0.caption, $0.originalUrl] }
+            )
+        }
+    }
+}
+
+final class FARReaderSession: ObservableObject {
+    let objectWillChange = ObservableObjectPublisher()
+    private var query: String
+    private var expanded: [String: Bool] = [:]
+    private var notes: [String: StudyMarkNoteState] = [:]
+    private var tablePages: [FARReaderRowID: (query: String, rows: [[String]], page: Int)] = [:]
+
+    init(query: String = "") {
+        self.query = query
+    }
+
+    func synchronizeQuery(_ query: String) {
+        guard self.query != query else { return }
+        objectWillChange.send()
+        self.query = query
+        expanded.removeAll(keepingCapacity: true)
+        tablePages.removeAll(keepingCapacity: true)
+    }
+
+    func expansionOverrides(for query: String) -> [String: Bool] {
+        self.query == query ? expanded : [:]
+    }
+
+    func isExpanded(sectionID: String, query: String, defaultExpanded: Bool) -> Bool {
+        expansionOverrides(for: query)[sectionID] ?? defaultExpanded
+    }
+
+    func setExpanded(_ value: Bool, for sectionID: String) {
+        objectWillChange.send()
+        expanded[sectionID] = value
+    }
+
+    func noteState(for key: String) -> StudyMarkNoteState {
+        if let note = notes[key] { return note }
+        let note = StudyMarkNoteState()
+        note.onVisibilityChange = { [weak self] in self?.objectWillChange.send() }
+        notes[key] = note
+        return note
+    }
+
+    var openNoteKeys: Set<String> {
+        Set(notes.compactMap { $0.value.isOpen ? $0.key : nil })
+    }
+
+    func tablePage(for id: FARReaderRowID, table: AIMTable, query: String) -> Int {
+        if let saved = tablePages[id], saved.query == query, saved.rows == (table.rows ?? []) {
+            return pageAIMTableRows(rows: table.rows ?? [], requestedPageIndex: saved.page).pageIndex
+        }
+        let page = firstMatchingAIMTableRow(
+            rowTexts: (table.rows ?? []).map { $0.joined(separator: " ") }, query: query
+        ).map { $0 / aimTableRowsPerPage } ?? 0
+        tablePages[id] = (query, table.rows ?? [], page)
+        return page
+    }
+
+    func setTablePage(_ page: Int, for id: FARReaderRowID, table: AIMTable, query: String) {
+        objectWillChange.send()
+        tablePages[id] = (query, table.rows ?? [], pageAIMTableRows(rows: table.rows ?? [], requestedPageIndex: page).pageIndex)
+    }
+}
+
+final class FARReaderDocument {
+    private struct PlanKey: Equatable {
+        let query: String
+        let initialQuery: String
+        let initialSection: String?
+        let expanded: [String: Bool]
+        let openNotes: Set<String>
+    }
+
+    let key: FARReaderDocumentKey
+    let part: FARPart
+    let sections: [FARReaderSection]
+    private let searchInputs: [String]
+    private let contentRows: [[FARReaderRow]]
+    private let searchMemo = FARReaderSearchMemo()
+    private var lastPlan: (key: PlanKey, value: FARReaderRows)?
+
+    init(part: FARPart) {
+        self.part = part
+        key = FARReaderDocumentKey(part: part)
+        sections = Self.flatten(part)
+        let context = "far part \(part.part) \(part.cfr)"
+        searchInputs = sections.map { item in
+            "\(context) \(item.groupTitle ?? "") \(item.referenceLabel ?? "§ \(item.id)") \(item.section.searchableText)"
+        }
+        contentRows = sections.enumerated().map { index, item in
+            Self.prepareContent(part: part.part, item: item, sectionIndex: index)
+        }
+    }
+
+    static func flatten(_ part: FARPart) -> [FARReaderSection] {
+        let direct = (part.sections ?? []).map {
+            FARReaderSection(section: $0, groupTitle: nil, referenceLabel: nil)
+        }
+        let subparts = (part.subparts ?? []).flatMap { subpart in
+            subpart.sections.map {
+                FARReaderSection(section: $0, groupTitle: "Subpart \(subpart.subpart) - \(subpart.title)", referenceLabel: nil)
+            }
+        }
+        let appendices = (part.appendices ?? []).map { appendix in
+            FARReaderSection(
+                section: FARSection(section: appendix.appendix, title: appendix.title, content: appendix.content,
+                                    definitions: nil, abbreviations: nil, keyPoints: nil, figures: appendix.figures),
+                groupTitle: "Appendices", referenceLabel: appendix.appendix
+            )
+        }
+        return direct + subparts + appendices
+    }
+
+    func studyMarkInput(for index: Int) -> StudyMarkInput {
+        let item = sections[index]
+        let reference = item.referenceLabel ?? "§ \(item.id)"
+        return StudyMarkInput(type: "far", reference: reference,
+                              title: item.section.title.isEmpty ? (item.referenceLabel ?? "FAR \(item.id)") : item.section.title,
+                              route: "far:\(part.part)#\(item.id)")
+    }
+
+    func rows(query: String, initialQuery: String, initialSection: String?, session: FARReaderSession) -> FARReaderRows {
+        let planKey = PlanKey(query: query, initialQuery: initialQuery, initialSection: initialSection,
+                              expanded: session.expansionOverrides(for: query), openNotes: session.openNoteKeys)
+        if let lastPlan, lastPlan.key == planKey { return lastPlan.value }
+
+        let trimmed = query.trimmingCharacters(in: .whitespacesAndNewlines)
+        let preservesAnchor = shouldPreserveReaderAnchor(searchText: query, initialSearchText: initialQuery)
+        let anchorIndex = preservesAnchor ? sections.firstIndex { $0.id == initialSection } : nil
+        let matching = searchMemo.matchingIndices(in: searchInputs, query: query, anchorIndex: anchorIndex)
+        let initial = initialQuery.trimmingCharacters(in: .whitespacesAndNewlines)
+        let metadataMatch = !initial.isEmpty && trimmed.caseInsensitiveCompare(initial) == .orderedSame
+            && SearchQueryMatcher.matches(
+                text: "far part \(part.part) \(part.cfr) \(part.title) \(part.subchapterTitle ?? "")", query: trimmed
+            )
+        let activeQuery = trimmed.isEmpty || (matching.isEmpty && metadataMatch) ? "" : query
+        let selected = activeQuery.isEmpty ? Array(sections.indices) : matching
+        var result = [FARReaderRow(id: FARReaderRowID(part: part.part, section: "", kind: .partHeader),
+                                   content: .partHeader, sectionIndex: nil, spacingBefore: 0)]
+        var previousGroup: String?
+        for index in selected {
+            let item = sections[index]
+            if let group = item.groupTitle, group != previousGroup {
+                result.append(FARReaderRow(id: FARReaderRowID(part: part.part, section: item.id, kind: .groupHeading),
+                                           content: .groupHeading(group), sectionIndex: nil, spacingBefore: 24))
+            }
+            previousGroup = item.groupTitle
+            let expanded = planKey.expanded[item.id] ?? (!activeQuery.isEmpty || initialSection == item.id)
+            var header = FARReaderRow(id: FARReaderRowID(part: part.part, section: item.id, kind: .sectionHeader),
+                                      content: .sectionHeader, sectionIndex: index, spacingBefore: 16)
+            header.beginsCard = true
+            header.endsCard = !expanded
+            result.append(header)
+            if expanded {
+                result.append(FARReaderRow(id: FARReaderRowID(part: part.part, section: item.id, kind: .studyTools),
+                                           content: .studyTools, sectionIndex: index, spacingBefore: 12))
+                if planKey.openNotes.contains(studyMarkInput(for: index).key) {
+                    result.append(FARReaderRow(id: FARReaderRowID(part: part.part, section: item.id, kind: .noteEditor),
+                                               content: .noteEditor, sectionIndex: index, spacingBefore: 0))
+                }
+                result.append(contentsOf: contentRows[index])
+                result[result.count - 1].endsCard = true
+            }
+        }
+        if sections.isEmpty || selected.isEmpty {
+            result.append(FARReaderRow(id: FARReaderRowID(part: part.part, section: "", kind: .empty),
+                                       content: sections.isEmpty ? .reserved : .noResults, sectionIndex: nil, spacingBefore: 24))
+        }
+        result.append(FARReaderRow(id: FARReaderRowID(part: part.part, section: "", kind: .studyFooter),
+                                   content: .studyFooter, sectionIndex: nil, spacingBefore: 16))
+        let value = FARReaderRows(rows: result, activeQuery: activeQuery, matchingSectionIDs: selected.map { sections[$0].id })
+        lastPlan = (planKey, value)
+        return value
+    }
+
+    private static func prepareContent(part: Int, item: FARReaderSection, sectionIndex: Int) -> [FARReaderRow] {
+        var rows: [FARReaderRow] = []
+        func append(_ kind: FARReaderRowID.Kind, _ content: FARReaderRowContent, spacing: CGFloat = 12) {
+            rows.append(FARReaderRow(id: FARReaderRowID(part: part, section: item.id, kind: kind),
+                                    content: content, sectionIndex: sectionIndex, spacingBefore: spacing))
+        }
+        if !item.section.content.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
+            let blocks = FARContentParserCache.blocks(for: item.section.content)
+            var tableNumber = 0
+            for (index, block) in blocks.enumerated() {
+                switch block {
+                case .text(let text):
+                    append(.paragraph(index), .paragraph(farReaderDisplayText(text, in: blocks, at: index)), spacing: index == 0 ? 12 : 0)
+                case .table(let table):
+                    tableNumber += 1
+                    append(.table(index), .table(table, number: tableNumber), spacing: index == 0 ? 12 : 0)
+                }
+            }
+        }
+        if let definitions = item.section.definitions, !definitions.isEmpty {
+            append(.heading("definitions"), .heading("Definitions"), spacing: 20)
+            for (index, definition) in definitions.enumerated() {
+                append(.definition(index), .definition(definition))
+            }
+        }
+        if let abbreviations = item.section.abbreviations, !abbreviations.isEmpty {
+            append(.heading("abbreviations"), .heading("Abbreviations"), spacing: 20)
+            for (index, abbreviation) in abbreviations.enumerated() {
+                append(.abbreviation(index), .abbreviation(abbreviation))
+            }
+        }
+        if let points = item.section.keyPoints, !points.isEmpty {
+            append(.heading("key-points"), .heading("Key Points"), spacing: 20)
+            for (index, point) in points.enumerated() { append(.keyPoint(index), .keyPoint(point)) }
+        }
+        for (index, figure) in (item.section.figures ?? []).enumerated() {
+            append(.figure(index), .figure(figure, number: index + 1), spacing: index == 0 ? 12 : 14)
+        }
+        return rows
+    }
 }
 
 final class FARReaderSearchMemo {
@@ -822,9 +1140,13 @@ struct FARPartDetailView: View {
     let part: FARPart
     let initialSection: String?
     private let initialSearchText: String
-    @State private var searchText = ""
-    @State private var readerSearchMemo = FARReaderSearchMemo()
-    @State private var visibleSectionID: String?
+    @State private var searchText: String
+    @StateObject private var session: FARReaderSession
+    @State private var document: FARReaderDocument?
+    @State private var visibleRowID: FARReaderRowID?
+    @State private var focusedNoteID: FARReaderRowID?
+    @State private var viewportSize: CGSize = .zero
+    @State private var rowLayoutAppeared = false
     @State private var didRequestInitialScroll = false
     @AppStorage("far-aim-pro-reader-font-scale-index") private var readerFontScaleIndex = 1
     @AppStorage("far-aim-pro-reader-density") private var readerDensityRawValue = ReaderDensity.standard.rawValue
@@ -832,303 +1154,369 @@ struct FARPartDetailView: View {
     @ObservedObject var dataService = DataService.shared
     private var readerTypography = ReaderTypography()
 
-    // Allow initializing with a search query
     init(part: FARPart, initialSearchText: String = "", initialSection: String? = nil) {
         self.part = part
         self.initialSection = initialSection
         self.initialSearchText = initialSearchText
         _searchText = State(initialValue: initialSearchText)
-        _visibleSectionID = State(initialValue: initialSection.flatMap { $0.isEmpty ? nil : $0 })
-    }
-
-    private var partSearchContext: String {
-        "far part \(part.part) \(part.cfr)"
-    }
-
-    private var allReaderSections: [FARReaderSection] {
-        let directSections = (part.sections ?? []).map {
-            FARReaderSection(section: $0, groupTitle: nil, subpartHeading: nil, referenceLabel: nil)
-        }
-        let subpartSections = (part.subparts ?? []).flatMap { subpart in
-            let heading = "Subpart \(subpart.subpart) - \(subpart.title)"
-            return subpart.sections.map { section in
-                FARReaderSection(
-                    section: section,
-                    groupTitle: heading,
-                    subpartHeading: nil,
-                    referenceLabel: nil
-                )
-            }
-        }
-        let appendices = (part.appendices ?? []).map { appendix in
-            FARReaderSection(
-                section: FARSection(
-                    section: appendix.appendix,
-                    title: appendix.title,
-                    content: appendix.content,
-                    definitions: nil,
-                    abbreviations: nil,
-                    keyPoints: nil,
-                    figures: appendix.figures
-                ),
-                groupTitle: "Appendices",
-                subpartHeading: nil,
-                referenceLabel: appendix.appendix
-            )
-        }
-        return directSections + subpartSections + appendices
-    }
-
-    private func sectionSearchContext(for item: FARReaderSection) -> String {
-        "\(partSearchContext) \(item.groupTitle ?? "")"
-    }
-
-    private func matchingReaderSections(_ sections: [FARReaderSection]) -> [FARReaderSection] {
-        guard !searchText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty else { return sections }
-        let inputs = sections.map { item in
-            let label = item.referenceLabel ?? "§ \(item.section.section)"
-            return "\(sectionSearchContext(for: item)) \(label) \(item.section.searchableText)"
-        }
-        let anchorIndex = preservesInitialSearchAnchor
-            ? sections.firstIndex { $0.section.section == initialSection }
-            : nil
-        return readerSearchMemo.matchingIndices(in: inputs, query: searchText, anchorIndex: anchorIndex)
-            .map { sections[$0] }
-    }
-
-    private func effectiveSearchText(hasMatchingSections: Bool) -> String {
-        let trimmed = searchText.trimmingCharacters(in: .whitespacesAndNewlines)
-        guard !trimmed.isEmpty else { return "" }
-        if hasMatchingSections {
-            return searchText
-        }
-        let trimmedInitial = initialSearchText.trimmingCharacters(in: .whitespacesAndNewlines)
-        if !trimmedInitial.isEmpty,
-           trimmed.caseInsensitiveCompare(trimmedInitial) == .orderedSame,
-           SearchQueryMatcher.matches(
-               text: "\(partSearchContext) \(part.title) \(part.subchapterTitle ?? "")",
-               query: trimmed
-           ) {
-            return ""
-        }
-        return searchText
-    }
-
-    private var preservesInitialSearchAnchor: Bool {
-        shouldPreserveReaderAnchor(searchText: searchText, initialSearchText: initialSearchText)
-    }
-
-    private func displayedReaderSections(from filtered: [FARReaderSection]) -> [FARReaderSection] {
-        var previousGroup: String?
-        return filtered.map { item in
-            let heading: String?
-            if let groupTitle = item.groupTitle, groupTitle != previousGroup {
-                heading = groupTitle
-            } else {
-                heading = nil
-            }
-            previousGroup = item.groupTitle
-            return FARReaderSection(
-                section: item.section,
-                groupTitle: item.groupTitle,
-                subpartHeading: heading,
-                referenceLabel: item.referenceLabel
-            )
-        }
+        _session = StateObject(wrappedValue: FARReaderSession(query: initialSearchText))
     }
 
     var body: some View {
-        let readerSections = allReaderSections
-        let matchingSections = matchingReaderSections(readerSections)
-        let activeQuery = effectiveSearchText(hasMatchingSections: !matchingSections.isEmpty)
-        let displayedSections = displayedReaderSections(
-            from: activeQuery.isEmpty ? readerSections : matchingSections
-        )
-        let readerPreferences = readerTypography.preferences(
+        let sourceKey = FARReaderDocumentKey(part: part)
+        let readyDocument = document.flatMap { $0.key == sourceKey ? $0 : nil }
+        let preferences = readerTypography.preferences(
             fontScaleIndex: readerFontScaleIndex,
             density: ReaderDensity(rawValue: readerDensityRawValue) ?? .standard
         )
 
-        ScrollViewReader { scrollProxy in
-            ScrollView {
-                LazyVStack(alignment: .leading, spacing: 16) {
-                    // Header
-                    VStack(alignment: .leading, spacing: 8) {
-                        Text(part.cfr)
-                            .font(.subheadline)
-                            .foregroundStyle(AviationTheme.sky)
-
-                        Text(part.title)
-                            .font(.title2)
-                            .fontWeight(.bold)
-                            .foregroundStyle(.white)
-
-                        if let subchapter = part.subchapter, let subchapterTitle = part.subchapterTitle {
-                            Text("Subchapter \(subchapter): \(subchapterTitle)")
-                                .font(.subheadline)
-                                .foregroundStyle(.white.opacity(0.7))
-                        }
-
-                        if let urlString = part.url, let url = URL(string: urlString) {
-                            Link(destination: url) {
-                                HStack {
-                                    Text("View on eCFR")
-                                        .font(.caption)
-                                    Image(systemName: "arrow.up.right.square")
-                                        .font(.caption)
-                                }
-                                .foregroundStyle(AviationTheme.sky)
+        ScrollView {
+            if let document = readyDocument {
+                let plan = document.rows(query: searchText, initialQuery: initialSearchText,
+                                         initialSection: initialSection, session: session)
+                LazyVStack(alignment: .leading, spacing: 0) {
+                    ForEach(plan.rows) { row in
+                        FARReaderRowView(document: document, row: row, session: session,
+                                         query: searchText, activeQuery: plan.activeQuery,
+                                         initialSection: initialSection, preferences: preferences) { focused in
+                            if focused {
+                                focusedNoteID = row.id
+                                visibleRowID = row.id
+                            } else if focusedNoteID == row.id {
+                                focusedNoteID = nil
                             }
                         }
+                        .id(row.id)
                     }
-                    .padding(20)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .background(AviationTheme.heroGradient)
-                    .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
-
-                    if readerSections.isEmpty {
-                        ContentUnavailableView(
-                            "Part Reserved",
-                            systemImage: "doc.badge.ellipsis",
-                            description: Text("This part is reserved in 14 CFR and currently contains no active sections.")
-                        )
-                        .padding(.vertical, 24)
-                    } else if displayedSections.isEmpty {
-                        ContentUnavailableView.search(text: searchText)
-                            .accessibilityIdentifier("reader-no-results")
-                            .padding(.vertical, 24)
-                    } else {
-                        ForEach(displayedSections) { item in
-                            VStack(alignment: .leading, spacing: 16) {
-                                if let subpartHeading = item.subpartHeading {
-                                    Text(subpartHeading)
-                                        .font(.title3)
-                                        .fontWeight(.semibold)
-                                        .padding(.top, 8)
-                                }
-
-                                SectionCard(
-                                    section: item.section,
-                                    searchText: activeQuery,
-                                    defaultExpanded: initialSection == item.section.section,
-                                    preserveInitialSearchMatch: preservesInitialSearchAnchor,
-                                    knownSearchMatch: true,
-                                    referenceLabel: item.referenceLabel,
-                                    searchContext: sectionSearchContext(for: item),
-                                    studyMarkInput: StudyMarkInput(
-                                        type: "far",
-                                        reference: item.referenceLabel ?? "§ \(item.section.section)",
-                                        title: item.section.title.isEmpty
-                                            ? (item.referenceLabel ?? "FAR \(item.section.section)")
-                                            : item.section.title,
-                                        route: "far:\(part.part)#\(item.section.section)"
-                                    ),
-                                    readerPreferences: readerPreferences,
-                                    onExpanded: {
-                                        dataService.saveFARReadingHistory(
-                                            part: part.part,
-                                            title: part.title,
-                                            section: item.section.section
-                                        )
-                                    }
-                                )
-                            }
-                            .id(item.id)
-                        }
-                    }
-
-                    // Study Materials Link at end
-                    VStack(alignment: .leading, spacing: 12) {
-                        Text("Study Materials")
-                            .font(.headline)
-                            .padding(.top, 8)
-
-                        HStack(spacing: 12) {
-                            NavigationLink(destination: QuizListView()) {
-                                HStack {
-                                    Image(systemName: "questionmark.circle.fill")
-                                    Text("Quizzes")
-                                }
-                                .font(.subheadline)
-                                .fontWeight(.semibold)
-                                .foregroundColor(.white)
-                                .padding(.vertical, 10)
-                                .padding(.horizontal, 16)
-                                .background(Color.indigo)
-                                .cornerRadius(8)
-                            }
-
-                            NavigationLink(destination: FlashcardListView()) {
-                                HStack {
-                                    Image(systemName: "rectangle.on.rectangle.angled")
-                                    Text("Flashcards")
-                                }
-                                .font(.subheadline)
-                                .fontWeight(.semibold)
-                                .foregroundColor(.white)
-                                .padding(.vertical, 10)
-                                .padding(.horizontal, 16)
-                                .background(Color.orange)
-                                .cornerRadius(8)
-                            }
-                        }
-                    }
-                    .padding()
-                    .background(Color(.secondarySystemBackground))
-                    .cornerRadius(12)
                 }
                 .scrollTargetLayout()
                 .padding()
+                .onAppear {
+                    rowLayoutAppeared = true
+                    requestInitialPosition()
+                }
+                .onDisappear { rowLayoutAppeared = false }
+            } else {
+                ProgressView("Preparing reader…")
+                    .frame(maxWidth: .infinity, minHeight: 200)
             }
-            .scrollPosition(id: $visibleSectionID, anchor: .top)
-            .scrollDismissesKeyboard(.interactively)
-            .onGeometryChange(for: Bool.self) { geometry in
-                geometry.size.width > 0 && geometry.size.height > 0
-            } action: { hasViewport in
-                guard hasViewport, !didRequestInitialScroll,
-                      let initialSection,
-                      displayedSections.contains(where: { $0.id == initialSection }) else { return }
-                didRequestInitialScroll = true
-                scrollProxy.scrollTo(initialSection, anchor: .top)
+        }
+        .scrollPosition(id: $visibleRowID, anchor: .top)
+        .scrollDismissesKeyboard(.interactively)
+        .onGeometryChange(for: CGSize.self) { $0.size } action: { size in
+            let widthChanged = viewportSize.width > 0 && size.width > 0 && viewportSize.width != size.width
+            viewportSize = size
+            if widthChanged, let focusedNoteID,
+               currentPlan?.rows.contains(where: { $0.id == focusedNoteID }) == true {
+                visibleRowID = focusedNoteID
+            }
+            requestInitialPosition()
+        }
+        .task(id: sourceKey) {
+            guard document?.key != sourceKey else { return }
+            let sourcePart = part
+            let prepared = await Task.detached(priority: .userInitiated) {
+                FARReaderDocument(part: sourcePart)
+            }.value
+            guard !Task.isCancelled else { return }
+            document = prepared
+            requestInitialPosition()
+        }
+        .onChange(of: searchText) { _, query in
+            session.synchronizeQuery(query)
+            didRequestInitialScroll = true
+            guard let plan = currentPlan else { return }
+            if shouldPreserveReaderAnchor(searchText: query, initialSearchText: initialSearchText),
+               let initialSection, let target = plan.headerID(for: initialSection) {
+                visibleRowID = target
+            } else if !plan.rows.contains(where: { $0.id == visibleRowID }) {
+                visibleRowID = plan.firstHeaderID
             }
         }
         .navigationTitle("Part \(part.part)")
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItemGroup(placement: .topBarTrailing) {
-                ShareLink(
-                    item: "14 CFR Part \(part.part) - \(part.title)\n\(publicReferenceLink(for: "far:\(part.part)"))"
-                ) {
+                ShareLink(item: "14 CFR Part \(part.part) - \(part.title)\n\(publicReferenceLink(for: "far:\(part.part)"))") {
                     Label("Share Part \(part.part)", systemImage: "square.and.arrow.up")
                         .labelStyle(.iconOnly)
                 }
-
                 Button(action: { showReaderControls.toggle() }) {
-                    Text("Aa")
-                        .font(.title3.weight(.medium))
+                    Label("Reader controls", systemImage: "textformat.size")
+                        .labelStyle(.iconOnly)
                 }
                 .accessibilityLabel("Reader controls")
                 .accessibilityIdentifier("reader-controls")
                 .sheet(isPresented: $showReaderControls) {
-                    ReaderControlsSheet(
-                        fontScaleIndex: $readerFontScaleIndex,
-                        densityRawValue: $readerDensityRawValue
-                    )
+                    ReaderControlsSheet(fontScaleIndex: $readerFontScaleIndex, densityRawValue: $readerDensityRawValue)
                 }
             }
         }
         .searchable(text: $searchText, prompt: "Find in Part \(part.part)")
         .onAppear {
-            // Save reading history when viewing part
-            dataService.saveFARReadingHistory(
-                part: part.part,
-                title: part.title,
-                section: initialSection
-            )
+            dataService.saveFARReadingHistory(part: part.part, title: part.title, section: initialSection)
         }
         .aviationScreen()
     }
+
+    private var currentPlan: FARReaderRows? {
+        guard let document, document.key == FARReaderDocumentKey(part: part) else { return nil }
+        return document.rows(query: searchText, initialQuery: initialSearchText,
+                             initialSection: initialSection, session: session)
+    }
+
+    private func requestInitialPosition() {
+        guard !didRequestInitialScroll, rowLayoutAppeared,
+              viewportSize.width > 0, viewportSize.height > 0,
+              searchText.trimmingCharacters(in: .whitespacesAndNewlines)
+                .caseInsensitiveCompare(initialSearchText.trimmingCharacters(in: .whitespacesAndNewlines)) == .orderedSame,
+              let initialSection, let target = currentPlan?.headerID(for: initialSection) else { return }
+        didRequestInitialScroll = true
+        visibleRowID = target
+    }
 }
+
+private struct FARReaderRowView: View {
+    let document: FARReaderDocument
+    let row: FARReaderRow
+    @ObservedObject var session: FARReaderSession
+    let query: String
+    let activeQuery: String
+    let initialSection: String?
+    let preferences: ReaderPreferences
+    var onNoteFocusChange: (Bool) -> Void
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 0) {
+            content
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .padding(.horizontal, row.sectionIndex == nil ? 0 : preferences.cardPadding)
+        .padding(.top, row.sectionIndex == nil || row.beginsCard ? (row.beginsCard ? preferences.cardPadding : 0) : row.spacingBefore)
+        .padding(.bottom, row.endsCard ? preferences.cardPadding : 0)
+        .background {
+            if row.sectionIndex != nil {
+                UnevenRoundedRectangle(
+                    topLeadingRadius: row.beginsCard ? 16 : 0,
+                    bottomLeadingRadius: row.endsCard ? 16 : 0,
+                    bottomTrailingRadius: row.endsCard ? 16 : 0,
+                    topTrailingRadius: row.beginsCard ? 16 : 0
+                ).fill(AviationTheme.raisedSurface)
+            }
+        }
+        .overlay {
+            if row.sectionIndex != nil {
+                FARReaderCardBorder(top: row.beginsCard, bottom: row.endsCard)
+                    .stroke(AviationTheme.border, lineWidth: 1)
+            }
+        }
+        .padding(.top, row.sectionIndex == nil || row.beginsCard ? row.spacingBefore : 0)
+    }
+
+    @ViewBuilder
+    private var content: some View {
+        switch row.content {
+        case .partHeader:
+            FARPartHeading(part: document.part)
+        case .groupHeading(let heading):
+            Text(heading).font(.title3.weight(.semibold))
+        case .sectionHeader:
+            if let index = row.sectionIndex {
+                let item = document.sections[index]
+                let expanded = session.isExpanded(sectionID: item.id, query: query,
+                                                  defaultExpanded: !activeQuery.isEmpty || initialSection == item.id)
+                FARSectionHeading(section: item.section, referenceLabel: item.referenceLabel,
+                                  query: activeQuery, expanded: expanded) {
+                    withAnimation { session.setExpanded(!expanded, for: item.id) }
+                    if !expanded {
+                        DataService.shared.saveFARReadingHistory(part: document.part.part, title: document.part.title,
+                                                               section: item.id)
+                    }
+                }
+            }
+        case .studyTools, .noteEditor:
+            if let index = row.sectionIndex {
+                let input = document.studyMarkInput(for: index)
+                StudyMarkTools(input: input, noteState: session.noteState(for: input.key),
+                               presentation: row.id.kind == .noteEditor ? .note : .actions,
+                               onNoteFocusChange: onNoteFocusChange)
+            }
+        case .paragraph(let text):
+            HighlightText(text: text, query: activeQuery)
+                .font(preferences.bodyFont)
+                .lineSpacing(preferences.lineSpacing)
+                .foregroundColor(.primary)
+                .textSelection(.enabled)
+                .fixedSize(horizontal: false, vertical: true)
+                .frame(maxWidth: .infinity, alignment: .leading)
+        case .table(let table, let number):
+            AIMTableView(table: table, number: number, searchText: activeQuery, showsLabel: false,
+                         tableFont: preferences.bodyFont, tableLineSpacing: preferences.lineSpacing,
+                         pageIndex: Binding(
+                            get: { session.tablePage(for: row.id, table: table, query: activeQuery) },
+                            set: { session.setTablePage($0, for: row.id, table: table, query: activeQuery) }
+                         ))
+        case .heading(let heading):
+            Text(heading).font(.subheadline.weight(.semibold))
+        case .definition(let definition):
+            supplement(term: definition.term, text: definition.definition)
+        case .abbreviation(let abbreviation):
+            supplement(term: abbreviation.abbr, text: abbreviation.meaning)
+        case .keyPoint(let point):
+            HStack(alignment: .top, spacing: 8) {
+                Circle().fill(Color.blue).frame(width: 6, height: 6).padding(.top, 6)
+                HighlightText(text: point, query: activeQuery)
+                    .font(preferences.subheadlineFont)
+                    .lineSpacing(preferences.lineSpacing)
+                    .foregroundColor(.primary)
+                    .textSelection(.enabled)
+            }
+        case .figure(let figure, let number):
+            DocumentFigureView(figure: figure, number: number, searchText: activeQuery, catalog: .far)
+        case .reserved:
+            ContentUnavailableView("Part Reserved", systemImage: "doc.badge.ellipsis",
+                                   description: Text("This part is reserved in 14 CFR and currently contains no active sections."))
+                .padding(.bottom, 24)
+        case .noResults:
+            ContentUnavailableView.search(text: query)
+                .accessibilityIdentifier("reader-no-results")
+                .padding(.bottom, 24)
+        case .studyFooter:
+            FARStudyMaterialsLinks()
+        }
+    }
+
+    private func supplement(term: String, text: String) -> some View {
+        VStack(alignment: .leading, spacing: 4) {
+            HighlightText(text: term, query: activeQuery)
+                .font(.subheadline.weight(.medium))
+                .textSelection(.enabled)
+            HighlightText(text: text, query: activeQuery)
+                .font(preferences.captionFont)
+                .lineSpacing(preferences.lineSpacing)
+                .foregroundColor(.primary)
+                .textSelection(.enabled)
+        }
+        .padding(12)
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .background(Color(.tertiarySystemBackground))
+        .cornerRadius(8)
+    }
+}
+
+private struct FARReaderCardBorder: Shape {
+    let top: Bool
+    let bottom: Bool
+
+    func path(in rect: CGRect) -> Path {
+        let radius: CGFloat = 16
+        var path = Path()
+        if top {
+            path.move(to: CGPoint(x: rect.minX, y: rect.minY + radius))
+            path.addQuadCurve(to: CGPoint(x: rect.minX + radius, y: rect.minY), control: CGPoint(x: rect.minX, y: rect.minY))
+            path.addLine(to: CGPoint(x: rect.maxX - radius, y: rect.minY))
+            path.addQuadCurve(to: CGPoint(x: rect.maxX, y: rect.minY + radius), control: CGPoint(x: rect.maxX, y: rect.minY))
+        } else {
+            path.move(to: CGPoint(x: rect.maxX, y: rect.minY))
+        }
+        path.addLine(to: CGPoint(x: rect.maxX, y: rect.maxY - (bottom ? radius : 0)))
+        if bottom {
+            path.addQuadCurve(to: CGPoint(x: rect.maxX - radius, y: rect.maxY), control: CGPoint(x: rect.maxX, y: rect.maxY))
+            path.addLine(to: CGPoint(x: rect.minX + radius, y: rect.maxY))
+            path.addQuadCurve(to: CGPoint(x: rect.minX, y: rect.maxY - radius), control: CGPoint(x: rect.minX, y: rect.maxY))
+        } else {
+            path.move(to: CGPoint(x: rect.minX, y: rect.maxY))
+        }
+        path.addLine(to: CGPoint(x: rect.minX, y: rect.minY + (top ? radius : 0)))
+        return path
+    }
+}
+
+private struct FARSectionHeading: View {
+    let section: FARSection
+    let referenceLabel: String?
+    let query: String
+    let expanded: Bool
+    let toggle: () -> Void
+
+    var body: some View {
+        Button(action: toggle) {
+            HStack {
+                VStack(alignment: .leading, spacing: 4) {
+                    HighlightText(text: referenceLabel ?? "§ \(section.section)", query: query)
+                        .font(.caption).foregroundColor(.blue)
+                    HighlightText(text: section.title, query: query)
+                        .font(.headline).foregroundColor(.primary)
+                        .multilineTextAlignment(.leading)
+                }
+                Spacer()
+                Image(systemName: expanded ? "chevron.up" : "chevron.down").foregroundColor(.secondary)
+            }
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .contentShape(Rectangle())
+        }
+        .buttonStyle(.plain)
+        .accessibilityValue(expanded ? "Expanded" : "Collapsed")
+        .accessibilityHint(expanded ? "Collapse this section" : "Expand this section")
+        .accessibilityIdentifier("far-section-\(section.section)")
+        .contextMenu {
+            Button("Copy section text", systemImage: "doc.on.doc") { copyFARSectionText(section) }
+        }
+    }
+}
+
+private struct FARPartHeading: View {
+    let part: FARPart
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 8) {
+            Text(part.cfr).font(.subheadline).foregroundStyle(AviationTheme.sky)
+            Text(part.title).font(.title2.bold()).foregroundStyle(.white)
+            if let subchapter = part.subchapter, let title = part.subchapterTitle {
+                Text("Subchapter \(subchapter): \(title)").font(.subheadline).foregroundStyle(.white.opacity(0.7))
+            }
+            if let urlString = part.url, let url = URL(string: urlString) {
+                Link(destination: url) {
+                    HStack {
+                        Text("View on eCFR").font(.caption)
+                        Image(systemName: "arrow.up.right.square").font(.caption)
+                    }.foregroundStyle(AviationTheme.sky)
+                }
+            }
+        }
+        .padding(20)
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .background(AviationTheme.heroGradient)
+        .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
+    }
+}
+
+private struct FARStudyMaterialsLinks: View {
+    var body: some View {
+        VStack(alignment: .leading, spacing: 12) {
+            Text("Study Materials").font(.headline).padding(.top, 8)
+            HStack(spacing: 12) {
+                NavigationLink(destination: QuizListView()) {
+                    Label("Quizzes", systemImage: "questionmark.circle.fill")
+                        .font(.subheadline.weight(.semibold)).foregroundColor(.white)
+                        .padding(.vertical, 10).padding(.horizontal, 16)
+                        .background(Color.indigo).cornerRadius(8)
+                }
+                NavigationLink(destination: FlashcardListView()) {
+                    Label("Flashcards", systemImage: "rectangle.on.rectangle.angled")
+                        .font(.subheadline.weight(.semibold)).foregroundColor(.white)
+                        .padding(.vertical, 10).padding(.horizontal, 16)
+                        .background(Color.orange).cornerRadius(8)
+                }
+            }
+        }
+        .padding()
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .background(Color(.secondarySystemBackground))
+        .cornerRadius(12)
+    }
+}
+
 
 enum FARContentBlock {
     case text(String)
@@ -1288,234 +1676,6 @@ private enum FARContentParserCache {
         storage[key] = (content, parsed)
         lock.unlock()
         return parsed
-    }
-}
-
-private struct FARContentView: View {
-    let content: String
-    let searchText: String
-    let readerPreferences: ReaderPreferences
-
-    var body: some View {
-        let blocks = FARContentParserCache.blocks(for: content)
-        LazyVStack(alignment: .leading, spacing: 0) {
-            ForEach(Array(blocks.enumerated()), id: \.offset) { index, block in
-                switch block {
-                case .text(let text):
-                    HighlightText(text: farReaderDisplayText(text, in: blocks, at: index), query: searchText)
-                        .font(readerPreferences.bodyFont)
-                        .lineSpacing(readerPreferences.lineSpacing)
-                        .foregroundColor(.primary)
-                        .textSelection(.enabled)
-                        .fixedSize(horizontal: false, vertical: true)
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                case .table(let table):
-                    AIMTableView(
-                        table: table,
-                        number: tableNumber(in: blocks, through: index),
-                        searchText: searchText,
-                        showsLabel: false,
-                        tableFont: readerPreferences.bodyFont,
-                        tableLineSpacing: readerPreferences.lineSpacing
-                    )
-                }
-            }
-        }
-        .frame(maxWidth: .infinity, alignment: .leading)
-    }
-
-    private func tableNumber(in blocks: [FARContentBlock], through index: Int) -> Int {
-        blocks.prefix(index + 1).reduce(into: 0) { count, block in
-            if case .table = block { count += 1 }
-        }
-    }
-}
-
-struct SectionCard: View {
-    let section: FARSection
-    let searchText: String
-    var defaultExpanded: Bool = false
-    var preserveInitialSearchMatch: Bool = false
-    var knownSearchMatch: Bool? = nil
-    var referenceLabel: String? = nil
-    var searchContext: String = "far 14 cfr"
-    var studyMarkInput: StudyMarkInput? = nil
-    var readerPreferences: ReaderPreferences = .standard
-    var onExpanded: (() -> Void)? = nil
-    @State private var userExpanded: Bool?
-
-    // Respect explicit user toggle first, then auto-expand search matches
-    var shouldExpand: Bool {
-        if let userExpanded {
-            return userExpanded
-        }
-        if !searchText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
-            return matchesSearch
-        }
-        return defaultExpanded
-    }
-
-    var matchesSearch: Bool {
-        if let knownSearchMatch { return knownSearchMatch }
-        let trimmed = searchText.trimmingCharacters(in: .whitespacesAndNewlines)
-        if trimmed.isEmpty { return true }
-        if defaultExpanded && preserveInitialSearchMatch { return true }
-        let label = referenceLabel ?? "§ \(section.section)"
-        return SearchQueryMatcher.matches(
-            text: "\(searchContext) \(label) \(section.searchableText)",
-            query: trimmed
-        )
-    }
-
-    var body: some View {
-        let searchMatches = matchesSearch
-        let expanded = userExpanded ?? (
-            searchText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty ? defaultExpanded : searchMatches
-        )
-        if searchMatches {
-            VStack(alignment: .leading, spacing: 12) {
-                Button(action: {
-                    let nextExpanded = !shouldExpand
-                    withAnimation { userExpanded = nextExpanded }
-                    if nextExpanded { onExpanded?() }
-                }) {
-                    HStack {
-                        VStack(alignment: .leading, spacing: 4) {
-                            HighlightText(text: referenceLabel ?? "§ \(section.section)", query: searchText)
-                                .font(.caption)
-                                .foregroundColor(.blue)
-                            HighlightText(text: section.title, query: searchText)
-                                .font(.headline)
-                                .foregroundColor(.primary)
-                                .multilineTextAlignment(.leading)
-                        }
-
-                        Spacer()
-
-                        Image(systemName: expanded ? "chevron.up" : "chevron.down")
-                            .foregroundColor(.secondary)
-                    }
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .contentShape(Rectangle())
-                }
-                .buttonStyle(.plain)
-                .accessibilityValue(expanded ? "Expanded" : "Collapsed")
-                .accessibilityHint(expanded ? "Collapse this section" : "Expand this section")
-                .accessibilityIdentifier("far-section-\(section.section)")
-                .contextMenu {
-                    Button("Copy section text", systemImage: "doc.on.doc") {
-                        copyFARSectionText(section)
-                    }
-                }
-
-                if expanded {
-                    VStack(alignment: .leading, spacing: 12) {
-                        if let studyMarkInput {
-                            StudyMarkTools(input: studyMarkInput)
-                        }
-
-                        if !section.content.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
-                            FARContentView(
-                                content: section.content,
-                                searchText: searchText,
-                                readerPreferences: readerPreferences
-                            )
-                        }
-
-                        // Definitions
-                        if let definitions = section.definitions, !definitions.isEmpty {
-                            Text("Definitions")
-                                .font(.subheadline)
-                                .fontWeight(.semibold)
-                                .padding(.top, 8)
-
-                            ForEach(definitions) { def in
-                                VStack(alignment: .leading, spacing: 4) {
-                                    HighlightText(text: def.term, query: searchText)
-                                        .font(.subheadline)
-                                        .fontWeight(.medium)
-                                        .textSelection(.enabled)
-                                    HighlightText(text: def.definition, query: searchText)
-                                        .font(readerPreferences.captionFont)
-                                        .lineSpacing(readerPreferences.lineSpacing)
-                                        .foregroundColor(.primary)
-                                        .textSelection(.enabled)
-                                }
-                                .padding(12)
-                                .background(Color(.tertiarySystemBackground))
-                                .cornerRadius(8)
-                            }
-                        }
-
-                        if let abbreviations = section.abbreviations, !abbreviations.isEmpty {
-                            Text("Abbreviations")
-                                .font(.subheadline.weight(.semibold))
-                                .padding(.top, 8)
-
-                            ForEach(abbreviations) { abbreviation in
-                                VStack(alignment: .leading, spacing: 4) {
-                                    HighlightText(text: abbreviation.abbr, query: searchText)
-                                        .font(.subheadline.weight(.medium))
-                                        .textSelection(.enabled)
-                                    HighlightText(text: abbreviation.meaning, query: searchText)
-                                        .font(readerPreferences.captionFont)
-                                        .lineSpacing(readerPreferences.lineSpacing)
-                                        .textSelection(.enabled)
-                                }
-                                .padding(12)
-                                .background(Color(.tertiarySystemBackground))
-                                .cornerRadius(8)
-                            }
-                        }
-
-                        // Key Points
-                        if let keyPoints = section.keyPoints, !keyPoints.isEmpty {
-                            Text("Key Points")
-                                .font(.subheadline)
-                                .fontWeight(.semibold)
-                                .padding(.top, 8)
-
-                            ForEach(keyPoints, id: \.self) { point in
-                                HStack(alignment: .top, spacing: 8) {
-                                    Circle()
-                                        .fill(Color.blue)
-                                        .frame(width: 6, height: 6)
-                                        .padding(.top, 6)
-                                    HighlightText(text: point, query: searchText)
-                                        .font(readerPreferences.subheadlineFont)
-                                        .lineSpacing(readerPreferences.lineSpacing)
-                                        .foregroundColor(.primary)
-                                        .textSelection(.enabled)
-                                }
-                            }
-                        }
-
-                        if let figures = section.figures, !figures.isEmpty {
-                            LazyVStack(spacing: 14) {
-                                ForEach(Array(figures.enumerated()), id: \.offset) { index, figure in
-                                    DocumentFigureView(
-                                        figure: figure,
-                                        number: index + 1,
-                                        searchText: searchText,
-                                        catalog: .far
-                                    )
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-            .padding(readerPreferences.cardPadding)
-            .background(AviationTheme.raisedSurface)
-            .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
-            .overlay {
-                RoundedRectangle(cornerRadius: 16, style: .continuous)
-                    .stroke(AviationTheme.border, lineWidth: 1)
-            }
-            .onChange(of: searchText) {
-                userExpanded = nil
-            }
-        }
     }
 }
 

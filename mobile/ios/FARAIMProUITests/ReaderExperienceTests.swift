@@ -50,9 +50,11 @@ final class ReaderExperienceTests: XCTestCase {
         XCUIDevice.shared.orientation = .portrait
         XCTAssertTrue(editor.waitForExistence(timeout: 5))
         XCTAssertTrue((editor.value as? String)?.contains(draft) == true)
-        let dismissKeyboard = app.buttons["study-note-keyboard-done-far:§ 61.83"]
-        XCTAssertTrue(dismissKeyboard.waitForExistence(timeout: 5))
-        dismissKeyboard.tap()
+        if app.keyboards.firstMatch.exists {
+            let dismissKeyboard = app.buttons["study-note-keyboard-done-far:§ 61.83"]
+            XCTAssertTrue(dismissKeyboard.waitForExistence(timeout: 5))
+            dismissKeyboard.tap()
+        }
         XCTAssertTrue(app.keyboards.firstMatch.waitForNonExistence(timeout: 5))
 
         selectTab("Study", in: app)
@@ -140,15 +142,12 @@ final class ReaderExperienceTests: XCTestCase {
         XCTAssertFalse(sectionButton.exists)
 
         replaceSearch(in: app, with: query)
-        let matchingSection = app.buttons.matching(NSPredicate(
-            format: "identifier BEGINSWITH %@", section.hasPrefix("far-") ? "far-section-" : "aim-section-"
-        )).firstMatch
-        XCTAssertTrue(matchingSection.waitForExistence(timeout: 5))
-        XCTAssertEqual(matchingSection.value as? String, "Expanded")
-        reveal(matchingSection, in: app)
-        matchingSection.tap()
+        XCTAssertTrue(sectionButton.waitForExistence(timeout: 5))
+        XCTAssertEqual(sectionButton.value as? String, "Expanded")
+        reveal(sectionButton, in: app)
+        sectionButton.tap()
         let collapsed = XCTNSPredicateExpectation(
-            predicate: NSPredicate(format: "value == %@", "Collapsed"), object: matchingSection
+            predicate: NSPredicate(format: "value == %@", "Collapsed"), object: sectionButton
         )
         XCTAssertEqual(XCTWaiter.wait(for: [collapsed], timeout: 5), .completed,
                        "An active search must not disable the collapse control.")

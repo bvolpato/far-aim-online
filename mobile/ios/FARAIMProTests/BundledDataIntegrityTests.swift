@@ -234,6 +234,101 @@ final class BundledDataIntegrityTests: XCTestCase {
         XCTAssertEqual(farReaderDisplayText("Last paragraph 🛩️.", in: rendered, at: 4), "Last paragraph 🛩️.")
     }
 
+    @MainActor
+    func testFlatFARReaderPreservesContentOrderAndStableRowIdentities() {
+        let preceding = FARSection(section: "61.1", title: "Pilot overview", content: "Earlier material.",
+                                   definitions: nil, abbreviations: nil, keyPoints: nil, figures: nil)
+        let section = FARSection(
+            section: "61.83", title: "Target pilot section",
+            content: "First **pilot** paragraph.\n\nSecond paragraph.\n\n" +
+                "[TABLE]\n| Name | Value |\n| Altitude | 2,000 |\n[/TABLE]\nAfter table.",
+            definitions: [Definition(term: "Control", definition: "Pitch and roll.")],
+            abbreviations: [Abbreviation(abbr: "CG", meaning: "Center of gravity")],
+            keyPoints: ["Keep the aircraft coordinated."],
+            figures: [AIMFigure(src: "part61/figure1.png", alt: "Flight controls", caption: nil, originalUrl: nil)]
+        )
+        let document = makeFARReaderDocument(sections: [preceding, section])
+        let session = FARReaderSession(query: "pilot")
+        let all = document.rows(query: "pilot", initialQuery: "", initialSection: nil, session: session)
+        let targetRows = all.rows.filter { $0.id.section == section.section }
+        let content = targetRows.compactMap { row -> String? in
+            switch row.content {
+            case .paragraph(let text): return text
+            case .table(let table, let number):
+                XCTAssertEqual(number, 1)
+                XCTAssertEqual(table.headers, ["Name", "Value"])
+                XCTAssertEqual(table.rows, [["Altitude", "2,000"]])
+                return "Table"
+            case .definition(let value): return "\(value.term): \(value.definition)"
+            case .abbreviation(let value): return "\(value.abbr): \(value.meaning)"
+            case .keyPoint(let text): return text
+            case .figure(let figure, let number):
+                XCTAssertEqual(number, 1)
+                return figure.alt
+            default: return nil
+            }
+        }
+        XCTAssertEqual(content, [
+            "First **pilot** paragraph.\n", "Second paragraph.\n\n", "Table", "\nAfter table.",
+            "Control: Pitch and roll.", "CG: Center of gravity", "Keep the aircraft coordinated.", "Flight controls"
+        ])
+        XCTAssertEqual(Set(all.rows.map(\.id)).count, all.rows.count)
+
+        session.setExpanded(false, for: preceding.section)
+        let collapsed = document.rows(query: "pilot", initialQuery: "", initialSection: nil, session: session)
+        XCTAssertEqual(collapsed.rows.filter { $0.id.section == section.section }.map(\.id), targetRows.map(\.id))
+        session.synchronizeQuery("target")
+        let filtered = document.rows(query: "target", initialQuery: "", initialSection: nil, session: session)
+        XCTAssertEqual(filtered.matchingSectionIDs, [section.section])
+        XCTAssertEqual(filtered.rows.filter { $0.id.section == section.section }.map(\.id), targetRows.map(\.id))
+    }
+
+    @MainActor
+    func testFlatFARReaderRetainsDraftsAndTablePagesWhenRowsAreRemoved() throws {
+        let tableText = (0..<60).map { "| \($0 == 29 ? "needle" : "ordinary \($0)") |" }.joined(separator: "\n")
+        let section = FARSection(section: "61.83", title: "Table guidance",
+                                 content: "[TABLE]\n| Value |\n\(tableText)\n[/TABLE]",
+                                 definitions: nil, abbreviations: nil, keyPoints: nil, figures: nil)
+        let document = makeFARReaderDocument(sections: [section])
+        let session = FARReaderSession(query: "needle")
+        let initial = document.rows(query: "needle", initialQuery: "", initialSection: nil, session: session)
+        let tableRow = try XCTUnwrap(initial.rows.first { if case .table = $0.content { return true }; return false })
+        guard case .table(let table, _) = tableRow.content else { return XCTFail("Expected the section table") }
+        let key = document.studyMarkInput(for: 0).key
+        let note = session.noteState(for: key)
+        note.draft = "Unfinished pilot note 🛩️"
+        note.isOpen = true
+        let opened = document.rows(query: "needle", initialQuery: "", initialSection: nil, session: session)
+        let editorRow = try XCTUnwrap(opened.rows.first { if case .noteEditor = $0.content { return true }; return false })
+        XCTAssertEqual(opened.rows.filter { $0.id != editorRow.id }.map(\.id), initial.rows.map(\.id))
+        XCTAssertEqual(session.tablePage(for: tableRow.id, table: table, query: "needle"), 1)
+
+        session.setTablePage(0, for: tableRow.id, table: table, query: "needle")
+        session.setExpanded(false, for: section.section)
+        let collapsed = document.rows(query: "needle", initialQuery: "", initialSection: nil, session: session)
+        XCTAssertFalse(collapsed.rows.contains { $0.id == tableRow.id })
+        session.setExpanded(true, for: section.section)
+        let reopened = document.rows(query: "needle", initialQuery: "", initialSection: nil, session: session)
+        XCTAssertEqual(reopened.rows.map(\.id), opened.rows.map(\.id))
+        XCTAssertEqual(session.tablePage(for: tableRow.id, table: table, query: "needle"), 0)
+
+        session.setExpanded(false, for: section.section)
+        session.synchronizeQuery("nonexistentxyz")
+        let removed = document.rows(query: "nonexistentxyz", initialQuery: "", initialSection: nil, session: session)
+        XCTAssertTrue(removed.matchingSectionIDs.isEmpty)
+        session.synchronizeQuery("needle")
+        let restored = document.rows(query: "needle", initialQuery: "", initialSection: nil, session: session)
+        XCTAssertEqual(restored.rows.map(\.id), opened.rows.map(\.id), "A new query resets manual collapse.")
+        let restoredEditor = try XCTUnwrap(restored.rows.first { if case .noteEditor = $0.content { return true }; return false })
+        XCTAssertEqual(restoredEditor.id, editorRow.id)
+        XCTAssertEqual(session.tablePage(for: tableRow.id, table: table, query: "needle"), 1,
+                       "A new query selects its first matching table page.")
+        let restoredNote = session.noteState(for: key)
+        XCTAssertTrue(restoredNote === note)
+        XCTAssertEqual(restoredNote.draft, "Unfinished pilot note 🛩️")
+        XCTAssertTrue(restoredNote.isOpen)
+    }
+
     func testLargeAIMTablePagingBoundsRowsAndReachesEverySourceRow() {
         let sourceRows = (0..<3_687).map { row in
             (0..<14).map { column in "row \(row), column \(column)" }
@@ -763,6 +858,7 @@ final class BundledDataIntegrityTests: XCTestCase {
         }
     }
 
+    @MainActor
     func testReaderAnchorOnlyOverridesTheUnchangedHandoffQuery() {
         XCTAssertTrue(shouldPreserveReaderAnchor(searchText: " PILOT experience ", initialSearchText: "pilot experience"))
         XCTAssertFalse(shouldPreserveReaderAnchor(searchText: "nonexistentxyz", initialSearchText: "pilot experience"))
@@ -770,9 +866,17 @@ final class BundledDataIntegrityTests: XCTestCase {
 
         let far = FARSection(section: "61.57", title: "Recent experience", content: "Passenger operations",
                              definitions: nil, abbreviations: nil, keyPoints: nil, figures: nil)
-        XCTAssertFalse(SectionCard(section: far, searchText: "nonexistentxyz", defaultExpanded: true).matchesSearch)
-        XCTAssertTrue(SectionCard(section: far, searchText: "handoff", defaultExpanded: true,
-                                 preserveInitialSearchMatch: true).matchesSearch)
+        let document = makeFARReaderDocument(sections: [far])
+        let session = FARReaderSession()
+        XCTAssertTrue(document.rows(query: "nonexistentxyz", initialQuery: "", initialSection: far.section,
+                                    session: session).matchingSectionIDs.isEmpty)
+        XCTAssertEqual(document.rows(query: "handoff", initialQuery: "handoff", initialSection: far.section,
+                                     session: session).matchingSectionIDs, [far.section])
+        let metadata = document.rows(query: "Certification overview", initialQuery: "Certification overview",
+                                     initialSection: nil, session: session)
+        XCTAssertEqual(metadata.activeQuery, "")
+        XCTAssertEqual(metadata.matchingSectionIDs, [far.section])
+        XCTAssertFalse(metadata.rows.contains { $0.id.kind == .studyTools })
         let aim = AIMSection(section: "4-3-2", title: "Control tower", content: "Airport operations",
                              subsections: nil, figures: nil, tables: nil)
         XCTAssertFalse(AIMSectionCard(section: aim, searchText: "nonexistentxyz", defaultExpanded: true).matchesSearch)
@@ -780,6 +884,7 @@ final class BundledDataIntegrityTests: XCTestCase {
                                     preserveInitialSearchMatch: true).matchesSearch)
     }
 
+    @MainActor
     func testReaderSectionCardsMatchMultiWordAndIdentifierQueries() {
         let farSection = FARSection(
             section: "61.57",
@@ -790,11 +895,13 @@ final class BundledDataIntegrityTests: XCTestCase {
             keyPoints: nil,
             figures: nil
         )
-        let card = SectionCard(section: farSection, searchText: "pilot experience")
-        XCTAssertTrue(card.matchesSearch)
-        XCTAssertTrue(card.shouldExpand)
-        XCTAssertTrue(SectionCard(section: farSection, searchText: "FAR 61.57").matchesSearch)
-        XCTAssertTrue(SectionCard(section: farSection, searchText: "14 CFR 61.57").matchesSearch)
+        let document = makeFARReaderDocument(sections: [farSection])
+        let session = FARReaderSession()
+        for query in ["pilot experience", "FAR 61.57", "14 CFR 61.57"] {
+            let rows = document.rows(query: query, initialQuery: "", initialSection: nil, session: session)
+            XCTAssertEqual(rows.matchingSectionIDs, [farSection.section])
+            XCTAssertTrue(rows.rows.contains { $0.id.kind == .studyTools })
+        }
 
         let aimSection = AIMSection(
             section: "4-3-2",
@@ -999,6 +1106,14 @@ final class BundledDataIntegrityTests: XCTestCase {
         XCTAssertEqual(formatted("DA"), shortQuery)
         XCTAssertEqual(formatted("61.8"), identifierQuery)
         XCTAssertEqual(formatted(""), noQuery)
+    }
+
+    private func makeFARReaderDocument(sections: [FARSection]) -> FARReaderDocument {
+        FARReaderDocument(part: FARPart(
+            part: 61, title: "Certification overview", cfr: "14 CFR Part 61", subchapter: nil,
+            subchapterTitle: nil, effectiveDate: nil, source: nil, url: nil,
+            sections: sections, subparts: nil, appendices: nil
+        ))
     }
 
     func testStudyPackPreservesSectionAnchorsAndAppendixReferences() throws {

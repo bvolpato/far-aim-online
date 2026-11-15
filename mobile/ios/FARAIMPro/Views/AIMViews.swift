@@ -286,8 +286,8 @@ struct AIMChapterDetailView: View {
                 }
 
                 Button(action: { showReaderControls.toggle() }) {
-                    Text("Aa")
-                        .font(.title3.weight(.medium))
+                    Label("Reader controls", systemImage: "textformat.size")
+                        .labelStyle(.iconOnly)
                 }
                 .accessibilityLabel("Reader controls")
                 .accessibilityIdentifier("reader-controls")
@@ -557,9 +557,11 @@ struct AIMTableView: View {
     var showsLabel: Bool = true
     var tableFont: Font? = nil
     var tableLineSpacing: CGFloat? = nil
-    @State private var currentPageIndex = 0
+    var pageIndex: Binding<Int>? = nil
+    @State private var localPageIndex = 0
     @ScaledMetric(relativeTo: .body) private var columnWidth: CGFloat = 140
 
+    private var selectedPageIndex: Binding<Int> { pageIndex ?? $localPageIndex }
     private var headers: [String] { table.headers ?? [] }
     private var rows: [[String]] { table.rows ?? [] }
     private var columnCount: Int {
@@ -571,7 +573,7 @@ struct AIMTableView: View {
     }
 
     var body: some View {
-        let page = pageAIMTableRows(rows: rows, requestedPageIndex: currentPageIndex)
+        let page = pageAIMTableRows(rows: rows, requestedPageIndex: selectedPageIndex.wrappedValue)
         VStack(alignment: .leading, spacing: 8) {
             if showsLabel {
                 Label {
@@ -596,7 +598,7 @@ struct AIMTableView: View {
                 }
 
                 ScrollView(.horizontal, showsIndicators: true) {
-                    LazyVStack(alignment: .leading, spacing: 0) {
+                    VStack(alignment: .leading, spacing: 0) {
                         if !headers.isEmpty {
                             tableRow(headers, isHeader: true, rowNumber: nil)
                         }
@@ -638,7 +640,7 @@ struct AIMTableView: View {
 
             HStack(spacing: 8) {
                 Button {
-                    currentPageIndex = max(page.pageIndex - 1, 0)
+                    selectedPageIndex.wrappedValue = max(page.pageIndex - 1, 0)
                 } label: {
                     Text("Previous")
                         .frame(maxWidth: .infinity, minHeight: 44)
@@ -648,7 +650,7 @@ struct AIMTableView: View {
                 .buttonStyle(.bordered)
 
                 Button {
-                    currentPageIndex = min(page.pageIndex + 1, page.pageCount - 1)
+                    selectedPageIndex.wrappedValue = min(page.pageIndex + 1, page.pageCount - 1)
                 } label: {
                     Text("Next")
                         .frame(maxWidth: .infinity, minHeight: 44)
@@ -661,8 +663,9 @@ struct AIMTableView: View {
     }
 
     private func selectPageForSearch(_ query: String) {
+        guard pageIndex == nil else { return }
         let rowTexts = rows.map { $0.joined(separator: " ") }
-        currentPageIndex = firstMatchingAIMTableRow(rowTexts: rowTexts, query: query)
+        localPageIndex = firstMatchingAIMTableRow(rowTexts: rowTexts, query: query)
             .map { $0 / aimTableRowsPerPage } ?? 0
     }
 
@@ -751,13 +754,29 @@ struct DocumentFigureView: View {
     }
 
     var body: some View {
+        let aspectRatio = DataService.shared.figureURL(for: figure, catalog: catalog)
+            .flatMap { FigureAspectRatioCache.aspectRatio(at: $0) }
         VStack(alignment: .leading, spacing: 8) {
             Label("Figure \(number)", systemImage: "photo")
                 .font(.caption.weight(.semibold))
                 .foregroundColor(AviationTheme.accent)
                 .accessibilityLabel(accessibilityDescription)
 
-            if let image {
+            if let aspectRatio, !finishedLoading || image != nil {
+                Color.white
+                    .aspectRatio(aspectRatio, contentMode: .fit)
+                    .overlay {
+                        if let image {
+                            Image(uiImage: image)
+                                .resizable()
+                                .scaledToFit()
+                                .accessibilityLabel(accessibilityDescription)
+                        } else {
+                            ProgressView("Loading figure")
+                        }
+                    }
+                    .clipShape(RoundedRectangle(cornerRadius: 8))
+            } else if let image {
                 Image(uiImage: image)
                     .resizable()
                     .scaledToFit()
@@ -816,6 +835,46 @@ struct DocumentFigureView: View {
 
         image = decodedImage
         finishedLoading = true
+    }
+}
+
+private enum FigureAspectRatioCache {
+    private final class Entry: NSObject {
+        let aspectRatio: CGFloat?
+
+        init(aspectRatio: CGFloat?) {
+            self.aspectRatio = aspectRatio
+        }
+    }
+
+    private static let cache: NSCache<NSURL, Entry> = {
+        let cache = NSCache<NSURL, Entry>()
+        cache.countLimit = 512
+        cache.totalCostLimit = 256 * 1_024
+        return cache
+    }()
+
+    static func aspectRatio(at url: URL) -> CGFloat? {
+        let key = url as NSURL
+        if let cached = cache.object(forKey: key) {
+            return cached.aspectRatio
+        }
+
+        let aspectRatio = readAspectRatio(at: url)
+        cache.setObject(Entry(aspectRatio: aspectRatio), forKey: key, cost: url.absoluteString.utf8.count + 64)
+        return aspectRatio
+    }
+
+    private static func readAspectRatio(at url: URL) -> CGFloat? {
+        let options = [kCGImageSourceShouldCache: false] as CFDictionary
+        guard let source = CGImageSourceCreateWithURL(url as CFURL, options),
+              let properties = CGImageSourceCopyPropertiesAtIndex(source, 0, options) as? [CFString: Any],
+              let width = (properties[kCGImagePropertyPixelWidth] as? NSNumber)?.doubleValue,
+              let height = (properties[kCGImagePropertyPixelHeight] as? NSNumber)?.doubleValue,
+              width.isFinite, height.isFinite, width > 0, height > 0 else { return nil }
+
+        let orientation = (properties[kCGImagePropertyOrientation] as? NSNumber)?.intValue ?? 1
+        return CGFloat((5...8).contains(orientation) ? height / width : width / height)
     }
 }
 
