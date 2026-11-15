@@ -70,8 +70,9 @@ update an installation signed by Google Play.
 The public `iOS CI` workflow runs unit and reader UI tests on iPhone, iPhone Duo,
 and iPad simulators and builds an unsigned device app on a GitHub-hosted Mac.
 CI and local packaging require stable Xcode 27.2 (27B52) and iOS SDK 27.2; the
-deployment target remains iOS 17. The `iOS TestFlight archive` workflow tests on
-iPhone Duo and archives the app with native assets. A pushed signed tag
+deployment target remains iOS 17. The `iOS TestFlight archive` workflow requires
+successful phone, Duo, and iPad jobs for the exact source commit, reruns phone
+tests, and archives the app with native assets. A pushed signed tag
 named `testflight-ios-<build>` starts the archive workflow. It uploads an unsigned
 archive and symbols, but it does not sign or send any package to Apple.
 
@@ -82,7 +83,9 @@ can be stored outside Git and configured through an ignored `.env` for the
 shared Linux signing and App Store Connect helpers. The new profile must match
 `com.faraimpro.ios` and the certificate used to sign the archive.
 
-For the local process and commands, see `mobile/ios/RELEASE.md`. The direct
+For Linux builds and Limulator reader/fold checks, see
+[mobile/ios/LINUX.md](mobile/ios/LINUX.md). For local signing and explicit upload,
+see [mobile/ios/RELEASE.md](mobile/ios/RELEASE.md). The direct
 `./scripts/package-ios.sh` path remains disabled for signing until the private
 credential manifest is deliberately reissued and reviewed. Unsigned native CI
 results do not validate signing, TestFlight installation, or App Store acceptance.

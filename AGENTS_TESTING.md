@@ -30,9 +30,15 @@ uv run pytest
 Mobile GitHub Actions:
 - Android workflow runs lint, bundled-data/runtime unit tests, `assembleDebug`, and minified `bundleRelease` on relevant pushes and pull requests.
 - Public iOS CI pins stable Xcode 27.2 (27B52) and iOS SDK 27.2 on the GitHub-hosted `xcode-27` image. It runs unit and reader UI tests on iPhone 18 Pro, iPhone Duo, and iPad Pro 11-inch (M5) with iOS 27.2, then builds an unsigned device app. Missing required simulators fail explicitly. Linux `./test.sh` does not validate iOS.
-- The `iOS TestFlight archive` workflow runs unit and reader UI tests on iPhone Duo and archives an unsigned device app with Xcode 27.2. It starts from a pushed `testflight-ios-<build>` tag, or a manual run after the workflow is registered on the default branch. The workflow includes the current shared FAR/AIM data and emits archive provenance, signing entitlements, and dSYMs. It has no signing or App Store Connect secrets.
+- The `iOS TestFlight archive` workflow requires successful iPhone, Duo, and iPad jobs for the exact source commit, reruns unit and reader UI tests on iPhone 18 Pro, and archives an unsigned device app with Xcode 27.2. It starts from a pushed `testflight-ios-<build>` tag or a manual run. The workflow includes the current shared FAR/AIM data and emits archive provenance, signing entitlements, and dSYMs. It has no signing or App Store Connect secrets.
 - The previous iOS credentials remain quarantined. Do not use `./scripts/package-ios.sh` for signing while its private manifest marks iOS quarantined. To distribute the unsigned native archive, use a separately issued local distribution certificate and the matching FAR/AIM App Store profile with the pinned BruTV signing and upload helpers described in `MOBILE_RELEASE.md`.
 - Android screenshot jobs run only through manual workflow dispatch.
+
+For Linux iOS development, `./mobile/ios/build-linux.sh build release` compiles
+the app with xtool and the real Apple SDK. `./mobile/ios/limulator.sh test` runs
+the reader and fold scenarios in an existing native iOS guest. Follow
+[mobile/ios/LINUX.md](mobile/ios/LINUX.md) for configuration, commands, and result
+limits. These checks are separate from `./test.sh` and native XCTest.
 
 For focused native reader checks on a Mac with Xcode 27.2 and the Duo simulator:
 

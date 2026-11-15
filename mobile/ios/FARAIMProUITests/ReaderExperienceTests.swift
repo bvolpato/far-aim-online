@@ -16,6 +16,31 @@ final class ReaderExperienceTests: XCTestCase {
     }
 
     @MainActor
+    func testGlobalSearchOpensTheMatchingFARSection() {
+        let app = launch()
+        defer { app.terminate() }
+
+        let searchLink = app.buttons["home-search"]
+        reveal(searchLink, in: app)
+        searchLink.tap()
+
+        let field = app.textFields["global-search-input"]
+        XCTAssertTrue(field.waitForExistence(timeout: 10))
+        field.tap()
+        field.typeText("FAR 61.8")
+
+        let result = app.buttons["global-result-far/61#61.8"]
+        XCTAssertTrue(result.waitForExistence(timeout: 10))
+        reveal(result, in: app)
+        result.tap()
+
+        XCTAssertTrue(app.navigationBars["Part 61"].waitForExistence(timeout: 10))
+        let section = app.buttons["far-section-61.8"]
+        XCTAssertTrue(section.waitForExistence(timeout: 10))
+        XCTAssertEqual(section.value as? String, "Expanded")
+    }
+
+    @MainActor
     func testReaderDraftSurvivesRotationAndTabSwitching() {
         let app = launch()
         defer {

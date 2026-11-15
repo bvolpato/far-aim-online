@@ -1,0 +1,32 @@
+{
+  "originHash" : "50435abd9aabc7262d955b50c82c964947f81862103cf21635d857a6702d4522",
+  "pins" : [
+    {
+      "identity" : "assetkit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/bvolpato/AssetKit",
+      "state" : {
+        "revision" : "eb6331f1a3f3ad40670d8e430f605bd884cc0203"
+      }
+    },
+    {
+      "identity" : "h",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/rarestype/h",
+      "state" : {
+        "revision" : "aa3626829160917d4378330617971977cbd78f5b",
+        "version" : "1.0.1"
+      }
+    },
+    {
+      "identity" : "swift-png",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/tayloraswift/swift-png",
+      "state" : {
+        "revision" : "2d17c6c51c098628574c0383f1119892655a73a2",
+        "version" : "4.5.2"
+      }
+    }
+  ],
+  "version" : 3
+}

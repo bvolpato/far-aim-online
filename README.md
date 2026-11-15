@@ -34,7 +34,7 @@ for source and attribution requirements.
 | Platform | Technology | Requirements |
 |----------|------------|--------------|
 | **Web** | React 19, TypeScript, Vite, Tailwind CSS | Node.js 22+, pnpm 12 |
-| **iOS** | SwiftUI | Xcode 26+, iOS 17.0+ |
+| **iOS** | SwiftUI | Xcode 27.2 / xtool, iOS 17.0+ |
 | **Android** | Kotlin, Jetpack Compose | JDK 17, Android SDK 36+, Min SDK 26 |
 
 All platforms support:
@@ -144,13 +144,18 @@ pnpm test         # Run Vitest tests
 Open `mobile/ios/FARAIMPro.xcodeproj` in Xcode and build.
 
 Requirements:
-- Xcode 26+ with iOS 26 SDK for App Store packaging
+- Xcode 27.2 (27B52) with the iOS 27.2 SDK for native tests and archives
 - iOS 17.0+ deployment target
 
 Before building, sync data from the shared directory:
 ```bash
 ./scripts/sync-data.sh ios
 ```
+
+On Linux, use `./mobile/ios/build-linux.sh doctor` followed by
+`./mobile/ios/build-linux.sh build release`. See the
+[Linux guide](mobile/ios/LINUX.md) for xtool setup, Limulator reader and Duo fold
+checks, and the separate native archive and signing workflow.
 
 ### Android
 
@@ -306,9 +311,11 @@ run `./deploy.sh`. `./deploy.sh --skip-tests --skip-build` publishes an existing
 `web/dist` and is intended for already validated artifacts.
 
 ### iOS
-Public iOS CI runs simulator tests and an unsigned device build on a GitHub-hosted
-Mac. Signed packaging uses `./scripts/package-ios.sh` on a Mac after tests pass
-and replacement private signing credentials are available.
+Public iOS CI runs unit and reader UI tests on iPhone, Duo, and iPad, followed by
+an unsigned device build. The release workflow archives the exact tested source
+with Xcode; Linux signs and optionally uploads that archive using the pinned
+helpers in [mobile/ios/RELEASE.md](mobile/ios/RELEASE.md). The old private GCS
+signing set remains quarantined.
 
 ### Android
 Run `./scripts/package-android.sh` with a reviewed private GCS manifest generation,

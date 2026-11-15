@@ -51,7 +51,7 @@ jobs:
             | xargs -0 -n1 bash -n
 
       - name: Lint Python
-        run: uv run ruff check .
+        run: uv run ruff check . ../mobile/ios/release-linux.py
 
       - name: Run Python tests
         run: uv run pytest -q

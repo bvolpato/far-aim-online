@@ -23,6 +23,7 @@ Thumbs.db
 # Environment
 .env
 .env.local
+.limulator/
 gha-creds-*.json
 *.local
 
@@ -54,6 +55,11 @@ mobile/ios/*.xcuserdata
 
 # iOS additional
 mobile/ios/DerivedData/
+mobile/ios/.build/
+mobile/ios/.swiftpm/
+mobile/ios/xtool/
+mobile/ios/linux-tools/.build/
+mobile/ios/linux-tools/.swiftpm/
 *.hmap
 *.ipa
 *.dSYM.zip

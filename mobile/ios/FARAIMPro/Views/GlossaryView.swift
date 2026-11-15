@@ -307,6 +307,7 @@ struct SearchView: View {
                 Image(systemName: "magnifyingglass")
                     .foregroundColor(.secondary)
                 TextField("Search FAR, AIM, Glossary, ACs, cards...", text: $searchText)
+                    .accessibilityIdentifier("global-search-input")
                     .textFieldStyle(PlainTextFieldStyle())
                     .textInputAutocapitalization(.never)
                     .disableAutocorrection(true)
@@ -404,12 +405,14 @@ struct SearchView: View {
                     .padding(.horizontal)
 
                 List(filteredResults) { result in
-                    NavigationLink(destination: searchDestination(for: result)) {
-                        SearchResultRow(result: result, searchText: normalizedSearchText)
+                    let query = normalizedSearchText
+                    NavigationLink {
+                        searchDestination(for: result, query: query)
+                            .onAppear { dataService.recordSearch(query) }
+                    } label: {
+                        SearchResultRow(result: result, searchText: query)
                     }
-                    .simultaneousGesture(TapGesture().onEnded {
-                        dataService.recordSearch(normalizedSearchText)
-                    })
+                    .accessibilityIdentifier("global-result-\(result.link)")
                 }
                 .scrollDismissesKeyboard(.interactively)
                 .scrollContentBackground(.hidden)
@@ -470,14 +473,14 @@ struct SearchView: View {
     }
 
     @ViewBuilder
-    private func searchDestination(for result: DataService.SearchResult) -> some View {
+    private func searchDestination(for result: DataService.SearchResult, query: String) -> some View {
         switch result.type {
         case "far":
             if let partNumber = Self.referenceNumber(from: result.link, prefix: "far"),
                let part = dataService.farParts.first(where: { $0.part == partNumber }) {
                 FARPartDetailView(
                     part: part,
-                    initialSearchText: normalizedSearchText,
+                    initialSearchText: query,
                     initialSection: Self.sectionAnchor(from: result.link)
                 )
             } else {
@@ -488,24 +491,24 @@ struct SearchView: View {
                let chapter = dataService.aimChapters.first(where: { $0.chapter == chapterNumber }) {
                 AIMChapterDetailView(
                     chapter: chapter,
-                    initialSearchText: normalizedSearchText,
+                    initialSearchText: query,
                     initialSection: Self.sectionAnchor(from: result.link)
                 )
             } else {
                 AIMListView()
             }
         case "pcg":
-            GlossaryView(initialSearchText: normalizedSearchText, initialTerm: result.title)
+            GlossaryView(initialSearchText: query, initialTerm: result.title)
         case "ac":
             if let circularId = result.link.split(separator: "#", maxSplits: 1).last.map(String.init),
                let circular = dataService.advisoryCirculars.first(where: { $0.id == circularId }) {
                 if circular.contentPath != nil {
-                    AdvisoryCircularReaderView(ac: circular, initialSearchText: normalizedSearchText)
+                    AdvisoryCircularReaderView(ac: circular, initialSearchText: query)
                 } else {
                     AdvisoryCircularsView(initialSearchText: circular.number)
                 }
             } else {
-                AdvisoryCircularsView(initialSearchText: normalizedSearchText)
+                AdvisoryCircularsView(initialSearchText: query)
             }
         case "flashcard":
             if let deckId = result.link.split(separator: "/").last.map(String.init),

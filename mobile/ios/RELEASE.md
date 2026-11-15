@@ -18,9 +18,12 @@ Screenshots are in `store/ios/screenshots/`.
 
 ## Native CI Archive
 
-The `iOS TestFlight archive` workflow uses Xcode 27.2 and iOS 27.2. It syncs the
-shared data, runs `FARAIMProTests` and `FARAIMProUITests/ReaderExperienceTests` on
-iPhone Duo, and archives an unsigned device build. The artifact includes the `.xcarchive`,
+The `iOS TestFlight archive` workflow uses Xcode 27.2 (27B52) and SDK 27.2. It
+requires successful iPhone, Duo, and iPad CI jobs for the exact source commit.
+CI selects each device's compatible iOS 27.2 runtime, including Duo's separate
+runtime. The archive workflow syncs shared data, reruns `FARAIMProTests` and
+`FARAIMProUITests/ReaderExperienceTests` on iPhone 18 Pro, and archives an unsigned
+device build. The artifact includes the `.xcarchive`,
 dSYMs, the target's signing entitlements, and a provenance file with its source
 commit and Apple SDK details. No certificate, password, or App Store Connect key
 is available to the workflow.
@@ -29,23 +32,31 @@ Select an unused build number and push a signed release tag from a reviewed
 commit. GitHub Actions runs the same archive workflow on a native Apple runner:
 
 ```sh
-git tag -s testflight-ios-12 REVIEWED_SOURCE_SHA -m 'iOS TestFlight build 12'
-git push origin refs/tags/testflight-ios-12
+git tag -s testflight-ios-13 REVIEWED_SOURCE_SHA -m 'iOS TestFlight build 13'
+git push origin refs/tags/testflight-ios-13
 GH_CONFIG_DIR="$HOME/.config/gh-personal" gh run list --workflow ios-testflight.yml
 ```
 
-The manual `build_number` input is available after this workflow is added to the
-default branch. Find the successful tag run and download its
-`ios-native-archive-<build>` artifact:
+Alternatively, dispatch the archive workflow after the exact commit passes CI:
+
+```sh
+GH_CONFIG_DIR="$HOME/.config/gh-personal" gh workflow run ios-testflight.yml \
+  --ref main -f build_number=13
+```
+
+Choose an unused build number and confirm the run's `headSha` is the reviewed
+commit. Dispatch and tag push create an unsigned artifact; neither uploads to
+Apple. Find the successful run and download its
+`ios-native-archive-<build>` artifact (these examples use build 13):
 
 ```sh
 GH_CONFIG_DIR="$HOME/.config/gh-personal" gh run list \
   --workflow ios-testflight.yml --limit 10 \
   --json databaseId,headSha,headBranch,status,conclusion
 GH_CONFIG_DIR="$HOME/.config/gh-personal" gh run download RUN_ID \
-  --name ios-native-archive-12 --dir mobile/ios/build/native-12/download
-unzip mobile/ios/build/native-12/download/ios-native-archive.zip \
-  -d mobile/ios/build/native-12
+  --name ios-native-archive-13 --dir mobile/ios/build/native-13/download
+unzip mobile/ios/build/native-13/download/ios-native-archive.zip \
+  -d mobile/ios/build/native-13
 ```
 
 Verify `native-ios-release/provenance.json` matches the reviewed source commit,
@@ -60,52 +71,53 @@ Set the matching profile path before signing. Keep the P12, profile, and
 passwords outside Git, with passwords and local paths in an ignored `.env`. Do not change the GCS
 manifest's quarantine state or copy the new private key into CI.
 
-Use the shared signing helpers from the reviewed, pinned BruTV commit. Check out
-that source revision outside the FAR/AIM repository and install its Linux
-signing tool:
+`release-linux.py` extracts the reviewed BruTV helpers from commit
+`1f67eff147f52fd43efbbaad3aaf83d096bc7f34` into a temporary directory. It never
+executes the helper checkout's working files. Use an existing BruTV repository
+containing that commit, or fetch it outside the FAR/AIM checkout:
 
 ```sh
 git clone --filter=blob:none --no-checkout https://github.com/bvolpato/brutv.git \
   "$HOME/.cache/brutv-release"
 git -C "$HOME/.cache/brutv-release" fetch --depth=1 origin \
   1f67eff147f52fd43efbbaad3aaf83d096bc7f34
-git -C "$HOME/.cache/brutv-release" checkout --detach \
-  1f67eff147f52fd43efbbaad3aaf83d096bc7f34
-export BRUTV_IOS="$HOME/.cache/brutv-release/mobile/ios/BruTV"
-"$BRUTV_IOS/setup-linux.sh" --signing-tools
 ```
 
 Set `IOS_CERTIFICATE_PATH`, `IOS_P12_PASSWORD`,
-`IOS_PROVISIONING_PROFILE_PATH`, `IOS_TEAM_ID`, `IOS_BUNDLE_ID`, and
-`IOS_APP_STORE_ID` in the ignored local `.env`. For FAR/AIM, use bundle
-`com.faraimpro.ios`, App Store Connect app ID `6765584356`, and the new
-FAR/AIM-specific App Store profile issued for the new certificate. Set
-`IOS_ENTITLEMENTS_PATH` to the `signing-entitlements.plist` downloaded with the
-archive. Keep the App Store Connect `.p8` key outside this repository and
-reference it from that `.env`.
+`IOS_PROVISIONING_PROFILE_PATH`, `IOS_TEAM_ID`, and `IOS_ZSIGN` in the ignored
+local `.env`. `IOS_ZSIGN` must point to an executable Linux zsign installation;
+the prepared BruTV Linux toolchain supplies one. Use absolute credential paths
+and a FAR/AIM-specific App Store profile for the same certificate and team.
+For upload, also set `IOS_ASC_KEY_ID`, `IOS_ASC_ISSUER_ID`, and
+`IOS_ASC_PRIVATE_KEY_PATH`. Keep the `.p8` key outside this repository. The
+wrapper fixes the bundle ID to `com.faraimpro.ios` and app ID to `6765584356`,
+and takes the build number and entitlements from the native archive.
 
-The archive uses Xcode's native resources and remains unsigned in GitHub. Sign
-and upload it on the Linux release host with the matching profile and certificate:
+The wrapper requires the expected source SHA and verifies archive provenance,
+SDK, app identity, device platform, executable, symbols, and entitlements before
+the pinned helpers check signing credentials. Run a preflight without signing
+or uploading:
 
 ```sh
-IOS_RELEASE_DIR="$PWD/mobile/ios/build/native-12/signed" \
-IOS_ENTITLEMENTS_PATH="$PWD/mobile/ios/build/native-12/native-ios-release/signing-entitlements.plist" \
-IOS_BUILD_NUMBER=12 IOS_BUNDLE_ID=com.faraimpro.ios \
-IOS_APP_STORE_ID=6765584356 \
-uv run --env-file .env -- "$BRUTV_IOS/release.sh" \
-  --platform ios \
-  --app "$PWD/mobile/ios/build/native-12/native-ios-release/Application.xcarchive/Products/Applications/FARAIMPro.app" \
-  --upload --testflight-group Testers \
-  --whats-new 'Check current FAR and AIM references, search, study marks, and offline launch.' \
-  --tester tester@example.com
+uv run --env-file .env mobile/ios/release-linux.py \
+  --release-dir mobile/ios/build/native-13/native-ios-release \
+  --source-sha REVIEWED_40_CHARACTER_SOURCE_SHA \
+  --helper-repo "$HOME/.cache/brutv-release" \
+  --output-dir mobile/ios/build/native-13/signed --preflight
 ```
 
-Replace the example tester address only when inviting a named tester. Add one
-`--tester` option for each requested invite; existing group members retain
-access when the option is omitted. The helper verifies Apple processing, app
-ownership, internal group membership, and TestFlight availability. Complete
-export compliance and test installation on iPhone and iPad; archive and upload
-success do not establish device installation or app behavior.
+Remove `--preflight` to sign and validate the IPA locally. To check upload
+credentials as well, combine `--preflight --upload`; preflight still performs
+no upload. For an explicitly authorized upload, use a fresh output directory
+and add `--upload --testflight-group Testers` and optional
+`--whats-new 'Reader and offline reference checks.'`. The wrapper does not
+invite testers. The pinned helper waits for Apple processing and checks app
+ownership, group assignment, and TestFlight availability. A successful upload
+does not establish installation or app behavior.
+
+The release input is the native Xcode archive, with Apple's compiled resources
+and dSYMs. The unsigned xtool app in [LINUX.md](LINUX.md) is for local guest
+development; the release wrapper deliberately does not accept it as an archive.
 
 For native local signing with Xcode on a Mac, the app's existing `release.sh`
 requires stable Xcode 27.2 (27B52), iOS SDK 27.2, and the private helper's ready
@@ -135,8 +147,8 @@ Output:
 
 - Native CI archive: `Application.xcarchive`, dSYMs, `signing-entitlements.plist`,
   and `provenance.json` in the downloaded release artifact.
-- Locally signed package: `mobile/ios/build/native-<build>/signed/export/BruTV.ipa`
-  (the IPA contains FAR/AIM Pro, as verified from its bundle identifier).
+- Locally signed package: `mobile/ios/build/native-<build>/signed/export/FARAIMPro.ipa`.
+  Use a new output directory for each signing attempt; existing IPAs are preserved.
 
 ## Submission Checklist
 

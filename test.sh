@@ -64,7 +64,7 @@ echo "=================================="
 
 run_test "Sync shared data to mobile bundles" "./scripts/sync-data.sh all"
 run_test "Shell script syntax" "(printf '%s\\0' test.sh deploy.sh; find scripts mobile -path '*/build' -prune -o -path '*/.venv' -prune -o -name '*.sh' -type f -print0) | xargs -0 -n1 bash -n"
-run_test "Python lint" "uv run ruff check ." "$ROOT_DIR/scripts"
+run_test "Python lint" "uv run ruff check . ../mobile/ios/release-linux.py" "$ROOT_DIR/scripts"
 run_test "Python crawler formatting tests" "uv run pytest" "$ROOT_DIR/scripts"
 run_test "Generated search indexes" "node scripts/build_inverted_index.js --check"
 run_test "Web lint" "pnpm lint" "$ROOT_DIR/web"

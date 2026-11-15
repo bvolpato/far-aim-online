@@ -2069,6 +2069,7 @@ struct HomeView: View {
                     }
                 }
                 .buttonStyle(.plain)
+                .accessibilityIdentifier("home-search")
 
                 if dataService.farReadingHistory != nil || dataService.aimReadingHistory != nil {
                     continueReading
