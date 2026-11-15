@@ -65,6 +65,7 @@ function buildIndex() {
   const categories = ['far', 'aim', 'flashcards', 'pcg', 'ac'];
   const indexes = {};
   const metadatas = {};
+  const exactACIndex = {};
 
   categories.forEach(cat => {
     indexes[cat] = {};
@@ -94,6 +95,18 @@ function buildIndex() {
     // Indexing
     const textToIndex = `${title} ${indexContent || ''}`;
     const tokens = new Set(tokenize(textToIndex)); // Unique tokens per doc
+
+    if (category === 'ac') {
+      // Keep short terms and identifiers that the shared compact index cannot represent.
+      const exactTokens = new Set();
+      for (const [token] of textToIndex.toLowerCase().matchAll(/[\p{L}\p{N}]+(?:[./-][\p{L}\p{N}]+)*/gu)) {
+        if (token.length === 2 || /[./-]/.test(token)) exactTokens.add(token);
+        for (const component of token.split(/[./-]/)) {
+          if (component.length === 2) exactTokens.add(component);
+        }
+      }
+      for (const token of exactTokens) (exactACIndex[token] ??= []).push(id);
+    }
 
     tokens.forEach(token => {
       if (!indexes[category][token]) {
@@ -290,6 +303,7 @@ function buildIndex() {
     writeGeneratedJSON(path.join(PUBLIC_DIR, `inverted-index-${cat}.json`), indexes[cat]);
     writeGeneratedJSON(path.join(PUBLIC_DIR, `search-metadata-${cat}.json`), metadatas[cat]);
   });
+  if (!WEB_ONLY) writeGeneratedJSON(path.join(PUBLIC_DIR, 'inverted-index-ac-exact.json'), exactACIndex);
   webSearch?.write();
   
   console.log(CHECK_ONLY ? 'Search indexes are current.' : 'Indexes built successfully!');

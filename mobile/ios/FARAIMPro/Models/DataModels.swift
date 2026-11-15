@@ -416,9 +416,10 @@ enum AdvisoryCircularSearchEngine {
         for query: String,
         index: [String: [Int]],
         documents: [AdvisoryCircularSearchDocument],
+        exactIndex: [String: [Int]]? = nil,
         limit: Int = 50
     ) -> [AdvisoryCircularSearchCandidate] {
-        let queryTokens = tokens(for: query)
+        let queryTokens = exactIndex == nil ? tokens(for: query) : SearchQueryMatcher.tokens(for: query)
         guard !queryTokens.isEmpty, !index.isEmpty, !documents.isEmpty, limit > 0 else {
             return []
         }
@@ -432,14 +433,16 @@ enum AdvisoryCircularSearchEngine {
 
         var tokenMatches: [TokenMatch] = []
         for token in queryTokens {
-            let exactDocumentIDs = index[token]
+            let requiresExactIndex = token.count <= 2 || token.contains(where: { $0 == "." || $0 == "-" || $0 == "/" })
+            let tokenIndex = requiresExactIndex ? (exactIndex ?? index) : index
+            let exactDocumentIDs = tokenIndex[token]
             let isExact = exactDocumentIDs != nil
             var rawDocumentIDs = Set<Int>()
 
             if let exactDocumentIDs {
                 rawDocumentIDs.formUnion(exactDocumentIDs)
-            } else {
-                for (indexedToken, documentIDs) in index where indexedToken.hasPrefix(token) {
+            } else if token.count > 2 {
+                for (indexedToken, documentIDs) in tokenIndex where indexedToken.hasPrefix(token) {
                     rawDocumentIDs.formUnion(documentIDs)
                 }
             }
@@ -470,8 +473,8 @@ enum AdvisoryCircularSearchEngine {
                 let document = documents[documentID]
                 let title = document.title.lowercased()
                 let metadata = document.metadata.lowercased()
-                let titleWords = Set(tokens(for: title))
-                let metadataWords = Set(tokens(for: metadata))
+                let titleWords = Set(exactIndex == nil ? tokens(for: title) : SearchQueryMatcher.tokens(for: title))
+                let metadataWords = Set(exactIndex == nil ? tokens(for: metadata) : SearchQueryMatcher.tokens(for: metadata))
                 var score = 0.0
 
                 for tokenMatch in tokenMatches {
@@ -481,13 +484,13 @@ enum AdvisoryCircularSearchEngine {
 
                     if titleWords.contains(token) {
                         score += idf * 3
-                    } else if title.contains(token) {
+                    } else if SearchQueryMatcher.textContainsToken(title, token: token) {
                         score += idf * 0.5
                     }
 
                     if metadataWords.contains(token) {
                         score += idf
-                    } else if metadata.contains(token) {
+                    } else if SearchQueryMatcher.textContainsToken(metadata, token: token) {
                         score += idf * 0.2
                     }
                 }
@@ -495,7 +498,10 @@ enum AdvisoryCircularSearchEngine {
                 return AdvisoryCircularSearchCandidate(
                     documentID: documentID,
                     score: score,
-                    isFullTextOnly: queryTokens.contains { !metadata.contains($0) && !title.contains($0) }
+                    isFullTextOnly: queryTokens.contains {
+                        !SearchQueryMatcher.textContainsToken(metadata, token: $0) &&
+                            !SearchQueryMatcher.textContainsToken(title, token: $0)
+                    }
                 )
             }
             .sorted {
@@ -555,4 +561,145 @@ struct SourceChangeWatch: Codable, Identifiable {
     let affectedReferences: [String]
     let actions: [String]
     let link: String
+}
+
+// MARK: - Shared Search Query Matching
+
+enum SearchQueryMatcher {
+    static let stopWords: Set<String> = [
+        "a", "an", "and", "are", "as", "at", "be", "by", "for", "from", "has", "he",
+        "in", "is", "it", "its", "of", "on", "that", "the", "to", "was", "were",
+        "will", "with", "or", "this", "which", "not", "but", "can", "all", "any",
+        "no", "so", "do", "if", "up"
+    ]
+
+    /// Extracts lowercase search tokens while preserving regulation identifiers
+    /// (such as `61.57`, `4-3-2`, `61-98d`, `70/7460-1n`) and 2-character aviation terms (`da`, `cg`, `61`).
+    static func tokens(for query: String) -> [String] {
+        let lowercased = query.lowercased()
+        let chars = Array(lowercased)
+        var rawTokens: [String] = []
+        var current = ""
+
+        var index = 0
+        while index < chars.count {
+            let ch = chars[index]
+            if isTokenAlphaNumeric(ch) {
+                current.append(ch)
+            } else if (ch == "." || ch == "-" || ch == "/") &&
+                      !current.isEmpty &&
+                      index + 1 < chars.count &&
+                      isTokenAlphaNumeric(chars[index + 1]) {
+                current.append(ch)
+            } else if !current.isEmpty {
+                rawTokens.append(current)
+                current = ""
+            }
+            index += 1
+        }
+        if !current.isEmpty {
+            rawTokens.append(current)
+        }
+
+        var filtered: [String] = []
+        var seen = Set<String>()
+        for token in rawTokens where token.count >= 2 && !stopWords.contains(token) {
+            if seen.insert(token).inserted {
+                filtered.append(token)
+            }
+        }
+
+        if filtered.isEmpty {
+            for token in rawTokens where token.count >= 2 {
+                if seen.insert(token).inserted {
+                    filtered.append(token)
+                }
+            }
+        }
+
+        return filtered
+    }
+
+    static func textContainsWholeToken(_ lowercasedText: String, token: String) -> Bool {
+        guard !token.isEmpty else { return false }
+        var searchRange = lowercasedText.startIndex..<lowercasedText.endIndex
+        while let range = lowercasedText.range(of: token, range: searchRange) {
+            if hasTokenBoundaries(in: lowercasedText, range: range) {
+                return true
+            }
+            searchRange = range.upperBound..<lowercasedText.endIndex
+        }
+        return false
+    }
+
+    static func textContainsToken(_ lowercasedText: String, token: String) -> Bool {
+        guard !token.isEmpty else { return false }
+        if token.count <= 2 {
+            return textContainsWholeToken(lowercasedText, token: token)
+        }
+        return lowercasedText.contains(token)
+    }
+
+    static func countTokenOccurrences(_ lowercasedText: String, token: String) -> Int {
+        guard !token.isEmpty else { return 0 }
+        let requireBoundaries = token.count <= 2
+        var count = 0
+        var searchRange = lowercasedText.startIndex..<lowercasedText.endIndex
+        while let range = lowercasedText.range(of: token, range: searchRange) {
+            if !requireBoundaries || hasTokenBoundaries(in: lowercasedText, range: range) {
+                count += 1
+            }
+            searchRange = range.upperBound..<lowercasedText.endIndex
+        }
+        return count
+    }
+
+    static func matches(text: String, query: String) -> Bool {
+        let trimmed = query.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard !trimmed.isEmpty else { return true }
+        let lowerText = text.lowercased()
+        let lowerQuery = trimmed.lowercased()
+        if lowerQuery.count > 2 && lowerText.contains(lowerQuery) {
+            return true
+        }
+        if lowerQuery.count <= 2 && textContainsWholeToken(lowerText, token: lowerQuery) {
+            return true
+        }
+        let queryTokens = tokens(for: lowerQuery)
+        guard !queryTokens.isEmpty else {
+            return lowerText.contains(lowerQuery)
+        }
+        return queryTokens.allSatisfy { textContainsToken(lowerText, token: $0) }
+    }
+
+    static func highlightTerms(for query: String) -> [String] {
+        let trimmed = query.trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
+        guard !trimmed.isEmpty else { return [] }
+
+        var result: [String] = []
+        var seen = Set<String>()
+        if seen.insert(trimmed).inserted {
+            result.append(trimmed)
+        }
+        for token in tokens(for: trimmed) where seen.insert(token).inserted {
+            result.append(token)
+        }
+        return result
+    }
+
+    static func hasTokenBoundaries(in text: String, range: Range<String.Index>) -> Bool {
+        if range.lowerBound > text.startIndex {
+            let prev = text[text.index(before: range.lowerBound)]
+            if isTokenAlphaNumeric(prev) { return false }
+        }
+        if range.upperBound < text.endIndex {
+            let next = text[range.upperBound]
+            if isTokenAlphaNumeric(next) { return false }
+        }
+        return true
+    }
+
+    private static func isTokenAlphaNumeric(_ character: Character) -> Bool {
+        character.isLetter || character.isNumber
+    }
 }

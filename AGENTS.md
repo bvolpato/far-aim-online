@@ -126,7 +126,7 @@ Before building mobile apps, sync the shared data:
 
 **iOS:**
 - Open `mobile/ios/FARAIMPro.xcodeproj` in Xcode
-- App Store packaging requires Xcode 26+, iOS 26 SDK; deployment target remains iOS 17+
+- CI and App Store packaging use stable Xcode 27.2 (27B52) and iOS 27.2 SDK for iPhone Duo layouts; deployment target remains iOS 17+
 
 **Android:**
 - Build with Gradle: `cd mobile/android && ./gradlew assembleDebug`
@@ -175,7 +175,7 @@ GitHub Actions workflows in `.github/workflows/`:
 | Workflow | Trigger | Actions |
 |----------|---------|---------|
 | `web-ci.yml` | Push/PR to `web/` or `data/` | Lint, build, upload artifacts |
-| `ios-ci.yml` | Push/PR and manual | Xcode 26+ simulator tests and unsigned device build on GitHub-hosted macOS |
+| `ios-ci.yml` | Push/PR and manual | Xcode 27.2 unit/UI tests on iPhone, Duo, and iPad simulators; unsigned device build on GitHub-hosted macOS |
 | `android-build.yml` | Push/PR to `mobile/android/` or `data/` | Build APK, capture screenshots |
 
 **Important:** Changes to `/data/` trigger all platform builds to ensure sync.

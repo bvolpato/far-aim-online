@@ -16,7 +16,7 @@ struct ReadingHistory: Codable {
     var timestamp: Date
 }
 
-struct StudyMark: Codable, Identifiable {
+struct StudyMark: Codable, Identifiable, Equatable {
     var id: String { key }
     let key: String
     let type: String
@@ -87,8 +87,65 @@ class DataService: ObservableObject {
 
     private var failedCatalogs: Set<DataCatalog> = []
     private var advisoryCircularSearchIndex: [String: [Int]] = [:]
+    private var advisoryCircularExactSearchIndex: [String: [Int]] = [:]
     private var advisoryCircularSearchIndexLoaded = false
     private let advisoryCircularSearchIndexLock = NSLock()
+    private let catalogLock = NSLock()
+    private var isLoadingCatalogs = false
+    private var catalogSnapshot = LoadedCatalogSnapshot.empty
+
+    private struct SearchCorpusEntry {
+        let type: String // "far", "aim", "pcg", "ac", "flashcard"
+        let displayTitle: String
+        let reference: String
+        let link: String
+        let snippetSource: String
+        let lowercasedTitle: String
+        let lowercasedDocument: String
+        let farPartNumber: Int?
+        let aimChapterNumber: Int?
+        let acIndex: Int?
+    }
+
+    private struct LoadedCatalogSnapshot {
+        let farIndex: [FARIndexPart]
+        let farParts: [FARPart]
+        let aimIndex: [AIMIndexChapter]
+        let aimChapters: [AIMChapter]
+        let quizzes: [Quiz]
+        let flashcardDecks: [FlashcardDeck]
+        let studyPaths: [StudyPath]
+        let advisoryCirculars: [AdvisoryCircular]
+        let sourceStatus: SourceStatusData?
+        let pcgTerms: [PCGTerm]
+        let failedCatalogs: Set<DataCatalog>
+        let searchCorpus: [SearchCorpusEntry]
+        let farEntriesByPart: [Int: [Int]]
+        let aimEntriesByChapter: [Int: [Int]]
+        let farHeaderByPart: [Int: String]
+        let aimHeaderByChapter: [Int: String]
+        let acSearchDocuments: [AdvisoryCircularSearchDocument]
+
+        static let empty = LoadedCatalogSnapshot(
+            farIndex: [],
+            farParts: [],
+            aimIndex: [],
+            aimChapters: [],
+            quizzes: [],
+            flashcardDecks: [],
+            studyPaths: [],
+            advisoryCirculars: [],
+            sourceStatus: nil,
+            pcgTerms: [],
+            failedCatalogs: [],
+            searchCorpus: [],
+            farEntriesByPart: [:],
+            aimEntriesByChapter: [:],
+            farHeaderByPart: [:],
+            aimHeaderByChapter: [:],
+            acSearchDocuments: []
+        )
+    }
 
     // Reading history
     @Published var aimReadingHistory: ReadingHistory?
@@ -104,41 +161,11 @@ class DataService: ObservableObject {
         loadReadingHistory()
         loadStudyMarks()
         loadSearchHistory()
-        DispatchQueue.main.async { [weak self] in
-            self?.loadAllData()
-        }
+        startBackgroundCatalogLoad(resetPublishedBeforeLoad: false)
     }
 
     func loadAllData() {
-        loadState = .loading
-        failedCatalogs = []
-        farParts = []
-        farIndex = []
-        aimChapters = []
-        aimIndex = []
-        quizzes = []
-        flashcardDecks = []
-        studyPaths = []
-        advisoryCirculars = []
-        advisoryCircularSearchIndexLock.lock()
-        advisoryCircularSearchIndex = [:]
-        advisoryCircularSearchIndexLoaded = false
-        advisoryCircularSearchIndexLock.unlock()
-        sourceStatus = nil
-        pcgTerms = []
-
-        loadFARIndex()
-        loadFARParts()
-        loadAIMIndex()
-        loadAIMChapters()
-        loadQuizzes()
-        loadFlashcardDecks()
-        loadStudyPaths()
-        loadAdvisoryCirculars()
-        loadSourceStatus()
-        loadPCG()
-
-        loadState = failedCatalogs.isEmpty ? .loaded : .failed(failedCatalogs)
+        startBackgroundCatalogLoad(resetPublishedBeforeLoad: true)
     }
 
     func loadFailed(for catalog: DataCatalog) -> Bool {
@@ -147,9 +174,70 @@ class DataService: ObservableObject {
     }
 
     func retryLoading() {
-        loadState = .loading
-        DispatchQueue.main.async { [weak self] in
-            self?.loadAllData()
+        startBackgroundCatalogLoad(resetPublishedBeforeLoad: true)
+    }
+
+    private func startBackgroundCatalogLoad(resetPublishedBeforeLoad: Bool) {
+        catalogLock.lock()
+        if isLoadingCatalogs {
+            catalogLock.unlock()
+            return
+        }
+        isLoadingCatalogs = true
+        catalogLock.unlock()
+
+        advisoryCircularSearchIndexLock.lock()
+        advisoryCircularSearchIndex = [:]
+        advisoryCircularExactSearchIndex = [:]
+        advisoryCircularSearchIndexLoaded = false
+        advisoryCircularSearchIndexLock.unlock()
+
+        let setLoadingState = { [weak self] in
+            guard let self else { return }
+            self.loadState = .loading
+            if resetPublishedBeforeLoad {
+                self.failedCatalogs = []
+                self.farParts = []
+                self.farIndex = []
+                self.aimChapters = []
+                self.aimIndex = []
+                self.quizzes = []
+                self.flashcardDecks = []
+                self.studyPaths = []
+                self.advisoryCirculars = []
+                self.sourceStatus = nil
+                self.pcgTerms = []
+            }
+        }
+        if Thread.isMainThread {
+            setLoadingState()
+        } else {
+            DispatchQueue.main.async(execute: setLoadingState)
+        }
+
+        DispatchQueue.global(qos: .userInitiated).async { [weak self] in
+            let snapshot = Self.buildCatalogSnapshot()
+            DispatchQueue.main.async { [weak self] in
+                guard let self else { return }
+                self.catalogLock.lock()
+                self.catalogSnapshot = snapshot
+                self.isLoadingCatalogs = false
+                self.catalogLock.unlock()
+
+                self.failedCatalogs = snapshot.failedCatalogs
+                self.farIndex = snapshot.farIndex
+                self.farParts = snapshot.farParts
+                self.aimIndex = snapshot.aimIndex
+                self.aimChapters = snapshot.aimChapters
+                self.quizzes = snapshot.quizzes
+                self.flashcardDecks = snapshot.flashcardDecks
+                self.studyPaths = snapshot.studyPaths
+                self.advisoryCirculars = snapshot.advisoryCirculars
+                self.sourceStatus = snapshot.sourceStatus
+                self.pcgTerms = snapshot.pcgTerms
+                self.loadStudyMarks()
+                self.loadState = snapshot.failedCatalogs.isEmpty ? .loaded : .failed(snapshot.failedCatalogs)
+            }
         }
     }
 
@@ -213,7 +301,94 @@ class DataService: ObservableObject {
             studyMarks = []
             return
         }
-        studyMarks = marks.sorted { $0.updatedAt > $1.updatedAt }
+        studyMarks = canonicalStudyMarks(marks)
+        if studyMarks != marks {
+            persistStudyMarks()
+        }
+    }
+
+    private func canonicalStudyMark(_ mark: StudyMark) -> StudyMark {
+        guard let route = normalizedRoute(for: mark.route, type: mark.type) else { return mark }
+        let snapshot = currentSnapshot()
+        var reference = mark.reference
+        var section: String?
+        let routeValue = String(route.dropFirst(mark.type.count + 1))
+        let identifier = cleanIdentifier(routeValue)
+
+        if mark.type == "far", let partNumber = Int(identifier),
+           let part = snapshot.farParts.first(where: { $0.part == partNumber }) {
+            let bareReference = reference.hasPrefix("§ ") ? String(reference.dropFirst(2)) : reference
+            if let appendix = part.appendices?.first(where: { $0.appendix == bareReference }) {
+                reference = appendix.appendix
+                section = appendix.appendix
+            } else {
+                let sections = (part.sections ?? []) + (part.subparts ?? []).flatMap(\.sections)
+                section = sections.first(where: { $0.section == bareReference })?.section
+            }
+        } else if mark.type == "aim", let chapterNumber = Int(identifier),
+                  let chapter = snapshot.aimChapters.first(where: { $0.chapter == chapterNumber }) {
+            let bareReference = reference.hasPrefix("AIM ") ? String(reference.dropFirst(4)) : reference
+            section = chapter.sections.first(where: { $0.section == bareReference })?.section
+        }
+
+        let anchoredRoute = !route.contains("#") ? section.map { "\(route)#\($0)" } ?? route : route
+        return StudyMark(
+            key: "\(mark.type):\(reference)",
+            type: mark.type,
+            reference: reference,
+            title: mark.title,
+            route: anchoredRoute,
+            saved: mark.saved,
+            highlighted: mark.highlighted,
+            note: mark.note,
+            savedAt: mark.savedAt,
+            reviewedAt: mark.reviewedAt,
+            updatedAt: mark.updatedAt
+        )
+    }
+
+    private func canonicalStudyMarks(_ marks: [StudyMark]) -> [StudyMark] {
+        var byKey: [String: StudyMark] = [:]
+        var canonicalKeys = Set<String>()
+        var legacyKeys = Set<String>()
+        for original in marks {
+            let mark = canonicalStudyMark(original)
+            let alreadyCanonical = original.key == mark.key
+            if !alreadyCanonical { legacyKeys.insert(mark.key) }
+            if let existing = byKey[mark.key] {
+                let useIncoming = mark.updatedAt > existing.updatedAt ||
+                    (mark.updatedAt == existing.updatedAt && alreadyCanonical && !canonicalKeys.contains(mark.key))
+                var winner = useIncoming ? mark : existing
+                if legacyKeys.contains(mark.key) {
+                    winner = preservingAliasState(winner, other: useIncoming ? existing : mark)
+                }
+                byKey[mark.key] = winner
+                if useIncoming {
+                    if alreadyCanonical { canonicalKeys.insert(mark.key) } else { canonicalKeys.remove(mark.key) }
+                }
+            } else {
+                byKey[mark.key] = mark
+                if alreadyCanonical { canonicalKeys.insert(mark.key) }
+            }
+        }
+        return byKey.values.sorted {
+            $0.updatedAt == $1.updatedAt ? $0.key < $1.key : $0.updatedAt > $1.updatedAt
+        }
+    }
+
+    private func preservingAliasState(_ winner: StudyMark, other: StudyMark) -> StudyMark {
+        // Older builds split one appendix into separate records. Recover both records' study work once.
+        var merged = winner
+        merged.saved = winner.saved || other.saved
+        merged.highlighted = winner.highlighted == true || other.highlighted == true
+        merged.savedAt = [winner.savedAt, other.savedAt].compactMap { $0 }.min()
+        merged.reviewedAt = [winner.reviewedAt, other.reviewedAt].compactMap { $0 }.max()
+        if winner.note.isEmpty || other.note.contains(winner.note) {
+            merged.note = other.note
+        } else if !other.note.isEmpty && !winner.note.contains(other.note) {
+            merged.note = "\(winner.note)\n\n\(other.note)"
+        }
+        return merged
     }
 
     func getStudyMark(_ input: StudyMarkInput) -> StudyMark? {
@@ -467,12 +642,19 @@ class DataService: ObservableObject {
     }
 
     private func mergeStudyMarks(_ incomingMarks: [StudyMark]) {
-        var byKey = Dictionary(uniqueKeysWithValues: studyMarks.map { ($0.key, $0) })
-        for mark in incomingMarks {
+        var byKey = Dictionary(uniqueKeysWithValues: canonicalStudyMarks(studyMarks).map { ($0.key, $0) })
+        let legacyKeys = Set(incomingMarks.compactMap { mark -> String? in
+            let canonical = canonicalStudyMark(mark)
+            return canonical.key != mark.key ? canonical.key : nil
+        })
+        for mark in canonicalStudyMarks(incomingMarks) {
             if let existing = byKey[mark.key] {
-                if mark.updatedAt >= existing.updatedAt {
-                    byKey[mark.key] = mark
+                let useIncoming = mark.updatedAt >= existing.updatedAt
+                var winner = useIncoming ? mark : existing
+                if legacyKeys.contains(mark.key) {
+                    winner = preservingAliasState(winner, other: useIncoming ? existing : mark)
                 }
+                byKey[mark.key] = winner
             } else {
                 byKey[mark.key] = mark
             }
@@ -504,11 +686,22 @@ class DataService: ObservableObject {
         if route.hasPrefix("/") {
             return route
         }
-        if route.hasPrefix("far:") {
-            return "/far/\(route.replacingOccurrences(of: "far:", with: ""))"
-        }
-        if route.hasPrefix("aim:") {
-            return "/aim/\(route.replacingOccurrences(of: "aim:", with: ""))"
+        if route.hasPrefix("far:") || route.hasPrefix("aim:") {
+            let isFAR = route.hasPrefix("far:")
+            let prefix = isFAR ? "far:" : "aim:"
+            let basePath = isFAR ? "/far/" : "/aim/"
+            let remainder = String(route.dropFirst(prefix.count))
+            let parts = remainder.split(separator: "#", maxSplits: 1, omittingEmptySubsequences: false)
+            let identifier = String(parts[0])
+            if parts.count == 2 {
+                let rawFragment = String(parts[1])
+                let unescaped = rawFragment.removingPercentEncoding ?? rawFragment
+                if !unescaped.isEmpty,
+                   let encoded = unescaped.addingPercentEncoding(withAllowedCharacters: .urlFragmentAllowed) {
+                    return "\(basePath)\(identifier)#\(encoded)"
+                }
+            }
+            return "\(basePath)\(identifier)"
         }
         if route.hasPrefix("ac:") {
             return "/advisory-circulars/\(route.replacingOccurrences(of: "ac:", with: ""))"
@@ -530,23 +723,35 @@ class DataService: ObservableObject {
     }
 
     private func normalizedRoute(for path: String, type: String) -> String? {
-        if path.contains("..") || path.hasPrefix("//") || path.contains("://") {
+        if path.contains("..") || path.hasPrefix("//") || path.contains("://") || path.contains("\r") || path.contains("\n") {
             return nil
         }
 
         if type == "far" || type == "aim" {
             let routePrefix = "\(type):"
             let pathPrefix = "/\(type)/"
-            let rawIdentifier: String
+            let rawValue: String
             if path.hasPrefix(routePrefix) {
-                rawIdentifier = String(path.dropFirst(routePrefix.count))
+                rawValue = String(path.dropFirst(routePrefix.count))
             } else if path.hasPrefix(pathPrefix) {
-                rawIdentifier = String(path.dropFirst(pathPrefix.count))
+                rawValue = String(path.dropFirst(pathPrefix.count))
             } else {
                 return nil
             }
-            let identifier = cleanIdentifier(rawIdentifier)
+            let hashParts = rawValue.split(separator: "#", maxSplits: 1, omittingEmptySubsequences: false)
+            let identifier = cleanIdentifier(String(hashParts[0]))
             guard Int(identifier) != nil else { return nil }
+            if hashParts.count == 2 {
+                let rawFragment = String(hashParts[1])
+                let decodedFragment = (rawFragment.removingPercentEncoding ?? rawFragment)
+                    .trimmingCharacters(in: .whitespacesAndNewlines)
+                if !decodedFragment.isEmpty,
+                   !decodedFragment.contains(".."),
+                   !decodedFragment.contains("\r"),
+                   !decodedFragment.contains("\n") {
+                    return "\(type):\(identifier)#\(decodedFragment)"
+                }
+            }
             return "\(type):\(identifier)"
         }
 
@@ -558,10 +763,13 @@ class DataService: ObservableObject {
             rawIdentifier = String(path.dropFirst(3))
         } else if path.hasPrefix("/advisory-circulars/") {
             rawIdentifier = String(path.dropFirst("/advisory-circulars/".count))
+        } else if path.hasPrefix("/advisory-circulars#") {
+            rawIdentifier = String(path.dropFirst("/advisory-circulars#".count))
         } else {
             return nil
         }
-        let identifier = cleanIdentifier(rawIdentifier)
+        let decodedIdentifier = rawIdentifier.removingPercentEncoding ?? rawIdentifier
+        let identifier = cleanIdentifier(decodedIdentifier)
         guard !identifier.isEmpty, !identifier.contains("/") else { return nil }
         return "ac:\(identifier)"
     }
@@ -601,7 +809,7 @@ class DataService: ObservableObject {
 
     // MARK: - JSON Loading Methods
 
-    private func loadJSON<T: Decodable>(from filename: String, as type: T.Type) -> T? {
+    private static func loadJSON<T: Decodable>(from filename: String, as type: T.Type) -> T? {
         // Data is stored in Resources/data folder which is bundled as a folder reference
         let fullPath = "data/\(filename)"
 
@@ -638,63 +846,58 @@ class DataService: ObservableObject {
         return nil
     }
 
-    private func loadFARIndex() {
+    private func loadJSON<T: Decodable>(from filename: String, as type: T.Type) -> T? {
+        Self.loadJSON(from: filename, as: type)
+    }
+
+    private static func buildCatalogSnapshot() -> LoadedCatalogSnapshot {
+        var failedCatalogs: Set<DataCatalog> = []
+
+        let farIndex: [FARIndexPart]
         if let index: FARIndex = loadJSON(from: "far/index", as: FARIndex.self) {
             farIndex = index.parts.sorted { $0.part < $1.part }
         } else {
+            farIndex = []
             failedCatalogs.insert(.far)
         }
-    }
 
-    private func loadFARParts() {
-        var parts: [FARPart] = []
-        let indexedParts = farIndex.map { $0.part }.sorted()
+        let indexedParts = farIndex.map(\.part).sorted()
         let fallbackParts = [1, 43, 61, 67, 71, 73, 91, 97, 119, 135, 830]
         let partNumbers = indexedParts.isEmpty ? fallbackParts : indexedParts
-
+        var loadedFARParts: [FARPart] = []
+        loadedFARParts.reserveCapacity(partNumbers.count)
         for partNum in partNumbers {
             if let part: FARPart = loadJSON(from: "far/part\(partNum)", as: FARPart.self) {
-                parts.append(part)
+                loadedFARParts.append(part)
             }
         }
-
-        farParts = parts.sorted { $0.part < $1.part }
+        let farParts = loadedFARParts.sorted { $0.part < $1.part }
         if farParts.count != partNumbers.count {
             failedCatalogs.insert(.far)
         }
-    }
 
-    private func loadAIMIndex() {
+        let aimIndex: [AIMIndexChapter]
         if let index: AIMIndex = loadJSON(from: "aim/index", as: AIMIndex.self) {
             aimIndex = index.chapters.sorted { $0.chapter < $1.chapter }
         } else {
+            aimIndex = []
             failedCatalogs.insert(.aim)
         }
-    }
 
-    private func loadAIMChapters() {
-        var chapters: [AIMChapter] = []
-
-        let chapterNumbers = aimIndex.map { $0.chapter }
+        let chapterNumbers = aimIndex.map(\.chapter)
+        var loadedAIMChapters: [AIMChapter] = []
+        loadedAIMChapters.reserveCapacity(chapterNumbers.count)
         for chapterNum in chapterNumbers {
             if let chapter: AIMChapter = loadJSON(from: "aim/chapter\(chapterNum)", as: AIMChapter.self) {
-                chapters.append(chapter)
+                loadedAIMChapters.append(chapter)
             }
         }
-
-        aimChapters = chapters.sorted { $0.chapter < $1.chapter }
+        let aimChapters = loadedAIMChapters.sorted { $0.chapter < $1.chapter }
         if aimChapters.count != chapterNumbers.count {
             failedCatalogs.insert(.aim)
         }
-    }
 
-    private func loadQuizzes() {
-        var allQuizzes: [Quiz] = []
-
-        // Miscellaneous Quizzes (shown first)
         let miscQuizFiles = ["quizzes/hard-challenge"]
-
-        // FAR Quizzes
         let farQuizFiles = [
             "quizzes/private-pilot-far",
             "quizzes/airspace-quiz",
@@ -704,8 +907,6 @@ class DataService: ObservableObject {
             "quizzes/far-part91-operating-rules",
             "quizzes/far-part830-ntsb"
         ]
-
-        // AIM Quizzes
         let aimQuizFiles = [
             "quizzes/aim-chapter1-navigation",
             "quizzes/aim-chapter2-lighting-markings",
@@ -718,24 +919,18 @@ class DataService: ObservableObject {
             "quizzes/aim-chapter10-helicopter",
             "quizzes/aim-chapter11-uas"
         ]
-
-        // Load miscellaneous first, then FAR, then AIM
-        for file in miscQuizFiles + farQuizFiles + aimQuizFiles {
+        let allQuizFiles = miscQuizFiles + farQuizFiles + aimQuizFiles
+        var quizzes: [Quiz] = []
+        quizzes.reserveCapacity(allQuizFiles.count)
+        for file in allQuizFiles {
             if let quiz: Quiz = loadJSON(from: file, as: Quiz.self) {
-                allQuizzes.append(quiz)
+                quizzes.append(quiz)
             }
         }
-
-        quizzes = allQuizzes
-        if quizzes.count != miscQuizFiles.count + farQuizFiles.count + aimQuizFiles.count {
+        if quizzes.count != allQuizFiles.count {
             failedCatalogs.insert(.quizzes)
         }
-    }
 
-    private func loadFlashcardDecks() {
-        var allDecks: [FlashcardDeck] = []
-
-        // FAR Flashcards
         let farFlashcardFiles = [
             "flashcards/far-definitions",
             "flashcards/airspace-requirements",
@@ -745,8 +940,6 @@ class DataService: ObservableObject {
             "flashcards/far-part91-operating-rules",
             "flashcards/far-part830-ntsb"
         ]
-
-        // AIM Flashcards
         let aimFlashcardFiles = [
             "flashcards/aim-chapter1-navigation",
             "flashcards/aim-chapter2-lighting-markings",
@@ -759,46 +952,251 @@ class DataService: ObservableObject {
             "flashcards/aim-chapter10-helicopter",
             "flashcards/aim-chapter11-uas"
         ]
-
-        for file in farFlashcardFiles + aimFlashcardFiles {
+        let allFlashcardFiles = farFlashcardFiles + aimFlashcardFiles
+        var flashcardDecks: [FlashcardDeck] = []
+        flashcardDecks.reserveCapacity(allFlashcardFiles.count)
+        for file in allFlashcardFiles {
             if let deck: FlashcardDeck = loadJSON(from: file, as: FlashcardDeck.self) {
-                allDecks.append(deck)
+                flashcardDecks.append(deck)
             }
         }
-
-        flashcardDecks = allDecks
-        if flashcardDecks.count != farFlashcardFiles.count + aimFlashcardFiles.count {
+        if flashcardDecks.count != allFlashcardFiles.count {
             failedCatalogs.insert(.flashcards)
         }
-    }
 
-    private func loadStudyPaths() {
+        let studyPaths: [StudyPath]
         if let data: StudyPathsData = loadJSON(from: "study-paths", as: StudyPathsData.self) {
             studyPaths = data.paths.filter { !$0.references.isEmpty }
         } else {
+            studyPaths = []
             failedCatalogs.insert(.studyPaths)
         }
-    }
 
-    private func loadAdvisoryCirculars() {
+        let advisoryCirculars: [AdvisoryCircular]
         if let data: AdvisoryCircularsData = loadJSON(from: "advisory-circulars/index", as: AdvisoryCircularsData.self) {
             advisoryCirculars = data.items
         } else {
+            advisoryCirculars = []
             failedCatalogs.insert(.advisoryCirculars)
         }
+
+        let sourceStatus = loadJSON(from: "source-status", as: SourceStatusData.self)
+        if sourceStatus == nil {
+            failedCatalogs.insert(.sourceStatus)
+        }
+
+        let pcgTerms: [PCGTerm]
+        if let pcg: PCGData = loadJSON(from: "aim/pcg", as: PCGData.self) {
+            pcgTerms = pcg.terms
+        } else {
+            pcgTerms = []
+            failedCatalogs.insert(.pcg)
+        }
+
+        var searchCorpus: [SearchCorpusEntry] = []
+        searchCorpus.reserveCapacity(8500)
+        var farEntriesByPart: [Int: [Int]] = [:]
+        var aimEntriesByChapter: [Int: [Int]] = [:]
+        var farHeaderByPart: [Int: String] = [:]
+        var aimHeaderByChapter: [Int: String] = [:]
+        var acSearchDocuments: [AdvisoryCircularSearchDocument] = []
+        acSearchDocuments.reserveCapacity(advisoryCirculars.count)
+
+        for part in farParts {
+            farHeaderByPart[part.part] = "far part \(part.part) \(part.cfr) \(part.title) \(part.subchapterTitle ?? "")".lowercased()
+            var partEntryIndices: [Int] = []
+
+            if let sections = part.sections {
+                for section in sections {
+                    let searchable = section.searchableText
+                    let displayTitle = "§ \(section.section) \(section.title)"
+                    let entryIndex = searchCorpus.count
+                    searchCorpus.append(SearchCorpusEntry(
+                        type: "far",
+                        displayTitle: displayTitle,
+                        reference: part.cfr,
+                        link: "far/\(part.part)#\(section.section)",
+                        snippetSource: searchable,
+                        lowercasedTitle: displayTitle.lowercased(),
+                        lowercasedDocument: "far part \(part.part) \(displayTitle) \(part.cfr) \(searchable)".lowercased(),
+                        farPartNumber: part.part,
+                        aimChapterNumber: nil,
+                        acIndex: nil
+                    ))
+                    partEntryIndices.append(entryIndex)
+                }
+            }
+
+            if let subparts = part.subparts {
+                for subpart in subparts {
+                    for section in subpart.sections {
+                        let searchable = section.searchableText
+                        let displayTitle = "§ \(section.section) \(section.title)"
+                        let entryIndex = searchCorpus.count
+                        searchCorpus.append(SearchCorpusEntry(
+                            type: "far",
+                            displayTitle: displayTitle,
+                            reference: part.cfr,
+                            link: "far/\(part.part)#\(section.section)",
+                            snippetSource: searchable,
+                            lowercasedTitle: displayTitle.lowercased(),
+                            lowercasedDocument: "far part \(part.part) \(displayTitle) \(subpart.subpart) \(subpart.title) \(part.cfr) \(searchable)".lowercased(),
+                            farPartNumber: part.part,
+                            aimChapterNumber: nil,
+                            acIndex: nil
+                        ))
+                        partEntryIndices.append(entryIndex)
+                    }
+                }
+            }
+
+            if let appendices = part.appendices {
+                for appendix in appendices {
+                    let searchable = appendix.searchableText
+                    let displayTitle = appendix.title.isEmpty ? appendix.appendix : appendix.title
+                    let entryIndex = searchCorpus.count
+                    searchCorpus.append(SearchCorpusEntry(
+                        type: "far",
+                        displayTitle: displayTitle,
+                        reference: part.cfr,
+                        link: "far/\(part.part)#\(appendix.appendix)",
+                        snippetSource: searchable,
+                        lowercasedTitle: "\(appendix.appendix) \(appendix.title)".lowercased(),
+                        lowercasedDocument: "far part \(part.part) \(appendix.appendix) \(appendix.title) \(part.cfr) \(searchable)".lowercased(),
+                        farPartNumber: part.part,
+                        aimChapterNumber: nil,
+                        acIndex: nil
+                    ))
+                    partEntryIndices.append(entryIndex)
+                }
+            }
+
+            farEntriesByPart[part.part] = partEntryIndices
+        }
+
+        for chapter in aimChapters {
+            let chapterLabel = formatAIMChapterLabel(chapter.chapter)
+            aimHeaderByChapter[chapter.chapter] = "aim chapter \(chapter.chapter) \(chapterLabel) \(chapter.title)".lowercased()
+            var chapterEntryIndices: [Int] = []
+
+            for section in chapter.sections {
+                let searchable = section.searchableText
+                let displayTitle = "\(section.section) \(section.title)"
+                let entryIndex = searchCorpus.count
+                searchCorpus.append(SearchCorpusEntry(
+                    type: "aim",
+                    displayTitle: displayTitle,
+                    reference: "AIM \(chapterLabel)",
+                    link: "aim/\(chapter.chapter)#\(section.section)",
+                    snippetSource: searchable,
+                    lowercasedTitle: displayTitle.lowercased(),
+                    lowercasedDocument: "\(displayTitle) aim \(chapterLabel) \(searchable)".lowercased(),
+                    farPartNumber: nil,
+                    aimChapterNumber: chapter.chapter,
+                    acIndex: nil
+                ))
+                chapterEntryIndices.append(entryIndex)
+            }
+
+            aimEntriesByChapter[chapter.chapter] = chapterEntryIndices
+        }
+
+        for term in pcgTerms {
+            searchCorpus.append(SearchCorpusEntry(
+                type: "pcg",
+                displayTitle: term.term,
+                reference: "Pilot/Controller Glossary",
+                link: "glossary#\(term.term)",
+                snippetSource: term.definition,
+                lowercasedTitle: term.term.lowercased(),
+                lowercasedDocument: "\(term.term) \(term.definition)".lowercased(),
+                farPartNumber: nil,
+                aimChapterNumber: nil,
+                acIndex: nil
+            ))
+        }
+
+        for deck in flashcardDecks {
+            for card in deck.cards {
+                let combined = "\(card.back) \(card.reference) \(deck.title)"
+                searchCorpus.append(SearchCorpusEntry(
+                    type: "flashcard",
+                    displayTitle: card.front,
+                    reference: card.reference,
+                    link: "flashcard_deck/\(deck.id)",
+                    snippetSource: card.back,
+                    lowercasedTitle: card.front.lowercased(),
+                    lowercasedDocument: "\(card.front) \(combined)".lowercased(),
+                    farPartNumber: nil,
+                    aimChapterNumber: nil,
+                    acIndex: nil
+                ))
+            }
+        }
+
+        for (acIndex, ac) in advisoryCirculars.enumerated() {
+            let displayTitle = "AC \(ac.number) \(ac.title)"
+            let metadata = advisoryCircularSearchText(ac)
+            acSearchDocuments.append(AdvisoryCircularSearchDocument(
+                title: displayTitle,
+                metadata: metadata
+            ))
+            searchCorpus.append(SearchCorpusEntry(
+                type: "ac",
+                displayTitle: displayTitle,
+                reference: "FAA Advisory Circular",
+                link: "advisory-circulars#\(ac.id)",
+                snippetSource: metadata,
+                lowercasedTitle: displayTitle.lowercased(),
+                lowercasedDocument: "\(displayTitle) \(metadata)".lowercased(),
+                farPartNumber: nil,
+                aimChapterNumber: nil,
+                acIndex: acIndex
+            ))
+        }
+
+        return LoadedCatalogSnapshot(
+            farIndex: farIndex,
+            farParts: farParts,
+            aimIndex: aimIndex,
+            aimChapters: aimChapters,
+            quizzes: quizzes,
+            flashcardDecks: flashcardDecks,
+            studyPaths: studyPaths,
+            advisoryCirculars: advisoryCirculars,
+            sourceStatus: sourceStatus,
+            pcgTerms: pcgTerms,
+            failedCatalogs: failedCatalogs,
+            searchCorpus: searchCorpus,
+            farEntriesByPart: farEntriesByPart,
+            aimEntriesByChapter: aimEntriesByChapter,
+            farHeaderByPart: farHeaderByPart,
+            aimHeaderByChapter: aimHeaderByChapter,
+            acSearchDocuments: acSearchDocuments
+        )
     }
 
-    private func loadedAdvisoryCircularSearchIndex() -> [String: [Int]] {
+    private func currentSnapshot() -> LoadedCatalogSnapshot {
+        catalogLock.lock()
+        defer { catalogLock.unlock() }
+        return catalogSnapshot
+    }
+
+    private func loadedAdvisoryCircularSearchIndexes() -> (compact: [String: [Int]], exact: [String: [Int]]) {
         advisoryCircularSearchIndexLock.lock()
         defer { advisoryCircularSearchIndexLock.unlock() }
         if !advisoryCircularSearchIndexLoaded {
-            advisoryCircularSearchIndex = loadJSON(
+            advisoryCircularSearchIndex = Self.loadJSON(
                 from: "search/inverted-index-ac",
+                as: [String: [Int]].self
+            ) ?? [:]
+            advisoryCircularExactSearchIndex = Self.loadJSON(
+                from: "search/inverted-index-ac-exact",
                 as: [String: [Int]].self
             ) ?? [:]
             advisoryCircularSearchIndexLoaded = true
         }
-        return advisoryCircularSearchIndex
+        return (advisoryCircularSearchIndex, advisoryCircularExactSearchIndex)
     }
 
     func advisoryCircularContent(for advisoryCircular: AdvisoryCircular) -> AdvisoryCircularContent? {
@@ -806,35 +1204,62 @@ class DataService: ObservableObject {
         let path = contentPath.hasSuffix(".json")
             ? String(contentPath.dropLast(5))
             : contentPath
-        return loadJSON(
+        return Self.loadJSON(
             from: "advisory-circulars/\(path)",
             as: AdvisoryCircularContent.self
         )
     }
 
-    private func loadSourceStatus() {
-        sourceStatus = loadJSON(from: "source-status", as: SourceStatusData.self)
-        if sourceStatus == nil {
-            failedCatalogs.insert(.sourceStatus)
-        }
-    }
-
-    private func loadPCG() {
-        if let pcg: PCGData = loadJSON(from: "aim/pcg", as: PCGData.self) {
-            pcgTerms = pcg.terms
-        } else {
-            failedCatalogs.insert(.pcg)
-        }
-    }
-
     // MARK: - Helper Methods
 
     func getFARPart(byNumber part: Int) -> FARPart? {
-        return farParts.first { $0.part == part }
+        currentSnapshot().farParts.first { $0.part == part }
     }
 
     func getAIMChapter(byNumber chapter: Int) -> AIMChapter? {
-        return aimChapters.first { $0.chapter == chapter }
+        currentSnapshot().aimChapters.first { $0.chapter == chapter }
+    }
+
+    func filterFARParts(query: String) -> [FARPart] {
+        let snapshot = currentSnapshot()
+        let parts = snapshot.farParts
+        let trimmed = query.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard !trimmed.isEmpty else { return parts }
+
+        return parts.filter { part in
+            if let header = snapshot.farHeaderByPart[part.part],
+               SearchQueryMatcher.matches(text: header, query: trimmed) {
+                return true
+            }
+            guard let indices = snapshot.farEntriesByPart[part.part] else { return false }
+            for index in indices {
+                if SearchQueryMatcher.matches(text: snapshot.searchCorpus[index].lowercasedDocument, query: trimmed) {
+                    return true
+                }
+            }
+            return false
+        }
+    }
+
+    func filterAIMChapters(query: String) -> [AIMChapter] {
+        let snapshot = currentSnapshot()
+        let chapters = snapshot.aimChapters
+        let trimmed = query.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard !trimmed.isEmpty else { return chapters }
+
+        return chapters.filter { chapter in
+            if let header = snapshot.aimHeaderByChapter[chapter.chapter],
+               SearchQueryMatcher.matches(text: header, query: trimmed) {
+                return true
+            }
+            guard let indices = snapshot.aimEntriesByChapter[chapter.chapter] else { return false }
+            for index in indices {
+                if SearchQueryMatcher.matches(text: snapshot.searchCorpus[index].lowercasedDocument, query: trimmed) {
+                    return true
+                }
+            }
+            return false
+        }
     }
 
     func getQuizzesByCategory() -> (aim: [Quiz], far: [Quiz]) {
@@ -911,31 +1336,35 @@ class DataService: ObservableObject {
     }
 
     func searchPCG(query: String) -> [PCGTerm] {
+        let terms = currentSnapshot().pcgTerms
         let normalizedQuery = query.trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
-        guard !normalizedQuery.isEmpty else { return pcgTerms }
+        guard !normalizedQuery.isEmpty else { return terms }
 
-        func rank(_ term: PCGTerm) -> Int {
+        func matchRank(_ term: PCGTerm) -> Int? {
             let label = term.term.lowercased()
             if label == normalizedQuery { return 0 }
             if label.hasPrefix(normalizedQuery) { return 1 }
             if label.contains(normalizedQuery) { return 2 }
-            return 3
+            let definition = term.definition.lowercased()
+            if definition.contains(normalizedQuery) { return 3 }
+            if SearchQueryMatcher.matches(text: "\(label) \(definition)", query: normalizedQuery) {
+                return 4
+            }
+            return nil
         }
 
-        return pcgTerms
-            .filter {
-                let label = $0.term.lowercased()
-                let definition = $0.definition.lowercased()
-                return label.contains(normalizedQuery) || definition.contains(normalizedQuery)
+        return terms
+            .compactMap { term -> (PCGTerm, Int)? in
+                guard let rank = matchRank(term) else { return nil }
+                return (term, rank)
             }
             .sorted {
-                let leftRank = rank($0)
-                let rightRank = rank($1)
-                if leftRank != rightRank {
-                    return leftRank < rightRank
+                if $0.1 != $1.1 {
+                    return $0.1 < $1.1
                 }
-                return $0.term.localizedCaseInsensitiveCompare($1.term) == .orderedAscending
+                return $0.0.term.localizedCaseInsensitiveCompare($1.0.term) == .orderedAscending
             }
+            .map(\.0)
     }
 
     // MARK: - Global Search
@@ -950,218 +1379,71 @@ class DataService: ObservableObject {
     }
 
     func search(query: String) -> [SearchResult] {
-        guard !query.isEmpty, query.count >= 2 else { return [] }
-        let lowercased = query.lowercased()
-        let tokens = tokenize(lowercased)
+        let trimmed = query.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard trimmed.count >= 2 else { return [] }
+        let lowercased = trimmed.lowercased()
+        let tokens = SearchQueryMatcher.tokens(for: lowercased)
         guard !tokens.isEmpty else { return [] }
+
+        let snapshot = currentSnapshot()
+        let corpus = snapshot.searchCorpus
+        guard !corpus.isEmpty else { return [] }
 
         struct ScoredResult {
             let result: SearchResult
             let score: Double
         }
         var scoredResults: [ScoredResult] = []
+        let totalDocs = Double(corpus.count)
 
-        // Collect all documents for IDF calculation
-        var allDocs: [(title: String, content: String)] = []
-
-        for part in farParts {
-            if let sections = part.sections {
-                for section in sections {
-                    allDocs.append((section.title, section.searchableText))
-                }
-            }
-            if let subparts = part.subparts {
-                for subpart in subparts {
-                    for section in subpart.sections {
-                        allDocs.append((section.title, section.searchableText))
-                    }
-                }
-            }
-            if let appendices = part.appendices {
-                for appendix in appendices {
-                    allDocs.append((appendix.title, appendix.searchableText))
-                }
-            }
-        }
-        for chapter in aimChapters {
-            for section in chapter.sections {
-                allDocs.append((section.title, section.searchableText))
-            }
-        }
-        for term in pcgTerms {
-            allDocs.append((term.term, term.definition))
-        }
-        for deck in flashcardDecks {
-            for card in deck.cards {
-                allDocs.append((card.front, "\(card.back) \(card.reference) \(deck.title)"))
-            }
-        }
-        for ac in advisoryCirculars {
-            allDocs.append(("AC \(ac.number) \(ac.title)", advisoryCircularSearchText(ac)))
-        }
-
-        let totalDocs = Double(allDocs.count)
-
-        // Calculate document frequency for each token
         var docFrequency: [String: Int] = [:]
         for token in tokens {
-            docFrequency[token] = allDocs.filter { doc in
-                doc.title.lowercased().contains(token) || doc.content.lowercased().contains(token)
-            }.count
+            var count = 0
+            for entry in corpus where SearchQueryMatcher.textContainsToken(entry.lowercasedDocument, token: token) {
+                count += 1
+            }
+            docFrequency[token] = max(count, 1)
         }
 
-        // Search FAR with scoring
-        for part in farParts {
-            if let sections = part.sections {
-                for section in sections {
-                    let searchableText = section.searchableText
-                    let score = calculateTfIdfScore(title: section.title, content: searchableText, tokens: tokens, docFrequency: docFrequency, totalDocs: totalDocs)
-                    if score > 0 {
-                        scoredResults.append(ScoredResult(
-                            result: SearchResult(
-                                type: "far",
-                                title: "§ \(section.section) \(section.title)",
-                                content: generateContextualSnippet(searchableText, searchTerm: lowercased),
-                                reference: part.cfr,
-                                link: "far/\(part.part)#\(section.section)"
-                            ),
-                            score: score
-                        ))
-                    }
-                }
-            }
-
-            if let subparts = part.subparts {
-                for subpart in subparts {
-                    for section in subpart.sections {
-                        let searchableText = section.searchableText
-                        let score = calculateTfIdfScore(title: section.title, content: searchableText, tokens: tokens, docFrequency: docFrequency, totalDocs: totalDocs)
-                        if score > 0 {
-                            scoredResults.append(ScoredResult(
-                                result: SearchResult(
-                                    type: "far",
-                                    title: "§ \(section.section) \(section.title)",
-                                    content: generateContextualSnippet(searchableText, searchTerm: lowercased),
-                                    reference: part.cfr,
-                                    link: "far/\(part.part)#\(section.section)"
-                                ),
-                                score: score
-                            ))
-                        }
-                    }
-                }
-            }
-            if let appendices = part.appendices {
-                for appendix in appendices {
-                    let searchableText = appendix.searchableText
-                    let score = calculateTfIdfScore(title: appendix.title, content: searchableText, tokens: tokens, docFrequency: docFrequency, totalDocs: totalDocs)
-                    if score > 0 {
-                        scoredResults.append(ScoredResult(
-                            result: SearchResult(
-                                type: "far",
-                                title: appendix.title,
-                                content: generateContextualSnippet(searchableText, searchTerm: lowercased),
-                                reference: part.cfr,
-                                link: "far/\(part.part)#\(appendix.appendix)"
-                            ),
-                            score: score
-                        ))
-                    }
-                }
-            }
-        }
-
-        // Search AIM with scoring
-        for chapter in aimChapters {
-            for section in chapter.sections {
-                let content = section.searchableText
-                let score = calculateTfIdfScore(title: section.title, content: content, tokens: tokens, docFrequency: docFrequency, totalDocs: totalDocs)
-                if score > 0 {
-                    scoredResults.append(ScoredResult(
-                        result: SearchResult(
-                            type: "aim",
-                            title: "\(section.section) \(section.title)",
-                            content: generateContextualSnippet(content, searchTerm: lowercased),
-                            reference: "AIM \(formatAIMChapterLabel(chapter.chapter))",
-                            link: "aim/\(chapter.chapter)#\(section.section)"
-                        ),
-                        score: score
-                    ))
-                }
-            }
-        }
-
-        // Search PCG with scoring
-        for term in pcgTerms {
-            let score = calculateTfIdfScore(title: term.term, content: term.definition, tokens: tokens, docFrequency: docFrequency, totalDocs: totalDocs)
+        for entry in corpus where entry.acIndex == nil {
+            let score = calculateTfIdfScore(
+                lowercasedTitle: entry.lowercasedTitle,
+                lowercasedDocument: entry.lowercasedDocument,
+                tokens: tokens,
+                docFrequency: docFrequency,
+                totalDocs: totalDocs
+            )
             if score > 0 {
                 scoredResults.append(ScoredResult(
                     result: SearchResult(
-                        type: "pcg",
-                        title: term.term,
-                        content: generateContextualSnippet(term.definition, searchTerm: lowercased),
-                        reference: "Pilot/Controller Glossary",
-                        link: "glossary#\(term.term)"
+                        type: entry.type,
+                        title: entry.displayTitle,
+                        content: generateContextualSnippet(entry.snippetSource, searchTerm: lowercased, tokens: tokens),
+                        reference: entry.reference,
+                        link: entry.link
                     ),
                     score: score
                 ))
             }
         }
 
-        for deck in flashcardDecks {
-            for card in deck.cards {
-                let content = "\(card.back) \(card.reference) \(deck.title)"
-                let score = calculateTfIdfScore(title: card.front, content: content, tokens: tokens, docFrequency: docFrequency, totalDocs: totalDocs)
-                if score > 0 {
-                    scoredResults.append(ScoredResult(
-                        result: SearchResult(
-                            type: "flashcard",
-                            title: card.front,
-                            content: generateContextualSnippet(card.back, searchTerm: lowercased),
-                            reference: card.reference,
-                            link: "flashcard_deck/\(deck.id)"
-                        ),
-                        score: score
-                    ))
-                }
-            }
-        }
-
-        // Search FAA Advisory Circulars using the compact full-text index when available.
-        let acDocuments = advisoryCirculars.map {
-            AdvisoryCircularSearchDocument(
-                title: "AC \($0.number) \($0.title)",
-                metadata: advisoryCircularSearchText($0)
+        // Search FAA Advisory Circulars using both the compact full-text index and metadata/number matching.
+        let acSearchIndexes = loadedAdvisoryCircularSearchIndexes()
+        var matchedACIndices = Set<Int>()
+        if !acSearchIndexes.compact.isEmpty {
+            let acCandidates = AdvisoryCircularSearchEngine.candidates(
+                for: trimmed,
+                index: acSearchIndexes.compact,
+                documents: snapshot.acSearchDocuments,
+                exactIndex: acSearchIndexes.exact
             )
-        }
-        let acSearchIndex = loadedAdvisoryCircularSearchIndex()
-        let acCandidates = AdvisoryCircularSearchEngine.candidates(
-            for: query,
-            index: acSearchIndex,
-            documents: acDocuments
-        )
-
-        if acSearchIndex.isEmpty {
-            for ac in advisoryCirculars {
-                let content = advisoryCircularSearchText(ac)
-                let score = calculateTfIdfScore(title: "AC \(ac.number) \(ac.title)", content: content, tokens: tokens, docFrequency: docFrequency, totalDocs: totalDocs)
-                if score > 0 {
-                    scoredResults.append(ScoredResult(
-                        result: advisoryCircularResult(
-                            ac,
-                            content: generateContextualSnippet(content, searchTerm: lowercased)
-                        ),
-                        score: score
-                    ))
-                }
-            }
-        } else {
-            for candidate in acCandidates {
-                let ac = advisoryCirculars[candidate.documentID]
-                let metadata = advisoryCircularSearchText(ac)
+            for candidate in acCandidates where candidate.documentID >= 0 && candidate.documentID < snapshot.advisoryCirculars.count {
+                let ac = snapshot.advisoryCirculars[candidate.documentID]
+                let metadata = Self.advisoryCircularSearchText(ac)
+                matchedACIndices.insert(candidate.documentID)
                 let snippet = candidate.isFullTextOnly
                     ? "Full-text match in extracted circular. \(ac.summary)"
-                    : generateContextualSnippet(metadata, searchTerm: lowercased)
+                    : generateContextualSnippet(metadata, searchTerm: lowercased, tokens: tokens)
                 scoredResults.append(ScoredResult(
                     result: advisoryCircularResult(ac, content: snippet),
                     score: candidate.score
@@ -1169,65 +1451,80 @@ class DataService: ObservableObject {
             }
         }
 
-        // Sort by score descending and return top 50
+        for entry in corpus {
+            guard let acIndex = entry.acIndex,
+                  !matchedACIndices.contains(acIndex),
+                  acIndex >= 0,
+                  acIndex < snapshot.advisoryCirculars.count else {
+                continue
+            }
+            let score = calculateTfIdfScore(
+                lowercasedTitle: entry.lowercasedTitle,
+                lowercasedDocument: entry.lowercasedDocument,
+                tokens: tokens,
+                docFrequency: docFrequency,
+                totalDocs: totalDocs
+            )
+            if score > 0 {
+                let ac = snapshot.advisoryCirculars[acIndex]
+                scoredResults.append(ScoredResult(
+                    result: advisoryCircularResult(
+                        ac,
+                        content: generateContextualSnippet(entry.snippetSource, searchTerm: lowercased, tokens: tokens)
+                    ),
+                    score: score
+                ))
+            }
+        }
+
         return scoredResults
             .sorted { $0.score > $1.score }
             .prefix(50)
-            .map { $0.result }
+            .map(\.result)
     }
 
-    /// Tokenize search query into individual terms
-    private func tokenize(_ text: String) -> [String] {
-        let stopWords: Set<String> = ["a", "an", "and", "are", "as", "at", "be", "by", "for", "from",
-            "has", "he", "in", "is", "it", "its", "of", "on", "that", "the", "to", "was",
-            "were", "will", "with", "or", "this", "which", "not", "but", "can", "all", "any"]
-        return text
-            .replacingOccurrences(of: "[^\\w\\s]", with: "", options: .regularExpression)
-            .split(separator: " ")
-            .map { String($0) }
-            .filter { $0.count > 2 && !stopWords.contains($0) }
-    }
-
-    /// Calculate TF-IDF score for a document
-    private func calculateTfIdfScore(title: String, content: String, tokens: [String], docFrequency: [String: Int], totalDocs: Double) -> Double {
-        let text = "\(title) \(content)".lowercased()
+    private func calculateTfIdfScore(
+        lowercasedTitle: String,
+        lowercasedDocument: String,
+        tokens: [String],
+        docFrequency: [String: Int],
+        totalDocs: Double
+    ) -> Double {
         var score = 0.0
 
         for token in tokens {
-            // Must contain all tokens
-            guard text.contains(token) else { return 0.0 }
+            guard SearchQueryMatcher.textContainsToken(lowercasedDocument, token: token) else {
+                return 0.0
+            }
 
-            // Term frequency
-            let tf = countOccurrences(text, term: token)
-            let tfNormalized = tf > 0 ? 1 + log(Double(tf)) : 0.0
+            let tf = SearchQueryMatcher.countTokenOccurrences(lowercasedDocument, token: token)
+            let tfNormalized = tf > 0 ? 1.0 + log(Double(tf)) : 0.0
 
-            // Inverse document frequency
-            let df = docFrequency[token] ?? 1
-            let idf = log(totalDocs / Double(df))
+            let df = max(docFrequency[token] ?? 1, 1)
+            let idf = max(0.1, log(totalDocs / Double(df)))
 
             score += tfNormalized * idf
 
-            // Boost for title matches (2x weight)
-            if title.lowercased().contains(token) {
-                score += idf * 2
+            if SearchQueryMatcher.textContainsWholeToken(lowercasedTitle, token: token) {
+                score += idf * 3.0
+            } else if token.count > 2 && lowercasedTitle.contains(token) {
+                score += idf * 1.5
+            }
+        }
+
+        if tokens.count > 1 {
+            let joined = tokens.joined(separator: " ")
+            if lowercasedTitle.contains(joined) {
+                score += 6.0
+            } else if lowercasedDocument.contains(joined) {
+                score += 2.0
             }
         }
 
         return score
     }
 
-    /// Count occurrences of a term in text
-    private func countOccurrences(_ text: String, term: String) -> Int {
-        var count = 0
-        var searchRange = text.startIndex..<text.endIndex
-        while let range = text.range(of: term, range: searchRange) {
-            count += 1
-            searchRange = range.upperBound..<text.endIndex
-        }
-        return count
-    }
-
-    private func advisoryCircularSearchText(_ ac: AdvisoryCircular) -> String {
+    static func advisoryCircularSearchText(_ ac: AdvisoryCircular) -> String {
         [
             ac.summary,
             ac.category,
@@ -1249,14 +1546,35 @@ class DataService: ObservableObject {
         )
     }
 
-    /// Generate a contextual snippet that shows the search term in context.
-    /// Finds the first occurrence of the search term and extracts surrounding text.
-    private func generateContextualSnippet(_ content: String, searchTerm: String, maxLength: Int = 200) -> String {
+    private func findSnippetMatchRange(
+        in content: String,
+        searchTerm: String,
+        tokens: [String]
+    ) -> Range<String.Index>? {
+        let candidates = [searchTerm] + tokens.filter { $0 != searchTerm }
+        for candidate in candidates where !candidate.isEmpty {
+            let requireBoundaries = candidate.count <= 2
+            var searchRange = content.startIndex..<content.endIndex
+            while let range = content.range(of: candidate, options: .caseInsensitive, range: searchRange) {
+                if !requireBoundaries || SearchQueryMatcher.hasTokenBoundaries(in: content, range: range) {
+                    return range
+                }
+                searchRange = range.upperBound..<content.endIndex
+            }
+        }
+        return nil
+    }
+
+    /// Generate a contextual snippet that shows the search term or first matching token in context.
+    private func generateContextualSnippet(
+        _ content: String,
+        searchTerm: String,
+        tokens: [String] = [],
+        maxLength: Int = 200
+    ) -> String {
         guard !content.isEmpty else { return "" }
 
-        let lowerContent = content.lowercased()
-        guard let range = lowerContent.range(of: searchTerm) else {
-            // If no match found, return the beginning of the content
+        guard let range = findSnippetMatchRange(in: content, searchTerm: searchTerm, tokens: tokens) else {
             if content.count > maxLength {
                 let endIndex = content.index(content.startIndex, offsetBy: maxLength)
                 return String(content[..<endIndex]) + "..."
@@ -1264,14 +1582,13 @@ class DataService: ObservableObject {
             return content
         }
 
-        // Calculate snippet bounds - center around the match
-        let matchStart = lowerContent.distance(from: lowerContent.startIndex, to: range.lowerBound)
+        let matchStart = content.distance(from: content.startIndex, to: range.lowerBound)
+        let matchLength = content.distance(from: range.lowerBound, to: range.upperBound)
         let halfLength = maxLength / 2
 
         var start = max(0, matchStart - halfLength)
-        var end = min(content.count, matchStart + searchTerm.count + halfLength)
+        var end = min(content.count, matchStart + matchLength + halfLength)
 
-        // Adjust to not cut words - find word boundaries
         if start > 0 {
             let startIndex = content.index(content.startIndex, offsetBy: start)
             if let spaceRange = content[..<startIndex].range(of: " ", options: .backwards) {
@@ -1296,7 +1613,6 @@ class DataService: ObservableObject {
         let endIndex = content.index(content.startIndex, offsetBy: end)
         var snippet = String(content[startIndex..<endIndex])
 
-        // Add ellipsis if truncated
         if start > 0 {
             snippet = "..." + snippet
         }

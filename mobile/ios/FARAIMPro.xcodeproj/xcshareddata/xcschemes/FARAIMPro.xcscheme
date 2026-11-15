@@ -31,6 +31,15 @@
          <TestableReference skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
+               BlueprintIdentifier = "UITESTTARGET"
+               BuildableName = "FARAIMProUITests.xctest"
+               BlueprintName = "FARAIMProUITests"
+               ReferencedContainer = "container:FARAIMPro.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
                BlueprintIdentifier = "TESTTARGET"
                BuildableName = "FARAIMProTests.xctest"
                BlueprintName = "FARAIMProTests"

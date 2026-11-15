@@ -10,45 +10,46 @@ import SwiftUI
 struct GlossaryView: View {
     @ObservedObject var dataService = DataService.shared
     @State private var searchText = ""
-    let initialTerm: String?
+    @State private var focusedTerm: String?
+    @State private var focusTrigger = 0
 
     init(initialSearchText: String = "", initialTerm: String? = nil) {
         _searchText = State(initialValue: initialSearchText)
-        self.initialTerm = initialTerm
+        _focusedTerm = State(initialValue: initialTerm)
     }
-    
+
     var filteredTerms: [PCGTerm] {
         dataService.searchPCG(query: searchText)
     }
-    
+
     var body: some View {
         ScrollViewReader { proxy in
             VStack(spacing: 0) {
-            HStack(spacing: 12) {
-                Image(systemName: "text.book.closed.fill")
-                    .foregroundStyle(AviationTheme.accent)
-                    .frame(width: 38, height: 38)
-                    .background(AviationTheme.accent.opacity(0.11))
-                    .clipShape(RoundedRectangle(cornerRadius: 11, style: .continuous))
-                VStack(alignment: .leading, spacing: 2) {
-                    Text("Pilot / Controller Glossary")
-                        .font(.subheadline.weight(.semibold))
-                    Text("\(filteredTerms.count) official terms")
-                        .font(.caption)
-                        .foregroundStyle(.secondary)
+                HStack(spacing: 12) {
+                    Image(systemName: "text.book.closed.fill")
+                        .foregroundStyle(AviationTheme.accent)
+                        .frame(width: 38, height: 38)
+                        .background(AviationTheme.accent.opacity(0.11))
+                        .clipShape(RoundedRectangle(cornerRadius: 11, style: .continuous))
+                    VStack(alignment: .leading, spacing: 2) {
+                        Text("Pilot / Controller Glossary")
+                            .font(.subheadline.weight(.semibold))
+                        Text("\(filteredTerms.count) official terms")
+                            .font(.caption)
+                            .foregroundStyle(.secondary)
+                    }
+                    Spacer()
                 }
-                Spacer()
-            }
-            .padding(14)
-            .background(AviationTheme.raisedSurface)
-            .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
-            .overlay {
-                RoundedRectangle(cornerRadius: 16, style: .continuous)
-                    .stroke(AviationTheme.border, lineWidth: 1)
-            }
-            .padding(.horizontal, 16)
-            .padding(.top, 8)
-            
+                .padding(14)
+                .background(AviationTheme.raisedSurface)
+                .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
+                .overlay {
+                    RoundedRectangle(cornerRadius: 16, style: .continuous)
+                        .stroke(AviationTheme.border, lineWidth: 1)
+                }
+                .padding(.horizontal, 16)
+                .padding(.top, 8)
+
                 if dataService.pcgTerms.isEmpty {
                     LibraryCollectionStateView(
                         catalog: .pcg,
@@ -64,7 +65,8 @@ struct GlossaryView: View {
                             term: term,
                             allTerms: dataService.pcgTerms,
                             searchText: searchText,
-                            defaultExpanded: term.term == initialTerm
+                            isFocused: term.term == focusedTerm,
+                            focusTrigger: focusTrigger
                         )
                         .id(term.id)
                         .listRowBackground(AviationTheme.raisedSurface)
@@ -74,10 +76,30 @@ struct GlossaryView: View {
                     .listStyle(.insetGrouped)
                 }
             }
-            .onAppear {
-                guard let initialTerm else { return }
-                DispatchQueue.main.async {
-                    proxy.scrollTo(initialTerm, anchor: .center)
+            .environment(\.openURL, OpenURLAction { url in
+                if let destination = ContentView.externalDestination(for: url),
+                   destination.route.hasPrefix("glossary:") {
+                    let targetTerm = String(destination.route.dropFirst("glossary:".count))
+                    if !filteredTerms.contains(where: { $0.term == targetTerm }) {
+                        searchText = ""
+                    }
+                    focusedTerm = targetTerm
+                    focusTrigger += 1
+                    return .handled
+                }
+                return .systemAction
+            })
+            .task(id: "\(focusedTerm ?? "")-\(focusTrigger)-\(dataService.pcgTerms.count)") {
+                guard let target = focusedTerm, !target.isEmpty, !dataService.pcgTerms.isEmpty else {
+                    return
+                }
+                if !filteredTerms.contains(where: { $0.term == target }) && !searchText.isEmpty {
+                    searchText = ""
+                }
+                try? await Task.sleep(for: .milliseconds(40))
+                guard !Task.isCancelled else { return }
+                withAnimation {
+                    proxy.scrollTo(target, anchor: .center)
                 }
             }
         }
@@ -91,20 +113,25 @@ struct GlossaryTermRow: View {
     let term: PCGTerm
     let allTerms: [PCGTerm]
     let searchText: String
+    let isFocused: Bool
+    let focusTrigger: Int
     @State private var isExpanded: Bool
 
     init(
         term: PCGTerm,
         allTerms: [PCGTerm],
         searchText: String,
-        defaultExpanded: Bool = false
+        isFocused: Bool = false,
+        focusTrigger: Int = 0
     ) {
         self.term = term
         self.allTerms = allTerms
         self.searchText = searchText
-        _isExpanded = State(initialValue: defaultExpanded)
+        self.isFocused = isFocused
+        self.focusTrigger = focusTrigger
+        _isExpanded = State(initialValue: isFocused)
     }
-    
+
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
             Button(action: { withAnimation { isExpanded.toggle() } }) {
@@ -112,13 +139,18 @@ struct GlossaryTermRow: View {
                     HighlightText(text: term.term, query: searchText)
                         .font(.headline)
                         .foregroundColor(.primary)
+                        .multilineTextAlignment(.leading)
                     Spacer()
                     Image(systemName: isExpanded ? "chevron.up" : "chevron.down")
                         .foregroundColor(.secondary)
                         .font(.caption)
                 }
+                .contentShape(Rectangle())
             }
-            
+            .buttonStyle(.plain)
+            .accessibilityValue(isExpanded ? "Expanded" : "Collapsed")
+            .accessibilityHint(isExpanded ? "Collapse this definition" : "Expand this definition")
+
             if isExpanded {
                 Text(linkedGlossaryDefinition(
                     term.definition,
@@ -127,10 +159,21 @@ struct GlossaryTermRow: View {
                 ))
                     .font(.body)
                     .foregroundColor(.secondary)
+                    .textSelection(.enabled)
                     .fixedSize(horizontal: false, vertical: true)
             }
         }
         .padding(.vertical, 4)
+        .onChange(of: isFocused) {
+            if isFocused {
+                isExpanded = true
+            }
+        }
+        .onChange(of: focusTrigger) {
+            if isFocused {
+                isExpanded = true
+            }
+        }
     }
 }
 
@@ -208,17 +251,21 @@ private func linkedGlossaryDefinition(
     }
     result += AttributedString(source.substring(from: offset))
 
-    guard !query.isEmpty else { return result }
-    let rendered = String(result.characters) as NSString
-    var searchRange = NSRange(location: 0, length: rendered.length)
-    while searchRange.length > 0 {
-        let found = rendered.range(of: query, options: .caseInsensitive, range: searchRange)
-        if found.location == NSNotFound { break }
-        if let range = Range(found, in: result) {
-            result[range].backgroundColor = .yellow.opacity(0.5)
+    let highlightTerms = SearchQueryMatcher.highlightTerms(for: query)
+    guard !highlightTerms.isEmpty else { return result }
+    let plainText = String(result.characters)
+    for term in highlightTerms where !term.isEmpty {
+        let requireBoundaries = term.count <= 2
+        var searchRange = plainText.startIndex..<plainText.endIndex
+        while let foundRange = plainText.range(of: term, options: .caseInsensitive, range: searchRange) {
+            if !requireBoundaries || SearchQueryMatcher.hasTokenBoundaries(in: plainText, range: foundRange) {
+                let nsRange = NSRange(foundRange, in: plainText)
+                if let attrRange = Range(nsRange, in: result) {
+                    result[attrRange].backgroundColor = .yellow.opacity(0.45)
+                }
+            }
+            searchRange = foundRange.upperBound..<plainText.endIndex
         }
-        let nextLocation = found.location + found.length
-        searchRange = NSRange(location: nextLocation, length: rendered.length - nextLocation)
     }
     return result
 }
@@ -325,9 +372,9 @@ struct SearchView: View {
                     }
                     Spacer()
                 }
-            } else if isSearching {
+            } else if dataService.loadState == .loading || isSearching {
                 Spacer()
-                ProgressView("Searching")
+                ProgressView(dataService.loadState == .loading ? "Loading library" : "Searching")
                 Spacer()
             } else if results.isEmpty {
                 VStack(spacing: 20) {
@@ -375,12 +422,16 @@ struct SearchView: View {
             guard searchText.isEmpty else { return }
             DispatchQueue.main.async { searchFieldFocused = true }
         }
-        .task(id: searchText) {
+        .task(id: "\(searchText)-\(dataService.loadState == .loading)") {
             let query = normalizedSearchText
             guard query.count >= 2 else {
                 results = []
                 selectedFilter = .all
                 isSearching = false
+                return
+            }
+            guard dataService.loadState != .loading else {
+                isSearching = true
                 return
             }
 
@@ -447,9 +498,12 @@ struct SearchView: View {
             GlossaryView(initialSearchText: normalizedSearchText, initialTerm: result.title)
         case "ac":
             if let circularId = result.link.split(separator: "#", maxSplits: 1).last.map(String.init),
-               let circular = dataService.advisoryCirculars.first(where: { $0.id == circularId }),
-               circular.contentPath != nil {
-                AdvisoryCircularReaderView(ac: circular, initialSearchText: normalizedSearchText)
+               let circular = dataService.advisoryCirculars.first(where: { $0.id == circularId }) {
+                if circular.contentPath != nil {
+                    AdvisoryCircularReaderView(ac: circular, initialSearchText: normalizedSearchText)
+                } else {
+                    AdvisoryCircularsView(initialSearchText: circular.number)
+                }
             } else {
                 AdvisoryCircularsView(initialSearchText: normalizedSearchText)
             }

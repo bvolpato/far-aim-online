@@ -52,4 +52,6 @@ jobs:
       scheme: FARAIMPro
       build-number: ${{ needs.release-inputs.outputs.build-number }}
       unit-test-target: FARAIMProTests
+      ui-test-selectors: FARAIMProUITests/ReaderExperienceTests
+      simulator: iPhone Duo
       prepare-command: ./scripts/sync-data.sh ios

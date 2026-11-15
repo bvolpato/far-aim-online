@@ -53,6 +53,7 @@ Optional env:
   IOS_EXPORT_METHOD        default: app-store-connect
   IOS_MARKETING_VERSION
   IOS_BUILD_NUMBER
+  IOS_SIM_DESTINATION     default: platform=iOS Simulator,name=iPhone Duo,OS=27.2
 USAGE
 }
 
@@ -134,17 +135,16 @@ require_cmd /usr/libexec/PlistBuddy
 # Put system tools first. Homebrew rsync breaks the IPA copy step of -exportArchive.
 export PATH="/usr/bin:/bin:/usr/sbin:/sbin:/Applications/Xcode.app/Contents/Developer/usr/bin:$PATH"
 
-XCODE_VERSION="$(xcodebuild -version | sed -n 's/^Xcode //p')"
-XCODE_MAJOR="${XCODE_VERSION%%.*}"
-if [[ ! "$XCODE_MAJOR" =~ ^[0-9]+$ || "$XCODE_MAJOR" -lt 26 ]]; then
-  echo "error: Xcode 26 or later is required for App Store uploads (found ${XCODE_VERSION:-unknown})" >&2
+XCODE_VERSION="$(xcodebuild -version)"
+if [[ "$XCODE_VERSION" != $'Xcode 27.2\nBuild version 27B52' ]]; then
+  echo "error: stable Xcode 27.2 (27B52) is required; select /Applications/Xcode_27.2.app with xcode-select" >&2
+  echo "$XCODE_VERSION" >&2
   exit 1
 fi
 
 IOS_SDK_VERSION="$(xcrun --sdk iphoneos --show-sdk-version)"
-IOS_SDK_MAJOR="${IOS_SDK_VERSION%%.*}"
-if [[ ! "$IOS_SDK_MAJOR" =~ ^[0-9]+$ || "$IOS_SDK_MAJOR" -lt 26 ]]; then
-  echo "error: iOS 26 SDK or later is required for App Store uploads (found ${IOS_SDK_VERSION:-unknown})" >&2
+if [[ "$IOS_SDK_VERSION" != 27.2 ]]; then
+  echo "error: iOS 27.2 SDK is required for Duo-optimized releases (found ${IOS_SDK_VERSION:-unknown})" >&2
   exit 1
 fi
 
@@ -337,16 +337,7 @@ fi
 cd "$PROJECT_DIR"
 
 if [[ "$SKIP_SIM_BUILD" = false ]]; then
-  if [[ -z "${IOS_SIM_DESTINATION:-}" ]]; then
-    SIM_ID="$(xcrun simctl list devices available | grep -m1 -E 'iPhone.*([0-9A-F-]{36})' | grep -o -E '[0-9A-F]{8}-[0-9A-F]{4}-[0-9A-F]{4}-[0-9A-F]{4}-[0-9A-F]{12}' || true)"
-    if [[ -n "$SIM_ID" ]]; then
-      SIM_DESTINATION="id=$SIM_ID"
-    else
-      SIM_DESTINATION="platform=iOS Simulator,name=iPhone 17"
-    fi
-  else
-    SIM_DESTINATION="$IOS_SIM_DESTINATION"
-  fi
+  SIM_DESTINATION="${IOS_SIM_DESTINATION:-platform=iOS Simulator,name=iPhone Duo,OS=27.2}"
   xcodebuild clean test \
     -project "$PROJECT" \
     -scheme "$SCHEME" \

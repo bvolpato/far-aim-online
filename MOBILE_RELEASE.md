@@ -67,9 +67,11 @@ update an installation signed by Google Play.
 
 ## iOS
 
-The public `iOS CI` workflow runs XCTest on a simulator and builds an unsigned
-device app on a GitHub-hosted Mac. The `iOS TestFlight archive` workflow uses
-Xcode 27.2 to test and archive the app with native assets. A pushed signed tag
+The public `iOS CI` workflow runs unit and reader UI tests on iPhone, iPhone Duo,
+and iPad simulators and builds an unsigned device app on a GitHub-hosted Mac.
+CI and local packaging require stable Xcode 27.2 (27B52) and iOS SDK 27.2; the
+deployment target remains iOS 17. The `iOS TestFlight archive` workflow tests on
+iPhone Duo and archives the app with native assets. A pushed signed tag
 named `testflight-ios-<build>` starts the archive workflow. It uploads an unsigned
 archive and symbols, but it does not sign or send any package to Apple.
 
@@ -84,3 +86,5 @@ For the local process and commands, see `mobile/ios/RELEASE.md`. The direct
 `./scripts/package-ios.sh` path remains disabled for signing until the private
 credential manifest is deliberately reissued and reviewed. Unsigned native CI
 results do not validate signing, TestFlight installation, or App Store acceptance.
+The manual fold and safe-area checks in `AGENTS_TESTING.md` remain required before
+claiming Duo runtime readiness; automated rotation tests do not cover folding.

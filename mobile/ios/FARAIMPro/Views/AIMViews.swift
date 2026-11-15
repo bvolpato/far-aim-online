@@ -12,34 +12,8 @@ import ImageIO
 struct AIMListView: View {
     @ObservedObject var dataService = DataService.shared
     @State private var searchText = ""
-
-    var filteredChapters: [AIMChapter] {
-        if searchText.isEmpty {
-            return dataService.aimChapters
-        }
-        let query = searchText.lowercased()
-        return dataService.aimChapters.filter { chapter in
-            // Match Chapter title/number
-            if chapter.title.lowercased().contains(query) ||
-               String(chapter.chapter).contains(query) {
-                return true
-            }
-            // Match content inside sections
-            if chapter.sections.contains(where: { section in
-                if section.title.lowercased().contains(query) ||
-                   section.section.contains(query) {
-                    return true
-                }
-                if section.searchableText.lowercased().contains(query) {
-                    return true
-                }
-                return false
-            }) {
-                return true
-            }
-            return false
-        }
-    }
+    @State private var displayedChapters: [AIMChapter] = DataService.shared.aimChapters
+    @State private var isFiltering = false
 
     var body: some View {
         ScrollView {
@@ -49,7 +23,10 @@ struct AIMListView: View {
                     title: "AIM Chapters",
                     systemImage: "book.closed"
                 )
-            } else if filteredChapters.isEmpty {
+            } else if displayedChapters.isEmpty && isFiltering {
+                ProgressView("Searching AIM…")
+                    .frame(maxWidth: .infinity, minHeight: 440)
+            } else if displayedChapters.isEmpty {
                 ContentUnavailableView(
                     "No matching chapters",
                     systemImage: "book.closed",
@@ -63,7 +40,7 @@ struct AIMListView: View {
                     ReferenceLibraryBanner(
                         eyebrow: "FAA AIM",
                         title: "Aeronautical Information Manual",
-                        detail: "\(filteredChapters.count) chapters available offline",
+                        detail: "\(displayedChapters.count) chapters available offline",
                         icon: "book.closed.fill"
                     )
 
@@ -79,16 +56,18 @@ struct AIMListView: View {
                         .buttonStyle(.plain)
                     }
 
-                    ForEach(filteredChapters) { chapter in
+                    ForEach(displayedChapters) { chapter in
                         NavigationLink(destination: AIMChapterDetailView(chapter: chapter, initialSearchText: searchText)) {
                             ReferenceRowCard(
                                 badge: formatAIMChapterBadge(chapter.chapter),
                                 title: chapter.title,
                                 subtitle: "\(chapter.sections.count) sections",
-                                metadata: nil
+                                metadata: nil,
+                                query: searchText
                             )
                         }
                         .buttonStyle(.plain)
+                        .accessibilityIdentifier("aim-chapter-\(chapter.chapter)")
                     }
                 }
                 .frame(maxWidth: 900, alignment: .leading)
@@ -101,27 +80,88 @@ struct AIMListView: View {
         .navigationTitle("AIM")
         .searchable(text: $searchText, prompt: "Search AIM chapters and sections")
         .aviationScreen()
+        .task(id: "\(searchText)-\(dataService.aimChapters.count)") {
+            let trimmed = searchText.trimmingCharacters(in: .whitespacesAndNewlines)
+            if trimmed.isEmpty {
+                displayedChapters = dataService.aimChapters
+                isFiltering = false
+                return
+            }
+            isFiltering = true
+            try? await Task.sleep(for: .milliseconds(100))
+            guard !Task.isCancelled else { return }
+            let filtered = await Task.detached(priority: .userInitiated) {
+                DataService.shared.filterAIMChapters(query: trimmed)
+            }.value
+            guard !Task.isCancelled else { return }
+            displayedChapters = filtered
+            isFiltering = false
+        }
     }
 }
 
 struct AIMChapterDetailView: View {
     let chapter: AIMChapter
     let initialSection: String?
+    private let initialSearchText: String
     @State private var searchText = ""
     @AppStorage("far-aim-pro-reader-font-scale-index") private var readerFontScaleIndex = 1
     @AppStorage("far-aim-pro-reader-density") private var readerDensityRawValue = ReaderDensity.standard.rawValue
     @State private var showReaderControls = false
     @ObservedObject var dataService = DataService.shared
+    private var readerTypography = ReaderTypography()
 
     // Allow initializing with a search query
     init(chapter: AIMChapter, initialSearchText: String = "", initialSection: String? = nil) {
         self.chapter = chapter
         self.initialSection = initialSection
+        self.initialSearchText = initialSearchText
         _searchText = State(initialValue: initialSearchText)
     }
 
+    private var chapterSearchContext: String {
+        "aim chapter \(chapter.chapter) \(formatAIMChapterLabel(chapter.chapter))"
+    }
+
+    private func sectionMatches(_ section: AIMSection, query: String) -> Bool {
+        let trimmed = query.trimmingCharacters(in: .whitespacesAndNewlines)
+        if trimmed.isEmpty { return true }
+        if initialSection == section.section && preservesInitialSearchAnchor { return true }
+        return SearchQueryMatcher.matches(
+            text: "\(chapterSearchContext) Section \(section.section) \(section.searchableText)",
+            query: trimmed
+        )
+    }
+
+    private var effectiveSearchText: String {
+        let trimmed = searchText.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard !trimmed.isEmpty else { return "" }
+        if chapter.sections.contains(where: { sectionMatches($0, query: trimmed) }) {
+            return searchText
+        }
+        let trimmedInitial = initialSearchText.trimmingCharacters(in: .whitespacesAndNewlines)
+        if !trimmedInitial.isEmpty,
+           trimmed.caseInsensitiveCompare(trimmedInitial) == .orderedSame,
+           SearchQueryMatcher.matches(
+               text: "\(chapterSearchContext) \(chapter.title)",
+               query: trimmed
+           ) {
+            return ""
+        }
+        return searchText
+    }
+
+    private var displayedSections: [AIMSection] {
+        let activeQuery = effectiveSearchText
+        return chapter.sections.filter { sectionMatches($0, query: activeQuery) }
+    }
+
+    private var preservesInitialSearchAnchor: Bool {
+        shouldPreserveReaderAnchor(searchText: searchText, initialSearchText: initialSearchText)
+    }
+
     var body: some View {
-        let readerPreferences = ReaderPreferences(
+        let readerPreferences = readerTypography.preferences(
             fontScaleIndex: readerFontScaleIndex,
             density: ReaderDensity(rawValue: readerDensityRawValue) ?? .standard
         )
@@ -144,27 +184,36 @@ struct AIMChapterDetailView: View {
                     .background(AviationTheme.heroGradient)
                     .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
 
-                ForEach(chapter.sections) { section in
-                    AIMSectionCard(
-                        section: section,
-                        searchText: searchText,
-                        defaultExpanded: initialSection == section.section,
-                        studyMarkInput: StudyMarkInput(
-                            type: "aim",
-                            reference: "AIM \(section.section)",
-                            title: section.title,
-                            route: "aim:\(chapter.chapter)"
-                        ),
-                        readerPreferences: readerPreferences,
-                        onExpanded: {
-                            dataService.saveAIMReadingHistory(
-                                chapter: chapter.chapter,
-                                title: chapter.title,
-                                section: section.section
-                            )
-                        }
-                    )
-                    .id(section.section)
+                if displayedSections.isEmpty {
+                    ContentUnavailableView.search(text: searchText)
+                        .accessibilityIdentifier("reader-no-results")
+                        .padding(.vertical, 24)
+                } else {
+                    let activeQuery = effectiveSearchText
+                    ForEach(displayedSections) { section in
+                        AIMSectionCard(
+                            section: section,
+                            searchText: activeQuery,
+                            defaultExpanded: initialSection == section.section,
+                            preserveInitialSearchMatch: preservesInitialSearchAnchor,
+                            searchContext: chapterSearchContext,
+                            studyMarkInput: StudyMarkInput(
+                                type: "aim",
+                                reference: "AIM \(section.section)",
+                                title: section.title.isEmpty ? "AIM \(section.section)" : section.title,
+                                route: "aim:\(chapter.chapter)#\(section.section)"
+                            ),
+                            readerPreferences: readerPreferences,
+                            onExpanded: {
+                                dataService.saveAIMReadingHistory(
+                                    chapter: chapter.chapter,
+                                    title: chapter.title,
+                                    section: section.section
+                                )
+                            }
+                        )
+                        .id(section.section)
+                    }
                 }
 
                 // Study Materials Link at end
@@ -218,11 +267,11 @@ struct AIMChapterDetailView: View {
                 .padding()
             }
             .scrollDismissesKeyboard(.interactively)
-            .onAppear {
-                guard let initialSection else { return }
-                DispatchQueue.main.async {
-                    proxy.scrollTo(initialSection, anchor: .top)
-                }
+            .task(id: initialSection) {
+                guard let initialSection, !initialSection.isEmpty else { return }
+                try? await Task.sleep(for: .milliseconds(50))
+                guard !Task.isCancelled else { return }
+                proxy.scrollTo(initialSection, anchor: .top)
             }
         }
         .navigationTitle(formatAIMChapterLabel(chapter.chapter))
@@ -240,16 +289,13 @@ struct AIMChapterDetailView: View {
                     Text("Aa")
                         .font(.title3.weight(.medium))
                 }
-                .popover(isPresented: $showReaderControls) {
-                    VStack {
-                        ReaderControls(
-                            fontScaleIndex: $readerFontScaleIndex,
-                            densityRawValue: $readerDensityRawValue
-                        )
-                        .padding()
-                    }
-                    .frame(width: 320)
-                    .presentationCompactAdaptation(.popover)
+                .accessibilityLabel("Reader controls")
+                .accessibilityIdentifier("reader-controls")
+                .sheet(isPresented: $showReaderControls) {
+                    ReaderControlsSheet(
+                        fontScaleIndex: $readerFontScaleIndex,
+                        densityRawValue: $readerDensityRawValue
+                    )
                 }
             }
         }
@@ -269,21 +315,50 @@ struct AIMSectionCard: View {
     let section: AIMSection
     let searchText: String
     var defaultExpanded: Bool = false
+    var preserveInitialSearchMatch: Bool = false
+    var searchContext: String = "aim"
     var studyMarkInput: StudyMarkInput? = nil
     var readerPreferences: ReaderPreferences = .standard
     var onExpanded: (() -> Void)? = nil
     @State private var userExpanded: Bool?
 
     private var shouldExpand: Bool {
-        if !searchText.isEmpty { return matchesSearch }
-        return userExpanded ?? defaultExpanded
+        if let userExpanded {
+            return userExpanded
+        }
+        if !searchText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
+            return matchesSearch
+        }
+        return defaultExpanded
     }
 
     var matchesSearch: Bool {
-        if searchText.isEmpty { return true }
-        let query = searchText.lowercased()
+        let trimmed = searchText.trimmingCharacters(in: .whitespacesAndNewlines)
+        if trimmed.isEmpty { return true }
+        if defaultExpanded && preserveInitialSearchMatch { return true }
+        return SearchQueryMatcher.matches(
+            text: "\(searchContext) Section \(section.section) \(section.searchableText)",
+            query: trimmed
+        )
+    }
 
-        return section.searchableText.lowercased().contains(query)
+    private func visibleSubsections(from subsections: [AIMSubsection]) -> [AIMSubsection] {
+        let trimmed = searchText.trimmingCharacters(in: .whitespacesAndNewlines)
+        if trimmed.isEmpty || userExpanded == true {
+            return subsections
+        }
+        let fullMatches = subsections.filter {
+            SearchQueryMatcher.matches(text: $0.searchableText, query: trimmed)
+        }
+        if !fullMatches.isEmpty {
+            return fullMatches
+        }
+        let tokens = SearchQueryMatcher.tokens(for: trimmed)
+        let tokenMatches = subsections.filter { subsection in
+            let lower = subsection.searchableText.lowercased()
+            return tokens.contains { SearchQueryMatcher.textContainsToken(lower, token: $0) }
+        }
+        return tokenMatches.isEmpty ? subsections : tokenMatches
     }
 
     var body: some View {
@@ -302,6 +377,7 @@ struct AIMSectionCard: View {
                             HighlightText(text: section.title, query: searchText)
                                 .font(.headline)
                                 .foregroundColor(.primary)
+                                .multilineTextAlignment(.leading)
                         }
 
                         Spacer()
@@ -310,6 +386,10 @@ struct AIMSectionCard: View {
                             .foregroundColor(.secondary)
                     }
                 }
+                .buttonStyle(.plain)
+                .accessibilityValue(shouldExpand ? "Expanded" : "Collapsed")
+                .accessibilityHint(shouldExpand ? "Collapse this section" : "Expand this section")
+                .accessibilityIdentifier("aim-section-\(section.section)")
 
                 if shouldExpand {
                     if let studyMarkInput {
@@ -322,57 +402,62 @@ struct AIMSectionCard: View {
                             .font(readerPreferences.bodyFont)
                             .lineSpacing(readerPreferences.lineSpacing)
                             .foregroundColor(.primary)
+                            .textSelection(.enabled)
                             .padding(12)
                             .background(Color(.tertiarySystemBackground))
                             .cornerRadius(8)
                     }
 
                     // Display subsections if any
-                    if let subsections = section.subsections {
-                        ForEach(subsections) { subsection in
-                            // Only show matching subsections if searching, or all if expanded
-                            if searchText.isEmpty ||
-                               subsection.searchableText.lowercased().contains(searchText.lowercased()) {
+                    if let subsections = section.subsections, !subsections.isEmpty {
+                        ForEach(visibleSubsections(from: subsections)) { subsection in
+                            VStack(alignment: .leading, spacing: 8) {
+                                HStack {
+                                    HighlightText(text: subsection.subsection, query: searchText)
+                                    Text(".")
+                                    HighlightText(text: subsection.title, query: searchText)
+                                }
+                                .font(.subheadline)
+                                .fontWeight(.medium)
+                                .textSelection(.enabled)
 
-                                VStack(alignment: .leading, spacing: 8) {
-                                    HStack {
-                                        HighlightText(text: subsection.subsection, query: searchText)
-                                        Text(".")
-                                        HighlightText(text: subsection.title, query: searchText)
-                                    }
-                                    .font(.subheadline)
-                                    .fontWeight(.medium)
+                                HighlightText(text: subsection.content, query: searchText)
+                                    .font(readerPreferences.captionFont)
+                                    .lineSpacing(readerPreferences.lineSpacing)
+                                    .foregroundColor(.primary)
+                                    .textSelection(.enabled)
 
-                                    HighlightText(text: subsection.content, query: searchText)
-                                        .font(readerPreferences.captionFont)
-                                        .lineSpacing(readerPreferences.lineSpacing)
-                                        .foregroundColor(.primary)
-
-                                    if let keyPoints = subsection.keyPoints, !keyPoints.isEmpty {
-                                        ForEach(keyPoints, id: \.self) { point in
-                                            HStack(alignment: .top, spacing: 8) {
-                                                Circle()
-                                                    .fill(Color.green)
-                                                    .frame(width: 5, height: 5)
-                                                    .padding(.top, 5)
-                                                HighlightText(text: point, query: searchText)
-                                                    .font(readerPreferences.captionFont)
-                                                    .lineSpacing(readerPreferences.lineSpacing)
-                                                    .foregroundColor(.primary)
-                                            }
+                                if let keyPoints = subsection.keyPoints, !keyPoints.isEmpty {
+                                    ForEach(keyPoints, id: \.self) { point in
+                                        HStack(alignment: .top, spacing: 8) {
+                                            Circle()
+                                                .fill(Color.green)
+                                                .frame(width: 5, height: 5)
+                                                .padding(.top, 5)
+                                            HighlightText(text: point, query: searchText)
+                                                .font(readerPreferences.captionFont)
+                                                .lineSpacing(readerPreferences.lineSpacing)
+                                                .foregroundColor(.primary)
+                                                .textSelection(.enabled)
                                         }
                                     }
                                 }
-                                .padding(12)
-                                .background(Color(.tertiarySystemBackground))
-                                .cornerRadius(8)
                             }
+                            .padding(12)
+                            .background(Color(.tertiarySystemBackground))
+                            .cornerRadius(8)
                         }
                     }
 
                     if let tables = section.tables, !tables.isEmpty {
                         ForEach(Array(tables.enumerated()), id: \.offset) { index, table in
-                            AIMTableView(table: table, number: index + 1, searchText: searchText)
+                            AIMTableView(
+                                table: table,
+                                number: index + 1,
+                                searchText: searchText,
+                                tableFont: readerPreferences.bodyFont,
+                                tableLineSpacing: readerPreferences.lineSpacing
+                            )
                         }
                     }
 
@@ -396,6 +481,9 @@ struct AIMSectionCard: View {
             .overlay {
                 RoundedRectangle(cornerRadius: 16, style: .continuous)
                     .stroke(AviationTheme.border, lineWidth: 1)
+            }
+            .onChange(of: searchText) {
+                userExpanded = nil
             }
         }
     }
@@ -469,6 +557,7 @@ struct AIMTableView: View {
     var tableFont: Font? = nil
     var tableLineSpacing: CGFloat? = nil
     @State private var currentPageIndex = 0
+    @ScaledMetric(relativeTo: .body) private var columnWidth: CGFloat = 140
 
     private var headers: [String] { table.headers ?? [] }
     private var rows: [[String]] { table.rows ?? [] }
@@ -582,7 +671,8 @@ struct AIMTableView: View {
             HighlightText(text: values[0], query: searchText)
                 .font(cellFont(forHeader: isHeader))
                 .lineSpacing(tableLineSpacing ?? 0)
-                .frame(width: CGFloat(columnCount) * 140, alignment: .leading)
+                .fixedSize(horizontal: false, vertical: true)
+                .frame(width: CGFloat(columnCount) * columnWidth, alignment: .leading)
                 .padding(10)
                 .background(isHeader ? AviationTheme.ink : Color(.secondarySystemBackground))
                 .foregroundColor(isHeader ? .white : .primary)
@@ -595,7 +685,7 @@ struct AIMTableView: View {
                         .font(cellFont(forHeader: isHeader))
                         .lineSpacing(tableLineSpacing ?? 0)
                         .fixedSize(horizontal: false, vertical: true)
-                        .frame(width: 140, alignment: .leading)
+                        .frame(width: columnWidth, alignment: .leading)
                         .padding(10)
                         .background(isHeader ? AviationTheme.ink : Color(.secondarySystemBackground))
                         .foregroundColor(isHeader ? .white : .primary)

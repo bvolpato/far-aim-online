@@ -19,10 +19,18 @@
 		MAIN0011 /* data in Resources */ = {isa = PBXBuildFile; fileRef = RES0002; };
 		MAIN0012 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = RES0003; };
 		TESTBUILD0001 /* BundledDataIntegrityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = TESTREF0001; };
+		UITESTBUILD0001 /* ReaderExperienceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = UITESTREF0001; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
 		TESTPROXY /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = PROJECT0001 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = TARGET0001;
+			remoteInfo = FARAIMPro;
+		};
+		UITESTPROXY /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = PROJECT0001 /* Project object */;
 			proxyType = 1;
@@ -35,6 +43,8 @@
 		PROD0001 /* FARAIMPro.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FARAIMPro.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		TESTPROD0001 /* FARAIMProTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FARAIMProTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		TESTREF0001 /* BundledDataIntegrityTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BundledDataIntegrityTests.swift; sourceTree = "<group>"; };
+		UITESTPROD0001 /* FARAIMProUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FARAIMProUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		UITESTREF0001 /* ReaderExperienceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReaderExperienceTests.swift; sourceTree = "<group>"; };
 		SRC0001 /* FARAIMProApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FARAIMProApp.swift; sourceTree = "<group>"; };
 		SRC0002 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		SRC0003 /* DataModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModels.swift; sourceTree = "<group>"; };
@@ -65,6 +75,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		UITESTFWKPHASE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -73,6 +90,7 @@
 			children = (
 				GRPSRC /* FARAIMPro */,
 				TESTGROUP /* FARAIMProTests */,
+				UITESTGROUP /* FARAIMProUITests */,
 				GRPPROD /* Products */,
 			);
 			sourceTree = "<group>";
@@ -82,6 +100,7 @@
 			children = (
 				PROD0001 /* FARAIMPro.app */,
 				TESTPROD0001 /* FARAIMProTests.xctest */,
+				UITESTPROD0001 /* FARAIMProUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -146,6 +165,14 @@
 			path = FARAIMProTests;
 			sourceTree = "<group>";
 		};
+		UITESTGROUP /* FARAIMProUITests */ = {
+			isa = PBXGroup;
+			children = (
+				UITESTREF0001 /* ReaderExperienceTests.swift */,
+			);
+			path = FARAIMProUITests;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -184,6 +211,24 @@
 			productReference = TESTPROD0001 /* FARAIMProTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		UITESTTARGET /* FARAIMProUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CONFIGLIST_UITEST;
+			buildPhases = (
+				UITESTSRCPHASE /* Sources */,
+				UITESTFWKPHASE /* Frameworks */,
+				UITESTRESPHASE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				UITESTDEP /* PBXTargetDependency */,
+			);
+			name = FARAIMProUITests;
+			productName = FARAIMProUITests;
+			productReference = UITESTPROD0001 /* FARAIMProUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -199,6 +244,10 @@
 					};
 					TESTTARGET = {
 						CreatedOnToolsVersion = 15.0;
+						TestTargetID = TARGET0001;
+					};
+					UITESTTARGET = {
+						CreatedOnToolsVersion = 27.2;
 						TestTargetID = TARGET0001;
 					};
 				};
@@ -218,6 +267,7 @@
 			targets = (
 				TARGET0001 /* FARAIMPro */,
 				TESTTARGET /* FARAIMProTests */,
+				UITESTTARGET /* FARAIMProUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -234,6 +284,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		TESTRESPHASE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		UITESTRESPHASE /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -267,6 +324,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		UITESTSRCPHASE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				UITESTBUILD0001 /* ReaderExperienceTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -274,6 +339,11 @@
 			isa = PBXTargetDependency;
 			target = TARGET0001 /* FARAIMPro */;
 			targetProxy = TESTPROXY /* PBXContainerItemProxy */;
+		};
+		UITESTDEP /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = TARGET0001 /* FARAIMPro */;
+			targetProxy = UITESTPROXY /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -463,6 +533,40 @@
 			};
 			name = Release;
 		};
+		CONFIG_UITEST_DEBUG /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.faraimpro.ios.uitests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = FARAIMPro;
+			};
+			name = Debug;
+		};
+		CONFIG_UITEST_RELEASE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.faraimpro.ios.uitests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = FARAIMPro;
+			};
+			name = Release;
+		};
 		CONFIG_TEST_DEBUG /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -525,6 +629,15 @@
 			buildConfigurations = (
 				CONFIG_TEST_DEBUG /* Debug */,
 				CONFIG_TEST_RELEASE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CONFIGLIST_UITEST /* Build configuration list for PBXNativeTarget "FARAIMProUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CONFIG_UITEST_DEBUG /* Debug */,
+				CONFIG_UITEST_RELEASE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

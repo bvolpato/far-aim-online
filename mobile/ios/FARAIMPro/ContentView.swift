@@ -54,11 +54,18 @@ struct ExternalDestination: Identifiable {
     let query: String
 }
 
+enum AppTab: Hashable {
+    case home
+    case far
+    case aim
+    case study
+    case more
+}
+
 struct ContentView: View {
-    @State private var selectedTab = 0
+    @State private var selectedTab: AppTab
     @State private var externalDestination: ExternalDestination?
     @ObservedObject private var dataService = DataService.shared
-    @Environment(\.horizontalSizeClass) var horizontalSizeClass
     @AppStorage("appTheme") private var appTheme: String = "system"
     private let launchRoute: String?
     private let launchQuery: String
@@ -81,121 +88,60 @@ struct ContentView: View {
         }
     }
 
+    // Keep the same navigation trees as the window resizes or Duo folds.
+    @ViewBuilder
+    private var appTabs: some View {
+        if #available(iOS 18.0, *) {
+            TabView(selection: $selectedTab) {
+                Tab("Home", systemImage: "house.fill", value: AppTab.home) {
+                    NavigationStack { HomeView() }
+                }
+                Tab("FAR", systemImage: "doc.text.fill", value: AppTab.far) {
+                    NavigationStack { FARListView() }
+                }
+                Tab("AIM", systemImage: "book.fill", value: AppTab.aim) {
+                    NavigationStack { AIMListView() }
+                }
+                Tab("Study", systemImage: "graduationcap.fill", value: AppTab.study) {
+                    NavigationStack { StudyView() }
+                }
+                Tab("More", systemImage: "ellipsis.circle.fill", value: AppTab.more) {
+                    NavigationStack { MoreView() }
+                }
+            }
+            .tabViewStyle(.sidebarAdaptable)
+        } else {
+            TabView(selection: $selectedTab) {
+                NavigationStack { HomeView() }
+                    .tabItem { Label("Home", systemImage: "house.fill") }
+                    .tag(AppTab.home)
+                NavigationStack { FARListView() }
+                    .tabItem { Label("FAR", systemImage: "doc.text.fill") }
+                    .tag(AppTab.far)
+                NavigationStack { AIMListView() }
+                    .tabItem { Label("AIM", systemImage: "book.fill") }
+                    .tag(AppTab.aim)
+                NavigationStack { StudyView() }
+                    .tabItem { Label("Study", systemImage: "graduationcap.fill") }
+                    .tag(AppTab.study)
+                NavigationStack { MoreView() }
+                    .tabItem { Label("More", systemImage: "ellipsis.circle.fill") }
+                    .tag(AppTab.more)
+            }
+        }
+    }
+
     var body: some View {
-        // Use different tab layouts for iPhone vs iPad
-        // iPad (regular width) shows direct tabs for all primary surfaces.
-        // iPhone (compact width) shows 5 tabs with More containing overflow tools.
         Group {
             if let launchRoute {
                 NavigationStack {
                     launchDestination(for: launchRoute)
                 }
-            } else if horizontalSizeClass == .regular {
-                // iPad: Show all navigation options
-                TabView(selection: $selectedTab) {
-                    NavigationStack {
-                        HomeView()
-                    }
-                    .tabItem {
-                        Label("Home", systemImage: "house.fill")
-                    }
-                    .tag(0)
-
-                    NavigationStack {
-                        FARListView()
-                    }
-                    .tabItem {
-                        Label("FAR", systemImage: "doc.text.fill")
-                    }
-                    .tag(1)
-
-                    NavigationStack {
-                        AIMListView()
-                    }
-                    .tabItem {
-                        Label("AIM", systemImage: "book.fill")
-                    }
-                    .tag(2)
-
-                    NavigationStack {
-                        StudyView()
-                    }
-                    .tabItem {
-                        Label("Study", systemImage: "graduationcap.fill")
-                    }
-                    .tag(3)
-
-                    NavigationStack {
-                        AdvisoryCircularsView()
-                    }
-                    .tabItem {
-                        Label("ACs", systemImage: "doc.badge.gearshape.fill")
-                    }
-                    .tag(4)
-
-                    NavigationStack {
-                        GlossaryView()
-                    }
-                    .tabItem {
-                        Label("Glossary", systemImage: "text.book.closed.fill")
-                    }
-                    .tag(5)
-
-                    NavigationStack {
-                        SearchView(initialSearchText: searchInitialText)
-                    }
-                    .tabItem {
-                        Label("Search", systemImage: "magnifyingglass")
-                    }
-                    .tag(6)
-                }
-                .tint(AviationTheme.accent)
             } else {
-                // iPhone: Use More menu for overflow
-                TabView(selection: $selectedTab) {
-                    NavigationStack {
-                        HomeView()
-                    }
-                    .tabItem {
-                        Label("Home", systemImage: "house.fill")
-                    }
-                    .tag(0)
-
-                    NavigationStack {
-                        FARListView()
-                    }
-                    .tabItem {
-                        Label("FAR", systemImage: "doc.text.fill")
-                    }
-                    .tag(1)
-
-                    NavigationStack {
-                        AIMListView()
-                    }
-                    .tabItem {
-                        Label("AIM", systemImage: "book.fill")
-                    }
-                    .tag(2)
-
-                    NavigationStack {
-                        StudyView()
-                    }
-                    .tabItem {
-                        Label("Study", systemImage: "graduationcap.fill")
-                    }
-                    .tag(3)
-
-                    NavigationStack {
-                        MoreView()
-                    }
-                    .tabItem {
-                        Label("More", systemImage: "ellipsis.circle.fill")
-                    }
-                    .tag(4)
-                }
-                .tint(AviationTheme.accent)
+                appTabs
             }
         }
+        .tint(AviationTheme.accent)
         .preferredColorScheme(selectedColorScheme)
         .onOpenURL { url in
             externalDestination = Self.externalDestination(for: url)
@@ -203,6 +149,13 @@ struct ContentView: View {
         .sheet(item: $externalDestination) { destination in
             NavigationStack {
                 launchDestination(for: destination.route, query: destination.query)
+                    .toolbar {
+                        ToolbarItem(placement: .topBarLeading) {
+                            Button("Done") {
+                                externalDestination = nil
+                            }
+                        }
+                    }
             }
         }
     }
@@ -219,8 +172,10 @@ struct ContentView: View {
         case "far":
             FARListView()
         case "far-part-61":
-            if let part = DataService.shared.farParts.first(where: { $0.part == 61 }) {
-                FARPartDetailView(part: part)
+            if let part = dataService.farParts.first(where: { $0.part == 61 }) {
+                FARPartDetailView(part: part, initialSearchText: query ?? launchQuery)
+            } else if dataService.loadState == .loading {
+                ProgressView("Loading FAR Part 61…")
             } else {
                 FARListView()
             }
@@ -231,7 +186,7 @@ struct ContentView: View {
         case "more":
             MoreView()
         case "advisory-circulars":
-            AdvisoryCircularsView()
+            AdvisoryCircularsView(initialSearchText: query ?? launchQuery)
         case "updates":
             SourceStatusView()
         case "glossary":
@@ -241,28 +196,42 @@ struct ContentView: View {
         default:
             if route.hasPrefix("far:") {
                 let target = String(route.dropFirst(4))
-                let partNumber = Int(target.split(separator: "#", maxSplits: 1).first ?? "")
-                let section = target.split(separator: "#", maxSplits: 1).dropFirst().first.map(String.init)
+                let parts = target.split(separator: "#", maxSplits: 1, omittingEmptySubsequences: false)
+                let partNumber = Int(String(parts[0]))
+                let section: String? = parts.count == 2 && !parts[1].isEmpty ? String(parts[1]) : nil
                 if let partNumber,
                    let part = dataService.farParts.first(where: { $0.part == partNumber }) {
-                    FARPartDetailView(part: part, initialSection: section)
+                    FARPartDetailView(part: part, initialSearchText: query ?? launchQuery, initialSection: section)
+                } else if partNumber != nil && dataService.loadState == .loading {
+                    ProgressView("Loading reference…")
                 } else {
                     FARListView()
                 }
             } else if route.hasPrefix("aim:") {
                 let target = String(route.dropFirst(4))
-                let chapterNumber = Int(target.split(separator: "#", maxSplits: 1).first ?? "")
-                let section = target.split(separator: "#", maxSplits: 1).dropFirst().first.map(String.init)
+                let parts = target.split(separator: "#", maxSplits: 1, omittingEmptySubsequences: false)
+                let chapterNumber = Int(String(parts[0]))
+                let section: String? = parts.count == 2 && !parts[1].isEmpty ? String(parts[1]) : nil
                 if let chapterNumber,
                    let chapter = dataService.aimChapters.first(where: { $0.chapter == chapterNumber }) {
-                    AIMChapterDetailView(chapter: chapter, initialSection: section)
+                    AIMChapterDetailView(chapter: chapter, initialSearchText: query ?? launchQuery, initialSection: section)
+                } else if chapterNumber != nil && dataService.loadState == .loading {
+                    ProgressView("Loading reference…")
                 } else {
                     AIMListView()
                 }
             } else if route.hasPrefix("ac:") {
                 let identifier = String(route.dropFirst(3))
                 if let circular = dataService.advisoryCirculars.first(where: { $0.id == identifier }) {
-                    AdvisoryCircularReaderView(ac: circular, initialSearchText: query ?? "")
+                    if circular.contentPath != nil {
+                        AdvisoryCircularReaderView(ac: circular, initialSearchText: query ?? launchQuery)
+                    } else {
+                        AdvisoryCircularsView(
+                            initialSearchText: (query?.isEmpty == false) ? (query ?? "") : circular.number
+                        )
+                    }
+                } else if dataService.loadState == .loading {
+                    ProgressView("Loading Advisory Circular…")
                 } else {
                     AdvisoryCircularsView(initialSearchText: query ?? "")
                 }
@@ -311,11 +280,16 @@ struct ContentView: View {
                 query: query
             )
         case "advisory-circulars":
-            guard let identifier = segments.dropFirst().first,
-                  identifier.range(of: "^[A-Za-z0-9._~%+-]+$", options: .regularExpression) != nil else {
-                return ExternalDestination(route: "advisory-circulars", query: query)
+            if let identifier = segments.dropFirst().first,
+               identifier.range(of: "^[A-Za-z0-9._~%+-]+$", options: .regularExpression) != nil {
+                return ExternalDestination(route: "ac:\(identifier)", query: query)
             }
-            return ExternalDestination(route: "ac:\(identifier)", query: query)
+            if let section,
+               !section.isEmpty,
+               section.range(of: "^[A-Za-z0-9._~%+-]+$", options: .regularExpression) != nil {
+                return ExternalDestination(route: "ac:\(section)", query: query)
+            }
+            return ExternalDestination(route: "advisory-circulars", query: query)
         case "glossary":
             return ExternalDestination(
                 route: section.map { "glossary:\($0)" } ?? "glossary",
@@ -336,37 +310,310 @@ struct ContentView: View {
         return arguments[valueIndex]
     }
 
-    private static func initialSelectedTab(for route: String?) -> Int {
+    private static func initialSelectedTab(for route: String?) -> AppTab {
         switch route {
         case "far":
-            return 1
+            return .far
         case "aim":
-            return 2
+            return .aim
         case "study":
-            return 3
-        case "advisory-circulars":
-            return 4
-        case "glossary":
-            return 5
-        case "search":
-            return 6
+            return .study
+        case "advisory-circulars", "glossary", "search", "more":
+            return .more
         default:
-            return 0
+            return .home
         }
     }
 }
 
 // MARK: - Study View
 
+struct StudyPackDocument: Transferable {
+    static var transferRepresentation: some TransferRepresentation {
+        DataRepresentation(exportedContentType: .json) { _ in
+            let json = await MainActor.run {
+                DataService.shared.createStudyPackJSON()
+            }
+            return Data(json.utf8)
+        }
+        .suggestedFileName("far-aim-pro-study-pack.json")
+    }
+}
+
+struct StudyMarkDestinationView: View {
+    @ObservedObject var dataService = DataService.shared
+    let mark: StudyMark
+
+    var body: some View {
+        let routeParts = mark.route.split(separator: ":", maxSplits: 1, omittingEmptySubsequences: false)
+        if routeParts.count == 2 {
+            let kind = String(routeParts[0])
+            let target = String(routeParts[1])
+            let anchorParts = target.split(separator: "#", maxSplits: 1, omittingEmptySubsequences: false)
+            let primaryID = String(anchorParts[0])
+            let routeAnchor: String? = anchorParts.count == 2 && !anchorParts[1].isEmpty
+                ? String(anchorParts[1])
+                : nil
+
+            if kind == "far", let partNumber = Int(primaryID) {
+                if let part = dataService.getFARPart(byNumber: partNumber) {
+                    FARPartDetailView(
+                        part: part,
+                        initialSection: routeAnchor ?? fallbackSectionIdentifier
+                    )
+                } else if dataService.loadState == .loading {
+                    ProgressView("Loading FAR Part \(partNumber)…")
+                } else {
+                    Text("Reference unavailable")
+                }
+            } else if kind == "aim", let chapterNumber = Int(primaryID) {
+                if let chapter = dataService.getAIMChapter(byNumber: chapterNumber) {
+                    AIMChapterDetailView(
+                        chapter: chapter,
+                        initialSection: routeAnchor ?? fallbackSectionIdentifier
+                    )
+                } else if dataService.loadState == .loading {
+                    ProgressView("Loading AIM…")
+                } else {
+                    Text("Reference unavailable")
+                }
+            } else if kind == "ac" {
+                if let circular = dataService.advisoryCirculars.first(where: { $0.id == primaryID }) {
+                    if circular.contentPath != nil {
+                        AdvisoryCircularReaderView(ac: circular)
+                    } else {
+                        AdvisoryCircularsView(initialSearchText: circular.number)
+                    }
+                } else if dataService.loadState == .loading {
+                    ProgressView("Loading Advisory Circular…")
+                } else {
+                    AdvisoryCircularsView(initialSearchText: fallbackACQuery)
+                }
+            } else {
+                Text("Reference unavailable")
+            }
+        } else if mark.type == "ac" || mark.route == "ac" {
+            AdvisoryCircularsView(initialSearchText: fallbackACQuery)
+        } else {
+            Text("Reference unavailable")
+        }
+    }
+
+    private var fallbackSectionIdentifier: String? {
+        switch mark.type {
+        case "far":
+            let cleaned = mark.reference
+                .replacingOccurrences(of: "§", with: "")
+                .trimmingCharacters(in: .whitespacesAndNewlines)
+            return cleaned.isEmpty ? nil : cleaned
+        case "aim":
+            let cleaned = mark.reference
+                .replacingOccurrences(of: "AIM", with: "")
+                .trimmingCharacters(in: .whitespacesAndNewlines)
+            return cleaned.isEmpty ? nil : cleaned
+        default:
+            return nil
+        }
+    }
+
+    private var fallbackACQuery: String {
+        mark.reference
+            .replacingOccurrences(of: "AC ", with: "")
+            .trimmingCharacters(in: .whitespacesAndNewlines)
+    }
+}
+
+private enum StudyMarksFilter: String, CaseIterable, Identifiable {
+    case all = "All"
+    case saved = "Saved"
+    case highlighted = "Marked"
+    case notes = "Notes"
+    case reviewed = "Reviewed"
+
+    var id: String { rawValue }
+}
+
+struct StudyMarksListView: View {
+    @ObservedObject var dataService = DataService.shared
+    @State private var searchText = ""
+    @State private var selectedFilter: StudyMarksFilter = .all
+    @State private var markPendingRemoval: StudyMark?
+
+    private var activeMarks: [StudyMark] {
+        dataService.studyMarks.filter {
+            $0.saved || $0.highlighted == true || !$0.note.isEmpty || $0.reviewedAt != nil
+        }
+    }
+
+    private var filteredMarks: [StudyMark] {
+        activeMarks.filter { mark in
+            let matchesCategory: Bool
+            switch selectedFilter {
+            case .all:
+                matchesCategory = true
+            case .saved:
+                matchesCategory = mark.saved
+            case .highlighted:
+                matchesCategory = mark.highlighted == true
+            case .notes:
+                matchesCategory = !mark.note.isEmpty
+            case .reviewed:
+                matchesCategory = mark.reviewedAt != nil
+            }
+            guard matchesCategory else { return false }
+            guard !searchText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty else {
+                return true
+            }
+            return SearchQueryMatcher.matches(
+                text: "\(mark.reference) \(mark.title) \(mark.note)",
+                query: searchText
+            )
+        }
+    }
+
+    var body: some View {
+        ScrollView {
+            VStack(alignment: .leading, spacing: 14) {
+                Picker("Filter", selection: $selectedFilter) {
+                    ForEach(StudyMarksFilter.allCases) { option in
+                        Text(option.rawValue).tag(option)
+                    }
+                }
+                .pickerStyle(.menu)
+                .padding(.horizontal)
+
+                if filteredMarks.isEmpty {
+                    ContentUnavailableView(
+                        activeMarks.isEmpty ? "No Saved References" : "No Matching Items",
+                        systemImage: activeMarks.isEmpty ? "bookmark" : "magnifyingglass",
+                        description: Text(
+                            activeMarks.isEmpty
+                                ? "Bookmark FAR, AIM, or Advisory Circular sections to review them here."
+                                : "Try a different filter or search query."
+                        )
+                    )
+                    .padding(.top, 36)
+                } else {
+                    ForEach(filteredMarks) { mark in
+                        VStack(alignment: .leading, spacing: 10) {
+                            HStack(spacing: 8) {
+                                Text(mark.reference)
+                                    .font(.caption.weight(.semibold))
+                                    .padding(.horizontal, 8)
+                                    .padding(.vertical, 4)
+                                    .background(Color.blue.opacity(0.12))
+                                    .foregroundColor(.blue)
+                                    .cornerRadius(8)
+
+                                if mark.saved {
+                                    Label("saved", systemImage: "bookmark.fill")
+                                        .font(.caption)
+                                        .foregroundColor(AviationTheme.accent)
+                                }
+                                if mark.reviewedAt != nil {
+                                    Label("reviewed", systemImage: "checkmark.circle.fill")
+                                        .font(.caption)
+                                        .foregroundColor(.green)
+                                }
+                                if mark.highlighted == true {
+                                    Label("highlighted", systemImage: "star.fill")
+                                        .font(.caption)
+                                        .foregroundColor(.yellow)
+                                }
+                            }
+
+                            NavigationLink(destination: StudyMarkDestinationView(mark: mark)) {
+                                HStack {
+                                    VStack(alignment: .leading, spacing: 4) {
+                                        Text(mark.title)
+                                            .font(.subheadline.weight(.semibold))
+                                            .foregroundColor(.primary)
+                                            .multilineTextAlignment(.leading)
+                                        if !mark.note.isEmpty {
+                                            Text(mark.note)
+                                                .font(.caption)
+                                                .foregroundColor(.secondary)
+                                                .multilineTextAlignment(.leading)
+                                        }
+                                    }
+                                    Spacer()
+                                    Image(systemName: "chevron.right")
+                                        .foregroundColor(.secondary)
+                                }
+                            }
+
+                            HStack {
+                                Button {
+                                    dataService.markReviewed(StudyMarkInput(
+                                        type: mark.type,
+                                        reference: mark.reference,
+                                        title: mark.title,
+                                        route: mark.route
+                                    ))
+                                } label: {
+                                    Label("Review", systemImage: "checkmark.circle")
+                                }
+                                .buttonStyle(.bordered)
+
+                                Button(role: .destructive) {
+                                    markPendingRemoval = mark
+                                } label: {
+                                    Label("Remove", systemImage: "trash")
+                                }
+                                .buttonStyle(.bordered)
+                            }
+                        }
+                        .padding()
+                        .background(AviationTheme.raisedSurface)
+                        .clipShape(RoundedRectangle(cornerRadius: 18, style: .continuous))
+                        .overlay {
+                            RoundedRectangle(cornerRadius: 18, style: .continuous)
+                                .stroke(AviationTheme.border, lineWidth: 1)
+                        }
+                        .padding(.horizontal)
+                    }
+                }
+            }
+            .padding(.vertical)
+        }
+        .scrollDismissesKeyboard(.interactively)
+        .navigationTitle("Saved & Notes (\(activeMarks.count))")
+        .navigationBarTitleDisplayMode(.inline)
+        .searchable(text: $searchText, prompt: "Filter saved items and notes")
+        .aviationScreen()
+        .confirmationDialog(
+            markPendingRemoval.map { "Remove \($0.reference)?" } ?? "Remove study mark?",
+            isPresented: Binding(
+                get: { markPendingRemoval != nil },
+                set: { if !$0 { markPendingRemoval = nil } }
+            ),
+            titleVisibility: .visible
+        ) {
+            Button("Remove", role: .destructive) {
+                if let mark = markPendingRemoval {
+                    dataService.removeStudyMark(key: mark.key)
+                    markPendingRemoval = nil
+                }
+            }
+            Button("Cancel", role: .cancel) {
+                markPendingRemoval = nil
+            }
+        } message: {
+            Text("This clears bookmarks, highlights, review history, and personal notes for this reference.")
+        }
+    }
+}
+
 struct StudyView: View {
     @ObservedObject var dataService = DataService.shared
     @State private var importingStudyPack = false
     @State private var studyPackStatus: String?
+    @State private var markPendingRemoval: StudyMark?
 
     var body: some View {
-        let reviewQueue = dataService.studyMarks
+        let allActiveMarks = dataService.studyMarks
             .filter { $0.saved || $0.highlighted == true || !$0.note.isEmpty || $0.reviewedAt != nil }
-            .prefix(6)
+        let reviewQueue = allActiveMarks.prefix(6)
         let savedCount = dataService.studyMarks.filter { $0.saved }.count
         let highlightedCount = dataService.studyMarks.filter { $0.highlighted == true }.count
         let notesCount = dataService.studyMarks.filter { !$0.note.isEmpty }.count
@@ -461,9 +708,18 @@ struct StudyView: View {
 
                 // Saved Study Queue
                 VStack(alignment: .leading, spacing: 12) {
-                    Text("Saved & Notes")
-                        .font(.headline)
-                        .padding(.horizontal)
+                    HStack {
+                        Text("Saved & Notes")
+                            .font(.headline)
+                        Spacer()
+                        if !allActiveMarks.isEmpty {
+                            NavigationLink(destination: StudyMarksListView()) {
+                                Text("View all (\(allActiveMarks.count))")
+                                    .font(.subheadline.weight(.medium))
+                            }
+                        }
+                    }
+                    .padding(.horizontal)
 
                     HStack(spacing: 8) {
                         StudyStatBadge(label: "Saved", value: savedCount)
@@ -482,7 +738,10 @@ struct StudyView: View {
                         }
                         .buttonStyle(.bordered)
 
-                        ShareLink(item: dataService.createStudyPackJSON()) {
+                        ShareLink(
+                            item: StudyPackDocument(),
+                            preview: SharePreview("FAR/AIM Pro Study Pack")
+                        ) {
                             Label("Export pack", systemImage: "square.and.arrow.up")
                                 .frame(maxWidth: .infinity)
                         }
@@ -556,7 +815,7 @@ struct StudyView: View {
                                     }
                                 }
 
-                                NavigationLink(destination: destination(for: mark)) {
+                                NavigationLink(destination: StudyMarkDestinationView(mark: mark)) {
                                     HStack {
                                         VStack(alignment: .leading, spacing: 4) {
                                             Text(mark.title)
@@ -589,7 +848,7 @@ struct StudyView: View {
                                     .buttonStyle(.bordered)
 
                                     Button(role: .destructive) {
-                                        dataService.removeStudyMark(key: mark.key)
+                                        markPendingRemoval = mark
                                     } label: {
                                         Label("Remove", systemImage: "trash")
                                     }
@@ -603,6 +862,18 @@ struct StudyView: View {
                                 RoundedRectangle(cornerRadius: 18, style: .continuous)
                                     .stroke(AviationTheme.border, lineWidth: 1)
                             }
+                            .padding(.horizontal)
+                        }
+
+                        if allActiveMarks.count > reviewQueue.count {
+                            NavigationLink(destination: StudyMarksListView()) {
+                                Label(
+                                    "View all \(allActiveMarks.count) saved items",
+                                    systemImage: "list.bullet"
+                                )
+                                .frame(maxWidth: .infinity)
+                            }
+                            .buttonStyle(.bordered)
                             .padding(.horizontal)
                         }
                     }
@@ -728,6 +999,26 @@ struct StudyView: View {
         .navigationTitle("Study")
         .navigationBarTitleDisplayMode(.large)
         .aviationScreen()
+        .confirmationDialog(
+            markPendingRemoval.map { "Remove \($0.reference)?" } ?? "Remove study mark?",
+            isPresented: Binding(
+                get: { markPendingRemoval != nil },
+                set: { if !$0 { markPendingRemoval = nil } }
+            ),
+            titleVisibility: .visible
+        ) {
+            Button("Remove", role: .destructive) {
+                if let mark = markPendingRemoval {
+                    dataService.removeStudyMark(key: mark.key)
+                    markPendingRemoval = nil
+                }
+            }
+            Button("Cancel", role: .cancel) {
+                markPendingRemoval = nil
+            }
+        } message: {
+            Text("This clears bookmarks, highlights, review history, and personal notes for this reference.")
+        }
         .fileImporter(isPresented: $importingStudyPack, allowedContentTypes: [.json, .plainText]) { result in
             switch result {
             case .success(let url):
@@ -740,45 +1031,6 @@ struct StudyView: View {
             case .failure:
                 studyPackStatus = "Import failed"
             }
-        }
-    }
-
-    @ViewBuilder
-    private func destination(for mark: StudyMark) -> some View {
-        let parts = mark.route.split(separator: ":")
-        if parts.count == 2,
-           String(parts[0]) == "far",
-           let partId = Int(String(parts[1])),
-           let part = dataService.getFARPart(byNumber: partId) {
-            FARPartDetailView(part: part, initialSection: sectionIdentifier(for: mark))
-        } else if parts.count == 2,
-                  String(parts[0]) == "aim",
-                  let chapterId = Int(String(parts[1])),
-                  let chapter = dataService.getAIMChapter(byNumber: chapterId) {
-            AIMChapterDetailView(chapter: chapter, initialSection: sectionIdentifier(for: mark))
-        } else if parts.count == 2,
-                  String(parts[0]) == "ac",
-                  let circular = dataService.advisoryCirculars.first(where: {
-                      $0.id == String(parts[1])
-                  }), circular.contentPath != nil {
-            AdvisoryCircularReaderView(ac: circular)
-        } else if mark.type == "ac" || mark.route == "ac" {
-            AdvisoryCircularsView()
-        } else {
-            Text("Reference unavailable")
-        }
-    }
-
-    private func sectionIdentifier(for mark: StudyMark) -> String? {
-        switch mark.type {
-        case "far":
-            return mark.reference.replacingOccurrences(of: "§", with: "")
-                .trimmingCharacters(in: .whitespacesAndNewlines)
-        case "aim":
-            return mark.reference.replacingOccurrences(of: "AIM", with: "")
-                .trimmingCharacters(in: .whitespacesAndNewlines)
-        default:
-            return nil
         }
     }
 }
@@ -1019,14 +1271,15 @@ struct AdvisoryCircularsView: View {
     }
 
     private func updateFilteredCirculars() {
-        let query = searchText.trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
+        let query = searchText.trimmingCharacters(in: .whitespacesAndNewlines)
         let matches: [AdvisoryCircular]
 
         if query.isEmpty {
             matches = dataService.advisoryCirculars
         } else {
             matches = dataService.advisoryCirculars.filter { ac in
-                [
+                let searchable = [
+                    "AC \(ac.number)",
                     ac.number,
                     ac.title,
                     ac.summary,
@@ -1036,7 +1289,8 @@ struct AdvisoryCircularsView: View {
                     ac.replaces ?? "",
                     ac.relatedCfr.joined(separator: " "),
                     ac.tags.joined(separator: " ")
-                ].contains { $0.lowercased().contains(query) }
+                ].joined(separator: " ")
+                return SearchQueryMatcher.matches(text: searchable, query: query)
             }
         }
 
@@ -1099,6 +1353,9 @@ struct AdvisoryCircularsView: View {
         .onAppear {
             updateFilteredCirculars()
         }
+        .onChange(of: dataService.advisoryCirculars.count) {
+            updateFilteredCirculars()
+        }
         .onChange(of: searchText) {
             updateFilteredCirculars()
         }
@@ -1150,8 +1407,9 @@ struct AdvisoryCircularRow: View {
                 Button(action: { withAnimation { isExpanded.toggle() } }) {
                     Image(systemName: isExpanded ? "chevron.up" : "chevron.down")
                         .foregroundColor(.secondary)
-                        .padding(4)
+                        .frame(minWidth: 44, minHeight: 44)
                 }
+                .accessibilityLabel("\(isExpanded ? "Hide" : "Show") details for AC \(ac.number)")
             }
 
             if ac.contentPath != nil {
@@ -1222,7 +1480,9 @@ struct AdvisoryCircularRow: View {
 }
 
 struct AdvisoryCircularReaderView: View {
+    private var readerTypography = ReaderTypography()
     let ac: AdvisoryCircular
+    private let initialSearchText: String
     @State private var searchText = ""
     @State private var content: AdvisoryCircularContent?
     @State private var finishedLoading = false
@@ -1233,27 +1493,67 @@ struct AdvisoryCircularReaderView: View {
 
     init(ac: AdvisoryCircular, initialSearchText: String = "") {
         self.ac = ac
+        self.initialSearchText = initialSearchText
         _searchText = State(initialValue: initialSearchText)
+    }
+
+    static func matchingPages(
+        in pages: [AdvisoryCircularPage],
+        ac: AdvisoryCircular,
+        query: String,
+        initialQuery: String = ""
+    ) -> [AdvisoryCircularPage] {
+        let trimmed = query.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard !trimmed.isEmpty else { return pages }
+
+        let fullMatches = pages.filter { page in
+            SearchQueryMatcher.matches(text: page.text, query: trimmed)
+        }
+        if !fullMatches.isEmpty {
+            return fullMatches
+        }
+
+        let trimmedInitial = initialQuery.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard !trimmedInitial.isEmpty,
+              trimmed.caseInsensitiveCompare(trimmedInitial) == .orderedSame else {
+            return []
+        }
+
+        let allTokens = SearchQueryMatcher.tokens(for: trimmed)
+        let metadataText = "AC \(ac.number) \(ac.title) \(DataService.advisoryCircularSearchText(ac))".lowercased()
+        guard allTokens.allSatisfy({ token in
+            SearchQueryMatcher.textContainsToken(metadataText, token: token)
+                || pages.contains { SearchQueryMatcher.textContainsToken($0.text.lowercased(), token: token) }
+        }) else {
+            return []
+        }
+        let specificTokens = allTokens.filter { $0 != "ac" }
+        let fallbackTokens = specificTokens.isEmpty ? allTokens : specificTokens
+        if !fallbackTokens.isEmpty {
+            let tokenMatches = pages.filter { page in
+                let lower = page.text.lowercased()
+                return fallbackTokens.contains { SearchQueryMatcher.textContainsToken(lower, token: $0) }
+            }
+            if !tokenMatches.isEmpty {
+                return tokenMatches
+            }
+        }
+
+        if SearchQueryMatcher.matches(text: metadataText, query: trimmed) {
+            return pages
+        }
+
+        return []
     }
 
     private var pages: [AdvisoryCircularPage] {
         guard let content else { return [] }
-        let query = searchText.trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
-        if query.isEmpty { return content.pages }
-        let tokens = AdvisoryCircularSearchEngine.tokens(for: query)
-        return content.pages.filter { page in
-            let text = page.text.lowercased()
-            if tokens.isEmpty { return text.contains(query) }
-            return tokens.contains { text.contains($0) }
-        }
-    }
-
-    private func highlightQuery(in text: String) -> String {
-        let query = searchText.trimmingCharacters(in: .whitespacesAndNewlines)
-        let lowercasedText = text.lowercased()
-        if lowercasedText.contains(query.lowercased()) { return query }
-        return AdvisoryCircularSearchEngine.tokens(for: query)
-            .first { lowercasedText.contains($0) } ?? query
+        return Self.matchingPages(
+            in: content.pages,
+            ac: ac,
+            query: searchText,
+            initialQuery: initialSearchText
+        )
     }
 
     private var officialURL: URL? {
@@ -1268,10 +1568,11 @@ struct AdvisoryCircularReaderView: View {
     }
 
     var body: some View {
-        let readerPreferences = ReaderPreferences(
+        let readerPreferences = readerTypography.preferences(
             fontScaleIndex: readerFontScaleIndex,
             density: ReaderDensity(rawValue: readerDensityRawValue) ?? .standard
         )
+        let visiblePages = pages
 
         Group {
             if let content {
@@ -1282,11 +1583,17 @@ struct AdvisoryCircularReaderView: View {
                                 .font(.title2.bold())
                             Text(ac.summary)
                                 .foregroundColor(.secondary)
-                            Text(searchText.isEmpty
+                            Text(searchText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
                                  ? pageSummary(for: content)
-                                 : "\(pages.count) matching pages")
+                                 : "\(visiblePages.count) matching pages")
                                 .font(.caption)
                                 .foregroundColor(.secondary)
+                            StudyMarkTools(input: StudyMarkInput(
+                                type: "ac",
+                                reference: "AC \(ac.number)",
+                                title: ac.title,
+                                route: "ac:\(ac.id)"
+                            ))
                             if content.status == "partial" {
                                 Label(
                                     "Extracted text is incomplete. Use official FAA PDF for omitted pages, figures, tables, and source formatting.",
@@ -1303,16 +1610,16 @@ struct AdvisoryCircularReaderView: View {
                                 systemImage: "doc.text.magnifyingglass",
                                 description: Text("Use official FAA PDF for this document.")
                             )
-                        } else if pages.isEmpty {
+                        } else if visiblePages.isEmpty {
                             ContentUnavailableView.search(text: searchText)
                         } else {
-                            ForEach(pages) { page in
+                            ForEach(visiblePages) { page in
                                 VStack(alignment: .leading, spacing: 8) {
                                     Text("Page \(page.page)")
                                         .font(.caption.weight(.semibold))
                                         .foregroundColor(AviationTheme.accent)
                                         .id(page.page)
-                                    HighlightText(text: page.text, query: highlightQuery(in: page.text))
+                                    HighlightText(text: page.text, query: searchText)
                                         .font(readerPreferences.bodyFont)
                                         .lineSpacing(readerPreferences.lineSpacing)
                                         .textSelection(.enabled)
@@ -1321,7 +1628,9 @@ struct AdvisoryCircularReaderView: View {
                             }
                         }
                     }
+                    .frame(maxWidth: 900, alignment: .leading)
                     .padding()
+                    .frame(maxWidth: .infinity)
                 }
                 .scrollDismissesKeyboard(.interactively)
                 .searchable(text: $searchText, prompt: "Find in this Advisory Circular")
@@ -1331,26 +1640,23 @@ struct AdvisoryCircularReaderView: View {
                             Text("Aa")
                                 .font(.title3.weight(.medium))
                         }
-                        .popover(isPresented: $showReaderControls) {
-                            VStack {
-                                ReaderControls(
-                                    fontScaleIndex: $readerFontScaleIndex,
-                                    densityRawValue: $readerDensityRawValue
-                                )
-                                .padding()
-                            }
-                            .frame(width: 320)
-                            .presentationCompactAdaptation(.popover)
+                        .accessibilityLabel("Reader appearance")
+                        .accessibilityIdentifier("reader-controls")
+                        .sheet(isPresented: $showReaderControls) {
+                            ReaderControlsSheet(
+                                fontScaleIndex: $readerFontScaleIndex,
+                                densityRawValue: $readerDensityRawValue
+                            )
                         }
 
                         if let officialURL {
                             Link(destination: officialURL) {
-                                Image(systemName: "arrow.up.right.square")
+                                Label("Open FAA page", systemImage: "arrow.up.right.square")
                             }
                         }
                         if let url = URL(string: content.pdfUrl) {
                             Link(destination: url) {
-                                Image(systemName: "doc.text")
+                                Label("Open official PDF", systemImage: "doc.text")
                             }
                         }
                     }
@@ -1730,11 +2036,11 @@ struct SourceStatusView: View {
 
 struct HomeView: View {
     @ObservedObject var dataService = DataService.shared
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
 
-    private let libraryColumns = [
-        GridItem(.flexible(), spacing: 12),
-        GridItem(.flexible(), spacing: 12)
-    ]
+    private var libraryColumns: [GridItem] {
+        Array(repeating: GridItem(.flexible(), spacing: 12), count: dynamicTypeSize.isAccessibilitySize ? 1 : 2)
+    }
 
     var body: some View {
         ScrollView {

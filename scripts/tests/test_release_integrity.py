@@ -67,6 +67,10 @@ def expected_mobile_files() -> dict[Path, Path]:
 
 def assert_mobile_bundle_matches_shared_data(bundle_dir: Path) -> None:
     expected = expected_mobile_files()
+    if bundle_dir == IOS_DATA_DIR:
+        expected[Path("search/inverted-index-ac-exact.json")] = (
+            ROOT_DIR / "web/public/inverted-index-ac-exact.json"
+        )
     actual = {
         path.relative_to(bundle_dir): path
         for path in bundle_dir.rglob("*")
@@ -76,6 +80,28 @@ def assert_mobile_bundle_matches_shared_data(bundle_dir: Path) -> None:
     assert actual.keys() == expected.keys()
     for relative_path, source_path in expected.items():
         assert digest(actual[relative_path]) == digest(source_path), str(relative_path)
+
+
+def test_ac_short_token_postings_match_word_boundaries_in_full_text():
+    circulars = load_json(DATA_DIR / "advisory-circulars/index.json")["items"]
+    exact_index = load_json(ROOT_DIR / "web/public/inverted-index-ac-exact.json")
+    patterns = {token: re.compile(rf"(?<![^\W_]){token}(?![^\W_])") for token in ("da", "20")}
+    expected = {token: [] for token in patterns}
+    for document_id, circular in enumerate(circulars):
+        pages = []
+        if circular.get("contentPath"):
+            pages = load_json(DATA_DIR / "advisory-circulars" / circular["contentPath"])["pages"]
+        text = " ".join([
+            "AC", circular["number"], circular["title"], circular["summary"],
+            circular["category"], circular["status"], circular["office"],
+            *circular.get("relatedCfr", []), *circular.get("tags", []),
+            *(page["text"] for page in pages),
+        ]).lower()
+        for token, pattern in patterns.items():
+            if pattern.search(text):
+                expected[token].append(document_id)
+    for token in patterns:
+        assert exact_index[token] == expected[token], token
 
 
 def test_reference_catalogs_match_structured_source_status():

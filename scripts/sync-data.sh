@@ -72,6 +72,7 @@ sync_ios() {
     # Copy FAA Advisory Circular metadata and extracted offline content
     cp -R "$DATA_DIR/advisory-circulars/." "$IOS_DATA_DIR/advisory-circulars/"
     cp "$PROJECT_ROOT/web/public/inverted-index-ac.json" "$IOS_DATA_DIR/search/"
+    cp "$PROJECT_ROOT/web/public/inverted-index-ac-exact.json" "$IOS_DATA_DIR/search/"
 
     cp "$DATA_DIR/study-paths.json" "$IOS_DATA_DIR/"
     cp "$DATA_DIR/source-status.json" "$IOS_DATA_DIR/"

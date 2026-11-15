@@ -405,52 +405,45 @@ struct QuizResultsView: View {
 
 struct AirplaneCelebrationView: View {
     let show: Bool
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @State private var isVisible = false
 
     var body: some View {
         Group {
-            if isVisible {
+            if isVisible && !reduceMotion {
                 GeometryReader { geometry in
-                    ZStack {
-                        // Airplanes
-                        ForEach(0..<8) { i in
+                    ZStack(alignment: .topLeading) {
+                        ForEach(0..<8, id: \.self) { _ in
                             FlyingAirplane(
                                 delay: Double.random(in: 0...2),
-                                screenWidth: geometry.size.width
+                                screenWidth: max(geometry.size.width, 1),
+                                screenHeight: max(geometry.size.height, 1)
                             )
                         }
 
-                        // Confetti
-                        ForEach(0..<50) { i in
+                        ForEach(0..<50, id: \.self) { _ in
                             FallingConfetti(
                                 delay: Double.random(in: 0...3),
-                                screenWidth: geometry.size.width
+                                screenWidth: max(geometry.size.width, 1),
+                                screenHeight: max(geometry.size.height, 1)
                             )
                         }
                     }
+                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
                 }
-                .allowsHitTesting(false) // Let touches pass through
+                .allowsHitTesting(false)
+                .accessibilityHidden(true)
             }
         }
-        // Using onAppear on the ZStack or similar container in parent might be better,
-        // but here we rely on the `show` prop to trigger visibility
-        // We can use onChange of show
-        .onChange(of: show) { _, newValue in
-            if newValue {
-                isVisible = true
-                // Hide after 6 seconds
-                DispatchQueue.main.asyncAfter(deadline: .now() + 6) {
-                    isVisible = false
-                }
+        .task(id: "\(show)-\(reduceMotion)") {
+            guard show, !reduceMotion else {
+                isVisible = false
+                return
             }
-        }
-        .onAppear {
-            if show {
-                isVisible = true
-                DispatchQueue.main.asyncAfter(deadline: .now() + 6) {
-                    isVisible = false
-                }
-            }
+            isVisible = true
+            try? await Task.sleep(for: .seconds(6))
+            guard !Task.isCancelled else { return }
+            isVisible = false
         }
     }
 }
@@ -458,10 +451,10 @@ struct AirplaneCelebrationView: View {
 struct FlyingAirplane: View {
     let delay: Double
     let screenWidth: CGFloat
+    let screenHeight: CGFloat
 
     @State private var offset: CGSize = .zero
     @State private var opacity: Double = 0
-    @State private var startY: CGFloat = CGFloat.random(in: 100...500)
 
     var body: some View {
         Image(systemName: "airplane")
@@ -470,7 +463,9 @@ struct FlyingAirplane: View {
             .offset(x: offset.width, y: offset.height)
             .opacity(opacity)
             .onAppear {
-                // Initial state
+                let minY = min(100, screenHeight * 0.2)
+                let maxY = max(minY + 1, screenHeight * 0.8)
+                let startY = CGFloat.random(in: minY...maxY)
                 offset = CGSize(width: -50, height: startY)
 
                 withAnimation(.linear(duration: 0.5).delay(delay)) {
@@ -488,11 +483,11 @@ struct FlyingAirplane: View {
 struct FallingConfetti: View {
     let delay: Double
     let screenWidth: CGFloat
+    let screenHeight: CGFloat
 
     @State private var offset: CGSize = .zero
     @State private var opacity: Double = 0
-    @State private var startX: CGFloat = CGFloat.random(in: 0...UIScreen.main.bounds.width)
-    @State private var color: Color = [.red, .blue, .green, .yellow, .purple, .orange].randomElement()!
+    @State private var color: Color = [.red, .blue, .green, .yellow, .purple, .orange].randomElement() ?? .blue
 
     var body: some View {
         Circle()
@@ -501,6 +496,7 @@ struct FallingConfetti: View {
             .offset(x: offset.width, y: offset.height)
             .opacity(opacity)
             .onAppear {
+                let startX = CGFloat.random(in: 0...max(screenWidth, 1))
                 offset = CGSize(width: startX, height: -20)
 
                 withAnimation(.linear(duration: 0.2).delay(delay)) {
@@ -508,7 +504,7 @@ struct FallingConfetti: View {
                 }
 
                 withAnimation(.linear(duration: 3).delay(delay)) {
-                    offset = CGSize(width: startX, height: UIScreen.main.bounds.height + 20)
+                    offset = CGSize(width: startX, height: screenHeight + 20)
                     opacity = 0
                 }
             }

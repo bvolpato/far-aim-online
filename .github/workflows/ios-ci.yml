@@ -16,40 +16,40 @@ concurrency:
 
 jobs:
   test-and-build:
-    name: iOS simulator tests and device build
-    runs-on: macos-26
+    name: iOS tests (${{ matrix.device }})
+    runs-on: xcode-27
     timeout-minutes: 45
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - device: iPhone 18 Pro
+            artifact: iphone
+          - device: iPhone Duo
+            artifact: duo
+          - device: iPad Pro 11-inch (M5)
+            artifact: ipad
     steps:
       - name: Check out source
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
-      - name: Select and validate Xcode 26 and iOS 26 SDK
+      - name: Select stable Xcode 27.2 and iOS 27.2 SDK
         shell: bash
         run: |
           set -euo pipefail
-          xcode_major="$(xcodebuild -version | awk '$1 == "Xcode" { split($2, version, "."); print version[1] }')"
-          if [[ -z "$xcode_major" ]]; then
-            echo 'Could not determine the selected Xcode version.' >&2
+          xcode_app=/Applications/Xcode_27.2.app
+          [[ -d "$xcode_app" ]] || { echo 'error: Xcode 27.2 is required' >&2; exit 1; }
+          sudo xcode-select --switch "$xcode_app/Contents/Developer"
+          xcode_version=$(xcodebuild -version)
+          echo "$xcode_version"
+          if [[ "$xcode_version" != $'Xcode 27.2\nBuild version 27B52' ]]; then
+            echo 'error: stable Xcode 27.2 (27B52) is required' >&2
             exit 1
           fi
-          if (( xcode_major < 26 )); then
-            xcode_app="$(find /Applications -maxdepth 1 -type d -name 'Xcode_26*.app' -print | sort -V | tail -n 1)"
-            if [[ -z "$xcode_app" ]]; then
-              echo "Xcode $xcode_major is selected and no Xcode 26 installation is available." >&2
-              exit 1
-            fi
-            sudo xcode-select --switch "$xcode_app/Contents/Developer"
-          fi
-
-          xcode_version="$(xcodebuild -version | awk '$1 == "Xcode" { print $2 }')"
-          sdk_version="$(xcrun --sdk iphoneos --show-sdk-version)"
-          xcode_major="${xcode_version%%.*}"
-          sdk_major="${sdk_version%%.*}"
-          if (( xcode_major < 26 || sdk_major < 26 )); then
-            echo "Xcode 26+ and iOS SDK 26+ are required; found Xcode $xcode_version and iOS SDK $sdk_version." >&2
+          [[ "$(xcrun --sdk iphoneos --show-sdk-version)" == 27.2 ]] || {
+            echo 'error: iOS 27.2 SDK is required for Duo validation' >&2
             exit 1
-          fi
-          printf 'Using Xcode %s and iOS SDK %s.\n' "$xcode_version" "$sdk_version"
+          }
 
       - name: Show Xcode and simulator versions
         run: |
@@ -59,18 +59,36 @@ jobs:
       - name: Sync shared data to iOS resources
         run: ./scripts/sync-data.sh ios
 
-      - name: Select an available iPhone simulator
+      - name: Prepare the required iOS 27.2 simulator
         id: simulator
         shell: bash
+        env:
+          IOS_SIMULATOR: ${{ matrix.device }}
         run: |
-          simulator_id="$(xcrun simctl list devices available --json | jq -r '[.devices[][] | select(.isAvailable == true and (.name | startswith("iPhone"))) | .udid] | first // empty')"
+          set -euo pipefail
+          runtime=com.apple.CoreSimulator.SimRuntime.iOS-27-2
+          xcrun simctl list runtimes --json | jq -e --arg runtime "$runtime" \
+            '.runtimes[] | select(.identifier == $runtime and .isAvailable)' >/dev/null || {
+              echo "error: required simulator runtime $runtime is unavailable" >&2
+              exit 1
+            }
+          simulator_id=$(xcrun simctl list devices available --json | jq -r \
+            --arg name "$IOS_SIMULATOR" --arg runtime "$runtime" \
+            '[.devices[$runtime][]? | select(.name == $name and .isAvailable)][0].udid // empty')
           if [[ -z "$simulator_id" ]]; then
-            echo 'No available iPhone simulator found.' >&2
-            exit 1
+            device_type=$(xcrun simctl list devicetypes --json | jq -r --arg name "$IOS_SIMULATOR" \
+              '[.devicetypes[] | select(.name == $name)][0].identifier // empty')
+            [[ -n "$device_type" ]] || {
+              echo "error: required simulator type $IOS_SIMULATOR is unavailable" >&2
+              exit 1
+            }
+            simulator_id=$(xcrun simctl create "$IOS_SIMULATOR" "$device_type" "$runtime")
           fi
+          xcrun simctl bootstatus "$simulator_id" -b
+          printf 'Testing %s on %s (%s).\n' "$IOS_SIMULATOR" "$runtime" "$simulator_id"
           echo "id=$simulator_id" >> "$GITHUB_OUTPUT"
 
-      - name: Run iOS unit tests on simulator
+      - name: Run iOS unit and reader UI tests
         working-directory: mobile/ios
         env:
           SIMULATOR_ID: ${{ steps.simulator.outputs.id }}
@@ -82,9 +100,12 @@ jobs:
             -destination "id=$SIMULATOR_ID" \
             -configuration Debug \
             -derivedDataPath "$RUNNER_TEMP/ios-derived-data" \
+            -resultBundlePath "$RUNNER_TEMP/ios-tests.xcresult" \
+            -parallel-testing-enabled NO \
             CODE_SIGNING_ALLOWED=NO
 
       - name: Build unsigned iOS device app
+        if: matrix.artifact == 'iphone'
         working-directory: mobile/ios
         run: |
           set -o pipefail
@@ -97,3 +118,12 @@ jobs:
             CODE_SIGNING_ALLOWED=NO \
             CODE_SIGNING_REQUIRED=NO \
             CODE_SIGN_IDENTITY=''
+
+      - name: Upload native test results
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: ios-tests-${{ matrix.artifact }}
+          path: ${{ runner.temp }}/ios-tests.xcresult
+          retention-days: 7
+          if-no-files-found: ignore

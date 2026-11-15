@@ -19,8 +19,8 @@ Screenshots are in `store/ios/screenshots/`.
 ## Native CI Archive
 
 The `iOS TestFlight archive` workflow uses Xcode 27.2 and iOS 27.2. It syncs the
-shared data, runs the `FARAIMProTests` XCTest target on an iPhone simulator, and
-archives an unsigned device build. The artifact includes the `.xcarchive`,
+shared data, runs `FARAIMProTests` and `FARAIMProUITests/ReaderExperienceTests` on
+iPhone Duo, and archives an unsigned device build. The artifact includes the `.xcarchive`,
 dSYMs, the target's signing entitlements, and a provenance file with its source
 commit and Apple SDK details. No certificate, password, or App Store Connect key
 is available to the workflow.
@@ -108,7 +108,10 @@ export compliance and test installation on iPhone and iPad; archive and upload
 success do not establish device installation or app behavior.
 
 For native local signing with Xcode on a Mac, the app's existing `release.sh`
-still requires the private helper's ready credential generation. The new local
+requires stable Xcode 27.2 (27B52), iOS SDK 27.2, and the private helper's ready
+credential generation. It defaults to the iPhone Duo simulator on iOS 27.2.
+Complete the manual fold checks in `AGENTS_TESTING.md` before a Duo release.
+The new local
 Linux signing path does not update or bypass that private GCS quarantine gate.
 
 ### Export compliance
