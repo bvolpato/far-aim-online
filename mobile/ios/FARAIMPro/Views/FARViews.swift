@@ -794,11 +794,36 @@ private struct FARReaderSection: Identifiable {
     let referenceLabel: String?
 }
 
+final class FARReaderSearchMemo {
+    private struct Entry {
+        let inputs: [String]
+        let query: String
+        let anchorIndex: Int?
+        let matchingIndices: [Int]
+    }
+
+    private var entry: Entry?
+
+    func matchingIndices(in inputs: [String], query: String, anchorIndex: Int?) -> [Int] {
+        if let entry, entry.query == query, entry.anchorIndex == anchorIndex, entry.inputs == inputs {
+            return entry.matchingIndices
+        }
+
+        let trimmed = query.trimmingCharacters(in: .whitespacesAndNewlines)
+        let matchingIndices = inputs.indices.filter { index in
+            trimmed.isEmpty || index == anchorIndex || SearchQueryMatcher.matches(text: inputs[index], query: trimmed)
+        }
+        entry = Entry(inputs: inputs, query: query, anchorIndex: anchorIndex, matchingIndices: matchingIndices)
+        return matchingIndices
+    }
+}
+
 struct FARPartDetailView: View {
     let part: FARPart
     let initialSection: String?
     private let initialSearchText: String
     @State private var searchText = ""
+    @State private var readerSearchMemo = FARReaderSearchMemo()
     @AppStorage("far-aim-pro-reader-font-scale-index") private var readerFontScaleIndex = 1
     @AppStorage("far-aim-pro-reader-density") private var readerDensityRawValue = ReaderDensity.standard.rawValue
     @State private var showReaderControls = false
@@ -855,15 +880,17 @@ struct FARPartDetailView: View {
         "\(partSearchContext) \(item.groupTitle ?? "")"
     }
 
-    private func sectionMatches(_ item: FARReaderSection, query: String) -> Bool {
-        let trimmed = query.trimmingCharacters(in: .whitespacesAndNewlines)
-        if trimmed.isEmpty { return true }
-        if initialSection == item.section.section && preservesInitialSearchAnchor { return true }
-        let label = item.referenceLabel ?? "§ \(item.section.section)"
-        return SearchQueryMatcher.matches(
-            text: "\(sectionSearchContext(for: item)) \(label) \(item.section.searchableText)",
-            query: trimmed
-        )
+    private func matchingReaderSections(_ sections: [FARReaderSection]) -> [FARReaderSection] {
+        guard !searchText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty else { return sections }
+        let inputs = sections.map { item in
+            let label = item.referenceLabel ?? "§ \(item.section.section)"
+            return "\(sectionSearchContext(for: item)) \(label) \(item.section.searchableText)"
+        }
+        let anchorIndex = preservesInitialSearchAnchor
+            ? sections.firstIndex { $0.section.section == initialSection }
+            : nil
+        return readerSearchMemo.matchingIndices(in: inputs, query: searchText, anchorIndex: anchorIndex)
+            .map { sections[$0] }
     }
 
     private func effectiveSearchText(hasMatchingSections: Bool) -> String {
@@ -909,7 +936,7 @@ struct FARPartDetailView: View {
 
     var body: some View {
         let readerSections = allReaderSections
-        let matchingSections = readerSections.filter { sectionMatches($0, query: searchText) }
+        let matchingSections = matchingReaderSections(readerSections)
         let activeQuery = effectiveSearchText(hasMatchingSections: !matchingSections.isEmpty)
         let displayedSections = displayedReaderSections(
             from: activeQuery.isEmpty ? readerSections : matchingSections
@@ -981,6 +1008,7 @@ struct FARPartDetailView: View {
                             searchText: activeQuery,
                             defaultExpanded: initialSection == item.section.section,
                             preserveInitialSearchMatch: preservesInitialSearchAnchor,
+                            knownSearchMatch: true,
                             referenceLabel: item.referenceLabel,
                             searchContext: sectionSearchContext(for: item),
                             studyMarkInput: StudyMarkInput(
@@ -1298,6 +1326,7 @@ struct SectionCard: View {
     let searchText: String
     var defaultExpanded: Bool = false
     var preserveInitialSearchMatch: Bool = false
+    var knownSearchMatch: Bool? = nil
     var referenceLabel: String? = nil
     var searchContext: String = "far 14 cfr"
     var studyMarkInput: StudyMarkInput? = nil
@@ -1317,6 +1346,7 @@ struct SectionCard: View {
     }
 
     var matchesSearch: Bool {
+        if let knownSearchMatch { return knownSearchMatch }
         let trimmed = searchText.trimmingCharacters(in: .whitespacesAndNewlines)
         if trimmed.isEmpty { return true }
         if defaultExpanded && preserveInitialSearchMatch { return true }

@@ -10,6 +10,7 @@
     {"action":"wait_text","text":"Enter at least 2 characters to search","timeout":30},
     {"action":"tap_element","identifier":"global-search-input"},
     {"action":"text","text":"FAR student pilot"},
+    {"action":"key","name":"return"},
     {"action":"wait_text","identifier":"global-result-far/61#61.83","text":"Eligibility requirements for student pilots","timeout":60},
     {"action":"scroll_to_element","identifier":"global-result-far/61#61.83","max_swipes":3,"timeout":20},
     {"action":"tap_element","identifier":"global-result-far/61#61.83"},

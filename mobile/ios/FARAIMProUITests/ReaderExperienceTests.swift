@@ -115,6 +115,10 @@ final class ReaderExperienceTests: XCTestCase {
         XCTAssertTrue(field.waitForExistence(timeout: 10))
         field.tap()
         field.typeText(query)
+        let searchKey = app.keyboards.buttons["Search"]
+        XCTAssertTrue(searchKey.waitForExistence(timeout: 5))
+        searchKey.tap()
+        XCTAssertTrue(app.keyboards.firstMatch.waitForNonExistence(timeout: 5))
 
         let result = app.buttons["global-result-far/61#\(section)"]
         XCTAssertTrue(result.waitForExistence(timeout: 10))

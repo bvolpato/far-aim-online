@@ -746,15 +746,19 @@ final class BundledDataIntegrityTests: XCTestCase {
             $0.link == "advisory-circulars#ac-90-107"
         })
 
-        let identifierHits = dataService.search(query: "4-3-2").filter { $0.type == "ac" }
-        XCTAssertFalse(identifierHits.isEmpty)
+        // AC 90-66C cites AIM 4-3-23, not the shorter identifier 4-3-2.
+        XCTAssertFalse(dataService.search(query: "4-3-2").contains {
+            $0.link == "advisory-circulars#ac-90-66c"
+        })
+        let identifierHits = dataService.search(query: "4-3-23").filter { $0.type == "ac" }
+        XCTAssertTrue(identifierHits.contains { $0.link == "advisory-circulars#ac-90-66c" })
         for hit in identifierHits {
             let ac = try XCTUnwrap(dataService.advisoryCirculars.first {
                 hit.link == "advisory-circulars#\($0.id)"
             })
             let pages = try XCTUnwrap(dataService.advisoryCircularContent(for: ac)).pages
             XCTAssertFalse(AdvisoryCircularReaderView.matchingPages(
-                in: pages, ac: ac, query: "4-3-2", initialQuery: "4-3-2"
+                in: pages, ac: ac, query: "4-3-23", initialQuery: "4-3-23"
             ).isEmpty, ac.id)
         }
     }
