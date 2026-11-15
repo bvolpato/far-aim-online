@@ -129,9 +129,14 @@ final class ReaderExperienceTests: XCTestCase {
         XCTAssertFalse(sectionButton.exists)
 
         replaceSearch(in: app, with: query)
-        reveal(sectionButton, in: app)
-        sectionButton.tap()
-        XCTAssertEqual(sectionButton.value as? String, "Collapsed",
+        let matchingSection = app.buttons.matching(NSPredicate(
+            format: "identifier BEGINSWITH %@", section.hasPrefix("far-") ? "far-section-" : "aim-section-"
+        )).firstMatch
+        XCTAssertTrue(matchingSection.waitForExistence(timeout: 5))
+        XCTAssertEqual(matchingSection.value as? String, "Expanded")
+        reveal(matchingSection, in: app)
+        matchingSection.tap()
+        XCTAssertEqual(matchingSection.value as? String, "Collapsed",
                        "An active search must not disable the collapse control.")
     }
 
@@ -157,7 +162,7 @@ final class ReaderExperienceTests: XCTestCase {
 
     @MainActor
     private func replaceSearch(in app: XCUIApplication, with query: String) {
-        let field = app.searchFields.firstMatch
+        let field = app.windows.element(boundBy: 0).searchFields.firstMatch
         if !field.exists {
             let searchButton = app.buttons["Search"].firstMatch
             if searchButton.exists {

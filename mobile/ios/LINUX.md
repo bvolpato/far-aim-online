@@ -71,13 +71,15 @@ for the guest environment and does not test an Apple Distribution identity.
 
 ## Reader and fold checks
 
-Run each scenario with a new output directory. Scenarios navigate through the
-real app UI and verify resulting state after input, rather than accepting a
-successful tap response as proof.
+Unlock the guest before each scenario and use a new output directory. Scenarios
+navigate through the real app UI and verify resulting state after input,
+rather than accepting a successful tap response as proof.
 
 ```sh
+./mobile/ios/limulator.sh unlock
 ./mobile/ios/limulator.sh test mobile/ios/scenarios/reader-smoke.json \
   --output "$PWD/mobile/ios/build/limulator/reader-01"
+./mobile/ios/limulator.sh unlock
 ./mobile/ios/limulator.sh test mobile/ios/scenarios/duo-reader.json \
   --output "$PWD/mobile/ios/build/limulator/duo-01"
 ```

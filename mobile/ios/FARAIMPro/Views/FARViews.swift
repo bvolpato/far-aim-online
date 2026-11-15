@@ -803,10 +803,10 @@ struct FARPartDetailView: View {
         )
     }
 
-    private var effectiveSearchText: String {
+    private func effectiveSearchText(hasMatchingSections: Bool) -> String {
         let trimmed = searchText.trimmingCharacters(in: .whitespacesAndNewlines)
         guard !trimmed.isEmpty else { return "" }
-        if allReaderSections.contains(where: { sectionMatches($0, query: trimmed) }) {
+        if hasMatchingSections {
             return searchText
         }
         let trimmedInitial = initialSearchText.trimmingCharacters(in: .whitespacesAndNewlines)
@@ -825,9 +825,7 @@ struct FARPartDetailView: View {
         shouldPreserveReaderAnchor(searchText: searchText, initialSearchText: initialSearchText)
     }
 
-    private var displayedReaderSections: [FARReaderSection] {
-        let activeQuery = effectiveSearchText
-        let filtered = allReaderSections.filter { sectionMatches($0, query: activeQuery) }
+    private func displayedReaderSections(from filtered: [FARReaderSection]) -> [FARReaderSection] {
         var previousGroup: String?
         return filtered.map { item in
             let heading: String?
@@ -847,6 +845,12 @@ struct FARPartDetailView: View {
     }
 
     var body: some View {
+        let readerSections = allReaderSections
+        let matchingSections = readerSections.filter { sectionMatches($0, query: searchText) }
+        let activeQuery = effectiveSearchText(hasMatchingSections: !matchingSections.isEmpty)
+        let displayedSections = displayedReaderSections(
+            from: activeQuery.isEmpty ? readerSections : matchingSections
+        )
         let readerPreferences = readerTypography.preferences(
             fontScaleIndex: readerFontScaleIndex,
             density: ReaderDensity(rawValue: readerDensityRawValue) ?? .standard
@@ -889,20 +893,19 @@ struct FARPartDetailView: View {
                 .background(AviationTheme.heroGradient)
                 .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
 
-                if allReaderSections.isEmpty {
+                if readerSections.isEmpty {
                     ContentUnavailableView(
                         "Part Reserved",
                         systemImage: "doc.badge.ellipsis",
                         description: Text("This part is reserved in 14 CFR and currently contains no active sections.")
                     )
                     .padding(.vertical, 24)
-                } else if displayedReaderSections.isEmpty {
+                } else if displayedSections.isEmpty {
                     ContentUnavailableView.search(text: searchText)
                         .accessibilityIdentifier("reader-no-results")
                         .padding(.vertical, 24)
                 } else {
-                    let activeQuery = effectiveSearchText
-                    ForEach(displayedReaderSections) { item in
+                    ForEach(displayedSections) { item in
                         if let subpartHeading = item.subpartHeading {
                             Text(subpartHeading)
                                 .font(.title3)
@@ -1071,19 +1074,41 @@ func farReaderContentBlocks(_ content: String) -> [FARContentBlock] {
         guard case .text(let text) = block else { return [block] }
         var paragraphs: [FARContentBlock] = []
         var start = text.startIndex
-        while let separator = text.range(
-            of: #"\r?\n(?:[ \t]*\r?\n)+"#,
-            options: .regularExpression,
-            range: start..<text.endIndex
-        ) {
-            paragraphs.append(.text(String(text[start..<separator.upperBound])))
-            start = separator.upperBound
+        var cursor = start
+        while cursor < text.endIndex {
+            let character = text[cursor]
+            var next = text.index(after: cursor)
+            if character == "\n" || character == "\r\n" {
+                var separatorEnd: String.Index?
+                while next < text.endIndex {
+                    while next < text.endIndex, text[next] == " " || text[next] == "\t" {
+                        next = text.index(after: next)
+                    }
+                    guard next < text.endIndex, text[next] == "\n" || text[next] == "\r\n" else { break }
+                    next = text.index(after: next)
+                    separatorEnd = next
+                }
+                if let separatorEnd {
+                    paragraphs.append(.text(String(text[start..<separatorEnd])))
+                    start = separatorEnd
+                    cursor = separatorEnd
+                    continue
+                }
+            }
+            cursor = next
         }
         if start < text.endIndex {
             paragraphs.append(.text(String(text[start...])))
         }
         return paragraphs
     }
+}
+
+func farReaderDisplayText(_ text: String, in blocks: [FARContentBlock], at index: Int) -> String {
+    // Separate Text views already introduce a line break between paragraphs.
+    guard index + 1 < blocks.count, case .text = blocks[index + 1] else { return text }
+    if text.last == "\n" || text.last == "\r\n" { return String(text.dropLast()) }
+    return text
 }
 
 private func copyFARSectionText(_ section: FARSection) {
@@ -1176,7 +1201,7 @@ private struct FARContentView: View {
             ForEach(Array(blocks.enumerated()), id: \.offset) { index, block in
                 switch block {
                 case .text(let text):
-                    HighlightText(text: displayText(text, in: blocks, at: index), query: searchText)
+                    HighlightText(text: farReaderDisplayText(text, in: blocks, at: index), query: searchText)
                         .font(readerPreferences.bodyFont)
                         .lineSpacing(readerPreferences.lineSpacing)
                         .foregroundColor(.primary)
@@ -1196,14 +1221,6 @@ private struct FARContentView: View {
             }
         }
         .frame(maxWidth: .infinity, alignment: .leading)
-    }
-
-    private func displayText(_ text: String, in blocks: [FARContentBlock], at index: Int) -> String {
-        // Separate Text views already introduce a line break between paragraphs.
-        guard index + 1 < blocks.count, case .text = blocks[index + 1] else { return text }
-        if text.hasSuffix("\r\n") { return String(text.dropLast(2)) }
-        if text.hasSuffix("\n") { return String(text.dropLast()) }
-        return text
     }
 
     private func tableNumber(in blocks: [FARContentBlock], through index: Int) -> Int {

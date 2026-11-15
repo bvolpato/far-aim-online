@@ -227,6 +227,10 @@ final class BundledDataIntegrityTests: XCTestCase {
         XCTAssertEqual(tables.count, 1)
         XCTAssertEqual(tables.first?.headers, ["Name", "Value"])
         XCTAssertEqual(tables.first?.rows, [["Altitude", "2,000"]])
+        XCTAssertEqual(farReaderDisplayText("First *paragraph*.\n\n", in: rendered, at: 0), "First *paragraph*.\n")
+        XCTAssertEqual(farReaderDisplayText("Before table\n\n", in: rendered, at: 1), "Before table\n\n")
+        XCTAssertEqual(farReaderDisplayText("\nThird paragraph.\r\n\r\n", in: rendered, at: 3), "\nThird paragraph.\r\n")
+        XCTAssertEqual(farReaderDisplayText("Last paragraph 🛩️.", in: rendered, at: 4), "Last paragraph 🛩️.")
     }
 
     func testLargeAIMTablePagingBoundsRowsAndReachesEverySourceRow() {
