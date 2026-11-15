@@ -78,9 +78,24 @@ also includes the active-display coordinate fix in
 provider includes the elapsed-time fix in
 [vphone-cli PR 937](https://github.com/Lakr233/vphone-cli/pull/937).
 Check these capabilities when preparing another workstation. Replacing a guest
-worker or hinge library requires its matching build provenance; restart the
-guest cleanly after a hinge update so backboardd loads the new library.
+worker, hinge library, or FoldDisplay library requires its matching build
+provenance. Restart the guest cleanly after a hinge or FoldDisplay update so
+backboardd loads the new library and clients refresh their display metadata.
 The existing VM and SDK installation can be retained.
+
+Older 2.14.2 guest bundles also need the upstream
+[inner-screen scale correction](https://github.com/Lakr233/vphone-cli/commit/de9d8f80)
+and [built-in panel identity correction](https://github.com/Lakr233/vphone-cli/commit/ae29ea6e).
+The prepared guest uses the narrow `ec2cbb1060b0504fbccc44d58d04521c1dfef221`
+backport, verified by its [native build](https://github.com/bvolpato/vphone-cli/actions/runs/42444236304).
+Its `libvphonefolddisplay.dylib` SHA-256 is
+`3ebd5b84a2697cf3b0ae0f2cd2cbcce0fc0f39fa66bc466260e8555766dcd8bc`.
+Use the supported `environment.install` API with the verified artifact and keep
+the original library before replacement. After restarting, `environment.status`
+must report the expected library digest and `root_read_only: true`.
+The `display.modes` result for `VPhone Duo Inner` must report `displayType: 0`,
+`pointScale: 3`, and a 2007 by 2853 mode at 120 Hz. App window bounds alone do
+not establish that all processes have consistent display metadata.
 
 ## Reader and fold checks
 
