@@ -118,7 +118,7 @@ private enum HighlightedTextCache {
         let plainText = String(attributed.characters)
 
         for term in terms where !term.isEmpty {
-            let requireBoundaries = term.count <= 2
+            let requireBoundaries = SearchQueryMatcher.requiresTokenBoundaries(for: term)
             var searchRange = plainText.startIndex..<plainText.endIndex
             while let foundRange = plainText.range(of: term, options: .caseInsensitive, range: searchRange) {
                 if !requireBoundaries || SearchQueryMatcher.hasTokenBoundaries(in: plainText, range: foundRange) {
@@ -141,6 +141,7 @@ struct StudyMarkTools: View {
     let input: StudyMarkInput
     @State private var noteOpen = false
     @State private var draft = ""
+    @FocusState private var noteFocused: Bool
     @State private var confirmRemoval = false
     @State private var feedbackTrigger = 0
 
@@ -173,12 +174,23 @@ struct StudyMarkTools: View {
                         .font(.caption)
                         .foregroundColor(.secondary)
                     TextEditor(text: $draft)
+                        .focused($noteFocused)
                         .accessibilityLabel("Note for \(input.reference)")
                         .accessibilityIdentifier("study-note-\(input.key)")
                         .frame(minHeight: 90)
                         .padding(8)
                         .background(Color(.systemBackground))
                         .cornerRadius(8)
+                        .toolbar {
+                            ToolbarItemGroup(placement: .keyboard) {
+                                if noteFocused {
+                                    Spacer()
+                                    Button("Done") { noteFocused = false }
+                                        .accessibilityLabel("Dismiss note keyboard")
+                                        .accessibilityIdentifier("study-note-keyboard-done-\(input.key)")
+                                }
+                            }
+                        }
                     Button("Save note") {
                         dataService.saveNote(input, note: draft)
                         feedbackTrigger += 1

@@ -658,6 +658,65 @@ final class BundledDataIntegrityTests: XCTestCase {
         XCTAssertTrue(dataService.filterAIMChapters(query: "4-3-2").contains { $0.chapter == 4 })
     }
 
+    func testNumericSectionIdentifiersRequireBoundariesWithoutChangingWordOrACPrefixes() {
+        for (identifier, largerIdentifier, prefix) in [
+            ("61.8", "61.81", "FAR"),
+            ("61.8", "161.8", "FAR"),
+            ("4-3-2", "4-3-20", "AIM")
+        ] {
+            XCTAssertFalse(SearchQueryMatcher.matches(text: largerIdentifier, query: identifier))
+            XCTAssertFalse(SearchQueryMatcher.matches(
+                text: "\(prefix) \(largerIdentifier)", query: "\(prefix) \(identifier)"
+            ))
+            XCTAssertFalse(SearchQueryMatcher.textContainsToken(largerIdentifier, token: identifier))
+            XCTAssertEqual(SearchQueryMatcher.countTokenOccurrences(
+                "\(largerIdentifier) \(identifier)(a)(1)", token: identifier
+            ), 1)
+            XCTAssertTrue(SearchQueryMatcher.matches(
+                text: "\(prefix) \(identifier)(a)(1)", query: "\(prefix) \(identifier)"
+            ))
+        }
+
+        XCTAssertTrue(SearchQueryMatcher.matches(text: "AC 61-65K", query: "AC 61-65"))
+        XCTAssertTrue(SearchQueryMatcher.matches(text: "AC 70/7460-1N", query: "AC 70/7460-1"))
+        XCTAssertTrue(SearchQueryMatcher.matches(text: "Student pilots", query: "student pilot"))
+        XCTAssertFalse(SearchQueryMatcher.matches(text: "Florida approach", query: "DA approach"))
+    }
+
+    func testSection61Point8DoesNotExpandUnrelatedStudentPilotSections() throws {
+        let dataService = DataService.shared
+        let part = try XCTUnwrap(dataService.farParts.first { $0.part == 61 })
+        let matches = (part.subparts ?? []).flatMap(\.sections).filter {
+            SearchQueryMatcher.matches(text: "far \($0.searchableText)", query: "FAR 61.8")
+        }
+        XCTAssertEqual(matches.map(\.section), ["61.8"])
+        XCTAssertEqual(dataService.search(query: "FAR 61.8").filter { $0.type == "far" }.map(\.link), [
+            "far/61#61.8"
+        ])
+    }
+
+    func testAdvisoryCircularNumericIdentifiersRejectLongerSections() {
+        let documents = [AdvisoryCircularSearchDocument(title: "Guidance", metadata: "")]
+        for (identifier, largerIdentifier) in [("61.8", "61.81"), ("4-3-2", "4-3-20")] {
+            XCTAssertTrue(AdvisoryCircularSearchEngine.candidates(
+                for: identifier, index: ["guidance": [0]], documents: documents,
+                exactIndex: [largerIdentifier: [0]]
+            ).isEmpty)
+            XCTAssertEqual(AdvisoryCircularSearchEngine.candidates(
+                for: identifier, index: ["guidance": [0]], documents: documents,
+                exactIndex: [identifier: [0]]
+            ).map(\.documentID), [0])
+        }
+        XCTAssertEqual(AdvisoryCircularSearchEngine.candidates(
+            for: "61-65", index: ["guidance": [0]], documents: documents,
+            exactIndex: ["61-65k": [0]]
+        ).map(\.documentID), [0])
+        XCTAssertEqual(AdvisoryCircularSearchEngine.candidates(
+            for: "61.8", index: ["guidance": [0]], documents: documents,
+            exactIndex: ["61.8-61.10": [0]]
+        ).map(\.documentID), [0])
+    }
+
     func testAdvisoryCircularExactConstraintsApplyBeforeTheResultLimit() {
         let documents = (0..<60).map { _ in
             AdvisoryCircularSearchDocument(title: "Instrument approach", metadata: "")
@@ -925,6 +984,10 @@ final class BundledDataIntegrityTests: XCTestCase {
         let otherText = HighlightText15(text: "Different DA paragraph", query: "DA").attributedString
         XCTAssertEqual(String(otherText.characters), "Different DA paragraph")
         XCTAssertEqual(highlights(otherText), ["DA"])
+
+        let longerIdentifier = HighlightText15(text: "FAR 61.81", query: "FAR 61.8").attributedString
+        XCTAssertFalse(highlights(longerIdentifier).contains { $0.contains("61.8") },
+                       "Neither the full query nor its identifier token may highlight a longer section number.")
 
         var editedCopy = shortQuery
         editedCopy.backgroundColor = .red

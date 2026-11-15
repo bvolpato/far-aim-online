@@ -82,12 +82,18 @@ rather than accepting a successful tap response as proof.
 ./mobile/ios/limulator.sh unlock
 ./mobile/ios/limulator.sh test mobile/ios/scenarios/duo-reader.json \
   --output "$PWD/mobile/ios/build/limulator/duo-01"
+./mobile/ios/limulator.sh unlock
+./mobile/ios/limulator.sh test mobile/ios/scenarios/duo-reader-broad.json \
+  --output "$PWD/mobile/ios/build/limulator/duo-broad-01"
 ```
 
 The reader smoke covers search handoff, expand/collapse, reader settings, and
 native note entry. The Duo scenario requires a Duo guest and checks an unsaved
-note through closed, book, open, and closed postures. Inspect `report.json` and
-the screenshots. Keep the guest OS version and graphics policy with results.
+note through closed, book, open, and closed postures. The broad scenario repeats
+these checks with `FAR student pilot` and a note in § 61.83, keeping many matching
+sections expanded. Run both the exact-reference and broad-content cases.
+Inspect `report.json` and the screenshots. Keep the guest OS version and graphics
+policy with results.
 The bounded waits allow for CPU emulation and guest accessibility inspection;
 these are functional checks, not responsiveness benchmarks. Retain the build's
 `provenance.json` beside the test report to identify the installed source.

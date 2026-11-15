@@ -442,7 +442,8 @@ enum AdvisoryCircularSearchEngine {
             if let exactDocumentIDs {
                 rawDocumentIDs.formUnion(exactDocumentIDs)
             } else if token.count > 2 {
-                for (indexedToken, documentIDs) in tokenIndex where indexedToken.hasPrefix(token) {
+                for (indexedToken, documentIDs) in tokenIndex
+                where indexedToken.hasPrefix(token) && SearchQueryMatcher.textContainsToken(indexedToken, token: token) {
                     rawDocumentIDs.formUnion(documentIDs)
                 }
             }
@@ -634,7 +635,7 @@ enum SearchQueryMatcher {
 
     static func textContainsToken(_ lowercasedText: String, token: String) -> Bool {
         guard !token.isEmpty else { return false }
-        if token.count <= 2 {
+        if tokenRequiresBoundaries(token) {
             return textContainsWholeToken(lowercasedText, token: token)
         }
         return lowercasedText.contains(token)
@@ -642,7 +643,7 @@ enum SearchQueryMatcher {
 
     static func countTokenOccurrences(_ lowercasedText: String, token: String) -> Int {
         guard !token.isEmpty else { return 0 }
-        let requireBoundaries = token.count <= 2
+        let requireBoundaries = tokenRequiresBoundaries(token)
         var count = 0
         var searchRange = lowercasedText.startIndex..<lowercasedText.endIndex
         while let range = lowercasedText.range(of: token, range: searchRange) {
@@ -659,17 +660,33 @@ enum SearchQueryMatcher {
         guard !trimmed.isEmpty else { return true }
         let lowerText = text.lowercased()
         let lowerQuery = trimmed.lowercased()
-        if lowerQuery.count > 2 && lowerText.contains(lowerQuery) {
-            return true
-        }
-        if lowerQuery.count <= 2 && textContainsWholeToken(lowerText, token: lowerQuery) {
-            return true
-        }
         let queryTokens = tokens(for: lowerQuery)
         guard !queryTokens.isEmpty else {
             return lowerText.contains(lowerQuery)
         }
+        if !queryTokens.contains(where: tokenRequiresBoundaries) && lowerText.contains(lowerQuery) {
+            return true
+        }
         return queryTokens.allSatisfy { textContainsToken(lowerText, token: $0) }
+    }
+
+    /// Applies to both individual tokens and the full phrases used for highlighting and snippets.
+    static func requiresTokenBoundaries(for term: String) -> Bool {
+        term.count <= 2 || tokens(for: term).contains(where: tokenRequiresBoundaries)
+    }
+
+    private static func tokenRequiresBoundaries(_ token: String) -> Bool {
+        if token.count <= 2 { return true }
+        guard token.first?.isNumber == true else { return false }
+
+        // FAR and AIM section references identify complete sections. AC numbers such as
+        // 61-65 and 70/7460-1 retain their revision-prefix matching behavior.
+        let separator: Character = token.contains(".") ? "." : "-"
+        let components = token.split(separator: separator, omittingEmptySubsequences: false)
+        let expectedCount = separator == "." ? 2 : 3
+        return components.count == expectedCount && components.allSatisfy {
+            !$0.isEmpty && $0.allSatisfy(\.isNumber)
+        }
     }
 
     static func highlightTerms(for query: String) -> [String] {

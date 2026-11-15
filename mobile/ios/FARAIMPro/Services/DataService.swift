@@ -1553,7 +1553,7 @@ class DataService: ObservableObject {
     ) -> Range<String.Index>? {
         let candidates = [searchTerm] + tokens.filter { $0 != searchTerm }
         for candidate in candidates where !candidate.isEmpty {
-            let requireBoundaries = candidate.count <= 2
+            let requireBoundaries = SearchQueryMatcher.requiresTokenBoundaries(for: candidate)
             var searchRange = content.startIndex..<content.endIndex
             while let range = content.range(of: candidate, options: .caseInsensitive, range: searchRange) {
                 if !requireBoundaries || SearchQueryMatcher.hasTokenBoundaries(in: content, range: range) {

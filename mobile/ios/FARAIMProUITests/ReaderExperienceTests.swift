@@ -33,12 +33,12 @@ final class ReaderExperienceTests: XCTestCase {
             app.terminate()
         }
 
-        openFARReaderFromGlobalSearch(in: app)
+        openFARReaderFromGlobalSearch(in: app, query: "FAR student pilot", section: "61.83")
 
-        let noteButton = app.buttons["study-note-toggle-far:§ 61.8"]
+        let noteButton = app.buttons["study-note-toggle-far:§ 61.83"]
         reveal(noteButton, in: app)
         noteButton.tap()
-        let editor = app.textViews["study-note-far:§ 61.8"]
+        let editor = app.textViews["study-note-far:§ 61.83"]
         reveal(editor, in: app)
         editor.tap()
         let draft = "Unfinished reader note"
@@ -48,9 +48,15 @@ final class ReaderExperienceTests: XCTestCase {
         XCTAssertTrue(editor.waitForExistence(timeout: 5))
         XCTAssertTrue((editor.value as? String)?.contains(draft) == true)
         XCUIDevice.shared.orientation = .portrait
-        app.swipeDown()
+        XCTAssertTrue(editor.waitForExistence(timeout: 5))
+        XCTAssertTrue((editor.value as? String)?.contains(draft) == true)
+        let dismissKeyboard = app.buttons["study-note-keyboard-done-far:§ 61.83"]
+        XCTAssertTrue(dismissKeyboard.waitForExistence(timeout: 5))
+        dismissKeyboard.tap()
+        XCTAssertTrue(app.keyboards.firstMatch.waitForNonExistence(timeout: 5))
 
         selectTab("Study", in: app)
+        XCTAssertTrue(app.navigationBars["Study"].waitForExistence(timeout: 5))
         selectTab("Home", in: app)
         XCTAssertTrue(app.navigationBars["Part 61"].waitForExistence(timeout: 5))
         XCTAssertTrue(editor.waitForExistence(timeout: 5))
@@ -98,7 +104,9 @@ final class ReaderExperienceTests: XCTestCase {
     }
 
     @MainActor
-    private func openFARReaderFromGlobalSearch(in app: XCUIApplication) {
+    private func openFARReaderFromGlobalSearch(
+        in app: XCUIApplication, query: String = "FAR 61.8", section: String = "61.8"
+    ) {
         let searchLink = app.buttons["home-search"]
         reveal(searchLink, in: app)
         searchLink.tap()
@@ -106,9 +114,9 @@ final class ReaderExperienceTests: XCTestCase {
         let field = app.textFields["global-search-input"]
         XCTAssertTrue(field.waitForExistence(timeout: 10))
         field.tap()
-        field.typeText("FAR 61.8")
+        field.typeText(query)
 
-        let result = app.buttons["global-result-far/61#61.8"]
+        let result = app.buttons["global-result-far/61#\(section)"]
         XCTAssertTrue(result.waitForExistence(timeout: 10))
         reveal(result, in: app)
         result.tap()
@@ -200,6 +208,7 @@ final class ReaderExperienceTests: XCTestCase {
         let tab = app.tabBars.buttons.matching(identifier: title).firstMatch
         let button = tab.exists ? tab : app.buttons.matching(identifier: title).firstMatch
         XCTAssertTrue(button.waitForExistence(timeout: 10))
+        XCTAssertTrue(button.isHittable, "The \(title) tab must be visible before navigation.")
         button.tap()
     }
 

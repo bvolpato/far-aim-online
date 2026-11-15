@@ -118,11 +118,26 @@ jobs:
             CODE_SIGNING_REQUIRED=NO \
             CODE_SIGN_IDENTITY=''
 
+      - name: Export portable native test evidence
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          result="$RUNNER_TEMP/ios-tests.xcresult"
+          [[ -d "$result" ]] || exit 0
+          evidence="$RUNNER_TEMP/ios-test-evidence"
+          mkdir -p "$evidence"
+          xcrun xcresulttool get test-results summary --path "$result" > "$evidence/summary.json"
+          xcrun xcresulttool get test-results tests --path "$result" > "$evidence/tests.json"
+          xcrun xcresulttool export attachments --path "$result" --output-path "$evidence/attachments"
+
       - name: Upload native test results
         if: always()
         uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
           name: ios-tests-${{ matrix.artifact }}
-          path: ${{ runner.temp }}/ios-tests.xcresult
+          path: |
+            ${{ runner.temp }}/ios-tests.xcresult
+            ${{ runner.temp }}/ios-test-evidence
           retention-days: 7
           if-no-files-found: ignore
