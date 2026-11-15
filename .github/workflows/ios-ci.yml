@@ -54,6 +54,7 @@ jobs:
       - name: Show Xcode and simulator versions
         run: |
           xcodebuild -version
+          xcrun simctl list runtimes --json
           xcrun simctl list devices available
 
       - name: Sync shared data to iOS resources
@@ -66,24 +67,22 @@ jobs:
           IOS_SIMULATOR: ${{ matrix.device }}
         run: |
           set -euo pipefail
-          runtime=com.apple.CoreSimulator.SimRuntime.iOS-27-2
-          xcrun simctl list runtimes --json | jq -e --arg runtime "$runtime" \
-            '.runtimes[] | select(.identifier == $runtime and .isAvailable)' >/dev/null || {
-              echo "error: required simulator runtime $runtime is unavailable" >&2
-              exit 1
-            }
-          simulator_id=$(xcrun simctl list devices available --json | jq -r \
-            --arg name "$IOS_SIMULATOR" --arg runtime "$runtime" \
-            '[.devices[$runtime][]? | select(.name == $name and .isAvailable)][0].udid // empty')
-          if [[ -z "$simulator_id" ]]; then
-            device_type=$(xcrun simctl list devicetypes --json | jq -r --arg name "$IOS_SIMULATOR" \
-              '[.devicetypes[] | select(.name == $name)][0].identifier // empty')
-            [[ -n "$device_type" ]] || {
-              echo "error: required simulator type $IOS_SIMULATOR is unavailable" >&2
-              exit 1
-            }
-            simulator_id=$(xcrun simctl create "$IOS_SIMULATOR" "$device_type" "$runtime")
-          fi
+          inventory=$(xcrun simctl list --json)
+          # Duo has a separate runtime identifier with the same iOS version.
+          simulator=$(jq -ce --arg name "$IOS_SIMULATOR" '
+            . as $inventory
+            | [.runtimes[]
+               | select(.isAvailable and .version == "27.2" and (.name | startswith("iOS ")))
+               | .identifier as $runtime
+               | $inventory.devices[$runtime][]?
+               | select(.name == $name and .isAvailable)
+               | {id: .udid, runtime: $runtime}][0] // empty
+          ' <<< "$inventory") || {
+            echo "error: an available $IOS_SIMULATOR simulator on iOS 27.2 is required" >&2
+            exit 1
+          }
+          simulator_id=$(jq -r .id <<< "$simulator")
+          runtime=$(jq -r .runtime <<< "$simulator")
           xcrun simctl bootstatus "$simulator_id" -b
           printf 'Testing %s on %s (%s).\n' "$IOS_SIMULATOR" "$runtime" "$simulator_id"
           echo "id=$simulator_id" >> "$GITHUB_OUTPUT"

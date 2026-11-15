@@ -13,6 +13,7 @@ on:
         type: string
 
 permissions:
+  actions: read
   contents: read
 
 concurrency:
@@ -21,7 +22,7 @@ concurrency:
 
 jobs:
   release-inputs:
-    name: Validate release build number
+    name: Validate release source and build number
     runs-on: ubuntu-24.04
     timeout-minutes: 5
     outputs:
@@ -44,6 +45,34 @@ jobs:
           [[ "$build_number" =~ ^[1-9][0-9]*$ ]] || { echo 'error: build number must be a positive integer' >&2; exit 1; }
           echo "build_number=$build_number" >> "$GITHUB_OUTPUT"
 
+      - name: Require successful iPhone, Duo, and iPad tests for this source
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          GH_CONFIG_DIR: ${{ runner.temp }}/gh
+        run: |
+          set -euo pipefail
+          run=$(gh api --method GET "repos/$GH_REPO/actions/workflows/ios-ci.yml/runs" \
+            -f head_sha="$GITHUB_SHA" -f status=completed -f per_page=1)
+          jq -e --arg sha "$GITHUB_SHA" '
+            .workflow_runs[0] | .head_sha == $sha and .status == "completed" and .conclusion == "success"
+          ' <<< "$run" >/dev/null || {
+            echo "error: the latest completed iOS CI run for $GITHUB_SHA must pass before archiving" >&2
+            exit 1
+          }
+          run_id=$(jq -r '.workflow_runs[0].id' <<< "$run")
+          jobs=$(gh api --paginate "repos/$GH_REPO/actions/runs/$run_id/jobs?per_page=100" \
+            --jq '.jobs[] | {name, conclusion}')
+          jq -se '
+            (["iOS tests (iPhone 18 Pro)", "iOS tests (iPhone Duo)", "iOS tests (iPad Pro 11-inch (M5))"]
+             - [.[] | select(.conclusion == "success") | .name] | length) == 0
+          ' <<< "$jobs" >/dev/null || {
+            echo 'error: successful iPhone, Duo, and iPad jobs are all required for this source' >&2
+            exit 1
+          }
+          printf 'Validated iPhone, Duo, and iPad: %s\n' "$(jq -r '.workflow_runs[0].html_url' <<< "$run")"
+
   archive:
     needs: release-inputs
     uses: bvolpato/brutv/.github/workflows/ios-native-archive.yml@1f67eff147f52fd43efbbaad3aaf83d096bc7f34
@@ -53,5 +82,5 @@ jobs:
       build-number: ${{ needs.release-inputs.outputs.build-number }}
       unit-test-target: FARAIMProTests
       ui-test-selectors: FARAIMProUITests/ReaderExperienceTests
-      simulator: iPhone Duo
+      simulator: iPhone 18 Pro
       prepare-command: ./scripts/sync-data.sh ios
