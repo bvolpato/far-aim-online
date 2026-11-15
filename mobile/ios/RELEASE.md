@@ -137,11 +137,10 @@ Following [Apple's encryption declaration guidance](https://developer.apple.com/
 use of Apple operating-system services. Review the declaration when adding
 cryptographic features or dependencies.
 
-Build 12 was uploaded before this key was present. Apple processed it as
-`VALID` but held TestFlight availability at `MISSING_EXPORT_COMPLIANCE`.
-Complete its encryption declaration in App Store Connect, then resume assignment
-to `Testers`. The existing build's metadata can be completed without rebuilding
-or uploading another binary solely for this declaration.
+For an older build that reports `MISSING_EXPORT_COMPLIANCE`, complete its
+encryption declaration in App Store Connect before assigning it to `Testers`.
+The existing build's metadata can be completed without rebuilding or uploading
+another binary solely for this declaration.
 
 Output:
 
