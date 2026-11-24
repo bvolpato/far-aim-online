@@ -15,6 +15,24 @@ const STOP_WORDS = new Set([
   'in', 'is', 'it', 'its', 'of', 'on', 'that', 'the', 'to', 'was', 'were',
   'will', 'with', 'or', 'this', 'which', 'not', 'but', 'can', 'all', 'any',
 ]);
+const AVIATION_TWO_CHAR_TOKENS = new Set([
+  'ac', 'ad', 'af', 'at', 'cg', 'cl', 'da', 'dg', 'dh', 'dp', 'el', 'ga', 'gs',
+  'hf', 'hz', 'ia', 'if', 'im', 'ir', 'lf', 'mm', 'no', 'om', 'pt', 'rc', 'rv',
+  'sn', 't1', 'tf', 'vr', 'wa', 'ws', 'wx',
+]);
+const CATEGORY_ALIASES = {
+  far: 'far 14 cfr',
+  aim: 'aim',
+  ac: 'ac advisory circular',
+  pcg: 'pcg glossary',
+  flashcards: 'flashcard',
+};
+
+function isIndexableToken(token) {
+  return (token.length >= 3 && !STOP_WORDS.has(token))
+    || /^\d{2}$/.test(token)
+    || AVIATION_TWO_CHAR_TOKENS.has(token);
+}
 
 function createWebSearchBuilder({ check = false } = {}) {
   const pilotParts = require('../data/far/pilot-index.json').parts.map(part => part.part);
@@ -88,11 +106,8 @@ function createWebSearchBuilder({ check = false } = {}) {
       chunkIds.push(registerChunk(excerpt));
     }
     const occurrences = new Map();
-    for (const match of `${title} ${content}`.matchAll(/\S+/g)) {
-      const token = match[0].toLowerCase().replace(/[^\w]/g, '');
-      if (token.length < 3 || STOP_WORDS.has(token)) continue;
-      const inTitle = match.index < title.length;
-      const position = Math.max(0, match.index - title.length - 1);
+    const recordOccurrence = (token, inTitle, position) => {
+      if (!isIndexableToken(token)) return;
       const occurrence = occurrences.get(token);
       if (occurrence) {
         occurrence.count++;
@@ -101,6 +116,42 @@ function createWebSearchBuilder({ check = false } = {}) {
       } else {
         occurrences.set(token, { count: 1, title: inTitle, position: inTitle ? null : position });
       }
+    };
+
+    const headerText = `${title} ${reference || ''} ${CATEGORY_ALIASES[category] || ''}`;
+    const combinedText = `${headerText}\n${content}`;
+    const bodyStart = headerText.length + 1;
+
+    for (const match of combinedText.matchAll(/\S+/g)) {
+      const raw = match[0];
+      const inTitle = match.index < headerText.length;
+      const position = inTitle ? 0 : Math.max(0, match.index - bodyStart);
+      const lower = raw.toLowerCase();
+      const cleaned = lower.replace(/[^\w]/g, '');
+      recordOccurrence(cleaned, inTitle, position);
+
+      // Preserve AIM section numbers (e.g. 4-3-2 -> 4_3_2) separately from FAR 43.2 -> 432.
+      const strippedEdges = lower.replace(/^[^\w]+|[^\w]+$/g, '');
+      if (/^\d{1,2}-\d{1,2}-\d{1,2}$/.test(strippedEdges)) {
+        recordOccurrence(strippedEdges.replace(/-/g, '_'), inTitle, position);
+      }
+
+      // Split hyphen/slash compounds (e.g. cross-country -> cross, country) so both forms match.
+      if (raw.includes('-') || raw.includes('/')) {
+        for (const sub of lower.split(/[-/]+/)) {
+          const subClean = sub.replace(/[^\w]/g, '');
+          if (subClean && subClean !== cleaned) {
+            recordOccurrence(subClean, inTitle, position);
+          }
+        }
+      }
+    }
+
+    // Index airspace class bigrams (e.g. "Class B" -> "class_b") so single-letter classes remain searchable.
+    for (const match of combinedText.matchAll(/\bclass\s+([a-g])\b/gi)) {
+      const inTitle = match.index < headerText.length;
+      const position = inTitle ? 0 : Math.max(0, match.index - bodyStart);
+      recordOccurrence(`class_${match[1].toLowerCase()}`, inTitle, position);
     }
     for (const collection of targets) {
       const id = collection.documents.length;

@@ -104,8 +104,16 @@ export function getFARPartMeta(partNumber: number): FARPartMeta | undefined {
   return farPartByNumber.get(partNumber);
 }
 
+const aimChapterByNumber = new Map<number, AIMChapterMeta>(
+  sortedAimChapters.map((chapter) => [chapter.chapter, chapter]),
+);
+
 export function getAllAIMChapters(): AIMChapterMeta[] {
   return sortedAimChapters;
+}
+
+export function getAIMChapterMeta(chapterNumber: number): AIMChapterMeta | undefined {
+  return aimChapterByNumber.get(chapterNumber);
 }
 
 export function getAllQuizzes(): QuizMeta[] {

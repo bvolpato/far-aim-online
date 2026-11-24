@@ -125,6 +125,7 @@ export function AdvisoryCircularsPage() {
       advisoryCirculars.map((ac) => ({
         ac,
         searchText: [
+          `AC ${ac.number}`,
           ac.number,
           ac.title,
           ac.summary,
@@ -135,7 +136,7 @@ export function AdvisoryCircularsPage() {
           ...ac.relatedCfr,
           ...ac.tags,
         ]
-          .join('\0')
+          .join(' ')
           .toLowerCase(),
       })),
     [advisoryCirculars],
@@ -151,12 +152,12 @@ export function AdvisoryCircularsPage() {
   }, [categories, category]);
 
   const filteredCirculars = useMemo(() => {
-    const normalizedQuery = deferredQuery.trim().toLowerCase();
+    const queryTerms = deferredQuery.trim().toLowerCase().split(/\s+/).filter(Boolean);
     const matches: AdvisoryCircular[] = [];
     for (let i = 0; i < indexedCirculars.length; i++) {
       const entry = indexedCirculars[i];
       if (category !== 'All' && entry.ac.category !== category) continue;
-      if (normalizedQuery && !entry.searchText.includes(normalizedQuery)) continue;
+      if (queryTerms.length > 0 && !queryTerms.every((term) => entry.searchText.includes(term))) continue;
       matches.push(entry.ac);
     }
 

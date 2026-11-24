@@ -40,5 +40,22 @@ describe('generated search corpus', () => {
     expect(circulars.some(result => /carburetor/i.test(result.content))).toBe(true);
     expect(await searchContent('91.205', ['far'], new Set([91]), { resultLimit: 10 }))
       .toEqual(expect.arrayContaining([expect.objectContaining({ link: '/far/91#91.205' })]));
+
+    // Aviation-specific queries: airspace classes, source-prefixed sections, AIM hyphenated sections,
+    // 2-char aviation acronyms, and AC revision suffixes.
+    const classB = await searchContent('Class B', ['far', 'aim', 'pcg'], new Set(manifest.pilotParts), { resultLimit: 10 });
+    const classC = await searchContent('Class C', ['far', 'aim', 'pcg'], new Set(manifest.pilotParts), { resultLimit: 10 });
+    expect(classB.length).toBeGreaterThan(0);
+    expect(classC.length).toBeGreaterThan(0);
+    expect(classB[0].link).not.toBe(classC[0].link);
+
+    const farPrefixed = await searchContent('FAR 91.205', ['far'], new Set(manifest.pilotParts), { resultLimit: 5 });
+    expect(farPrefixed).toEqual(expect.arrayContaining([expect.objectContaining({ link: '/far/91#91.205' })]));
+
+    const aimSection = await searchContent('4-3-2', ['far', 'aim'], new Set(manifest.pilotParts), { resultLimit: 5 });
+    expect(aimSection[0]?.link).toBe('/aim/4#4-3-2');
+
+    const revisedAc = await searchContent('AC 91-57', ['ac'], undefined, { resultLimit: 10 });
+    expect(revisedAc.some(result => /AC 91-57/i.test(result.title))).toBe(true);
   });
 });
