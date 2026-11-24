@@ -8,7 +8,8 @@ import androidx.compose.material.icons.filled.CheckCircle
 import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.produceState
 import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -17,14 +18,24 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.faraimpro.app.data.DataRepository
 import com.faraimpro.app.data.SourceChangeWatch
+import com.faraimpro.app.data.SourceStatusData
 import com.faraimpro.app.data.SourceStatusItem
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
 private val UpdatesMaxWidth = 960.dp
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun UpdatesScreen(repository: DataRepository, navController: NavController) {
-    val status = remember(repository) { repository.getSourceStatus() }
+    val statusState by produceState<Pair<Boolean, SourceStatusData?>>(
+        initialValue = false to null,
+        repository
+    ) {
+        val loaded = withContext(Dispatchers.IO) { repository.getSourceStatus() }
+        value = true to loaded
+    }
+    val (isLoaded, status) = statusState
     val uriHandler = LocalUriHandler.current
 
     Scaffold(
@@ -34,6 +45,17 @@ fun UpdatesScreen(repository: DataRepository, navController: NavController) {
             )
         }
     ) { padding ->
+        if (!isLoaded) {
+            Box(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(padding),
+                contentAlignment = Alignment.Center
+            ) {
+                CircularProgressIndicator()
+            }
+            return@Scaffold
+        }
         if (status == null) {
             Box(
                 modifier = Modifier

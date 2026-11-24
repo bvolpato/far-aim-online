@@ -46,6 +46,7 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.withContext
 
 private val ReferenceScreenMaxWidth = 960.dp
+private val GlossaryWhitespaceRegex = Regex("\\s+")
 private val glossarySeePattern = Regex(
     """\((See(?:\s+also)?)(\s+ICAO\s+term)?\s+((?:[^()]|\([^()]*\))+?)\.?\)""",
     RegexOption.IGNORE_CASE
@@ -53,25 +54,53 @@ private val glossarySeePattern = Regex(
 
 private fun normalizeGlossaryTerm(value: String): String = value
     .replace('_', ' ')
-    .replace(Regex("\\s+"), " ")
+    .replace(GlossaryWhitespaceRegex, " ")
     .trim()
     .uppercase()
+
+private class GlossaryReferenceIndex(terms: List<PCGTerm>) {
+    val exactByNormalized: Map<String, PCGTerm>
+    val normalizedPairs: List<Pair<String, PCGTerm>>
+
+    init {
+        val exact = HashMap<String, PCGTerm>(terms.size * 2)
+        val pairs = ArrayList<Pair<String, PCGTerm>>(terms.size)
+        for (term in terms) {
+            val normalized = normalizeGlossaryTerm(term.term)
+            exact.putIfAbsent(normalized, term)
+            pairs.add(normalized to term)
+        }
+        exactByNormalized = exact
+        normalizedPairs = pairs
+    }
+
+    fun resolve(reference: String, isIcaoTerm: Boolean): PCGTerm? {
+        val normalizedReference = normalizeGlossaryTerm(reference)
+        val lookupKey = if (isIcaoTerm) "$normalizedReference [ICAO]" else normalizedReference
+        exactByNormalized[lookupKey]?.let { return it }
+        for ((normalizedTerm, term) in normalizedPairs) {
+            if (normalizedTerm.startsWith(lookupKey)) {
+                return term
+            }
+        }
+        return null
+    }
+}
+
+private val glossaryIndexCache = java.util.WeakHashMap<List<PCGTerm>, GlossaryReferenceIndex>()
+
+private fun glossaryReferenceIndex(terms: List<PCGTerm>): GlossaryReferenceIndex {
+    synchronized(glossaryIndexCache) {
+        return glossaryIndexCache.getOrPut(terms) { GlossaryReferenceIndex(terms) }
+    }
+}
 
 internal fun resolveGlossaryReference(
     terms: List<PCGTerm>,
     reference: String,
     isIcaoTerm: Boolean = false
 ): PCGTerm? {
-    val normalizedReference = normalizeGlossaryTerm(reference)
-    val expectedIcao = "$normalizedReference [ICAO]"
-    return terms.firstOrNull { term ->
-        val normalizedTerm = normalizeGlossaryTerm(term.term)
-        if (isIcaoTerm) {
-            normalizedTerm == expectedIcao || normalizedTerm.startsWith(expectedIcao)
-        } else {
-            normalizedTerm == normalizedReference || normalizedTerm.startsWith(normalizedReference)
-        }
-    }
+    return glossaryReferenceIndex(terms).resolve(reference, isIcaoTerm)
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -324,14 +353,15 @@ private fun GlossaryDefinitionText(
     val linkColor = MaterialTheme.colorScheme.primary
     val highlightColor = MaterialTheme.colorScheme.tertiaryContainer
     val annotated = remember(definition, terms, query, linkColor, highlightColor) {
+        val queryPattern = if (query.isBlank()) null else Regex(Regex.escape(query), RegexOption.IGNORE_CASE)
         buildAnnotatedString {
             fun appendHighlighted(value: String) {
-                if (query.isBlank()) {
+                if (queryPattern == null) {
                     append(value)
                     return
                 }
                 var offset = 0
-                Regex(Regex.escape(query), RegexOption.IGNORE_CASE).findAll(value).forEach { match ->
+                queryPattern.findAll(value).forEach { match ->
                     append(value.substring(offset, match.range.first))
                     withStyle(SpanStyle(background = highlightColor)) {
                         append(match.value)
@@ -635,7 +665,10 @@ fun SearchScreen(
                     contentPadding = PaddingValues(horizontal = 16.dp, vertical = 8.dp),
                     verticalArrangement = Arrangement.spacedBy(8.dp)
                 ) {
-                    items(results) { result ->
+                    itemsIndexed(
+                        results,
+                        key = { index, result -> "${result.type}:${result.link}:$index" }
+                    ) { _, result ->
                         SearchResultCard(
                             result = result, 
                             searchQuery = searchQuery,

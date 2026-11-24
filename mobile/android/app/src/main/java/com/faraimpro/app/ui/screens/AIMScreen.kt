@@ -48,6 +48,24 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
 private val AIMContentMaxWidth = 960.dp
+private val AimSearchWhitespaceRegex = Regex("\\s+")
+
+private fun aimSectionMatchesQuery(section: AIMSection, queryTerms: List<String>): Boolean {
+    if (queryTerms.isEmpty()) return false
+    val text = buildString {
+        append(section.section).append(' ')
+        append(section.title).append(' ')
+        append(section.content.orEmpty()).append(' ')
+        section.subsections.orEmpty().forEach { append(it.title).append(' ').append(it.content).append(' ') }
+        section.definitions.orEmpty().forEach { append(it.term).append(' ').append(it.definition).append(' ') }
+        section.figures.orEmpty().forEach { append(it.alt.orEmpty()).append(' ').append(it.caption.orEmpty()).append(' ') }
+        section.tables.orEmpty().forEach { table ->
+            append(table.headers.orEmpty().joinToString(" ")).append(' ')
+            append(table.rows.orEmpty().flatten().joinToString(" ")).append(' ')
+        }
+    }.lowercase()
+    return queryTerms.all { text.contains(it) }
+}
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -229,7 +247,7 @@ fun AIMScreen(
                         }
                     }
 
-                    items(filteredChapters) { chapter ->
+                    items(filteredChapters, key = { it.chapter }) { chapter ->
                         AIMChapterCard(
                             chapter = chapter,
                             searchQuery = searchQuery,
@@ -322,11 +340,9 @@ fun AIMChapterDetailScreen(
     ) {
         value = LoadState.Loading
         value = withContext(Dispatchers.IO) {
-            repository.loadAIMChapters(forceRefresh = retryKey > 0).fold(
-                onSuccess = { chapters ->
-                    chapters.find { it.chapter == chapterId }
-                        ?.let { LoadState.Loaded(it) }
-                        ?: LoadState.Empty
+            repository.loadAIMChapter(chapterId, forceRefresh = retryKey > 0).fold(
+                onSuccess = { loaded ->
+                    loaded?.let { LoadState.Loaded(it) } ?: LoadState.Empty
                 },
                 onFailure = { LoadState.Error(it) }
             )
@@ -365,9 +381,21 @@ fun AIMChapterDetailScreen(
     }
     val chapter = (chapterState as LoadState.Loaded<AIMChapter>).value
     val listState = rememberLazyListState()
+    val queryTerms = remember(searchQuery) {
+        if (searchQuery.isBlank()) emptyList()
+        else searchQuery.lowercase().split(AimSearchWhitespaceRegex).filter { it.isNotBlank() }
+    }
+    val visibleSections = remember(chapter, queryTerms, initialSection) {
+        if (queryTerms.isEmpty()) chapter.sections.map { it to false }
+        else chapter.sections.mapNotNull { section ->
+            val matched = aimSectionMatchesQuery(section, queryTerms)
+            if (matched || section.section == initialSection) section to matched else null
+        }
+    }
 
-    LaunchedEffect(chapter, initialSection) {
-        val sectionIndex = chapter.sections.indexOfFirst { it.section == initialSection }
+    LaunchedEffect(chapter, initialSection, visibleSections) {
+        if (initialSection.isBlank()) return@LaunchedEffect
+        val sectionIndex = visibleSections.indexOfFirst { (section, _) -> section.section == initialSection }
         if (sectionIndex >= 0) {
             listState.scrollToItem(sectionIndex + 2)
         }
@@ -463,29 +491,31 @@ fun AIMChapterDetailScreen(
                 }
 
                 // Sections stay compact until selected or matched.
-                chapter.sections.forEach { section ->
-                    item {
-                        AIMSectionItem(
-                            section = section,
-                            searchQuery = searchQuery,
-                            defaultExpanded = section.section == initialSection,
-                            studyMarkInput = StudyMarkInput(
-                                type = "aim",
-                                reference = "AIM ${section.section}",
-                                title = section.title,
-                                route = "aim_chapter/${chapter.chapter}?section=${Uri.encode(section.section)}"
-                            ),
-                            readerPreferences = readerPreferences,
-                            onExpanded = {
-                                ReadingHistoryManager.saveAIMReadingHistory(
-                                    context,
-                                    chapter.chapter,
-                                    chapter.title,
-                                    section.section
-                                )
-                            }
-                        )
-                    }
+                items(
+                    items = visibleSections,
+                    key = { (section, _) -> section.section }
+                ) { (section, matchesSearch) ->
+                    AIMSectionItem(
+                        section = section,
+                        searchQuery = searchQuery,
+                        defaultExpanded = section.section == initialSection,
+                        matchesSearch = matchesSearch,
+                        studyMarkInput = StudyMarkInput(
+                            type = "aim",
+                            reference = "AIM ${section.section}",
+                            title = section.title,
+                            route = "aim_chapter/${chapter.chapter}?section=${Uri.encode(section.section)}"
+                        ),
+                        readerPreferences = readerPreferences,
+                        onExpanded = {
+                            ReadingHistoryManager.saveAIMReadingHistory(
+                                context,
+                                chapter.chapter,
+                                chapter.title,
+                                section.section
+                            )
+                        }
+                    )
                 }
 
                 // Study Materials at end
@@ -537,11 +567,12 @@ fun AIMSectionItem(
     section: AIMSection,
     searchQuery: String,
     defaultExpanded: Boolean = false,
+    matchesSearch: Boolean = false,
     studyMarkInput: StudyMarkInput? = null,
     readerPreferences: ReaderPreferences = ReaderPreferences(),
     onExpanded: () -> Unit = {}
 ) {
-    var isExpanded by remember(section.section, defaultExpanded) { mutableStateOf(defaultExpanded) }
+    var isExpanded by remember(section.section, defaultExpanded) { mutableStateOf(defaultExpanded || matchesSearch) }
     val bodyStyle = MaterialTheme.typography.bodyMedium.copy(
         fontSize = (14 * readerPreferences.fontScale).sp,
         lineHeight = (14 * readerPreferences.fontScale * readerPreferences.lineHeightMultiplier).sp
@@ -551,34 +582,10 @@ fun AIMSectionItem(
         lineHeight = (12 * readerPreferences.fontScale * readerPreferences.lineHeightMultiplier).sp
     )
 
-     // Auto-expand if search query matches content inside
-    val matchesSearch = remember(searchQuery, section) {
-        if (searchQuery.isBlank()) return@remember false
-        val text = buildString {
-            append(section.section).append(' ')
-            append(section.title).append(' ')
-            append(section.content.orEmpty()).append(' ')
-            section.subsections.orEmpty().forEach { append(it.title).append(' ').append(it.content).append(' ') }
-            section.definitions.orEmpty().forEach { append(it.term).append(' ').append(it.definition).append(' ') }
-            section.figures.orEmpty().forEach { append(it.alt.orEmpty()).append(' ').append(it.caption.orEmpty()).append(' ') }
-            section.tables.orEmpty().forEach { table ->
-                append(table.headers.orEmpty().joinToString(" ")).append(' ')
-                append(table.rows.orEmpty().flatten().joinToString(" ")).append(' ')
-            }
-        }.lowercase()
-        searchQuery.lowercase().split(Regex("\\s+")).filter { it.isNotBlank() }
-            .all { text.contains(it) }
-    }
-
     LaunchedEffect(matchesSearch) {
         if (matchesSearch) {
             isExpanded = true
         }
-    }
-
-    // Hide if searching and NO match
-    if (searchQuery.isNotBlank() && !matchesSearch && !defaultExpanded) {
-        return
     }
 
     Card(

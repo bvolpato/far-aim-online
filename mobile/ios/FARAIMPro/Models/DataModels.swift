@@ -383,6 +383,15 @@ struct AdvisoryCircularPage: Codable, Identifiable {
 struct AdvisoryCircularSearchDocument {
     let title: String
     let metadata: String
+    let lowercasedTitle: String
+    let lowercasedMetadata: String
+
+    init(title: String, metadata: String) {
+        self.title = title
+        self.metadata = metadata
+        self.lowercasedTitle = title.lowercased()
+        self.lowercasedMetadata = metadata.lowercased()
+    }
 }
 
 struct AdvisoryCircularSearchCandidate: Equatable {
@@ -391,12 +400,54 @@ struct AdvisoryCircularSearchCandidate: Equatable {
     let isFullTextOnly: Bool
 }
 
+private final class SortedTokenKeysCache {
+    private let lock = NSLock()
+    private var cachedCount = -1
+    private var cachedKeys: [String] = []
+
+    func sortedKeys(for index: [String: [Int]]) -> [String] {
+        // Only cache large production indexes (e.g., 138K AC tokens); tiny unit-test dictionaries sort cheaply.
+        guard index.count >= 500 else {
+            return index.keys.sorted()
+        }
+        lock.lock()
+        if cachedCount == index.count {
+            let keys = cachedKeys
+            lock.unlock()
+            return keys
+        }
+        lock.unlock()
+
+        let sorted = index.keys.sorted()
+        lock.lock()
+        cachedCount = index.count
+        cachedKeys = sorted
+        lock.unlock()
+        return sorted
+    }
+}
+
 enum AdvisoryCircularSearchEngine {
+    private static let sortedKeysCache = SortedTokenKeysCache()
     private static let stopWords: Set<String> = [
         "a", "an", "and", "are", "as", "at", "be", "by", "for", "from", "has", "he",
         "in", "is", "it", "its", "of", "on", "that", "the", "to", "was", "were",
         "will", "with", "or", "this", "which", "not", "but", "can", "all", "any"
     ]
+
+    private static func lowerBound(in sortedKeys: [String], for prefix: String) -> Int {
+        var low = 0
+        var high = sortedKeys.count
+        while low < high {
+            let mid = low + (high - low) / 2
+            if sortedKeys[mid] < prefix {
+                low = mid + 1
+            } else {
+                high = mid
+            }
+        }
+        return low
+    }
 
     static func tokens(for query: String) -> [String] {
         var seen = Set<String>()
@@ -431,6 +482,7 @@ enum AdvisoryCircularSearchEngine {
             let isExact: Bool
         }
 
+        var sortedCompactKeys: [String]?
         var tokenMatches: [TokenMatch] = []
         for token in queryTokens {
             let requiresExactIndex = token.count <= 2 || token.contains(where: { $0 == "." || $0 == "-" || $0 == "/" })
@@ -442,9 +494,23 @@ enum AdvisoryCircularSearchEngine {
             if let exactDocumentIDs {
                 rawDocumentIDs.formUnion(exactDocumentIDs)
             } else if token.count > 2 {
-                for (indexedToken, documentIDs) in tokenIndex
-                where indexedToken.hasPrefix(token) && SearchQueryMatcher.textContainsToken(indexedToken, token: token) {
-                    rawDocumentIDs.formUnion(documentIDs)
+                let keys: [String]
+                if !requiresExactIndex {
+                    let cached = sortedCompactKeys ?? sortedKeysCache.sortedKeys(for: index)
+                    sortedCompactKeys = cached
+                    keys = cached
+                } else {
+                    keys = tokenIndex.keys.sorted()
+                }
+                var cursor = lowerBound(in: keys, for: token)
+                while cursor < keys.count {
+                    let indexedToken = keys[cursor]
+                    if !indexedToken.hasPrefix(token) { break }
+                    if SearchQueryMatcher.textContainsToken(indexedToken, token: token),
+                       let documentIDs = tokenIndex[indexedToken] {
+                        rawDocumentIDs.formUnion(documentIDs)
+                    }
+                    cursor += 1
                 }
             }
 
@@ -472,8 +538,8 @@ enum AdvisoryCircularSearchEngine {
         return matchingDocumentIDs
             .map { documentID in
                 let document = documents[documentID]
-                let title = document.title.lowercased()
-                let metadata = document.metadata.lowercased()
+                let title = document.lowercasedTitle
+                let metadata = document.lowercasedMetadata
                 let titleWords = Set(exactIndex == nil ? tokens(for: title) : SearchQueryMatcher.tokens(for: title))
                 let metadataWords = Set(exactIndex == nil ? tokens(for: metadata) : SearchQueryMatcher.tokens(for: metadata))
                 var score = 0.0

@@ -165,6 +165,8 @@ struct AIMChapterDetailView: View {
             fontScaleIndex: readerFontScaleIndex,
             density: ReaderDensity(rawValue: readerDensityRawValue) ?? .standard
         )
+        let activeQuery = effectiveSearchText
+        let sectionsToDisplay = chapter.sections.filter { sectionMatches($0, query: activeQuery) }
 
         ScrollViewReader { proxy in
             ScrollView {
@@ -184,13 +186,12 @@ struct AIMChapterDetailView: View {
                     .background(AviationTheme.heroGradient)
                     .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
 
-                if displayedSections.isEmpty {
+                if sectionsToDisplay.isEmpty {
                     ContentUnavailableView.search(text: searchText)
                         .accessibilityIdentifier("reader-no-results")
                         .padding(.vertical, 24)
                 } else {
-                    let activeQuery = effectiveSearchText
-                    ForEach(displayedSections) { section in
+                    ForEach(sectionsToDisplay) { section in
                         AIMSectionCard(
                             section: section,
                             searchText: activeQuery,
@@ -755,7 +756,8 @@ struct DocumentFigureView: View {
 
     var body: some View {
         let aspectRatio = DataService.shared.figureURL(for: figure, catalog: catalog)
-            .flatMap { FigureAspectRatioCache.aspectRatio(at: $0) }
+            .flatMap { FigureAspectRatioCache.cachedAspectRatio(at: $0) }
+            ?? image.map { $0.size.height > 0 ? $0.size.width / $0.size.height : nil } ?? nil
         VStack(alignment: .leading, spacing: 8) {
             Label("Figure \(number)", systemImage: "photo")
                 .font(.caption.weight(.semibold))
@@ -829,7 +831,8 @@ struct DocumentFigureView: View {
         }
 
         let decodedImage = await Task.detached(priority: .utility) {
-            FigureImageLoader.downsampledImage(at: url, maxPixelSize: 2_048)
+            _ = FigureAspectRatioCache.aspectRatio(at: url)
+            return FigureImageLoader.downsampledImage(at: url, maxPixelSize: 2_048)
         }.value
         guard !Task.isCancelled else { return }
 
@@ -853,6 +856,10 @@ private enum FigureAspectRatioCache {
         cache.totalCostLimit = 256 * 1_024
         return cache
     }()
+
+    static func cachedAspectRatio(at url: URL) -> CGFloat? {
+        cache.object(forKey: url as NSURL)?.aspectRatio
+    }
 
     static func aspectRatio(at url: URL) -> CGFloat? {
         let key = url as NSURL

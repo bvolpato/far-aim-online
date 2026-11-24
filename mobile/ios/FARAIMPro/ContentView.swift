@@ -1265,9 +1265,34 @@ struct AdvisoryCircularsView: View {
     @State private var searchText = ""
     @State private var sortOrder = AdvisoryCircularSortOrder.newest
     @State private var filteredCirculars: [AdvisoryCircular] = []
+    @State private var searchableTextById: [String: String] = [:]
 
     init(initialSearchText: String = "") {
         _searchText = State(initialValue: initialSearchText)
+    }
+
+    private func rebuildSearchIndexIfNeeded() {
+        let circulars = dataService.advisoryCirculars
+        if searchableTextById.count == circulars.count && !circulars.isEmpty {
+            return
+        }
+        var next: [String: String] = [:]
+        next.reserveCapacity(circulars.count)
+        for ac in circulars {
+            next[ac.id] = [
+                "AC \(ac.number)",
+                ac.number,
+                ac.title,
+                ac.summary,
+                ac.category,
+                ac.office,
+                ac.status,
+                ac.replaces ?? "",
+                ac.relatedCfr.joined(separator: " "),
+                ac.tags.joined(separator: " ")
+            ].joined(separator: " ").lowercased()
+        }
+        searchableTextById = next
     }
 
     private func updateFilteredCirculars() {
@@ -1277,19 +1302,9 @@ struct AdvisoryCircularsView: View {
         if query.isEmpty {
             matches = dataService.advisoryCirculars
         } else {
+            rebuildSearchIndexIfNeeded()
             matches = dataService.advisoryCirculars.filter { ac in
-                let searchable = [
-                    "AC \(ac.number)",
-                    ac.number,
-                    ac.title,
-                    ac.summary,
-                    ac.category,
-                    ac.office,
-                    ac.status,
-                    ac.replaces ?? "",
-                    ac.relatedCfr.joined(separator: " "),
-                    ac.tags.joined(separator: " ")
-                ].joined(separator: " ")
+                guard let searchable = searchableTextById[ac.id] else { return false }
                 return SearchQueryMatcher.matches(text: searchable, query: query)
             }
         }

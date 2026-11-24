@@ -46,11 +46,12 @@ fun HomeScreen(navController: NavController, repository: DataRepository) {
 
     LaunchedEffect(repository) {
         stats = withContext(Dispatchers.IO) {
+            val sources = repository.getSourceStatus()?.sources?.associateBy { it.id }.orEmpty()
             HomeStats(
-                farCount = repository.getFARParts().size,
-                aimCount = repository.getAIMChapters().size,
-                acCount = repository.getAdvisoryCirculars().size,
-                pcgCount = repository.getPCGTerms().size,
+                farCount = sources["far"]?.itemCount ?: repository.getFARParts().size,
+                aimCount = sources["aim"]?.itemCount ?: repository.getAIMChapters().size,
+                acCount = sources["ac"]?.itemCount ?: repository.getAdvisoryCirculars().size,
+                pcgCount = sources["pcg"]?.itemCount ?: repository.getPCGTerms().size,
                 questionCount = repository.getQuizzes().sumOf { it.questionCount },
                 cardCount = repository.getFlashcardDecks().sumOf { it.cardCount },
                 studyPathCount = repository.getStudyPaths().size

@@ -20,15 +20,27 @@ import com.faraimpro.app.data.Quiz
 import com.faraimpro.app.ui.components.AirplaneCelebration
 import com.faraimpro.app.ui.theme.AviationNavy
 import com.faraimpro.app.ui.theme.AviationSky
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun QuizzesScreen(navController: NavController, repository: DataRepository) {
-    val (aimQuizzes, farQuizzes) = remember { repository.getQuizzesByCategory() }
-    val miscQuizzes = remember {
-        repository.getQuizzes().filter { it.category != "AIM" && it.category != "FAR" }
+    val loadedQuizzes by produceState<List<Quiz>?>(initialValue = null, repository) {
+        value = withContext(Dispatchers.IO) { repository.getQuizzes() }
     }
-    val allQuizzes = farQuizzes + aimQuizzes + miscQuizzes
+    val allLoaded = loadedQuizzes
+    val (aimQuizzes, farQuizzes, miscQuizzes) = remember(allLoaded) {
+        val list = allLoaded.orEmpty()
+        Triple(
+            list.filter { it.category == "AIM" }.sortedBy { it.chapter ?: 0 },
+            list.filter { it.category == "FAR" }.sortedBy { it.title },
+            list.filter { it.category != "AIM" && it.category != "FAR" }
+        )
+    }
+    val allQuizzes = remember(farQuizzes, aimQuizzes, miscQuizzes) {
+        farQuizzes + aimQuizzes + miscQuizzes
+    }
     
     Scaffold(
         topBar = {
@@ -42,6 +54,17 @@ fun QuizzesScreen(navController: NavController, repository: DataRepository) {
             )
         }
     ) { padding ->
+        if (allLoaded == null) {
+            Box(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(padding),
+                contentAlignment = Alignment.Center
+            ) {
+                CircularProgressIndicator()
+            }
+            return@Scaffold
+        }
         LazyColumn(
             modifier = Modifier
                 .fillMaxSize()
@@ -67,7 +90,7 @@ fun QuizzesScreen(navController: NavController, repository: DataRepository) {
                         modifier = Modifier.padding(top = 8.dp, bottom = 4.dp)
                     )
                 }
-                items(farQuizzes) { quiz ->
+                items(farQuizzes, key = { it.id }) { quiz ->
                     QuizCard(quiz) { navController.navigate("quiz/${quiz.id}") }
                 }
             }
@@ -81,7 +104,7 @@ fun QuizzesScreen(navController: NavController, repository: DataRepository) {
                         modifier = Modifier.padding(top = 16.dp, bottom = 4.dp)
                     )
                 }
-                items(aimQuizzes) { quiz ->
+                items(aimQuizzes, key = { it.id }) { quiz ->
                     QuizCard(quiz) { navController.navigate("quiz/${quiz.id}") }
                 }
             }
@@ -95,7 +118,7 @@ fun QuizzesScreen(navController: NavController, repository: DataRepository) {
                         modifier = Modifier.padding(top = 16.dp, bottom = 4.dp)
                     )
                 }
-                items(miscQuizzes) { quiz ->
+                items(miscQuizzes, key = { it.id }) { quiz ->
                     QuizCard(quiz) { navController.navigate("quiz/${quiz.id}") }
                 }
             }
@@ -277,7 +300,23 @@ fun QuizCard(quiz: Quiz, onClick: () -> Unit) {
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun QuizDetailScreen(quizId: String, repository: DataRepository, navController: NavController) {
-    val quiz = remember { repository.getQuizzes().find { it.id == quizId } }
+    val quizState by produceState<Pair<Boolean, Quiz?>>(
+        initialValue = false to null,
+        repository,
+        quizId
+    ) {
+        val loaded = withContext(Dispatchers.IO) {
+            repository.getQuizzes().find { it.id == quizId }
+        }
+        value = true to loaded
+    }
+    val (isLoaded, quiz) = quizState
+    if (!isLoaded) {
+        Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+            CircularProgressIndicator()
+        }
+        return
+    }
     
     if (quiz == null || quiz.questions.isEmpty()) {
         Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {

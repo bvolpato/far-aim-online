@@ -91,8 +91,12 @@ class DataService: ObservableObject {
     private var advisoryCircularSearchIndexLoaded = false
     private let advisoryCircularSearchIndexLock = NSLock()
     private let catalogLock = NSLock()
+    private let searchIndexLock = NSLock()
     private var isLoadingCatalogs = false
+    private var catalogGeneration = 0
     private var catalogSnapshot = LoadedCatalogSnapshot.empty
+    private var cachedSearchIndex: SearchIndexSnapshot?
+    private var cachedSearchIndexGeneration = -1
 
     private struct SearchCorpusEntry {
         let type: String // "far", "aim", "pcg", "ac", "flashcard"
@@ -107,6 +111,15 @@ class DataService: ObservableObject {
         let acIndex: Int?
     }
 
+    private struct SearchIndexSnapshot {
+        let searchCorpus: [SearchCorpusEntry]
+        let farEntriesByPart: [Int: [Int]]
+        let aimEntriesByChapter: [Int: [Int]]
+        let farHeaderByPart: [Int: String]
+        let aimHeaderByChapter: [Int: String]
+        let acSearchDocuments: [AdvisoryCircularSearchDocument]
+    }
+
     private struct LoadedCatalogSnapshot {
         let farIndex: [FARIndexPart]
         let farParts: [FARPart]
@@ -119,12 +132,6 @@ class DataService: ObservableObject {
         let sourceStatus: SourceStatusData?
         let pcgTerms: [PCGTerm]
         let failedCatalogs: Set<DataCatalog>
-        let searchCorpus: [SearchCorpusEntry]
-        let farEntriesByPart: [Int: [Int]]
-        let aimEntriesByChapter: [Int: [Int]]
-        let farHeaderByPart: [Int: String]
-        let aimHeaderByChapter: [Int: String]
-        let acSearchDocuments: [AdvisoryCircularSearchDocument]
 
         static let empty = LoadedCatalogSnapshot(
             farIndex: [],
@@ -137,13 +144,7 @@ class DataService: ObservableObject {
             advisoryCirculars: [],
             sourceStatus: nil,
             pcgTerms: [],
-            failedCatalogs: [],
-            searchCorpus: [],
-            farEntriesByPart: [:],
-            aimEntriesByChapter: [:],
-            farHeaderByPart: [:],
-            aimHeaderByChapter: [:],
-            acSearchDocuments: []
+            failedCatalogs: []
         )
     }
 
@@ -221,8 +222,14 @@ class DataService: ObservableObject {
                 guard let self else { return }
                 self.catalogLock.lock()
                 self.catalogSnapshot = snapshot
+                self.catalogGeneration += 1
                 self.isLoadingCatalogs = false
                 self.catalogLock.unlock()
+
+                self.searchIndexLock.lock()
+                self.cachedSearchIndex = nil
+                self.cachedSearchIndexGeneration = -1
+                self.searchIndexLock.unlock()
 
                 self.failedCatalogs = snapshot.failedCatalogs
                 self.farIndex = snapshot.farIndex
@@ -809,7 +816,11 @@ class DataService: ObservableObject {
 
     // MARK: - JSON Loading Methods
 
-    private static func loadJSON<T: Decodable>(from filename: String, as type: T.Type) -> T? {
+    private static func loadJSON<T: Decodable>(
+        from filename: String,
+        as type: T.Type,
+        decoder: JSONDecoder = JSONDecoder()
+    ) -> T? {
         // Data is stored in Resources/data folder which is bundled as a folder reference
         let fullPath = "data/\(filename)"
 
@@ -817,7 +828,6 @@ class DataService: ObservableObject {
         if let url = Bundle.main.url(forResource: fullPath, withExtension: "json") {
             do {
                 let data = try Data(contentsOf: url)
-                let decoder = JSONDecoder()
                 return try decoder.decode(T.self, from: data)
             } catch {
                 print("Error loading \(filename).json: \(error)")
@@ -833,7 +843,6 @@ class DataService: ObservableObject {
             if let url = Bundle.main.url(forResource: name, withExtension: "json", subdirectory: "data/\(subdir)") {
                 do {
                     let data = try Data(contentsOf: url)
-                    let decoder = JSONDecoder()
                     return try decoder.decode(T.self, from: data)
                 } catch {
                     print("Error loading \(filename).json: \(error)")
@@ -852,9 +861,10 @@ class DataService: ObservableObject {
 
     private static func buildCatalogSnapshot() -> LoadedCatalogSnapshot {
         var failedCatalogs: Set<DataCatalog> = []
+        let decoder = JSONDecoder()
 
         let farIndex: [FARIndexPart]
-        if let index: FARIndex = loadJSON(from: "far/index", as: FARIndex.self) {
+        if let index: FARIndex = loadJSON(from: "far/index", as: FARIndex.self, decoder: decoder) {
             farIndex = index.parts.sorted { $0.part < $1.part }
         } else {
             farIndex = []
@@ -867,7 +877,7 @@ class DataService: ObservableObject {
         var loadedFARParts: [FARPart] = []
         loadedFARParts.reserveCapacity(partNumbers.count)
         for partNum in partNumbers {
-            if let part: FARPart = loadJSON(from: "far/part\(partNum)", as: FARPart.self) {
+            if let part: FARPart = loadJSON(from: "far/part\(partNum)", as: FARPart.self, decoder: decoder) {
                 loadedFARParts.append(part)
             }
         }
@@ -877,7 +887,7 @@ class DataService: ObservableObject {
         }
 
         let aimIndex: [AIMIndexChapter]
-        if let index: AIMIndex = loadJSON(from: "aim/index", as: AIMIndex.self) {
+        if let index: AIMIndex = loadJSON(from: "aim/index", as: AIMIndex.self, decoder: decoder) {
             aimIndex = index.chapters.sorted { $0.chapter < $1.chapter }
         } else {
             aimIndex = []
@@ -888,7 +898,7 @@ class DataService: ObservableObject {
         var loadedAIMChapters: [AIMChapter] = []
         loadedAIMChapters.reserveCapacity(chapterNumbers.count)
         for chapterNum in chapterNumbers {
-            if let chapter: AIMChapter = loadJSON(from: "aim/chapter\(chapterNum)", as: AIMChapter.self) {
+            if let chapter: AIMChapter = loadJSON(from: "aim/chapter\(chapterNum)", as: AIMChapter.self, decoder: decoder) {
                 loadedAIMChapters.append(chapter)
             }
         }
@@ -923,7 +933,7 @@ class DataService: ObservableObject {
         var quizzes: [Quiz] = []
         quizzes.reserveCapacity(allQuizFiles.count)
         for file in allQuizFiles {
-            if let quiz: Quiz = loadJSON(from: file, as: Quiz.self) {
+            if let quiz: Quiz = loadJSON(from: file, as: Quiz.self, decoder: decoder) {
                 quizzes.append(quiz)
             }
         }
@@ -956,7 +966,7 @@ class DataService: ObservableObject {
         var flashcardDecks: [FlashcardDeck] = []
         flashcardDecks.reserveCapacity(allFlashcardFiles.count)
         for file in allFlashcardFiles {
-            if let deck: FlashcardDeck = loadJSON(from: file, as: FlashcardDeck.self) {
+            if let deck: FlashcardDeck = loadJSON(from: file, as: FlashcardDeck.self, decoder: decoder) {
                 flashcardDecks.append(deck)
             }
         }
@@ -965,7 +975,7 @@ class DataService: ObservableObject {
         }
 
         let studyPaths: [StudyPath]
-        if let data: StudyPathsData = loadJSON(from: "study-paths", as: StudyPathsData.self) {
+        if let data: StudyPathsData = loadJSON(from: "study-paths", as: StudyPathsData.self, decoder: decoder) {
             studyPaths = data.paths.filter { !$0.references.isEmpty }
         } else {
             studyPaths = []
@@ -973,26 +983,42 @@ class DataService: ObservableObject {
         }
 
         let advisoryCirculars: [AdvisoryCircular]
-        if let data: AdvisoryCircularsData = loadJSON(from: "advisory-circulars/index", as: AdvisoryCircularsData.self) {
+        if let data: AdvisoryCircularsData = loadJSON(from: "advisory-circulars/index", as: AdvisoryCircularsData.self, decoder: decoder) {
             advisoryCirculars = data.items
         } else {
             advisoryCirculars = []
             failedCatalogs.insert(.advisoryCirculars)
         }
 
-        let sourceStatus = loadJSON(from: "source-status", as: SourceStatusData.self)
+        let sourceStatus = loadJSON(from: "source-status", as: SourceStatusData.self, decoder: decoder)
         if sourceStatus == nil {
             failedCatalogs.insert(.sourceStatus)
         }
 
         let pcgTerms: [PCGTerm]
-        if let pcg: PCGData = loadJSON(from: "aim/pcg", as: PCGData.self) {
+        if let pcg: PCGData = loadJSON(from: "aim/pcg", as: PCGData.self, decoder: decoder) {
             pcgTerms = pcg.terms
         } else {
             pcgTerms = []
             failedCatalogs.insert(.pcg)
         }
 
+        return LoadedCatalogSnapshot(
+            farIndex: farIndex,
+            farParts: farParts,
+            aimIndex: aimIndex,
+            aimChapters: aimChapters,
+            quizzes: quizzes,
+            flashcardDecks: flashcardDecks,
+            studyPaths: studyPaths,
+            advisoryCirculars: advisoryCirculars,
+            sourceStatus: sourceStatus,
+            pcgTerms: pcgTerms,
+            failedCatalogs: failedCatalogs
+        )
+    }
+
+    private static func buildSearchIndexSnapshot(from snapshot: LoadedCatalogSnapshot) -> SearchIndexSnapshot {
         var searchCorpus: [SearchCorpusEntry] = []
         searchCorpus.reserveCapacity(8500)
         var farEntriesByPart: [Int: [Int]] = [:]
@@ -1000,9 +1026,9 @@ class DataService: ObservableObject {
         var farHeaderByPart: [Int: String] = [:]
         var aimHeaderByChapter: [Int: String] = [:]
         var acSearchDocuments: [AdvisoryCircularSearchDocument] = []
-        acSearchDocuments.reserveCapacity(advisoryCirculars.count)
+        acSearchDocuments.reserveCapacity(snapshot.advisoryCirculars.count)
 
-        for part in farParts {
+        for part in snapshot.farParts {
             farHeaderByPart[part.part] = "far part \(part.part) \(part.cfr) \(part.title) \(part.subchapterTitle ?? "")".lowercased()
             var partEntryIndices: [Int] = []
 
@@ -1074,7 +1100,7 @@ class DataService: ObservableObject {
             farEntriesByPart[part.part] = partEntryIndices
         }
 
-        for chapter in aimChapters {
+        for chapter in snapshot.aimChapters {
             let chapterLabel = formatAIMChapterLabel(chapter.chapter)
             aimHeaderByChapter[chapter.chapter] = "aim chapter \(chapter.chapter) \(chapterLabel) \(chapter.title)".lowercased()
             var chapterEntryIndices: [Int] = []
@@ -1101,7 +1127,7 @@ class DataService: ObservableObject {
             aimEntriesByChapter[chapter.chapter] = chapterEntryIndices
         }
 
-        for term in pcgTerms {
+        for term in snapshot.pcgTerms {
             searchCorpus.append(SearchCorpusEntry(
                 type: "pcg",
                 displayTitle: term.term,
@@ -1116,7 +1142,7 @@ class DataService: ObservableObject {
             ))
         }
 
-        for deck in flashcardDecks {
+        for deck in snapshot.flashcardDecks {
             for card in deck.cards {
                 let combined = "\(card.back) \(card.reference) \(deck.title)"
                 searchCorpus.append(SearchCorpusEntry(
@@ -1134,7 +1160,7 @@ class DataService: ObservableObject {
             }
         }
 
-        for (acIndex, ac) in advisoryCirculars.enumerated() {
+        for (acIndex, ac) in snapshot.advisoryCirculars.enumerated() {
             let displayTitle = "AC \(ac.number) \(ac.title)"
             let metadata = advisoryCircularSearchText(ac)
             acSearchDocuments.append(AdvisoryCircularSearchDocument(
@@ -1155,18 +1181,7 @@ class DataService: ObservableObject {
             ))
         }
 
-        return LoadedCatalogSnapshot(
-            farIndex: farIndex,
-            farParts: farParts,
-            aimIndex: aimIndex,
-            aimChapters: aimChapters,
-            quizzes: quizzes,
-            flashcardDecks: flashcardDecks,
-            studyPaths: studyPaths,
-            advisoryCirculars: advisoryCirculars,
-            sourceStatus: sourceStatus,
-            pcgTerms: pcgTerms,
-            failedCatalogs: failedCatalogs,
+        return SearchIndexSnapshot(
             searchCorpus: searchCorpus,
             farEntriesByPart: farEntriesByPart,
             aimEntriesByChapter: aimEntriesByChapter,
@@ -1176,10 +1191,34 @@ class DataService: ObservableObject {
         )
     }
 
-    private func currentSnapshot() -> LoadedCatalogSnapshot {
+    private func currentSnapshotWithGeneration() -> (snapshot: LoadedCatalogSnapshot, generation: Int) {
         catalogLock.lock()
         defer { catalogLock.unlock() }
-        return catalogSnapshot
+        return (catalogSnapshot, catalogGeneration)
+    }
+
+    private func currentSnapshot() -> LoadedCatalogSnapshot {
+        currentSnapshotWithGeneration().snapshot
+    }
+
+    private func searchIndex(for snapshot: LoadedCatalogSnapshot, generation: Int) -> SearchIndexSnapshot {
+        searchIndexLock.lock()
+        if cachedSearchIndexGeneration == generation, let cached = cachedSearchIndex {
+            searchIndexLock.unlock()
+            return cached
+        }
+        searchIndexLock.unlock()
+
+        let built = Self.buildSearchIndexSnapshot(from: snapshot)
+
+        searchIndexLock.lock()
+        defer { searchIndexLock.unlock() }
+        if cachedSearchIndexGeneration == generation, let cached = cachedSearchIndex {
+            return cached
+        }
+        cachedSearchIndex = built
+        cachedSearchIndexGeneration = generation
+        return built
     }
 
     private func loadedAdvisoryCircularSearchIndexes() -> (compact: [String: [Int]], exact: [String: [Int]]) {
@@ -1221,19 +1260,20 @@ class DataService: ObservableObject {
     }
 
     func filterFARParts(query: String) -> [FARPart] {
-        let snapshot = currentSnapshot()
+        let (snapshot, generation) = currentSnapshotWithGeneration()
         let parts = snapshot.farParts
         let trimmed = query.trimmingCharacters(in: .whitespacesAndNewlines)
         guard !trimmed.isEmpty else { return parts }
 
+        let index = searchIndex(for: snapshot, generation: generation)
         return parts.filter { part in
-            if let header = snapshot.farHeaderByPart[part.part],
+            if let header = index.farHeaderByPart[part.part],
                SearchQueryMatcher.matches(text: header, query: trimmed) {
                 return true
             }
-            guard let indices = snapshot.farEntriesByPart[part.part] else { return false }
-            for index in indices {
-                if SearchQueryMatcher.matches(text: snapshot.searchCorpus[index].lowercasedDocument, query: trimmed) {
+            guard let indices = index.farEntriesByPart[part.part] else { return false }
+            for entryIdx in indices {
+                if SearchQueryMatcher.matches(text: index.searchCorpus[entryIdx].lowercasedDocument, query: trimmed) {
                     return true
                 }
             }
@@ -1242,19 +1282,20 @@ class DataService: ObservableObject {
     }
 
     func filterAIMChapters(query: String) -> [AIMChapter] {
-        let snapshot = currentSnapshot()
+        let (snapshot, generation) = currentSnapshotWithGeneration()
         let chapters = snapshot.aimChapters
         let trimmed = query.trimmingCharacters(in: .whitespacesAndNewlines)
         guard !trimmed.isEmpty else { return chapters }
 
+        let index = searchIndex(for: snapshot, generation: generation)
         return chapters.filter { chapter in
-            if let header = snapshot.aimHeaderByChapter[chapter.chapter],
+            if let header = index.aimHeaderByChapter[chapter.chapter],
                SearchQueryMatcher.matches(text: header, query: trimmed) {
                 return true
             }
-            guard let indices = snapshot.aimEntriesByChapter[chapter.chapter] else { return false }
-            for index in indices {
-                if SearchQueryMatcher.matches(text: snapshot.searchCorpus[index].lowercasedDocument, query: trimmed) {
+            guard let indices = index.aimEntriesByChapter[chapter.chapter] else { return false }
+            for entryIdx in indices {
+                if SearchQueryMatcher.matches(text: index.searchCorpus[entryIdx].lowercasedDocument, query: trimmed) {
                     return true
                 }
             }
@@ -1385,15 +1426,20 @@ class DataService: ObservableObject {
         let tokens = SearchQueryMatcher.tokens(for: lowercased)
         guard !tokens.isEmpty else { return [] }
 
-        let snapshot = currentSnapshot()
-        let corpus = snapshot.searchCorpus
+        let (snapshot, generation) = currentSnapshotWithGeneration()
+        let searchIndex = searchIndex(for: snapshot, generation: generation)
+        let corpus = searchIndex.searchCorpus
         guard !corpus.isEmpty else { return [] }
 
-        struct ScoredResult {
-            let result: SearchResult
+        enum ScoredPayload {
+            case corpusEntry(SearchCorpusEntry)
+            case advisoryCircular(AdvisoryCircular, isFullTextOnly: Bool)
+        }
+        struct ScoredCandidate {
+            let payload: ScoredPayload
             let score: Double
         }
-        var scoredResults: [ScoredResult] = []
+        var scoredCandidates: [ScoredCandidate] = []
         let totalDocs = Double(corpus.count)
 
         var docFrequency: [String: Int] = [:]
@@ -1414,16 +1460,7 @@ class DataService: ObservableObject {
                 totalDocs: totalDocs
             )
             if score > 0 {
-                scoredResults.append(ScoredResult(
-                    result: SearchResult(
-                        type: entry.type,
-                        title: entry.displayTitle,
-                        content: generateContextualSnippet(entry.snippetSource, searchTerm: lowercased, tokens: tokens),
-                        reference: entry.reference,
-                        link: entry.link
-                    ),
-                    score: score
-                ))
+                scoredCandidates.append(ScoredCandidate(payload: .corpusEntry(entry), score: score))
             }
         }
 
@@ -1434,18 +1471,14 @@ class DataService: ObservableObject {
             let acCandidates = AdvisoryCircularSearchEngine.candidates(
                 for: trimmed,
                 index: acSearchIndexes.compact,
-                documents: snapshot.acSearchDocuments,
+                documents: searchIndex.acSearchDocuments,
                 exactIndex: acSearchIndexes.exact
             )
             for candidate in acCandidates where candidate.documentID >= 0 && candidate.documentID < snapshot.advisoryCirculars.count {
                 let ac = snapshot.advisoryCirculars[candidate.documentID]
-                let metadata = Self.advisoryCircularSearchText(ac)
                 matchedACIndices.insert(candidate.documentID)
-                let snippet = candidate.isFullTextOnly
-                    ? "Full-text match in extracted circular. \(ac.summary)"
-                    : generateContextualSnippet(metadata, searchTerm: lowercased, tokens: tokens)
-                scoredResults.append(ScoredResult(
-                    result: advisoryCircularResult(ac, content: snippet),
+                scoredCandidates.append(ScoredCandidate(
+                    payload: .advisoryCircular(ac, isFullTextOnly: candidate.isFullTextOnly),
                     score: candidate.score
                 ))
             }
@@ -1466,21 +1499,37 @@ class DataService: ObservableObject {
                 totalDocs: totalDocs
             )
             if score > 0 {
-                let ac = snapshot.advisoryCirculars[acIndex]
-                scoredResults.append(ScoredResult(
-                    result: advisoryCircularResult(
-                        ac,
-                        content: generateContextualSnippet(entry.snippetSource, searchTerm: lowercased, tokens: tokens)
-                    ),
-                    score: score
-                ))
+                scoredCandidates.append(ScoredCandidate(payload: .corpusEntry(entry), score: score))
             }
         }
 
-        return scoredResults
+        // Generate contextual snippets only for the top 50 ranked candidates.
+        return scoredCandidates
             .sorted { $0.score > $1.score }
             .prefix(50)
-            .map(\.result)
+            .map { candidate in
+                switch candidate.payload {
+                case .corpusEntry(let entry):
+                    let snippet = generateContextualSnippet(entry.snippetSource, searchTerm: lowercased, tokens: tokens)
+                    if let acIndex = entry.acIndex,
+                       acIndex >= 0,
+                       acIndex < snapshot.advisoryCirculars.count {
+                        return advisoryCircularResult(snapshot.advisoryCirculars[acIndex], content: snippet)
+                    }
+                    return SearchResult(
+                        type: entry.type,
+                        title: entry.displayTitle,
+                        content: snippet,
+                        reference: entry.reference,
+                        link: entry.link
+                    )
+                case .advisoryCircular(let ac, let isFullTextOnly):
+                    let snippet = isFullTextOnly
+                        ? "Full-text match in extracted circular. \(ac.summary)"
+                        : generateContextualSnippet(Self.advisoryCircularSearchText(ac), searchTerm: lowercased, tokens: tokens)
+                    return advisoryCircularResult(ac, content: snippet)
+                }
+            }
     }
 
     private func calculateTfIdfScore(

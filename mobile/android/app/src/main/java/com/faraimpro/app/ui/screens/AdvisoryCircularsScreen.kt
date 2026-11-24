@@ -112,23 +112,28 @@ fun AdvisoryCircularsScreen(
                 .asLoadState { it.isEmpty() }
         }
     }
-    val filteredCirculars = remember(query, sort, advisoryCirculars) {
+    val searchableById = remember(advisoryCirculars) {
+        advisoryCirculars.associate { ac ->
+            ac.id to buildString {
+                append(ac.number).append(' ')
+                append(ac.title).append(' ')
+                append(ac.summary).append(' ')
+                append(ac.category).append(' ')
+                append(ac.office).append(' ')
+                append(ac.status).append(' ')
+                append(ac.replaces.orEmpty()).append(' ')
+                append(ac.relatedCfr.joinToString(" ")).append(' ')
+                append(ac.tags.joinToString(" "))
+            }.lowercase()
+        }
+    }
+    val filteredCirculars = remember(query, sort, advisoryCirculars, searchableById) {
         val normalizedQuery = query.trim().lowercase()
         val matches = if (normalizedQuery.isEmpty()) {
             advisoryCirculars
         } else {
             advisoryCirculars.filter { ac ->
-                listOf(
-                    ac.number,
-                    ac.title,
-                    ac.summary,
-                    ac.category,
-                    ac.office,
-                    ac.status,
-                    ac.replaces.orEmpty(),
-                    ac.relatedCfr.joinToString(" "),
-                    ac.tags.joinToString(" ")
-                ).any { it.lowercase().contains(normalizedQuery) }
+                searchableById[ac.id]?.contains(normalizedQuery) == true
             }
         }
 
@@ -255,7 +260,7 @@ fun AdvisoryCircularsScreen(
                             )
                         }
                     }
-                    items(filteredCirculars) { ac ->
+                    items(filteredCirculars, key = { it.id }) { ac ->
                         AdvisoryCircularCard(ac, onRead = { selectedCircular = ac })
                     }
                 }

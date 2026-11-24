@@ -1140,6 +1140,7 @@ struct FARPartDetailView: View {
     let part: FARPart
     let initialSection: String?
     private let initialSearchText: String
+    private let sourceKey: FARReaderDocumentKey
     @State private var searchText: String
     @StateObject private var session: FARReaderSession
     @State private var document: FARReaderDocument?
@@ -1158,12 +1159,12 @@ struct FARPartDetailView: View {
         self.part = part
         self.initialSection = initialSection
         self.initialSearchText = initialSearchText
+        self.sourceKey = FARReaderDocumentKey(part: part)
         _searchText = State(initialValue: initialSearchText)
         _session = StateObject(wrappedValue: FARReaderSession(query: initialSearchText))
     }
 
     var body: some View {
-        let sourceKey = FARReaderDocumentKey(part: part)
         let readyDocument = document.flatMap { $0.key == sourceKey ? $0 : nil }
         let preferences = readerTypography.preferences(
             fontScaleIndex: readerFontScaleIndex,
@@ -1260,7 +1261,7 @@ struct FARPartDetailView: View {
     }
 
     private var currentPlan: FARReaderRows? {
-        guard let document, document.key == FARReaderDocumentKey(part: part) else { return nil }
+        guard let document, document.key == sourceKey else { return nil }
         return document.rows(query: searchText, initialQuery: initialSearchText,
                              initialSection: initialSection, session: session)
     }

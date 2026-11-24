@@ -155,16 +155,26 @@ data class StudyMarkInput(
     fun key(): String = "$type:$reference"
 }
 
+private val READER_ROUTE_REGEX = Regex(
+    "^(?:far_part|aim_chapter)/\\d+(?:\\?(?:(?:query|section)=[A-Za-z0-9._~%+-]*)(?:&(?:query|section)=[A-Za-z0-9._~%+-]*)*)?$"
+)
+private val AC_ROUTE_REGEX = Regex("^advisory_circulars/[A-Za-z0-9._~%+-]+$")
+private val VALID_STUDY_MARK_TYPES = setOf("far", "aim", "ac")
+private val REFERENCE_PUNCTUATION_REGEX = Regex("[^\\w\\s]")
+private val WHITESPACE_SPLIT_REGEX = Regex("\\s+")
+private val SEARCH_STOP_WORDS = setOf(
+    "a", "an", "and", "are", "as", "at", "be", "by", "for", "from",
+    "has", "he", "in", "is", "it", "its", "of", "on", "that", "the", "to", "was",
+    "were", "will", "with", "or", "this", "which", "not", "but", "can", "all", "any"
+)
+
 private fun normalizedStoredRoute(type: String, route: String): String? {
-    val readerRoute = Regex(
-        "^(?:far_part|aim_chapter)/\\d+(?:\\?(?:(?:query|section)=[A-Za-z0-9._~%+-]*)(?:&(?:query|section)=[A-Za-z0-9._~%+-]*)*)?$"
-    )
     return when (type) {
-        "far" -> route.takeIf { it.startsWith("far_part/") && it.matches(readerRoute) }
-        "aim" -> route.takeIf { it.startsWith("aim_chapter/") && it.matches(readerRoute) }
+        "far" -> route.takeIf { it.startsWith("far_part/") && it.matches(READER_ROUTE_REGEX) }
+        "aim" -> route.takeIf { it.startsWith("aim_chapter/") && it.matches(READER_ROUTE_REGEX) }
         "ac" -> when {
             route == "ac" || route == "advisory_circulars" -> "advisory_circulars"
-            route.matches(Regex("^advisory_circulars/[A-Za-z0-9._~%+-]+$")) -> route
+            route.matches(AC_ROUTE_REGEX) -> route
             else -> null
         }
         else -> null
@@ -190,16 +200,32 @@ object StudyMarkManager {
 
     private val markListType = object : TypeToken<List<StoredStudyMark>>() {}.type
 
+    @Volatile
+    private var cachedJson: String? = null
+    @Volatile
+    private var cachedMarks: List<StudyMark> = emptyList()
+    @Volatile
+    private var cachedByKey: Map<String, StudyMark> = emptyMap()
+
     private fun getPrefs(context: Context): SharedPreferences {
         return context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
     }
 
-    fun getStudyMarks(context: Context): List<StudyMark> {
-        val json = getPrefs(context).getString(STUDY_MARKS_KEY, null) ?: return emptyList()
-        return try {
+    private fun ensureCache(context: Context): Pair<List<StudyMark>, Map<String, StudyMark>> {
+        val json = getPrefs(context).getString(STUDY_MARKS_KEY, null)
+        if (json == null) {
+            cachedJson = null
+            cachedMarks = emptyList()
+            cachedByKey = emptyMap()
+            return emptyList<StudyMark>() to emptyMap()
+        }
+        if (json == cachedJson) {
+            return cachedMarks to cachedByKey
+        }
+        val parsed = try {
             gson.fromJson<List<StoredStudyMark>>(json, markListType).orEmpty()
                 .mapNotNull { stored ->
-                    val type = stored.type?.takeIf { it in setOf("far", "aim", "ac") }
+                    val type = stored.type?.takeIf { it in VALID_STUDY_MARK_TYPES }
                         ?: return@mapNotNull null
                     val reference = stored.reference?.takeIf { it.isNotBlank() }
                         ?: return@mapNotNull null
@@ -227,10 +253,19 @@ object StudyMarkManager {
         } catch (_: Exception) {
             emptyList()
         }
+        val byKey = parsed.associateBy { it.key }
+        cachedJson = json
+        cachedMarks = parsed
+        cachedByKey = byKey
+        return parsed to byKey
+    }
+
+    fun getStudyMarks(context: Context): List<StudyMark> {
+        return ensureCache(context).first
     }
 
     fun getStudyMark(context: Context, input: StudyMarkInput): StudyMark? {
-        return getStudyMarks(context).firstOrNull { it.key == input.key() }
+        return ensureCache(context).second[input.key()]
     }
 
     fun toggleSaved(context: Context, input: StudyMarkInput): List<StudyMark> {
@@ -297,7 +332,11 @@ object StudyMarkManager {
     }
 
     fun writeStudyMarks(context: Context, marks: List<StudyMark>) {
-        getPrefs(context).edit { putString(STUDY_MARKS_KEY, gson.toJson(marks)) }
+        val serialized = gson.toJson(marks)
+        cachedJson = serialized
+        cachedMarks = marks
+        cachedByKey = marks.associateBy { it.key }
+        getPrefs(context).edit { putString(STUDY_MARKS_KEY, serialized) }
     }
 }
 
@@ -585,31 +624,27 @@ object StudyPackManager {
 class DataRepository(private val context: Context) {
     private val gson = Gson()
     
-    // Cached data
-    private var _farParts: List<FARPart>? = null
-    private var _aimChapters: List<AIMChapter>? = null
-    private var _quizzes: List<Quiz>? = null
-    private var _flashcardDecks: List<FlashcardDeck>? = null
-    private var _pcgTerms: List<PCGTerm>? = null
-    private var _studyPaths: List<StudyPath>? = null
-    private var _advisoryCirculars: List<AdvisoryCircular>? = null
-    private var _acSearchIndex: ACInvertedIndex? = null
-    private var _sourceStatus: SourceStatusData? = null
+    // Thread-safe cached data
+    @Volatile private var _farIndex: FARIndex? = null
+    @Volatile private var _farParts: List<FARPart>? = null
+    private val _farPartsByNumber = java.util.concurrent.ConcurrentHashMap<Int, FARPart>()
+    @Volatile private var _aimIndex: AIMIndex? = null
+    @Volatile private var _aimChapters: List<AIMChapter>? = null
+    private val _aimChaptersByNumber = java.util.concurrent.ConcurrentHashMap<Int, AIMChapter>()
+    @Volatile private var _quizzes: List<Quiz>? = null
+    @Volatile private var _flashcardDecks: List<FlashcardDeck>? = null
+    @Volatile private var _pcgTerms: List<PCGTerm>? = null
+    @Volatile private var _studyPaths: List<StudyPath>? = null
+    @Volatile private var _advisoryCirculars: List<AdvisoryCircular>? = null
+    @Volatile private var _acSearchIndex: ACInvertedIndex? = null
+    @Volatile private var _sourceStatus: SourceStatusData? = null
     
-    // Helper to load JSON from assets
-    private fun loadJsonFromAssets(fileName: String): String? {
-        return try {
-            context.assets.open(fileName).bufferedReader().use { it.readText() }
-        } catch (e: IOException) {
-            e.printStackTrace()
-            null
-        }
-    }
-    
+    // Stream JSON directly into Gson without intermediate full-file String allocation.
     private inline fun <reified T> loadJson(fileName: String): T? {
-        val json = loadJsonFromAssets(fileName) ?: return null
         return try {
-            gson.fromJson(json, T::class.java)
+            context.assets.open(fileName).bufferedReader().use { reader ->
+                gson.fromJson(reader, T::class.java)
+            }
         } catch (e: Exception) {
             e.printStackTrace()
             null
@@ -617,82 +652,167 @@ class DataRepository(private val context: Context) {
     }
 
     private inline fun <reified T> requireJson(fileName: String): T {
-        val json = context.assets.open(fileName).bufferedReader().use { it.readText() }
-        return requireNotNull(gson.fromJson(json, T::class.java)) {
-            "Bundled data is empty: $fileName"
+        return context.assets.open(fileName).bufferedReader().use { reader ->
+            requireNotNull(gson.fromJson(reader, T::class.java)) {
+                "Bundled data is empty: $fileName"
+            }
         }
     }
 
     private fun loadACSearchIndex(): ACInvertedIndex {
         _acSearchIndex?.let { return it }
-
-        val type = object : TypeToken<ACInvertedIndex>() {}.type
-        val index = context.assets.open("search/inverted-index-ac.json")
-            .bufferedReader()
-            .use { reader ->
-                requireNotNull(gson.fromJson<ACInvertedIndex>(reader, type)) {
-                    "Bundled AC search index is empty"
+        synchronized(this) {
+            _acSearchIndex?.let { return it }
+            val type = object : TypeToken<ACInvertedIndex>() {}.type
+            val index = context.assets.open("search/inverted-index-ac.json")
+                .bufferedReader()
+                .use { reader ->
+                    requireNotNull(gson.fromJson<ACInvertedIndex>(reader, type)) {
+                        "Bundled AC search index is empty"
+                    }
                 }
+            require(index.isNotEmpty()) { "Bundled AC search index has no tokens" }
+            _acSearchIndex = index
+            return index
+        }
+    }
+
+    fun loadFARPart(partNumber: Int, forceRefresh: Boolean = false): Result<FARPart?> = runCatching {
+        if (!forceRefresh) {
+            _farPartsByNumber[partNumber]?.let { return@runCatching it }
+            _farParts?.firstOrNull { it.part == partNumber }?.let {
+                _farPartsByNumber[partNumber] = it
+                return@runCatching it
             }
-        require(index.isNotEmpty()) { "Bundled AC search index has no tokens" }
-        _acSearchIndex = index
-        return index
+        }
+
+        val index = if (forceRefresh) {
+            requireJson<FARIndex>("far/index.json").also { _farIndex = it }
+        } else {
+            _farIndex ?: requireJson<FARIndex>("far/index.json").also { _farIndex = it }
+        }
+        if (index.parts.none { it.part == partNumber }) {
+            return@runCatching null
+        }
+
+        val part = requireJson<FARPart>("far/part$partNumber.json")
+        _farPartsByNumber[partNumber] = part
+        part
     }
 
     fun loadFARParts(forceRefresh: Boolean = false): Result<List<FARPart>> = runCatching {
         if (!forceRefresh) {
             _farParts?.let { return@runCatching it }
         }
+        synchronized(this) {
+            if (!forceRefresh) {
+                _farParts?.let { return@runCatching it }
+            }
+            val index = requireJson<FARIndex>("far/index.json")
+            _farIndex = index
+            val parts = index.parts
+                .map { it.part }
+                .distinct()
+                .sorted()
+                .map { partNum ->
+                    if (!forceRefresh) {
+                        _farPartsByNumber[partNum]?.let { return@map it }
+                    }
+                    requireJson<FARPart>("far/part$partNum.json").also {
+                        _farPartsByNumber[partNum] = it
+                    }
+                }
+                .sortedBy { it.part }
+            _farParts = parts
+            if (forceRefresh) _searchCorpus = null
+            parts
+        }
+    }
 
-        val index = requireJson<FARIndex>("far/index.json")
-        val parts = index.parts
-            .map { it.part }
-            .distinct()
-            .sorted()
-            .map { requireJson<FARPart>("far/part$it.json") }
-            .sortedBy { it.part }
-        _farParts = parts
-        parts
+    fun loadAIMChapter(chapterNumber: Int, forceRefresh: Boolean = false): Result<AIMChapter?> = runCatching {
+        if (!forceRefresh) {
+            _aimChaptersByNumber[chapterNumber]?.let { return@runCatching it }
+            _aimChapters?.firstOrNull { it.chapter == chapterNumber }?.let {
+                _aimChaptersByNumber[chapterNumber] = it
+                return@runCatching it
+            }
+        }
+
+        val index = if (forceRefresh) {
+            requireJson<AIMIndex>("aim/index.json").also { _aimIndex = it }
+        } else {
+            _aimIndex ?: requireJson<AIMIndex>("aim/index.json").also { _aimIndex = it }
+        }
+        if (index.chapters.none { it.chapter == chapterNumber }) {
+            return@runCatching null
+        }
+
+        val chapter = requireJson<AIMChapter>("aim/chapter$chapterNumber.json")
+        _aimChaptersByNumber[chapterNumber] = chapter
+        chapter
     }
 
     fun loadAIMChapters(forceRefresh: Boolean = false): Result<List<AIMChapter>> = runCatching {
         if (!forceRefresh) {
             _aimChapters?.let { return@runCatching it }
         }
-
-        val index = requireJson<AIMIndex>("aim/index.json")
-        val chapters = index.chapters
-            .map { it.chapter }
-            .distinct()
-            .sorted()
-            .map { requireJson<AIMChapter>("aim/chapter$it.json") }
-            .sortedBy { it.chapter }
-        _aimChapters = chapters
-        chapters
+        synchronized(this) {
+            if (!forceRefresh) {
+                _aimChapters?.let { return@runCatching it }
+            }
+            val index = requireJson<AIMIndex>("aim/index.json")
+            _aimIndex = index
+            val chapters = index.chapters
+                .map { it.chapter }
+                .distinct()
+                .sorted()
+                .map { chapterNum ->
+                    if (!forceRefresh) {
+                        _aimChaptersByNumber[chapterNum]?.let { return@map it }
+                    }
+                    requireJson<AIMChapter>("aim/chapter$chapterNum.json").also {
+                        _aimChaptersByNumber[chapterNum] = it
+                    }
+                }
+                .sortedBy { it.chapter }
+            _aimChapters = chapters
+            if (forceRefresh) _searchCorpus = null
+            chapters
+        }
     }
 
     fun loadFlashcardDecks(forceRefresh: Boolean = false): Result<List<FlashcardDeck>> = runCatching {
         if (!forceRefresh) {
             _flashcardDecks?.let { return@runCatching it }
         }
-
-        val deckFiles = context.assets.list("flashcards")
-            ?.filter { it.endsWith(".json") }
-            ?.sorted()
-            .orEmpty()
-        val decks = deckFiles.map { requireJson<FlashcardDeck>("flashcards/$it") }
-        _flashcardDecks = decks
-        decks
+        synchronized(this) {
+            if (!forceRefresh) {
+                _flashcardDecks?.let { return@runCatching it }
+            }
+            val deckFiles = context.assets.list("flashcards")
+                ?.filter { it.endsWith(".json") }
+                ?.sorted()
+                .orEmpty()
+            val decks = deckFiles.map { requireJson<FlashcardDeck>("flashcards/$it") }
+            _flashcardDecks = decks
+            if (forceRefresh) _searchCorpus = null
+            decks
+        }
     }
 
     fun loadAdvisoryCirculars(forceRefresh: Boolean = false): Result<List<AdvisoryCircular>> = runCatching {
         if (!forceRefresh) {
             _advisoryCirculars?.let { return@runCatching it }
         }
-
-        val circulars = requireJson<AdvisoryCircularsData>("advisory-circulars/index.json").items
-        _advisoryCirculars = circulars
-        circulars
+        synchronized(this) {
+            if (!forceRefresh) {
+                _advisoryCirculars?.let { return@runCatching it }
+            }
+            val circulars = requireJson<AdvisoryCircularsData>("advisory-circulars/index.json").items
+            _advisoryCirculars = circulars
+            if (forceRefresh) _searchCorpus = null
+            circulars
+        }
     }
 
     fun loadAdvisoryCircularContent(advisoryCircular: AdvisoryCircular): Result<AdvisoryCircularContent?> {
@@ -706,10 +826,15 @@ class DataRepository(private val context: Context) {
         if (!forceRefresh) {
             _pcgTerms?.let { return@runCatching it }
         }
-
-        val terms = requireJson<PCGData>("aim/pcg.json").terms
-        _pcgTerms = terms
-        terms
+        synchronized(this) {
+            if (!forceRefresh) {
+                _pcgTerms?.let { return@runCatching it }
+            }
+            val terms = requireJson<PCGData>("aim/pcg.json").terms
+            _pcgTerms = terms
+            if (forceRefresh) _searchCorpus = null
+            terms
+        }
     }
 
     // FAR Parts
@@ -724,42 +849,45 @@ class DataRepository(private val context: Context) {
     
     // Quizzes
     fun getQuizzes(): List<Quiz> {
-        if (_quizzes != null) return _quizzes!!
-        
-        val quizFiles = listOf(
-            // Miscellaneous (show first)
-            "quizzes/hard-challenge.json",
-            // FAR
-            "quizzes/private-pilot-far.json",
-            "quizzes/airspace-quiz.json",
-            "quizzes/far-part43-maintenance.json",
-            "quizzes/far-part61-certification.json",
-            "quizzes/far-part67-medical.json",
-            "quizzes/far-part91-operating-rules.json",
-            "quizzes/far-part830-ntsb.json",
-            // AIM
-            "quizzes/aim-chapter1-navigation.json",
-            "quizzes/aim-chapter2-lighting-markings.json",
-            "quizzes/aim-chapter4-atc.json",
-            "quizzes/aim-chapter5-procedures.json",
-            "quizzes/aim-chapter6-emergency.json",
-            "quizzes/aim-chapter7-safety.json",
-            "quizzes/aim-chapter8-medical.json",
-            "quizzes/aim-chapter9-charts.json",
-            "quizzes/aim-chapter10-helicopter.json",
-            "quizzes/aim-chapter11-uas.json"
-        )
-        
-        val quizzes = mutableListOf<Quiz>()
-        for (file in quizFiles) {
-            val quiz = loadJson<Quiz>(file)
-            if (quiz != null) {
-                quizzes.add(quiz)
+        _quizzes?.let { return it }
+        synchronized(this) {
+            _quizzes?.let { return it }
+
+            val quizFiles = listOf(
+                // Miscellaneous (show first)
+                "quizzes/hard-challenge.json",
+                // FAR
+                "quizzes/private-pilot-far.json",
+                "quizzes/airspace-quiz.json",
+                "quizzes/far-part43-maintenance.json",
+                "quizzes/far-part61-certification.json",
+                "quizzes/far-part67-medical.json",
+                "quizzes/far-part91-operating-rules.json",
+                "quizzes/far-part830-ntsb.json",
+                // AIM
+                "quizzes/aim-chapter1-navigation.json",
+                "quizzes/aim-chapter2-lighting-markings.json",
+                "quizzes/aim-chapter4-atc.json",
+                "quizzes/aim-chapter5-procedures.json",
+                "quizzes/aim-chapter6-emergency.json",
+                "quizzes/aim-chapter7-safety.json",
+                "quizzes/aim-chapter8-medical.json",
+                "quizzes/aim-chapter9-charts.json",
+                "quizzes/aim-chapter10-helicopter.json",
+                "quizzes/aim-chapter11-uas.json"
+            )
+
+            val quizzes = mutableListOf<Quiz>()
+            for (file in quizFiles) {
+                val quiz = loadJson<Quiz>(file)
+                if (quiz != null) {
+                    quizzes.add(quiz)
+                }
             }
+
+            _quizzes = quizzes
+            return quizzes
         }
-        
-        _quizzes = quizzes
-        return _quizzes!!
     }
     
     // Flashcard Decks
@@ -768,11 +896,14 @@ class DataRepository(private val context: Context) {
     }
 
     fun getStudyPaths(): List<StudyPath> {
-        if (_studyPaths != null) return _studyPaths!!
-
-        val data = loadJson<StudyPathsData>("study-paths.json")
-        _studyPaths = data?.paths.orEmpty().filter { it.references.isNotEmpty() }
-        return _studyPaths!!
+        _studyPaths?.let { return it }
+        synchronized(this) {
+            _studyPaths?.let { return it }
+            val data = loadJson<StudyPathsData>("study-paths.json")
+            val paths = data?.paths.orEmpty().filter { it.references.isNotEmpty() }
+            _studyPaths = paths
+            return paths
+        }
     }
 
     fun getAdvisoryCirculars(): List<AdvisoryCircular> {
@@ -784,10 +915,13 @@ class DataRepository(private val context: Context) {
     }
 
     fun getSourceStatus(): SourceStatusData? {
-        if (_sourceStatus != null) return _sourceStatus
-
-        _sourceStatus = loadJson<SourceStatusData>("source-status.json")
-        return _sourceStatus
+        _sourceStatus?.let { return it }
+        synchronized(this) {
+            _sourceStatus?.let { return it }
+            val status = loadJson<SourceStatusData>("source-status.json")
+            _sourceStatus = status
+            return status
+        }
     }
     
     // PCG Terms
@@ -833,6 +967,101 @@ class DataRepository(private val context: Context) {
         return Pair(aim, far)
     }
     
+    private data class IndexedSearchDoc(
+        val type: String,
+        val displayTitle: String,
+        val reference: String,
+        val link: String,
+        val snippetSource: String,
+        val lowerTitle: String,
+        val lowerDocument: String
+    )
+
+    @Volatile
+    private var _searchCorpus: List<IndexedSearchDoc>? = null
+
+    private fun getOrBuildSearchCorpus(
+        farParts: List<FARPart>,
+        aimChapters: List<AIMChapter>,
+        pcgTerms: List<PCGTerm>,
+        flashcardDecks: List<FlashcardDeck>,
+        advisoryCirculars: List<AdvisoryCircular>
+    ): List<IndexedSearchDoc> {
+        _searchCorpus?.let { return it }
+        synchronized(this) {
+            _searchCorpus?.let { return it }
+            val docs = ArrayList<IndexedSearchDoc>(9000)
+
+            fun addDoc(
+                type: String,
+                displayTitle: String,
+                searchTitle: String,
+                searchContent: String,
+                snippetSource: String,
+                reference: String,
+                link: String
+            ) {
+                val lowerTitle = searchTitle.lowercase()
+                val lowerContent = searchContent.lowercase()
+                docs.add(
+                    IndexedSearchDoc(
+                        type = type,
+                        displayTitle = displayTitle,
+                        reference = reference,
+                        link = link,
+                        snippetSource = snippetSource,
+                        lowerTitle = lowerTitle,
+                        lowerDocument = "$lowerTitle $lowerContent"
+                    )
+                )
+            }
+
+            fun farSectionSearchTitle(section: FARSection): String {
+                val normalizedReference = section.section.replace(REFERENCE_PUNCTUATION_REGEX, "")
+                return "${section.title} $normalizedReference"
+            }
+
+            for (part in farParts) {
+                part.sections?.forEach { section ->
+                    val text = section.searchableText
+                    addDoc("far", "§ ${section.section} ${section.title}", farSectionSearchTitle(section), text, text, part.cfr, "far/${part.part}#${section.section}")
+                }
+                part.subparts?.forEach { subpart ->
+                    subpart.sections.forEach { section ->
+                        val text = section.searchableText
+                        addDoc("far", "§ ${section.section} ${section.title}", farSectionSearchTitle(section), text, text, part.cfr, "far/${part.part}#${section.section}")
+                    }
+                }
+                part.appendices?.forEach { appendix ->
+                    val text = appendix.searchableText
+                    addDoc("far", appendix.title, appendix.title, text, text, part.cfr, "far/${part.part}#${appendix.appendix}")
+                }
+            }
+            for (chapter in aimChapters) {
+                val ref = "AIM ${formatAIMChapterLabel(chapter.chapter)}"
+                for (section in chapter.sections) {
+                    val text = section.searchableText
+                    addDoc("aim", "${section.section} ${section.title}", section.title, text, text, ref, "aim/${chapter.chapter}#${section.section}")
+                }
+            }
+            for (term in pcgTerms) {
+                addDoc("pcg", term.term, term.term, term.definition, term.definition, "Pilot/Controller Glossary", "glossary#${term.term}")
+            }
+            for (deck in flashcardDecks) {
+                for (card in deck.cards) {
+                    val searchContent = "${card.back} ${card.reference} ${deck.title}"
+                    addDoc("flashcard", card.front, card.front, searchContent, card.back, card.reference, "flashcard_deck/${deck.id}")
+                }
+            }
+            for (ac in advisoryCirculars) {
+                val meta = advisoryCircularSearchText(ac)
+                addDoc("ac-idf", "AC ${ac.number} ${ac.title}", "AC ${ac.number} ${ac.title}", meta, ac.summary, "FAA Advisory Circular", "advisory_circulars#${ac.id}")
+            }
+            _searchCorpus = docs
+            return docs
+        }
+    }
+
     // Global search with TF-IDF relevance scoring
     fun search(query: String): List<SearchResult> {
         if (query.length < 2) return emptyList()
@@ -847,241 +1076,125 @@ class DataRepository(private val context: Context) {
         val advisoryCirculars = loadAdvisoryCirculars().getOrThrow()
         val acSearchIndex = loadACSearchIndex()
 
-        val referencePunctuation = Regex("[^\\w\\s]")
-        fun farSectionSearchTitle(section: FARSection): String {
-            val normalizedReference = section.section.replace(referencePunctuation, "")
-            return "${section.title} $normalizedReference"
-        }
-        
-        data class ScoredResult(val result: SearchResult, val score: Double)
-        val scoredResults = mutableListOf<ScoredResult>()
-        
-        // Collect all searchable documents for IDF calculation
-        val allDocs = mutableListOf<Pair<String, String>>() // title, content
-        
-        for (part in farParts) {
-            part.sections?.forEach { section ->
-                allDocs.add(farSectionSearchTitle(section) to section.searchableText)
-            }
-            part.subparts?.forEach { subpart ->
-                subpart.sections.forEach { section ->
-                    allDocs.add(farSectionSearchTitle(section) to section.searchableText)
-                }
-            }
-            part.appendices?.forEach { appendix ->
-                allDocs.add(appendix.title to appendix.searchableText)
-            }
-        }
-        for (chapter in aimChapters) {
-            for (section in chapter.sections) {
-                allDocs.add(section.title to section.searchableText)
-            }
-        }
-        for (term in pcgTerms) {
-            allDocs.add(term.term to term.definition)
-        }
-        for (deck in flashcardDecks) {
-            for (card in deck.cards) {
-                allDocs.add(card.front to "${card.back} ${card.reference} ${deck.title}")
-            }
-        }
-        for (ac in advisoryCirculars) {
-            allDocs.add("AC ${ac.number} ${ac.title}" to advisoryCircularSearchText(ac))
-        }
-        
-        val totalDocs = allDocs.size.toDouble()
-        
-        // Calculate document frequency for each token
+        val corpus = getOrBuildSearchCorpus(farParts, aimChapters, pcgTerms, flashcardDecks, advisoryCirculars)
+        val totalDocs = corpus.size.toDouble()
+
         val docFrequency = tokens.associateWith { token ->
-            allDocs.count { (title, content) ->
-                title.lowercase().contains(token) || content.lowercase().contains(token)
+            var count = 0
+            for (doc in corpus) {
+                if (doc.lowerDocument.contains(token)) count++
             }
-        }
-        
-        // Search FAR with scoring
-        for (part in farParts) {
-            part.sections?.forEach { section ->
-                val score = calculateTfIdfScore(farSectionSearchTitle(section), section.searchableText, tokens, docFrequency, totalDocs)
-                if (score > 0) {
-                    scoredResults.add(ScoredResult(
-                        SearchResult(
-                            type = "far",
-                            title = "§ ${section.section} ${section.title}",
-                            content = generateContextualSnippet(section.searchableText, lowercased),
-                            reference = part.cfr,
-                            link = "far/${part.part}#${section.section}"
-                        ),
-                        score
-                    ))
-                }
-            }
-            
-            part.subparts?.forEach { subpart ->
-                subpart.sections.forEach { section ->
-                    val score = calculateTfIdfScore(farSectionSearchTitle(section), section.searchableText, tokens, docFrequency, totalDocs)
-                    if (score > 0) {
-                        scoredResults.add(ScoredResult(
-                            SearchResult(
-                                type = "far",
-                                title = "§ ${section.section} ${section.title}",
-                                content = generateContextualSnippet(section.searchableText, lowercased),
-                                reference = part.cfr,
-                                link = "far/${part.part}#${section.section}"
-                            ),
-                            score
-                        ))
-                    }
-                }
-            }
-            part.appendices?.forEach { appendix ->
-                val score = calculateTfIdfScore(appendix.title, appendix.searchableText, tokens, docFrequency, totalDocs)
-                if (score > 0) {
-                    scoredResults.add(ScoredResult(
-                        SearchResult(
-                            type = "far",
-                            title = appendix.title,
-                            content = generateContextualSnippet(appendix.searchableText, lowercased),
-                            reference = part.cfr,
-                            link = "far/${part.part}#${appendix.appendix}"
-                        ),
-                        score
-                    ))
-                }
-            }
-        }
-        
-        // Search AIM with scoring
-        for (chapter in aimChapters) {
-            for (section in chapter.sections) {
-                val content = section.searchableText
-                val score = calculateTfIdfScore(section.title, content, tokens, docFrequency, totalDocs)
-                if (score > 0) {
-                    scoredResults.add(ScoredResult(
-                        SearchResult(
-                            type = "aim",
-                            title = "${section.section} ${section.title}",
-                            content = generateContextualSnippet(content, lowercased),
-                            reference = "AIM ${formatAIMChapterLabel(chapter.chapter)}",
-                            link = "aim/${chapter.chapter}#${section.section}"
-                        ),
-                        score
-                    ))
-                }
-            }
-        }
-        
-        // Search PCG with scoring
-        for (term in pcgTerms) {
-            val score = calculateTfIdfScore(term.term, term.definition, tokens, docFrequency, totalDocs)
-            if (score > 0) {
-                scoredResults.add(ScoredResult(
-                    SearchResult(
-                        type = "pcg",
-                        title = term.term,
-                        content = generateContextualSnippet(term.definition, lowercased),
-                        reference = "Pilot/Controller Glossary",
-                        link = "glossary#${term.term}"
-                    ),
-                    score
-                ))
-            }
+            count.coerceAtLeast(1)
         }
 
-        for (deck in flashcardDecks) {
-            for (card in deck.cards) {
-                val content = "${card.back} ${card.reference} ${deck.title}"
-                val score = calculateTfIdfScore(card.front, content, tokens, docFrequency, totalDocs)
-                if (score > 0) {
-                    scoredResults.add(ScoredResult(
-                        SearchResult(
-                            type = "flashcard",
-                            title = card.front,
-                            content = generateContextualSnippet(card.back, lowercased),
-                            reference = card.reference,
-                            link = "flashcard_deck/${deck.id}"
-                        ),
-                        score
-                    ))
-                }
+        data class ScoredCandidate(
+            val type: String,
+            val title: String,
+            val reference: String,
+            val link: String,
+            val snippetSource: String?,
+            val staticContent: String?,
+            val score: Double
+        )
+
+        val scoredCandidates = mutableListOf<ScoredCandidate>()
+
+        for (doc in corpus) {
+            if (doc.type == "ac-idf") continue
+            val score = calculateTfIdfScore(doc.lowerTitle, doc.lowerDocument, tokens, docFrequency, totalDocs)
+            if (score > 0) {
+                scoredCandidates.add(
+                    ScoredCandidate(
+                        type = doc.type,
+                        title = doc.displayTitle,
+                        reference = doc.reference,
+                        link = doc.link,
+                        snippetSource = doc.snippetSource,
+                        staticContent = null,
+                        score = score
+                    )
+                )
             }
         }
 
         // Search AC full text through compact postings, then rank with bundled metadata.
         for (candidate in rankAdvisoryCircularCandidates(tokens, acSearchIndex, advisoryCirculars)) {
             val ac = advisoryCirculars[candidate.documentId]
-            scoredResults.add(ScoredResult(
-                SearchResult(
+            scoredCandidates.add(
+                ScoredCandidate(
                     type = "ac",
                     title = "AC ${ac.number} ${ac.title}",
-                    content = if (candidate.matchedFullText) {
+                    reference = "FAA Advisory Circular",
+                    link = "advisory_circulars#${ac.id}",
+                    snippetSource = null,
+                    staticContent = if (candidate.matchedFullText) {
                         "Full-text match. ${ac.summary}"
                     } else {
                         ac.summary
                     },
-                    reference = "FAA Advisory Circular",
-                    link = "advisory_circulars#${ac.id}"
-                ),
-                candidate.score
-            ))
+                    score = candidate.score
+                )
+            )
         }
-        
-        // Sort by score descending and return top 50
-        return scoredResults
+
+        // Sort by score descending, take top 50, then generate snippets only for displayed hits.
+        return scoredCandidates
             .sortedWith(
-                compareByDescending<ScoredResult> { it.score }
-                    .thenBy { it.result.type }
-                    .thenBy { it.result.reference }
-                    .thenBy { it.result.title }
+                compareByDescending<ScoredCandidate> { it.score }
+                    .thenBy { it.type }
+                    .thenBy { it.reference }
+                    .thenBy { it.title }
             )
             .take(50)
-            .map { it.result }
+            .map { candidate ->
+                SearchResult(
+                    type = candidate.type,
+                    title = candidate.title,
+                    content = candidate.staticContent
+                        ?: generateContextualSnippet(candidate.snippetSource.orEmpty(), lowercased),
+                    reference = candidate.reference,
+                    link = candidate.link
+                )
+            }
     }
-    
+
     /**
      * Tokenize search query into individual terms
      */
     private fun tokenize(text: String): List<String> {
-        val stopWords = setOf("a", "an", "and", "are", "as", "at", "be", "by", "for", "from", 
-            "has", "he", "in", "is", "it", "its", "of", "on", "that", "the", "to", "was", 
-            "were", "will", "with", "or", "this", "which", "not", "but", "can", "all", "any")
-        return text.replace(Regex("[^\\w\\s]"), "")
-            .split(Regex("\\s+"))
-            .filter { it.length > 2 && it !in stopWords }
+        return text.replace(REFERENCE_PUNCTUATION_REGEX, "")
+            .split(WHITESPACE_SPLIT_REGEX)
+            .filter { it.length > 2 && it !in SEARCH_STOP_WORDS }
     }
-    
+
     /**
-     * Calculate TF-IDF score for a document
+     * Calculate TF-IDF score for a pre-lowercased document
      */
     private fun calculateTfIdfScore(
-        title: String, 
-        content: String, 
-        tokens: List<String>, 
-        docFrequency: Map<String, Int>, 
+        lowerTitle: String,
+        lowerDocument: String,
+        tokens: List<String>,
+        docFrequency: Map<String, Int>,
         totalDocs: Double
     ): Double {
-        val text = "$title $content".lowercase()
         var score = 0.0
-        
+
         for (token in tokens) {
-            // Check if document contains this token
-            if (!text.contains(token)) return 0.0 // Must contain all tokens
-            
-            // Term frequency
-            val tf = countOccurrences(text, token)
+            if (!lowerDocument.contains(token)) return 0.0
+
+            val tf = countOccurrences(lowerDocument, token)
             val tfNormalized = if (tf > 0) 1 + kotlin.math.ln(tf.toDouble()) else 0.0
-            
-            // Inverse document frequency
+
             val df = docFrequency[token] ?: 1
             val idf = kotlin.math.ln(totalDocs / df)
-            
+
             score += tfNormalized * idf
-            
-            // Boost for title matches (2x weight)
-            if (title.lowercase().contains(token)) {
+
+            if (lowerTitle.contains(token)) {
                 score += idf * 2
             }
         }
-        
+
         return score
     }
     

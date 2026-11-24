@@ -23,6 +23,7 @@ struct GlossaryView: View {
     }
 
     var body: some View {
+        let currentFilteredTerms = filteredTerms
         ScrollViewReader { proxy in
             VStack(spacing: 0) {
                 HStack(spacing: 12) {
@@ -34,7 +35,7 @@ struct GlossaryView: View {
                     VStack(alignment: .leading, spacing: 2) {
                         Text("Pilot / Controller Glossary")
                             .font(.subheadline.weight(.semibold))
-                        Text("\(filteredTerms.count) official terms")
+                        Text("\(currentFilteredTerms.count) official terms")
                             .font(.caption)
                             .foregroundStyle(.secondary)
                     }
@@ -56,11 +57,11 @@ struct GlossaryView: View {
                         title: "Glossary Terms",
                         systemImage: "text.book.closed"
                     )
-                } else if filteredTerms.isEmpty {
+                } else if currentFilteredTerms.isEmpty {
                     ContentUnavailableView.search(text: searchText)
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
                 } else {
-                    List(filteredTerms) { term in
+                    List(currentFilteredTerms) { term in
                         GlossaryTermRow(
                             term: term,
                             allTerms: dataService.pcgTerms,
@@ -190,20 +191,56 @@ private func normalizeGlossaryTerm(_ value: String) -> String {
         .uppercased()
 }
 
+private final class GlossaryReferenceIndexCache {
+    struct Index {
+        let signature: String
+        let exact: [String: PCGTerm]
+        let normalized: [(key: String, term: PCGTerm)]
+    }
+
+    private let lock = NSLock()
+    private var cached: Index?
+
+    func index(for terms: [PCGTerm]) -> Index {
+        let signature = "\(terms.count)|\(terms.first?.term ?? "")|\(terms.last?.term ?? "")"
+        lock.lock()
+        if let cached, cached.signature == signature {
+            lock.unlock()
+            return cached
+        }
+        lock.unlock()
+
+        var exact: [String: PCGTerm] = [:]
+        exact.reserveCapacity(terms.count)
+        var normalized: [(key: String, term: PCGTerm)] = []
+        normalized.reserveCapacity(terms.count)
+        for term in terms {
+            let key = normalizeGlossaryTerm(term.term)
+            if exact[key] == nil { exact[key] = term }
+            normalized.append((key, term))
+        }
+        let built = Index(signature: signature, exact: exact, normalized: normalized)
+        lock.lock()
+        cached = built
+        lock.unlock()
+        return built
+    }
+}
+
+private let glossaryReferenceIndexCache = GlossaryReferenceIndexCache()
+
 func resolveGlossaryReference(
     _ terms: [PCGTerm],
     reference: String,
     isIcaoTerm: Bool = false
 ) -> PCGTerm? {
     let normalizedReference = normalizeGlossaryTerm(reference)
-    let expectedIcao = "\(normalizedReference) [ICAO]"
-    return terms.first { term in
-        let normalizedTerm = normalizeGlossaryTerm(term.term)
-        if isIcaoTerm {
-            return normalizedTerm == expectedIcao || normalizedTerm.hasPrefix(expectedIcao)
-        }
-        return normalizedTerm == normalizedReference || normalizedTerm.hasPrefix(normalizedReference)
+    let index = glossaryReferenceIndexCache.index(for: terms)
+    let target = isIcaoTerm ? "\(normalizedReference) [ICAO]" : normalizedReference
+    if let exactMatch = index.exact[target] {
+        return exactMatch
     }
+    return index.normalized.first { $0.key.hasPrefix(target) }?.term
 }
 
 private func linkedGlossaryDefinition(

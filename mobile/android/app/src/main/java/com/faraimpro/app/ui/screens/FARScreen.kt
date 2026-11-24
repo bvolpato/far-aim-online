@@ -48,6 +48,13 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
 private val ReferenceContentMaxWidth = 960.dp
+private val FarSearchWhitespaceRegex = Regex("\\s+")
+
+private fun farSectionMatchesQuery(section: FARSection, queryTerms: List<String>): Boolean {
+    if (queryTerms.isEmpty()) return false
+    val text = "${section.section} ${section.title} ${section.searchableText}".lowercase()
+    return queryTerms.all { text.contains(it) }
+}
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -245,7 +252,7 @@ fun FARScreen(
                         }
                     }
 
-                    items(filteredParts) { part ->
+                    items(filteredParts, key = { it.part }) { part ->
                         FARPartCard(
                             part = part,
                             searchQuery = searchQuery,
@@ -350,11 +357,9 @@ fun FARPartDetailScreen(
     ) {
         value = LoadState.Loading
         value = withContext(Dispatchers.IO) {
-            repository.loadFARParts(forceRefresh = retryKey > 0).fold(
-                onSuccess = { parts ->
-                    parts.find { it.part == partId }
-                        ?.let { LoadState.Loaded(it) }
-                        ?: LoadState.Empty
+            repository.loadFARPart(partId, forceRefresh = retryKey > 0).fold(
+                onSuccess = { loaded ->
+                    loaded?.let { LoadState.Loaded(it) } ?: LoadState.Empty
                 },
                 onFailure = { LoadState.Error(it) }
             )
@@ -393,24 +398,71 @@ fun FARPartDetailScreen(
     }
     val part = (partState as LoadState.Loaded<FARPart>).value
     val listState = rememberLazyListState()
+    val queryTerms = remember(searchQuery) {
+        if (searchQuery.isBlank()) emptyList()
+        else searchQuery.lowercase().split(FarSearchWhitespaceRegex).filter { it.isNotBlank() }
+    }
+    val visibleSections = remember(part, queryTerms, initialSection) {
+        val sections = part.sections.orEmpty()
+        if (queryTerms.isEmpty()) sections.map { it to false }
+        else sections.mapNotNull { section ->
+            val matched = farSectionMatchesQuery(section, queryTerms)
+            if (matched || section.section == initialSection) section to matched else null
+        }
+    }
+    val visibleSubparts = remember(part, queryTerms, initialSection) {
+        val subparts = part.subparts.orEmpty()
+        if (queryTerms.isEmpty()) {
+            subparts.map { subpart -> subpart to subpart.sections.map { it to false } }
+        } else {
+            subparts.mapNotNull { subpart ->
+                val filtered = subpart.sections.mapNotNull { section ->
+                    val matched = farSectionMatchesQuery(section, queryTerms)
+                    if (matched || section.section == initialSection) section to matched else null
+                }
+                if (filtered.isEmpty()) null else subpart to filtered
+            }
+        }
+    }
+    val visibleAppendices = remember(part, queryTerms, initialSection) {
+        val appendices = part.appendices.orEmpty()
+        appendices.mapNotNull { appendix ->
+            val asSection = FARSection(
+                section = appendix.appendix,
+                title = appendix.title,
+                content = appendix.content,
+                figures = appendix.figures
+            )
+            if (queryTerms.isEmpty()) {
+                Triple(appendix, asSection, false)
+            } else {
+                val matched = farSectionMatchesQuery(asSection, queryTerms)
+                if (matched || appendix.appendix == initialSection) Triple(appendix, asSection, matched) else null
+            }
+        }
+    }
 
-    LaunchedEffect(part, initialSection) {
+    LaunchedEffect(part, initialSection, visibleSections, visibleSubparts, visibleAppendices) {
+        if (initialSection.isBlank()) return@LaunchedEffect
         var itemIndex = 2
         var targetIndex: Int? = null
-        part.sections.orEmpty().forEach { section ->
+        visibleSections.forEach { (section, _) ->
             if (section.section == initialSection) targetIndex = itemIndex
             itemIndex++
         }
-        part.subparts.orEmpty().forEach { subpart ->
+        visibleSubparts.forEach { (_, sections) ->
             itemIndex++
-            subpart.sections.forEach { section ->
+            sections.forEach { (section, _) ->
                 if (section.section == initialSection) targetIndex = itemIndex
                 itemIndex++
             }
         }
-        part.appendices.orEmpty().forEach { appendix ->
-            if (appendix.appendix == initialSection) targetIndex = itemIndex
+        if (visibleAppendices.isNotEmpty()) {
             itemIndex++
+            visibleAppendices.forEach { (appendix, _, _) ->
+                if (appendix.appendix == initialSection) targetIndex = itemIndex
+                itemIndex++
+            }
         }
         targetIndex?.let { listState.scrollToItem(it) }
     }
@@ -513,12 +565,52 @@ fun FARPartDetailScreen(
                 }
 
                 // Sections stay compact until selected or matched.
-                part.sections?.forEach { section ->
-                    item {
+                items(
+                    items = visibleSections,
+                    key = { (section, _) -> "section:${section.section}" }
+                ) { (section, matchesSearch) ->
+                    SectionItem(
+                        section = section,
+                        searchQuery = searchQuery,
+                        defaultExpanded = section.section == initialSection,
+                        matchesSearch = matchesSearch,
+                        studyMarkInput = StudyMarkInput(
+                            type = "far",
+                            reference = "§ ${section.section}",
+                            title = section.title,
+                            route = "far_part/${part.part}?section=${Uri.encode(section.section)}"
+                        ),
+                        readerPreferences = readerPreferences,
+                        onExpanded = {
+                            ReadingHistoryManager.saveFARReadingHistory(
+                                context,
+                                part.part,
+                                part.title,
+                                section.section
+                            )
+                        }
+                    )
+                }
+
+                // Subparts
+                visibleSubparts.forEach { (subpart, sections) ->
+                    item(key = "subpart-header:${subpart.subpart}") {
+                        Text(
+                            text = "Subpart ${subpart.subpart} - ${subpart.title}",
+                            style = MaterialTheme.typography.titleMedium,
+                            fontWeight = FontWeight.Bold,
+                            modifier = Modifier.padding(vertical = 8.dp)
+                        )
+                    }
+                    items(
+                        items = sections,
+                        key = { (section, _) -> "subpart:${subpart.subpart}:${section.section}" }
+                    ) { (section, matchesSearch) ->
                         SectionItem(
                             section = section,
                             searchQuery = searchQuery,
                             defaultExpanded = section.section == initialSection,
+                            matchesSearch = matchesSearch,
                             studyMarkInput = StudyMarkInput(
                                 type = "far",
                                 reference = "§ ${section.section}",
@@ -538,44 +630,8 @@ fun FARPartDetailScreen(
                     }
                 }
 
-                // Subparts
-                part.subparts?.forEach { subpart ->
-                    item {
-                        Text(
-                            text = "Subpart ${subpart.subpart} - ${subpart.title}",
-                            style = MaterialTheme.typography.titleMedium,
-                            fontWeight = FontWeight.Bold,
-                            modifier = Modifier.padding(vertical = 8.dp)
-                        )
-                    }
-                    subpart.sections.forEach { section ->
-                        item {
-                            SectionItem(
-                                section = section,
-                                searchQuery = searchQuery,
-                                defaultExpanded = section.section == initialSection,
-                                studyMarkInput = StudyMarkInput(
-                                    type = "far",
-                                    reference = "§ ${section.section}",
-                                    title = section.title,
-                                    route = "far_part/${part.part}?section=${Uri.encode(section.section)}"
-                                ),
-                                readerPreferences = readerPreferences,
-                                onExpanded = {
-                                    ReadingHistoryManager.saveFARReadingHistory(
-                                        context,
-                                        part.part,
-                                        part.title,
-                                        section.section
-                                    )
-                                }
-                            )
-                        }
-                    }
-                }
-
-                if (!part.appendices.isNullOrEmpty()) {
-                    item {
+                if (visibleAppendices.isNotEmpty()) {
+                    item(key = "appendices-header") {
                         Text(
                             text = "Appendices",
                             style = MaterialTheme.typography.titleLarge,
@@ -583,27 +639,24 @@ fun FARPartDetailScreen(
                             modifier = Modifier.padding(top = 8.dp)
                         )
                     }
-                    part.appendices.forEach { appendix ->
-                        item {
-                            SectionItem(
-                                section = FARSection(
-                                    section = appendix.appendix,
-                                    title = appendix.title,
-                                    content = appendix.content,
-                                    figures = appendix.figures
-                                ),
-                                searchQuery = searchQuery,
-                                defaultExpanded = appendix.appendix == initialSection,
-                                referenceLabel = appendix.appendix,
-                                studyMarkInput = StudyMarkInput(
-                                    type = "far",
-                                    reference = appendix.appendix,
-                                    title = appendix.title,
-                                    route = "far_part/${part.part}?section=${Uri.encode(appendix.appendix)}"
-                                ),
-                                readerPreferences = readerPreferences
-                            )
-                        }
+                    items(
+                        items = visibleAppendices,
+                        key = { (appendix, _, _) -> "appendix:${appendix.appendix}" }
+                    ) { (appendix, asSection, matchesSearch) ->
+                        SectionItem(
+                            section = asSection,
+                            searchQuery = searchQuery,
+                            defaultExpanded = appendix.appendix == initialSection,
+                            matchesSearch = matchesSearch,
+                            referenceLabel = appendix.appendix,
+                            studyMarkInput = StudyMarkInput(
+                                type = "far",
+                                reference = appendix.appendix,
+                                title = appendix.title,
+                                route = "far_part/${part.part}?section=${Uri.encode(appendix.appendix)}"
+                            ),
+                            readerPreferences = readerPreferences
+                        )
                     }
                 }
 
@@ -656,12 +709,13 @@ fun SectionItem(
     section: FARSection,
     searchQuery: String,
     defaultExpanded: Boolean = false,
+    matchesSearch: Boolean = false,
     referenceLabel: String? = null,
     studyMarkInput: StudyMarkInput? = null,
     readerPreferences: ReaderPreferences = ReaderPreferences(),
     onExpanded: () -> Unit = {}
 ) {
-    var isExpanded by remember(section.section, defaultExpanded) { mutableStateOf(defaultExpanded) }
+    var isExpanded by remember(section.section, defaultExpanded) { mutableStateOf(defaultExpanded || matchesSearch) }
     val bodyStyle = MaterialTheme.typography.bodyMedium.copy(
         fontSize = (14 * readerPreferences.fontScale).sp,
         lineHeight = (14 * readerPreferences.fontScale * readerPreferences.lineHeightMultiplier).sp
@@ -671,23 +725,10 @@ fun SectionItem(
         lineHeight = (12 * readerPreferences.fontScale * readerPreferences.lineHeightMultiplier).sp
     )
 
-    // Auto-expand if search query matches content inside
-    val matchesSearch = remember(searchQuery) {
-        if (searchQuery.isBlank()) return@remember false
-        val text = "${section.section} ${section.title} ${section.searchableText}".lowercase()
-        searchQuery.lowercase().split(Regex("\\s+")).filter { it.isNotBlank() }
-            .all { text.contains(it) }
-    }
-
     LaunchedEffect(matchesSearch) {
         if (matchesSearch) {
             isExpanded = true
         }
-    }
-    
-    // Hide if searching and NO match
-    if (searchQuery.isNotBlank() && !matchesSearch && !defaultExpanded) {
-        return
     }
 
     Card(

@@ -197,7 +197,16 @@ internal fun figureAccessibilityDescription(
     }.distinct().joinToString(". ")
 }
 
+private val figureBitmapCache = object : android.util.LruCache<String, ImageBitmap>(24 * 1024) {
+    override fun sizeOf(key: String, value: ImageBitmap): Int {
+        // Approximate decoded bitmap memory in KB (4 bytes per pixel).
+        return ((value.width.toLong() * value.height.toLong() * 4L) / 1024L).toInt().coerceAtLeast(1)
+    }
+}
+
 private fun decodeFigure(assets: AssetManager, path: String): ImageBitmap? {
+    figureBitmapCache.get(path)?.let { return it }
+
     val bounds = BitmapFactory.Options().apply { inJustDecodeBounds = true }
     assets.open(path).use { BitmapFactory.decodeStream(it, null, bounds) }
     if (bounds.outWidth <= 0 || bounds.outHeight <= 0) return null
@@ -205,9 +214,13 @@ private fun decodeFigure(assets: AssetManager, path: String): ImageBitmap? {
     val options = BitmapFactory.Options().apply {
         inSampleSize = figureSampleSize(bounds.outWidth, bounds.outHeight)
     }
-    return assets.open(path).use { stream ->
+    val decoded = assets.open(path).use { stream ->
         BitmapFactory.decodeStream(stream, null, options)?.asImageBitmap()
     }
+    if (decoded != null) {
+        figureBitmapCache.put(path, decoded)
+    }
+    return decoded
 }
 
 @Composable
@@ -360,8 +373,9 @@ private fun StructuredFigureCard(
 fun AIMTables(tables: List<AIMTable>, modifier: Modifier = Modifier) {
     Column(modifier = modifier, verticalArrangement = Arrangement.spacedBy(16.dp)) {
         tables.forEachIndexed { index, table ->
+            val layout = remember(table) { normalizeAIMTable(table) }
             AIMTableView(
-                layout = normalizeAIMTable(table),
+                layout = layout,
                 tableNumber = index + 1,
                 showDefaultCaption = true
             )
@@ -376,8 +390,9 @@ fun StructuredTable(
     modifier: Modifier = Modifier,
     tableTextStyle: TextStyle? = null
 ) {
+    val layout = remember(table) { normalizeAIMTable(table) }
     AIMTableView(
-        layout = normalizeAIMTable(table),
+        layout = layout,
         tableNumber = 1,
         searchQuery = searchQuery,
         showDefaultCaption = false,

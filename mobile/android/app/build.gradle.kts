@@ -18,7 +18,20 @@ val releaseKeystoreProperties = Properties().apply {
 // Sync data from shared data directory to assets before build
 tasks.register<Exec>("syncData") {
     description = "Sync JSON data files from shared data directory to Android assets"
-    workingDir = rootProject.projectDir.parentFile.parentFile // Goes to far-aim-pro root
+    val repoRoot = rootProject.projectDir.parentFile.parentFile
+    workingDir = repoRoot
+    inputs.dir(File(repoRoot, "data/far"))
+    inputs.dir(File(repoRoot, "data/aim"))
+    inputs.dir(File(repoRoot, "data/quizzes"))
+    inputs.dir(File(repoRoot, "data/flashcards"))
+    inputs.dir(File(repoRoot, "data/advisory-circulars"))
+    inputs.file(File(repoRoot, "data/study-paths.json"))
+    inputs.file(File(repoRoot, "data/source-status.json"))
+    inputs.dir(File(repoRoot, "web/public/far/images"))
+    inputs.dir(File(repoRoot, "web/public/aim/images"))
+    inputs.file(File(repoRoot, "web/public/inverted-index-ac.json"))
+    inputs.file(File(repoRoot, "scripts/sync-data.sh"))
+    outputs.dir(project.file("src/main/assets"))
     commandLine("bash", "scripts/sync-data.sh", "android")
     // Make it work on Windows too
     if (System.getProperty("os.name").lowercase().contains("windows")) {
