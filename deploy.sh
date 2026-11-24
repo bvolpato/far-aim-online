@@ -158,12 +158,13 @@ NODE
         ROUTE_LIST="$(mktemp)"
         ROUTE_DIR="$(mktemp -d)"
         IMMUTABLE_DIR="$(mktemp -d)"
+        NESTED_HTML_DIR="$(mktemp -d)"
         PREVIOUS_SITEMAP="$(mktemp)"
         OBSOLETE_ROUTES="$(mktemp)"
         GCS_ERROR="$(mktemp)"
         CACHE_METADATA="$(mktemp)"
         CACHE_UPDATES="$(mktemp)"
-        trap 'rm -f "$ROUTE_LIST" "$PREVIOUS_SITEMAP" "$OBSOLETE_ROUTES" "$GCS_ERROR" "$CACHE_METADATA" "$CACHE_UPDATES"; rm -rf "$ROUTE_DIR" "$IMMUTABLE_DIR"' EXIT
+        trap 'rm -f "$ROUTE_LIST" "$PREVIOUS_SITEMAP" "$OBSOLETE_ROUTES" "$GCS_ERROR" "$CACHE_METADATA" "$CACHE_UPDATES"; rm -rf "$ROUTE_DIR" "$IMMUTABLE_DIR" "$NESTED_HTML_DIR"' EXIT
 
         if ! command -v gcloud >/dev/null 2>&1; then
             echo -e "${RED}gcloud not found. Web build is ready at web/dist, but deploy did not run.${NC}"
@@ -300,8 +301,14 @@ NODE
         # Retain previous hashes for visitors with an older page open.
         # gcloud treats a leading ^ as a custom list delimiter, not a regex anchor.
         gcloud storage rsync --cache-control="public,max-age=0,s-maxage=300,must-revalidate" \
-            --recursive --exclude='(?:assets/|search/(?!.*\.html$)|(?:index|spa|404)\.html$|sitemap\.xml$)' \
+            --recursive --exclude='(?:assets/|search/(?!.*\.html$)|(?:aim|far)/images/|(?:index|spa|404)\.html$|sitemap\.xml$)' \
             "$ROOT_DIR/web/dist" "$GCS_BUCKET"
+        for image_dir in aim/images far/images; do
+            if [ -d "$ROOT_DIR/web/dist/$image_dir" ]; then
+                gcloud storage rsync --cache-control="public,max-age=604800,stale-while-revalidate=86400" \
+                    --recursive "$ROOT_DIR/web/dist/$image_dir" "$GCS_BUCKET/$image_dir"
+            fi
+        done
         set_cache_control_if_needed "public,max-age=0,must-revalidate" "$GCS_BUCKET/robots.txt"
         set_cache_control_if_needed "public,max-age=0,must-revalidate" "$GCS_BUCKET/sw.js"
         set_cache_control_if_needed "public,max-age=0,must-revalidate" "$GCS_BUCKET/manifest.webmanifest"
@@ -328,6 +335,25 @@ NODE
             done
         fi
 
+        # Re-upload nested */index.html objects compressed so direct /index.html hits do not serve raw multi-MB HTML.
+        node - "$ROOT_DIR/web/dist" "$NESTED_HTML_DIR" <<'NODE'
+const fs = require('fs');
+const path = require('path');
+const [dist, out] = process.argv.slice(2);
+for (const rel of fs.readdirSync(dist, { recursive: true })) {
+  if (!rel.endsWith('/index.html')) continue;
+  const target = path.join(out, rel);
+  fs.mkdirSync(path.dirname(target), { recursive: true });
+  fs.copyFileSync(path.join(dist, rel), target);
+}
+NODE
+        if [ -n "$(find "$NESTED_HTML_DIR" -type f -print -quit)" ]; then
+            gcloud storage cp \
+                --content-type="text/html; charset=utf-8" \
+                --cache-control="public,max-age=0,s-maxage=300,must-revalidate" \
+                --gzip-local=html --recursive "$NESTED_HTML_DIR"/* "$GCS_BUCKET/"
+        fi
+
         gcloud storage cp --cache-control="public,max-age=0,s-maxage=300,must-revalidate" \
             --content-type="text/html; charset=utf-8" --gzip-local=html \
             "$ROOT_DIR/web/dist/index.html" "$GCS_BUCKET/index.html"
@@ -351,7 +377,8 @@ NODE
 
         # Keep the previous route inventory until cleanup succeeds so retries can finish it.
         gcloud storage cp --cache-control="public,max-age=0,must-revalidate" \
-            "$ROOT_DIR/web/dist/sitemap.xml" "$GCS_BUCKET/sitemap.xml"
+            --gzip-local=xml "$ROOT_DIR/web/dist/sitemap.xml" "$GCS_BUCKET/sitemap.xml"
+        set_cache_control_if_needed "public,max-age=0,must-revalidate" "$GCS_BUCKET/sitemap.xml"
         ;;
 
     ios)

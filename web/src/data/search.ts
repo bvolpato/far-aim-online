@@ -12,6 +12,7 @@ interface SearchCollection {
   count: number;
   metadata: string[];
   parts: number[][];
+  direct?: Record<string, string>;
   prefixes: Record<string, string>;
 }
 
@@ -23,13 +24,15 @@ interface SearchManifest {
   collections: Record<string, SearchCollection>;
 }
 
-type SearchIndex = Record<string, [id: number, weight: number, position: number][]>;
-type SearchDocument = [title: string, reference: string, link: string, chunks: string[]];
+type SearchPosting = [id: number, weight: number, position: number];
+type SearchIndex = Record<string, SearchPosting[]>;
+type ChunkRef = string | [packFile: string, index: number];
+type SearchDocument = [title: string, reference: string, link: string, chunks: ChunkRef[]];
 
 interface ScoredResult extends SearchResult {
   score: number;
   position: number;
-  chunks: string[];
+  chunks: ChunkRef[];
 }
 
 interface RankedDocument {
@@ -47,8 +50,10 @@ interface SearchOptions {
   resultLimit?: number;
 }
 
-const manifest: SearchManifest = manifestData;
+const manifest: SearchManifest = manifestData as unknown as SearchManifest;
+const PILOT_PARTS_SET = new Set(manifest.pilotParts);
 const requests = new Map<string, Promise<unknown>>();
+const MAX_CACHED_REQUESTS = 128;
 const STOP_WORDS = new Set([
   'a', 'an', 'and', 'are', 'as', 'at', 'be', 'by', 'for', 'from', 'has', 'he',
   'in', 'is', 'it', 'its', 'of', 'on', 'that', 'the', 'to', 'was', 'were',
@@ -62,7 +67,12 @@ function tokenize(text: string): string[] {
 
 function loadJSON<T>(filename: string): Promise<T> {
   const cached = requests.get(filename);
-  if (cached) return cached as Promise<T>;
+  if (cached) {
+    // Refresh recency for LRU retention of hot shards and packs.
+    requests.delete(filename);
+    requests.set(filename, cached);
+    return cached as Promise<T>;
+  }
   const request = fetch(`/search/${filename}`).then(async response => {
     if (!response.ok) throw new Error(`Failed to load search data: ${filename}`);
     return await response.json() as T;
@@ -72,17 +82,22 @@ function loadJSON<T>(filename: string): Promise<T> {
   });
   requests.set(filename, request);
   // HTTP caching retains evicted files without growing session memory indefinitely.
-  if (requests.size > 128) requests.delete(requests.keys().next().value!);
+  if (requests.size > MAX_CACHED_REQUESTS) requests.delete(requests.keys().next().value!);
   return request;
 }
 
 function shardFiles(shards: Record<string, string>, token: string): string[] {
   const exact = shards[`${token}$`];
   if (exact) return [exact];
-  return Object.entries(shards).filter(([prefix]) => {
-    if (prefix.endsWith('$')) return prefix.slice(0, -1).startsWith(token);
-    return token.startsWith(prefix) || prefix.startsWith(token);
-  }).map(([, filename]) => filename);
+  const matched: string[] = [];
+  for (const [prefix, filename] of Object.entries(shards)) {
+    if (prefix.endsWith('$')) {
+      if (prefix.slice(0, -1).startsWith(token)) matched.push(filename);
+    } else if (token.startsWith(prefix) || prefix.startsWith(token)) {
+      matched.push(filename);
+    }
+  }
+  return matched;
 }
 
 function topResults(results: RankedDocument[]): RankedDocument[] {
@@ -101,48 +116,132 @@ async function searchCollection(
 ): Promise<RankedDocument[]> {
   if (category === 'far' && allowedFarParts?.size === 0) return [];
   const pilotOnly = category === 'far' && allowedFarParts !== undefined
-    && [...allowedFarParts].every(part => manifest.pilotParts.includes(part));
+    && [...allowedFarParts].every(part => PILOT_PARTS_SET.has(part));
   const collection = manifest.collections[pilotOnly ? 'far-pilot' : category];
   if (!collection) return [];
-  const prefixes = [...new Set(tokens.map(token => token.slice(0, 2)))];
-  if (prefixes.some(prefix => !collection.prefixes[prefix])) return [];
-  const lookups = await Promise.all(prefixes.map(prefix => loadJSON<Record<string, string>>(collection.prefixes[prefix])));
-  signal?.throwIfAborted();
-  const lookup = Object.assign({}, ...lookups) as Record<string, string>;
-  const filesByToken = tokens.map(token => shardFiles(lookup, token));
-  if (filesByToken.some(files => files.length === 0)) return [];
-  const files = [...new Set(filesByToken.flat())];
-  const shards = await Promise.all(files.map(file => loadJSON<SearchIndex>(file)));
-  signal?.throwIfAborted();
-  const index: SearchIndex = Object.assign(Object.create(null), ...shards);
-  const matches = tokens.map(token => {
-    const exact = index[token];
-    const postings = exact || Object.entries(index).filter(([word]) => word.startsWith(token)).flatMap(([, rows]) => rows);
-    const documents = new Map<number, { score: number; position: number }>();
-    // Prefix variants can refer to the same document. Use its strongest match once.
-    for (const [id, weight, position] of postings) {
-      const score = weight / 100 * (exact ? 1 : 0.2);
-      if (score > (documents.get(id)?.score ?? -1)) documents.set(id, { score, position });
+
+  const direct = collection.direct;
+  const lookupPrefixesNeeded = new Set<string>();
+  const directFileByToken = new Array<string | undefined>(tokens.length);
+
+  for (let i = 0; i < tokens.length; i++) {
+    const token = tokens[i];
+    const p1 = token.slice(0, 1);
+    const p2 = token.slice(0, 2);
+    const directShard = direct?.[p1] ?? direct?.[p2];
+    if (directShard) {
+      directFileByToken[i] = directShard;
+    } else if (collection.prefixes[p2]) {
+      lookupPrefixesNeeded.add(p2);
+    } else {
+      return [];
     }
+  }
+
+  const lookupByPrefix = new Map<string, Record<string, string>>();
+  if (lookupPrefixesNeeded.size > 0) {
+    const prefixList = [...lookupPrefixesNeeded];
+    const lookups = await Promise.all(prefixList.map(prefix => loadJSON<Record<string, string>>(collection.prefixes[prefix])));
+    signal?.throwIfAborted();
+    for (let i = 0; i < prefixList.length; i++) {
+      lookupByPrefix.set(prefixList[i], lookups[i]);
+    }
+  }
+
+  const filesByToken: string[][] = new Array(tokens.length);
+  const uniqueShardFiles = new Set<string>();
+  for (let i = 0; i < tokens.length; i++) {
+    const directShard = directFileByToken[i];
+    const files = directShard ? [directShard] : shardFiles(lookupByPrefix.get(tokens[i].slice(0, 2))!, tokens[i]);
+    if (files.length === 0) return [];
+    filesByToken[i] = files;
+    for (const file of files) uniqueShardFiles.add(file);
+  }
+
+  const uniqueFileList = [...uniqueShardFiles];
+  const loadedShards = await Promise.all(uniqueFileList.map(file => loadJSON<SearchIndex>(file)));
+  signal?.throwIfAborted();
+
+  const shardByFile = new Map<string, SearchIndex>();
+  for (let i = 0; i < uniqueFileList.length; i++) {
+    shardByFile.set(uniqueFileList[i], loadedShards[i]);
+  }
+
+  const matches = tokens.map((token, tokenIndex) => {
+    const documents = new Map<number, { score: number; position: number }>();
+    const tokenFiles = filesByToken[tokenIndex];
+    let exactPostings: SearchPosting[] | undefined;
+
+    for (const file of tokenFiles) {
+      const shard = shardByFile.get(file)!;
+      if (Object.prototype.hasOwnProperty.call(shard, token)) {
+        exactPostings = shard[token];
+        break;
+      }
+    }
+
+    if (exactPostings) {
+      for (const [id, weight, position] of exactPostings) {
+        const score = weight / 100;
+        const existing = documents.get(id);
+        if (!existing || score > existing.score) documents.set(id, { score, position });
+      }
+    } else {
+      // Prefix variants can refer to the same document. Use its strongest match once.
+      for (const file of tokenFiles) {
+        const shard = shardByFile.get(file)!;
+        for (const word of Object.keys(shard)) {
+          if (!word.startsWith(token)) continue;
+          for (const [id, weight, position] of shard[word]) {
+            const score = (weight / 100) * 0.2;
+            const existing = documents.get(id);
+            if (!existing || score > existing.score) documents.set(id, { score, position });
+          }
+        }
+      }
+    }
+
     const idf = Math.log(1 + collection.count / Math.max(1, documents.size));
     for (const match of documents.values()) match.score *= idf;
     return documents;
   }).sort((a, b) => a.size - b.size);
+
   if (!matches[0]?.size) return [];
   const allowedRanges = category === 'far' && allowedFarParts
     ? collection.parts.filter(([part]) => allowedFarParts.has(part)) : undefined;
-  const matchingIds = [...matches[0].keys()].filter(id => matches.every(match => match.has(id))
-    && (!allowedRanges || allowedRanges.some(([, firstId, lastId]) => id >= firstId && id <= lastId)));
-  return matchingIds.map(id => {
-    const bestMatch = matches.map(match => match.get(id)!).sort((a, b) => b.score - a.score)[0];
-    return {
-      category,
-      collection,
-      id,
-      position: bestMatch.position,
-      score: matches.reduce((sum, match) => sum + match.get(id)!.score, 0),
-    };
-  });
+
+  const ranked: RankedDocument[] = [];
+  for (const id of matches[0].keys()) {
+    if (allowedRanges && !allowedRanges.some(([, firstId, lastId]) => id >= firstId && id <= lastId)) {
+      continue;
+    }
+    let allPresent = true;
+    let totalScore = 0;
+    let bestScore = -1;
+    let bestPosition = 0;
+    for (let i = 0; i < matches.length; i++) {
+      const match = matches[i].get(id);
+      if (!match) {
+        allPresent = false;
+        break;
+      }
+      totalScore += match.score;
+      if (match.score > bestScore) {
+        bestScore = match.score;
+        bestPosition = match.position;
+      }
+    }
+    if (allPresent) {
+      ranked.push({
+        category,
+        collection,
+        id,
+        position: bestPosition,
+        score: totalScore,
+      });
+    }
+  }
+  return ranked;
 }
 
 async function loadResult(result: RankedDocument): Promise<ScoredResult> {
@@ -157,10 +256,13 @@ async function loadResult(result: RankedDocument): Promise<ScoredResult> {
 
 async function loadSnippet(result: ScoredResult): Promise<void> {
   const chunkIndex = Math.floor(result.position / manifest.chunkSize);
-  const filename = result.chunks[chunkIndex];
-  if (!filename) return;
+  const chunkRef = result.chunks[chunkIndex];
+  if (!chunkRef) return;
   try {
-    const content = await loadJSON<string>(filename);
+    const content = Array.isArray(chunkRef)
+      ? (await loadJSON<string[]>(chunkRef[0]))[chunkRef[1]]
+      : await loadJSON<string>(chunkRef);
+    if (typeof content !== 'string') return;
     const chunkStart = Math.max(0, chunkIndex * manifest.chunkSize - manifest.chunkOverlap);
     const position = result.position - chunkStart;
     let start = Math.max(0, position - 65);
@@ -195,11 +297,27 @@ export async function searchContent(
   const results = await Promise.all(ranked.slice(0, options.resultLimit ?? 50).map(loadResult));
   options.signal?.throwIfAborted();
   options.onProgress?.(publicResults(results), ranked.length);
+
+  let progressScheduled = false;
+  const scheduleProgress = () => {
+    if (!options.onProgress || progressScheduled || options.signal?.aborted) return;
+    progressScheduled = true;
+    queueMicrotask(() => {
+      progressScheduled = false;
+      if (!options.signal?.aborted) options.onProgress?.(publicResults(results), ranked.length);
+    });
+  };
+
   await Promise.all(results.slice(0, options.snippetLimit ?? 10).map(async result => {
+    if (options.signal?.aborted) return;
     await loadSnippet(result);
-    if (!options.signal?.aborted) options.onProgress?.(publicResults(results), ranked.length);
+    scheduleProgress();
   }));
   options.signal?.throwIfAborted();
+  if (progressScheduled) {
+    progressScheduled = false;
+    options.onProgress?.(publicResults(results), ranked.length);
+  }
   const failure = completed.find(result => result.status === 'rejected');
   if (failure?.status === 'rejected') throw failure.reason;
   return publicResults(results);

@@ -33,21 +33,21 @@ export default defineConfig({
   plugins: [react(), prerenderedPreview()],
   resolve: {
     alias: {
-      '@': resolve(__dirname, 'src'),
-      '@data': resolve(__dirname, '../data'),
+      '@': resolve(import.meta.dirname, 'src'),
+      '@data': resolve(import.meta.dirname, '../data'),
     },
   },
   build: {
     assetsInlineLimit: 0,
     outDir: 'dist',
     emptyOutDir: true,
-    sourcemap: true,
+    sourcemap: false,
   },
   server: {
     port: 3000,
     allowedHosts: ['brufury'],
     fs: {
-      allow: [resolve(__dirname, '..')],
+      allow: [resolve(import.meta.dirname, '..')],
     },
   },
   test: {

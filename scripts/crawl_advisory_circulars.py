@@ -366,8 +366,26 @@ def write_json(path: Path, value: dict[str, Any]) -> None:
         file.write("\n")
 
 
-def publication_exclusion(item: dict[str, Any]) -> dict[str, Any] | None:
+_POLICY_CACHE: tuple[Path, int, int, dict[str, Any]] | None = None
+
+
+def _load_publication_policy() -> dict[str, Any]:
+    global _POLICY_CACHE
+    stat = PUBLICATION_POLICY_PATH.stat()
+    if (
+        _POLICY_CACHE is not None
+        and _POLICY_CACHE[0] == PUBLICATION_POLICY_PATH
+        and _POLICY_CACHE[1] == stat.st_mtime_ns
+        and _POLICY_CACHE[2] == stat.st_size
+    ):
+        return _POLICY_CACHE[3]
     policy = load_json(PUBLICATION_POLICY_PATH)
+    _POLICY_CACHE = (PUBLICATION_POLICY_PATH, stat.st_mtime_ns, stat.st_size, policy)
+    return policy
+
+
+def publication_exclusion(item: dict[str, Any]) -> dict[str, Any] | None:
+    policy = _load_publication_policy()
     reason = policy.get("excludedOfflineText", {}).get(item["id"])
     if reason:
         return {"id": item["id"], "status": "unavailable", "error": reason}
@@ -409,6 +427,20 @@ def validate_cached_content(item: dict[str, Any], content: dict[str, Any]) -> No
         raise ValueError("ocrPageCount exceeds extracted pages")
 
 
+def _result_from_content(item: dict[str, Any], content: dict[str, Any], content_path: str) -> dict[str, Any]:
+    extracted_page_count = len(content.get("pages", []))
+    return {
+        "id": item["id"],
+        "status": content.get("status", "partial"),
+        "pageCount": content.get("pageCount", 0),
+        "extractedPageCount": extracted_page_count,
+        "wordCount": content.get("wordCount", 0),
+        "ocrPageCount": content.get("ocrPageCount", 0),
+        "contentPath": content_path,
+        "sha256": content.get("sha256", ""),
+    }
+
+
 def existing_result(item: dict[str, Any]) -> dict[str, Any] | None:
     excluded = publication_exclusion(item)
     if excluded:
@@ -422,17 +454,7 @@ def existing_result(item: dict[str, Any]) -> dict[str, Any] | None:
         validate_cached_content(item, content)
     except (OSError, ValueError, TypeError):
         return None
-    extracted_page_count = len(content.get("pages", []))
-    return {
-        "id": item["id"],
-        "status": content.get("status", "partial"),
-        "pageCount": content.get("pageCount", 0),
-        "extractedPageCount": extracted_page_count,
-        "wordCount": content.get("wordCount", 0),
-        "ocrPageCount": content.get("ocrPageCount", 0),
-        "contentPath": content_path,
-        "sha256": content.get("sha256", ""),
-    }
+    return _result_from_content(item, content, content_path)
 
 
 def download_pdf(pdf_url: str, timeout: int, max_pdf_mib: int, attempts: int = 4) -> bytes:
@@ -650,8 +672,7 @@ def check_cache() -> list[str]:
             except (OSError, ValueError, TypeError) as error:
                 errors.append(f"{item_id}: {error}")
                 continue
-            expected = existing_result(item)
-            assert expected is not None
+            expected = _result_from_content(item, content, content_path)
             for key in ("pageCount", "extractedPageCount", "wordCount"):
                 if item.get(key) != expected[key]:
                     errors.append(f"{item_id}: index {key} differs from payload")

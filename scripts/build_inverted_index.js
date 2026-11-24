@@ -1,11 +1,55 @@
 const fs = require('fs');
 const path = require('path');
+const crypto = require('crypto');
 
-const DATA_DIR = path.join(__dirname, '../data');
-const PUBLIC_DIR = path.join(__dirname, '../web/public');
+const ROOT_DIR = path.join(__dirname, '..');
+const DATA_DIR = path.join(ROOT_DIR, 'data');
+const PUBLIC_DIR = path.join(ROOT_DIR, 'web/public');
+const WEB_SEARCH_DIR = path.join(PUBLIC_DIR, 'search');
+const WEB_MANIFEST = path.join(ROOT_DIR, 'web/src/data/generated/search-manifest.json');
+const WEB_STAMP_FILE = path.join(ROOT_DIR, 'web/.cache/search-index.stamp');
 const CHECK_ONLY = process.argv.includes('--check');
 const WEB_ONLY = process.argv.includes('--web-only');
+const FORCE = process.argv.includes('--force');
 const { createWebSearchBuilder } = require('./build_web_search');
+
+function computeWebSearchFingerprint() {
+  const hash = crypto.createHash('sha256');
+  const scriptFiles = [
+    path.join(__dirname, 'build_inverted_index.js'),
+    path.join(__dirname, 'build_web_search.js'),
+  ];
+  for (const file of scriptFiles) {
+    const stat = fs.statSync(file);
+    hash.update(`S:${path.relative(ROOT_DIR, file)}:${stat.size}:${stat.mtimeMs}\n`);
+  }
+  const inputRoots = [
+    path.join(DATA_DIR, 'far'),
+    path.join(DATA_DIR, 'aim'),
+    path.join(DATA_DIR, 'flashcards'),
+    path.join(DATA_DIR, 'advisory-circulars'),
+  ];
+  for (const dir of inputRoots) {
+    if (!fs.existsSync(dir)) continue;
+    const entries = fs.readdirSync(dir, { recursive: true }).sort();
+    for (const rel of entries) {
+      if (!rel.endsWith('.json')) continue;
+      const full = path.join(dir, rel);
+      const stat = fs.statSync(full);
+      if (!stat.isFile()) continue;
+      hash.update(`D:${path.relative(DATA_DIR, full)}:${stat.size}:${stat.mtimeMs}\n`);
+    }
+  }
+  return hash.digest('hex');
+}
+
+function isWebSearchUpToDate(fingerprint) {
+  if (!fs.existsSync(WEB_STAMP_FILE) || !fs.existsSync(WEB_MANIFEST)) return false;
+  if (fs.readFileSync(WEB_STAMP_FILE, 'utf8').trim() !== fingerprint) return false;
+  if (!fs.existsSync(WEB_SEARCH_DIR)) return false;
+  // Spot-check that at least one generated content directory exists.
+  return fs.existsSync(path.join(WEB_SEARCH_DIR, 'content'));
+}
 
 // Stop words to exclude from index
 const STOP_WORDS = new Set([
@@ -58,6 +102,12 @@ function formatAIMChapterLabel(chapterNum) {
 }
 
 function buildIndex() {
+  const webFingerprint = WEB_ONLY && !CHECK_ONLY ? computeWebSearchFingerprint() : null;
+  if (webFingerprint && !FORCE && isWebSearchUpToDate(webFingerprint)) {
+    console.log('Web search indexes are up to date.');
+    return;
+  }
+
   console.log('Building inverted indexes...');
   const webSearch = !CHECK_ONLY || WEB_ONLY ? createWebSearchBuilder({ check: CHECK_ONLY }) : null;
   
@@ -305,6 +355,10 @@ function buildIndex() {
   });
   if (!WEB_ONLY) writeGeneratedJSON(path.join(PUBLIC_DIR, 'inverted-index-ac-exact.json'), exactACIndex);
   webSearch?.write();
+  if (webFingerprint) {
+    fs.mkdirSync(path.dirname(WEB_STAMP_FILE), { recursive: true });
+    fs.writeFileSync(WEB_STAMP_FILE, `${webFingerprint}\n`);
+  }
   
   console.log(CHECK_ONLY ? 'Search indexes are current.' : 'Indexes built successfully!');
 }

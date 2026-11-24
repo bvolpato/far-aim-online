@@ -18,28 +18,8 @@ DATA_DIR = SCRIPT_DIR.parent / "data"
 
 MOJIBAKE_SEQUENCE = re.compile(r"[\u00c2\u00c3][\u0080-\u00ff]|[\u00e2\u00ef][\u0080-\u00ff]{2}")
 
-
-def repair_mojibake(text: str) -> str:
-    """Decode common UTF-8 bytes that were read as Latin-1/Windows-1252."""
-
-    def decode_match(match: re.Match[str]) -> str:
-        value = match.group(0)
-        try:
-            return value.encode("latin-1").decode("utf-8")
-        except UnicodeError:
-            return value
-
-    return MOJIBAKE_SEQUENCE.sub(decode_match, text)
-
-
-def fix_encoding(text: str) -> str:
-    """Fix common encoding issues from PDF/HTML extraction."""
-    if not text:
-        return text
-
-    result = repair_mojibake(text)
-
-    encoding_fixes = {
+ENCODING_TRANSLATION = str.maketrans(
+    {
         "\u00a0": " ",
         "\u00ad": "",
         "\u2010": "-",
@@ -59,45 +39,219 @@ def fix_encoding(text: str) -> str:
         "\u0004": "-",
         "\ufffd": "",
     }
+)
 
-    for broken, fixed in encoding_fixes.items():
-        result = result.replace(broken, fixed)
+PHRASE_FIXES = {
+    "Omni directional": "Omni-directional",
+    "Omni -directional": "Omni-directional",
+    "ADS B": "ADS-B",
+    "ADS -B": "ADS-B",
+    "ADS C": "ADS-C",
+    "ADS -C": "ADS-C",
+    "TIS B": "TIS-B",
+    "TIS -B": "TIS-B",
+    "FIS B": "FIS-B",
+    "FIS -B": "FIS-B",
+    "ASDE X": "ASDE-X",
+    "ASDE -X": "ASDE-X",
+    "K -9": "K-9",
+    "VFR -on-top": "VFR-on-top",
+    "Surveillance -Broadcast": "Surveillance-Broadcast",
+    "Surveillance -Contract": "Surveillance-Contract",
+    "SURVEILLANCE -CONTRACT": "SURVEILLANCE-CONTRACT",
+    "Service - Broadcast": "Service-Broadcast",
+    "Service- Broadcast": "Service-Broadcast",
+    "Non -Charted": "Non-Charted",
+    "short -range": "short-range",
+}
+PHRASE_FIXES_RE = re.compile("|".join(re.escape(k) for k in sorted(PHRASE_FIXES, key=len, reverse=True)))
 
-    phrase_fixes = {
-        "Omni directional": "Omni-directional",
-        "Omni -directional": "Omni-directional",
-        "Omni-directional": "Omni-directional",
-        "ADS B": "ADS-B",
-        "ADS -B": "ADS-B",
-        "ADS C": "ADS-C",
-        "ADS -C": "ADS-C",
-        "TIS B": "TIS-B",
-        "TIS -B": "TIS-B",
-        "FIS B": "FIS-B",
-        "FIS -B": "FIS-B",
-        "ASDE X": "ASDE-X",
-        "ASDE -X": "ASDE-X",
-        "K -9": "K-9",
-        "VFR -on-top": "VFR-on-top",
-        "Surveillance -Broadcast": "Surveillance-Broadcast",
-        "Surveillance -Contract": "Surveillance-Contract",
-        "SURVEILLANCE -CONTRACT": "SURVEILLANCE-CONTRACT",
-        "Service - Broadcast": "Service-Broadcast",
-        "Service- Broadcast": "Service-Broadcast",
-        "Non -Charted": "Non-Charted",
-        "short -range": "short-range",
-        "Hold-in-lieu": "Hold-in-lieu",
-        "Side-step": "Side-step",
-        "Half-way": "Half-way",
-    }
+SPACE_BEFORE_PUNCT_RE = re.compile(r"\s+([,:)])")
+CONTROL_CHARS_RE = re.compile(r"[\x00-\x08\x0b\x0c\x0e-\x1f\x7f-\x9f]")
+MULTI_SPACE_TAB_RE = re.compile(r"[ \t]{2,}")
+MULTI_HYPHEN_RE = re.compile(r"-{2,}")
+AIM_TITLE_PREFIX_RE = re.compile(r"^AIM\s+\d+-\d+-\d+[:.]\s*")
 
-    for broken, fixed in phrase_fixes.items():
-        result = result.replace(broken, fixed)
+UNMERGE_WORDS = {
+    "AVORTAC": "A VORTAC",
+    "AGBAS": "A GBAS",
+    "ATACAN": "A TACAN",
+    "ANDB": "A NDB",
+    "AVOR": "A VOR",
+    "ADME": "A DME",
+    "AILS": "A ILS",
+    "ALOC": "A LOC",
+    "AGPS": "A GPS",
+    "ARNAV": "A RNAV",
+    "AWAAS": "A WAAS",
+}
+UNMERGE_WORDS_RE = re.compile(
+    r"(?:(?<=[.!?]\s)|(?<=\n)|^)(" + "|".join(re.escape(k) for k in UNMERGE_WORDS) + r")\b"
+)
 
-    result = re.sub(r"\s+([,:)])", r"\1", result)
-    result = re.sub(r"[\x00-\x08\x0b\x0c\x0e-\x1f\x7f-\x9f]", "", result)
-    result = re.sub(r"[ \t]{2,}", " ", result)
-    result = re.sub(r"-{2,}", "-", result)
+_BASE_BROKEN_WORDS = {
+    # -TION words (most common PDF break pattern)
+    "ELEV ATION": "ELEVATION",
+    "RESERV ATION": "RESERVATION",
+    "NAVIGA TION": "NAVIGATION",
+    "NA VIGA TION": "NAVIGATION",
+    "NA VIGATION": "NAVIGATION",
+    "MA TERIALS": "MATERIALS",
+    "TAXIW AY": "TAXIWAY",
+    "WEA THER": "WEATHER",
+    "DA TA": "DATA",
+    "IDENTIFICA TION": "IDENTIFICATION",
+    "COMMUNICA TION": "COMMUNICATION",
+    "INFORMA TION": "INFORMATION",
+    "OPERA TION": "OPERATION",
+    "CONFIGURA TION": "CONFIGURATION",
+    "SEPARA TION": "SEPARATION",
+    "AUTHORIZA TION": "AUTHORIZATION",
+    "COORDINA TION": "COORDINATION",
+    "DESTINA TION": "DESTINATION",
+    "DIREC TION": "DIRECTION",
+    "FUNC TION": "FUNCTION",
+    "INSTRUC TION": "INSTRUCTION",
+    "LOCA TION": "LOCATION",
+    "MODIFICA TION": "MODIFICATION",
+    "POSI TION": "POSITION",
+    "PROTEC TION": "PROTECTION",
+    "REGULA TION": "REGULATION",
+    "RESTRIC TION": "RESTRICTION",
+    "SITUA TION": "SITUATION",
+    "TRANSI TION": "TRANSITION",
+    "VARIA TION": "VARIATION",
+    "NOTIFICA TION": "NOTIFICATION",
+    "AVIA TION": "AVIATION",
+    "A VIATION": "AVIATION",
+    "A VIA TION": "AVIATION",
+    "A VOIDANCE": "AVOIDANCE",
+    "APPLICA TION": "APPLICATION",
+    "ASSOCIA TION": "ASSOCIATION",
+    "CERTIFICA TION": "CERTIFICATION",
+    "CLASSIFICA TION": "CLASSIFICATION",
+    "CORREC TION": "CORRECTION",
+    "DETEC TION": "DETECTION",
+    "EVALUA TION": "EVALUATION",
+    "INVESTIGA TION": "INVESTIGATION",
+    "ORGANIZA TION": "ORGANIZATION",
+    "PUBLICA TION": "PUBLICATION",
+    "SIMULA TION": "SIMULATION",
+    "SPECIFICA TION": "SPECIFICATION",
+    "VERIFICA TION": "VERIFICATION",
+    # -ABLE words
+    "A V AILABLE": "AVAILABLE",
+    "AV AILABLE": "AVAILABLE",
+    # -ANCED/-ANCE words
+    "ADV ANCED": "ADVANCED",
+    "ADV ANCE": "ADVANCE",
+    "DIST ANCE": "DISTANCE",
+    "PERFORM ANCE": "PERFORMANCE",
+    "CLEAR ANCE": "CLEARANCE",
+    "GUID ANCE": "GUIDANCE",
+    "MAINT ENANCE": "MAINTENANCE",
+    "ARRIV AL": "ARRIVAL",
+    # -ED words
+    "ASSIGN ED": "ASSIGNED",
+    "DESIGN ED": "DESIGNED",
+    "OPERAT ED": "OPERATED",
+    # -ATCH words
+    "W ATCH": "WATCH",
+    "W A TCH": "WATCH",
+    "M ATCH": "MATCH",
+    "P ATCH": "PATCH",
+    # -AGE words
+    "MESS AGE": "MESSAGE",
+    "PACK AGE": "PACKAGE",
+    "STOR AGE": "STORAGE",
+    "VOLT AGE": "VOLTAGE",
+    # -MENT words
+    "EQUIP MENT": "EQUIPMENT",
+    "ENVIRON MENT": "ENVIRONMENT",
+    "REQUIRE MENT": "REQUIREMENT",
+    "MANAGE MENT": "MANAGEMENT",
+    "MOVE MENT": "MOVEMENT",
+    # -ICAL/-OLOGY words
+    "METEOROLOG ICAL": "METEOROLOGICAL",
+    "AERONAUT ICAL": "AERONAUTICAL",
+    "TECHN ICAL": "TECHNICAL",
+    "NAUT ICAL": "NAUTICAL",
+    "PRACT ICAL": "PRACTICAL",
+    # Other common breaks
+    "humanita rian": "humanitarian",
+    "Humanita rian": "Humanitarian",
+    "AIR MEN": "AIRMEN",
+    "AIRMEN'SMETEOROLOGICAL": "AIRMEN'S METEOROLOGICAL",
+    "AIR CRAFT": "AIRCRAFT",
+    "AIR PORT": "AIRPORT",
+    "AIR SPACE": "AIRSPACE",
+    "AIR WAY": "AIRWAY",
+    "RUN WAY": "RUNWAY",
+    "TAX IWAY": "TAXIWAY",
+    "HEAD ING": "HEADING",
+    "LAND ING": "LANDING",
+    "WARN ING": "WARNING",
+    "BEAR ING": "BEARING",
+    "CLEAR ING": "CLEARING",
+    "F AA": "FAA",
+    "A TC": "ATC",
+    "PR M": "PRM",
+    "RNA V": "RNAV",
+    "LNA V": "LNAV",
+    "NA V AID": "NAVAID",
+    "NA V CANADA": "NAV CANADA",
+    "V oice": "Voice",
+    "P AO": "PAO",
+    "te rritories": "territories",
+    "interrupt s": "interrupts",
+    "day time": "daytime",
+    "t hought": "thought",
+    "calcula tor": "calculator",
+    "a ppropriate": "appropriate",
+    "speci fic": "specific",
+}
+
+BROKEN_WORDS_MAP: dict[str, str] = {}
+for _broken, _fixed in _BASE_BROKEN_WORDS.items():
+    BROKEN_WORDS_MAP.setdefault(_broken, _fixed)
+    BROKEN_WORDS_MAP.setdefault(_broken.lower(), _fixed.lower())
+    BROKEN_WORDS_MAP.setdefault(_broken.title(), _fixed.title())
+
+BROKEN_WORDS_RE = re.compile(
+    "|".join(re.escape(k) for k in sorted(BROKEN_WORDS_MAP, key=len, reverse=True))
+)
+
+MARKER_DOT_RE = re.compile(r"([a-z0-9]\. )([a-z])")
+MARKER_PAREN_RE = re.compile(r"(\([a-z0-9]+\) )([a-z])")
+PLURAL_SPACE_RE = re.compile(r"\b([A-Za-z]+)\s+\(s\)")
+MULTI_SPACE_RE = re.compile(r" {2,}")
+MULTI_NEWLINE_RE = re.compile(r"\n{3,}")
+
+
+def repair_mojibake(text: str) -> str:
+    """Decode common UTF-8 bytes that were read as Latin-1/Windows-1252."""
+
+    def decode_match(match: re.Match[str]) -> str:
+        value = match.group(0)
+        try:
+            return value.encode("latin-1").decode("utf-8")
+        except UnicodeError:
+            return value
+
+    return MOJIBAKE_SEQUENCE.sub(decode_match, text)
+
+
+def fix_encoding(text: str) -> str:
+    """Fix common encoding issues from PDF/HTML extraction."""
+    if not text:
+        return text
+
+    result = repair_mojibake(text).translate(ENCODING_TRANSLATION)
+    result = PHRASE_FIXES_RE.sub(lambda m: PHRASE_FIXES[m.group(0)], result)
+    result = SPACE_BEFORE_PUNCT_RE.sub(r"\1", result)
+    result = CONTROL_CHARS_RE.sub("", result)
+    result = MULTI_SPACE_TAB_RE.sub(" ", result)
+    result = MULTI_HYPHEN_RE.sub("-", result)
 
     return result
 
@@ -111,10 +265,7 @@ def fix_aim_title(title: str) -> str:
     if not title:
         return title
 
-    # Pattern: "AIM X-X-X:" or "AIM X-X-X." at the start
-    result = re.sub(r"^AIM\s+\d+-\d+-\d+[:.]\s*", "", title)
-
-    return result.strip()
+    return AIM_TITLE_PREFIX_RE.sub("", title).strip()
 
 
 def fix_over_merged_words(text: str) -> str:
@@ -125,34 +276,7 @@ def fix_over_merged_words(text: str) -> str:
     if not text:
         return text
 
-    # Words that start with A/a followed by space that should NOT be merged
-    # Pattern: standalone "A" or "a" followed by an uppercase word
-    # We need to UNDO the merge for specific known cases
-
-    # Known incorrectly merged words to fix
-    unmerge_words = {
-        "AVORTAC": "A VORTAC",
-        "AGBAS": "A GBAS",
-        "ATACAN": "A TACAN",
-        "ANDB": "A NDB",
-        "AVOR": "A VOR",
-        "ADME": "A DME",
-        "AILS": "A ILS",
-        "ALOC": "A LOC",
-        "AGPS": "A GPS",
-        "ARNAV": "A RNAV",
-        "AWAAS": "A WAAS",
-    }
-
-    result = text
-    for merged, unmerged in unmerge_words.items():
-        # Only replace at word boundaries and when it's at the start of a sentence
-        # Pattern: after period+space, after newline, or at start
-        result = re.sub(rf"(?<=[.!?]\s){merged}\b", unmerged, result)
-        result = re.sub(rf"(?<=\n){merged}\b", unmerged, result)
-        result = re.sub(rf"^{merged}\b", unmerged, result)
-
-    return result
+    return UNMERGE_WORDS_RE.sub(lambda m: UNMERGE_WORDS[m.group(1)], text)
 
 
 def fix_broken_words(text: str) -> str:
@@ -165,139 +289,7 @@ def fix_broken_words(text: str) -> str:
     if not text:
         return text
 
-    # Specific broken word patterns that we KNOW are wrong
-    # These are caused by column breaks in PDFs
-    broken_words = {
-        # -TION words (most common PDF break pattern)
-        "ELEV ATION": "ELEVATION",
-        "RESERV ATION": "RESERVATION",
-        "NAVIGA TION": "NAVIGATION",
-        "NA VIGA TION": "NAVIGATION",
-        "NA VIGATION": "NAVIGATION",
-        "MA TERIALS": "MATERIALS",
-        "TAXIW AY": "TAXIWAY",
-        "WEA THER": "WEATHER",
-        "DA TA": "DATA",
-        "IDENTIFICA TION": "IDENTIFICATION",
-        "COMMUNICA TION": "COMMUNICATION",
-        "INFORMA TION": "INFORMATION",
-        "OPERA TION": "OPERATION",
-        "CONFIGURA TION": "CONFIGURATION",
-        "SEPARA TION": "SEPARATION",
-        "AUTHORIZA TION": "AUTHORIZATION",
-        "COORDINA TION": "COORDINATION",
-        "DESTINA TION": "DESTINATION",
-        "DIREC TION": "DIRECTION",
-        "FUNC TION": "FUNCTION",
-        "INSTRUC TION": "INSTRUCTION",
-        "LOCA TION": "LOCATION",
-        "MODIFICA TION": "MODIFICATION",
-        "POSI TION": "POSITION",
-        "PROTEC TION": "PROTECTION",
-        "REGULA TION": "REGULATION",
-        "RESTRIC TION": "RESTRICTION",
-        "SITUA TION": "SITUATION",
-        "TRANSI TION": "TRANSITION",
-        "VARIA TION": "VARIATION",
-        "NOTIFICA TION": "NOTIFICATION",
-        "AVIA TION": "AVIATION",
-        "A VIATION": "AVIATION",
-        "A VIA TION": "AVIATION",
-        "A VOIDANCE": "AVOIDANCE",
-        "APPLICA TION": "APPLICATION",
-        "ASSOCIA TION": "ASSOCIATION",
-        "CERTIFICA TION": "CERTIFICATION",
-        "CLASSIFICA TION": "CLASSIFICATION",
-        "CORREC TION": "CORRECTION",
-        "DETEC TION": "DETECTION",
-        "EVALUA TION": "EVALUATION",
-        "INVESTIGA TION": "INVESTIGATION",
-        "ORGANIZA TION": "ORGANIZATION",
-        "PUBLICA TION": "PUBLICATION",
-        "SIMULA TION": "SIMULATION",
-        "SPECIFICA TION": "SPECIFICATION",
-        "VERIFICA TION": "VERIFICATION",
-        # -ABLE words
-        "A V AILABLE": "AVAILABLE",
-        "AV AILABLE": "AVAILABLE",
-        # -ANCED/-ANCE words
-        "ADV ANCED": "ADVANCED",
-        "ADV ANCE": "ADVANCE",
-        "DIST ANCE": "DISTANCE",
-        "PERFORM ANCE": "PERFORMANCE",
-        "CLEAR ANCE": "CLEARANCE",
-        "GUID ANCE": "GUIDANCE",
-        "MAINT ENANCE": "MAINTENANCE",
-        "ARRIV AL": "ARRIVAL",
-        # -ED words
-        "ASSIGN ED": "ASSIGNED",
-        "DESIGN ED": "DESIGNED",
-        "OPERAT ED": "OPERATED",
-        # -ATCH words
-        "W ATCH": "WATCH",
-        "W A TCH": "WATCH",
-        "M ATCH": "MATCH",
-        "P ATCH": "PATCH",
-        # -AGE words
-        "MESS AGE": "MESSAGE",
-        "PACK AGE": "PACKAGE",
-        "STOR AGE": "STORAGE",
-        "VOLT AGE": "VOLTAGE",
-        # -MENT words
-        "EQUIP MENT": "EQUIPMENT",
-        "ENVIRON MENT": "ENVIRONMENT",
-        "REQUIRE MENT": "REQUIREMENT",
-        "MANAGE MENT": "MANAGEMENT",
-        "MOVE MENT": "MOVEMENT",
-        # -ICAL/-OLOGY words
-        "METEOROLOG ICAL": "METEOROLOGICAL",
-        "AERONAUT ICAL": "AERONAUTICAL",
-        "TECHN ICAL": "TECHNICAL",
-        "NAUT ICAL": "NAUTICAL",
-        "PRACT ICAL": "PRACTICAL",
-        # Other common breaks
-        "humanita rian": "humanitarian",
-        "Humanita rian": "Humanitarian",
-        "AIR MEN": "AIRMEN",
-        "AIRMEN'SMETEOROLOGICAL": "AIRMEN'S METEOROLOGICAL",
-        "AIR CRAFT": "AIRCRAFT",
-        "AIR PORT": "AIRPORT",
-        "AIR SPACE": "AIRSPACE",
-        "AIR WAY": "AIRWAY",
-        "RUN WAY": "RUNWAY",
-        "TAX IWAY": "TAXIWAY",
-        "HEAD ING": "HEADING",
-        "LAND ING": "LANDING",
-        "WARN ING": "WARNING",
-        "BEAR ING": "BEARING",
-        "CLEAR ING": "CLEARING",
-        "F AA": "FAA",
-        "A TC": "ATC",
-        "PR M": "PRM",
-        "RNA V": "RNAV",
-        "LNA V": "LNAV",
-        "NA V AID": "NAVAID",
-        "NA V CANADA": "NAV CANADA",
-        "V oice": "Voice",
-        "P AO": "PAO",
-        "te rritories": "territories",
-        "interrupt s": "interrupts",
-        "day time": "daytime",
-        "t hought": "thought",
-        "calcula tor": "calculator",
-        "a ppropriate": "appropriate",
-        "speci fic": "specific",
-    }
-
-    result = text
-    for broken, fixed in broken_words.items():
-        result = result.replace(broken, fixed)
-        # Also handle lowercase
-        result = result.replace(broken.lower(), fixed.lower())
-        # And title case
-        result = result.replace(broken.title(), fixed.title())
-
-    return result
+    return BROKEN_WORDS_RE.sub(lambda m: BROKEN_WORDS_MAP[m.group(0)], text)
 
 
 def capitalize_after_marker(text: str) -> str:
@@ -308,16 +300,11 @@ def capitalize_after_marker(text: str) -> str:
     if not text:
         return text
 
-    # Pattern: paragraph marker followed by lowercase letter
-    # Matches: a. a, b. the, 1. when, (a) aircraft, etc.
-    def capitalize_match(match):
+    def capitalize_match(match: re.Match[str]) -> str:
         return match.group(1) + match.group(2).upper()
 
-    result = text
-    # After "X. " pattern (letter or number followed by period and space)
-    result = re.sub(r"([a-z0-9]\. )([a-z])", capitalize_match, result)
-    # After "(X) " pattern
-    result = re.sub(r"(\([a-z0-9]+\) )([a-z])", capitalize_match, result)
+    result = MARKER_DOT_RE.sub(capitalize_match, text)
+    result = MARKER_PAREN_RE.sub(capitalize_match, result)
 
     return result
 
@@ -327,25 +314,16 @@ def clean_text(text: str, is_title: bool = False) -> str:
     if not text:
         return text
 
-    result = text
-
-    # 1. Fix encoding issues first
-    result = fix_encoding(result)
-
-    # 2. Fix broken words (from PDF extraction)
+    result = fix_encoding(text)
     result = fix_broken_words(result)
-
-    # 3. Fix over-merged words (undo incorrect merges)
     result = fix_over_merged_words(result)
 
-    # 4. For titles, remove redundant AIM prefix
     if is_title:
         result = fix_aim_title(result)
 
-    # 5. Clean up whitespace
-    result = re.sub(r"\b([A-Za-z]+)\s+\(s\)", r"\1(s)", result)
-    result = re.sub(r" {2,}", " ", result)
-    result = re.sub(r"\n{3,}", "\n\n", result)
+    result = PLURAL_SPACE_RE.sub(r"\1(s)", result)
+    result = MULTI_SPACE_RE.sub(" ", result)
+    result = MULTI_NEWLINE_RE.sub("\n\n", result)
 
     return result.strip()
 
@@ -367,15 +345,13 @@ def clean_json_file(filepath: Path) -> bool:
     """Clean a single JSON file. Returns True if changes were made."""
     try:
         with open(filepath, "r", encoding="utf-8") as f:
-            original = f.read()
-            data = json.loads(original)
+            data = json.load(f)
 
         cleaned_data = clean_dict_recursively(data)
-        cleaned_json = json.dumps(cleaned_data, indent=2, ensure_ascii=False)
 
-        if cleaned_json != json.dumps(data, indent=2, ensure_ascii=False):
+        if cleaned_data != data:
             with open(filepath, "w", encoding="utf-8") as f:
-                f.write(cleaned_json)
+                json.dump(cleaned_data, f, indent=2, ensure_ascii=False)
             return True
         return False
     except Exception as e:
@@ -392,41 +368,14 @@ def main():
     files_changed = 0
     files_checked = 0
 
-    # Clean AIM
-    aim_dir = DATA_DIR / "aim"
-    print("Cleaning AIM data...")
-    for json_file in sorted(aim_dir.glob("*.json")):
-        files_checked += 1
-        if clean_json_file(json_file):
-            print(f"  Fixed: {json_file.name}")
-            files_changed += 1
-
-    # Clean FAR
-    far_dir = DATA_DIR / "far"
-    print("\nCleaning FAR data...")
-    for json_file in sorted(far_dir.glob("*.json")):
-        files_checked += 1
-        if clean_json_file(json_file):
-            print(f"  Fixed: {json_file.name}")
-            files_changed += 1
-
-    # Clean quizzes
-    quiz_dir = DATA_DIR / "quizzes"
-    print("\nCleaning Quiz data...")
-    for json_file in sorted(quiz_dir.glob("*.json")):
-        files_checked += 1
-        if clean_json_file(json_file):
-            print(f"  Fixed: {json_file.name}")
-            files_changed += 1
-
-    # Clean flashcards
-    flashcard_dir = DATA_DIR / "flashcards"
-    print("\nCleaning Flashcard data...")
-    for json_file in sorted(flashcard_dir.glob("*.json")):
-        files_checked += 1
-        if clean_json_file(json_file):
-            print(f"  Fixed: {json_file.name}")
-            files_changed += 1
+    for label, sub in (("AIM", "aim"), ("FAR", "far"), ("Quiz", "quizzes"), ("Flashcard", "flashcards")):
+        directory = DATA_DIR / sub
+        print(f"\nCleaning {label} data..." if files_checked else f"Cleaning {label} data...")
+        for json_file in sorted(directory.glob("*.json")):
+            files_checked += 1
+            if clean_json_file(json_file):
+                print(f"  Fixed: {json_file.name}")
+                files_changed += 1
 
     print()
     print("=" * 60)

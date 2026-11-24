@@ -112,15 +112,16 @@ def unavailable_note(
     index: dict[str, Any],
     coverage: dict[str, Any],
 ) -> str:
+    by_id = item_map(index)
     numbers = sorted(
-        item_map(index)[result["id"]]["number"]
+        by_id[result["id"]]["number"]
         for result in coverage["items"]
         if result["status"] == "unavailable"
-        and not item_map(index)[result["id"]].get("contentError")
+        and not by_id[result["id"]].get("contentError")
     )
     restricted = sum(
         result["status"] == "unavailable"
-        and bool(item_map(index)[result["id"]].get("contentError"))
+        and bool(by_id[result["id"]].get("contentError"))
         for result in coverage["items"]
     )
     rights_note = (
