@@ -7,6 +7,7 @@ import { getFlashcardDeck } from '../data/study';
 import type { Flashcard, FlashcardDeck } from '../data';
 import { useRouteData } from '../context/route-data';
 import { Breadcrumbs } from '../components/Breadcrumbs';
+import { FormattedContent } from '../components/FormattedContent';
 import { Button } from '../components/ui/button';
 
 import { Progress } from '../components/ui/progress';
@@ -78,6 +79,60 @@ export function FlashcardDeckPage() {
     };
   }, [deckId, deckMeta, initialDeck, loadAttempt]);
 
+  const currentCard = cards[currentIndex];
+  const completedCount = knownCards.size + unknownCards.size;
+  const isComplete = cards.length > 0 && completedCount === cards.length;
+
+  useEffect(() => {
+    if (!isInteractive || !deck) return;
+    const handleWindowKeyDown = (e: globalThis.KeyboardEvent) => {
+      if (e.metaKey || e.ctrlKey || e.altKey) return;
+      const target = e.target as HTMLElement | null;
+      const tag = target?.tagName.toLowerCase();
+      if (tag === 'input' || tag === 'textarea' || target?.isContentEditable) return;
+
+      const key = e.key.toLowerCase();
+      if (e.key === 'ArrowRight') {
+        if (currentIndex < cards.length - 1) {
+          setCurrentIndex(currentIndex + 1);
+          setIsFlipped(false);
+        }
+      } else if (e.key === 'ArrowLeft') {
+        if (currentIndex > 0) {
+          setCurrentIndex(currentIndex - 1);
+          setIsFlipped(false);
+        }
+      } else if ((key === 'k' || key === 'u') && !isComplete && currentCard) {
+        const nextKnown = new Set(knownCards);
+        const nextUnknown = new Set(unknownCards);
+        if (key === 'k') {
+          nextKnown.add(currentCard.id);
+          nextUnknown.delete(currentCard.id);
+        } else {
+          nextUnknown.add(currentCard.id);
+          nextKnown.delete(currentCard.id);
+        }
+        setKnownCards(nextKnown);
+        setUnknownCards(nextUnknown);
+        const nextIndex = cards.findIndex(
+          (card, index) => index > currentIndex && !nextKnown.has(card.id) && !nextUnknown.has(card.id)
+        );
+        const firstPending = nextIndex >= 0
+          ? nextIndex
+          : cards.findIndex((card) => !nextKnown.has(card.id) && !nextUnknown.has(card.id));
+        if (firstPending >= 0) {
+          setCurrentIndex(firstPending);
+          setIsFlipped(false);
+        }
+      } else if (e.key === ' ' && tag !== 'button' && tag !== 'a' && !isComplete) {
+        e.preventDefault();
+        setIsFlipped((prev) => !prev);
+      }
+    };
+    window.addEventListener('keydown', handleWindowKeyDown);
+    return () => window.removeEventListener('keydown', handleWindowKeyDown);
+  }, [isInteractive, deck, currentIndex, cards, isComplete, currentCard, knownCards, unknownCards]);
+
   if (!deckMeta) {
     return (
       <div className="max-w-4xl mx-auto px-4 py-8 text-center">
@@ -109,10 +164,6 @@ export function FlashcardDeckPage() {
       </div>
     );
   }
-
-  const currentCard = cards[currentIndex];
-  const completedCount = knownCards.size + unknownCards.size;
-  const isComplete = cards.length > 0 && completedCount === cards.length;
 
   const handleFlip = () => {
     if (!isInteractive) return;
@@ -190,25 +241,6 @@ export function FlashcardDeckPage() {
     markCurrentCard(false);
   };
 
-  const handleKeyDown = (e: KeyboardEvent<HTMLDivElement>) => {
-    if (!isInteractive) return;
-
-    switch (e.key) {
-      case 'ArrowRight':
-        handleNext();
-        break;
-      case 'ArrowLeft':
-        handlePrevious();
-        break;
-      case 'k':
-        handleMarkKnown();
-        break;
-      case 'u':
-        handleMarkUnknown();
-        break;
-    }
-  };
-
   const handleCardKeyDown = (e: KeyboardEvent<HTMLDivElement>) => {
     if (!isInteractive) return;
 
@@ -231,8 +263,6 @@ export function FlashcardDeckPage() {
   return (
     <div
       className="max-w-2xl mx-auto px-4 py-8 animate-fade-in"
-      onKeyDown={handleKeyDown}
-      tabIndex={-1}
     >
       <Helmet>
         <title>{`${deck.title} | FAR/AIM Online`}</title>
@@ -300,7 +330,7 @@ export function FlashcardDeckPage() {
             </span>
           </div>
           <div className="mt-8 flex flex-wrap justify-center gap-3">
-            {!isReviewMode && unknownCards.size > 0 && (
+            {unknownCards.size > 0 && (
               <Button type="button" variant="outline" onClick={handleReviewMissed} disabled={!isInteractive}>
                 <RotateCcw className="mr-2 h-4 w-4" aria-hidden="true" />
                 Review {unknownCards.size} missed card{unknownCards.size === 1 ? '' : 's'}
@@ -346,9 +376,12 @@ export function FlashcardDeckPage() {
                   <p className="text-center text-lg leading-relaxed text-foreground">
                     {currentCard.back}
                   </p>
-                  <span className="mt-6 text-xs text-amber-600/70 dark:text-amber-400/70">
-                    {currentCard.reference}
-                  </span>
+                  <div
+                    className="mt-6 text-xs text-amber-700 dark:text-amber-300"
+                    onClick={(event) => event.stopPropagation()}
+                  >
+                    <FormattedContent text={currentCard.reference} />
+                  </div>
                 </div>
               </div>
             </div>

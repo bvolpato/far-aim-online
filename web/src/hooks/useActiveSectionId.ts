@@ -4,6 +4,7 @@ export function useActiveSectionId(ids: string[], enabled = true): string {
   const [activeSectionId, setActiveSectionId] = useState('');
 
   useEffect(() => {
+    setActiveSectionId('');
     if (!enabled || typeof window === 'undefined' || !('IntersectionObserver' in window) || ids.length === 0) {
       return;
     }
@@ -14,16 +15,27 @@ export function useActiveSectionId(ids: string[], enabled = true): string {
 
     if (elements.length === 0) return;
 
+    const intersecting = new Map<string, IntersectionObserverEntry>();
+
     const observer = new IntersectionObserver(
       (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            intersecting.set(entry.target.id, entry);
+          } else {
+            intersecting.delete(entry.target.id);
+          }
+        }
+
+        if (intersecting.size === 0) return;
+
         let bestId = '';
         let bestDistance = Infinity;
-        for (const entry of entries) {
-          if (!entry.isIntersecting) continue;
+        for (const [id, entry] of intersecting) {
           const distance = Math.abs(entry.boundingClientRect.top - 100);
           if (distance < bestDistance) {
             bestDistance = distance;
-            bestId = entry.target.id;
+            bestId = id;
           }
         }
         if (bestId) {

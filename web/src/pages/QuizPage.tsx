@@ -7,9 +7,19 @@ import { getQuiz } from '../data/study';
 import type { Quiz, QuizQuestion } from '../data';
 import { AirplaneCelebration } from '../components/AirplaneCelebration';
 import { Breadcrumbs } from '../components/Breadcrumbs';
+import { FormattedContent } from '../components/FormattedContent';
 import { Button } from '../components/ui/button';
 import { Card, CardContent } from '../components/ui/card';
 import { Progress } from '../components/ui/progress';
+
+function shuffleArray<T>(items: readonly T[]): T[] {
+  const copy = [...items];
+  for (let i = copy.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [copy[i], copy[j]] = [copy[j], copy[i]];
+  }
+  return copy;
+}
 
 type QuizState = 'intro' | 'question' | 'review' | 'results';
 
@@ -130,7 +140,7 @@ export function QuizPage() {
     setAnswers([]);
     setSelectedAnswer(null);
     setShowExplanation(false);
-    const shuffled = [...quiz.questions].sort(() => Math.random() - 0.5);
+    const shuffled = shuffleArray(quiz.questions);
     setShuffledQuestions(shuffled);
     setState('intro');
   }, [quiz]);
@@ -142,7 +152,7 @@ export function QuizPage() {
 
   const handleRetryMissed = useCallback(() => {
     if (missedQuestions.length === 0) return;
-    setShuffledQuestions([...missedQuestions].sort(() => Math.random() - 0.5));
+    setShuffledQuestions(shuffleArray(missedQuestions));
     setCurrentIndex(0);
     setAnswers([]);
     setSelectedAnswer(null);
@@ -153,6 +163,7 @@ export function QuizPage() {
   // Global keyboard shortcuts for taking quizzes
   useEffect(() => {
     const handleKeyDown = (e: globalThis.KeyboardEvent) => {
+      if (e.metaKey || e.ctrlKey || e.altKey) return;
       const activeTag = (document.activeElement?.tagName || '').toLowerCase();
       if (activeTag === 'input' || activeTag === 'textarea') return;
 
@@ -216,7 +227,7 @@ export function QuizPage() {
 
   const startQuiz = (loadedQuiz: Quiz) => {
     setQuiz(loadedQuiz);
-    setShuffledQuestions([...loadedQuiz.questions].sort(() => Math.random() - 0.5));
+    setShuffledQuestions(shuffleArray(loadedQuiz.questions));
     setCurrentIndex(0);
     setAnswers([]);
     setSelectedAnswer(null);
@@ -278,7 +289,7 @@ export function QuizPage() {
                 { value: `${quizMeta.passingScore}%`, label: 'Passing Score' },
                 { value: `~${Math.ceil(quizMeta.questionCount * 1.5)}m`, label: 'Est. Time' },
               ].map((stat) => (
-                <div key={stat.label} className="bg-muted/50/50 rounded-xl p-4">
+                <div key={stat.label} className="bg-muted/50 rounded-xl p-4">
                   <div className="text-2xl font-bold text-foreground">{stat.value}</div>
                   <div className="text-sm text-muted-foreground">{stat.label}</div>
                 </div>
@@ -459,7 +470,7 @@ export function QuizPage() {
                             ? 'bg-emerald-50 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800'
                             : isSelected
                               ? 'bg-red-50 dark:bg-red-900/30 text-red-700 dark:text-red-300 border border-red-200 dark:border-red-800'
-                              : 'bg-muted/50/50 text-muted-foreground'
+                              : 'bg-muted/50 text-muted-foreground'
                             }`}
                         >
                           {option}
@@ -474,8 +485,10 @@ export function QuizPage() {
                     })}
                   </div>
 
-                  <div className="ml-11 bg-muted/50/50 rounded-lg p-4">
-                    <p className="text-sm text-muted-foreground mb-2">{question.explanation}</p>
+                  <div className="ml-11 bg-muted/50 rounded-lg p-4">
+                    <div className="text-sm text-muted-foreground mb-2">
+                      <FormattedContent text={question.explanation} />
+                    </div>
                     <p className="text-xs text-muted-foreground">
                       Reference: <ReferenceLink reference={question.reference} />
                     </p>
@@ -549,7 +562,7 @@ export function QuizPage() {
                 } else if (isSelected && !isCorrect) {
                   optionClass += 'bg-red-50 dark:bg-red-900/30 border-red-500 text-red-700 dark:text-red-300';
                 } else {
-                  optionClass += 'bg-muted/50/50 border-border text-muted-foreground opacity-60';
+                  optionClass += 'bg-muted/50 border-border text-muted-foreground opacity-60';
                 }
               } else {
                 optionClass += 'bg-card border-border text-foreground/70 hover:border-purple-300 dark:hover:border-purple-500 hover:bg-purple-50 dark:hover:bg-purple-900/20 cursor-pointer';
@@ -592,9 +605,11 @@ export function QuizPage() {
 
           {/* Explanation */}
           {showExplanation && (
-            <div className="bg-muted/50/50 rounded-xl p-4 mb-6 animate-slide-up">
+            <div className="bg-muted/50 rounded-xl p-4 mb-6 animate-slide-up">
               <h3 className="font-semibold text-foreground mb-2">Explanation</h3>
-              <p className="text-sm text-muted-foreground mb-2">{currentQuestion.explanation}</p>
+              <div className="text-sm text-muted-foreground mb-2">
+                <FormattedContent text={currentQuestion.explanation} />
+              </div>
               <p className="text-xs text-muted-foreground">
                 Reference: <ReferenceLink reference={currentQuestion.reference} />
               </p>

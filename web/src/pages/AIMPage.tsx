@@ -179,6 +179,7 @@ export function AIMPage() {
   const navigation = useMemo(() => {
     if (!selectedChapter) return { prev: null, next: null };
     const currentIndex = chapters.findIndex(c => c.chapter === selectedChapter.chapter);
+    if (currentIndex < 0) return { prev: null, next: null };
     return {
       prev: currentIndex > 0 ? chapters[currentIndex - 1] : null,
       next: currentIndex < chapters.length - 1 ? chapters[currentIndex + 1] : null,
@@ -392,7 +393,7 @@ const AIMDesktopToc = memo(function AIMDesktopToc({
                   ? 'bg-primary/10 text-primary font-semibold border-l-2 border-primary'
                   : 'text-muted-foreground hover:text-primary hover:bg-accent/50'
               }`}
-              title={`§ ${section.section} - ${section.title}`}
+              title={`AIM ${section.section} - ${section.title}`}
             >
               <span className="font-semibold text-foreground/80 mr-1">{section.section}</span>
               {section.title}
@@ -494,7 +495,7 @@ function AIMChapterView({
     () =>
       sections.map((s) => ({
         id: s.section,
-        label: `§ ${s.section}`,
+        label: `AIM ${s.section}`,
         title: s.title,
       })),
     [sections]
@@ -523,6 +524,17 @@ function AIMChapterView({
       if (section.subsections?.some(sub =>
         sub.title.toLowerCase().includes(query) ||
         sub.content.toLowerCase().includes(query)
+      )) return true;
+
+      if (section.figures?.some(fig =>
+        fig.alt?.toLowerCase().includes(query) ||
+        fig.caption?.toLowerCase().includes(query)
+      )) return true;
+
+      if (section.tables?.some(table =>
+        table.caption?.toLowerCase().includes(query) ||
+        table.headers?.some(h => h.toLowerCase().includes(query)) ||
+        table.rows?.some(row => row.some(cell => cell.toLowerCase().includes(query)))
       )) return true;
 
       return false;
@@ -738,7 +750,7 @@ function AIMChapterView({
                   <div className="text-left min-w-0">
                     <p className="text-xs text-muted-foreground uppercase tracking-wide">Previous</p>
                     <p className="font-semibold text-foreground group-hover:text-primary transition-colors truncate">
-                      Ch. {prevChapter.chapter}: {prevChapter.title}
+                      {prevChapter.chapter === 0 ? prevChapter.title : `Ch. ${prevChapter.chapter}: ${prevChapter.title}`}
                     </p>
                   </div>
                 </Link>
@@ -754,7 +766,7 @@ function AIMChapterView({
                   <div className="text-right min-w-0">
                     <p className="text-xs text-muted-foreground uppercase tracking-wide">Next</p>
                     <p className="font-semibold text-foreground group-hover:text-primary transition-colors truncate">
-                      Ch. {nextChapter.chapter}: {nextChapter.title}
+                      {nextChapter.chapter === 0 ? nextChapter.title : `Ch. ${nextChapter.chapter}: ${nextChapter.title}`}
                     </p>
                   </div>
                   <ChevronRight className="w-5 h-5 shrink-0 text-muted-foreground group-hover:text-primary transition-colors" />
@@ -832,12 +844,13 @@ const SectionView = memo(function SectionView({
   return (
     <div
       id={section.section}
-      className={`cv-section bg-card rounded-xl shadow-sm border border-border transition-colors duration-500 ${
+      className={`cv-section scroll-mt-24 bg-card rounded-xl shadow-sm border border-border transition-colors duration-500 ${
         isFlashed ? 'ring-2 ring-primary bg-primary/5' : ''
       }`}
     >
       <div className="flex w-full min-w-0 items-center justify-between p-4 sm:p-6">
         <button
+          type="button"
           onClick={() => onToggleSection(section.section)}
           aria-expanded={isExpanded}
           aria-controls={`section-${section.section}-content`}

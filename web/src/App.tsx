@@ -79,6 +79,26 @@ export class RouteErrorBoundary extends Component<{ children: ReactNode }, Route
   }
 }
 
+function NotFoundPage() {
+  return (
+    <section className="mx-auto flex min-h-[55vh] max-w-xl flex-col items-center justify-center gap-4 px-4 py-16 text-center">
+      <p className="text-sm font-semibold uppercase tracking-wide text-muted-foreground">404</p>
+      <h1 className="text-2xl font-bold text-foreground">Page not found</h1>
+      <p className="text-sm text-muted-foreground">
+        The requested regulation, manual section, or study page does not exist at this address.
+      </p>
+      <div className="flex flex-wrap justify-center gap-2">
+        <Button asChild>
+          <Link to="/">Return home</Link>
+        </Button>
+        <Button variant="outline" asChild>
+          <Link to="/search">Search references</Link>
+        </Button>
+      </div>
+    </section>
+  );
+}
+
 function App({ initialPath }: { initialPath?: string }) {
   const location = useLocation();
   const [hydrated, setHydrated] = useState(!initialPath);
@@ -86,6 +106,12 @@ function App({ initialPath }: { initialPath?: string }) {
   useEffect(() => {
     startTransition(() => setHydrated(true));
   }, []);
+
+  // Scroll to top on pathname transitions without a hash anchor.
+  useEffect(() => {
+    if (!hydrated || location.hash) return;
+    window.scrollTo({ top: 0, behavior: 'auto' });
+  }, [hydrated, location.pathname, location.hash]);
 
   // Static HTML has no query or hash; apply them after the matching tree hydrates.
   const routeLocation = hydrated
@@ -100,6 +126,7 @@ function App({ initialPath }: { initialPath?: string }) {
             {appRoutes.map(({ path, Component: Page }) => (
               <Route key={path} path={path} element={<Page />} />
             ))}
+            <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </Suspense>
       </RouteErrorBoundary>

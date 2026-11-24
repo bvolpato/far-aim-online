@@ -1,6 +1,6 @@
 import { useParams, Link, useLocation, useSearchParams } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
-import { ChevronRight, ChevronLeft, BookOpen, ExternalLink, Filter, Star, Search, Brain, Layers, History, Loader2, FileText, List, Check } from 'lucide-react';
+import { ChevronRight, ChevronLeft, BookOpen, ExternalLink, Filter, Star, Search, Brain, Layers, History, Loader2, FileText, List, Check, X } from 'lucide-react';
 import { memo, useDeferredValue, useMemo, useState, useEffect } from 'react';
 import { getFARPart } from '../data/far';
 import {
@@ -574,6 +574,11 @@ function FARPartView({
   const farQuiz = getQuizForFARPart(part.part);
   const farFlashcards = getFlashcardsForFARPart(part.part);
 
+  // Reset part-local search when switching parts
+  useEffect(() => {
+    setSearchQuery('');
+  }, [part.part]);
+
   // Save reading history when part is viewed
   useEffect(() => {
     addToHistory({
@@ -688,14 +693,25 @@ function FARPartView({
 
       {/* Search Bar */}
       <div className="mb-6 relative">
-        <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-muted-foreground" />
+        <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-muted-foreground pointer-events-none" />
         <input
-          type="text"
+          type="search"
+          aria-label={`Search within Part ${part.part}`}
           placeholder="Search within this part..."
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
-          className="w-full pl-10 pr-4 py-2.5 bg-card border border-border rounded-xl focus:ring-2 focus:ring-ring outline-none text-foreground placeholder:text-muted-foreground"
+          className="w-full pl-10 pr-10 py-2.5 bg-card border border-border rounded-xl focus:ring-2 focus:ring-ring outline-none text-foreground placeholder:text-muted-foreground"
         />
+        {searchQuery && (
+          <button
+            type="button"
+            onClick={() => setSearchQuery('')}
+            aria-label="Clear part search"
+            className="absolute right-2 top-1/2 -translate-y-1/2 p-1.5 text-muted-foreground hover:text-foreground"
+          >
+            <X className="w-4 h-4" />
+          </button>
+        )}
       </div>
 
       <div className="lg:grid lg:grid-cols-[280px_1fr] lg:gap-8 lg:items-start mt-6">

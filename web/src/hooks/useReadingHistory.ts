@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useCallback, useSyncExternalStore } from 'react';
 import { isValidStudyPath } from '@/lib/studyPath';
 
 export type HistoryItemType = 'far' | 'aim' | 'ac';
@@ -9,7 +9,7 @@ export interface HistoryItem {
   title: string;
   timestamp: number;
   path: string;
-  subtitle?: string; // For things like "Subchapter A" or section count
+  subtitle?: string;
 }
 
 export const HISTORY_KEY = 'far-aim-pro-reading-history';
@@ -37,7 +37,7 @@ export function parseReadingHistory(value: unknown): HistoryItem[] {
         typeof item.path === 'string' &&
         isValidStudyPath(item.type, item.path) &&
         typeof item.timestamp === 'number' &&
-        Number.isFinite(item.timestamp)
+        Number.isFinite(item.timestamp),
     )
     .map((item) => ({
       type: item.type as HistoryItemType,
@@ -51,6 +51,7 @@ export function parseReadingHistory(value: unknown): HistoryItem[] {
 }
 
 export function readStoredHistory(): HistoryItem[] {
+  if (typeof window === 'undefined') return [];
   try {
     const stored = localStorage.getItem(HISTORY_KEY);
     return stored ? parseReadingHistory(JSON.parse(stored)) : [];
@@ -60,48 +61,129 @@ export function readStoredHistory(): HistoryItem[] {
   }
 }
 
-export function useReadingHistory() {
-  const [history, setHistory] = useState<HistoryItem[]>([]);
+const EMPTY_HISTORY: HistoryItem[] = [];
+const listeners = new Set<() => void>();
+let clientSnapshot: HistoryItem[] = EMPTY_HISTORY;
+let initialized = false;
+let cachedRaw: string | null = null;
+let storageListenerAttached = false;
 
-  // Load history on mount
-  useEffect(() => {
-    setHistory(readStoredHistory());
-  }, []);
+function emitChange() {
+  for (const listener of listeners) listener();
+}
+
+function syncFromStorage() {
+  if (typeof window === 'undefined') return;
+  let raw: string | null = null;
+  try {
+    raw = localStorage.getItem(HISTORY_KEY);
+  } catch {
+    return;
+  }
+  if (initialized && raw === cachedRaw) return;
+  cachedRaw = raw;
+  initialized = true;
+  if (!raw) {
+    clientSnapshot = EMPTY_HISTORY;
+    return;
+  }
+  try {
+    clientSnapshot = parseReadingHistory(JSON.parse(raw));
+  } catch (error) {
+    console.error('Failed to parse reading history', error);
+    clientSnapshot = EMPTY_HISTORY;
+  }
+}
+
+export function refreshReadingHistoryStore() {
+  const prev = clientSnapshot;
+  initialized = false;
+  syncFromStorage();
+  if (clientSnapshot !== prev) emitChange();
+}
+
+function handleStorageEvent(event: StorageEvent) {
+  if (event.key !== null && event.key !== HISTORY_KEY) return;
+  const previous = clientSnapshot;
+  syncFromStorage();
+  if (clientSnapshot !== previous) emitChange();
+}
+
+function subscribe(listener: () => void) {
+  listeners.add(listener);
+  if (typeof window !== 'undefined' && !storageListenerAttached) {
+    storageListenerAttached = true;
+    window.addEventListener('storage', handleStorageEvent);
+  }
+  if (!initialized) syncFromStorage();
+  return () => {
+    listeners.delete(listener);
+    if (listeners.size === 0) {
+      if (typeof window !== 'undefined' && storageListenerAttached) {
+        window.removeEventListener('storage', handleStorageEvent);
+        storageListenerAttached = false;
+      }
+      initialized = false;
+      cachedRaw = null;
+    }
+  };
+}
+
+function getSnapshot(): HistoryItem[] {
+  if (!initialized) syncFromStorage();
+  return clientSnapshot;
+}
+
+function getServerSnapshot(): HistoryItem[] {
+  return EMPTY_HISTORY;
+}
+
+function writeHistory(nextHistory: HistoryItem[]) {
+  let serialized: string | null = null;
+  try {
+    if (nextHistory.length === 0) {
+      localStorage.removeItem(HISTORY_KEY);
+    } else {
+      serialized = JSON.stringify(nextHistory);
+      localStorage.setItem(HISTORY_KEY, serialized);
+    }
+  } catch (error) {
+    console.error('Failed to save reading history', error);
+  }
+  cachedRaw = serialized;
+  initialized = true;
+  clientSnapshot = nextHistory;
+  emitChange();
+}
+
+export function useReadingHistory() {
+  const history = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
 
   const addToHistory = useCallback((item: Omit<HistoryItem, 'timestamp'>) => {
-    setHistory((prev) => {
-      // Remove existing entry for the same ID to avoid duplicates (move to top)
-      const filtered = prev.filter(
-        (i) => !(i.type === item.type && i.id.toString() === item.id.toString())
-      );
-      
-      const newItem: HistoryItem = {
-        ...item,
-        timestamp: Date.now(),
-      };
-
-      const newHistory = [newItem, ...filtered].slice(0, MAX_HISTORY_ITEMS);
-      
-      try {
-        localStorage.setItem(HISTORY_KEY, JSON.stringify(newHistory));
-      } catch (e) {
-        console.error('Failed to save reading history', e);
-      }
-      
-      return newHistory;
-    });
+    const prev = getSnapshot();
+    const filtered = prev.filter(
+      (i) => !(i.type === item.type && i.id.toString() === item.id.toString()),
+    );
+    const newItem: HistoryItem = {
+      ...item,
+      timestamp: Date.now(),
+    };
+    writeHistory([newItem, ...filtered].slice(0, MAX_HISTORY_ITEMS));
   }, []);
 
   const clearHistory = useCallback(() => {
-    setHistory([]);
-    localStorage.removeItem(HISTORY_KEY);
+    writeHistory([]);
   }, []);
+
+  const getLastViewed = useCallback(
+    (type: HistoryItemType) => history.find((i) => i.type === type),
+    [history],
+  );
 
   return {
     history,
     addToHistory,
     clearHistory,
-    // Helper to get just the last viewed item of a specific type
-    getLastViewed: (type: HistoryItemType) => history.find(i => i.type === type),
+    getLastViewed,
   };
 }

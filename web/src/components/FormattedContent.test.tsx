@@ -17,10 +17,13 @@ function render(text: string, highlight = '', stripTableBlocks = false) {
 
 describe('FormattedContent', () => {
   it('renders FAR references as internal links', () => {
-    const html = render('See § 61.113 and Part 91.');
+    const html = render('See § 61.113, Part 91, 14 CFR part 43, AIM 4-3-2, and § 173.1.');
 
     expect(html).toContain('href="/far/61#61.113"');
     expect(html).toContain('href="/far/91"');
+    expect(html).toContain('href="/far/43"');
+    expect(html).toContain('href="/aim/4#4-3-2"');
+    expect(html).not.toContain('href="/far/173#173.1"');
   });
 
   it('renders regulatory definition terms as bold text', () => {

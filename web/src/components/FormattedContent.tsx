@@ -1,5 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { getAIMChapterMeta, getFARPartMeta } from '../data/catalog';
 import { HighlightText } from './HighlightText';
 
 interface FormattedContentProps {
@@ -360,11 +361,52 @@ function RawTable({ table, highlight, caption }: { table: RawTable; highlight: s
   );
 }
 
-const INLINE_PATTERN_SOURCE = '(\\*\\*[^*]+\\*\\*|\\*[^*]+\\*\\s+means|\\*[^*]+\\*|§\\s*\\d+\\.\\d+[a-z]?|Part\\s+\\d+)';
+const INLINE_PATTERN_SOURCE =
+  '(\\*\\*[^*]+\\*\\*|\\*[^*]+\\*\\s+means|\\*[^*]+\\*|§\\s*\\d+\\.\\d+[a-z]?|\\b(?:14|49)\\s+CFR\\s+(?:[Pp]art\\s+)?\\d+(?:\\.\\d+[a-z]?)?\\b|\\bAIM\\s+\\d{1,2}-\\d{1,2}-\\d{1,2}\\b|\\bAC\\s+\\d{1,3}(?:\\/\\d+)?-\\d+[A-Za-z]?\\b|\\b[Pp]art\\s+\\d+\\b)';
 const SIMPLE_INLINE_PATTERN_SOURCE = '(\\*\\*[^*]+\\*\\*|\\*[^*]+\\*\\s+means|\\*[^*]+\\*)';
 const TERM_MEANS_PATTERN = /^\*([^*]+)\*\s+means$/;
-const SECTION_REF_PATTERN = /§\s*(\d+)\.(\d+[a-z]?)/;
-const PART_REF_PATTERN = /Part\s+(\d+)/i;
+const SECTION_REF_PATTERN = /^§\s*(\d+)\.(\d+[a-z]?)$/;
+const CFR_REF_PATTERN = /^(?:14|49)\s+CFR\s+(?:part\s+)?(\d+)(?:\.(\d+[a-z]?))?$/i;
+const PART_REF_PATTERN = /^part\s+(\d+)$/i;
+const AIM_REF_PATTERN = /^AIM\s+(\d{1,2})-(\d{1,2})-(\d{1,2})$/i;
+const AC_REF_PATTERN = /^AC\s+(\d{1,3}(?:\/\d+)?-\d+[A-Za-z]?)$/i;
+
+function resolveInlineLink(matched: string): string | null {
+  const sectionMatch = matched.match(SECTION_REF_PATTERN);
+  if (sectionMatch) {
+    const partNum = Number(sectionMatch[1]);
+    if (!getFARPartMeta(partNum)) return null;
+    return `/far/${partNum}#${sectionMatch[1]}.${sectionMatch[2]}`;
+  }
+
+  const cfrMatch = matched.match(CFR_REF_PATTERN);
+  if (cfrMatch) {
+    const partNum = Number(cfrMatch[1]);
+    if (!getFARPartMeta(partNum)) return null;
+    return cfrMatch[2] ? `/far/${partNum}#${cfrMatch[1]}.${cfrMatch[2]}` : `/far/${partNum}`;
+  }
+
+  const partMatch = matched.match(PART_REF_PATTERN);
+  if (partMatch) {
+    const partNum = Number(partMatch[1]);
+    if (!getFARPartMeta(partNum)) return null;
+    return `/far/${partNum}`;
+  }
+
+  const aimMatch = matched.match(AIM_REF_PATTERN);
+  if (aimMatch) {
+    const chapterNum = Number(aimMatch[1]);
+    if (!getAIMChapterMeta(chapterNum)) return null;
+    return `/aim/${chapterNum}#${aimMatch[1]}-${aimMatch[2]}-${aimMatch[3]}`;
+  }
+
+  const acMatch = matched.match(AC_REF_PATTERN);
+  if (acMatch) {
+    return `/advisory-circulars?q=${encodeURIComponent(`AC ${acMatch[1]}`)}`;
+  }
+
+  return null;
+}
 
 function renderTextNode(text: string, key: number, highlight: string): React.ReactNode {
   return highlight ? <HighlightText key={key} text={text} query={highlight} /> : text;
@@ -376,17 +418,12 @@ function parseInlineFormatting(text: string, startKey: number, highlight: string
   const hasHighlight = highlight.trim().length > 0;
   const effectiveHighlight = hasHighlight ? highlight : '';
 
-  // Combined regex for all patterns we want to handle
-  // Order matters: bold (**) before italic (*)
-  // Also match CFR references: § XX.XX or Part XX
-  // Special case: *Term* followed by "means" should be bold (FAR definitions)
   const pattern = new RegExp(INLINE_PATTERN_SOURCE, 'g');
 
   let lastIndex = 0;
   let match;
 
   while ((match = pattern.exec(text)) !== null) {
-    // Add text before the match
     if (match.index > lastIndex) {
       const beforeText = text.slice(lastIndex, match.index);
       elements.push(renderTextNode(beforeText, key++, effectiveHighlight));
@@ -395,63 +432,35 @@ function parseInlineFormatting(text: string, startKey: number, highlight: string
     const matched = match[0];
 
     if (matched.startsWith('**') && matched.endsWith('**')) {
-      // Bold text (explicit double asterisks)
       const content = matched.slice(2, -2);
       elements.push(
         <strong key={key++} className="font-semibold">
           {hasHighlight ? <HighlightText text={content} query={effectiveHighlight} /> : content}
         </strong>
       );
-    } else if (matched.startsWith('*') && matched.includes('* means')) {
-      // Definition pattern: *Term* means - render as BOLD (regulatory convention)
-      // Extract just the term (without the " means" part which we'll add back as plain text)
-      const termMatch = matched.match(TERM_MEANS_PATTERN);
-      if (termMatch) {
-        const term = termMatch[1];
-        elements.push(
-          <strong key={key++} className="font-semibold">
-            {hasHighlight ? <HighlightText text={term} query={effectiveHighlight} /> : term}
-          </strong>
-        );
-        elements.push(renderTextNode(' means', key++, effectiveHighlight));
-      } else {
-        elements.push(renderTextNode(matched, key++, effectiveHighlight));
-      }
+    } else if (TERM_MEANS_PATTERN.test(matched)) {
+      const termMatch = matched.match(TERM_MEANS_PATTERN)!;
+      const term = termMatch[1];
+      elements.push(
+        <strong key={key++} className="font-semibold">
+          {hasHighlight ? <HighlightText text={term} query={effectiveHighlight} /> : term}
+        </strong>
+      );
+      elements.push(renderTextNode(' means', key++, effectiveHighlight));
     } else if (matched.startsWith('*') && matched.endsWith('*')) {
-      // Italic text (single asterisks, not followed by "means")
       const content = matched.slice(1, -1);
       elements.push(
         <em key={key++} className="italic">
           {hasHighlight ? <HighlightText text={content} query={effectiveHighlight} /> : content}
         </em>
       );
-    } else if (matched.startsWith('§')) {
-      // Section reference: § XX.XX
-      const sectionMatch = matched.match(SECTION_REF_PATTERN);
-      if (sectionMatch) {
-        const part = sectionMatch[1];
-        const section = `${sectionMatch[1]}.${sectionMatch[2]}`;
+    } else {
+      const linkTarget = resolveInlineLink(matched);
+      if (linkTarget) {
         elements.push(
           <Link
             key={key++}
-            to={`/far/${part}#${section}`}
-            className="text-blue-600 underline underline-offset-2 dark:text-blue-400"
-          >
-            {hasHighlight ? <HighlightText text={matched} query={effectiveHighlight} /> : matched}
-          </Link>
-        );
-      } else {
-        elements.push(renderTextNode(matched, key++, effectiveHighlight));
-      }
-    } else if (matched.toLowerCase().startsWith('part')) {
-      // Part reference: Part XX
-      const partMatch = matched.match(PART_REF_PATTERN);
-      if (partMatch) {
-        const part = partMatch[1];
-        elements.push(
-          <Link
-            key={key++}
-            to={`/far/${part}`}
+            to={linkTarget}
             className="text-blue-600 underline underline-offset-2 dark:text-blue-400"
           >
             {hasHighlight ? <HighlightText text={matched} query={effectiveHighlight} /> : matched}
@@ -465,7 +474,6 @@ function parseInlineFormatting(text: string, startKey: number, highlight: string
     lastIndex = match.index + matched.length;
   }
 
-  // Add remaining text
   if (lastIndex < text.length) {
     elements.push(renderTextNode(text.slice(lastIndex), key++, effectiveHighlight));
   }

@@ -301,6 +301,13 @@ export function markStudyMarkReviewed(input: StudyMarkInput) {
   }));
 }
 
+export function toggleStudyMarkReviewed(input: StudyMarkInput) {
+  upsertStudyMark(input, (mark) => ({
+    ...mark,
+    reviewedAt: mark.reviewedAt ? undefined : Date.now(),
+  }));
+}
+
 export function removeStudyMark(key: string) {
   persistStudyMarks((current) => current.filter((mark) => mark.key !== key));
 }

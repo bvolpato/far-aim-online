@@ -1,12 +1,15 @@
 import { memo, useDeferredValue, useEffect, useMemo, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { Link, useParams, useSearchParams } from 'react-router-dom';
-import { ArrowLeft, ExternalLink, FileDown, FileSearch, Loader2, Search } from 'lucide-react';
+import { Link, useLocation, useParams, useSearchParams } from 'react-router-dom';
+import { ArrowLeft, ExternalLink, FileDown, FileSearch, Loader2, RefreshCw, Search } from 'lucide-react';
 import { getAdvisoryCircularContent, getAdvisoryCirculars } from '../data/ac';
 import type { AdvisoryCircular, AdvisoryCircularContent, AdvisoryCircularPage as ACPage } from '../data/types';
 import { Breadcrumbs } from '../components/Breadcrumbs';
 import { FormattedContent } from '../components/FormattedContent';
+import { ReaderControls } from '../components/ReaderControls';
 import { StudyMarkTools } from '../components/StudyMarkTools';
+import { useReaderPreferences } from '../hooks/useReaderPreferences';
+import { useReadingHistory } from '../hooks/useReadingHistory';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -32,25 +35,38 @@ const ACPageSection = memo(function ACPageSection({
 
 export function AdvisoryCircularPage() {
   const { acId } = useParams();
+  const location = useLocation();
   const [searchParams] = useSearchParams();
   const [advisoryCircular, setAdvisoryCircular] = useState<AdvisoryCircular>();
   const [content, setContent] = useState<AdvisoryCircularContent>();
   const [loading, setLoading] = useState(true);
+  const [loadFailed, setLoadFailed] = useState(false);
+  const [retryCount, setRetryCount] = useState(0);
   const [query, setQuery] = useState(searchParams.get('highlight') || '');
   const deferredQuery = useDeferredValue(query);
+  const readerControls = useReaderPreferences();
+  const { addToHistory } = useReadingHistory();
 
   useEffect(() => {
     let active = true;
+    setLoading(true);
+    setLoadFailed(false);
+    setAdvisoryCircular(undefined);
+    setContent(undefined);
+    setQuery(searchParams.get('highlight') || '');
+
     void getAdvisoryCirculars()
       .then(async (items) => {
         const selected = items.find((item) => item.id === acId);
-        if (!selected || !active) return;
+        if (!active) return;
+        if (!selected) return;
         setAdvisoryCircular(selected);
         const loaded = await getAdvisoryCircularContent(selected);
         if (active) setContent(loaded);
       })
       .catch((error) => {
         console.error('Failed to load Advisory Circular content', error);
+        if (active) setLoadFailed(true);
       })
       .finally(() => {
         if (active) setLoading(false);
@@ -58,27 +74,61 @@ export function AdvisoryCircularPage() {
     return () => {
       active = false;
     };
-  }, [acId]);
+  }, [acId, retryCount, searchParams]);
+
+  useEffect(() => {
+    if (!advisoryCircular) return;
+    addToHistory({
+      type: 'ac',
+      id: advisoryCircular.id,
+      title: `AC ${advisoryCircular.number}: ${advisoryCircular.title}`,
+      path: `/advisory-circulars/${advisoryCircular.id}`,
+    });
+  }, [advisoryCircular, addToHistory]);
 
   const matchingPages = useMemo(() => {
     if (!content) return [];
-    const normalizedQuery = deferredQuery.trim().toLowerCase();
-    if (!normalizedQuery) return content.pages;
-    return content.pages.filter((page) => page.text.toLowerCase().includes(normalizedQuery));
+    const queryTerms = deferredQuery.trim().toLowerCase().split(/\s+/).filter(Boolean);
+    if (queryTerms.length === 0) return content.pages;
+    return content.pages.filter((page) => {
+      const lower = page.text.toLowerCase();
+      return queryTerms.every((term) => lower.includes(term));
+    });
   }, [content, deferredQuery]);
 
   useEffect(() => {
-    if (!deferredQuery.trim() || matchingPages.length === 0) return;
+    if (!location.hash || !content) return;
+    const id = location.hash.slice(1);
     const timer = window.setTimeout(() => {
-      document.getElementById(`page-${matchingPages[0].page}`)?.scrollIntoView({ behavior: 'smooth' });
-    }, 150);
+      document.getElementById(id)?.scrollIntoView({ behavior: 'auto', block: 'start' });
+    }, 100);
     return () => window.clearTimeout(timer);
-  }, [matchingPages, deferredQuery]);
+  }, [location.hash, content]);
 
   if (loading) {
     return (
-      <div className="flex min-h-[45vh] items-center justify-center" aria-label="Loading Advisory Circular">
+      <div className="flex min-h-[45vh] items-center justify-center" role="status" aria-label="Loading Advisory Circular">
         <Loader2 className="h-8 w-8 animate-spin text-cyan-600" />
+      </div>
+    );
+  }
+
+  if (loadFailed) {
+    return (
+      <div className="mx-auto max-w-3xl px-4 py-12 text-center" role="alert">
+        <FileSearch className="mx-auto mb-4 h-10 w-10 text-muted-foreground" />
+        <h1 className="text-2xl font-semibold">Advisory Circular unavailable</h1>
+        <p className="mt-2 text-muted-foreground">
+          This circular could not be loaded right now. Check your connection or retry.
+        </p>
+        <div className="mt-6 flex justify-center gap-2">
+          <Button type="button" onClick={() => setRetryCount((c) => c + 1)}>
+            <RefreshCw className="mr-2 h-4 w-4" />Retry
+          </Button>
+          <Button asChild variant="outline">
+            <Link to="/advisory-circulars"><ArrowLeft className="mr-2 h-4 w-4" />AC library</Link>
+          </Button>
+        </div>
       </div>
     );
   }
@@ -203,7 +253,7 @@ export function AdvisoryCircularPage() {
       {matchingPages.length === 0 ? (
         <p className="py-16 text-center text-muted-foreground">No pages match “{deferredQuery}”.</p>
       ) : (
-        <article className="divide-y">
+        <article className="divide-y" style={readerControls.cssVars}>
           {matchingPages.map((page) => (
             <ACPageSection key={page.page} page={page} highlight={deferredQuery} />
           ))}
@@ -213,6 +263,8 @@ export function AdvisoryCircularPage() {
       <footer className="border-t py-6 text-sm text-muted-foreground">
         Extracted from official FAA PDF on {content.fetched}. Consult official PDF when omitted pages, formatting, figures, or tables affect interpretation.
       </footer>
+
+      <ReaderControls state={readerControls} />
     </div>
   );
 }

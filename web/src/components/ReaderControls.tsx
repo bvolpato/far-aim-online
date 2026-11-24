@@ -37,7 +37,7 @@ export function ReaderControls({
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Handle clicking outside to close popover
+  // Handle clicking outside or pressing Escape to close popover
   useEffect(() => {
     if (!isOpen) return;
     const handleClickOutside = (event: MouseEvent) => {
@@ -45,8 +45,15 @@ export function ReaderControls({
         setIsOpen(false);
       }
     };
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') setIsOpen(false);
+    };
     document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
+    document.addEventListener('keydown', handleKeyDown);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('keydown', handleKeyDown);
+    };
   }, [isOpen]);
 
   const scrollToTop = () => {
@@ -65,6 +72,8 @@ export function ReaderControls({
         variant="secondary"
         size="icon"
         onClick={scrollToTop}
+        tabIndex={showScrollTop ? 0 : -1}
+        aria-hidden={!showScrollTop}
         className={cn(
           'h-11 w-11 rounded-full border border-border shadow-md transition-all duration-300 bg-card hover:bg-accent text-foreground hover:scale-105 active:scale-95',
           showScrollTop ? 'translate-y-0 opacity-100 scale-100' : 'translate-y-4 opacity-0 scale-75 pointer-events-none'

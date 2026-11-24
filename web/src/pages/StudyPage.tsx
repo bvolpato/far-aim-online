@@ -1,5 +1,5 @@
-import { useRef, useState, useEffect, type ChangeEvent } from 'react';
-import { Link } from 'react-router-dom';
+import { useMemo, useRef, useState, useEffect, type ChangeEvent } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import {
     GraduationCap,
     Brain,
@@ -57,9 +57,11 @@ export function StudyPage() {
     const quizzes = getAllQuizzes();
     const flashcardDecks = getAllFlashcardDecks();
     const studyPaths = getStudyPaths();
+    const location = useLocation();
     const { marks, stats, markReviewed, removeMark, replaceMarks } = useStudyMarks();
     const fileInputRef = useRef<HTMLInputElement>(null);
     const [studyPackMessage, setStudyPackMessage] = useState<string | null>(null);
+    const [queueFilter, setQueueFilter] = useState<'all' | 'far' | 'aim' | 'ac' | 'notes' | 'unreviewed'>('all');
     const totalQuestions = quizzes.reduce((sum, q) => sum + q.questionCount, 0);
     const totalCards = flashcardDecks.reduce((sum, d) => sum + d.cardCount, 0);
 
@@ -70,16 +72,25 @@ export function StudyPage() {
         ...QUICK_START_QUIZ_IDS.flatMap((id) => quizzes.filter((quiz) => quiz.id === id)),
         ...quizzes.filter((quiz) => !QUICK_START_QUIZ_IDS.includes(quiz.id)),
     ].slice(0, 3);
-    const reviewQueue = marks.filter((mark) => mark.saved || mark.highlighted || mark.note || mark.reviewedAt);
+    const reviewQueue = useMemo(
+        () => marks.filter((mark) => mark.saved || mark.highlighted || mark.note || mark.reviewedAt),
+        [marks],
+    );
+    const filteredQueue = useMemo(() => {
+        if (queueFilter === 'all') return reviewQueue;
+        if (queueFilter === 'notes') return reviewQueue.filter((m) => Boolean(m.note));
+        if (queueFilter === 'unreviewed') return reviewQueue.filter((m) => !m.reviewedAt);
+        return reviewQueue.filter((m) => m.type === queueFilter);
+    }, [reviewQueue, queueFilter]);
 
     useEffect(() => {
-        if (window.location.hash === '#saved-study-marks') {
+        if (location.hash === '#saved-study-marks') {
             const timeout = setTimeout(() => {
                 document.getElementById('saved-study-marks')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
             }, 100);
             return () => clearTimeout(timeout);
         }
-    }, []);
+    }, [location.hash]);
 
     const handleStudyPackExport = () => {
         const pack = downloadStudyPack();
@@ -229,7 +240,7 @@ export function StudyPage() {
                                                 </div>
                                             </div>
                                             <div className="flex flex-wrap gap-2">
-                                                {path.references.slice(0, 6).map((reference) => (
+                                                {path.references.map((reference) => (
                                                     <Button
                                                         key={`${path.id}-${reference.label}`}
                                                         variant="outline"
@@ -243,6 +254,34 @@ export function StudyPage() {
                                                     </Button>
                                                 ))}
                                             </div>
+                                            {(linkedQuizzes > 0 || linkedDecks > 0) && (
+                                                <div className="flex flex-wrap gap-2 border-t pt-3">
+                                                    {path.quizIds.slice(0, 2).map((id) => {
+                                                        const quiz = quizzes.find((q) => q.id === id);
+                                                        if (!quiz) return null;
+                                                        return (
+                                                            <Button key={quiz.id} variant="secondary" size="sm" asChild>
+                                                                <Link to={`/quizzes/${quiz.id}`}>
+                                                                    <Brain className="mr-1.5 h-3.5 w-3.5" aria-hidden="true" />
+                                                                    {quiz.title}
+                                                                </Link>
+                                                            </Button>
+                                                        );
+                                                    })}
+                                                    {path.flashcardDeckIds.slice(0, 2).map((id) => {
+                                                        const deck = flashcardDecks.find((d) => d.id === id);
+                                                        if (!deck) return null;
+                                                        return (
+                                                            <Button key={deck.id} variant="secondary" size="sm" asChild>
+                                                                <Link to={`/flashcards/${deck.id}`}>
+                                                                    <Layers className="mr-1.5 h-3.5 w-3.5" aria-hidden="true" />
+                                                                    {deck.title}
+                                                                </Link>
+                                                            </Button>
+                                                        );
+                                                    })}
+                                                </div>
+                                            )}
                                         </CardContent>
                                     </Card>
                                 );
@@ -314,8 +353,37 @@ export function StudyPage() {
                         </Card>
 
                         {reviewQueue.length > 0 ? (
-                            <div className="grid gap-3">
-                                {reviewQueue.map((mark) => (
+                            <div className="space-y-3">
+                                <div className="flex flex-wrap gap-2" role="group" aria-label="Filter saved items">
+                                    {(
+                                        [
+                                            ['all', `All (${reviewQueue.length})`],
+                                            ['far', 'FAR'],
+                                            ['aim', 'AIM'],
+                                            ['ac', 'AC'],
+                                            ['notes', 'With notes'],
+                                            ['unreviewed', 'Needs review'],
+                                        ] as const
+                                    ).map(([key, label]) => (
+                                        <Button
+                                            key={key}
+                                            type="button"
+                                            size="sm"
+                                            variant={queueFilter === key ? 'default' : 'outline'}
+                                            aria-pressed={queueFilter === key}
+                                            onClick={() => setQueueFilter(key)}
+                                        >
+                                            {label}
+                                        </Button>
+                                    ))}
+                                </div>
+                                {filteredQueue.length === 0 ? (
+                                    <p className="py-6 text-center text-sm text-muted-foreground">
+                                        No saved items match this filter.
+                                    </p>
+                                ) : (
+                                <div className="grid gap-3">
+                                {filteredQueue.map((mark) => (
                                     <Card key={mark.key}>
                                         <CardContent className="p-4">
                                             <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
@@ -379,6 +447,8 @@ export function StudyPage() {
                                         </CardContent>
                                     </Card>
                                 ))}
+                                </div>
+                                )}
                             </div>
                         ) : (
                             <Card>

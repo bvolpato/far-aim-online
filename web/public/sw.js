@@ -1,7 +1,9 @@
 const CACHE_NAME = 'far-aim-online-v2';
 const DATA_CACHE_NAME = 'far-aim-online-data-v2';
+const IMAGE_CACHE_NAME = 'far-aim-online-images-v2';
 const MAX_DATA_CACHE_ENTRIES = 160;
-const ACTIVE_CACHES = new Set([CACHE_NAME, DATA_CACHE_NAME]);
+const MAX_IMAGE_CACHE_ENTRIES = 120;
+const ACTIVE_CACHES = new Set([CACHE_NAME, DATA_CACHE_NAME, IMAGE_CACHE_NAME]);
 
 const STATIC_PRECACHE = [
   '/',
@@ -83,6 +85,25 @@ self.addEventListener('fetch', (event) => {
             }
             return response;
           });
+        })
+      )
+    );
+    return;
+  }
+
+  // Reference figures: Cache-first with bounded LRU storage
+  if (url.pathname.startsWith('/aim/images/') || url.pathname.startsWith('/far/images/')) {
+    event.respondWith(
+      caches.open(IMAGE_CACHE_NAME).then((cache) =>
+        cache.match(request).then((cached) => {
+          if (cached) return cached;
+          return fetch(request).then((response) => {
+            if (response.status === 200) {
+              const clone = response.clone();
+              cache.put(request, clone).then(() => trimCache(IMAGE_CACHE_NAME, MAX_IMAGE_CACHE_ENTRIES));
+            }
+            return response;
+          }).catch(() => new Response('Offline', { status: 503 }));
         })
       )
     );

@@ -1,10 +1,10 @@
 import { memo, useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import {
-  markStudyMarkReviewed,
   removeStudyMark,
   saveStudyMarkNote,
   toggleStudyMarkHighlighted,
+  toggleStudyMarkReviewed,
   toggleStudyMarkSaved,
   useStudyMark,
   type StudyMarkInput,
@@ -68,6 +68,7 @@ export const StudyMarkTools = memo(function StudyMarkTools({
           type="button"
           className={`${sizeClass} ${isSaved ? 'sm-btn-p' : 'sm-btn-o'}`}
           onClick={() => toggleStudyMarkSaved(getInput())}
+          aria-pressed={isSaved}
           aria-label={`${isSaved ? 'Remove saved mark for' : 'Save'} ${reference}`}
         >
           <svg className={isSaved ? 'sm-ico fill-current' : 'sm-ico'} aria-hidden="true">
@@ -79,6 +80,7 @@ export const StudyMarkTools = memo(function StudyMarkTools({
           type="button"
           className={`${sizeClass} ${hasNote || noteOpen ? 'sm-btn-s' : 'sm-btn-o'}`}
           onClick={() => setNoteOpen((value) => !value)}
+          aria-expanded={noteOpen}
           aria-label={`${hasNote ? 'Edit note for' : 'Add note for'} ${reference}`}
         >
           <svg className="sm-ico" aria-hidden="true">
@@ -90,6 +92,7 @@ export const StudyMarkTools = memo(function StudyMarkTools({
           type="button"
           className={`${sizeClass} ${isHighlighted ? 'sm-btn-s' : 'sm-btn-o'}`}
           onClick={() => toggleStudyMarkHighlighted(getInput())}
+          aria-pressed={isHighlighted}
           aria-label={`${isHighlighted ? 'Remove highlight for' : 'Highlight'} ${reference}`}
         >
           <svg className={isHighlighted ? 'sm-ico text-amber-600' : 'sm-ico'} aria-hidden="true">
@@ -100,8 +103,9 @@ export const StudyMarkTools = memo(function StudyMarkTools({
         <button
           type="button"
           className={`${sizeClass} ${isReviewed ? 'sm-btn-s' : 'sm-btn-o'}`}
-          onClick={() => markStudyMarkReviewed(getInput())}
-          aria-label={`Mark ${reference} reviewed`}
+          onClick={() => toggleStudyMarkReviewed(getInput())}
+          aria-pressed={isReviewed}
+          aria-label={`${isReviewed ? 'Unmark reviewed for' : 'Mark reviewed'} ${reference}`}
         >
           <svg className={isReviewed ? 'sm-ico text-emerald-600' : 'sm-ico'} aria-hidden="true">
             <use href="#sm-ok" />
@@ -153,7 +157,15 @@ export const StudyMarkTools = memo(function StudyMarkTools({
             placeholder="Add checkride mnemonics, CFI comments, or personal gotchas..."
           />
           <div className="flex justify-end gap-2">
-            <Button type="button" variant="ghost" size="sm" onClick={() => setNoteOpen(false)}>
+            <Button
+              type="button"
+              variant="ghost"
+              size="sm"
+              onClick={() => {
+                setDraft(mark?.note || '');
+                setNoteOpen(false);
+              }}
+            >
               Cancel
             </Button>
             <Button type="submit" size="sm" aria-label={`Save note for ${reference}`}>

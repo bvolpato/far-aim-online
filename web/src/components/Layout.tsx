@@ -132,37 +132,56 @@ export function Layout({ children }: LayoutProps) {
   const stats = useStudyMarkStats();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [tabletNavigationOpen, setTabletNavigationOpen] = useState(false);
+  const [isOffline, setIsOffline] = useState(false);
   const searchInputRef = useRef<HTMLInputElement>(null);
 
-  // Global search shortcut (⌘K or /)
   useEffect(() => {
+    setMobileMenuOpen(false);
+    setTabletNavigationOpen(false);
+  }, [pathname]);
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const syncOnline = () => setIsOffline(!navigator.onLine);
+    syncOnline();
+    window.addEventListener('online', syncOnline);
+    window.addEventListener('offline', syncOnline);
+    return () => {
+      window.removeEventListener('online', syncOnline);
+      window.removeEventListener('offline', syncOnline);
+    };
+  }, []);
+
+  // Global search shortcut (⌘K or /) and Escape dismissal for nav menus
+  useEffect(() => {
+    const focusOrNavigateSearch = () => {
+      if (pathname === '/search') {
+        const pageInput = document.querySelector('input[type="search"], input[name="q"]') as HTMLInputElement | null;
+        pageInput?.focus();
+      } else if (searchInputRef.current && searchInputRef.current.offsetParent !== null) {
+        searchInputRef.current.focus();
+        searchInputRef.current.select();
+      } else {
+        navigate('/search');
+      }
+    };
+
     const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setMobileMenuOpen(false);
+        setTabletNavigationOpen(false);
+        return;
+      }
       const target = e.target as HTMLElement | null;
       const tagName = target?.tagName.toLowerCase();
       const isEditing = tagName === 'input' || tagName === 'textarea' || target?.isContentEditable;
 
-      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
         e.preventDefault();
-        if (pathname === '/search') {
-          const pageInput = document.querySelector('input[type="search"], input[name="q"]') as HTMLInputElement | null;
-          pageInput?.focus();
-        } else if (searchInputRef.current) {
-          searchInputRef.current.focus();
-          searchInputRef.current.select();
-        } else {
-          navigate('/search');
-        }
-      } else if (e.key === '/' && !isEditing) {
+        focusOrNavigateSearch();
+      } else if (e.key === '/' && !isEditing && !e.metaKey && !e.ctrlKey && !e.altKey) {
         e.preventDefault();
-        if (pathname === '/search') {
-          const pageInput = document.querySelector('input[type="search"], input[name="q"]') as HTMLInputElement | null;
-          pageInput?.focus();
-        } else if (searchInputRef.current) {
-          searchInputRef.current.focus();
-          searchInputRef.current.select();
-        } else {
-          navigate('/search');
-        }
+        focusOrNavigateSearch();
       }
     };
 
@@ -376,6 +395,16 @@ export function Layout({ children }: LayoutProps) {
           </div>
         )}
       </header>
+
+      {isOffline && (
+        <div
+          role="status"
+          aria-live="polite"
+          className="border-b border-amber-300 bg-amber-50 px-4 py-2 text-center text-xs font-medium text-amber-950 dark:border-amber-800 dark:bg-amber-950/60 dark:text-amber-100"
+        >
+          You are offline. Cached regulations, manuals, and study materials remain available.
+        </div>
+      )}
 
       {/* Main Content */}
       <main id="main-content" tabIndex={-1} className="flex-1">

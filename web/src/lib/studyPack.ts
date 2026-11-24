@@ -3,6 +3,7 @@ import {
   MAX_HISTORY_ITEMS,
   isHistoryItemType,
   readStoredHistory,
+  refreshReadingHistoryStore,
   type HistoryItem,
 } from '@/hooks/useReadingHistory';
 import {
@@ -199,7 +200,7 @@ export function downloadStudyPack() {
   document.body.appendChild(link);
   link.click();
   link.remove();
-  URL.revokeObjectURL(url);
+  window.setTimeout(() => URL.revokeObjectURL(url), 1000);
   return pack;
 }
 
@@ -228,6 +229,7 @@ export function importStudyPackContent(content: string): StudyPackImportResult {
 
   writeStoredStudyMarks(studyMarks);
   localStorage.setItem(HISTORY_KEY, JSON.stringify(readingHistory));
+  refreshReadingHistoryStore();
   localStorage.setItem(SEARCH_HISTORY_KEY, JSON.stringify(searchHistory));
 
   return {

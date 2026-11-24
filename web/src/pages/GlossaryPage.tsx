@@ -89,7 +89,7 @@ const GlossaryTermCard = memo(function GlossaryTermCard({
   return (
     <Card
       id={item.term}
-      className="cv-card rounded-xl scroll-mt-24 transition-colors duration-500"
+      className="cv-card rounded-xl scroll-mt-52 transition-colors duration-500"
     >
       <CardContent className="p-4 sm:p-6">
         <h3 className="text-lg font-bold text-foreground mb-2">
@@ -227,7 +227,7 @@ export function GlossaryPage() {
       </div>
 
       {/* Local Search */}
-      <div className="sticky top-20 z-40 bg-background pb-4">
+      <div className="sticky top-16 z-30 bg-background/95 pt-3 pb-4 backdrop-blur">
         <div className="relative">
           <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground pointer-events-none" />
           <Input
