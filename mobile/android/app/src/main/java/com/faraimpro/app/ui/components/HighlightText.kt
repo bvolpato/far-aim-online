@@ -1,6 +1,7 @@
 package com.faraimpro.app.ui.components
 
 import androidx.compose.material3.LocalTextStyle
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
@@ -18,6 +19,30 @@ import java.util.regex.Pattern
 private val MARKDOWN_PATTERN: Pattern = Pattern.compile(
     "\\*\\*([^*]+)\\*\\*|\\*([^*]+)\\*|_([^_]+)_"
 )
+private val HIGHLIGHT_SPLIT_REGEX = Regex("\\s+")
+private val HIGHLIGHT_STOP_WORDS = setOf(
+    "a", "an", "and", "are", "as", "at", "be", "by", "for", "from", "has", "he",
+    "in", "is", "it", "its", "of", "on", "or", "that", "the", "to", "was", "were",
+    "with", "this", "not", "but"
+)
+
+private fun buildHighlightPattern(query: String): Pattern? {
+    val trimmed = query.trim()
+    if (trimmed.isEmpty()) return null
+    val patterns = LinkedHashSet<String>()
+    val shortFull = trimmed.length <= 2 && trimmed.all { it.isLetterOrDigit() }
+    patterns.add(if (shortFull) "\\b${Pattern.quote(trimmed)}\\b" else Pattern.quote(trimmed))
+    if (trimmed.any { it.isWhitespace() }) {
+        trimmed.split(HIGHLIGHT_SPLIT_REGEX).forEach { word ->
+            if (word.length > 1 && word.lowercase() !in HIGHLIGHT_STOP_WORDS) {
+                val quoted = Pattern.quote(word)
+                patterns.add(if (word.length <= 2) "\\b$quoted\\b" else quoted)
+            }
+        }
+    }
+    val ordered = patterns.sortedByDescending { it.length }
+    return Pattern.compile(ordered.joinToString("|"), Pattern.CASE_INSENSITIVE)
+}
 
 private val PLAIN_SPAN_STYLE = SpanStyle()
 private val BOLD_SPAN_STYLE = SpanStyle(fontWeight = FontWeight.Bold)
@@ -39,11 +64,14 @@ fun HighlightText(
     fontWeight: FontWeight? = null,
     maxLines: Int = Int.MAX_VALUE
 ) {
-    val annotatedString = remember(text, query) {
+    val highlightBg = MaterialTheme.colorScheme.tertiaryContainer
+    val highlightFg = MaterialTheme.colorScheme.onTertiaryContainer
+    val annotatedString = remember(text, query, highlightBg, highlightFg) {
         buildAnnotatedString {
             val formattedText = parseMarkdownFormatting(text)
 
-            if (query.isBlank()) {
+            val pattern = buildHighlightPattern(query)
+            if (pattern == null) {
                 formattedText.forEach { segment ->
                     withStyle(style = segment.style) {
                         append(segment.text)
@@ -54,7 +82,6 @@ fun HighlightText(
                     formattedText.forEach { append(it.text) }
                 }
 
-                val pattern = Pattern.compile(Pattern.quote(query), Pattern.CASE_INSENSITIVE)
                 val matcher = pattern.matcher(plainText)
                 val matches = mutableListOf<IntRange>()
                 while (matcher.find()) {
@@ -85,7 +112,8 @@ fun HighlightText(
                             if (currentMatch != null && globalCharPos in currentMatch) {
                                 val matchEndInSegment = minOf(currentMatch.last + 1 - segmentStart, segment.text.length)
                                 val combinedStyle = segment.style.copy(
-                                    background = Color.Yellow.copy(alpha = 0.3f),
+                                    background = highlightBg,
+                                    color = highlightFg,
                                     fontWeight = FontWeight.Bold
                                 )
                                 withStyle(style = combinedStyle) {

@@ -8,6 +8,7 @@ import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -325,11 +326,11 @@ fun QuizDetailScreen(quizId: String, repository: DataRepository, navController: 
         return
     }
     
-    var currentIndex by remember { mutableIntStateOf(0) }
-    var selectedAnswer by remember { mutableStateOf<Int?>(null) }
-    var showExplanation by remember { mutableStateOf(false) }
-    var correctCount by remember { mutableIntStateOf(0) }
-    var isComplete by remember { mutableStateOf(false) }
+    var currentIndex by rememberSaveable(quizId) { mutableIntStateOf(0) }
+    var selectedAnswer by rememberSaveable(quizId) { mutableStateOf<Int?>(null) }
+    var showExplanation by rememberSaveable(quizId) { mutableStateOf(false) }
+    var correctCount by rememberSaveable(quizId) { mutableIntStateOf(0) }
+    var isComplete by rememberSaveable(quizId) { mutableStateOf(false) }
     
     val currentQuestion = quiz.questions[currentIndex]
     

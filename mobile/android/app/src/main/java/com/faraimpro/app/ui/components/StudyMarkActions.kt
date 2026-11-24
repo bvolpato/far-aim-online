@@ -2,6 +2,7 @@ package com.faraimpro.app.ui.components
 
 import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -28,6 +29,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
@@ -46,8 +48,8 @@ fun StudyMarkActions(
     var mark by remember(input.key()) {
         mutableStateOf(StudyMarkManager.getStudyMark(context, input))
     }
-    var noteOpen by remember(input.key()) { mutableStateOf(false) }
-    var draft by remember(input.key(), mark?.note) { mutableStateOf(mark?.note.orEmpty()) }
+    var noteOpen by rememberSaveable(input.key()) { mutableStateOf(false) }
+    var draft by rememberSaveable(input.key(), mark?.note) { mutableStateOf(mark?.note.orEmpty()) }
 
     Column(modifier = modifier.fillMaxWidth()) {
         Row(
@@ -92,13 +94,16 @@ fun StudyMarkActions(
             IconToggleButton(
                 checked = mark?.reviewedAt != null,
                 onCheckedChange = {
-                    val marks = StudyMarkManager.markReviewed(context, input)
+                    val marks = StudyMarkManager.toggleReviewed(context, input)
                     mark = StudyMarkManager.getStudyMark(context, input)
                     onMarksChanged(marks)
                 },
                 colors = studyActionColors()
             ) {
-                Icon(Icons.Filled.CheckCircle, contentDescription = "Mark reviewed")
+                Icon(
+                    Icons.Filled.CheckCircle,
+                    contentDescription = if (mark?.reviewedAt != null) "Unmark reviewed" else "Mark reviewed"
+                )
             }
             IconButton(onClick = { shareStudyReference(context, input) }) {
                 Icon(Icons.Filled.Share, contentDescription = "Share reference")
@@ -159,15 +164,26 @@ private fun shareStudyReference(context: Context, input: StudyMarkInput) {
     context.startActivity(Intent.createChooser(intent, "Share reference"))
 }
 
+private fun extractSectionAnchor(route: String): String {
+    val query = route.substringAfter("?", "")
+    if (query.isEmpty()) return ""
+    val section = query.split("&")
+        .firstOrNull { it.startsWith("section=") }
+        ?.substringAfter("section=")
+        ?.takeIf { it.isNotBlank() }
+        ?: return ""
+    return "#${Uri.decode(section)}"
+}
+
 private fun publicReferenceUrl(route: String): String {
     return when {
         route.startsWith("far_part/") -> {
             val part = route.removePrefix("far_part/").substringBefore("?")
-            "https://faraim.online/far/$part"
+            "https://faraim.online/far/$part${extractSectionAnchor(route)}"
         }
         route.startsWith("aim_chapter/") -> {
             val chapter = route.removePrefix("aim_chapter/").substringBefore("?")
-            "https://faraim.online/aim/$chapter"
+            "https://faraim.online/aim/$chapter${extractSectionAnchor(route)}"
         }
         route.startsWith("advisory_circulars/") -> {
             val id = route.removePrefix("advisory_circulars/").substringBefore("?")

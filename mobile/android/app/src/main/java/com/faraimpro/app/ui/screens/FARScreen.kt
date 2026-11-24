@@ -442,7 +442,7 @@ fun FARPartDetailScreen(
         }
     }
 
-    LaunchedEffect(part, initialSection, visibleSections, visibleSubparts, visibleAppendices) {
+    LaunchedEffect(part.part, initialSection) {
         if (initialSection.isBlank()) return@LaunchedEffect
         var itemIndex = 2
         var targetIndex: Int? = null
@@ -467,9 +467,12 @@ fun FARPartDetailScreen(
         targetIndex?.let { listState.scrollToItem(it) }
     }
     
-    // Save reading history when this screen appears
-    LaunchedEffect(part) {
-        ReadingHistoryManager.saveFARReadingHistory(context, part.part, part.title)
+    // Save reading history when this screen appears without wiping a deep-linked section
+    LaunchedEffect(part.part, initialSection) {
+        val existing = ReadingHistoryManager.getFARReadingHistory(context)
+        val preservedSection = initialSection.takeIf { it.isNotBlank() }
+            ?: existing?.takeIf { it.identifier == part.part.toString() }?.section
+        ReadingHistoryManager.saveFARReadingHistory(context, part.part, part.title, preservedSection)
     }
 
     Scaffold(

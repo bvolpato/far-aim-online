@@ -29,6 +29,7 @@ import com.faraimpro.app.data.StudyPackManager
 import com.faraimpro.app.ui.theme.AviationNavy
 import com.faraimpro.app.ui.theme.AviationSky
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.nio.charset.StandardCharsets
 
@@ -45,12 +46,12 @@ private data class StudyContent(
 fun StudyScreen(navController: NavController, repository: DataRepository) {
     var content by remember { mutableStateOf<StudyContent?>(null) }
     val context = LocalContext.current
+    val scope = rememberCoroutineScope()
     var studyMarks by remember { mutableStateOf(StudyMarkManager.getStudyMarks(context)) }
     val quizzes = content?.quizzes.orEmpty()
     val flashcardDecks = content?.flashcardDecks.orEmpty()
     val reviewQueue = studyMarks
         .filter { it.saved || it.highlighted || it.note.isNotBlank() || it.reviewedAt != null }
-        .take(6)
     
     val totalQuestions = quizzes.sumOf { it.questionCount }
     val totalCards = flashcardDecks.sumOf { it.cardCount }
@@ -63,32 +64,40 @@ fun StudyScreen(navController: NavController, repository: DataRepository) {
         ActivityResultContracts.CreateDocument("application/json")
     ) { uri ->
         if (uri == null) return@rememberLauncherForActivityResult
-        runCatching {
-            context.contentResolver.openOutputStream(uri)?.use { stream ->
-                stream.write(StudyPackManager.createStudyPackJson(context).toByteArray(StandardCharsets.UTF_8))
-            } ?: error("Unable to open export file")
-        }.onSuccess {
-            studyPackStatus = "Study pack exported"
-        }.onFailure { error ->
-            studyPackStatus = "Export failed"
-            Toast.makeText(context, error.message ?: "Export failed", Toast.LENGTH_LONG).show()
+        scope.launch {
+            withContext(Dispatchers.IO) {
+                runCatching {
+                    context.contentResolver.openOutputStream(uri)?.use { stream ->
+                        stream.write(StudyPackManager.createStudyPackJson(context).toByteArray(StandardCharsets.UTF_8))
+                    } ?: error("Unable to open export file")
+                }
+            }.onSuccess {
+                studyPackStatus = "Study pack exported"
+            }.onFailure { error ->
+                studyPackStatus = "Export failed"
+                Toast.makeText(context, error.message ?: "Export failed", Toast.LENGTH_LONG).show()
+            }
         }
     }
     val importStudyPack = rememberLauncherForActivityResult(
         ActivityResultContracts.OpenDocument()
     ) { uri ->
         if (uri == null) return@rememberLauncherForActivityResult
-        runCatching {
-            context.contentResolver.openInputStream(uri)?.bufferedReader()?.use { it.readText() }
-                ?: error("Unable to open import file")
-        }.mapCatching { content ->
-            StudyPackManager.importStudyPackJson(context, content)
-        }.onSuccess { result ->
-            studyMarks = StudyMarkManager.getStudyMarks(context)
-            studyPackStatus = "${result.marksImported} marks imported"
-        }.onFailure { error ->
-            studyPackStatus = "Import failed"
-            Toast.makeText(context, error.message ?: "Import failed", Toast.LENGTH_LONG).show()
+        scope.launch {
+            withContext(Dispatchers.IO) {
+                runCatching {
+                    context.contentResolver.openInputStream(uri)?.bufferedReader()?.use { it.readText() }
+                        ?: error("Unable to open import file")
+                }.mapCatching { raw ->
+                    StudyPackManager.importStudyPackJson(context, raw)
+                }
+            }.onSuccess { result ->
+                studyMarks = StudyMarkManager.getStudyMarks(context)
+                studyPackStatus = "${result.marksImported} marks imported"
+            }.onFailure { error ->
+                studyPackStatus = "Import failed"
+                Toast.makeText(context, error.message ?: "Import failed", Toast.LENGTH_LONG).show()
+            }
         }
     }
     val contentModifier = Modifier
@@ -562,7 +571,7 @@ private fun StudyPathCard(
                 StudyPathStat("Decks", path.flashcardDeckIds.size, Modifier.weight(1f))
             }
 
-            path.references.take(5).forEach { reference ->
+            path.references.forEach { reference ->
                 OutlinedButton(
                     onClick = { onReferenceClick(reference) },
                     modifier = Modifier.fillMaxWidth()

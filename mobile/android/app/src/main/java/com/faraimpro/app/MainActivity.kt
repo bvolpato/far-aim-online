@@ -7,41 +7,47 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import com.faraimpro.app.ui.FARAIMProApp
 import com.faraimpro.app.ui.theme.FARAIMProTheme
+import kotlinx.coroutines.flow.MutableStateFlow
 
 class MainActivity : ComponentActivity() {
+    private val pendingRoute = MutableStateFlow<String?>(null)
+
     override fun onCreate(savedInstanceState: Bundle?) {
-        val initialRoute = routeFrom(intent)
-        val hasRequestedRoute = intent.hasExtra("initial_route") || ExternalRoute.fromUrl(intent.dataString) != null
-        val activityState = if (hasRequestedRoute) null else savedInstanceState
-        super.onCreate(activityState)
-        render(initialRoute)
-    }
-
-    override fun onNewIntent(intent: Intent) {
-        super.onNewIntent(intent)
-        setIntent(intent)
-        render(routeFrom(intent))
-    }
-
-    private fun routeFrom(intent: Intent): String {
-        return intent.getStringExtra("initial_route")
-            ?: ExternalRoute.fromUrl(intent.dataString)
-            ?: "home"
-    }
-
-    private fun render(initialRoute: String) {
+        super.onCreate(savedInstanceState)
+        if (savedInstanceState == null) {
+            routeFrom(intent)?.takeIf { it != "home" }?.let {
+                pendingRoute.value = it
+            }
+        }
         setContent {
             FARAIMProTheme {
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    FARAIMProApp(initialRoute = initialRoute)
+                    val requestedRoute by pendingRoute.collectAsState()
+                    FARAIMProApp(
+                        pendingDeepLinkRoute = requestedRoute,
+                        onDeepLinkConsumed = { pendingRoute.value = null }
+                    )
                 }
             }
         }
+    }
+
+    override fun onNewIntent(intent: Intent) {
+        super.onNewIntent(intent)
+        setIntent(intent)
+        routeFrom(intent)?.let { pendingRoute.value = it }
+    }
+
+    private fun routeFrom(intent: Intent): String? {
+        return intent.getStringExtra("initial_route")
+            ?: ExternalRoute.fromUrl(intent.dataString)
     }
 }

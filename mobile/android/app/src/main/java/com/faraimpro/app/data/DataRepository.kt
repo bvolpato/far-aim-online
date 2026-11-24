@@ -124,6 +124,22 @@ object SearchHistoryManager {
         return history
     }
 
+    fun removeSearch(context: Context, query: String): List<String> {
+        val history = getSearchHistory(context).filterNot { it.equals(query, ignoreCase = true) }
+        context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE).edit {
+            if (history.isEmpty()) remove(SEARCH_HISTORY_KEY)
+            else putString(SEARCH_HISTORY_KEY, gson.toJson(history))
+        }
+        return history
+    }
+
+    fun clearSearchHistory(context: Context): List<String> {
+        context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE).edit {
+            remove(SEARCH_HISTORY_KEY)
+        }
+        return emptyList()
+    }
+
     private fun normalize(values: List<String>): List<String> {
         val seen = mutableSetOf<String>()
         return values.map(String::trim).filter { value ->
@@ -162,10 +178,17 @@ private val AC_ROUTE_REGEX = Regex("^advisory_circulars/[A-Za-z0-9._~%+-]+$")
 private val VALID_STUDY_MARK_TYPES = setOf("far", "aim", "ac")
 private val REFERENCE_PUNCTUATION_REGEX = Regex("[^\\w\\s]")
 private val WHITESPACE_SPLIT_REGEX = Regex("\\s+")
+private val AIRSPACE_CLASS_REGEX = Regex("\\bclass\\s+([a-g])\\b", RegexOption.IGNORE_CASE)
+private val TWO_DIGIT_REGEX = Regex("^\\d{2}$")
 private val SEARCH_STOP_WORDS = setOf(
     "a", "an", "and", "are", "as", "at", "be", "by", "for", "from",
     "has", "he", "in", "is", "it", "its", "of", "on", "that", "the", "to", "was",
     "were", "will", "with", "or", "this", "which", "not", "but", "can", "all", "any"
+)
+private val AVIATION_TWO_CHAR_TOKENS = setOf(
+    "ac", "ad", "af", "at", "cg", "cl", "da", "dg", "dh", "dp", "el", "ga", "gs",
+    "hf", "hz", "ia", "if", "im", "ir", "lf", "mm", "no", "om", "pt", "rc", "rv",
+    "sn", "t1", "tf", "vr", "wa", "ws", "wx"
 )
 
 private fun normalizedStoredRoute(type: String, route: String): String? {
@@ -214,50 +237,54 @@ object StudyMarkManager {
     private fun ensureCache(context: Context): Pair<List<StudyMark>, Map<String, StudyMark>> {
         val json = getPrefs(context).getString(STUDY_MARKS_KEY, null)
         if (json == null) {
-            cachedJson = null
-            cachedMarks = emptyList()
-            cachedByKey = emptyMap()
+            synchronized(this) {
+                cachedJson = null
+                cachedMarks = emptyList()
+                cachedByKey = emptyMap()
+            }
             return emptyList<StudyMark>() to emptyMap()
         }
-        if (json == cachedJson) {
-            return cachedMarks to cachedByKey
+        synchronized(this) {
+            if (json == cachedJson) {
+                return cachedMarks to cachedByKey
+            }
+            val parsed = try {
+                gson.fromJson<List<StoredStudyMark>>(json, markListType).orEmpty()
+                    .mapNotNull { stored ->
+                        val type = stored.type?.takeIf { it in VALID_STUDY_MARK_TYPES }
+                            ?: return@mapNotNull null
+                        val reference = stored.reference?.takeIf { it.isNotBlank() }
+                            ?: return@mapNotNull null
+                        val title = stored.title?.takeIf { it.isNotBlank() }
+                            ?: return@mapNotNull null
+                        val route = stored.route?.let { normalizedStoredRoute(type, it) }
+                            ?: return@mapNotNull null
+                        val updatedAt = stored.updatedAt?.takeIf { it >= 0 }
+                            ?: return@mapNotNull null
+                        StudyMark(
+                            key = "$type:$reference",
+                            type = type,
+                            reference = reference,
+                            title = title,
+                            route = route,
+                            saved = stored.saved == true,
+                            highlighted = stored.highlighted == true,
+                            note = stored.note.orEmpty(),
+                            savedAt = stored.savedAt?.takeIf { it >= 0 },
+                            reviewedAt = stored.reviewedAt?.takeIf { it >= 0 },
+                            updatedAt = updatedAt
+                        )
+                    }
+                    .sortedByDescending { it.updatedAt }
+            } catch (_: Exception) {
+                emptyList()
+            }
+            val byKey = parsed.associateBy { it.key }
+            cachedJson = json
+            cachedMarks = parsed
+            cachedByKey = byKey
+            return parsed to byKey
         }
-        val parsed = try {
-            gson.fromJson<List<StoredStudyMark>>(json, markListType).orEmpty()
-                .mapNotNull { stored ->
-                    val type = stored.type?.takeIf { it in VALID_STUDY_MARK_TYPES }
-                        ?: return@mapNotNull null
-                    val reference = stored.reference?.takeIf { it.isNotBlank() }
-                        ?: return@mapNotNull null
-                    val title = stored.title?.takeIf { it.isNotBlank() }
-                        ?: return@mapNotNull null
-                    val route = stored.route?.let { normalizedStoredRoute(type, it) }
-                        ?: return@mapNotNull null
-                    val updatedAt = stored.updatedAt?.takeIf { it >= 0 }
-                        ?: return@mapNotNull null
-                    StudyMark(
-                        key = "$type:$reference",
-                        type = type,
-                        reference = reference,
-                        title = title,
-                        route = route,
-                        saved = stored.saved == true,
-                        highlighted = stored.highlighted == true,
-                        note = stored.note.orEmpty(),
-                        savedAt = stored.savedAt?.takeIf { it >= 0 },
-                        reviewedAt = stored.reviewedAt?.takeIf { it >= 0 },
-                        updatedAt = updatedAt
-                    )
-                }
-                .sortedByDescending { it.updatedAt }
-        } catch (_: Exception) {
-            emptyList()
-        }
-        val byKey = parsed.associateBy { it.key }
-        cachedJson = json
-        cachedMarks = parsed
-        cachedByKey = byKey
-        return parsed to byKey
     }
 
     fun getStudyMarks(context: Context): List<StudyMark> {
@@ -292,6 +319,12 @@ object StudyMarkManager {
     fun markReviewed(context: Context, input: StudyMarkInput): List<StudyMark> {
         return upsert(context, input) { mark ->
             mark.copy(reviewedAt = System.currentTimeMillis())
+        }
+    }
+
+    fun toggleReviewed(context: Context, input: StudyMarkInput): List<StudyMark> {
+        return upsert(context, input) { mark ->
+            mark.copy(reviewedAt = if (mark.reviewedAt != null) null else System.currentTimeMillis())
         }
     }
 
@@ -992,6 +1025,15 @@ class DataRepository(private val context: Context) {
             _searchCorpus?.let { return it }
             val docs = ArrayList<IndexedSearchDoc>(9000)
 
+            fun normalizeForSearch(raw: String): String {
+                val lower = raw.lowercase()
+                val withAirspace = AIRSPACE_CLASS_REGEX.replace(lower) { m ->
+                    "${m.value} class_${m.groupValues[1].lowercase()}"
+                }
+                val dehyphenated = withAirspace.replace('-', ' ')
+                return "$withAirspace $dehyphenated"
+            }
+
             fun addDoc(
                 type: String,
                 displayTitle: String,
@@ -1002,7 +1044,7 @@ class DataRepository(private val context: Context) {
                 link: String
             ) {
                 val lowerTitle = searchTitle.lowercase()
-                val lowerContent = searchContent.lowercase()
+                val normalizedDoc = normalizeForSearch("$searchTitle $reference $searchContent")
                 docs.add(
                     IndexedSearchDoc(
                         type = type,
@@ -1011,14 +1053,19 @@ class DataRepository(private val context: Context) {
                         link = link,
                         snippetSource = snippetSource,
                         lowerTitle = lowerTitle,
-                        lowerDocument = "$lowerTitle $lowerContent"
+                        lowerDocument = normalizedDoc
                     )
                 )
             }
 
             fun farSectionSearchTitle(section: FARSection): String {
                 val normalizedReference = section.section.replace(REFERENCE_PUNCTUATION_REGEX, "")
-                return "${section.title} $normalizedReference"
+                return "${section.title} ${section.section} $normalizedReference far"
+            }
+
+            fun aimSectionSearchTitle(section: AIMSection): String {
+                val normalizedReference = section.section.replace(REFERENCE_PUNCTUATION_REGEX, "")
+                return "${section.section} $normalizedReference ${section.title} aim"
             }
 
             for (part in farParts) {
@@ -1034,14 +1081,14 @@ class DataRepository(private val context: Context) {
                 }
                 part.appendices?.forEach { appendix ->
                     val text = appendix.searchableText
-                    addDoc("far", appendix.title, appendix.title, text, text, part.cfr, "far/${part.part}#${appendix.appendix}")
+                    addDoc("far", appendix.title, "${appendix.appendix} ${appendix.title} far", text, text, part.cfr, "far/${part.part}#${appendix.appendix}")
                 }
             }
             for (chapter in aimChapters) {
                 val ref = "AIM ${formatAIMChapterLabel(chapter.chapter)}"
                 for (section in chapter.sections) {
                     val text = section.searchableText
-                    addDoc("aim", "${section.section} ${section.title}", section.title, text, text, ref, "aim/${chapter.chapter}#${section.section}")
+                    addDoc("aim", "${section.section} ${section.title}", aimSectionSearchTitle(section), text, text, ref, "aim/${chapter.chapter}#${section.section}")
                 }
             }
             for (term in pcgTerms) {
@@ -1137,34 +1184,70 @@ class DataRepository(private val context: Context) {
             )
         }
 
-        // Sort by score descending, take top 50, then generate snippets only for displayed hits.
-        return scoredCandidates
-            .sortedWith(
-                compareByDescending<ScoredCandidate> { it.score }
-                    .thenBy { it.type }
-                    .thenBy { it.reference }
-                    .thenBy { it.title }
-            )
-            .take(50)
-            .map { candidate ->
-                SearchResult(
-                    type = candidate.type,
-                    title = candidate.title,
-                    content = candidate.staticContent
-                        ?: generateContextualSnippet(candidate.snippetSource.orEmpty(), lowercased),
-                    reference = candidate.reference,
-                    link = candidate.link
-                )
+        // Sort by score descending, retain up to 50 per category so category filter chips never vanish
+        // when one catalog dominates, then generate contextual snippets only for displayed hits.
+        val sorted = scoredCandidates.sortedWith(
+            compareByDescending<ScoredCandidate> { it.score }
+                .thenBy { it.type }
+                .thenBy { it.reference }
+                .thenBy { it.title }
+        )
+        val perTypeCounts = mutableMapOf<String, Int>()
+        val selected = mutableListOf<ScoredCandidate>()
+        for (candidate in sorted) {
+            val count = perTypeCounts[candidate.type] ?: 0
+            if (count < 50) {
+                perTypeCounts[candidate.type] = count + 1
+                selected.add(candidate)
             }
+        }
+
+        return selected.map { candidate ->
+            SearchResult(
+                type = candidate.type,
+                title = candidate.title,
+                content = candidate.staticContent
+                    ?: generateContextualSnippet(candidate.snippetSource.orEmpty(), lowercased, tokens),
+                reference = candidate.reference,
+                link = candidate.link
+            )
+        }
     }
 
     /**
-     * Tokenize search query into individual terms
+     * Tokenize search query into individual terms, preserving aviation 2-char codes,
+     * part numbers, airspace classes, and split hyphenated words.
      */
     private fun tokenize(text: String): List<String> {
-        return text.replace(REFERENCE_PUNCTUATION_REGEX, "")
-            .split(WHITESPACE_SPLIT_REGEX)
-            .filter { it.length > 2 && it !in SEARCH_STOP_WORDS }
+        val tokens = LinkedHashSet<String>()
+        val remaining = AIRSPACE_CLASS_REGEX.replace(text) { match ->
+            tokens.add("class_${match.groupValues[1].lowercase()}")
+            " "
+        }
+        for (raw in remaining.split(WHITESPACE_SPLIT_REGEX)) {
+            if (raw.isBlank()) continue
+            val lower = raw.lowercase()
+            if (lower.contains('-') && lower.any { it.isLetter() }) {
+                for (part in lower.split('-')) {
+                    val cleanPart = part.replace(REFERENCE_PUNCTUATION_REGEX, "")
+                    if ((cleanPart.length > 2 && cleanPart !in SEARCH_STOP_WORDS) ||
+                        TWO_DIGIT_REGEX.matches(cleanPart) ||
+                        cleanPart in AVIATION_TWO_CHAR_TOKENS
+                    ) {
+                        tokens.add(cleanPart)
+                    }
+                }
+            } else {
+                val cleaned = lower.replace(REFERENCE_PUNCTUATION_REGEX, "")
+                if ((cleaned.length > 2 && cleaned !in SEARCH_STOP_WORDS) ||
+                    TWO_DIGIT_REGEX.matches(cleaned) ||
+                    cleaned in AVIATION_TWO_CHAR_TOKENS
+                ) {
+                    tokens.add(cleaned)
+                }
+            }
+        }
+        return tokens.toList()
     }
 
     /**
@@ -1186,7 +1269,7 @@ class DataRepository(private val context: Context) {
             val tfNormalized = if (tf > 0) 1 + kotlin.math.ln(tf.toDouble()) else 0.0
 
             val df = docFrequency[token] ?: 1
-            val idf = kotlin.math.ln(totalDocs / df)
+            val idf = kotlin.math.ln(totalDocs / df) + 1.0
 
             score += tfNormalized * idf
 
@@ -1229,11 +1312,29 @@ class DataRepository(private val context: Context) {
      * Generate a contextual snippet that shows the search term in context.
      * Finds the first occurrence of the search term and extracts surrounding text.
      */
-    private fun generateContextualSnippet(content: String, searchTerm: String, maxLength: Int = 200): String {
+    private fun generateContextualSnippet(
+        content: String,
+        searchTerm: String,
+        tokens: List<String> = emptyList(),
+        maxLength: Int = 200
+    ): String {
         if (content.isEmpty()) return ""
         
         val lowerContent = content.lowercase()
-        val matchIndex = lowerContent.indexOf(searchTerm)
+        var matchIndex = lowerContent.indexOf(searchTerm)
+        var matchLength = searchTerm.length
+
+        if (matchIndex == -1 && tokens.isNotEmpty()) {
+            for (token in tokens) {
+                val needle = token.replace('_', ' ')
+                val idx = lowerContent.indexOf(needle)
+                if (idx >= 0) {
+                    matchIndex = idx
+                    matchLength = needle.length
+                    break
+                }
+            }
+        }
         
         // If no match found, return the beginning of the content
         if (matchIndex == -1) {
@@ -1247,7 +1348,7 @@ class DataRepository(private val context: Context) {
         // Calculate snippet bounds - center around the match
         val halfLength = maxLength / 2
         var start = maxOf(0, matchIndex - halfLength)
-        var end = minOf(content.length, matchIndex + searchTerm.length + halfLength)
+        var end = minOf(content.length, matchIndex + matchLength + halfLength)
         
         // Adjust to not cut words - find word boundaries
         if (start > 0) {

@@ -2,15 +2,17 @@ package com.faraimpro.app.ui
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.Assignment
 import androidx.compose.material.icons.automirrored.filled.MenuBook
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.platform.LocalWindowInfo
 import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.platform.LocalWindowInfo
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavDestination
 import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavType
@@ -19,6 +21,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import com.faraimpro.app.FARAIMProApplication
 import com.faraimpro.app.data.DataRepository
 import com.faraimpro.app.ui.screens.*
 
@@ -27,7 +30,7 @@ sealed class Screen(val route: String, val title: String, val icon: @Composable 
     object FAR : Screen("far", "FAR", { Icon(Icons.Default.Description, contentDescription = null) })
     object AIM : Screen("aim", "AIM", { Icon(Icons.Default.Book, contentDescription = null) })
     object Study : Screen("study", "Study", { Icon(Icons.Default.School, contentDescription = null) })
-    object AdvisoryCirculars : Screen("advisory_circulars", "ACs", { Icon(Icons.Default.Description, contentDescription = null) })
+    object AdvisoryCirculars : Screen("advisory_circulars", "ACs", { Icon(Icons.AutoMirrored.Filled.Assignment, contentDescription = null) })
     object Updates : Screen("updates", "Updates", { Icon(Icons.Default.Refresh, contentDescription = null) })
     object Glossary : Screen("glossary", "Glossary", { Icon(Icons.AutoMirrored.Filled.MenuBook, contentDescription = null) })
     object Search : Screen("search", "Search", { Icon(Icons.Default.Search, contentDescription = null) })
@@ -43,7 +46,7 @@ val phoneNavItems = listOf(
     Screen.More
 )
 
-// Tablet navigation items
+// Tablet navigation rail items
 val tabletNavItems = listOf(
     Screen.Home,
     Screen.FAR,
@@ -55,100 +58,119 @@ val tabletNavItems = listOf(
     Screen.More
 )
 
+private fun isSupportedDeepLinkRoute(route: String): Boolean {
+    return route in setOf(
+        Screen.Home.route,
+        Screen.FAR.route,
+        Screen.AIM.route,
+        Screen.Study.route,
+        Screen.AdvisoryCirculars.route,
+        Screen.Updates.route,
+        Screen.Glossary.route,
+        Screen.Search.route,
+        Screen.More.route,
+        "quizzes",
+        "flashcards"
+    ) ||
+        route.startsWith("far_part/") ||
+        route.startsWith("aim_chapter/") ||
+        route.startsWith("advisory_circulars") ||
+        route.startsWith("glossary") ||
+        route.startsWith("quiz/") ||
+        route.startsWith("flashcard_deck/")
+}
+
+private fun isScreenSelected(screen: Screen, currentDestination: NavDestination?, isTablet: Boolean): Boolean {
+    val routes = currentDestination?.hierarchy?.mapNotNull { it.route }?.toList().orEmpty()
+    if (routes.isEmpty()) return false
+    return when (screen) {
+        Screen.Home -> routes.any { it == Screen.Home.route }
+        Screen.FAR -> routes.any { it == Screen.FAR.route || it.startsWith("far_part/") }
+        Screen.AIM -> routes.any { it == Screen.AIM.route || it.startsWith("aim_chapter/") }
+        Screen.Study -> routes.any {
+            it == Screen.Study.route ||
+                it == "quizzes" || it.startsWith("quiz/") ||
+                it == "flashcards" || it.startsWith("flashcard_deck/")
+        }
+        Screen.AdvisoryCirculars -> routes.any { it.startsWith("advisory_circulars") }
+        Screen.Glossary -> routes.any { it.startsWith("glossary") }
+        Screen.Search -> routes.any { it == Screen.Search.route }
+        Screen.More -> routes.any {
+            it == Screen.More.route || it == Screen.Updates.route ||
+                (!isTablet && (it.startsWith("advisory_circulars") || it.startsWith("glossary") || it == Screen.Search.route))
+        }
+        Screen.Updates -> routes.any { it == Screen.Updates.route }
+    }
+}
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun FARAIMProApp(initialRoute: String = Screen.Home.route) {
+fun FARAIMProApp(
+    initialRoute: String = Screen.Home.route,
+    pendingDeepLinkRoute: String? = null,
+    onDeepLinkConsumed: () -> Unit = {}
+) {
     val navController = rememberNavController()
     val context = LocalContext.current
+    val appContext = context.applicationContext
     val windowInfo = LocalWindowInfo.current
     val density = LocalDensity.current
-    val initialRootRoute = remember(initialRoute) {
-        when {
-            initialRoute in setOf(
-                Screen.Home.route,
-                Screen.FAR.route,
-                Screen.AIM.route,
-                Screen.Study.route,
-                Screen.AdvisoryCirculars.route,
-                Screen.Updates.route,
-                Screen.Glossary.route,
-                Screen.Search.route,
-                Screen.More.route,
-                "quizzes",
-                "flashcards"
-            ) -> initialRoute
-            initialRoute.startsWith("far_part/") -> initialRoute
-            initialRoute.startsWith("aim_chapter/") -> initialRoute
-            initialRoute.startsWith("advisory_circulars/") -> initialRoute
-            initialRoute.startsWith("quiz/") -> initialRoute
-            initialRoute.startsWith("flashcard_deck/") -> initialRoute
-            else -> Screen.Home.route
-        }
+
+    // Reuse application-scoped repository so JSON caches survive configuration changes.
+    val repository = remember(appContext) {
+        (appContext as? FARAIMProApplication)?.repository ?: DataRepository(appContext)
     }
-    
-    // Create repository with context
-    val repository = remember { DataRepository(context) }
-    
-    // Determine if we're on a tablet (width >= 600dp is typically tablet)
+
+    // Determine if we're on a tablet (width >= 600dp)
     val isTablet = with(density) { windowInfo.containerSize.width.toDp() >= 600.dp }
     val navItems = if (isTablet) tabletNavItems else phoneNavItems
 
-    Scaffold(
-        bottomBar = {
-            NavigationBar(
-                containerColor = MaterialTheme.colorScheme.surface,
-                tonalElevation = 2.dp
-            ) {
-                val navBackStackEntry by navController.currentBackStackEntryAsState()
-                val currentDestination = navBackStackEntry?.destination
-                
-                navItems.forEach { screen ->
-                    val isSelected = currentDestination?.hierarchy?.any { 
-                        it.route == screen.route || it.route?.startsWith(screen.route) == true 
-                    } == true
-                    
-                    NavigationBarItem(
-                        icon = screen.icon,
-                        label = { Text(screen.title) },
-                        selected = isSelected,
-                        colors = NavigationBarItemDefaults.colors(
-                            selectedIconColor = MaterialTheme.colorScheme.onPrimaryContainer,
-                            selectedTextColor = MaterialTheme.colorScheme.primary,
-                            indicatorColor = MaterialTheme.colorScheme.primaryContainer,
-                            unselectedIconColor = MaterialTheme.colorScheme.onSurfaceVariant,
-                            unselectedTextColor = MaterialTheme.colorScheme.onSurfaceVariant
-                        ),
-                        onClick = {
-                            if (isSelected) {
-                                val alreadyAtRoot = currentDestination.route == screen.route
-                                val popped = navController.popBackStack(screen.route, inclusive = false)
-                                if (!alreadyAtRoot && !popped) {
-                                    navController.navigate(screen.route) {
-                                        popUpTo(navController.graph.findStartDestination().id) {
-                                            inclusive = true
-                                        }
-                                        launchSingleTop = true
-                                    }
-                                }
-                            } else {
-                                navController.navigate(screen.route) {
-                                    popUpTo(navController.graph.findStartDestination().id) {
-                                        saveState = false
-                                    }
-                                    launchSingleTop = true
-                                    restoreState = false
-                                }
-                            }
-                        }
-                    )
+    val targetRoute = pendingDeepLinkRoute ?: initialRoute.takeIf { it != Screen.Home.route }
+    LaunchedEffect(targetRoute) {
+        if (targetRoute != null && isSupportedDeepLinkRoute(targetRoute)) {
+            if (targetRoute == Screen.Home.route) {
+                navController.popBackStack(Screen.Home.route, inclusive = false)
+            } else {
+                navController.navigate(targetRoute) {
+                    launchSingleTop = true
                 }
             }
+            onDeepLinkConsumed()
         }
-    ) { innerPadding ->
+    }
+
+    val navBackStackEntry by navController.currentBackStackEntryAsState()
+    val currentDestination = navBackStackEntry?.destination
+
+    fun onNavItemClick(screen: Screen, isSelected: Boolean) {
+        if (isSelected) {
+            val alreadyAtRoot = currentDestination?.route == screen.route
+            val popped = navController.popBackStack(screen.route, inclusive = false)
+            if (!alreadyAtRoot && !popped) {
+                navController.navigate(screen.route) {
+                    popUpTo(navController.graph.findStartDestination().id) {
+                        saveState = true
+                    }
+                    launchSingleTop = true
+                    restoreState = true
+                }
+            }
+        } else {
+            navController.navigate(screen.route) {
+                popUpTo(navController.graph.findStartDestination().id) {
+                    saveState = true
+                }
+                launchSingleTop = true
+                restoreState = true
+            }
+        }
+    }
+
+    val navHostContent: @Composable (Modifier) -> Unit = { hostModifier ->
         NavHost(
             navController = navController,
-            startDestination = initialRootRoute,
-            modifier = Modifier.padding(innerPadding)
+            startDestination = Screen.Home.route,
+            modifier = hostModifier
         ) {
             composable(Screen.Home.route) { HomeScreen(navController, repository) }
             composable(Screen.FAR.route) { FARScreen(navController, repository) }
@@ -204,13 +226,12 @@ fun FARAIMProApp(initialRoute: String = Screen.Home.route) {
                 )
             }
             composable(Screen.Search.route) { SearchScreen(repository, navController) }
-            
-            // FAR Part Detail route
+
             composable(
                 route = "far_part/{partId}?query={query}&section={section}",
                 arguments = listOf(
                     navArgument("partId") { type = NavType.IntType },
-                    navArgument("query") { 
+                    navArgument("query") {
                         type = NavType.StringType
                         defaultValue = ""
                     },
@@ -230,13 +251,12 @@ fun FARAIMProApp(initialRoute: String = Screen.Home.route) {
                     repository = repository
                 )
             }
-            
-            // AIM Chapter Detail route
+
             composable(
                 route = "aim_chapter/{chapterId}?query={query}&section={section}",
                 arguments = listOf(
                     navArgument("chapterId") { type = NavType.IntType },
-                    navArgument("query") { 
+                    navArgument("query") {
                         type = NavType.StringType
                         defaultValue = ""
                     },
@@ -256,8 +276,7 @@ fun FARAIMProApp(initialRoute: String = Screen.Home.route) {
                     repository = repository
                 )
             }
-            
-            // Quiz routes
+
             composable("quizzes") { QuizzesScreen(navController, repository) }
             composable(
                 route = "quiz/{quizId}",
@@ -266,8 +285,7 @@ fun FARAIMProApp(initialRoute: String = Screen.Home.route) {
                 val quizId = backStackEntry.arguments?.getString("quizId") ?: ""
                 QuizDetailScreen(quizId = quizId, repository = repository, navController = navController)
             }
-            
-            // Flashcard routes
+
             composable("flashcards") { FlashcardsScreen(navController, repository) }
             composable(
                 route = "flashcard_deck/{deckId}",
@@ -276,6 +294,53 @@ fun FARAIMProApp(initialRoute: String = Screen.Home.route) {
                 val deckId = backStackEntry.arguments?.getString("deckId") ?: ""
                 FlashcardDeckScreen(deckId = deckId, repository = repository, navController = navController)
             }
+        }
+    }
+
+    if (isTablet) {
+        Row(modifier = Modifier.fillMaxSize()) {
+            NavigationRail(
+                containerColor = MaterialTheme.colorScheme.surface
+            ) {
+                navItems.forEach { screen ->
+                    val isSelected = isScreenSelected(screen, currentDestination, isTablet = true)
+                    NavigationRailItem(
+                        icon = screen.icon,
+                        label = { Text(screen.title) },
+                        selected = isSelected,
+                        onClick = { onNavItemClick(screen, isSelected) }
+                    )
+                }
+            }
+            navHostContent(Modifier.weight(1f).fillMaxHeight())
+        }
+    } else {
+        Scaffold(
+            bottomBar = {
+                NavigationBar(
+                    containerColor = MaterialTheme.colorScheme.surface,
+                    tonalElevation = 2.dp
+                ) {
+                    navItems.forEach { screen ->
+                        val isSelected = isScreenSelected(screen, currentDestination, isTablet = false)
+                        NavigationBarItem(
+                            icon = screen.icon,
+                            label = { Text(screen.title) },
+                            selected = isSelected,
+                            colors = NavigationBarItemDefaults.colors(
+                                selectedIconColor = MaterialTheme.colorScheme.onPrimaryContainer,
+                                selectedTextColor = MaterialTheme.colorScheme.primary,
+                                indicatorColor = MaterialTheme.colorScheme.primaryContainer,
+                                unselectedIconColor = MaterialTheme.colorScheme.onSurfaceVariant,
+                                unselectedTextColor = MaterialTheme.colorScheme.onSurfaceVariant
+                            ),
+                            onClick = { onNavItemClick(screen, isSelected) }
+                        )
+                    }
+                }
+            }
+        ) { innerPadding ->
+            navHostContent(Modifier.padding(innerPadding))
         }
     }
 }

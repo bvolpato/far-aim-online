@@ -20,15 +20,28 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.graphics.vector.ImageVector
+import android.provider.Settings
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlin.random.Random
 
+private data class AirplaneSpec(val type: AirplaneType, val delayMs: Long)
+private data class ConfettiSpec(val color: Color, val delayMs: Long)
+
 @Composable
 fun AirplaneCelebration(show: Boolean) {
     if (!show) return
+
+    val context = LocalContext.current
+    val animationsDisabled = remember(context) {
+        runCatching {
+            Settings.Global.getFloat(context.contentResolver, Settings.Global.ANIMATOR_DURATION_SCALE, 1f) == 0f
+        }.getOrDefault(false)
+    }
+    if (animationsDisabled) return
 
     var isVisible by remember { mutableStateOf(true) }
 
@@ -40,16 +53,36 @@ fun AirplaneCelebration(show: Boolean) {
 
     if (!isVisible) return
 
+    val airplaneSpecs = remember {
+        List(8) {
+            AirplaneSpec(
+                type = if (Random.nextBoolean()) AirplaneType.Jet else AirplaneType.Propeller,
+                delayMs = Random.nextLong(0L, 2000L)
+            )
+        }
+    }
+    val confettiSpecs = remember {
+        val confettiColors = listOf(
+            Color(0xFF10B981), Color(0xFF3B82F6), Color(0xFF8B5CF6),
+            Color(0xFFF59E0B), Color(0xFFEF4444), Color(0xFFEC4899)
+        )
+        List(50) {
+            ConfettiSpec(
+                color = confettiColors.random(),
+                delayMs = Random.nextLong(0L, 3000L)
+            )
+        }
+    }
+
     BoxWithConstraints(modifier = Modifier.fillMaxSize()) {
         val density = LocalDensity.current
         val width = with(density) { maxWidth.toPx() }
-        val height = with(density) { maxHeight.toPx() }
 
         // Airplanes
-        repeat(8) {
+        airplaneSpecs.forEach { spec ->
             FlyingAirplane(
-                type = if (Random.nextBoolean()) AirplaneType.Jet else AirplaneType.Propeller,
-                delay = Random.nextLong(0L, 2000L),
+                type = spec.type,
+                delay = spec.delayMs,
                 screenWidth = width
             )
         }
@@ -64,15 +97,10 @@ fun AirplaneCelebration(show: Boolean) {
         }
 
         // Confetti
-        val confettiColors = listOf(
-            Color(0xFF10B981), Color(0xFF3B82F6), Color(0xFF8B5CF6),
-            Color(0xFFF59E0B), Color(0xFFEF4444), Color(0xFFEC4899)
-        )
-
-        repeat(50) {
+        confettiSpecs.forEach { spec ->
             FallingConfetti(
-                color = confettiColors.random(),
-                delay = Random.nextLong(0L, 3000L)
+                color = spec.color,
+                delay = spec.delayMs
             )
         }
 

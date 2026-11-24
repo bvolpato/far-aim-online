@@ -16,6 +16,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
@@ -420,8 +421,8 @@ fun SearchScreen(
 ) {
     val context = LocalContext.current
     val focusManager = LocalFocusManager.current
-    var searchQuery by remember { mutableStateOf("") }
-    var selectedType by remember { mutableStateOf("all") }
+    var searchQuery by rememberSaveable { mutableStateOf("") }
+    var selectedType by rememberSaveable { mutableStateOf("all") }
     var allResults by remember { mutableStateOf(emptyList<com.faraimpro.app.data.SearchResult>()) }
     var isSearching by remember { mutableStateOf(false) }
     var searchError by remember { mutableStateOf<Throwable?>(null) }
@@ -587,10 +588,23 @@ fun SearchScreen(
                         )
                         if (recentSearches.isNotEmpty()) {
                             Spacer(modifier = Modifier.height(20.dp))
-                            Text(
-                                text = "Recent searches",
-                                style = MaterialTheme.typography.titleSmall
-                            )
+                            Row(
+                                modifier = Modifier.fillMaxWidth(),
+                                horizontalArrangement = Arrangement.SpaceBetween,
+                                verticalAlignment = Alignment.CenterVertically
+                            ) {
+                                Text(
+                                    text = "Recent searches",
+                                    style = MaterialTheme.typography.titleSmall
+                                )
+                                TextButton(
+                                    onClick = {
+                                        recentSearches = SearchHistoryManager.clearSearchHistory(context)
+                                    }
+                                ) {
+                                    Text("Clear")
+                                }
+                            }
                             Row(
                                 modifier = Modifier
                                     .fillMaxWidth()

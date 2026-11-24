@@ -4,12 +4,16 @@ import android.content.res.AssetManager
 import android.graphics.BitmapFactory
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.gestures.detectTransformGestures
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.aspectRatio
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
@@ -23,22 +27,32 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.OpenInNew
 import androidx.compose.material.icons.filled.BrokenImage
+import androidx.compose.material.icons.filled.Close
+import androidx.compose.material.icons.filled.ZoomIn
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableFloatStateOf
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.produceState
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.asImageBitmap
+import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalUriHandler
@@ -48,6 +62,8 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.window.Dialog
+import androidx.compose.ui.window.DialogProperties
 import com.faraimpro.app.data.AIMFigure
 import com.faraimpro.app.data.AIMTable
 import kotlinx.coroutines.Dispatchers
@@ -309,16 +325,51 @@ private fun StructuredFigureCard(
                 }
 
                 is FigureLoadState.Loaded -> {
+                    var showZoomDialog by remember(figure.src) { mutableStateOf(false) }
                     val ratio = (figureState.bitmap.width.toFloat() / figureState.bitmap.height)
                         .coerceIn(0.5f, 3f)
-                    Image(
-                        bitmap = figureState.bitmap,
-                        contentDescription = accessibleDescription,
-                        contentScale = ContentScale.Fit,
+                    Box(
                         modifier = Modifier
                             .fillMaxWidth()
-                            .aspectRatio(ratio)
-                    )
+                            .clickable(onClickLabel = "Zoom figure $figureNumber") {
+                                showZoomDialog = true
+                            }
+                    ) {
+                        Image(
+                            bitmap = figureState.bitmap,
+                            contentDescription = accessibleDescription,
+                            contentScale = ContentScale.Fit,
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .aspectRatio(ratio)
+                        )
+                        Surface(
+                            shape = RoundedCornerShape(16.dp),
+                            color = Color.Black.copy(alpha = 0.6f),
+                            modifier = Modifier
+                                .align(Alignment.TopEnd)
+                                .padding(8.dp)
+                        ) {
+                            Icon(
+                                imageVector = Icons.Default.ZoomIn,
+                                contentDescription = "Zoom figure",
+                                tint = Color.White,
+                                modifier = Modifier
+                                    .padding(6.dp)
+                                    .size(16.dp)
+                            )
+                        }
+                    }
+
+                    if (showZoomDialog) {
+                        FigureZoomDialog(
+                            bitmap = figureState.bitmap,
+                            title = "$figureKind figure $figureNumber",
+                            caption = caption,
+                            contentDescription = accessibleDescription,
+                            onDismiss = { showZoomDialog = false }
+                        )
+                    }
                 }
 
                 FigureLoadState.Missing -> {
@@ -364,6 +415,86 @@ private fun StructuredFigureCard(
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                     modifier = Modifier.fillMaxWidth()
                 )
+            }
+        }
+    }
+}
+
+@Composable
+private fun FigureZoomDialog(
+    bitmap: ImageBitmap,
+    title: String,
+    caption: String?,
+    contentDescription: String,
+    onDismiss: () -> Unit
+) {
+    var scale by remember { mutableFloatStateOf(1f) }
+    var offset by remember { mutableStateOf(Offset.Zero) }
+
+    Dialog(
+        onDismissRequest = onDismiss,
+        properties = DialogProperties(usePlatformDefaultWidth = false)
+    ) {
+        Surface(
+            modifier = Modifier.fillMaxSize(),
+            color = Color.Black
+        ) {
+            Box(modifier = Modifier.fillMaxSize()) {
+                Image(
+                    bitmap = bitmap,
+                    contentDescription = contentDescription,
+                    contentScale = ContentScale.Fit,
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .background(Color.White)
+                        .pointerInput(Unit) {
+                            detectTransformGestures { _, pan, zoom, _ ->
+                                val nextScale = (scale * zoom).coerceIn(1f, 4f)
+                                scale = nextScale
+                                offset = if (nextScale > 1f) offset + pan else Offset.Zero
+                            }
+                        }
+                        .graphicsLayer(
+                            scaleX = scale,
+                            scaleY = scale,
+                            translationX = offset.x,
+                            translationY = offset.y
+                        )
+                )
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .background(Color.Black.copy(alpha = 0.72f))
+                        .padding(horizontal = 16.dp, vertical = 10.dp)
+                        .align(Alignment.TopCenter),
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Text(
+                        text = title,
+                        style = MaterialTheme.typography.titleSmall,
+                        color = Color.White
+                    )
+                    IconButton(onClick = onDismiss) {
+                        Icon(
+                            imageVector = Icons.Default.Close,
+                            contentDescription = "Close figure",
+                            tint = Color.White
+                        )
+                    }
+                }
+                caption?.let {
+                    Text(
+                        text = it,
+                        style = MaterialTheme.typography.bodySmall,
+                        color = Color.White,
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .background(Color.Black.copy(alpha = 0.72f))
+                            .padding(16.dp)
+                            .align(Alignment.BottomCenter)
+                    )
+                }
             }
         }
     }

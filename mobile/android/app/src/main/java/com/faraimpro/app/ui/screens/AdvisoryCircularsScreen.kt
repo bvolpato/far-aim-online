@@ -115,6 +115,7 @@ fun AdvisoryCircularsScreen(
     val searchableById = remember(advisoryCirculars) {
         advisoryCirculars.associate { ac ->
             ac.id to buildString {
+                append("AC ").append(ac.number).append(' ')
                 append(ac.number).append(' ')
                 append(ac.title).append(' ')
                 append(ac.summary).append(' ')
@@ -128,12 +129,13 @@ fun AdvisoryCircularsScreen(
         }
     }
     val filteredCirculars = remember(query, sort, advisoryCirculars, searchableById) {
-        val normalizedQuery = query.trim().lowercase()
-        val matches = if (normalizedQuery.isEmpty()) {
+        val queryTerms = query.trim().lowercase().split(Regex("\\s+")).filter { it.isNotBlank() }
+        val matches = if (queryTerms.isEmpty()) {
             advisoryCirculars
         } else {
             advisoryCirculars.filter { ac ->
-                searchableById[ac.id]?.contains(normalizedQuery) == true
+                val haystack = searchableById[ac.id] ?: return@filter false
+                queryTerms.all { term -> haystack.contains(term) }
             }
         }
 

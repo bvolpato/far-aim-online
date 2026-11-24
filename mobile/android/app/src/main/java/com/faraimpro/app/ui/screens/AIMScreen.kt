@@ -393,7 +393,7 @@ fun AIMChapterDetailScreen(
         }
     }
 
-    LaunchedEffect(chapter, initialSection, visibleSections) {
+    LaunchedEffect(chapter.chapter, initialSection) {
         if (initialSection.isBlank()) return@LaunchedEffect
         val sectionIndex = visibleSections.indexOfFirst { (section, _) -> section.section == initialSection }
         if (sectionIndex >= 0) {
@@ -401,9 +401,12 @@ fun AIMChapterDetailScreen(
         }
     }
     
-    // Save reading history when this screen appears
-    LaunchedEffect(chapter) {
-        ReadingHistoryManager.saveAIMReadingHistory(context, chapter.chapter, chapter.title)
+    // Save reading history when this screen appears without wiping a deep-linked section
+    LaunchedEffect(chapter.chapter, initialSection) {
+        val existing = ReadingHistoryManager.getAIMReadingHistory(context)
+        val preservedSection = initialSection.takeIf { it.isNotBlank() }
+            ?: existing?.takeIf { it.identifier == chapter.chapter.toString() }?.section
+        ReadingHistoryManager.saveAIMReadingHistory(context, chapter.chapter, chapter.title, preservedSection)
     }
 
     Scaffold(
@@ -623,7 +626,7 @@ fun AIMSectionItem(
                         .semantics { heading() }
                 ) {
                     HighlightText(
-                        text = "§ ${section.section}",
+                        text = "AIM ${section.section}",
                         query = searchQuery,
                         style = MaterialTheme.typography.labelLarge,
                         color = MaterialTheme.colorScheme.primary
