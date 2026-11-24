@@ -4,6 +4,7 @@ import { mkdtempSync, mkdirSync, readFileSync, rmSync, writeFileSync } from 'nod
 import { tmpdir } from 'node:os';
 import { basename, join } from 'node:path';
 import test from 'node:test';
+import { gzipSync } from 'node:zlib';
 
 const bucket = 'gs://deploy-test';
 const immutable = 'public,max-age=31536000,immutable';
@@ -38,7 +39,8 @@ if (args[1] === 'objects' && args[2] === 'describe') {
     fail('ERROR: (gcloud.storage.objects.describe) ' + displayUrl + ' not found: 404.');
   }
 } else if (args[1] === 'cat') {
-  process.stdout.write(state.objects[urls[0]].body);
+  const object = state.objects[urls[0]];
+  process.stdout.write(object.bodyBase64 ? Buffer.from(object.bodyBase64, 'base64') : object.body);
 } else if (args[1] === 'objects' && args[2] === 'list') {
   if (state.failList) fail('ERROR: (gcloud.storage.objects.list) HTTPError 403: Permission denied');
   const result = Object.entries(state.objects).filter(([url]) => urls.some(pattern => matches(url, pattern))).map(([url, object]) => ({ bucket: 'deploy-test', name: url.slice('gs://deploy-test/'.length), cacheControl: object.cacheControl }));
@@ -117,7 +119,10 @@ function runDeployment(t, options = {}) {
   };
   if (!options.firstDeploy) {
     if (options.withSearchHtml) objects[`${bucket}/search/index.html`] = { body: 'previous search page', cacheControl: htmlCache };
-    objects[`${bucket}/sitemap.xml`] = { body: sitemap(['/', '/far/91', '/far/999', '/aim/999']), cacheControl: 'no-cache' };
+    const previousSitemapXml = sitemap(['/', '/far/91', '/far/999', '/aim/999']);
+    objects[`${bucket}/sitemap.xml`] = options.gzippedPreviousSitemap
+      ? { bodyBase64: gzipSync(previousSitemapXml).toString('base64'), cacheControl: 'public,max-age=0,must-revalidate', contentEncoding: 'gzip' }
+      : { body: previousSitemapXml, cacheControl: 'no-cache' };
     objects[`${bucket}/far/999`] = { body: 'obsolete route' };
     objects[`${bucket}/far/999/index.html`] = { body: 'obsolete route' };
     objects[`${bucket}/aim/999`] = { body: 'obsolete route without nested copy' };
@@ -243,4 +248,11 @@ test('rejects a malformed sitemap before uploading', t => {
   const { result, state } = runDeployment(t, { invalidSitemap: true });
   assert.notEqual(result.status, 0);
   assert.equal(state.calls.filter(({ args }) => args[1] === 'cp' || args[1] === 'rsync').length, 0);
+});
+
+test('decompresses a gzip-encoded previous sitemap from GCS', t => {
+  const { result, state } = runDeployment(t, { gzippedPreviousSitemap: true });
+  assert.equal(result.status, 0, result.stderr);
+  const removed = state.calls.filter(({ args }) => args[1] === 'rm').map(({ args }) => args.at(-1));
+  assert.deepEqual(removed.sort(), [`${bucket}/far/999`, `${bucket}/far/999/index.html`, `${bucket}/aim/999`].sort());
 });

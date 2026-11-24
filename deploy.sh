@@ -220,6 +220,7 @@ NODE
             PREVIOUS_SITEMAP="$PREVIOUS_SITEMAP" OBSOLETE_ROUTES="$OBSOLETE_ROUTES" node <<'NODE'
 const fs = require('fs');
 const path = require('path');
+const zlib = require('zlib');
 
 const root = process.env.ROOT_DIR || process.cwd();
 const distDir = path.join(root, 'web', 'dist');
@@ -229,6 +230,14 @@ const routeListFile = process.env.ROUTE_LIST;
 
 if (!fs.existsSync(indexFile) || !fs.existsSync(sitemapFile) || !routeListFile) {
   throw new Error('The web build is missing its index, sitemap, or route-list destination.');
+}
+
+function readTextMaybeGzip(filePath) {
+  const raw = fs.readFileSync(filePath);
+  if (raw.length >= 2 && raw[0] === 0x1f && raw[1] === 0x8b) {
+    return zlib.gunzipSync(raw).toString('utf8');
+  }
+  return raw.toString('utf8');
 }
 
 function sitemapRoutes(sitemap) {
@@ -250,7 +259,7 @@ function sitemapRoutes(sitemap) {
   return routes;
 }
 
-const previousSitemap = fs.readFileSync(process.env.PREVIOUS_SITEMAP, 'utf8');
+const previousSitemap = readTextMaybeGzip(process.env.PREVIOUS_SITEMAP);
 const previousRoutes = previousSitemap ? sitemapRoutes(previousSitemap) : [];
 const renderedRoutes = fs.readdirSync(distDir, { recursive: true })
   .filter((name) => name.endsWith('/index.html'))
