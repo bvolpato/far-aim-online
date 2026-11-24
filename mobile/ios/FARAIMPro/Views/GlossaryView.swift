@@ -292,13 +292,14 @@ private func linkedGlossaryDefinition(
     guard !highlightTerms.isEmpty else { return result }
     let plainText = String(result.characters)
     for term in highlightTerms where !term.isEmpty {
-        let requireBoundaries = term.count <= 2
+        let requireBoundaries = SearchQueryMatcher.requiresTokenBoundaries(for: term)
         var searchRange = plainText.startIndex..<plainText.endIndex
         while let foundRange = plainText.range(of: term, options: .caseInsensitive, range: searchRange) {
             if !requireBoundaries || SearchQueryMatcher.hasTokenBoundaries(in: plainText, range: foundRange) {
                 let nsRange = NSRange(foundRange, in: plainText)
                 if let attrRange = Range(nsRange, in: result) {
                     result[attrRange].backgroundColor = .yellow.opacity(0.45)
+                    result[attrRange].foregroundColor = .black
                 }
             }
             searchRange = foundRange.upperBound..<plainText.endIndex

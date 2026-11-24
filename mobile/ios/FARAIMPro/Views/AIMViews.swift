@@ -424,7 +424,7 @@ struct AIMSectionCard: View {
                                 .textSelection(.enabled)
 
                                 HighlightText(text: subsection.content, query: searchText)
-                                    .font(readerPreferences.captionFont)
+                                    .font(readerPreferences.bodyFont)
                                     .lineSpacing(readerPreferences.lineSpacing)
                                     .foregroundColor(.primary)
                                     .textSelection(.enabled)
@@ -435,9 +435,9 @@ struct AIMSectionCard: View {
                                             Circle()
                                                 .fill(Color.green)
                                                 .frame(width: 5, height: 5)
-                                                .padding(.top, 5)
+                                                .padding(.top, 7)
                                             HighlightText(text: point, query: searchText)
-                                                .font(readerPreferences.captionFont)
+                                                .font(readerPreferences.bodyFont)
                                                 .lineSpacing(readerPreferences.lineSpacing)
                                                 .foregroundColor(.primary)
                                                 .textSelection(.enabled)
@@ -733,7 +733,9 @@ struct DocumentFigureView: View {
     let searchText: String
     let catalog: FigureAssetCatalog
     @State private var image: UIImage?
+    @State private var resolvedURL: URL?
     @State private var finishedLoading = false
+    @State private var showFullScreen = false
 
     private var caption: String? {
         [figure.caption, figure.alt]
@@ -755,14 +757,26 @@ struct DocumentFigureView: View {
     }
 
     var body: some View {
-        let aspectRatio = DataService.shared.figureURL(for: figure, catalog: catalog)
-            .flatMap { FigureAspectRatioCache.cachedAspectRatio(at: $0) }
+        let aspectRatio = resolvedURL.flatMap { FigureAspectRatioCache.cachedAspectRatio(at: $0) }
             ?? image.map { $0.size.height > 0 ? $0.size.width / $0.size.height : nil } ?? nil
         VStack(alignment: .leading, spacing: 8) {
-            Label("Figure \(number)", systemImage: "photo")
-                .font(.caption.weight(.semibold))
-                .foregroundColor(AviationTheme.accent)
-                .accessibilityLabel(accessibilityDescription)
+            HStack {
+                Label("Figure \(number)", systemImage: "photo")
+                    .font(.caption.weight(.semibold))
+                    .foregroundColor(AviationTheme.accent)
+                    .accessibilityLabel(accessibilityDescription)
+                Spacer()
+                if image != nil {
+                    Button {
+                        showFullScreen = true
+                    } label: {
+                        Label("Zoom", systemImage: "arrow.up.left.and.arrow.down.right")
+                            .font(.caption)
+                    }
+                    .buttonStyle(.borderless)
+                    .accessibilityLabel("Zoom Figure \(number)")
+                }
+            }
 
             if let aspectRatio, !finishedLoading || image != nil {
                 Color.white
@@ -778,6 +792,10 @@ struct DocumentFigureView: View {
                         }
                     }
                     .clipShape(RoundedRectangle(cornerRadius: 8))
+                    .contentShape(Rectangle())
+                    .onTapGesture {
+                        if image != nil { showFullScreen = true }
+                    }
             } else if let image {
                 Image(uiImage: image)
                     .resizable()
@@ -786,6 +804,7 @@ struct DocumentFigureView: View {
                     .background(Color.white)
                     .clipShape(RoundedRectangle(cornerRadius: 8))
                     .accessibilityLabel(accessibilityDescription)
+                    .onTapGesture { showFullScreen = true }
             } else if finishedLoading {
                 VStack(alignment: .leading, spacing: 8) {
                     Label("Figure unavailable offline", systemImage: "exclamationmark.triangle")
@@ -815,6 +834,15 @@ struct DocumentFigureView: View {
                     .fixedSize(horizontal: false, vertical: true)
             }
         }
+        .fullScreenCover(isPresented: $showFullScreen) {
+            if let image {
+                FigureZoomSheetView(
+                    image: image,
+                    title: "Figure \(number)",
+                    caption: caption
+                )
+            }
+        }
         .task(id: figure.src) {
             await loadImage()
         }
@@ -826,9 +854,11 @@ struct DocumentFigureView: View {
         finishedLoading = false
 
         guard let url = DataService.shared.figureURL(for: figure, catalog: catalog) else {
+            resolvedURL = nil
             finishedLoading = true
             return
         }
+        resolvedURL = url
 
         let decodedImage = await Task.detached(priority: .utility) {
             _ = FigureAspectRatioCache.aspectRatio(at: url)
@@ -838,6 +868,76 @@ struct DocumentFigureView: View {
 
         image = decodedImage
         finishedLoading = true
+    }
+}
+
+private struct FigureZoomSheetView: View {
+    let image: UIImage
+    let title: String
+    let caption: String?
+    @Environment(\.dismiss) private var dismiss
+    @State private var scale: CGFloat = 1.0
+    @State private var lastScale: CGFloat = 1.0
+
+    var body: some View {
+        NavigationStack {
+            ScrollView([.horizontal, .vertical], showsIndicators: true) {
+                Image(uiImage: image)
+                    .resizable()
+                    .scaledToFit()
+                    .scaleEffect(scale)
+                    .gesture(
+                        MagnifyGesture()
+                            .onChanged { value in
+                                scale = min(max(lastScale * value.magnification, 1.0), 4.0)
+                            }
+                            .onEnded { _ in
+                                lastScale = scale
+                            }
+                    )
+                    .onTapGesture(count: 2) {
+                        withAnimation(.easeInOut(duration: 0.2)) {
+                            if scale > 1.0 {
+                                scale = 1.0
+                                lastScale = 1.0
+                            } else {
+                                scale = 2.5
+                                lastScale = 2.5
+                            }
+                        }
+                    }
+                    .padding()
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+            }
+            .background(Color.white)
+            .navigationTitle(title)
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .topBarLeading) {
+                    if scale > 1.0 {
+                        Button("Reset") {
+                            withAnimation {
+                                scale = 1.0
+                                lastScale = 1.0
+                            }
+                        }
+                    }
+                }
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button("Done") { dismiss() }
+                }
+            }
+            .safeAreaInset(edge: .bottom) {
+                if let caption {
+                    Text(caption)
+                        .font(.caption)
+                        .foregroundColor(.secondary)
+                        .padding()
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .background(.ultraThinMaterial)
+                }
+            }
+        }
     }
 }
 
@@ -886,7 +986,18 @@ private enum FigureAspectRatioCache {
 }
 
 private enum FigureImageLoader {
+    private static let imageCache: NSCache<NSURL, UIImage> = {
+        let cache = NSCache<NSURL, UIImage>()
+        cache.countLimit = 48
+        cache.totalCostLimit = 40 * 1_024 * 1_024
+        return cache
+    }()
+
     static func downsampledImage(at url: URL, maxPixelSize: Int) -> UIImage? {
+        let key = url as NSURL
+        if let cached = imageCache.object(forKey: key) {
+            return cached
+        }
         let sourceOptions = [
             kCGImageSourceShouldCache: false
         ] as CFDictionary
@@ -903,7 +1014,10 @@ private enum FigureImageLoader {
         guard let thumbnail = CGImageSourceCreateThumbnailAtIndex(source, 0, thumbnailOptions) else {
             return nil
         }
-        return UIImage(cgImage: thumbnail)
+        let decoded = UIImage(cgImage: thumbnail)
+        let cost = Int(decoded.size.width * decoded.size.height * decoded.scale * decoded.scale * 4)
+        imageCache.setObject(decoded, forKey: key, cost: max(cost, 1))
+        return decoded
     }
 }
 

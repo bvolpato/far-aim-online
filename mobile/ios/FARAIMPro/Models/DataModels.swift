@@ -402,26 +402,23 @@ struct AdvisoryCircularSearchCandidate: Equatable {
 
 private final class SortedTokenKeysCache {
     private let lock = NSLock()
-    private var cachedCount = -1
-    private var cachedKeys: [String] = []
+    private var cachedEntries: [String: (count: Int, keys: [String])] = [:]
 
-    func sortedKeys(for index: [String: [Int]]) -> [String] {
+    func sortedKeys(for index: [String: [Int]], namespace: String = "compact") -> [String] {
         // Only cache large production indexes (e.g., 138K AC tokens); tiny unit-test dictionaries sort cheaply.
         guard index.count >= 500 else {
             return index.keys.sorted()
         }
         lock.lock()
-        if cachedCount == index.count {
-            let keys = cachedKeys
+        if let entry = cachedEntries[namespace], entry.count == index.count {
             lock.unlock()
-            return keys
+            return entry.keys
         }
         lock.unlock()
 
         let sorted = index.keys.sorted()
         lock.lock()
-        cachedCount = index.count
-        cachedKeys = sorted
+        cachedEntries[namespace] = (index.count, sorted)
         lock.unlock()
         return sorted
     }
@@ -483,6 +480,7 @@ enum AdvisoryCircularSearchEngine {
         }
 
         var sortedCompactKeys: [String]?
+        var sortedExactKeys: [String]?
         var tokenMatches: [TokenMatch] = []
         for token in queryTokens {
             let requiresExactIndex = token.count <= 2 || token.contains(where: { $0 == "." || $0 == "-" || $0 == "/" })
@@ -495,12 +493,14 @@ enum AdvisoryCircularSearchEngine {
                 rawDocumentIDs.formUnion(exactDocumentIDs)
             } else if token.count > 2 {
                 let keys: [String]
-                if !requiresExactIndex {
-                    let cached = sortedCompactKeys ?? sortedKeysCache.sortedKeys(for: index)
+                if !requiresExactIndex || exactIndex == nil {
+                    let cached = sortedCompactKeys ?? sortedKeysCache.sortedKeys(for: index, namespace: "compact")
                     sortedCompactKeys = cached
                     keys = cached
                 } else {
-                    keys = tokenIndex.keys.sorted()
+                    let cached = sortedExactKeys ?? sortedKeysCache.sortedKeys(for: tokenIndex, namespace: "exact")
+                    sortedExactKeys = cached
+                    keys = cached
                 }
                 var cursor = lowerBound(in: keys, for: token)
                 while cursor < keys.count {
@@ -637,7 +637,7 @@ enum SearchQueryMatcher {
         "a", "an", "and", "are", "as", "at", "be", "by", "for", "from", "has", "he",
         "in", "is", "it", "its", "of", "on", "that", "the", "to", "was", "were",
         "will", "with", "or", "this", "which", "not", "but", "can", "all", "any",
-        "no", "so", "do", "if", "up"
+        "so", "do", "up"
     ]
 
     /// Extracts lowercase search tokens while preserving regulation identifiers
@@ -724,7 +724,12 @@ enum SearchQueryMatcher {
     static func matches(text: String, query: String) -> Bool {
         let trimmed = query.trimmingCharacters(in: .whitespacesAndNewlines)
         guard !trimmed.isEmpty else { return true }
-        let lowerText = text.lowercased()
+        return matchesLowercased(lowerText: text.lowercased(), query: trimmed)
+    }
+
+    static func matchesLowercased(lowerText: String, query: String) -> Bool {
+        let trimmed = query.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard !trimmed.isEmpty else { return true }
         let lowerQuery = trimmed.lowercased()
         let queryTokens = tokens(for: lowerQuery)
         guard !queryTokens.isEmpty else {

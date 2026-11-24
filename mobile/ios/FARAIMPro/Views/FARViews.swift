@@ -678,9 +678,11 @@ struct FARListView: View {
 
                     if let history = dataService.farReadingHistory,
                        let part = dataService.farParts.first(where: { $0.part == Int(history.identifier) }) {
-                        NavigationLink(destination: FARPartDetailView(part: part, initialSection: history.section)) {
+                        NavigationLink {
+                            FARPartDetailView(part: part, initialSection: history.section)
+                        } label: {
                             ContinueReadingRow(
-                                badge: "CONTINUE · PART \(history.identifier)",
+                                badge: history.section.map { "CONTINUE · § \($0)" } ?? "CONTINUE · PART \(history.identifier)",
                                 title: history.title,
                                 icon: "bookmark.fill"
                             )
@@ -689,7 +691,9 @@ struct FARListView: View {
                     }
 
                     ForEach(displayedParts) { part in
-                        NavigationLink(destination: FARPartDetailView(part: part, initialSearchText: searchText)) {
+                        NavigationLink {
+                            FARPartDetailView(part: part, initialSearchText: searchText)
+                        } label: {
                             ReferenceRowCard(
                                 badge: "PART \(part.part)",
                                 title: part.title,
@@ -1602,18 +1606,32 @@ func farReaderDisplayText(_ text: String, in blocks: [FARContentBlock], at index
 }
 
 private func copyFARSectionText(_ section: FARSection) {
-    UIPasteboard.general.string = parseFARContent(section.searchableText).map { block in
-        switch block {
-        case .text(let text):
-            return (try? AttributedString(
-                markdown: text,
-                options: .init(interpretedSyntax: .inlineOnlyPreservingWhitespace)
-            )).map { String($0.characters) } ?? text
-        case .table(let table):
-            let rows = (table.headers.map { [$0] } ?? []) + (table.rows ?? [])
-            return "\n" + rows.map { $0.joined(separator: "\t") }.joined(separator: "\n") + "\n"
-        }
-    }.joined()
+    var parts: [String] = ["§ \(section.section) \(section.title)"]
+    if !section.content.isEmpty {
+        let formatted = parseFARContent(section.content).map { block in
+            switch block {
+            case .text(let text):
+                return (try? AttributedString(
+                    markdown: text,
+                    options: .init(interpretedSyntax: .inlineOnlyPreservingWhitespace)
+                )).map { String($0.characters) } ?? text
+            case .table(let table):
+                let rows = (table.headers.map { [$0] } ?? []) + (table.rows ?? [])
+                return "\n" + rows.map { $0.joined(separator: "\t") }.joined(separator: "\n") + "\n"
+            }
+        }.joined()
+        parts.append(formatted)
+    }
+    if let definitions = section.definitions, !definitions.isEmpty {
+        parts.append(definitions.map { "\($0.term): \($0.definition)" }.joined(separator: "\n"))
+    }
+    if let abbreviations = section.abbreviations, !abbreviations.isEmpty {
+        parts.append(abbreviations.map { "\($0.abbr): \($0.meaning)" }.joined(separator: "\n"))
+    }
+    if let keyPoints = section.keyPoints, !keyPoints.isEmpty {
+        parts.append(keyPoints.map { "• \($0)" }.joined(separator: "\n"))
+    }
+    UIPasteboard.general.string = parts.joined(separator: "\n\n")
 }
 
 private func parseFARTableRow(_ line: String) -> [String] {

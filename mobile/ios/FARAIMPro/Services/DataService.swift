@@ -1238,15 +1238,32 @@ class DataService: ObservableObject {
         return (advisoryCircularSearchIndex, advisoryCircularExactSearchIndex)
     }
 
+    private final class AdvisoryCircularContentBox: NSObject {
+        let content: AdvisoryCircularContent
+        init(_ content: AdvisoryCircularContent) { self.content = content }
+    }
+
+    private let advisoryCircularContentCache: NSCache<NSString, AdvisoryCircularContentBox> = {
+        let cache = NSCache<NSString, AdvisoryCircularContentBox>()
+        cache.countLimit = 24
+        return cache
+    }()
+
     func advisoryCircularContent(for advisoryCircular: AdvisoryCircular) -> AdvisoryCircularContent? {
         guard let contentPath = advisoryCircular.contentPath else { return nil }
+        let cacheKey = contentPath as NSString
+        if let cached = advisoryCircularContentCache.object(forKey: cacheKey) {
+            return cached.content
+        }
         let path = contentPath.hasSuffix(".json")
             ? String(contentPath.dropLast(5))
             : contentPath
-        return Self.loadJSON(
+        guard let loaded = Self.loadJSON(
             from: "advisory-circulars/\(path)",
             as: AdvisoryCircularContent.self
-        )
+        ) else { return nil }
+        advisoryCircularContentCache.setObject(AdvisoryCircularContentBox(loaded), forKey: cacheKey)
+        return loaded
     }
 
     // MARK: - Helper Methods
@@ -1268,12 +1285,12 @@ class DataService: ObservableObject {
         let index = searchIndex(for: snapshot, generation: generation)
         return parts.filter { part in
             if let header = index.farHeaderByPart[part.part],
-               SearchQueryMatcher.matches(text: header, query: trimmed) {
+               SearchQueryMatcher.matchesLowercased(lowerText: header, query: trimmed) {
                 return true
             }
             guard let indices = index.farEntriesByPart[part.part] else { return false }
             for entryIdx in indices {
-                if SearchQueryMatcher.matches(text: index.searchCorpus[entryIdx].lowercasedDocument, query: trimmed) {
+                if SearchQueryMatcher.matchesLowercased(lowerText: index.searchCorpus[entryIdx].lowercasedDocument, query: trimmed) {
                     return true
                 }
             }
@@ -1290,12 +1307,12 @@ class DataService: ObservableObject {
         let index = searchIndex(for: snapshot, generation: generation)
         return chapters.filter { chapter in
             if let header = index.aimHeaderByChapter[chapter.chapter],
-               SearchQueryMatcher.matches(text: header, query: trimmed) {
+               SearchQueryMatcher.matchesLowercased(lowerText: header, query: trimmed) {
                 return true
             }
             guard let indices = index.aimEntriesByChapter[chapter.chapter] else { return false }
             for entryIdx in indices {
-                if SearchQueryMatcher.matches(text: index.searchCorpus[entryIdx].lowercasedDocument, query: trimmed) {
+                if SearchQueryMatcher.matchesLowercased(lowerText: index.searchCorpus[entryIdx].lowercasedDocument, query: trimmed) {
                     return true
                 }
             }
@@ -1503,10 +1520,26 @@ class DataService: ObservableObject {
             }
         }
 
-        // Generate contextual snippets only for the top 50 ranked candidates.
-        return scoredCandidates
-            .sorted { $0.score > $1.score }
-            .prefix(50)
+        // Retain top 50 per category (sorted by score) so category filter chips in SearchView
+        // never vanish when one large catalog (e.g. FAR) dominates global top 50.
+        let sortedCandidates = scoredCandidates.sorted { $0.score > $1.score }
+        var perTypeCounts: [String: Int] = [:]
+        var selectedCandidates: [ScoredCandidate] = []
+        selectedCandidates.reserveCapacity(min(sortedCandidates.count, 150))
+        for candidate in sortedCandidates {
+            let typeKey: String
+            switch candidate.payload {
+            case .corpusEntry(let entry): typeKey = entry.type
+            case .advisoryCircular: typeKey = "ac"
+            }
+            let count = perTypeCounts[typeKey, default: 0]
+            if count < 50 {
+                perTypeCounts[typeKey] = count + 1
+                selectedCandidates.append(candidate)
+            }
+        }
+
+        return selectedCandidates
             .map { candidate in
                 switch candidate.payload {
                 case .corpusEntry(let entry):

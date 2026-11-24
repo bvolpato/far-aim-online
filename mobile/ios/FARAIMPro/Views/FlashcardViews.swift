@@ -221,7 +221,7 @@ struct FlashcardStudyView: View {
             .background(Color(.systemBackground))
             }
             }
-            .frame(maxWidth: .infinity, minHeight: 700)
+            .frame(maxWidth: .infinity)
         }
         .navigationTitle(deck.title)
         .navigationBarTitleDisplayMode(.inline)

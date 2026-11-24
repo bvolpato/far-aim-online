@@ -130,7 +130,13 @@ struct QuizDetailView: View {
     
     var body: some View {
         VStack(spacing: 0) {
-            if isQuizComplete {
+            if quiz.questions.isEmpty {
+                ContentUnavailableView(
+                    "No Questions Available",
+                    systemImage: "questionmark.circle",
+                    description: Text("This quiz currently has no questions.")
+                )
+            } else if isQuizComplete {
                 QuizResultsView(
                     quiz: quiz,
                     correctCount: correctCount,
@@ -273,10 +279,14 @@ struct OptionButton: View {
     let wasSelected: Bool
     let action: () -> Void
     
+    private var optionLabel: String {
+        UnicodeScalar(65 + index).map { String($0) } ?? "\(index + 1)"
+    }
+
     var body: some View {
         Button(action: action) {
             HStack(spacing: 12) {
-                Text(String(UnicodeScalar(65 + index)!))
+                Text(optionLabel)
                     .font(.subheadline)
                     .fontWeight(.semibold)
                     .frame(width: 32, height: 32)
@@ -291,8 +301,8 @@ struct OptionButton: View {
                 
                 Spacer()
                 
-                if let correct = isCorrect {
-                    Image(systemName: correct ? "checkmark.circle.fill" : (wasSelected ? "xmark.circle.fill" : ""))
+                if let correct = isCorrect, correct || wasSelected {
+                    Image(systemName: correct ? "checkmark.circle.fill" : "xmark.circle.fill")
                         .foregroundColor(correct ? .green : .red)
                 }
             }
@@ -304,21 +314,28 @@ struct OptionButton: View {
                     .stroke(borderColor, lineWidth: 2)
             )
         }
+        .disabled(isCorrect != nil)
+        .accessibilityValue(
+            isCorrect == true
+                ? "Correct answer"
+                : (wasSelected && isCorrect == false ? "Incorrect selection" : (isSelected ? "Selected" : ""))
+        )
     }
     
     private var backgroundColor: Color {
         if let correct = isCorrect {
             if correct { return .green }
             if wasSelected { return .red }
+            return Color(.secondarySystemBackground)
         }
         return isSelected ? AviationTheme.accent : Color(.secondarySystemBackground)
     }
     
     private var textColor: Color {
-        if isCorrect != nil || isSelected {
-            return .white
+        if let correct = isCorrect {
+            return (correct || wasSelected) ? .white : .primary
         }
-        return .primary
+        return isSelected ? .white : .primary
     }
     
     private var cardBackgroundColor: Color {
@@ -345,7 +362,14 @@ struct QuizResultsView: View {
     let onRestart: () -> Void
     
     var percentage: Int {
-        Int(Double(correctCount) / Double(quiz.questions.count) * 100)
+        guard !quiz.questions.isEmpty else { return 0 }
+        return Int(Double(correctCount) / Double(quiz.questions.count) * 100)
+    }
+
+    private var missedQuestionIndices: [Int] {
+        quiz.questions.indices.filter { index in
+            answers[index] != quiz.questions[index].correctAnswer
+        }
     }
     
     var passed: Bool {
@@ -393,7 +417,46 @@ struct QuizResultsView: View {
                             .clipShape(RoundedRectangle(cornerRadius: 14, style: .continuous))
                     }
                     .padding(.horizontal)
+
+                    if !missedQuestionIndices.isEmpty {
+                        VStack(alignment: .leading, spacing: 12) {
+                            Text("Review Missed Questions (\(missedQuestionIndices.count))")
+                                .font(.headline)
+                                .padding(.horizontal)
+
+                            ForEach(missedQuestionIndices, id: \.self) { index in
+                                let question = quiz.questions[index]
+                                VStack(alignment: .leading, spacing: 8) {
+                                    Text("Q\(index + 1). \(question.question)")
+                                        .font(.subheadline.weight(.semibold))
+                                    if let chosen = answers[index], question.options.indices.contains(chosen) {
+                                        Label("Your answer: \(question.options[chosen])", systemImage: "xmark.circle.fill")
+                                            .font(.caption)
+                                            .foregroundColor(.red)
+                                    }
+                                    if question.options.indices.contains(question.correctAnswer) {
+                                        Label("Correct: \(question.options[question.correctAnswer])", systemImage: "checkmark.circle.fill")
+                                            .font(.caption)
+                                            .foregroundColor(.green)
+                                    }
+                                    Text(question.explanation)
+                                        .font(.caption)
+                                        .foregroundColor(.secondary)
+                                    Text("Reference: \(question.reference)")
+                                        .font(.caption2)
+                                        .foregroundColor(AviationTheme.accent)
+                                }
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                                .padding()
+                                .background(Color(.secondarySystemBackground))
+                                .clipShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
+                                .padding(.horizontal)
+                            }
+                        }
+                    }
                 }
+                .frame(maxWidth: 760)
+                .frame(maxWidth: .infinity)
                 .padding(.vertical, 40)
             }
 
