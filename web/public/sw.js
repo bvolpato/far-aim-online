@@ -1,4 +1,7 @@
-const CACHE_NAME = 'far-aim-online-v1';
+const CACHE_NAME = 'far-aim-online-v2';
+const DATA_CACHE_NAME = 'far-aim-online-data-v2';
+const MAX_DATA_CACHE_ENTRIES = 160;
+const ACTIVE_CACHES = new Set([CACHE_NAME, DATA_CACHE_NAME]);
 
 const STATIC_PRECACHE = [
   '/',
@@ -9,6 +12,14 @@ const STATIC_PRECACHE = [
   '/app-icon.svg',
   '/favicon.svg',
 ];
+
+async function trimCache(cacheName, maxEntries) {
+  const cache = await caches.open(cacheName);
+  const keys = await cache.keys();
+  if (keys.length <= maxEntries) return;
+  const overflow = keys.length - maxEntries;
+  await Promise.all(keys.slice(0, overflow).map((key) => cache.delete(key)));
+}
 
 self.addEventListener('install', (event) => {
   self.skipWaiting();
@@ -21,7 +32,7 @@ self.addEventListener('activate', (event) => {
   event.waitUntil(
     caches.keys().then((keys) =>
       Promise.all(
-        keys.filter((key) => key !== CACHE_NAME).map((key) => caches.delete(key))
+        keys.filter((key) => !ACTIVE_CACHES.has(key)).map((key) => caches.delete(key))
       )
     ).then(() => self.clients.claim())
   );
@@ -53,25 +64,27 @@ self.addEventListener('fetch', (event) => {
         .catch(async () => {
           const cached = await caches.match(request);
           if (cached) return cached;
-          return caches.match('/');
+          return (await caches.match('/')) || new Response('Offline', { status: 503 });
         })
     );
     return;
   }
 
-  // Hashed assets and immutable search assets: Cache-first
+  // Hashed assets and immutable search assets: Cache-first with bounded LRU storage
   if (url.pathname.startsWith('/assets/') || url.pathname.startsWith('/search/')) {
     event.respondWith(
-      caches.match(request).then((cached) => {
-        if (cached) return cached;
-        return fetch(request).then((response) => {
-          if (response.status === 200) {
-            const clone = response.clone();
-            caches.open(CACHE_NAME).then((cache) => cache.put(request, clone));
-          }
-          return response;
-        });
-      })
+      caches.open(DATA_CACHE_NAME).then((cache) =>
+        cache.match(request).then((cached) => {
+          if (cached) return cached;
+          return fetch(request).then((response) => {
+            if (response.status === 200) {
+              const clone = response.clone();
+              cache.put(request, clone).then(() => trimCache(DATA_CACHE_NAME, MAX_DATA_CACHE_ENTRIES));
+            }
+            return response;
+          });
+        })
+      )
     );
     return;
   }
@@ -85,7 +98,7 @@ self.addEventListener('fetch', (event) => {
           caches.open(CACHE_NAME).then((cache) => cache.put(request, clone));
         }
         return networkResponse;
-      }).catch(() => cached);
+      }).catch(() => cached || new Response('Offline', { status: 503 }));
 
       return cached || fetchPromise;
     })

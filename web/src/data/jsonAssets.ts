@@ -1,5 +1,6 @@
 export type JsonAssetLoader = string | (() => Promise<string>);
 
+const MAX_CACHED_ASSETS = 32;
 const jsonAssetPromises = new Map<string, Promise<unknown>>();
 
 export async function fetchJsonAsset<T>(
@@ -11,7 +12,11 @@ export async function fetchJsonAsset<T>(
 
   const url = typeof loadUrl === 'string' ? loadUrl : await loadUrl();
   let promise = jsonAssetPromises.get(url);
-  if (!promise) {
+  if (promise) {
+    // Refresh recency for bounded LRU retention of large corpus JSONs.
+    jsonAssetPromises.delete(url);
+    jsonAssetPromises.set(url, promise);
+  } else {
     promise = fetch(url).then(async (response) => {
       if (!response.ok) {
         throw new Error(`Failed to load ${url}: ${response.status}`);
@@ -22,6 +27,9 @@ export async function fetchJsonAsset<T>(
       throw error;
     });
     jsonAssetPromises.set(url, promise);
+    if (jsonAssetPromises.size > MAX_CACHED_ASSETS) {
+      jsonAssetPromises.delete(jsonAssetPromises.keys().next().value!);
+    }
   }
 
   return promise as Promise<T>;

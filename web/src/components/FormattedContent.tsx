@@ -223,11 +223,12 @@ function RawTable({ table, highlight, caption }: { table: RawTable; highlight: s
   };
 
   const fullTableText = useMemo(() => {
+    if (!paginated || typeof window !== 'undefined') return '';
     const sourceRows = headers.length > 0 ? [headers, ...rows] : rows;
     return sourceRows
       .map((row) => `| ${row.map((cell) => cell.replace(/\\/g, '\\\\').replace(/\|/g, '\\|')).join(' | ')} |`)
       .join('\n');
-  }, [headers, rows]);
+  }, [headers, paginated, rows]);
 
   return (
     <div className="my-4 rounded-lg border border-border">
@@ -359,106 +360,116 @@ function RawTable({ table, highlight, caption }: { table: RawTable; highlight: s
   );
 }
 
+const INLINE_PATTERN_SOURCE = '(\\*\\*[^*]+\\*\\*|\\*[^*]+\\*\\s+means|\\*[^*]+\\*|§\\s*\\d+\\.\\d+[a-z]?|Part\\s+\\d+)';
+const SIMPLE_INLINE_PATTERN_SOURCE = '(\\*\\*[^*]+\\*\\*|\\*[^*]+\\*\\s+means|\\*[^*]+\\*)';
+const TERM_MEANS_PATTERN = /^\*([^*]+)\*\s+means$/;
+const SECTION_REF_PATTERN = /§\s*(\d+)\.(\d+[a-z]?)/;
+const PART_REF_PATTERN = /Part\s+(\d+)/i;
+
+function renderTextNode(text: string, key: number, highlight: string): React.ReactNode {
+  return highlight ? <HighlightText key={key} text={text} query={highlight} /> : text;
+}
+
 function parseInlineFormatting(text: string, startKey: number, highlight: string): React.ReactNode[] {
   const elements: React.ReactNode[] = [];
   let key = startKey;
-  
+  const hasHighlight = highlight.trim().length > 0;
+  const effectiveHighlight = hasHighlight ? highlight : '';
+
   // Combined regex for all patterns we want to handle
   // Order matters: bold (**) before italic (*)
   // Also match CFR references: § XX.XX or Part XX
   // Special case: *Term* followed by "means" should be bold (FAR definitions)
-  const pattern = /(\*\*[^*]+\*\*|\*[^*]+\*\s+means|\*[^*]+\*|§\s*\d+\.\d+[a-z]?|Part\s+\d+)/g;
-  
+  const pattern = new RegExp(INLINE_PATTERN_SOURCE, 'g');
+
   let lastIndex = 0;
   let match;
-  
+
   while ((match = pattern.exec(text)) !== null) {
     // Add text before the match
     if (match.index > lastIndex) {
       const beforeText = text.slice(lastIndex, match.index);
-      elements.push(<HighlightText key={key++} text={beforeText} query={highlight} />);
+      elements.push(renderTextNode(beforeText, key++, effectiveHighlight));
     }
-    
+
     const matched = match[0];
-    
+
     if (matched.startsWith('**') && matched.endsWith('**')) {
       // Bold text (explicit double asterisks)
       const content = matched.slice(2, -2);
       elements.push(
         <strong key={key++} className="font-semibold">
-          <HighlightText text={content} query={highlight} />
+          {hasHighlight ? <HighlightText text={content} query={effectiveHighlight} /> : content}
         </strong>
       );
     } else if (matched.startsWith('*') && matched.includes('* means')) {
       // Definition pattern: *Term* means - render as BOLD (regulatory convention)
       // Extract just the term (without the " means" part which we'll add back as plain text)
-      const termMatch = matched.match(/^\*([^*]+)\*\s+means$/);
+      const termMatch = matched.match(TERM_MEANS_PATTERN);
       if (termMatch) {
         const term = termMatch[1];
         elements.push(
           <strong key={key++} className="font-semibold">
-            <HighlightText text={term} query={highlight} />
+            {hasHighlight ? <HighlightText text={term} query={effectiveHighlight} /> : term}
           </strong>
         );
-        elements.push(<HighlightText key={key++} text=" means" query={highlight} />);
+        elements.push(renderTextNode(' means', key++, effectiveHighlight));
       } else {
-        elements.push(<HighlightText key={key++} text={matched} query={highlight} />);
+        elements.push(renderTextNode(matched, key++, effectiveHighlight));
       }
     } else if (matched.startsWith('*') && matched.endsWith('*')) {
       // Italic text (single asterisks, not followed by "means")
       const content = matched.slice(1, -1);
       elements.push(
         <em key={key++} className="italic">
-          <HighlightText text={content} query={highlight} />
+          {hasHighlight ? <HighlightText text={content} query={effectiveHighlight} /> : content}
         </em>
       );
     } else if (matched.startsWith('§')) {
       // Section reference: § XX.XX
-      const sectionMatch = matched.match(/§\s*(\d+)\.(\d+[a-z]?)/);
+      const sectionMatch = matched.match(SECTION_REF_PATTERN);
       if (sectionMatch) {
         const part = sectionMatch[1];
         const section = `${sectionMatch[1]}.${sectionMatch[2]}`;
         elements.push(
-          <Link 
-            key={key++} 
+          <Link
+            key={key++}
             to={`/far/${part}#${section}`}
             className="text-blue-600 underline underline-offset-2 dark:text-blue-400"
           >
-            <HighlightText text={matched} query={highlight} />
+            {hasHighlight ? <HighlightText text={matched} query={effectiveHighlight} /> : matched}
           </Link>
         );
       } else {
-        elements.push(<HighlightText key={key++} text={matched} query={highlight} />);
+        elements.push(renderTextNode(matched, key++, effectiveHighlight));
       }
     } else if (matched.toLowerCase().startsWith('part')) {
       // Part reference: Part XX
-      const partMatch = matched.match(/Part\s+(\d+)/i);
+      const partMatch = matched.match(PART_REF_PATTERN);
       if (partMatch) {
         const part = partMatch[1];
         elements.push(
-          <Link 
-            key={key++} 
+          <Link
+            key={key++}
             to={`/far/${part}`}
             className="text-blue-600 underline underline-offset-2 dark:text-blue-400"
           >
-            <HighlightText text={matched} query={highlight} />
+            {hasHighlight ? <HighlightText text={matched} query={effectiveHighlight} /> : matched}
           </Link>
         );
       } else {
-        elements.push(<HighlightText key={key++} text={matched} query={highlight} />);
+        elements.push(renderTextNode(matched, key++, effectiveHighlight));
       }
     }
-    
+
     lastIndex = match.index + matched.length;
   }
-  
+
   // Add remaining text
   if (lastIndex < text.length) {
-    elements.push(
-      <HighlightText key={key++} text={text.slice(lastIndex)} query={highlight} />
-    );
+    elements.push(renderTextNode(text.slice(lastIndex), key++, effectiveHighlight));
   }
-  
+
   return elements;
 }
 
@@ -467,64 +478,66 @@ function parseInlineFormatting(text: string, startKey: number, highlight: string
  * Useful for places where we don't want navigation
  */
 export function FormattedText({ text, className = '', highlight = '' }: FormattedContentProps) {
-  const elements: React.ReactNode[] = [];
-  let key = 0;
-  
-  // Handle bold, italic, and definition patterns (*Term* means)
-  const pattern = /(\*\*[^*]+\*\*|\*[^*]+\*\s+means|\*[^*]+\*)/g;
-  
-  let lastIndex = 0;
-  let match;
-  
-  while ((match = pattern.exec(text)) !== null) {
-    if (match.index > lastIndex) {
-      elements.push(
-        <HighlightText key={key++} text={text.slice(lastIndex, match.index)} query={highlight} />
-      );
-    }
-    
-    const matched = match[0];
-    
-    if (matched.startsWith('**') && matched.endsWith('**')) {
-      // Explicit bold
-      const content = matched.slice(2, -2);
-      elements.push(
-        <strong key={key++} className="font-semibold">
-          <HighlightText text={content} query={highlight} />
-        </strong>
-      );
-    } else if (matched.startsWith('*') && matched.includes('* means')) {
-      // Definition pattern: *Term* means - render term as BOLD
-      const termMatch = matched.match(/^\*([^*]+)\*\s+means$/);
-      if (termMatch) {
-        const term = termMatch[1];
-        elements.push(
+  const elements = useMemo(() => {
+    const nodes: React.ReactNode[] = [];
+    let key = 0;
+    const hasHighlight = highlight.trim().length > 0;
+    const effectiveHighlight = hasHighlight ? highlight : '';
+
+    // Handle bold, italic, and definition patterns (*Term* means)
+    const pattern = new RegExp(SIMPLE_INLINE_PATTERN_SOURCE, 'g');
+
+    let lastIndex = 0;
+    let match;
+
+    while ((match = pattern.exec(text)) !== null) {
+      if (match.index > lastIndex) {
+        nodes.push(renderTextNode(text.slice(lastIndex, match.index), key++, effectiveHighlight));
+      }
+
+      const matched = match[0];
+
+      if (matched.startsWith('**') && matched.endsWith('**')) {
+        // Explicit bold
+        const content = matched.slice(2, -2);
+        nodes.push(
           <strong key={key++} className="font-semibold">
-            <HighlightText text={term} query={highlight} />
+            {hasHighlight ? <HighlightText text={content} query={effectiveHighlight} /> : content}
           </strong>
         );
-        elements.push(<HighlightText key={key++} text=" means" query={highlight} />);
-      } else {
-        elements.push(<HighlightText key={key++} text={matched} query={highlight} />);
+      } else if (matched.startsWith('*') && matched.includes('* means')) {
+        // Definition pattern: *Term* means - render term as BOLD
+        const termMatch = matched.match(TERM_MEANS_PATTERN);
+        if (termMatch) {
+          const term = termMatch[1];
+          nodes.push(
+            <strong key={key++} className="font-semibold">
+              {hasHighlight ? <HighlightText text={term} query={effectiveHighlight} /> : term}
+            </strong>
+          );
+          nodes.push(renderTextNode(' means', key++, effectiveHighlight));
+        } else {
+          nodes.push(renderTextNode(matched, key++, effectiveHighlight));
+        }
+      } else if (matched.startsWith('*') && matched.endsWith('*')) {
+        // Italic (single asterisks, not a definition)
+        const content = matched.slice(1, -1);
+        nodes.push(
+          <em key={key++} className="italic">
+            {hasHighlight ? <HighlightText text={content} query={effectiveHighlight} /> : content}
+          </em>
+        );
       }
-    } else if (matched.startsWith('*') && matched.endsWith('*')) {
-      // Italic (single asterisks, not a definition)
-      const content = matched.slice(1, -1);
-      elements.push(
-        <em key={key++} className="italic">
-          <HighlightText text={content} query={highlight} />
-        </em>
-      );
+
+      lastIndex = match.index + matched.length;
     }
-    
-    lastIndex = match.index + matched.length;
-  }
-  
-  if (lastIndex < text.length) {
-    elements.push(
-      <HighlightText key={key++} text={text.slice(lastIndex)} query={highlight} />
-    );
-  }
-  
+
+    if (lastIndex < text.length) {
+      nodes.push(renderTextNode(text.slice(lastIndex), key++, effectiveHighlight));
+    }
+
+    return nodes;
+  }, [text, highlight]);
+
   return <span className={className}>{elements}</span>;
 }

@@ -1,8 +1,10 @@
 import { useParams, Link, useSearchParams, useLocation } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
-import { ChevronRight, ChevronLeft, BookOpen, ChevronDown, ChevronUp, Image as ImageIcon, Search, Brain, Layers, History, Loader2, FileText, List, Link2, Check } from 'lucide-react';
-import { useState, useMemo, useEffect, type CSSProperties } from 'react';
-import { getAllAIMChapters, getAIMChapter, AIMChapter, AIMChapterMeta, AIMSection, AIMSubsection, getQuizForAIMChapter, getFlashcardsForAIMChapter } from '../data';
+import { ChevronRight, ChevronLeft, BookOpen, ChevronDown, ChevronUp, Image as ImageIcon, Search, Brain, Layers, History, Loader2, FileText, List, Check } from 'lucide-react';
+import { memo, useCallback, useDeferredValue, useState, useMemo, useEffect } from 'react';
+import { getAIMChapter } from '../data/aim';
+import { getAllAIMChapters, getQuizForAIMChapter, getFlashcardsForAIMChapter } from '../data/catalog';
+import type { AIMChapter, AIMChapterMeta, AIMSection, AIMSubsection } from '../data/types';
 import type { SearchResult } from '../data/search';
 import { HighlightText } from '../components/HighlightText';
 import { FormattedContent } from '../components/FormattedContent';
@@ -11,10 +13,11 @@ import { Breadcrumbs } from '../components/Breadcrumbs';
 import { StudyMarkTools } from '../components/StudyMarkTools';
 import { ReaderControls } from '../components/ReaderControls';
 import { useReaderPreferences } from '../hooks/useReaderPreferences';
+import { useActiveSectionId } from '../hooks/useActiveSectionId';
 import { ReferenceFigures } from '../components/ReferenceFigures';
 import { formatAIMChapterBadge, formatAIMChapterLabel } from '../lib/aim';
 import { useRouteData } from '../context/route-data';
-import { MobileTableOfContents } from '../components/MobileTableOfContents';
+import { MobileTableOfContents, type TocItem } from '../components/MobileTableOfContents';
 
 // Content search result for chapter listing
 interface ChapterSearchMatch {
@@ -31,13 +34,18 @@ export function AIMPage() {
   const [selectedChapter, setSelectedChapter] = useState<AIMChapter | null>(initialChapter ?? null);
   const [loading, setLoading] = useState(Boolean(chapterId && !initialChapter));
   const [loadError, setLoadError] = useState<'not-found' | 'load-failed' | null>(null);
-  
+
   const { getLastViewed } = useReadingHistory();
   const lastViewed = getLastViewed('aim');
 
   const [filterQuery, setFilterQuery] = useState('');
+  const [isIndexSearchInteractive, setIsIndexSearchInteractive] = useState(false);
   const [contentSearchResults, setContentSearchResults] = useState<SearchResult[]>([]);
   const [isSearching, setIsSearching] = useState(false);
+
+  useEffect(() => {
+    setIsIndexSearchInteractive(true);
+  }, []);
 
   // Load selected chapter data
   useEffect(() => {
@@ -96,13 +104,16 @@ export function AIMPage() {
     }
 
     let cancelled = false;
+    const controller = new AbortController();
     const timer = setTimeout(async () => {
       setIsSearching(true);
       try {
-        const results = await (await import('../data/search')).searchContent(filterQuery, ['aim']);
+        const results = await (await import('../data/search')).searchContent(filterQuery, ['aim'], undefined, {
+          signal: controller.signal,
+        });
         if (!cancelled) setContentSearchResults(results);
       } catch (error) {
-        if (!cancelled) {
+        if (!cancelled && !(error instanceof DOMException && error.name === 'AbortError')) {
           console.error('Search error:', error);
           setContentSearchResults([]);
         }
@@ -113,6 +124,7 @@ export function AIMPage() {
 
     return () => {
       cancelled = true;
+      controller.abort();
       clearTimeout(timer);
     };
   }, [filterQuery]);
@@ -120,36 +132,40 @@ export function AIMPage() {
   // Compute chapter matches with priority: title > content
   const chapterMatches = useMemo((): ChapterSearchMatch[] => {
     if (!filterQuery) {
-      // No query - return all chapters with no matches
       return chapters.map(c => ({ chapter: c, titleMatch: false, contentMatches: [] }));
     }
 
     const query = filterQuery.toLowerCase();
+    const matchesByChapter = new Map<number, SearchResult[]>();
+    for (const r of contentSearchResults) {
+      const match = r.link.match(/\/aim\/(\d+)/);
+      if (!match) continue;
+      const num = parseInt(match[1], 10);
+      let bucket = matchesByChapter.get(num);
+      if (!bucket) {
+        bucket = [];
+        matchesByChapter.set(num, bucket);
+      }
+      bucket.push(r);
+    }
+
     const results: ChapterSearchMatch[] = [];
-
     for (const chapter of chapters) {
-      const titleMatch = 
-        chapter.chapter.toString().includes(query) || 
+      const titleMatch =
+        chapter.chapter.toString().includes(query) ||
         chapter.title.toLowerCase().includes(query);
-      
-      // Filter content search results to this chapter
-      const contentMatches = contentSearchResults.filter(r => {
-        // Link format: /aim/X?highlight=... or /aim/X#section
-        const match = r.link.match(/\/aim\/(\d+)/);
-        return match && parseInt(match[1]) === chapter.chapter;
-      });
 
-      // Include chapter if title matches OR has content matches
+      const contentMatches = matchesByChapter.get(chapter.chapter) || [];
+
       if (titleMatch || contentMatches.length > 0) {
         results.push({ chapter, titleMatch, contentMatches });
       }
     }
 
-    // Sort: title matches first, then by chapter number
+    // Sort: title matches first, then by content match count, then by chapter number
     results.sort((a, b) => {
       if (a.titleMatch && !b.titleMatch) return -1;
       if (!a.titleMatch && b.titleMatch) return 1;
-      // Both have same title match status - sort by content match count then chapter
       if (a.contentMatches.length !== b.contentMatches.length) {
         return b.contentMatches.length - a.contentMatches.length;
       }
@@ -245,6 +261,7 @@ export function AIMPage() {
           type="text"
           placeholder="Search chapters by title or content..."
           value={filterQuery}
+          disabled={!isIndexSearchInteractive}
           onChange={(e) => setFilterQuery(e.target.value)}
           className="w-full pl-10 pr-4 py-2.5 bg-card border border-border rounded-xl focus:ring-2 focus:ring-ring outline-none text-foreground placeholder:text-muted-foreground"
         />
@@ -345,22 +362,89 @@ export function AIMPage() {
   );
 }
 
-function AIMChapterView({ 
-  chapter, 
-  prevChapter, 
-  nextChapter 
-}: { 
-  chapter: AIMChapter; 
+const AIMDesktopToc = memo(function AIMDesktopToc({
+  sections,
+  observedIds,
+  onExpandSection,
+}: {
+  sections: AIMSection[];
+  observedIds: string[];
+  onExpandSection: (sectionId: string) => void;
+}) {
+  const activeSectionId = useActiveSectionId(observedIds);
+
+  return (
+    <aside className="sticky top-20 max-h-[calc(100vh-7rem)] overflow-y-auto bg-card rounded-2xl p-5 border border-border shadow-sm hidden lg:block">
+      <h2 className="text-base font-bold text-foreground mb-4 flex items-center gap-2 border-b pb-2">
+        <List className="w-4 h-4 text-primary" />
+        Sections ({sections.length})
+      </h2>
+      <nav className="space-y-1.5">
+        {sections.map((section) => {
+          const isActive = activeSectionId === section.section;
+          return (
+            <a
+              key={section.section}
+              href={`#${section.section}`}
+              onClick={() => onExpandSection(section.section)}
+              className={`block text-xs px-2.5 py-2 rounded-lg transition-colors truncate ${
+                isActive
+                  ? 'bg-primary/10 text-primary font-semibold border-l-2 border-primary'
+                  : 'text-muted-foreground hover:text-primary hover:bg-accent/50'
+              }`}
+              title={`§ ${section.section} - ${section.title}`}
+            >
+              <span className="font-semibold text-foreground/80 mr-1">{section.section}</span>
+              {section.title}
+            </a>
+          );
+        })}
+      </nav>
+    </aside>
+  );
+});
+
+const AIMMobileToc = memo(function AIMMobileToc({
+  chapterNumber,
+  tocItems,
+  observedIds,
+  onExpandSection,
+}: {
+  chapterNumber: number;
+  tocItems: TocItem[];
+  observedIds: string[];
+  onExpandSection: (sectionId: string) => void;
+}) {
+  const activeSectionId = useActiveSectionId(observedIds);
+
+  return (
+    <MobileTableOfContents
+      title={`AIM ${formatAIMChapterLabel(chapterNumber)} Contents`}
+      items={tocItems}
+      activeId={activeSectionId}
+      onSelect={onExpandSection}
+    />
+  );
+});
+
+function AIMChapterView({
+  chapter,
+  prevChapter,
+  nextChapter
+}: {
+  chapter: AIMChapter;
   prevChapter: AIMChapterMeta | null;
   nextChapter: AIMChapterMeta | null;
 }) {
   const [searchParams] = useSearchParams();
   const { hash } = useLocation();
+  const activeHashId = hash.startsWith('#') ? hash.slice(1) : '';
   // Keep reference content readable before JavaScript and during hydration.
   const [expandedSections, setExpandedSections] = useState<Set<string>>(() => {
     return new Set(chapter.sections?.map(s => s.section) || []);
   });
   const [searchQuery, setSearchQuery] = useState('');
+  const deferredSearchQuery = useDeferredValue(searchQuery);
   const highlightTerm = searchParams.get('highlight') || '';
   const [highlightedSectionId, setHighlightedSectionId] = useState<string | null>(null);
   const readerControls = useReaderPreferences();
@@ -386,20 +470,25 @@ function AIMChapterView({
     setSearchQuery('');
   }, [chapter.chapter, chapter.sections]);
 
-  const toggleSection = (sectionId: string) => {
-    const newExpanded = new Set(expandedSections);
-    if (newExpanded.has(sectionId)) {
-      newExpanded.delete(sectionId);
-    } else {
-      newExpanded.add(sectionId);
-    }
-    setExpandedSections(newExpanded);
-  };
+  const toggleSection = useCallback((sectionId: string) => {
+    setExpandedSections((previous) => {
+      const next = new Set(previous);
+      if (next.has(sectionId)) {
+        next.delete(sectionId);
+      } else {
+        next.add(sectionId);
+      }
+      return next;
+    });
+  }, []);
+
+  const expandSection = useCallback((sectionId: string) => {
+    setExpandedSections((previous) => (previous.has(sectionId) ? previous : new Set([...previous, sectionId])));
+  }, []);
 
   // Memoize sections to avoid lint warning
   const sections = useMemo(() => chapter.sections || [], [chapter.sections]);
-
-  const [activeSectionId, setActiveSectionId] = useState<string>('');
+  const observedIds = useMemo(() => sections.map((s) => s.section), [sections]);
 
   const tocItems = useMemo(
     () =>
@@ -410,36 +499,6 @@ function AIMChapterView({
       })),
     [sections]
   );
-
-  useEffect(() => {
-    if (typeof window === 'undefined' || !('IntersectionObserver' in window)) return;
-    if (sections.length === 0) return;
-
-    const elements = sections
-      .map((s) => document.getElementById(s.section))
-      .filter((el): el is HTMLElement => el !== null);
-
-    if (elements.length === 0) return;
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visible = entries.filter((e) => e.isIntersecting);
-        if (visible.length > 0) {
-          const sorted = visible.sort(
-            (a, b) => Math.abs(a.boundingClientRect.top - 100) - Math.abs(b.boundingClientRect.top - 100)
-          );
-          setActiveSectionId(sorted[0].target.id);
-        }
-      },
-      {
-        rootMargin: '-80px 0px -60% 0px',
-        threshold: [0, 0.25],
-      }
-    );
-
-    elements.forEach((el) => observer.observe(el));
-    return () => observer.disconnect();
-  }, [sections]);
 
   useEffect(() => {
     const sectionId = hash.slice(1);
@@ -453,16 +512,14 @@ function AIMChapterView({
 
   // Filter sections if search is active
   const filteredSections = useMemo(() => {
-    if (!searchQuery) return sections;
-    const query = searchQuery.toLowerCase();
+    if (!deferredSearchQuery) return sections;
+    const query = deferredSearchQuery.toLowerCase();
 
     return sections.filter(section => {
-      // Check section main fields
       if (section.section.toLowerCase().includes(query)) return true;
       if (section.title?.toLowerCase().includes(query)) return true;
       if (section.content?.toLowerCase().includes(query)) return true;
 
-      // Check subsections
       if (section.subsections?.some(sub =>
         sub.title.toLowerCase().includes(query) ||
         sub.content.toLowerCase().includes(query)
@@ -470,57 +527,53 @@ function AIMChapterView({
 
       return false;
     });
-  }, [sections, searchQuery]);
+  }, [sections, deferredSearchQuery]);
 
   // Auto-expand sections that match search
   useEffect(() => {
-    if (searchQuery) {
+    if (deferredSearchQuery) {
       const newExpanded = new Set<string>();
       filteredSections.forEach(s => newExpanded.add(s.section));
       setExpandedSections(newExpanded);
     }
-  }, [filteredSections, searchQuery, sections.length]);
+  }, [filteredSections, deferredSearchQuery, sections.length]);
 
   // When there's a highlight term (from search), find and scroll to the first matching section
   useEffect(() => {
-    if (highlightTerm && sections.length > 0 && !sections.some(section => hash === `#${section.section}`)) {
-      const query = highlightTerm.toLowerCase();
-      
-      // Find the first section that contains the highlight term
-      const matchingSection = sections.find(section => {
-        if (section.section.toLowerCase().includes(query)) return true;
-        if (section.title?.toLowerCase().includes(query)) return true;
-        if (section.content?.toLowerCase().includes(query)) return true;
-        if (section.subsections?.some(sub =>
-          sub.title.toLowerCase().includes(query) ||
-          sub.content.toLowerCase().includes(query)
-        )) return true;
-        return false;
-      });
-
-      if (matchingSection) {
-        // Make sure the section is expanded
-        setExpandedSections(prev => new Set([...prev, matchingSection.section]));
-        
-        // Set the highlighted section for flash effect
-        setHighlightedSectionId(matchingSection.section);
-        
-        // Scroll to the section after a short delay to allow render
-        setTimeout(() => {
-          const element = document.getElementById(matchingSection.section);
-          if (element) {
-            element.scrollIntoView({ behavior: 'smooth', block: 'center' });
-          }
-        }, 100);
-
-        // Clear highlight after animation
-        setTimeout(() => {
-          setHighlightedSectionId(null);
-        }, 3000);
-      }
+    if (!highlightTerm || sections.length === 0 || sections.some(section => hash === `#${section.section}`)) {
+      return;
     }
-  }, [highlightTerm, hash, sections]);
 
+    const query = highlightTerm.toLowerCase();
+    const matchingSection = sections.find(section => {
+      if (section.section.toLowerCase().includes(query)) return true;
+      if (section.title?.toLowerCase().includes(query)) return true;
+      if (section.content?.toLowerCase().includes(query)) return true;
+      if (section.subsections?.some(sub =>
+        sub.title.toLowerCase().includes(query) ||
+        sub.content.toLowerCase().includes(query)
+      )) return true;
+      return false;
+    });
+
+    if (!matchingSection) return;
+
+    setExpandedSections(prev => new Set([...prev, matchingSection.section]));
+    setHighlightedSectionId(matchingSection.section);
+
+    const scrollTimer = window.setTimeout(() => {
+      document.getElementById(matchingSection.section)?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }, 100);
+
+    const clearTimer = window.setTimeout(() => {
+      setHighlightedSectionId(null);
+    }, 3000);
+
+    return () => {
+      window.clearTimeout(scrollTimer);
+      window.clearTimeout(clearTimer);
+    };
+  }, [highlightTerm, hash, sections]);
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -531,11 +584,11 @@ function AIMChapterView({
       </Helmet>
 
       {/* Breadcrumb */}
-      <Breadcrumbs 
+      <Breadcrumbs
         items={[
           { label: 'AIM', path: '/aim' },
           { label: formatAIMChapterLabel(chapter.chapter) }
-        ]} 
+        ]}
         className="mb-6"
       />
 
@@ -554,37 +607,15 @@ function AIMChapterView({
       <div className="lg:grid lg:grid-cols-[280px_1fr] lg:gap-8 lg:items-start mt-6">
         {/* Left Sticky Sidebar (Desktop only) */}
         {!searchQuery && sections.length > 0 && (
-          <aside className="sticky top-20 max-h-[calc(100vh-7rem)] overflow-y-auto bg-card rounded-2xl p-5 border border-border shadow-sm hidden lg:block">
-            <h2 className="text-base font-bold text-foreground mb-4 flex items-center gap-2 border-b pb-2">
-              <List className="w-4 h-4 text-primary" />
-              Sections ({sections.length})
-            </h2>
-            <nav className="space-y-1.5">
-              {sections.map((section) => {
-                const isActive = activeSectionId === section.section;
-                return (
-                  <a
-                    key={section.section}
-                    href={`#${section.section}`}
-                    onClick={() => setExpandedSections(previous => new Set([...previous, section.section]))}
-                    className={`block text-xs px-2.5 py-2 rounded-lg transition-colors truncate ${
-                      isActive
-                        ? 'bg-primary/10 text-primary font-semibold border-l-2 border-primary'
-                        : 'text-muted-foreground hover:text-primary hover:bg-accent/50'
-                    }`}
-                    title={`§ ${section.section} - ${section.title}`}
-                  >
-                    <span className="font-semibold text-foreground/80 mr-1">{section.section}</span>
-                    {section.title}
-                  </a>
-                );
-              })}
-            </nav>
-          </aside>
+          <AIMDesktopToc
+            sections={sections}
+            observedIds={observedIds}
+            onExpandSection={expandSection}
+          />
         )}
 
         {/* Right Content Area */}
-        <div className="min-w-0">
+        <div className="min-w-0" style={readerControls.cssVars}>
           {/* Header */}
           <div className="mb-8">
             <div className="flex items-center gap-3 mb-3">
@@ -604,11 +635,11 @@ function AIMChapterView({
 
           {/* Mobile Table of Contents Drawer */}
           {!searchQuery && sections.length > 0 && (
-            <MobileTableOfContents
-              title={`AIM ${formatAIMChapterLabel(chapter.chapter)} Contents`}
-              items={tocItems}
-              activeId={activeSectionId}
-              onSelect={sectionId => setExpandedSections(previous => new Set([...previous, sectionId]))}
+            <AIMMobileToc
+              chapterNumber={chapter.chapter}
+              tocItems={tocItems}
+              observedIds={observedIds}
+              onExpandSection={expandSection}
             />
           )}
 
@@ -636,16 +667,16 @@ function AIMChapterView({
                 chapterId={chapter.chapter}
                 section={section}
                 isExpanded={expandedSections.has(section.section)}
-                onToggle={() => toggleSection(section.section)}
-                searchQuery={searchQuery}
+                onToggleSection={toggleSection}
+                searchQuery={deferredSearchQuery}
                 highlightTerm={highlightTerm}
                 isHighlighted={highlightedSectionId === section.section}
-                contentStyle={readerControls.contentStyle}
+                isHashTarget={activeHashId === section.section}
               />
             ))}
             {filteredSections.length === 0 && (
                <div className="text-center py-12 text-muted-foreground">
-                 No sections found matching "{searchQuery}"
+                 No sections found matching "{deferredSearchQuery}"
                </div>
             )}
           </div>
@@ -714,7 +745,7 @@ function AIMChapterView({
               ) : (
                 <div className="hidden sm:block sm:flex-1" />
               )}
-              
+
               {nextChapter ? (
                 <Link
                   to={`/aim/${nextChapter.chapter}`}
@@ -741,24 +772,24 @@ function AIMChapterView({
   );
 }
 
-function SectionView({ 
+const SectionView = memo(function SectionView({
   chapterId,
-  section, 
-  isExpanded, 
-  onToggle,
+  section,
+  isExpanded,
+  onToggleSection,
   searchQuery,
   highlightTerm,
   isHighlighted,
-  contentStyle
-}: { 
+  isHashTarget,
+}: {
   chapterId: number;
-  section: AIMSection; 
-  isExpanded: boolean; 
-  onToggle: () => void;
+  section: AIMSection;
+  isExpanded: boolean;
+  onToggleSection: (sectionId: string) => void;
   searchQuery: string;
   highlightTerm?: string;
   isHighlighted?: boolean;
-  contentStyle: CSSProperties;
+  isHashTarget?: boolean;
 }) {
   const hasSubsections = section.subsections && section.subsections.length > 0;
   const hasContent = section.content && section.content.length > 0;
@@ -767,17 +798,15 @@ function SectionView({
 
   // Flash highlight effect when scrolled to via hash or highlighted from search
   const [isFlashed, setIsFlashed] = useState(false);
-  const { hash } = useLocation();
 
   useEffect(() => {
-    if (hash === `#${section.section}`) {
+    if (isHashTarget) {
       setIsFlashed(true);
       const timer = setTimeout(() => setIsFlashed(false), 2000);
       return () => clearTimeout(timer);
     }
-  }, [hash, section.section]);
+  }, [isHashTarget]);
 
-  // Also flash when isHighlighted prop is set (from search navigation)
   useEffect(() => {
     if (isHighlighted) {
       setIsFlashed(true);
@@ -785,7 +814,7 @@ function SectionView({
       return () => clearTimeout(timer);
     }
   }, [isHighlighted]);
-  
+
   const effectiveQuery = searchQuery || highlightTerm || '';
   const [copied, setCopied] = useState(false);
 
@@ -803,13 +832,13 @@ function SectionView({
   return (
     <div
       id={section.section}
-      className={`bg-card rounded-xl shadow-sm border border-border transition-colors duration-500 ${
+      className={`cv-section bg-card rounded-xl shadow-sm border border-border transition-colors duration-500 ${
         isFlashed ? 'ring-2 ring-primary bg-primary/5' : ''
       }`}
     >
       <div className="flex w-full min-w-0 items-center justify-between p-4 sm:p-6">
         <button
-          onClick={onToggle}
+          onClick={() => onToggleSection(section.section)}
           aria-expanded={isExpanded}
           aria-controls={`section-${section.section}-content`}
           aria-label={`${isExpanded ? 'Collapse' : 'Expand'} AIM ${section.section}`}
@@ -846,7 +875,7 @@ function SectionView({
               <Check className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" /> Copied
             </span>
           ) : (
-            <Link2 className="w-4 h-4" />
+            <svg className="sm-ico-only" aria-hidden="true"><use href="#sm-lk" /></svg>
           )}
         </button>
       </div>
@@ -864,17 +893,16 @@ function SectionView({
           {/* Direct section content (new format) */}
           {hasContent && section.content && (
             <div className="prose prose-slate dark:prose-invert max-w-none">
-              <FormattedContent 
-                text={section.content} 
-                className="text-muted-foreground"
+              <FormattedContent
+                text={section.content}
+                className="reader-content text-muted-foreground"
                 highlight={effectiveQuery}
                 stripTableBlocks={hasTables}
                 tableCaption={`AIM ${section.section}: ${section.title}`}
-                style={contentStyle}
               />
             </div>
           )}
-          
+
           {/* Figures/Images */}
           {hasFigures && (
             <ReferenceFigures
@@ -884,13 +912,13 @@ function SectionView({
               fallbackLabel={`AIM ${section.section} figure`}
             />
           )}
-          
+
           {/* Tables */}
           {hasTables && (
             <div className="space-y-4">
               {section.tables!.map((table, idx) => (
                 <div key={idx} className="overflow-x-auto rounded-lg border border-border">
-                  <table className="min-w-full divide-y divide-border" style={contentStyle}>
+                  <table className="reader-content min-w-full divide-y divide-border">
                     <caption className="caption-top px-3 py-2 text-left text-sm font-semibold text-foreground">
                       {table.caption?.trim() || `AIM ${section.section}: ${section.title}, table ${idx + 1}`}
                     </caption>
@@ -929,16 +957,16 @@ function SectionView({
             </div>
           )}
 
-                    {/* Subsections (old format compatibility) */}
-                {hasSubsections && section.subsections!.map((subsection) => (
-                  <SubsectionView
-                    key={subsection.subsection}
-                    subsection={subsection}
-                    searchQuery={searchQuery}
-                    highlightTerm={highlightTerm}
-                    contentStyle={contentStyle}
-                  />
-                ))}          
+          {/* Subsections (old format compatibility) */}
+          {hasSubsections && section.subsections!.map((subsection) => (
+            <SubsectionView
+              key={subsection.subsection}
+              subsection={subsection}
+              searchQuery={searchQuery}
+              highlightTerm={highlightTerm}
+            />
+          ))}
+
           {/* Empty state */}
           {!hasContent && !hasSubsections && !hasFigures && !hasTables && (
             <p className="text-sm text-muted-foreground italic">
@@ -949,44 +977,41 @@ function SectionView({
       )}
     </div>
   );
-}
+});
 
-function SubsectionView({
+const SubsectionView = memo(function SubsectionView({
   subsection,
   searchQuery,
   highlightTerm,
-  contentStyle,
 }: {
   subsection: AIMSubsection;
   searchQuery: string;
   highlightTerm?: string;
-  contentStyle: CSSProperties;
 }) {
   const effectiveQuery = searchQuery || highlightTerm || '';
-  return (
-    <div id={subsection.subsection} className="bg-muted/50 rounded-lg p-4">
-      <h3 className="font-semibold text-foreground mb-2">
-        <HighlightText text={subsection.subsection} query={effectiveQuery} />. <HighlightText text={subsection.title} query={effectiveQuery} />
-      </h3>
-      <FormattedContent 
-        text={subsection.content} 
-        className="text-muted-foreground mb-4"
-        highlight={effectiveQuery}
-        style={contentStyle}
-      />
 
-      {/* Key Points */}
+  return (
+    <div id={subsection.subsection} className="pl-4 border-l-2 border-emerald-200 dark:border-emerald-800 scroll-mt-24">
+      <h3 className="text-base font-semibold text-foreground mb-2">
+        <HighlightText text={subsection.subsection} query={effectiveQuery} /> {subsection.title && <HighlightText text={subsection.title} query={effectiveQuery} />}
+      </h3>
+      {subsection.content && (
+        <FormattedContent
+          text={subsection.content}
+          className="reader-content text-muted-foreground mb-3"
+          highlight={effectiveQuery}
+          tableCaption={subsection.title || `AIM ${subsection.subsection}`}
+        />
+      )}
+
       {subsection.keyPoints && subsection.keyPoints.length > 0 && (
-        <div className="mt-4">
+        <div className="mt-3">
           <h4 className="text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-2">
             Key Points
           </h4>
           <ul className="space-y-1">
-            {subsection.keyPoints.map((point: string, index: number) => (
-              <li
-                key={index}
-                className="flex items-start gap-2 text-sm text-muted-foreground"
-              >
+            {subsection.keyPoints.map((point, index) => (
+              <li key={index} className="flex items-start gap-2 text-sm text-muted-foreground">
                 <span className="w-1.5 h-1.5 bg-emerald-500 rounded-full mt-1.5 flex-shrink-0" />
                 {point}
               </li>
@@ -995,19 +1020,15 @@ function SubsectionView({
         </div>
       )}
 
-      {/* Additional structured content */}
-      {subsection.characteristics && Array.isArray(subsection.characteristics) && (
-        <div className="mt-4">
+      {subsection.characteristics && subsection.characteristics.length > 0 && (
+        <div className="mt-3">
           <h4 className="text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-2">
             Characteristics
           </h4>
           <ul className="space-y-1">
-            {(subsection.characteristics as string[]).map((char: string, index: number) => (
-              <li
-                key={index}
-                className="flex items-start gap-2 text-sm text-muted-foreground"
-              >
-                <span className="w-1.5 h-1.5 bg-blue-500 rounded-full mt-1.5 flex-shrink-0" />
+            {subsection.characteristics.map((char, index) => (
+              <li key={index} className="flex items-start gap-2 text-sm text-muted-foreground">
+                <span className="w-1.5 h-1.5 bg-sky-500 rounded-full mt-1.5 flex-shrink-0" />
                 {char}
               </li>
             ))}
@@ -1016,4 +1037,4 @@ function SubsectionView({
       )}
     </div>
   );
-}
+});

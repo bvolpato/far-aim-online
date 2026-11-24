@@ -96,10 +96,16 @@ export function useReaderPreferences() {
     lineHeight,
   }), [fontScale, lineHeight]);
 
+  const cssVars = useMemo<CSSProperties>(() => ({
+    '--reader-font-size': `${0.95 * fontScale}rem`,
+    '--reader-line-height': String(lineHeight),
+  } as CSSProperties), [fontScale, lineHeight]);
+
   return {
     preferences,
     fontScale,
     contentStyle,
+    cssVars,
     decreaseFont,
     increaseFont,
     setDensity,

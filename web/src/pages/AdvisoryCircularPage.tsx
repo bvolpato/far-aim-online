@@ -1,19 +1,34 @@
-import { useEffect, useMemo, useState } from 'react';
+import { memo, useDeferredValue, useEffect, useMemo, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link, useParams, useSearchParams } from 'react-router-dom';
 import { ArrowLeft, ExternalLink, FileDown, FileSearch, Loader2, Search } from 'lucide-react';
-import {
-  getAdvisoryCircularContent,
-  getAdvisoryCirculars,
-  type AdvisoryCircular,
-  type AdvisoryCircularContent,
-} from '../data';
+import { getAdvisoryCircularContent, getAdvisoryCirculars } from '../data/ac';
+import type { AdvisoryCircular, AdvisoryCircularContent, AdvisoryCircularPage as ACPage } from '../data/types';
 import { Breadcrumbs } from '../components/Breadcrumbs';
 import { FormattedContent } from '../components/FormattedContent';
 import { StudyMarkTools } from '../components/StudyMarkTools';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+
+const ACPageSection = memo(function ACPageSection({
+  page,
+  highlight,
+}: {
+  page: ACPage;
+  highlight: string;
+}) {
+  return (
+    <section id={`page-${page.page}`} className="cv-page scroll-mt-36 py-8">
+      <div className="mb-4 text-xs font-semibold uppercase text-muted-foreground">Page {page.page}</div>
+      <FormattedContent
+        text={page.text}
+        highlight={highlight}
+        className="text-[1rem] leading-7 text-foreground/90"
+      />
+    </section>
+  );
+});
 
 export function AdvisoryCircularPage() {
   const { acId } = useParams();
@@ -22,6 +37,7 @@ export function AdvisoryCircularPage() {
   const [content, setContent] = useState<AdvisoryCircularContent>();
   const [loading, setLoading] = useState(true);
   const [query, setQuery] = useState(searchParams.get('highlight') || '');
+  const deferredQuery = useDeferredValue(query);
 
   useEffect(() => {
     let active = true;
@@ -46,15 +62,18 @@ export function AdvisoryCircularPage() {
 
   const matchingPages = useMemo(() => {
     if (!content) return [];
-    const normalizedQuery = query.trim().toLowerCase();
+    const normalizedQuery = deferredQuery.trim().toLowerCase();
     if (!normalizedQuery) return content.pages;
     return content.pages.filter((page) => page.text.toLowerCase().includes(normalizedQuery));
-  }, [content, query]);
+  }, [content, deferredQuery]);
 
   useEffect(() => {
-    if (!query || matchingPages.length === 0) return;
-    document.getElementById(`page-${matchingPages[0].page}`)?.scrollIntoView({ behavior: 'smooth' });
-  }, [matchingPages, query]);
+    if (!deferredQuery.trim() || matchingPages.length === 0) return;
+    const timer = window.setTimeout(() => {
+      document.getElementById(`page-${matchingPages[0].page}`)?.scrollIntoView({ behavior: 'smooth' });
+    }, 150);
+    return () => window.clearTimeout(timer);
+  }, [matchingPages, deferredQuery]);
 
   if (loading) {
     return (
@@ -166,7 +185,7 @@ export function AdvisoryCircularPage() {
             />
           </div>
           <span className="text-sm text-muted-foreground">
-            {query
+            {deferredQuery
               ? `${matchingPages.length} matching pages`
               : content.status === 'partial'
                 ? `${content.extractedPageCount ?? content.pages.length} of ${content.pageCount} pages extracted · ${content.wordCount.toLocaleString()} words`
@@ -182,18 +201,11 @@ export function AdvisoryCircularPage() {
       )}
 
       {matchingPages.length === 0 ? (
-        <p className="py-16 text-center text-muted-foreground">No pages match “{query}”.</p>
+        <p className="py-16 text-center text-muted-foreground">No pages match “{deferredQuery}”.</p>
       ) : (
         <article className="divide-y">
           {matchingPages.map((page) => (
-            <section key={page.page} id={`page-${page.page}`} className="scroll-mt-36 py-8">
-              <div className="mb-4 text-xs font-semibold uppercase text-muted-foreground">Page {page.page}</div>
-              <FormattedContent
-                text={page.text}
-                highlight={query}
-                className="text-[1rem] leading-7 text-foreground/90"
-              />
-            </section>
+            <ACPageSection key={page.page} page={page} highlight={deferredQuery} />
           ))}
         </article>
       )}

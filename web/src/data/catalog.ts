@@ -1,17 +1,16 @@
 import farIndexData from '../../../data/far/index.json';
 import farPilotIndexData from '../../../data/far/pilot-index.json';
 import studyPathsData from '../../../data/study-paths.json';
-import sourceStatusData from '../../../data/source-status.json';
 import aimIndexData from '../../../data/aim/index.json';
 import studyMetadataData from './studyMetadata.generated.json';
+import { getSourceStatus } from './sourceStatus';
 import type {
   AIMChapterMeta,
   FARPartMeta,
   FlashcardDeckMeta,
   QuizMeta,
-  SourceStatus,
   StudyPath,
-} from './index';
+} from './types';
 
 export type {
   AIMChapterMeta,
@@ -19,7 +18,9 @@ export type {
   FlashcardDeckMeta,
   QuizMeta,
   StudyPathReference,
-} from './index';
+} from './types';
+
+export { getSourceStatus };
 
 export const farIndex = farIndexData;
 export const farPilotIndex = farPilotIndexData;
@@ -30,6 +31,56 @@ const flashcardMetadata = studyMetadataData.flashcardDecks as FlashcardDeckMeta[
 const quizMetadataById = new Map(quizMetadata.map((quiz) => [quiz.id, quiz]));
 const flashcardMetadataById = new Map(flashcardMetadata.map((deck) => [deck.id, deck]));
 
+const sortedFarParts: FARPartMeta[] = [...((farIndex.parts || []) as FARPartMeta[])]
+  .sort((a, b) => a.part - b.part);
+const farPartByNumber = new Map(sortedFarParts.map((part) => [part.part, part]));
+const pilotPartNumbersSet = new Set(
+  sortedFarParts.filter((part) => part.isPilotIndex).map((part) => part.part),
+);
+const pilotFarParts: FARPartMeta[] = sortedFarParts.filter((part) => part.isPilotIndex);
+
+const sortedAimChapters: AIMChapterMeta[] = [...((aimIndex.chapters || []) as AIMChapterMeta[])]
+  .sort((a, b) => a.chapter - b.chapter);
+
+const filteredStudyPaths: StudyPath[] = ((studyPathsData as { paths?: StudyPath[] }).paths || [])
+  .filter((path) => path.references.length > 0);
+
+const quizzesByCategory = {
+  misc: quizMetadata.filter((quiz) => quiz.category === 'Miscellaneous')
+    .sort((a, b) => a.title.localeCompare(b.title)),
+  aim: quizMetadata.filter((quiz) => quiz.category === 'AIM')
+    .sort((a, b) => (a.chapter || 0) - (b.chapter || 0)),
+  far: quizMetadata.filter((quiz) => quiz.category === 'FAR')
+    .sort((a, b) => a.title.localeCompare(b.title)),
+};
+
+const flashcardDecksByCategory = {
+  aim: flashcardMetadata.filter((deck) => deck.category === 'AIM')
+    .sort((a, b) => (a.chapter || 0) - (b.chapter || 0)),
+  far: flashcardMetadata.filter((deck) => deck.category === 'FAR')
+    .sort((a, b) => a.title.localeCompare(b.title)),
+};
+
+const quizByAimChapter = new Map<number, QuizMeta>();
+const quizByFarPart = new Map<number, QuizMeta>();
+for (const quiz of quizMetadata) {
+  if (quiz.category === 'AIM' && quiz.chapter !== undefined && !quizByAimChapter.has(quiz.chapter)) {
+    quizByAimChapter.set(quiz.chapter, quiz);
+  } else if (quiz.category === 'FAR' && quiz.part !== undefined && !quizByFarPart.has(quiz.part)) {
+    quizByFarPart.set(quiz.part, quiz);
+  }
+}
+
+const flashcardByAimChapter = new Map<number, FlashcardDeckMeta>();
+const flashcardByFarPart = new Map<number, FlashcardDeckMeta>();
+for (const deck of flashcardMetadata) {
+  if (deck.category === 'AIM' && deck.chapter !== undefined && !flashcardByAimChapter.has(deck.chapter)) {
+    flashcardByAimChapter.set(deck.chapter, deck);
+  } else if (deck.category === 'FAR' && deck.part !== undefined && !flashcardByFarPart.has(deck.part)) {
+    flashcardByFarPart.set(deck.part, deck);
+  }
+}
+
 export const quizzes: Record<string, QuizMeta> = Object.fromEntries(
   quizMetadata.map((quiz) => [quiz.id, quiz]),
 );
@@ -38,30 +89,35 @@ export const flashcardDecks: Record<string, FlashcardDeckMeta> = Object.fromEntr
 );
 
 export function getAllFARParts(): FARPartMeta[] {
-  const parts = (farIndex.parts || []) as FARPartMeta[];
-  return [...parts].sort((a, b) => a.part - b.part);
+  return sortedFarParts;
+}
+
+export function getPilotFARParts(): FARPartMeta[] {
+  return pilotFarParts;
+}
+
+export function getPilotFARPartNumbers(): ReadonlySet<number> {
+  return pilotPartNumbersSet;
+}
+
+export function getFARPartMeta(partNumber: number): FARPartMeta | undefined {
+  return farPartByNumber.get(partNumber);
 }
 
 export function getAllAIMChapters(): AIMChapterMeta[] {
-  const chapters = (aimIndex.chapters || []) as AIMChapterMeta[];
-  return [...chapters].sort((a, b) => a.chapter - b.chapter);
+  return sortedAimChapters;
 }
 
 export function getAllQuizzes(): QuizMeta[] {
-  return quizMetadata.slice();
+  return quizMetadata;
 }
 
 export function getAllFlashcardDecks(): FlashcardDeckMeta[] {
-  return flashcardMetadata.slice();
+  return flashcardMetadata;
 }
 
 export function getStudyPaths(): StudyPath[] {
-  return ((studyPathsData as { paths?: StudyPath[] }).paths || [])
-    .filter((path) => path.references.length > 0);
-}
-
-export function getSourceStatus(): SourceStatus {
-  return sourceStatusData as SourceStatus;
+  return filteredStudyPaths;
 }
 
 export function getQuizMetadata(quizId: string): QuizMeta | undefined {
@@ -73,41 +129,27 @@ export function getFlashcardDeckMetadata(deckId: string): FlashcardDeckMeta | un
 }
 
 export function getQuizzesByCategory(): { misc: QuizMeta[]; aim: QuizMeta[]; far: QuizMeta[] } {
-  const all = getAllQuizzes();
-  return {
-    misc: all.filter((quiz) => quiz.category === 'Miscellaneous')
-      .sort((a, b) => a.title.localeCompare(b.title)),
-    aim: all.filter((quiz) => quiz.category === 'AIM')
-      .sort((a, b) => (a.chapter || 0) - (b.chapter || 0)),
-    far: all.filter((quiz) => quiz.category === 'FAR')
-      .sort((a, b) => a.title.localeCompare(b.title)),
-  };
+  return quizzesByCategory;
 }
 
 export function getFlashcardDecksByCategory(): { aim: FlashcardDeckMeta[]; far: FlashcardDeckMeta[] } {
-  const all = getAllFlashcardDecks();
-  return {
-    aim: all.filter((deck) => deck.category === 'AIM')
-      .sort((a, b) => (a.chapter || 0) - (b.chapter || 0)),
-    far: all.filter((deck) => deck.category === 'FAR')
-      .sort((a, b) => a.title.localeCompare(b.title)),
-  };
+  return flashcardDecksByCategory;
 }
 
 export function getQuizForAIMChapter(chapterNumber: number): QuizMeta | undefined {
-  return getAllQuizzes().find((quiz) => quiz.category === 'AIM' && quiz.chapter === chapterNumber);
+  return quizByAimChapter.get(chapterNumber);
 }
 
 export function getFlashcardsForAIMChapter(chapterNumber: number): FlashcardDeckMeta | undefined {
-  return getAllFlashcardDecks().find((deck) => deck.category === 'AIM' && deck.chapter === chapterNumber);
+  return flashcardByAimChapter.get(chapterNumber);
 }
 
 export function getQuizForFARPart(partNumber: number): QuizMeta | undefined {
-  return getAllQuizzes().find((quiz) => quiz.category === 'FAR' && quiz.part === partNumber);
+  return quizByFarPart.get(partNumber);
 }
 
 export function getFlashcardsForFARPart(partNumber: number): FlashcardDeckMeta | undefined {
-  return getAllFlashcardDecks().find((deck) => deck.category === 'FAR' && deck.part === partNumber);
+  return flashcardByFarPart.get(partNumber);
 }
 
 export function getFARPartsList(): { part: number; title: string; sectionCount?: number; isPilotIndex?: boolean }[] {

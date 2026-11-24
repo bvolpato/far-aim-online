@@ -14,7 +14,8 @@ import {
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { getSourceStatus, type SourceChangeWatch, type SourceStatusItem } from '../data';
+import { getSourceStatus } from '../data/sourceStatus';
+import type { SourceChangeWatch, SourceStatusItem } from '../data/types';
 
 function sourceAccent(source: SourceStatusItem) {
   switch (source.id) {

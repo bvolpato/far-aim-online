@@ -9,14 +9,6 @@
   src: url('@fontsource-variable/inter/files/inter-latin-wght-normal.woff2') format('woff2');
 }
 
-@font-face {
-  font-family: 'JetBrains Mono';
-  font-style: normal;
-  font-weight: 100 800;
-  font-display: optional;
-  src: url('@fontsource-variable/jetbrains-mono/files/jetbrains-mono-latin-wght-normal.woff2') format('woff2');
-}
-
 @layer base {
   :root {
     --background: 210 40% 98%;
@@ -233,37 +225,92 @@
   animation: scaleIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
 }
 
-/* Bounce animation override for results */
-@keyframes bounceSubtle {
-
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-
-  50% {
-    transform: translateY(-10px);
-  }
+/* Compact study-mark toolbar buttons (keeps prerendered HTML lean across hundreds of sections) */
+.sm-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  height: 2.25rem;
+  border-radius: calc(var(--radius) - 2px);
+  padding: 0 0.75rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: color 0.15s ease, background-color 0.15s ease;
+  cursor: pointer;
+}
+.sm-btn:focus-visible {
+  outline: 2px solid hsl(var(--ring));
+  outline-offset: 2px;
+}
+.sm-btn-c {
+  height: 2rem;
+}
+.sm-btn-p {
+  background: hsl(var(--primary));
+  color: hsl(var(--primary-foreground));
+  border: 1px solid transparent;
+}
+.sm-btn-p:hover {
+  background: hsl(var(--primary) / 0.9);
+}
+.sm-btn-s {
+  background: hsl(var(--secondary));
+  color: hsl(var(--secondary-foreground));
+  border: 1px solid transparent;
+}
+.sm-btn-s:hover {
+  background: hsl(var(--secondary) / 0.8);
+}
+.sm-btn-o {
+  background: hsl(var(--background));
+  color: hsl(var(--foreground));
+  border: 1px solid hsl(var(--input));
+}
+.sm-btn-o:hover {
+  background: hsl(var(--accent));
+  color: hsl(var(--accent-foreground));
+}
+.sm-btn-g {
+  background: transparent;
+  color: hsl(var(--foreground));
+  border: 1px solid transparent;
+  padding: 0 0.5rem;
+}
+.sm-btn-g:hover {
+  background: hsl(var(--accent));
+  color: hsl(var(--accent-foreground));
+}
+.sm-ico {
+  width: 1rem;
+  height: 1rem;
+  margin-right: 0.5rem;
+  flex-shrink: 0;
+}
+.sm-ico-only {
+  width: 1rem;
+  height: 1rem;
+  flex-shrink: 0;
 }
 
-/* Celebration shimmer effect */
-@keyframes shimmer {
-  0% {
-    background-position: -200% 0;
-  }
-
-  100% {
-    background-position: 200% 0;
-  }
+/* Reader typography driven by CSS custom properties to avoid re-rendering hundreds of sections */
+.reader-content {
+  font-size: var(--reader-font-size, 0.95rem);
+  line-height: var(--reader-line-height, 1.65);
 }
 
-.animate-shimmer {
-  background: linear-gradient(90deg,
-      transparent 0%,
-      hsl(var(--primary-foreground) / 0.2) 50%,
-      transparent 100%);
-  background-size: 200% 100%;
-  animation: shimmer 2s infinite;
+/* Defer layout and paint for off-screen cards/sections while keeping DOM anchors and Ctrl+F intact */
+.cv-section {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 280px;
+}
+.cv-card {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 180px;
+}
+.cv-page {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 600px;
 }
 
 /* Consistent tab-switcher component */

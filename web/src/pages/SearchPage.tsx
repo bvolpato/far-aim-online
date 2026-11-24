@@ -2,7 +2,7 @@ import { useState, useMemo, useEffect, useRef } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { Search, FileText, BookOpen, Layers, X, Star, Filter as FilterIcon, Book, Loader2, ClipboardList } from 'lucide-react';
-import { farIndex } from '../data/catalog';
+import farPilotIndexData from '../../../data/far/pilot-index.json';
 import { searchContent, type SearchResult } from '../data/search';
 import { Input } from '../components/ui/input';
 import { Button } from '../components/ui/button';
@@ -19,9 +19,7 @@ interface SearchFilters {
 }
 
 const PILOT_PART_NUMBERS = new Set(
-  (farIndex as { parts?: { part: number; isPilotIndex?: boolean }[] }).parts
-    ?.filter(part => part.isPilotIndex)
-    .map(part => part.part) || [],
+  (farPilotIndexData as { parts?: { part: number }[] }).parts?.map(part => part.part) || [],
 );
 
 function withHighlightParam(link: string, query: string) {
@@ -129,10 +127,16 @@ export function SearchPage() {
       onProgress: (results, total) => {
         if (cancelled) return;
         setAvailableCount(total);
-        setRawResults(previous => results.map(result => ({
-          ...result,
-          content: result.content || previous.find(item => item.link === result.link && item.title === result.title)?.content || '',
-        })));
+        setRawResults(previous => {
+          const prevContent = new Map<string, string>();
+          for (const item of previous) {
+            if (item.content) prevContent.set(`${item.link}\0${item.title}`, item.content);
+          }
+          return results.map(result => ({
+            ...result,
+            content: result.content || prevContent.get(`${result.link}\0${result.title}`) || '',
+          }));
+        });
       },
     })
       .then((results) => {

@@ -106,6 +106,7 @@ export function ReferenceFigures({
                   alt={figure.alt?.trim() || label}
                   className="max-h-[70vh] w-full object-contain"
                   loading="lazy"
+                  decoding="async"
                   onError={() => {
                     setFailedImages((current) => new Set(current).add(figure.src));
                   }}

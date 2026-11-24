@@ -1,5 +1,5 @@
 import { createContext, useContext } from 'react';
-import type { AIMChapter, FARPart, FlashcardDeck } from '../data';
+import type { AIMChapter, FARPart, FlashcardDeck } from '../data/types';
 
 export interface RouteData {
   farPart?: FARPart;
@@ -16,17 +16,17 @@ export function useRouteData() {
 export async function loadRouteData(pathname: string): Promise<RouteData> {
   const far = pathname.match(/^\/far\/(\d+)\/?$/);
   if (far) {
-    const { getFARPart } = await import('../data');
+    const { getFARPart } = await import('../data/far');
     return { farPart: await getFARPart(Number(far[1])) };
   }
   const aim = pathname.match(/^\/aim\/(\d+)\/?$/);
   if (aim) {
-    const { getAIMChapter } = await import('../data');
+    const { getAIMChapter } = await import('../data/aim');
     return { aimChapter: await getAIMChapter(Number(aim[1])) };
   }
   const flashcardDeck = pathname.match(/^\/flashcards\/([a-z0-9-]+)\/?$/);
   if (flashcardDeck) {
-    const { getFlashcardDeck } = await import('../data');
+    const { getFlashcardDeck } = await import('../data/study');
     return { flashcardDeck: await getFlashcardDeck(flashcardDeck[1]) };
   }
   return {};

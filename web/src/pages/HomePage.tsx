@@ -1,4 +1,4 @@
-import { useState, type FormEvent } from 'react';
+import { type FormEvent } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import {
   ArrowRight,
@@ -20,44 +20,37 @@ import { Helmet } from 'react-helmet-async';
 import { useReadingHistory } from '../hooks/useReadingHistory';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import {
-  getAllFARParts,
-  getAllAIMChapters,
-  getAllQuizzes,
-  getAllFlashcardDecks,
-  getStudyPaths,
-  getSourceStatus,
-} from '../data/catalog';
+import { getSourceStatus } from '../data/sourceStatus';
 import { androidRelease, iosAppUrl } from '@/lib/mobileApps';
+
+const HOME_SOURCES = getSourceStatus().sources;
+const HOME_SOURCE_BY_ID = Object.fromEntries(HOME_SOURCES.map((source) => [source.id, source]));
+const HOME_FAR_COUNT = HOME_SOURCE_BY_ID.far?.itemCount ?? 0;
+const HOME_AIM_CORE_CHAPTERS = Math.max(0, (HOME_SOURCE_BY_ID.aim?.itemCount ?? 1) - 1);
+const HOME_STUDY_PATH_COUNT = HOME_SOURCE_BY_ID.study?.itemCount ?? 0;
+const HOME_TOTAL_QUESTIONS = HOME_SOURCE_BY_ID.study?.questionCount ?? 0;
+const HOME_TOTAL_CARDS = HOME_SOURCE_BY_ID.study?.cardCount ?? 0;
 
 export function HomePage() {
   const navigate = useNavigate();
-  const [query, setQuery] = useState('');
   const { history } = useReadingHistory();
   const recentItems = history.slice(0, 3);
-  const farParts = getAllFARParts();
-  const aimChapters = getAllAIMChapters().filter((chapter) => chapter.chapter > 0);
-  const quizzes = getAllQuizzes();
-  const flashcardDecks = getAllFlashcardDecks();
-  const studyPaths = getStudyPaths();
-  const sources = getSourceStatus().sources;
-  const sourceById = Object.fromEntries(sources.map((source) => [source.id, source]));
-  const totalQuestions = quizzes.reduce((sum, quiz) => sum + quiz.questionCount, 0);
-  const totalCards = flashcardDecks.reduce((sum, deck) => sum + deck.cardCount, 0);
+  const sources = HOME_SOURCES;
+  const sourceById = HOME_SOURCE_BY_ID;
 
   const references = [
     {
       to: '/far',
       title: 'Federal Aviation Regulations',
       description: 'The rules, from certification to flight operations.',
-      detail: `${farParts.length} parts`,
+      detail: `${HOME_FAR_COUNT} parts`,
       icon: FileText,
     },
     {
       to: '/aim',
       title: 'Aeronautical Information Manual',
       description: 'Procedures, airspace, navigation, and figures.',
-      detail: `${aimChapters.length} chapters + appendices`,
+      detail: `${HOME_AIM_CORE_CHAPTERS} chapters + appendices`,
       icon: BookOpen,
     },
     {
@@ -78,7 +71,8 @@ export function HomePage() {
 
   function handleSearch(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    const trimmedQuery = query.trim();
+    const formData = new FormData(event.currentTarget);
+    const trimmedQuery = String(formData.get('q') ?? '').trim();
     if (trimmedQuery) navigate(`/search?q=${encodeURIComponent(trimmedQuery)}`);
   }
 
@@ -131,8 +125,7 @@ export function HomePage() {
                     id="home-search"
                     name="q"
                     type="search"
-                    value={query}
-                    onChange={(event) => setQuery(event.target.value)}
+                    defaultValue=""
                     placeholder="A topic, term, or regulation…"
                     className="min-w-0 flex-1 bg-transparent py-2 text-base outline-none placeholder:text-slate-500"
                   />
@@ -321,7 +314,7 @@ export function HomePage() {
                 <GraduationCap className="mb-4 h-7 w-7 text-primary" aria-hidden="true" />
                 <h3 className="text-lg font-semibold">Study for your next certificate</h3>
                 <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                  Follow one of {studyPaths.length} study paths, save references, and keep your
+                  Follow one of {HOME_STUDY_PATH_COUNT} study paths, save references, and keep your
                   notes together.
                 </p>
                 <Button asChild className="mt-5 gap-2">
@@ -335,13 +328,13 @@ export function HomePage() {
                   {
                     to: '/quizzes',
                     title: 'Practice Quizzes',
-                    detail: `${totalQuestions} questions`,
+                    detail: `${HOME_TOTAL_QUESTIONS} questions`,
                     icon: Brain,
                   },
                   {
                     to: '/flashcards',
                     title: 'Flashcards',
-                    detail: `${totalCards} cards`,
+                    detail: `${HOME_TOTAL_CARDS} cards`,
                     icon: Layers,
                   },
                 ].map((item) => (

@@ -42,19 +42,6 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-        // Aviation-specific palette
-        'aviation-blue': {
-          50: '#e6f3ff',
-          100: '#b3dcff',
-          200: '#80c5ff',
-          300: '#4daeff',
-          400: '#1a97ff',
-          500: '#0080ff',
-          600: '#0066cc',
-          700: '#004d99',
-          800: '#003366',
-          900: '#001a33',
-        },
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -63,23 +50,9 @@ export default {
       },
       fontFamily: {
         sans: ['Inter', 'system-ui', 'Avenir', 'Helvetica', 'Arial', 'sans-serif'],
-        mono: ['JetBrains Mono', 'Fira Code', 'Monaco', 'Consolas', 'monospace'],
-      },
-      keyframes: {
-        "accordion-down": {
-          from: { height: "0" },
-          to: { height: "var(--radix-accordion-content-height)" },
-        },
-        "accordion-up": {
-          from: { height: "var(--radix-accordion-content-height)" },
-          to: { height: "0" },
-        },
-      },
-      animation: {
-        "accordion-down": "accordion-down 0.2s ease-out",
-        "accordion-up": "accordion-up 0.2s ease-out",
+        mono: ['ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', 'monospace'],
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [],
 };

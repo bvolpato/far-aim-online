@@ -1,8 +1,16 @@
 import { useParams, Link, useLocation, useSearchParams } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
-import { ChevronRight, ChevronLeft, BookOpen, ExternalLink, Filter, Star, Search, Brain, Layers, History, Loader2, FileText, List, Link2, Check } from 'lucide-react';
-import { useMemo, useState, useEffect, type CSSProperties } from 'react';
-import { getAllFARParts, getFARPart, FARAppendix, FARPart, FARPartMeta, FARSection, farIndex, getAllQuizzes, getAllFlashcardDecks } from '../data';
+import { ChevronRight, ChevronLeft, BookOpen, ExternalLink, Filter, Star, Search, Brain, Layers, History, Loader2, FileText, List, Check } from 'lucide-react';
+import { memo, useDeferredValue, useMemo, useState, useEffect } from 'react';
+import { getFARPart } from '../data/far';
+import {
+  getAllFARParts,
+  getPilotFARParts,
+  getPilotFARPartNumbers,
+  getQuizForFARPart,
+  getFlashcardsForFARPart,
+} from '../data/catalog';
+import type { FARAppendix, FARPart, FARPartMeta, FARSection } from '../data/types';
 import type { SearchResult } from '../data/search';
 import { HighlightText } from '../components/HighlightText';
 import { FormattedContent } from '../components/FormattedContent';
@@ -11,9 +19,10 @@ import { Breadcrumbs } from '../components/Breadcrumbs';
 import { StudyMarkTools } from '../components/StudyMarkTools';
 import { ReaderControls } from '../components/ReaderControls';
 import { useReaderPreferences } from '../hooks/useReaderPreferences';
+import { useActiveSectionId } from '../hooks/useActiveSectionId';
 import { ReferenceFigures } from '../components/ReferenceFigures';
 import { useRouteData } from '../context/route-data';
-import { MobileTableOfContents } from '../components/MobileTableOfContents';
+import { MobileTableOfContents, type TocItem } from '../components/MobileTableOfContents';
 
 type IndexFilter = 'all' | 'pilot';
 
@@ -60,6 +69,8 @@ export function FARPage() {
   }, []);
 
   const allParts = getAllFARParts();
+  const pilotParts = getPilotFARParts();
+  const pilotPartNumbers = getPilotFARPartNumbers();
   const [selectedPart, setSelectedPart] = useState<FARPart | null>(initialPart ?? null);
   const [loading, setLoading] = useState(Boolean(partId && !initialPart));
   const [loadError, setLoadError] = useState<'not-found' | 'load-failed' | null>(null);
@@ -121,13 +132,17 @@ export function FARPage() {
     }
 
     let cancelled = false;
+    const controller = new AbortController();
     const timer = setTimeout(async () => {
       setIsSearching(true);
       try {
-        const results = await (await import('../data/search')).searchContent(filterQuery, ['far']);
+        const scope = indexFilter === 'pilot' ? pilotPartNumbers : undefined;
+        const results = await (await import('../data/search')).searchContent(filterQuery, ['far'], scope, {
+          signal: controller.signal,
+        });
         if (!cancelled) setContentSearchResults(results);
       } catch (error) {
-        if (!cancelled) {
+        if (!cancelled && !(error instanceof DOMException && error.name === 'AbortError')) {
           console.error('Search error:', error);
           setContentSearchResults([]);
         }
@@ -138,20 +153,13 @@ export function FARPage() {
 
     return () => {
       cancelled = true;
+      controller.abort();
       clearTimeout(timer);
     };
-  }, [filterQuery]);
+  }, [filterQuery, indexFilter, pilotPartNumbers]);
 
   // Filter parts based on selected index
-  const indexFilteredParts = useMemo(() => {
-    if (indexFilter === 'pilot') {
-      const pilotParts = (farIndex as { parts?: { part: number; isPilotIndex?: boolean }[] }).parts
-        ?.filter(p => p.isPilotIndex)
-        .map(p => p.part) || [];
-      return allParts.filter(p => pilotParts.includes(p.part));
-    }
-    return allParts;
-  }, [allParts, indexFilter]);
+  const indexFilteredParts = indexFilter === 'pilot' ? pilotParts : allParts;
 
   // Compute part matches with priority: title > content
   const partMatches = useMemo((): PartSearchMatch[] => {
@@ -160,19 +168,26 @@ export function FARPage() {
     }
 
     const query = filterQuery.toLowerCase();
-    const results: PartSearchMatch[] = [];
+    const matchesByPart = new Map<number, SearchResult[]>();
+    for (const r of contentSearchResults) {
+      const match = r.link.match(/\/far\/(\d+)/);
+      if (!match) continue;
+      const num = parseInt(match[1], 10);
+      let bucket = matchesByPart.get(num);
+      if (!bucket) {
+        bucket = [];
+        matchesByPart.set(num, bucket);
+      }
+      bucket.push(r);
+    }
 
+    const results: PartSearchMatch[] = [];
     for (const part of indexFilteredParts) {
       const titleMatch =
         part.part.toString().includes(query) ||
         part.title?.toLowerCase().includes(query);
 
-      // Filter content search results to this part
-      const contentMatches = contentSearchResults.filter(r => {
-        // Link format: /far/X?highlight=... or /far/X#section
-        const match = r.link.match(/\/far\/(\d+)/);
-        return match && parseInt(match[1]) === part.part;
-      });
+      const contentMatches = matchesByPart.get(part.part) || [];
 
       if (titleMatch || contentMatches.length > 0) {
         results.push({ part, titleMatch, contentMatches });
@@ -198,7 +213,7 @@ export function FARPage() {
 
   // Use the full sequence for deep-linked parts outside the selected pilot index.
   const useAllIndexNavigation = indexFilter === 'all' ||
-    Boolean(selectedPart && !indexFilteredParts.some(p => p.part === selectedPart.part));
+    Boolean(selectedPart && !pilotPartNumbers.has(selectedPart.part));
   const navigationParts = useAllIndexNavigation ? allParts : indexFilteredParts;
 
   // Find previous and next parts for navigation within the active sequence.
@@ -251,7 +266,7 @@ export function FARPage() {
     );
   }
 
-  const pilotCount = (farIndex as { parts?: { isPilotIndex?: boolean }[] }).parts?.filter(p => p.isPilotIndex).length || 0;
+  const pilotCount = pilotParts.length;
   const totalCount = allParts.length;
 
   return (
@@ -353,10 +368,7 @@ export function FARPage() {
       <div className="grid gap-4">
         {partMatches.map(({ part, titleMatch, contentMatches }) => {
           const sectionCount = part.sectionCount || 0;
-
-          // Check if part is in pilot index
-          const isPilotPart = (farIndex as { parts?: { part: number; isPilotIndex?: boolean }[] }).parts
-            ?.find(p => p.part === part.part)?.isPilotIndex;
+          const isPilotPart = pilotPartNumbers.has(part.part);
 
           return (
             <div key={part.part} className="space-y-2">
@@ -456,6 +468,87 @@ export function FARPage() {
   );
 }
 
+const FARDesktopToc = memo(function FARDesktopToc({
+  allSections,
+  appendices,
+  observedIds,
+}: {
+  allSections: FARSection[];
+  appendices: FARAppendix[];
+  observedIds: string[];
+}) {
+  const activeSectionId = useActiveSectionId(observedIds);
+
+  return (
+    <aside className="sticky top-20 max-h-[calc(100vh-7rem)] overflow-y-auto bg-card rounded-2xl p-5 border border-border shadow-sm hidden lg:block">
+      <h2 className="text-base font-bold text-foreground mb-4 flex items-center gap-2 border-b pb-2">
+        <List className="w-4 h-4 text-primary" />
+        References ({allSections.length + appendices.length})
+      </h2>
+      <nav className="space-y-1.5">
+        {allSections.map((section) => {
+          const isActive = activeSectionId === section.section;
+          return (
+            <a
+              key={section.section}
+              href={`#${section.section}`}
+              className={`block text-xs px-2.5 py-2 rounded-lg transition-colors truncate ${
+                isActive
+                  ? 'bg-primary/10 text-primary font-semibold border-l-2 border-primary'
+                  : 'text-muted-foreground hover:text-primary hover:bg-accent/50'
+              }`}
+              title={`§ ${section.section} - ${section.title}`}
+            >
+              <span className="font-semibold text-foreground/80 mr-1">§ {section.section}</span>
+              {section.title}
+            </a>
+          );
+        })}
+        {appendices.length > 0 && (
+          <p className="px-2.5 pt-3 text-xs font-semibold uppercase text-muted-foreground">Appendices</p>
+        )}
+        {appendices.map((appendix) => {
+          const isActive = activeSectionId === appendix.appendix;
+          return (
+            <a
+              key={appendix.appendix}
+              href={`#${encodeURIComponent(appendix.appendix)}`}
+              className={`block truncate rounded-lg px-2.5 py-2 text-xs transition-colors hover:text-primary ${
+                isActive
+                  ? 'bg-primary/10 text-primary font-semibold border-l-2 border-primary'
+                  : 'text-muted-foreground hover:bg-accent/50'
+              }`}
+              title={appendix.title}
+            >
+              {appendix.title}
+            </a>
+          );
+        })}
+      </nav>
+    </aside>
+  );
+});
+
+const FARMobileToc = memo(function FARMobileToc({
+  partNumber,
+  tocItems,
+  observedIds,
+}: {
+  partNumber: number;
+  tocItems: TocItem[];
+  observedIds: string[];
+}) {
+  const activeSectionId = useActiveSectionId(observedIds);
+
+  return (
+    <MobileTableOfContents
+      title={`Part ${partNumber} Contents`}
+      items={tocItems}
+      activeId={activeSectionId}
+    />
+  );
+});
+
 function FARPartView({
   part,
   prevPart,
@@ -469,15 +562,17 @@ function FARPartView({
 }) {
   const [searchParams] = useSearchParams();
   const [searchQuery, setSearchQuery] = useState('');
+  const deferredSearchQuery = useDeferredValue(searchQuery);
   const highlightTerm = searchParams.get('highlight') || '';
   const [highlightedSectionId, setHighlightedSectionId] = useState<string | null>(null);
   const location = useLocation();
+  const activeHashId = decodeHash(location.hash);
   const readerControls = useReaderPreferences();
 
   const { addToHistory } = useReadingHistory();
 
-  const farQuizzes = getAllQuizzes().filter(q => q.category === 'FAR' && q.part === part.part);
-  const farFlashcards = getAllFlashcardDecks().filter(d => d.category === 'FAR' && d.part === part.part);
+  const farQuiz = getQuizForFARPart(part.part);
+  const farFlashcards = getFlashcardsForFARPart(part.part);
 
   // Save reading history when part is viewed
   useEffect(() => {
@@ -495,7 +590,10 @@ function FARPartView({
   ], [part.sections, part.subparts]);
   const appendices = useMemo<FARAppendix[]>(() => part.appendices || [], [part.appendices]);
 
-  const [activeSectionId, setActiveSectionId] = useState<string>('');
+  const observedIds = useMemo(
+    () => [...allSections.map((s) => s.section), ...appendices.map((a) => a.appendix)],
+    [allSections, appendices],
+  );
 
   const tocItems = useMemo(() => [
     ...allSections.map((s) => ({
@@ -510,41 +608,6 @@ function FARPartView({
       isAppendix: true,
     })),
   ], [allSections, appendices]);
-
-  useEffect(() => {
-    if (typeof window === 'undefined' || !('IntersectionObserver' in window)) return;
-
-    const ids = [
-      ...allSections.map((s) => s.section),
-      ...appendices.map((a) => a.appendix),
-    ];
-    if (ids.length === 0) return;
-
-    const elements = ids
-      .map((id) => document.getElementById(id))
-      .filter((el): el is HTMLElement => el !== null);
-
-    if (elements.length === 0) return;
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visible = entries.filter((e) => e.isIntersecting);
-        if (visible.length > 0) {
-          const sorted = visible.sort(
-            (a, b) => Math.abs(a.boundingClientRect.top - 100) - Math.abs(b.boundingClientRect.top - 100)
-          );
-          setActiveSectionId(sorted[0].target.id);
-        }
-      },
-      {
-        rootMargin: '-80px 0px -60% 0px',
-        threshold: [0, 0.25],
-      }
-    );
-
-    elements.forEach((el) => observer.observe(el));
-    return () => observer.disconnect();
-  }, [allSections, appendices]);
 
   useEffect(() => {
     const targetId = decodeHash(location.hash);
@@ -638,56 +701,15 @@ function FARPartView({
       <div className="lg:grid lg:grid-cols-[280px_1fr] lg:gap-8 lg:items-start mt-6">
         {/* Left Sticky Sidebar (Desktop only) */}
         {(allSections.length > 0 || appendices.length > 0) && (
-          <aside className="sticky top-20 max-h-[calc(100vh-7rem)] overflow-y-auto bg-card rounded-2xl p-5 border border-border shadow-sm hidden lg:block">
-            <h2 className="text-base font-bold text-foreground mb-4 flex items-center gap-2 border-b pb-2">
-              <List className="w-4 h-4 text-primary" />
-              References ({allSections.length + appendices.length})
-            </h2>
-            <nav className="space-y-1.5">
-              {allSections.map((section) => {
-                const isActive = activeSectionId === section.section;
-                return (
-                  <a
-                    key={section.section}
-                    href={`#${section.section}`}
-                    className={`block text-xs px-2.5 py-2 rounded-lg transition-colors truncate ${
-                      isActive
-                        ? 'bg-primary/10 text-primary font-semibold border-l-2 border-primary'
-                        : 'text-muted-foreground hover:text-primary hover:bg-accent/50'
-                    }`}
-                    title={`§ ${section.section} - ${section.title}`}
-                  >
-                    <span className="font-semibold text-foreground/80 mr-1">§ {section.section}</span>
-                    {section.title}
-                  </a>
-                );
-              })}
-              {appendices.length > 0 && (
-                <p className="px-2.5 pt-3 text-xs font-semibold uppercase text-muted-foreground">Appendices</p>
-              )}
-              {appendices.map((appendix) => {
-                const isActive = activeSectionId === appendix.appendix;
-                return (
-                  <a
-                    key={appendix.appendix}
-                    href={`#${encodeURIComponent(appendix.appendix)}`}
-                    className={`block truncate rounded-lg px-2.5 py-2 text-xs transition-colors hover:text-primary ${
-                      isActive
-                        ? 'bg-primary/10 text-primary font-semibold border-l-2 border-primary'
-                        : 'text-muted-foreground hover:bg-accent/50'
-                    }`}
-                    title={appendix.title}
-                  >
-                    {appendix.title}
-                  </a>
-                );
-              })}
-            </nav>
-          </aside>
+          <FARDesktopToc
+            allSections={allSections}
+            appendices={appendices}
+            observedIds={observedIds}
+          />
         )}
 
         {/* Right Content Area */}
-        <div className="min-w-0">
+        <div className="min-w-0" style={readerControls.cssVars}>
           {/* Header */}
           <div className="mb-8">
             <div className="flex items-center gap-3 mb-3">
@@ -720,10 +742,10 @@ function FARPartView({
 
           {/* Mobile Table of Contents Drawer */}
           {(allSections.length > 0 || appendices.length > 0) && (
-            <MobileTableOfContents
-              title={`Part ${part.part} Contents`}
-              items={tocItems}
-              activeId={activeSectionId}
+            <FARMobileToc
+              partNumber={part.part}
+              tocItems={tocItems}
+              observedIds={observedIds}
             />
           )}
 
@@ -735,10 +757,10 @@ function FARPartView({
                   key={section.section}
                   partId={part.part}
                   section={section}
-                  searchQuery={searchQuery}
+                  searchQuery={deferredSearchQuery}
                   highlightTerm={highlightTerm}
                   isHighlighted={highlightedSectionId === section.section}
-                  contentStyle={readerControls.contentStyle}
+                  isHashTarget={activeHashId === section.section}
                 />
               ))}
             </div>
@@ -758,10 +780,10 @@ function FARPartView({
                         key={section.section}
                         partId={part.part}
                         section={section}
-                        searchQuery={searchQuery}
+                        searchQuery={deferredSearchQuery}
                         highlightTerm={highlightTerm}
                         isHighlighted={highlightedSectionId === section.section}
-                        contentStyle={readerControls.contentStyle}
+                        isHashTarget={activeHashId === section.section}
                       />
                     ))}
                   </div>
@@ -780,9 +802,8 @@ function FARPartView({
                   key={appendix.appendix}
                   appendix={appendix}
                   partId={part.part}
-                  searchQuery={searchQuery}
+                  searchQuery={deferredSearchQuery}
                   highlightTerm={highlightTerm}
-                  contentStyle={readerControls.contentStyle}
                 />
               ))}
             </section>
@@ -800,15 +821,15 @@ function FARPartView({
             )}
 
           {/* Study Materials Section */}
-          {(farQuizzes.length > 0 || farFlashcards.length > 0) && (
+          {(farQuiz || farFlashcards) && (
             <div className="mt-12 pt-8 border-t border-border">
               <h2 className="text-lg font-bold text-foreground mb-4">
                 FAR Study Materials
               </h2>
               <div className="grid gap-4 sm:grid-cols-2">
-                {farQuizzes.length > 0 && (
+                {farQuiz && (
                   <Link
-                    to={`/quizzes/${farQuizzes[0].id}`}
+                    to={`/quizzes/${farQuiz.id}`}
                     className="group flex items-center gap-4 p-4 bg-gradient-to-r from-purple-500/10 to-purple-600/5 dark:from-purple-500/20 dark:to-purple-600/10 rounded-xl border border-purple-200 dark:border-purple-800/50 hover:shadow-md transition-all"
                   >
                     <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl flex items-center justify-center flex-shrink-0">
@@ -817,15 +838,15 @@ function FARPartView({
                     <div className="flex-1">
                       <p className="text-sm text-purple-700 dark:text-purple-300 font-medium">Practice Quiz</p>
                       <p className="text-foreground font-semibold group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">
-                        {farQuizzes[0].title}
+                        {farQuiz.title}
                       </p>
                     </div>
                     <ChevronRight className="w-5 h-5 text-purple-500 group-hover:translate-x-1 transition-transform" />
                   </Link>
                 )}
-                {farFlashcards.length > 0 && (
+                {farFlashcards && (
                   <Link
-                    to={`/flashcards/${farFlashcards[0].id}`}
+                    to={`/flashcards/${farFlashcards.id}`}
                     className="group flex items-center gap-4 p-4 bg-gradient-to-r from-amber-500/10 to-amber-600/5 dark:from-amber-500/20 dark:to-amber-600/10 rounded-xl border border-amber-200 dark:border-amber-800/50 hover:shadow-md transition-all"
                   >
                     <div className="w-12 h-12 bg-gradient-to-br from-amber-500 to-amber-600 rounded-xl flex items-center justify-center flex-shrink-0">
@@ -834,7 +855,7 @@ function FARPartView({
                     <div className="flex-1">
                       <p className="text-sm text-amber-700 dark:text-amber-300 font-medium">Flashcards</p>
                       <p className="text-foreground font-semibold group-hover:text-amber-600 dark:group-hover:text-amber-400 transition-colors">
-                        {farFlashcards[0].title}
+                        {farFlashcards.title}
                       </p>
                     </div>
                     <ChevronRight className="w-5 h-5 text-amber-500 group-hover:translate-x-1 transition-transform" />
@@ -890,23 +911,26 @@ function FARPartView({
   );
 }
 
-function AppendixView({
+const AppendixView = memo(function AppendixView({
   appendix,
   partId,
   searchQuery,
   highlightTerm,
-  contentStyle,
 }: {
   appendix: FARAppendix;
   partId: number;
   searchQuery: string;
   highlightTerm: string;
-  contentStyle: CSSProperties;
 }) {
   const [copied, setCopied] = useState(false);
-  const query = searchQuery.toLowerCase();
-  const figureText = (appendix.figures || []).flatMap((figure) => [figure.alt, figure.caption]).join(' ');
-  if (query && !`${appendix.appendix} ${appendix.title} ${appendix.content} ${figureText}`.toLowerCase().includes(query)) {
+  const matchesSearch = useMemo(() => {
+    if (!searchQuery) return true;
+    const query = searchQuery.toLowerCase();
+    const figureText = (appendix.figures || []).flatMap((figure) => [figure.alt, figure.caption]).join(' ');
+    return `${appendix.appendix} ${appendix.title} ${appendix.content} ${figureText}`.toLowerCase().includes(query);
+  }, [appendix, searchQuery]);
+
+  if (!matchesSearch) {
     return null;
   }
 
@@ -924,7 +948,7 @@ function AppendixView({
   };
 
   return (
-    <article id={appendix.appendix} className="bg-card rounded-xl p-6 shadow-sm border border-border scroll-mt-24">
+    <article id={appendix.appendix} className="cv-section bg-card rounded-xl p-6 shadow-sm border border-border scroll-mt-24">
       <div className="flex items-start justify-between gap-2 mb-3">
         <h3 className="text-lg font-semibold text-foreground">
           <HighlightText text={appendix.title} query={effectiveQuery} />
@@ -941,7 +965,7 @@ function AppendixView({
               <Check className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" /> Copied
             </span>
           ) : (
-            <Link2 className="w-4 h-4" />
+            <svg className="sm-ico-only" aria-hidden="true"><use href="#sm-lk" /></svg>
           )}
         </button>
       </div>
@@ -956,10 +980,9 @@ function AppendixView({
       </div>
       <FormattedContent
         text={appendix.content}
-        className="text-muted-foreground"
+        className="reader-content text-muted-foreground"
         highlight={effectiveQuery}
         tableCaption={appendix.title}
-        style={contentStyle}
       />
       {appendix.figures && appendix.figures.length > 0 && (
         <div className="mt-6">
@@ -973,25 +996,23 @@ function AppendixView({
       )}
     </article>
   );
-}
+});
 
-
-function SectionView({
+const SectionView = memo(function SectionView({
   partId,
   section,
   searchQuery,
   highlightTerm,
   isHighlighted,
-  contentStyle
+  isHashTarget,
 }: {
   partId: number;
   section: FARSection;
   searchQuery: string;
   highlightTerm?: string;
   isHighlighted?: boolean;
-  contentStyle: CSSProperties;
+  isHashTarget?: boolean;
 }) {
-  const figureText = (section.figures || []).flatMap((figure) => [figure.alt, figure.caption]).join(' ');
   // If there's a search query and this section doesn't match, return null
   // We match on section ID, title, content, abbreviations, etc.
   const matchesSearch = useMemo(() => {
@@ -1001,7 +1022,10 @@ function SectionView({
     if (section.section.toLowerCase().includes(query)) return true;
     if (section.title?.toLowerCase().includes(query)) return true;
     if (section.content?.toLowerCase().includes(query)) return true;
-    if (figureText.toLowerCase().includes(query)) return true;
+    if (section.figures?.some(figure =>
+      figure.alt?.toLowerCase().includes(query) ||
+      figure.caption?.toLowerCase().includes(query)
+    )) return true;
 
     if (section.definitions?.some(d =>
       d.term.toLowerCase().includes(query) ||
@@ -1014,20 +1038,19 @@ function SectionView({
     )) return true;
 
     return false;
-  }, [figureText, section, searchQuery]);
+  }, [section, searchQuery]);
 
   // Flash highlight effect when scrolled to via hash or when highlighted from search
   const [isFlashed, setIsFlashed] = useState(false);
   const [copied, setCopied] = useState(false);
-  const { hash } = useLocation();
 
   useEffect(() => {
-    if (hash === `#${section.section}`) {
+    if (isHashTarget) {
       setIsFlashed(true);
       const timer = setTimeout(() => setIsFlashed(false), 2000);
       return () => clearTimeout(timer);
     }
-  }, [hash, section.section]);
+  }, [isHashTarget]);
 
   // Also flash when isHighlighted prop is set (from search navigation)
   useEffect(() => {
@@ -1056,7 +1079,7 @@ function SectionView({
   return (
     <div
       id={section.section}
-      className={`scroll-mt-24 bg-card rounded-xl p-6 shadow-sm border border-border transition-colors duration-500 ${isFlashed ? 'ring-2 ring-primary bg-primary/5' : ''
+      className={`cv-section scroll-mt-24 bg-card rounded-xl p-6 shadow-sm border border-border transition-colors duration-500 ${isFlashed ? 'ring-2 ring-primary bg-primary/5' : ''
         }`}
     >
       <div className="flex items-start justify-between gap-2 mb-3">
@@ -1076,7 +1099,7 @@ function SectionView({
               <Check className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" /> Copied
             </span>
           ) : (
-            <Link2 className="w-4 h-4" />
+            <svg className="sm-ico-only" aria-hidden="true"><use href="#sm-lk" /></svg>
           )}
         </button>
       </div>
@@ -1094,10 +1117,9 @@ function SectionView({
       {section.content && (
         <FormattedContent
           text={section.content}
-          className="text-muted-foreground mb-4"
+          className="reader-content text-muted-foreground mb-4"
           highlight={effectiveQuery}
           tableCaption={`FAR ${section.section}: ${section.title}`}
-          style={contentStyle}
         />
       )}
 
@@ -1178,4 +1200,4 @@ function SectionView({
       )}
     </div>
   );
-}
+});

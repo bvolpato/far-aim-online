@@ -1,20 +1,31 @@
-import { useEffect, useState } from 'react';
-import { Bookmark, CheckCircle2, Highlighter, Share2, StickyNote, Trash2 } from 'lucide-react';
+import { memo, useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
-import { useStudyMarks, type StudyMarkInput } from '@/hooks/useStudyMarks';
-import { cn } from '@/lib/utils';
+import {
+  markStudyMarkReviewed,
+  removeStudyMark,
+  saveStudyMarkNote,
+  toggleStudyMarkHighlighted,
+  toggleStudyMarkSaved,
+  useStudyMark,
+  type StudyMarkInput,
+} from '@/hooks/useStudyMarks';
 
 interface StudyMarkToolsProps extends StudyMarkInput {
   compact?: boolean;
 }
 
-export function StudyMarkTools({ compact = false, ...input }: StudyMarkToolsProps) {
-  const { getMark, toggleSaved, toggleHighlighted, saveNote, markReviewed, removeMark } = useStudyMarks();
-  const mark = getMark(input.type, input.reference);
+export const StudyMarkTools = memo(function StudyMarkTools({
+  compact = false,
+  type,
+  reference,
+  title,
+  path,
+}: StudyMarkToolsProps) {
+  const mark = useStudyMark(type, reference);
   const [noteOpen, setNoteOpen] = useState(false);
   const [draft, setDraft] = useState(mark?.note || '');
   const [shareStatus, setShareStatus] = useState<'idle' | 'copied'>('idle');
-  const noteId = `note-${input.type}-${input.reference.replace(/[^a-zA-Z0-9_-]+/g, '-')}`;
+  const noteId = `note-${type}-${reference.replace(/[^a-zA-Z0-9_-]+/g, '-')}`;
 
   useEffect(() => {
     setDraft(mark?.note || '');
@@ -24,14 +35,18 @@ export function StudyMarkTools({ compact = false, ...input }: StudyMarkToolsProp
   const isSaved = Boolean(mark?.saved);
   const isHighlighted = Boolean(mark?.highlighted);
   const isReviewed = Boolean(mark?.reviewedAt);
+  const sizeClass = compact ? 'sm-btn sm-btn-c' : 'sm-btn';
+
+  const getInput = (): StudyMarkInput => ({ type, reference, title, path });
+
   const shareReference = async () => {
-    const shareUrl = `${window.location.origin}${input.path}`;
-    const shareText = `${input.reference} - ${input.title}\n${shareUrl}`;
+    const shareUrl = `${window.location.origin}${path}`;
+    const shareText = `${reference} - ${title}\n${shareUrl}`;
     try {
       if (navigator.share) {
         await navigator.share({
-          title: `${input.reference} - ${input.title}`,
-          text: `${input.reference} - ${input.title}`,
+          title: `${reference} - ${title}`,
+          text: `${reference} - ${title}`,
           url: shareUrl,
         });
         return;
@@ -47,91 +62,88 @@ export function StudyMarkTools({ compact = false, ...input }: StudyMarkToolsProp
   };
 
   return (
-    <div className={cn(
-      'rounded-lg border border-border bg-muted/30 p-3',
-      compact && 'border-transparent bg-transparent p-0'
-    )}>
+    <div className={compact ? undefined : 'rounded-lg border border-border bg-muted/30 p-3'}>
       <div className="flex flex-wrap items-center gap-2">
-        <Button
+        <button
           type="button"
-          variant={isSaved ? 'default' : 'outline'}
-          size="sm"
-          className={compact ? 'h-8' : undefined}
-          onClick={() => toggleSaved(input)}
-          aria-label={`${isSaved ? 'Remove saved mark for' : 'Save'} ${input.reference}`}
+          className={`${sizeClass} ${isSaved ? 'sm-btn-p' : 'sm-btn-o'}`}
+          onClick={() => toggleStudyMarkSaved(getInput())}
+          aria-label={`${isSaved ? 'Remove saved mark for' : 'Save'} ${reference}`}
         >
-          <Bookmark className={cn('mr-2 h-4 w-4', isSaved && 'fill-current')} />
+          <svg className={isSaved ? 'sm-ico fill-current' : 'sm-ico'} aria-hidden="true">
+            <use href="#sm-bm" />
+          </svg>
           {isSaved ? 'Saved' : 'Save'}
-        </Button>
-        <Button
+        </button>
+        <button
           type="button"
-          variant={hasNote || noteOpen ? 'secondary' : 'outline'}
-          size="sm"
-          className={compact ? 'h-8' : undefined}
+          className={`${sizeClass} ${hasNote || noteOpen ? 'sm-btn-s' : 'sm-btn-o'}`}
           onClick={() => setNoteOpen((value) => !value)}
-          aria-label={`${hasNote ? 'Edit note for' : 'Add note for'} ${input.reference}`}
+          aria-label={`${hasNote ? 'Edit note for' : 'Add note for'} ${reference}`}
         >
-          <StickyNote className="mr-2 h-4 w-4" />
+          <svg className="sm-ico" aria-hidden="true">
+            <use href="#sm-nt" />
+          </svg>
           {hasNote ? 'Note' : 'Add note'}
-        </Button>
-        <Button
+        </button>
+        <button
           type="button"
-          variant={isHighlighted ? 'secondary' : 'outline'}
-          size="sm"
-          className={compact ? 'h-8' : undefined}
-          onClick={() => toggleHighlighted(input)}
-          aria-label={`${isHighlighted ? 'Remove highlight for' : 'Highlight'} ${input.reference}`}
+          className={`${sizeClass} ${isHighlighted ? 'sm-btn-s' : 'sm-btn-o'}`}
+          onClick={() => toggleStudyMarkHighlighted(getInput())}
+          aria-label={`${isHighlighted ? 'Remove highlight for' : 'Highlight'} ${reference}`}
         >
-          <Highlighter className={cn('mr-2 h-4 w-4', isHighlighted && 'text-amber-600')} />
+          <svg className={isHighlighted ? 'sm-ico text-amber-600' : 'sm-ico'} aria-hidden="true">
+            <use href="#sm-hl" />
+          </svg>
           {isHighlighted ? 'Highlighted' : 'Highlight'}
-        </Button>
-        <Button
+        </button>
+        <button
           type="button"
-          variant={isReviewed ? 'secondary' : 'outline'}
-          size="sm"
-          className={compact ? 'h-8' : undefined}
-          onClick={() => markReviewed(input)}
-          aria-label={`Mark ${input.reference} reviewed`}
+          className={`${sizeClass} ${isReviewed ? 'sm-btn-s' : 'sm-btn-o'}`}
+          onClick={() => markStudyMarkReviewed(getInput())}
+          aria-label={`Mark ${reference} reviewed`}
         >
-          <CheckCircle2 className={cn('mr-2 h-4 w-4', isReviewed && 'text-emerald-600')} />
+          <svg className={isReviewed ? 'sm-ico text-emerald-600' : 'sm-ico'} aria-hidden="true">
+            <use href="#sm-ok" />
+          </svg>
           {isReviewed ? 'Reviewed' : 'Review'}
-        </Button>
-        <Button
+        </button>
+        <button
           type="button"
-          variant="outline"
-          size="sm"
-          className={compact ? 'h-8' : undefined}
+          className={`${sizeClass} sm-btn-o`}
           onClick={() => void shareReference()}
-          aria-label={`Share ${input.reference}`}
+          aria-label={`Share ${reference}`}
         >
-          <Share2 className="mr-2 h-4 w-4" />
+          <svg className="sm-ico" aria-hidden="true">
+            <use href="#sm-sh" />
+          </svg>
           {shareStatus === 'copied' ? 'Copied' : 'Share'}
-        </Button>
+        </button>
         {mark && (
-          <Button
+          <button
             type="button"
-            variant="ghost"
-            size="sm"
-            className={compact ? 'h-8 px-2' : undefined}
-            onClick={() => removeMark(mark.key)}
-            aria-label={`Clear study mark for ${input.reference}`}
+            className={`${sizeClass} sm-btn-g`}
+            onClick={() => removeStudyMark(mark.key)}
+            aria-label={`Clear study mark for ${reference}`}
           >
-            <Trash2 className="h-4 w-4" />
-          </Button>
+            <svg className="sm-ico-only" aria-hidden="true">
+              <use href="#sm-tr" />
+            </svg>
+          </button>
         )}
       </div>
 
       {noteOpen && (
         <form
-          className={cn('mt-3 space-y-2', compact && 'max-w-2xl')}
+          className={compact ? 'mt-3 max-w-2xl space-y-2' : 'mt-3 space-y-2'}
           onSubmit={(event) => {
             event.preventDefault();
-            saveNote(input, draft);
+            saveStudyMarkNote(getInput(), draft);
             setNoteOpen(false);
           }}
         >
           <label className="sr-only" htmlFor={noteId}>
-            Note for {input.reference}
+            Note for {reference}
           </label>
           <textarea
             id={noteId}
@@ -144,7 +156,7 @@ export function StudyMarkTools({ compact = false, ...input }: StudyMarkToolsProp
             <Button type="button" variant="ghost" size="sm" onClick={() => setNoteOpen(false)}>
               Cancel
             </Button>
-            <Button type="submit" size="sm" aria-label={`Save note for ${input.reference}`}>
+            <Button type="submit" size="sm" aria-label={`Save note for ${reference}`}>
               Save note
             </Button>
           </div>
@@ -152,4 +164,4 @@ export function StudyMarkTools({ compact = false, ...input }: StudyMarkToolsProp
       )}
     </div>
   );
-}
+});

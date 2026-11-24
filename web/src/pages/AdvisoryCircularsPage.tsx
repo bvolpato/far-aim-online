@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { memo, useDeferredValue, useEffect, useMemo, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import {
@@ -10,7 +10,8 @@ import {
   FileDown,
   Search,
 } from 'lucide-react';
-import { getAdvisoryCirculars, type AdvisoryCircular } from '../data';
+import { getAdvisoryCirculars } from '../data/ac';
+import type { AdvisoryCircular } from '../data/types';
 import {
   sortAdvisoryCirculars,
   type AdvisoryCircularSort,
@@ -21,9 +22,86 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { StudyMarkTools } from '@/components/StudyMarkTools';
 
+interface IndexedAdvisoryCircular {
+  ac: AdvisoryCircular;
+  searchText: string;
+}
+
+const AdvisoryCircularCard = memo(function AdvisoryCircularCard({ ac }: { ac: AdvisoryCircular }) {
+  return (
+    <Card id={ac.id} className="cv-card min-w-0 scroll-mt-24">
+      <CardContent className="p-4 sm:p-5">
+        <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
+          <div className="min-w-0 space-y-3">
+            <div className="flex flex-wrap items-center gap-2">
+              <Badge variant="secondary">AC {ac.number}</Badge>
+              <Badge variant="outline">{ac.status}</Badge>
+              {ac.contentStatus === 'partial' && (
+                <Badge variant="outline">Partial offline text</Badge>
+              )}
+              {ac.contentStatus === 'unavailable' && (
+                <Badge variant="outline">Official source only</Badge>
+              )}
+              <span className="text-sm text-muted-foreground">Issued {ac.issued}</span>
+              {ac.replaces && (
+                <span className="text-sm text-muted-foreground">replaces AC {ac.replaces}</span>
+              )}
+            </div>
+            <div>
+              <h2 className="text-xl font-semibold text-foreground">
+                {ac.contentPath ? (
+                  <Link
+                    to={`/advisory-circulars/${ac.id}`}
+                    className="text-primary hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                  >
+                    {ac.title}
+                  </Link>
+                ) : (
+                  ac.title
+                )}
+              </h2>
+              <p className="mt-1 text-sm text-muted-foreground">{ac.category} · {ac.office}</p>
+            </div>
+            <p className="text-sm leading-6 text-foreground/85">{ac.summary}</p>
+            <StudyMarkTools
+              compact
+              type="ac"
+              reference={`AC ${ac.number}`}
+              title={ac.title}
+              path={ac.contentPath ? `/advisory-circulars/${ac.id}` : `/advisory-circulars#${ac.id}`}
+            />
+            <div className="flex flex-wrap gap-2">
+              {ac.relatedCfr.map((reference) => (
+                <Badge key={reference} variant="outline">{reference}</Badge>
+              ))}
+            </div>
+          </div>
+          <div className="flex shrink-0 flex-wrap gap-2">
+            <Button asChild variant="outline" size="sm" className="min-h-11">
+              <a href={ac.documentUrl} target="_blank" rel="noreferrer">
+                <ExternalLink className="mr-2 h-4 w-4" />
+                FAA page
+              </a>
+            </Button>
+            {ac.pdfUrl && (
+              <Button asChild variant={ac.contentPath ? 'outline' : 'default'} size="sm" className="min-h-11">
+                <a href={ac.pdfUrl} target="_blank" rel="noreferrer">
+                  <FileDown className="mr-2 h-4 w-4" />
+                  PDF
+                </a>
+              </Button>
+            )}
+          </div>
+        </div>
+      </CardContent>
+    </Card>
+  );
+});
+
 export function AdvisoryCircularsPage() {
   const [advisoryCirculars, setAdvisoryCirculars] = useState<AdvisoryCircular[]>([]);
   const [query, setQuery] = useState('');
+  const deferredQuery = useDeferredValue(query);
   const [category, setCategory] = useState('All');
   const [sort, setSort] = useState<AdvisoryCircularSort>('newest');
   const [filtersExpanded, setFiltersExpanded] = useState(false);
@@ -42,6 +120,27 @@ export function AdvisoryCircularsPage() {
     };
   }, []);
 
+  const indexedCirculars = useMemo<IndexedAdvisoryCircular[]>(
+    () =>
+      advisoryCirculars.map((ac) => ({
+        ac,
+        searchText: [
+          ac.number,
+          ac.title,
+          ac.summary,
+          ac.category,
+          ac.office,
+          ac.status,
+          ac.replaces || '',
+          ...ac.relatedCfr,
+          ...ac.tags,
+        ]
+          .join('\0')
+          .toLowerCase(),
+      })),
+    [advisoryCirculars],
+  );
+
   const categories = useMemo(
     () => ['All', ...Array.from(new Set(advisoryCirculars.map((ac) => ac.category))).sort()],
     [advisoryCirculars],
@@ -52,27 +151,17 @@ export function AdvisoryCircularsPage() {
   }, [categories, category]);
 
   const filteredCirculars = useMemo(() => {
-    const normalizedQuery = query.trim().toLowerCase();
-    const matches = advisoryCirculars.filter((ac) => {
-      const matchesCategory = category === 'All' || ac.category === category;
-      if (!matchesCategory) return false;
-      if (!normalizedQuery) return true;
-
-      return [
-        ac.number,
-        ac.title,
-        ac.summary,
-        ac.category,
-        ac.office,
-        ac.status,
-        ac.replaces || '',
-        ...ac.relatedCfr,
-        ...ac.tags,
-      ].some((value) => value.toLowerCase().includes(normalizedQuery));
-    });
+    const normalizedQuery = deferredQuery.trim().toLowerCase();
+    const matches: AdvisoryCircular[] = [];
+    for (let i = 0; i < indexedCirculars.length; i++) {
+      const entry = indexedCirculars[i];
+      if (category !== 'All' && entry.ac.category !== category) continue;
+      if (normalizedQuery && !entry.searchText.includes(normalizedQuery)) continue;
+      matches.push(entry.ac);
+    }
 
     return sortAdvisoryCirculars(matches, sort);
-  }, [advisoryCirculars, category, query, sort]);
+  }, [indexedCirculars, category, deferredQuery, sort]);
 
   return (
     <div className="mx-auto max-w-6xl min-w-0 px-4 py-8 animate-fade-in">
@@ -179,72 +268,7 @@ export function AdvisoryCircularsPage() {
 
       <div className="grid min-w-0 grid-cols-1 gap-4">
         {filteredCirculars.map((ac) => (
-          <Card key={ac.id} id={ac.id} className="min-w-0 scroll-mt-24">
-            <CardContent className="p-4 sm:p-5">
-              <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
-                <div className="min-w-0 space-y-3">
-                  <div className="flex flex-wrap items-center gap-2">
-                    <Badge variant="secondary">AC {ac.number}</Badge>
-                    <Badge variant="outline">{ac.status}</Badge>
-                    {ac.contentStatus === 'partial' && (
-                      <Badge variant="outline">Partial offline text</Badge>
-                    )}
-                    {ac.contentStatus === 'unavailable' && (
-                      <Badge variant="outline">Official source only</Badge>
-                    )}
-                    <span className="text-sm text-muted-foreground">Issued {ac.issued}</span>
-                    {ac.replaces && (
-                      <span className="text-sm text-muted-foreground">replaces AC {ac.replaces}</span>
-                    )}
-                  </div>
-                  <div>
-                    <h2 className="text-xl font-semibold text-foreground">
-                      {ac.contentPath ? (
-                        <Link
-                          to={`/advisory-circulars/${ac.id}`}
-                          className="text-primary hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-                        >
-                          {ac.title}
-                        </Link>
-                      ) : (
-                        ac.title
-                      )}
-                    </h2>
-                    <p className="mt-1 text-sm text-muted-foreground">{ac.category} · {ac.office}</p>
-                  </div>
-                  <p className="text-sm leading-6 text-foreground/85">{ac.summary}</p>
-                  <StudyMarkTools
-                    compact
-                    type="ac"
-                    reference={`AC ${ac.number}`}
-                    title={ac.title}
-                    path={ac.contentPath ? `/advisory-circulars/${ac.id}` : `/advisory-circulars#${ac.id}`}
-                  />
-                  <div className="flex flex-wrap gap-2">
-                    {ac.relatedCfr.map((reference) => (
-                      <Badge key={reference} variant="outline">{reference}</Badge>
-                    ))}
-                  </div>
-                </div>
-                <div className="flex shrink-0 flex-wrap gap-2">
-                  <Button asChild variant="outline" size="sm" className="min-h-11">
-                    <a href={ac.documentUrl} target="_blank" rel="noreferrer">
-                      <ExternalLink className="mr-2 h-4 w-4" />
-                      FAA page
-                    </a>
-                  </Button>
-                  {ac.pdfUrl && (
-                    <Button asChild variant={ac.contentPath ? 'outline' : 'default'} size="sm" className="min-h-11">
-                      <a href={ac.pdfUrl} target="_blank" rel="noreferrer">
-                        <FileDown className="mr-2 h-4 w-4" />
-                        PDF
-                      </a>
-                    </Button>
-                  )}
-                </div>
-              </div>
-            </CardContent>
-          </Card>
+          <AdvisoryCircularCard key={ac.id} ac={ac} />
         ))}
       </div>
     </div>

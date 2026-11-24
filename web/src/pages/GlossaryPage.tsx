@@ -1,8 +1,8 @@
-import { useState, useMemo, useEffect, useRef } from 'react';
-import type { ReactNode } from 'react';
+import { memo, useCallback, useDeferredValue, useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Book, Search, X } from 'lucide-react';
-import { getPCGTerms, type PCGTerm } from '../data';
+import { getPCGTerms } from '../data/pcg';
+import type { PCGTerm } from '../data/types';
 import { useLocation, useSearchParams } from 'react-router-dom';
 import { Input } from '../components/ui/input';
 import { Card, CardContent } from '../components/ui/card';
@@ -10,6 +10,9 @@ import { Button } from '../components/ui/button';
 import { highlightMatch } from '../lib/highlight';
 import { findGlossaryTerm, searchGlossaryTerms } from '../lib/glossary';
 import { cn } from '@/lib/utils';
+
+const SEE_PATTERN_SOURCE = '\\((See(?:\\s+also)?)(\\s+ICAO\\s+term)?\\s+((?:[^()]|\\([^()]*\\))+?)\\.?\\)';
+const ALPHABET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
 
 function scrollToGlossaryTerm(target: HTMLElement) {
   target.scrollIntoView({ behavior: 'auto', block: 'start' });
@@ -19,13 +22,100 @@ function scrollToGlossaryTerm(target: HTMLElement) {
   }, 2000);
 }
 
+const GlossaryTermCard = memo(function GlossaryTermCard({
+  item,
+  allTerms,
+  highlightQuery,
+  onSelectReference,
+}: {
+  item: PCGTerm;
+  allTerms: PCGTerm[];
+  highlightQuery: string;
+  onSelectReference: (termRef: string, isIcaoTerm: boolean) => void;
+}) {
+  const renderedDefinition = useMemo(() => {
+    const definition = item.definition;
+    const seePattern = new RegExp(SEE_PATTERN_SOURCE, 'gi');
+    const result: ReactNode[] = [];
+    let lastIndex = 0;
+    let match: RegExpExecArray | null;
+
+    while ((match = seePattern.exec(definition)) !== null) {
+      if (match.index > lastIndex) {
+        result.push(
+          <span key={`text-${lastIndex}`}>
+            {highlightMatch(definition.slice(lastIndex, match.index), highlightQuery)}
+          </span>
+        );
+      }
+
+      const seeType = match[1];
+      const isIcaoTerm = Boolean(match[2]);
+      const termRef = match[3].trim().replace(/\.$/, '');
+      const referencedTerm = findGlossaryTerm(allTerms, termRef, isIcaoTerm);
+      const hrefTarget = referencedTerm?.term ?? termRef;
+
+      result.push(
+        <span key={`see-${match.index}`}>
+          ({seeType}{isIcaoTerm ? ' ICAO term ' : ' '}
+          <a
+            href={`#${hrefTarget}`}
+            onClick={(event) => {
+              event.preventDefault();
+              onSelectReference(termRef, isIcaoTerm);
+            }}
+            className="text-blue-600 dark:text-blue-400 hover:underline cursor-pointer font-medium"
+          >
+            {highlightMatch(termRef, highlightQuery)}
+          </a>
+          .)
+        </span>
+      );
+
+      lastIndex = match.index + match[0].length;
+    }
+
+    if (lastIndex < definition.length) {
+      result.push(
+        <span key={`text-${lastIndex}`}>
+          {highlightMatch(definition.slice(lastIndex), highlightQuery)}
+        </span>
+      );
+    }
+
+    return result.length > 0 ? result : highlightMatch(definition, highlightQuery);
+  }, [allTerms, highlightQuery, item.definition, onSelectReference]);
+
+  return (
+    <Card
+      id={item.term}
+      className="cv-card rounded-xl scroll-mt-24 transition-colors duration-500"
+    >
+      <CardContent className="p-4 sm:p-6">
+        <h3 className="text-lg font-bold text-foreground mb-2">
+          {highlightMatch(item.term, highlightQuery)}
+        </h3>
+        <div className="prose dark:prose-invert max-w-none text-muted-foreground">
+          <p className="whitespace-pre-line [overflow-wrap:anywhere]">{renderedDefinition}</p>
+        </div>
+      </CardContent>
+    </Card>
+  );
+});
+
 export function GlossaryPage() {
   const [searchParams] = useSearchParams();
   const location = useLocation();
   const [query, setQuery] = useState(searchParams.get('highlight') || '');
+  const deferredQuery = useDeferredValue(query);
   const [allTerms, setAllTerms] = useState<PCGTerm[]>([]);
   const [loading, setLoading] = useState(true);
   const pendingScrollTarget = useRef<string | null>(null);
+  const queryRef = useRef(query);
+
+  useEffect(() => {
+    queryRef.current = query;
+  }, [query]);
 
   useEffect(() => {
     let active = true;
@@ -60,8 +150,8 @@ export function GlossaryPage() {
   }, [location.hash]);
 
   const terms = useMemo(() => {
-    return searchGlossaryTerms(allTerms, query);
-  }, [allTerms, query]);
+    return searchGlossaryTerms(allTerms, deferredQuery);
+  }, [allTerms, deferredQuery]);
 
   const availableLetters = useMemo(() => {
     const letters = new Set<string>();
@@ -94,79 +184,25 @@ export function GlossaryPage() {
     scrollToGlossaryTerm(target);
   }, [terms]);
 
-  const renderDefinition = (definition: string) => {
-    const seePattern = /\((See(?:\s+also)?)(\s+ICAO\s+term)?\s+((?:[^()]|\([^()]*\))+?)\.?\)/gi;
-    const result: ReactNode[] = [];
-    let lastIndex = 0;
-    let match: RegExpExecArray | null;
+  const handleSelectReference = useCallback((termRef: string, isIcaoTerm: boolean) => {
+    const referencedTerm = findGlossaryTerm(allTerms, termRef, isIcaoTerm);
 
-    const scrollToTerm = (termRef: string, isIcaoTerm = false) => {
-      const referencedTerm = findGlossaryTerm(allTerms, termRef, isIcaoTerm);
-
-      if (referencedTerm && query) {
-        pendingScrollTarget.current = referencedTerm.term;
-        setQuery('');
-        return;
-      }
-
-      let element = document.getElementById(termRef);
-
-      if (!element && referencedTerm) {
-        element = document.getElementById(referencedTerm.term);
-      }
-
-      if (element) {
-        scrollToGlossaryTerm(element);
-        return;
-      }
-
-    };
-
-    while ((match = seePattern.exec(definition)) !== null) {
-      if (match.index > lastIndex) {
-        result.push(
-          <span key={`text-${lastIndex}`}>
-            {highlightMatch(definition.slice(lastIndex, match.index), query)}
-          </span>
-        );
-      }
-
-      const seeType = match[1];
-      const isIcaoTerm = Boolean(match[2]);
-      const termRef = match[3].trim().replace(/\.$/, '');
-      const referencedTerm = findGlossaryTerm(allTerms, termRef, isIcaoTerm);
-      const hrefTarget = referencedTerm?.term ?? termRef;
-
-      result.push(
-        <span key={`see-${match.index}`}>
-          ({seeType}{isIcaoTerm ? ' ICAO term ' : ' '}
-          <a
-            href={`#${hrefTarget}`}
-            onClick={(event) => {
-              event.preventDefault();
-              scrollToTerm(termRef, isIcaoTerm);
-            }}
-            className="text-blue-600 dark:text-blue-400 hover:underline cursor-pointer font-medium"
-          >
-            {highlightMatch(termRef, query)}
-          </a>
-          .)
-        </span>
-      );
-
-      lastIndex = match.index + match[0].length;
+    if (referencedTerm && queryRef.current) {
+      pendingScrollTarget.current = referencedTerm.term;
+      setQuery('');
+      return;
     }
 
-    if (lastIndex < definition.length) {
-      result.push(
-        <span key={`text-${lastIndex}`}>
-          {highlightMatch(definition.slice(lastIndex), query)}
-        </span>
-      );
+    let element = document.getElementById(termRef);
+
+    if (!element && referencedTerm) {
+      element = document.getElementById(referencedTerm.term);
     }
 
-    return result.length > 0 ? result : highlightMatch(definition, query);
-  };
+    if (element) {
+      scrollToGlossaryTerm(element);
+    }
+  }, [allTerms]);
 
   return (
     <div className="max-w-4xl mx-auto px-4 py-6 sm:py-8 animate-fade-in">
@@ -221,7 +257,7 @@ export function GlossaryPage() {
         {/* Alphabet quick jump */}
         {!loading && (
           <nav aria-label="Alphabet quick jump" className="mt-2.5 flex items-center gap-1 overflow-x-auto pb-1 text-xs no-scrollbar">
-            {'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('').map((letter) => {
+            {ALPHABET.map((letter) => {
               const hasTerms = availableLetters.has(letter);
               return (
                 <button
@@ -251,26 +287,19 @@ export function GlossaryPage() {
           <Card className="rounded-xl">
             <CardContent className="py-12 text-center">
               <p className="text-muted-foreground">
-                {loading ? 'Loading glossary terms...' : `No terms found matching "${query}"`}
+                {loading ? 'Loading glossary terms...' : `No terms found matching "${deferredQuery}"`}
               </p>
             </CardContent>
           </Card>
         ) : (
           terms.map((item, index) => (
-            <Card
+            <GlossaryTermCard
               key={`${item.term}-${index}`}
-              id={item.term}
-              className="rounded-xl scroll-mt-24 transition-colors duration-500"
-            >
-              <CardContent className="p-4 sm:p-6">
-                <h3 className="text-lg font-bold text-foreground mb-2">
-                  {highlightMatch(item.term, query)}
-                </h3>
-                <div className="prose dark:prose-invert max-w-none text-muted-foreground">
-                  <p className="whitespace-pre-line [overflow-wrap:anywhere]">{renderDefinition(item.definition)}</p>
-                </div>
-              </CardContent>
-            </Card>
+              item={item}
+              allTerms={allTerms}
+              highlightQuery={deferredQuery}
+              onSelectReference={handleSelectReference}
+            />
           ))
         )}
       </div>

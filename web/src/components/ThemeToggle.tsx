@@ -7,9 +7,15 @@ import { cn } from "@/lib/utils"
 export function ThemeToggle() {
   const { theme, setTheme } = useTheme()
   const [isOpen, setIsOpen] = useState(false)
+  const [isInteractive, setIsInteractive] = useState(false)
   const dropdownRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
+    setIsInteractive(true)
+  }, [])
+
+  useEffect(() => {
+    if (!isOpen) return
     function handleClickOutside(event: MouseEvent) {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
         setIsOpen(false)
@@ -19,13 +25,14 @@ export function ThemeToggle() {
     return () => {
       document.removeEventListener("mousedown", handleClickOutside)
     }
-  }, [])
+  }, [isOpen])
 
   return (
     <div className="relative" ref={dropdownRef}>
       <Button
         variant="ghost"
         size="icon"
+        disabled={!isInteractive}
         onClick={() => setIsOpen(!isOpen)}
         aria-label="Toggle theme"
       >
