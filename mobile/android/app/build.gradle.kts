@@ -96,6 +96,8 @@ android {
     lint {
         warningsAsErrors = true
         // An upstream release should not break unrelated builds.
+        informational += "AndroidGradlePluginVersion"
+        informational += "GradleDependency"
         informational += "NewerVersionAvailable"
         // API 36 is current Play submission target; API 37 behavior is not production-targeted yet.
         disable += "OldTargetApi"
